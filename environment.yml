@@ -1,4 +1,4 @@
-name: essays-on-data-science
+name: sgbs-training
 channels:
 - conda-forge
 dependencies:
@@ -9,5 +9,5 @@ dependencies:
 - pre-commit=1.20.0
 - pip
 - pip:
-  - mkdocs-minify-plugin
-  - pymdown-extensions
+  - mkdocs-minify-plugin==0.2.1
+  - pymdown-extensions==6.1
