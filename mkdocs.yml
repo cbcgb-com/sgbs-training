@@ -1,6 +1,6 @@
-site_name: Essays on Data Science
-nav:
-  - Home: index.md
+site_name: 小組查經帶領訓練
+# nav:
+#   - Home: index.md
 
 theme:
   name: 'material'
