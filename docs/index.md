@@ -4,7 +4,7 @@
 
 ## 註冊
 
-請點擊此鏈接註冊：https://airtable.com/shrS5gKu57LudKDSh
+請點擊[此鏈接註冊](https://airtable.com/shrS5gKu57LudKDSh)。
 
 ## 課堂模式
 
