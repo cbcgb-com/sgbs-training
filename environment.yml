@@ -1,4 +1,4 @@
-name: essays-on-data-science
+name: sgbs-training
 channels:
 - conda-forge
 dependencies:
