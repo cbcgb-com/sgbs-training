@@ -32,6 +32,7 @@
 討論完後，
 可以参考一下為大家預備的[路加福音示範](./resources/luke-study-notes.md)
 和[马太福音示范](./resources/matthew-study-notes.md)。
+
 -----
 
 ## 預備查經筆記
