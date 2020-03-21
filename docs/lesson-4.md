@@ -44,10 +44,22 @@
 
 ### 英文文法分析
 
-[點擊這裡](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
+借英文文法分析，寫出本段經文大綱(outlines)
+
+[Google doc草稿](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
+
+??? note "英文分析步驟"
+
+    1. 先找出該段經文裡“每一個主要句子”的起始及結束。
+    2. 從每一主要句子找出句子的主幹：主詞，謂語(動詞)，賓語(受詞)，在筆記本上重新整理並把他們放在最左邊。而所附屬的句子，字詞，片語，則放在所要形容的子句或字詞的右下側。
+    3. 觀察放在最左邊的是主要句子有那些，將它們連貫起來看，觀察句子之間的主語，謂語(時態、次序、重複)有何關聨？這樣做的原因在於，句子最左邊的部份，常常是聖經作者要強調的部份，因此值得我們注意。
+    4. 觀察主要句子之間用那一個連接詞(but, so that, in order that , for, because, and, if ) 來連接句子?以此看出作者的思路發展。
+    5. 觀察那些主題的論述篇幅很長，它們也是重點之一。
+    6. 觀察有無重複字詞?相似詞?對照/對比詞?這些詞可以反應出作者所要強調的。
+
+------
 
 示例：
-
 1. [約翰一書 4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
 2. [哥林多前書 1:1-25](https://drive.google.com/file/d/1gR-darNwkft-d0GPycFqSbru6qLZhmij/view?usp=sharing)
 3. [哥林多前書 1:26-2:16](https://drive.google.com/file/d/1xEr40gQBhCvU184yJ0GAUiTG0tXGzPkt/view?usp=sharing)
