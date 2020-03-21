@@ -52,12 +52,6 @@
 2. [哥林多前書 1:1-25](https://drive.google.com/file/d/1gR-darNwkft-d0GPycFqSbru6qLZhmij/view?usp=sharing)
 3. [哥林多前書 1:26-2:16](https://drive.google.com/file/d/1xEr40gQBhCvU184yJ0GAUiTG0tXGzPkt/view?usp=sharing)
 
-<object data="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing" type="application/pdf" width="750px" height="750px">
-    <embed src="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing" type="application/pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing">Download PDF</a>.</p>
-    </embed>
-</object>
-
 ??? note "分析議論文例子【弗2:1-10】"
 
     1. 全書、前後文背景：
