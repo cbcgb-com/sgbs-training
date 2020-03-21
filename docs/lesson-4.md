@@ -4,9 +4,9 @@
 
 聖經中的論說文：
 
-    - 新约书信。如：羅馬書
-    - 新约耶稣和使徒的長篇演講。如：馬太福音 6:25-34（不要憂慮），使徒行傳 7:2-53（司提反力辯舊約指向耶穌）
-    - 舊約先知的講話。如：撒母耳記上 12:6-17（撒母耳最後的勸勉）
+- 新约书信。如：羅馬書
+- 新约耶稣和使徒的長篇演講。如：馬太福音 6:25-34（不要憂慮），使徒行傳 7:2-53（司提反力辯舊約指向耶穌）
+- 舊約先知的講話。如：撒母耳記上 12:6-17（撒母耳最後的勸勉）
 
 閱讀聖經的時，留意 **不同文體的混合**
 
@@ -47,6 +47,7 @@
 [點擊這裡](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
 
 示例：
+
 1. [約翰一書 4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
 2. [哥林多前書 1:1-25](https://drive.google.com/file/d/1gR-darNwkft-d0GPycFqSbru6qLZhmij/view?usp=sharing)
 3. [哥林多前書 1:26-2:16](https://drive.google.com/file/d/1xEr40gQBhCvU184yJ0GAUiTG0tXGzPkt/view?usp=sharing)
