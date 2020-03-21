@@ -37,9 +37,18 @@
 
     - 語義
     - 邏輯連詞
-    - 工具：[英文文法分析](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
+    - 工具：英文文法分析
 
 -----
+
+### 英文文法分析
+
+[點擊這裡](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
+
+示例：
+1. [約翰一書 4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
+2. [哥林多前書 1:1-25](https://drive.google.com/file/d/1gR-darNwkft-d0GPycFqSbru6qLZhmij/view?usp=sharing)
+3. [哥林多前書 1:26-2:16](https://drive.google.com/file/d/1xEr40gQBhCvU184yJ0GAUiTG0tXGzPkt/view?usp=sharing)
 
 <object data="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing" type="application/pdf" width="750px" height="750px">
     <embed src="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing" type="application/pdf">
