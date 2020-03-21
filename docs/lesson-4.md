@@ -15,7 +15,7 @@
     - 要素：背景（時間，地點），人物，情節（起因，經過，結果）
     - 呈現主題的方式：故事情節 + 背景 --> 塑造人物形象 --> 主題
     - 關注重點：背景的帶入感，情節的細節，人物的特點
-    
+
 2. 論說文：
     - 要素：論點，論據，論證
     - 呈現主題的方式：論據 + 論證 --> 證明觀點
@@ -60,6 +60,7 @@
 ------
 
 示例：
+
 1. [約翰一書 4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
 2. [哥林多前書 1:1-25](https://drive.google.com/file/d/1gR-darNwkft-d0GPycFqSbru6qLZhmij/view?usp=sharing)
 3. [哥林多前書 1:26-2:16](https://drive.google.com/file/d/1xEr40gQBhCvU184yJ0GAUiTG0tXGzPkt/view?usp=sharing)
