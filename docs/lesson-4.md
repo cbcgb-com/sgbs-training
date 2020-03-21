@@ -27,25 +27,25 @@
 
 ??? question open "討論問題：議論文中，我們觀察、解釋、歸納的重點是什麼"
 
-- 觀察**篇章結構**（找到論點和邏輯鏈）
-- 解釋邏輯關係、論據
-- 歸納教導和原因
+    - 觀察**篇章結構**（找到論點和邏輯鏈）
+    - 解釋邏輯關係、論據
+    - 歸納教導和原因
 
 -----
 
 ??? question open "討論問題：如何找到字間、句間、甚至段落之間的邏輯關係"
 
-- 語義
-- 邏輯連詞
-- 工具：[英文文法分析](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
+    - 語義
+    - 邏輯連詞
+    - 工具：[英文文法分析](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
+
+-----
 
 <object data="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing" type="application/pdf" width="750px" height="750px">
     <embed src="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing" type="application/pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing">Download PDF</a>.</p>
     </embed>
 </object>
-
------
 
 ??? note "分析議論文例子【弗2:1-10】"
 
