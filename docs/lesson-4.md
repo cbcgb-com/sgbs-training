@@ -44,7 +44,7 @@
 
 ### 英文文法分析
 
-借英文文法分析，寫出本段經文大綱(outlines)
+借英文文法分析，寫出經文大綱(outlines)
 
 [Google doc草稿](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
 
