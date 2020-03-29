@@ -56,7 +56,10 @@
     - 帶領者只是主持/促進討論的人，不是老師。
 
 -----
+#### 參考书目
+Help! I'm a Small-Group Leader! [Amazon Link](https://www.amazon.com/dp/B003JH835A/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
 
+-----
 ## 應對臨場意外狀況
 
 ### 可以提前準備嗎？
