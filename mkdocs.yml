@@ -20,6 +20,8 @@ nav:
   - 工具:
       论说⽂體的歸納法查經: tools/ibs-argumentation-notes.md
       敘述⽂體的歸納法查經: tools/ibs-narrative-notes.md
+  - 資源:
+      線上查經注意事項: resources/virtual-study.md
 
 plugins:
   - search
