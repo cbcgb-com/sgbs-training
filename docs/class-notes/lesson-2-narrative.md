@@ -30,8 +30,8 @@
 我們將一起在大組內討論。
 
 討論完後，
-可以参考一下為大家預備的[路加福音示範](./resources/luke-study-notes.md)
-和[马太福音示范](./resources/matthew-study-notes.md)。
+可以参考一下為大家預備的[路加福音示範](../examples/luke-study-notes.md)
+和[马太福音示范](../examples/matthew-study-notes.md)。
 
 -----
 
