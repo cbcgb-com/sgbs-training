@@ -2,12 +2,12 @@ name: sgbs-training
 channels:
 - conda-forge
 dependencies:
-- python=3.7
-- mkdocs=1.0.4
-- mkdocs-material=4.4.3
-- pygments=2.4.2
-- pre-commit=1.20.0
+- python>=3.7
+- pygments
+- pre-commit
 - pip
 - pip:
-    - mkdocs-minify-plugin==0.2.1
-    - pymdown-extensions==6.1
+    - mkdocs-minify-plugin
+    - pymdown-extensions
+    - mkdocs
+    - mkdocs-material

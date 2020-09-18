@@ -7,8 +7,23 @@ theme:
   palette:
     primary: 'light blue'
     accent: 'light blue'
-  logo:
-    icon: 'library_books'
+
+nav:
+  - 主页: index.md
+  - 課堂講義:
+      課堂（一）查經的意義和裝備: class-notes/lesson-1-foundations.md
+      課堂（二）分析敘述文: class-notes/lesson-2-narrative.md
+      課堂（三）提問題的技術: class-notes/lesson-3-questioning.md
+      課堂（四）分析論說文: class-notes/lesson-4-argumentation.md
+      課堂（五）應對臨場狀況: class-notes/lesson-5-situations.md
+  - 工具:
+      论说⽂體的歸納法查經: tools/ibs-argumentation-notes.md
+      敘述⽂體的歸納法查經: tools/ibs-narrative-notes.md
+  - 范例:
+      - 路加福音笔记: examples/luke-study-notes.md
+      - 马太福音笔记: examples/matthew-study-notes.md
+  - 資源:
+      線上查經注意事項: resources/virtual-study.md
 
 plugins:
   - search
@@ -16,28 +31,10 @@ plugins:
 # Taken from here: https://squidfunk.github.io/mkdocs-material/extensions/codehilite/
 markdown_extensions:
   - codehilite
-  # - pymdownx.arithmatex
   - pymdownx.details
   - pymdownx.superfences
   - markdown.extensions.attr_list
+  - pymdownx.tabbed
 
-extra_javascript:
-    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-
-google_analytics:
-  - 'UA-12498603-3'
-  - 'auto'
-
-repo_name: 'ericmjl/sgbs-training'
-repo_url: 'https://github.com/ericmjl/sgbs-training'
-
-# extra:
-#   social:
-#     - type: 'envelope'
-#       link: 'http://www.shortwhale.com/ericmjl'
-#     - type: 'github'
-#       link: 'https://github.com/ericmjl'
-#     - type: 'twitter'
-#       link: 'https://twitter.com/ericmjl'
-#     - type: 'linkedin'
-#       link: 'https://linkedin.com/in/ericmjl'
+repo_name: 'cbcgb-com/sgbs-training'
+repo_url: 'https://github.com/cbcgb-com/sgbs-training'
