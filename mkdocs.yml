@@ -25,6 +25,7 @@ nav:
   - 資源:
       線上查經注意事項: resources/virtual-study.md
       提問題的模板: resources/questions.md
+      設計查經主題: resources/theme.md
 
 plugins:
   - search
