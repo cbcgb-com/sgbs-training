@@ -24,6 +24,7 @@ nav:
       - 马太福音笔记: examples/matthew-study-notes.md
   - 資源:
       線上查經注意事項: resources/virtual-study.md
+      提問題的模板: resources/questions.md
 
 plugins:
   - search
