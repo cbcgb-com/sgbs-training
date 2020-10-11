@@ -68,6 +68,8 @@
     - 誇張？（exaggerations）
     - 篇幅？（prose length）
     - 順序？（ordering）
+    - 排比？（parallels）
+    - 妙處？（punchline）
 
 === "經文分析"
 
