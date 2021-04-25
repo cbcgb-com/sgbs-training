@@ -3,10 +3,10 @@ site_name: 小組查經帶領訓練
 #   - Home: index.md
 
 theme:
-  name: 'material'
+  name: "material"
   palette:
-    primary: 'light blue'
-    accent: 'light blue'
+    primary: "light blue"
+    accent: "light blue"
 
 nav:
   - 主页: index.md
@@ -27,6 +27,9 @@ nav:
       提問題的模板: resources/questions.md
       設計查經主題: resources/theme.md
 
+extra_css:
+  - stylesheets/extra.css
+
 plugins:
   - search
 
@@ -38,5 +41,5 @@ markdown_extensions:
   - markdown.extensions.attr_list
   - pymdownx.tabbed
 
-repo_name: 'cbcgb-com/sgbs-training'
-repo_url: 'https://github.com/cbcgb-com/sgbs-training'
+repo_name: "cbcgb-com/sgbs-training"
+repo_url: "https://github.com/cbcgb-com/sgbs-training"
