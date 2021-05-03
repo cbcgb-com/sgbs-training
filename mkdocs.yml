@@ -9,7 +9,7 @@ theme:
     accent: "light blue"
 
 nav:
-  - 主页: index.md
+  - 主頁: index.md
   - 課堂講義:
       課堂（一）查經的意義和裝備: class-notes/lesson-1-foundations.md
       課堂（二）分析敘述文: class-notes/lesson-2-narrative.md
@@ -17,12 +17,12 @@ nav:
       課堂（四）分析論說文: class-notes/lesson-4-argumentation.md
       課堂（五）應對臨場狀況: class-notes/lesson-5-situations.md
   - 工具:
-      论说⽂體的歸納法查經: tools/ibs-argumentation-notes.md
+      論說⽂體的歸納法查經: tools/ibs-argumentation-notes.md
       敘述⽂體的歸納法查經: tools/ibs-narrative-notes.md
-  - 范例:
-      - 路加福音笔记: examples/luke-study-notes.md
-      - 路加福音中的文学手法: examples/luke-literary-devices.md
-      - 马太福音笔记: examples/matthew-study-notes.md
+  - 範例:
+      - 路加福音筆記: examples/luke-study-notes.md
+      - 路加福音中的文學手法: examples/luke-literary-devices.md
+      - 馬太福音筆記: examples/matthew-study-notes.md
   - 資源:
       線上查經注意事項: resources/virtual-study.md
       提問題的模板: resources/questions.md
