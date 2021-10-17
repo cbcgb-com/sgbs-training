@@ -13,9 +13,9 @@
 
 ## 註冊
 
-請點擊[此鏈接註冊](https://airtable.com/shrS5gKu57LudKDSh)
+<!-- 請點擊[此鏈接註冊](https://airtable.com/shrS5gKu57LudKDSh) -->
 
-<!-- 本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。-->
+本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。
 
 ## 教師團
 
