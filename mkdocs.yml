@@ -28,6 +28,7 @@ nav:
       提問題的模板: resources/questions.md
       設計查經主題: resources/theme.md
       聖經參考書: resources/books.md
+      可課堂錄音: resources/recordings.md
 
 extra_css:
   - stylesheets/extra.css
