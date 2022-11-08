@@ -1,6 +1,6 @@
 # 課堂錄音
 
-|    日期    |                          課堂                          |                                    錄音鏈接 Link                                    |
+|    日期    |                          課堂                          |                                      錄音鏈接                                       |
 |:----------:|:----------------------------------------------------:|:-----------------------------------------------------------------------------------:|
 | 2022-11-06 |    [论说文](../class-notes/lesson-3-questioning.md)    |  [link](https://www.dropbox.com/sh/wxcdfe52amil48d/AADWhC3NpZKm8Fmfay29g2dTa?dl=0)  |
 | 2022-10-30 | [提问题的技术](../class-notes/lesson-3-questioning.md) | [link](https://www.dropbox.com/s/9oezd89ngvfbhfl/20221030-class-recording.mp3?dl=0) |
