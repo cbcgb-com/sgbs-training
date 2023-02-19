@@ -19,7 +19,7 @@
 
 ---
 
-# 課程信息
+## 課程信息
 
 ### 教師團
 
@@ -98,9 +98,9 @@
 
 我們會使用Google Docs完成以上兩項功課，方便大家分享交流和提供反饋意見。
 
------
+---
 
-# 課堂工具
+## 課堂工具
 
 ### 概論視頻
 
@@ -117,4 +117,4 @@
 - [YouTube頻道](https://www.youtube.com/user/jointhebibleproject/)
 - [網站](https://bibleproject.com)
 
------
+---
