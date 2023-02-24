@@ -1,0 +1,5 @@
+# Requirements for the auto Google docs app
+panel
+PyDrive2
+google-auth-httplib2
+google-api-python-client

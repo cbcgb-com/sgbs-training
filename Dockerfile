@@ -5,9 +5,9 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG OPENAI_API_KEY
 
-COPY environment.yml /tmp/environment.yml
+COPY requirements-app.txt /tmp/requirements-app.txt
 
-RUN /opt/conda/bin/mamba env update -f /tmp/environment.yml
+RUN /opt/conda/bin/pip install -r /tmp/requirements-app.txt
 
 WORKDIR /root
 
