@@ -19,3 +19,4 @@ dependencies:
       - google-api-python-client
       - PyDrive2
       - pyprojroot
+      - python-dotenv
