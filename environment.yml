@@ -5,7 +5,11 @@ dependencies:
   - python>=3.7
   - pygments
   - pre-commit
+  - jupyter
+  - ipykernel
   - pip
+  - panel
+  - jupyter_bokeh
   - pip:
       - mkdocs-minify-plugin
       - pymdown-extensions
@@ -13,3 +17,4 @@ dependencies:
       - mkdocs-material
       - google-auth-httplib2
       - google-api-python-client
+      - PyDrive2
