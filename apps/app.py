@@ -28,6 +28,8 @@ def user_is_authorized(user_info: dict):
     """
     with open(here() / 'apps/users.txt') as f:
         valid_users = [line.strip("\n") for line in f.readlines()]
+
+    print(user_info['login'] in valid_users)
     return user_info['login'] in valid_users
 
 
