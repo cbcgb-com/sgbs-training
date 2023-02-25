@@ -9,10 +9,29 @@ from sgbs_training.scriptures import Luke, John, Ephesians, James
 from sgbs_training.authentication import write_creds
 
 from dotenv import load_dotenv
+from pyprojroot import here
 
 load_dotenv()
 
 write_creds()
+
+def user_is_authorized(user_info: dict):
+    """Check if the user is authorized to access the app.
+
+    Args:
+
+        user_info (dict): The user information.
+
+    Returns:
+
+        bool: True if the user is authorized, False otherwise.
+    """
+    with open(here() / 'apps/users.txt') as f:
+        valid_users = [line.strip("\n") for line in f.readlines()]
+    return user_info['login'] in valid_users
+
+
+pn.config.authorize_callback = user_is_authorized
 
 scripture_choices = [Luke, John, Ephesians, James]
 
