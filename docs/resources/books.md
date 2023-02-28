@@ -1,10 +1,3 @@
 # 聖經參考書和網頁
 
-## 書籍
-
-- [証主21世紀新釋](https://www.ivpress.com/new-bible-commentary)
-
-## 網頁
-
-- [Bible Project](https://bibleproject.com)
-- [聖經資料大全](https://www.ccbiblestudy.org/index-T.htm)
+<iframe class="airtable-embed" src="https://airtable.com/embed/shreUK3Xf0GKGNZ8U?backgroundColor=yellow&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
