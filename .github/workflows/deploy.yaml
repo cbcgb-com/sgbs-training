@@ -13,22 +13,22 @@ on:
 
 jobs:
   build-website:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      # See: https://github.com/marketplace/actions/setup-conda
-      - uses: s-weigand/setup-conda@v1
+      # See: https://github.com/marketplace/actions/setup-miniconda
+      - uses: conda-incubator/setup-miniconda@v2
         with:
-          conda-channels: "conda-forge"
-
-      - name: Build environment
-        run: |
-          conda env create -f environment.yml
+          channels: "conda-forge"
+          mamba-version: "*"
+          environment-file: environment.yml
+          activate-environment: sgbs-training
 
       - name: Build website
+        shell: bash -el {0}
         run: |
-          source activate sgbs-training
+          conda activate sgbs-training
           mkdocs build
 
       - name: Deploy Website
