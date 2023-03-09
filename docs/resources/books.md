@@ -1,6 +1,8 @@
 # 聖經參考書和網頁
 
-## 聖經資料大全
+## 基本資料
+
+### 聖經資料大全
 
 - 鏈接：[網頁](https://www.ccbiblestudy.org/index-T.htm)
 - 優點：
@@ -11,7 +13,7 @@
     - 不清楚是否有多位作者，還是只有一位作者
     - 不清楚作者的學術資歷
 
-## 信望愛聖經工具
+### 信望愛聖經工具
 
 - 鏈接：[網頁](https://bible.fhl.net/)
 - 優點：
@@ -22,7 +24,7 @@
     - 不清楚是否有多位作者，還是只有一位作者
     - 不清楚作者的學術資歷
 
-## 証主21世紀新釋
+### 証主21世紀新釋
 
 - 鏈接：
     - [英文書](https://www.ivpress.com/new-bible-commentary)
@@ -34,7 +36,7 @@
 - 缺點：
     - 貴！
 
-## Bible Project
+### Bible Project
 
 - 鏈接：[項目網頁](https://bibleproject.com/)
 - 優點：
