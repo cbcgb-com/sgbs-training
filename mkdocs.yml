@@ -11,14 +11,14 @@ theme:
 nav:
   - 主頁: index.md
   - 課堂講義:
-      課堂（一）查經的意義和裝備: class-notes/lesson-1-foundations.md
-      課堂（二）分析敘述文: class-notes/lesson-2-narrative.md
-      課堂（三）提問題的技術: class-notes/lesson-3-questioning.md
-      課堂（四）分析論說文: class-notes/lesson-4-argumentation.md
-      課堂（五）應對臨場狀況: class-notes/lesson-5-situations.md
+      - 課堂（一）查經的意義和裝備: class-notes/lesson-1-foundations.md
+      - 課堂（二）分析敘述文: class-notes/lesson-2-narrative.md
+      - 課堂（三）提問題的技術: class-notes/lesson-3-questioning.md
+      - 課堂（四）分析論說文: class-notes/lesson-4-argumentation.md
+      - 課堂（五）應對臨場狀況: class-notes/lesson-5-situations.md
   - 工具:
-      論說⽂體的歸納法查經: tools/ibs-argumentation-notes.md
-      敘述⽂體的歸納法查經: tools/ibs-narrative-notes.md
+      - 論說⽂體的歸納法查經: tools/ibs-argumentation-notes.md
+      - 敘述⽂體的歸納法查經: tools/ibs-narrative-notes.md
   - 範例:
       - 路加福音筆記: examples/luke-study-notes.md
       - 路加福音中的文學手法: examples/luke-literary-devices.md
