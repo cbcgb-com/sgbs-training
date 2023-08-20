@@ -1,27 +1,20 @@
 """FastAPI-based implementation of each of the components of SGBS training."""
 
 
-from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from markdown import markdown
-from modal import Image, Mount, Secret, Stub, asgi_app
 
 from sgbs_training.docs import create_exercises
 from sgbs_training.email import compose_homework_email
 
 app = FastAPI()
 
-image = Image.debian_slim().pip_install(
-    "markdown", "python-dotenv", "pyprojroot", "pydrive2", "jinja2", "python-multipart"
-)
 
 templates = Jinja2Templates(directory="apps/templates")
-
-stub = Stub("sgbs-api")
 
 stylesheet_urls = {
     "terminal": '<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />',
@@ -92,15 +85,3 @@ def validate_num_groups(num_groups: Annotated[int, Form()]):
         output += "<small>Number of groups must be at least 1.</small>"
         return output
     return output
-
-
-@stub.function(
-    image=image,
-    secret=Secret.from_name("sgbs-training-secrets"),
-    mounts=[
-        Mount.from_local_dir(Path("apps/templates"), remote_path="/root/apps/templates")
-    ],
-)
-@asgi_app()
-def sgbs_training_app():
-    return app
