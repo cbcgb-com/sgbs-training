@@ -15,4 +15,5 @@ WORKDIR /root
 COPY . /root/.
 RUN /opt/conda/bin/pip install -e .
 
-ENTRYPOINT ["panel", "serve", "apps/app.py"]
+EXPOSE 8000
+ENTRYPOINT ["uvicorn", "apps.api:app"]
