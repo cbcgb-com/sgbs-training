@@ -45,7 +45,6 @@ def exercises(request: Request, scripture: str, num_students: int, num_groups: i
     questions, notes = create_exercises(scripture, num_students, num_groups)
     email_text = compose_homework_email(scripture, questions, notes)
     email_html = markdown(email_text)
-    print(email_html)
     return templates.TemplateResponse(
         "template.html",
         {
