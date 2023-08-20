@@ -1,5 +1,6 @@
 from .scriptures import Scripture
 
+
 def study_questions(scripture: Scripture, num_groups: int):
     text = f"""
 
@@ -73,6 +74,7 @@ def study_questions(scripture: Scripture, num_groups: int):
 """
 
     return text
+
 
 def study_notes(scripture: Scripture, num_students: int):
     text = f"""
