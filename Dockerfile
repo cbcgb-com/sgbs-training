@@ -16,4 +16,4 @@ COPY . /root/.
 RUN /opt/conda/bin/pip install -e .
 
 EXPOSE 8000
-ENTRYPOINT ["uvicorn", "apps.api:app", "--host", "0.0.0.0"]
+ENTRYPOINT ["uvicorn", "apps.api:app", "--host", "0.0.0.0", "--port", "5006"]
