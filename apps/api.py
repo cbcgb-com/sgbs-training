@@ -1,18 +1,17 @@
 """FastAPI-based implementation of each of the components of SGBS training."""
 
 
-from markdown import markdown
 from pathlib import Path
-from modal import Image, Stub, Secret, asgi_app, Mount, web_endpoint
+from typing import Annotated
+
+from fastapi import FastAPI, Form, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from markdown import markdown
+from modal import Image, Mount, Secret, Stub, asgi_app
 
 from sgbs_training.docs import create_exercises
 from sgbs_training.email import compose_homework_email
-
-from fastapi.responses import HTMLResponse
-from fastapi import FastAPI, Request, Form
-from fastapi.templating import Jinja2Templates
-
-from typing import Annotated
 
 app = FastAPI()
 
