@@ -31,7 +31,9 @@
             hx-post="/validate/num_groups" hx-target="#num-groups-error" hx-swap="innerHTML">
         <div id="num-groups-error"></div>
 
-        <input type="submit" value="Submit" hx-post="/form/scripture" hx-target="#composed-email">
+        <input type="submit" value="Submit" hx-post="/form/scripture" hx-target="#composed-email"
+            hx-indicator="#indicator">
+        <img id="indicator" class="htmx-indicator" src="/static/img/bars.svg" />
     </form>
 
     <div id="composed-email"></div>

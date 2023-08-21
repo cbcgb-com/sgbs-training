@@ -4,6 +4,7 @@
 from typing import Annotated
 
 from fastapi import FastAPI, Form, Request
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from markdown import markdown
@@ -12,6 +13,8 @@ from sgbs_training.docs import create_exercises
 from sgbs_training.email import compose_homework_email
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="apps/static"), name="static")
 
 
 templates = Jinja2Templates(directory="apps/templates")
