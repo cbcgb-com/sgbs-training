@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    {{ stylesheet_url | safe }}
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+</head>
+
+<body>
+    <div class="">
+        {{ body | safe }}
+    </div>
+
+    <form id="form">
+        <label for="scripture">Scripture</label>
+        <select name="scripture" id="scripture">
+            <option value="John">John</option>
+            <option value="Luke">Luke</option>
+            <option value="Ephesians">Ephesians</option>
+            <option value="James">James</option>
+        </select>
+
+        <label for="num_students">Num Students</label>
+        <input type="text" name="num_students" id="num_students" placeholder="Number of students" value="15"
+            hx-post="/validate/num_students" hx-target="#num-students-error" hx-swap="innerHTML">
+        <div id="num-students-error"></div>
+
+        <label for="num_groups">Num Groups</label>
+        <input type="text" name="num_groups" id="num_groups" placeholder="Number of groups" value="5"
+            hx-post="/validate/num_groups" hx-target="#num-groups-error" hx-swap="innerHTML">
+        <div id="num-groups-error"></div>
+
+        <input type="submit" value="Submit" hx-post="/form/scripture" hx-target="#composed-email"
+            hx-indicator="#indicator">
+        <img id="indicator" class="htmx-indicator" src="/static/img/bars.svg" />
+    </form>
+
+    <div id="composed-email"></div>
+
+</body>
+
+</html>

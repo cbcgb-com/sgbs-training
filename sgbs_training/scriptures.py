@@ -27,6 +27,7 @@ class Scripture:
     def study_notes_title(self):
         return "查經筆記"
 
+
 class Luke(Scripture):
     @classmethod
     def resources(self):
@@ -46,7 +47,6 @@ class Luke(Scripture):
     @classmethod
     def class_notes(self):
         return "[「如何理解敘述文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)"
-
 
     @classmethod
     def reference(self):
@@ -81,7 +81,6 @@ class John(Scripture):
     def class_notes(self):
         return "[「如何理解敘述文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)"
 
-
     @classmethod
     def reference(self):
         return "迦拿的婚宴（約翰福音2章1-12節。）"
@@ -93,7 +92,6 @@ class John(Scripture):
     @classmethod
     def book(self):
         return "約翰福音"
-
 
 
 class James(Scripture):
@@ -114,7 +112,6 @@ class James(Scripture):
     def class_notes(self):
         return "[「如何理解論說文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
 
-
     @classmethod
     def reference(self):
         return "舌头（雅各書3章1-12節。）"
@@ -126,6 +123,7 @@ class James(Scripture):
     @classmethod
     def book(self):
         return "雅各書"
+
 
 class Ephesians(Scripture):
     @classmethod
@@ -145,7 +143,6 @@ class Ephesians(Scripture):
     def class_notes(self):
         return "[「如何理解論說文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
 
-
     @classmethod
     def reference(self):
         return "得救是本乎恩，也因着信（以弗所書2章1-10節。）"
@@ -157,3 +154,15 @@ class Ephesians(Scripture):
     @classmethod
     def book(self):
         return "以弗所書"
+
+
+scripture_mapping = {
+    "John": John,
+    "john": John,
+    "Luke": Luke,
+    "luke": Luke,
+    "James": James,
+    "james": James,
+    "Ephesians": Ephesians,
+    "ephesians": Ephesians,
+}

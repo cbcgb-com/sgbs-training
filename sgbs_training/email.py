@@ -1,19 +1,23 @@
 """Email-related code and templates."""
-from .scriptures import Scripture
+from .scriptures import scripture_mapping
 
-def compose_homework_email(scripture: Scripture, questions_doc: dict, notes_doc: dict) -> str:
+
+def compose_homework_email(scripture: str, questions_doc: dict, notes_doc: dict) -> str:
     """Compose a homework email.
 
     Args:
 
         scripture: The scripture reference.
-        questions_doc: Questions document. Should be returned from `sgbs_training.docs.create_exercises`.
-        notes_doc: Notes document. Should be returned from `sgbs_training.docs.create_exercises`.
+        questions_doc: Questions document.
+            Should be returned from `sgbs_training.docs.create_exercises`.
+        notes_doc: Notes document.
+            Should be returned from `sgbs_training.docs.create_exercises`.
 
     Returns:
 
         str: The email text as Markdown.
     """
+    scripture = scripture_mapping[scripture]
     text = f"""各位主內同工們好！
 
 感恩今天有機會跟大家一起探討查經！

@@ -5,3 +5,6 @@ google-auth-httplib2
 google-api-python-client
 pyprojroot
 python-dotenv
+fastapi
+uvicorn
+python-multipart
