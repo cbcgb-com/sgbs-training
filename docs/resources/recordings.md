@@ -2,6 +2,7 @@
 
 |    日期    |                            課堂                            |                                               錄音鏈接                                               |
 |:----------:|:--------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
+| 2023-10-08 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) |    [link](https://www.dropbox.com/scl/fi/tbkzv1y2g8i33nytxdf2l/20231008-class-recording.mp3?dl=0)    |
 | 2023-03-19 |     [臨場狀況](../class-notes/lesson-5-situations.md)      |         [link](https://www.dropbox.com/s/3z7ul931sdkumys/20230319-class-recording.mp3?dl=0)          |
 | 2023-03-05 |   [提問題的技術](../class-notes/lesson-3-questioning.md)   | [link](https://www.dropbox.com/s/i79fazaslqw5gfx/20221023-class-recording.mp3?dl=0) (中間錄音切斷了) |
 | 2023-02-26 |       [敘述文](../class-notes/lesson-2-narrative.md)       |         [link](https://www.dropbox.com/s/809oybybin51f3n/20230226-class-recording.mp3?dl=0)          |
