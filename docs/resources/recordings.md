@@ -2,11 +2,12 @@
 
 ## 2023秋季
 
-|    日期    |                            課堂                            |                                               錄音鏈接                                               |
-|:----------:|:--------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-| 2023-10-22 |       [提问题的技术](../class-notes/lesson-3-questioning.md)       |         [link](https://www.dropbox.com/scl/fi/tk3yi7599nbgkz8xxf666/20231022-class-recording.mp3?rlkey=nngm37tjrwbuml9qyv5i7mcjl&dl=0)          |
-| 2023-10-15 |       [敘述文](../class-notes/lesson-2-narrative.md)       |         [link](https://www.dropbox.com/scl/fi/55l38lg4i15o7dm26ti1p/20231015-class-recording.mp3?rlkey=jevqj3cjc1x1rjswbd209izci&dl=0)          |
-| 2023-10-08 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) |    [link](https://www.dropbox.com/scl/fi/tbkzv1y2g8i33nytxdf2l/20231008-class-recording.mp3?dl=0)    |
+|    日期    |                            課堂                            |                                                            錄音鏈接                                                            |
+|:----------:|:--------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
+| 2023-10-29 |     [论说文](../class-notes/lesson-4-argumentation.md)     | [link](https://www.dropbox.com/scl/fi/9a39x6lc07dir15do7pdm/20231029-class-recording.mp3?rlkey=rq0gy0h6y5z2d5nng119t74ka&dl=0) |
+| 2023-10-22 |   [提问题的技术](../class-notes/lesson-3-questioning.md)   | [link](https://www.dropbox.com/scl/fi/tk3yi7599nbgkz8xxf666/20231022-class-recording.mp3?rlkey=nngm37tjrwbuml9qyv5i7mcjl&dl=0) |
+| 2023-10-15 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/55l38lg4i15o7dm26ti1p/20231015-class-recording.mp3?rlkey=jevqj3cjc1x1rjswbd209izci&dl=0) |
+| 2023-10-08 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) |                 [link](https://www.dropbox.com/scl/fi/tbkzv1y2g8i33nytxdf2l/20231008-class-recording.mp3?dl=0)                 |
 
 ## 2023春季
 
@@ -19,8 +20,8 @@
 
 ## 2022秋季
 
-|    日期    |                            課堂                            |                                               錄音鏈接                                               |
-|:----------:|:--------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-| 2022-11-06 |     [论说文](../class-notes/lesson-4-argumentation.md)     |          [link](https://www.dropbox.com/sh/wxcdfe52amil48d/AADWhC3NpZKm8Fmfay29g2dTa?dl=0)           |
-| 2022-10-30 |   [提问题的技术](../class-notes/lesson-3-questioning.md)   |         [link](https://www.dropbox.com/s/9oezd89ngvfbhfl/20221030-class-recording.mp3?dl=0)          |
-| 2022-10-23 |       [敘述文](../class-notes/lesson-2-narrative.md)       |         [link](https://www.dropbox.com/s/i79fazaslqw5gfx/20221023-class-recording.mp3?dl=0)          |
+|    日期    |                          課堂                          |                                      錄音鏈接                                       |
+|:----------:|:----------------------------------------------------:|:-----------------------------------------------------------------------------------:|
+| 2022-11-06 |   [论说文](../class-notes/lesson-4-argumentation.md)   |  [link](https://www.dropbox.com/sh/wxcdfe52amil48d/AADWhC3NpZKm8Fmfay29g2dTa?dl=0)  |
+| 2022-10-30 | [提问题的技术](../class-notes/lesson-3-questioning.md) | [link](https://www.dropbox.com/s/9oezd89ngvfbhfl/20221030-class-recording.mp3?dl=0) |
+| 2022-10-23 |     [敘述文](../class-notes/lesson-2-narrative.md)     | [link](https://www.dropbox.com/s/i79fazaslqw5gfx/20221023-class-recording.mp3?dl=0) |
