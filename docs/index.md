@@ -14,6 +14,9 @@
 ## 註冊
 
 請點擊[此鏈接註冊](https://airtable.com/shrS5gKu57LudKDSh)
+或掃描以下的二維碼：
+
+![](./images/registration-qrcode.png){: style="width:150px"}
 
 <!-- 本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。-->
 
@@ -54,17 +57,17 @@
 
 ### 課程大綱
 
-| Week | Activity | Topic |
-|------|----------|-------|
+| Week   | Activity     | Topic                                                   |
+|--------|--------------|---------------------------------------------------------|
 | 第一週 | 課程信息介紹 | [查經的意義和裝備](class-notes/lesson-1-foundations.md) |
-| 第二週 | 分組模擬查經 | 敘述文 路7:36-50 |
-|       | 專題討論 | [分析敘述文](class-notes/lesson-2-narrative.md) |
-| 第三週 | 分組模擬查經 | 敘述文 約2:1-12 |
-|       | 專題討論 | [提問題的技術](class-notes/lesson-3-questioning.md) |
-| 第四週 | 分組模擬查經 | 論說文 弗2:1-10 |
-|       | 專題討論 | [分析論說文](class-notes/lesson-4-argumentation.md) |
-| 第五週 | 分組模擬查經 | 論說文 各3:1-12 |
-|       | 專題討論 | [應對臨場狀況](class-notes/lesson-5-situations.md) |
+| 第二週 | 分組模擬查經 | 敘述文 路7:36-50                                        |
+|        | 專題討論     | [分析敘述文](class-notes/lesson-2-narrative.md)         |
+| 第三週 | 分組模擬查經 | 敘述文 約2:1-12                                         |
+|        | 專題討論     | [提問題的技術](class-notes/lesson-3-questioning.md)     |
+| 第四週 | 分組模擬查經 | 論說文 弗2:1-10                                         |
+|        | 專題討論     | [分析論說文](class-notes/lesson-4-argumentation.md)     |
+| 第五週 | 分組模擬查經 | 論說文 各3:1-12                                         |
+|        | 專題討論     | [應對臨場狀況](class-notes/lesson-5-situations.md)      |
 
 ### 分組模擬查經
 
