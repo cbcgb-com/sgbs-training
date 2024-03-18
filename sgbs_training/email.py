@@ -20,9 +20,7 @@ def compose_homework_email(scripture: str, questions_doc: dict, notes_doc: dict)
     scripture = scripture_mapping[scripture]
     text = f"""各位主內同工們好！
 
-感恩今天有機會跟大家一起探討查經！
-
-本週的功課如下：
+感恩今天有機會跟大家一起探討查經！以下是這一週的學習內容。
 
 功課（一）：請大家閱讀{scripture.class_notes()}
 
@@ -33,6 +31,8 @@ def compose_homework_email(scripture: str, questions_doc: dict, notes_doc: dict)
 
 **b) 其他組員**<br>
 請你們把查經筆記寫在[「查經筆記」]({notes_doc['alternateLink']})上，每個人一頁。第一頁同樣有提示和資源可供參考。
+
+{scripture.extra_content()}
 
 如果有任何問題，請隨時跟我聯繫！
 
