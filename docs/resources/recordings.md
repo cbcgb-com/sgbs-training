@@ -4,6 +4,7 @@
 
 |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
 |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+| 2024-03-17 |     [论说文](../class-notes/lesson-4-argumentation.md)     | [link](https://www.dropbox.com/scl/fi/h02u2fl5f599zg74urxwa/20240317-class-4-recording.mp3?rlkey=fno80mh3givw1zl6ih0fmpn0p&dl=0) |
 | 2024-03-10 |      [敘述文](../class-notes/lesson-3-questioning.md)      | [link](https://www.dropbox.com/scl/fi/3rswmlzkvy00pqupnnt9a/20240310-class-3-recording.mp3?rlkey=sbu4n629cx2sm1nzcci063z1p&dl=0) |
 | 2024-03-03 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/wou9rcw8hdb93udwlmeze/20240302-class-2-recording.mp3?rlkey=190ahbxab4a33dm1w6d7kiupt&dl=0) |
 | 2024-02-25 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/vgxd6fvrhn7w4hnsyx060/20240225-class-1-recording.mp3?rlkey=7ixgxdz022193su0le8rfewey&dl=0) |
