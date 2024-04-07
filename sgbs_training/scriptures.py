@@ -27,6 +27,10 @@ class Scripture:
     def study_notes_title(self):
         return "查經筆記"
 
+    @classmethod
+    def extra_content(self):
+        return ""
+
 
 class Luke(Scripture):
     @classmethod
@@ -46,7 +50,7 @@ class Luke(Scripture):
 
     @classmethod
     def class_notes(self):
-        return "[「如何理解敘述文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)"
+        return "[「如何理解敘述文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)以及《你們給他們吃吧！》第一章和第四章。"
 
     @classmethod
     def reference(self):
@@ -59,6 +63,12 @@ class Luke(Scripture):
     @classmethod
     def book(self):
         return "路加福音"
+
+    @classmethod
+    def extra_content(self):
+        return """
+補充資源：書卷概論。如果大家希望更深入了解整本數卷的結構和背景，通常可以參閱新約/舊約概論書。這次給大家提供新約概論書籍Constantine R. Campbell, Reading the New Testament as Christian Scripture的[路加福音(Chapter 8)章節](https://drive.google.com/file/d/13REHx9RUdUHOKCrOzBimHe3uijtGirsJ/view?usp=sharing)，供有興趣的弟兄姊妹參考。
+"""
 
 
 class John(Scripture):
