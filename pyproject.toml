@@ -23,6 +23,9 @@ sgbs-training = { path = ".", editable = true }
 mkdocs = "*"
 mkdocs-material = "*"
 
+[tool.pixi.feature.website.tasks]
+build = "mkdocs build"
+
 [tool.pixi.feature.api.dependencies]
 fastapi = "*"
 markdown = "*"
