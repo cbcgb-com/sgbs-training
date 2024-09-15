@@ -15,4 +15,4 @@ COPY apps apps
 RUN pixi install -e api
 
 EXPOSE 8000
-ENTRYPOINT ["pixi", "run", "api"]
+ENTRYPOINT ["pixi", "run", "app"]
