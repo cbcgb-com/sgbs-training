@@ -113,3 +113,6 @@ dmypy.json
 # Our service account credentials
 cbcgb-com-sgbs-training-*.json
 .env
+# pixi environments
+.pixi
+*.egg-info
