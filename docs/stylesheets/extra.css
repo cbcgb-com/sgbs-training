@@ -6,3 +6,46 @@ details.question {
 details.note   {
     font-size: larger;
 }
+
+:root {
+  --md-text-font-size: 1rem;
+}
+
+body {
+  font-size: 18px;  /* Increase base font size */
+}
+
+.md-typeset {
+  font-size: 1em;  /* Adjust to match the new base size */
+}
+
+/* Adjust other elements as needed */
+.md-typeset h1 {
+  font-size: 2em;
+}
+
+.md-typeset h2 {
+  font-size: 1.6em;
+}
+
+/* Increase navigation font size */
+.md-nav {
+  font-size: 16px;  /* Adjust this value as needed */
+}
+
+.md-nav__item {
+  padding: 3px 0;  /* Add some vertical spacing between nav items */
+}
+
+/* Increase font size for top-level nav items */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-size: 18px;  /* Slightly larger than sub-items */
+  font-weight: bold;
+}
+
+/* Adjust the site title size */
+.md-header__title {
+  font-size: 20px;  /* Increase the site title size */
+}
+
+/* ... continue for other heading levels if needed ... */
