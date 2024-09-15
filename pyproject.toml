@@ -37,6 +37,7 @@ uvicorn = ">=0.30.6,<0.31"
 
 [tool.pixi.feature.api.tasks]
 docs = "mkdocs serve -a 0.0.0.0:8010"
+run = "uvicorn apps.api:app --host 0.0.0.0 --port 5006"
 
 [tool.pixi.environments]
 website = ["website"]
