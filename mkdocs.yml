@@ -36,6 +36,17 @@ extra_css:
 
 plugins:
   - search
+  - i18n:
+      default_language: zh
+      languages:
+        - locale: zh
+          name: 中文
+          build: true
+          default: true
+        - locale: en
+          name: English
+          build: true
+          site_name: "Small Group Bible Study Leadership Training"
 
 # Taken from here: https://squidfunk.github.io/mkdocs-material/extensions/codehilite/
 markdown_extensions:
