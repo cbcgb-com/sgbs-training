@@ -1,0 +1,33 @@
+name: Preview Website
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install pixi
+        uses: prefix-dev/setup-pixi@v0.8.1
+
+      - name: Setup environment and build website
+        run: |
+          pixi run -e website build
+
+      # Taken from: https://github.com/drivendataorg/cloudpathlib/blob/master/.github/workflows/docs-preview.yml
+      - name: Deploy site preview to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: "./site"
+          production-deploy: false
+          github-token: ${{ secrets.GHPAGES_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+          alias: deploy-preview-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 10

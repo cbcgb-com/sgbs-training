@@ -1,8 +1,0 @@
-# for netlify's builds
-# https://docs.netlify.com/configure-builds/manage-dependencies/#python-dependencies
-
-pygments
-mkdocs-minify-plugin
-pymdown-extensions
-mkdocs
-mkdocs-material
