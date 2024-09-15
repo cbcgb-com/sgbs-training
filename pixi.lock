@@ -2646,7 +2646,7 @@ packages:
   name: sgbs-training
   version: 0.1.0
   path: .
-  sha256: d346b0a42df4fe26ad123b1d3acdbf8107ed0091dba62c41a57ae4b811487f12
+  sha256: db8b7d0bc3cf4806f5675f99428f2aa12b0876d8c659586f36b33798b22c67b7
   requires_python: '>=3.11'
   editable: true
 - kind: conda
