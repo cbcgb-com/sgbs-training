@@ -1292,23 +1292,6 @@ packages:
   depends:
   - python >=3.8
   license: BSD-3-Clause
-  license_family: BSD
-  purls:
-  - pkg:pypi/fsspec?source=hash-mapping
-  size: 134378
-  timestamp: 1725543368393
-- kind: conda
-  name: fsspec
-  version: 2024.9.0
-  build: pyhff2d567_0
-  subdir: noarch
-  noarch: python
-  url: https://conda.anaconda.org/conda-forge/noarch/fsspec-2024.9.0-pyhff2d567_0.conda
-  sha256: 8f4e9805b4ec223dea0d99f9e7e57c391d9026455eb9f0d6e0784c5d1a1200dc
-  md5: ace4329fbff4c69ab0309db6da182987
-  depends:
-  - python >=3.8
-  license: BSD-3-Clause
   purls:
   - pkg:pypi/fsspec?source=compressed-mapping
   size: 134378
@@ -4195,7 +4178,7 @@ packages:
   name: sgbs-training
   version: 0.1.0
   path: .
-  sha256: 1213a060fc5de69223a5c4b8aff9033ccb4a02b7ca0b89be382378d8bc16145c
+  sha256: 020f01bb5804a68baf642834dc7726a73a43aebf250578bf1d89c11a85c59d9a
   requires_python: '>=3.11'
   editable: true
 - kind: conda

@@ -8,3 +8,12 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
+
+-   repo: local
+    hooks:
+    -   id: pixi-lock-check
+        name: Check pixi.lock is up to date
+        entry: pixi install
+        language: system
+        files: ^pyproject\.toml$
+        pass_filenames: false
