@@ -6,6 +6,7 @@ ARG USER_GID=$USER_UID
 ARG OPENAI_API_KEY
 
 COPY pixi.lock .
+COPY pyproject.toml .
 
 # Copy over custom source code.
 
