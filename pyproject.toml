@@ -25,6 +25,7 @@ mkdocs-material = "*"
 
 [tool.pixi.feature.website.tasks]
 build = "mkdocs build"
+serve = "mkdocs serve -a 0.0.0.0:8010 --dirtyreload"
 
 [tool.pixi.feature.api.dependencies]
 fastapi = "*"
@@ -36,11 +37,9 @@ pydrive2 = ">=1.19.0,<2"
 uvicorn = ">=0.30.6,<0.31"
 
 [tool.pixi.feature.api.tasks]
-docs = "mkdocs serve -a 0.0.0.0:8010"
+app = "uvicorn apps.api:app --host 0.0.0.0 --port 5006"
+
 
 [tool.pixi.environments]
 website = ["website"]
 api = ["api"]
-
-[tool.pixi.feature.api.tasks]
-run = "uvicorn apps.api:app --host 0.0.0.0 --port 5006 --reload"

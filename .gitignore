@@ -115,3 +115,4 @@ cbcgb-com-sgbs-training-*.json
 
 # Pixi environment directory
 .pixi/
+*.egg-info
