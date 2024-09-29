@@ -39,7 +39,11 @@ uvicorn = ">=0.30.6,<0.31"
 [tool.pixi.feature.api.tasks]
 app = "uvicorn apps.api:app --host 0.0.0.0 --port 5006"
 
+[tool.pixi.feature.devtools.dependencies]
+ipython = "*"
+
 
 [tool.pixi.environments]
 website = ["website"]
 api = ["api"]
+default = ["website", "api", "devtools"]
