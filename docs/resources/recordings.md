@@ -1,5 +1,15 @@
 # 課堂錄音
 
+## 2024秋季
+
+|    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
+|:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+| 2024-03-24 |     [臨場狀況](../class-notes/lesson-5-situations.md)      |                                                             [link]()                                                             |
+| 2024-03-17 |     [论说文](../class-notes/lesson-4-argumentation.md)     |                                                             [link]()                                                             |
+| 2024-03-10 |   [提问题的技术](../class-notes/lesson-3-questioning.md)   |                                                             [link]()                                                             |
+| 2024-03-03 |       [敘述文](../class-notes/lesson-2-narrative.md)       |                                                             [link]()                                                             |
+| 2024-02-25 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/7xnpeh0sz8vwr8ekk21eb/20240929-class-1-recording.mp3?rlkey=62q5ni2wewxuq8ochrabpa4he&dl=0) |
+
 ## 2024春季
 
 |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
