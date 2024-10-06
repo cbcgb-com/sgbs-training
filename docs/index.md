@@ -107,6 +107,13 @@
 
 ## 課堂工具
 
+### 查經輪值表
+
+在第一堂課開始之前，我們會把查經輪值表發給大家，
+請大家根據查經輪值表來安排每週的查經主領和觀察員。
+
+[查經輪值表](https://docs.google.com/document/d/1jERo05SlaO2CEmdAoZC2BRji3vBARIRoWIytV80N66g/edit)
+
 ### 概論視頻
 
 在這門課中，我們也會使用[Bible Project](https://bibleproject.com)所提供的
