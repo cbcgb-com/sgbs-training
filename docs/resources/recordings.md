@@ -4,7 +4,8 @@
 
 |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
 |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
-| 2024-02-25 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/7xnpeh0sz8vwr8ekk21eb/20240929-class-1-recording.mp3?rlkey=62q5ni2wewxuq8ochrabpa4he&dl=0) |
+| 2024-10-06 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/vgnd6ylxlty4ud8sg64vv/20241007-class-2-recording.mp3?rlkey=gb72p63of8jiwar3g3qubgvnb&dl=0) |
+| 2024-09-29 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/7xnpeh0sz8vwr8ekk21eb/20240929-class-1-recording.mp3?rlkey=62q5ni2wewxuq8ochrabpa4he&dl=0) |
 
 ## 2024春季
 
