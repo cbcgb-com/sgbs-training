@@ -116,3 +116,6 @@ cbcgb-com-sgbs-training-*.json
 # pixi environments
 .pixi
 *.egg-info
+
+# SQLite database
+message_log.db
