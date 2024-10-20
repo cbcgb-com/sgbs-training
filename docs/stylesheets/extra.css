@@ -1,10 +1,5 @@
-details.question {
-    font-size: larger;
-}
-
-
-details.note   {
-    font-size: larger;
+details * {
+    font-size: large;
 }
 
 :root {
