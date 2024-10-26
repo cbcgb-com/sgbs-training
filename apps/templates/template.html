@@ -12,29 +12,42 @@
         {{ body | safe }}
     </div>
 
-    <form id="form">
-        <label for="scripture">Scripture</label>
-        <select name="scripture" id="scripture">
-            <option value="Luke">Lesson 1: Luke</option>
-            <option value="John">Lesson 2: John</option>
-            <option value="Ephesians">Lesson 3: Ephesians</option>
-            <option value="James">Lesson 4: James</option>
-        </select>
+    <div id="email-form">
+        <form id="form">
+            <label for="scripture">Scripture</label>
+            <select name="scripture" id="scripture">
+                <option value="Luke">Lesson 1: Luke</option>
+                <option value="John">Lesson 2: John</option>
+                <option value="Ephesians">Lesson 3: Ephesians</option>
+                <option value="James">Lesson 4: James</option>
+            </select>
 
-        <label for="num_students">Num Students</label>
-        <input type="text" name="num_students" id="num_students" placeholder="Number of students" value="15"
-            hx-post="/validate/num_students" hx-target="#num-students-error" hx-swap="innerHTML">
-        <div id="num-students-error"></div>
+            <label for="num_students">Num Students</label>
+            <input type="text" name="num_students" id="num_students" placeholder="Number of students" value="15"
+                hx-post="/validate/num_students" hx-target="#num-students-error" hx-swap="innerHTML">
+            <div id="num-students-error"></div>
 
-        <label for="num_groups">Num Groups</label>
-        <input type="text" name="num_groups" id="num_groups" placeholder="Number of groups" value="5"
-            hx-post="/validate/num_groups" hx-target="#num-groups-error" hx-swap="innerHTML">
-        <div id="num-groups-error"></div>
+            <label for="num_groups">Num Groups</label>
+            <input type="text" name="num_groups" id="num_groups" placeholder="Number of groups" value="5"
+                hx-post="/validate/num_groups" hx-target="#num-groups-error" hx-swap="innerHTML">
+            <div id="num-groups-error"></div>
 
-        <input type="submit" value="Submit" hx-post="/form/scripture" hx-target="#composed-email"
-            hx-indicator="#indicator">
-        <img id="indicator" class="htmx-indicator" src="/static/img/bars.svg" />
-    </form>
+            <input type="submit" value="Submit" hx-post="/form/scripture" hx-target="#composed-email"
+                hx-indicator="#indicator">
+            <img id="indicator" class="htmx-indicator" src="/static/img/bars.svg" />
+        </form>
+
+        <!-- Add the new buttons here -->
+        <button hx-get="/reinvitation-email" hx-target="#composed-email" hx-indicator="#reinvitation-indicator">
+            Get Reinvitation Email
+        </button>
+        <img id="reinvitation-indicator" class="htmx-indicator" src="/static/img/bars.svg" />
+
+        <button hx-get="/homework-reminder-email" hx-target="#composed-email" hx-indicator="#homework-reminder-indicator">
+            Get Homework Reminder Email
+        </button>
+        <img id="homework-reminder-indicator" class="htmx-indicator" src="/static/img/bars.svg" />
+    </div>
 
     <div id="composed-email"></div>
 

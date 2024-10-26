@@ -10,7 +10,7 @@ from fastapi.templating import Jinja2Templates
 from markdown import markdown
 
 from sgbs_training.docs import create_exercises
-from sgbs_training.email import compose_homework_email
+from sgbs_training.email import compose_homework_email, compose_reinvitation_email, compose_homework_reminder_email
 
 app = FastAPI()
 
@@ -87,3 +87,17 @@ def validate_num_groups(num_groups: Annotated[int, Form()]):
         output += "<small>Number of groups must be at least 1.</small>"
         return output
     return output
+
+
+@app.get("/reinvitation-email", response_class=HTMLResponse)
+def get_reinvitation_email():
+    email_text = compose_reinvitation_email()
+    email_html = markdown(email_text)
+    return email_html
+
+
+@app.get("/homework-reminder-email", response_class=HTMLResponse)
+def get_homework_reminder_email():
+    email_text = compose_homework_reminder_email()
+    email_html = markdown(email_text)
+    return email_html
