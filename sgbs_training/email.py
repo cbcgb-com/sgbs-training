@@ -88,10 +88,8 @@ def compose_reinvitation_email():
 
 def compose_homework_reminder_email():
     text = """
-溫馨提醒！
+溫馨提醒！請大家把功課做好喔！鏈接在下面。
 
-請大家把功課做好喔！鏈接在下面。
-
-請大家準時！3點開始，晚開始就晚結束！
+也請大家準時。3點開始，晚開始就晚結束！
     """
     return text
