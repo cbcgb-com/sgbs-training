@@ -3,8 +3,9 @@
 === "2024秋季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
     |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
-    | 2024-10-27 |      [论说文](../class-notes/lesson-4-argumentation.md)      | [link](https://www.dropbox.com/scl/fi/91rf6sct3yzv3ectl5i7g/20241027-class-4-recording.mp3?rlkey=or4ph80h2uii506qn2brs2m5g&dl=0) |
-    | 2024-10-20 |      [提问题的技术](../class-notes/lesson-3-questioning.md)      | [link](https://www.dropbox.com/scl/fi/nxtyk25sc2w98p3x3a2v9/20241020-class-3-recording.mp3?rlkey=8ctxc4b5y4ic1ra5eqp2ugkdt&dl=0) |
+    | 2024-11-03 |     [臨場狀況](../class-notes/lesson-5-situations.md)      | [link](https://www.dropbox.com/scl/fi/ka4dgj800h3y50o3ycnxx/20241103-class-5-recording.mp3?rlkey=uv0x5a6nmulnwdvfq8a28vyj1&dl=0) |
+    | 2024-10-27 |     [论说文](../class-notes/lesson-4-argumentation.md)     | [link](https://www.dropbox.com/scl/fi/91rf6sct3yzv3ectl5i7g/20241027-class-4-recording.mp3?rlkey=or4ph80h2uii506qn2brs2m5g&dl=0) |
+    | 2024-10-20 |   [提问题的技术](../class-notes/lesson-3-questioning.md)   | [link](https://www.dropbox.com/scl/fi/nxtyk25sc2w98p3x3a2v9/20241020-class-3-recording.mp3?rlkey=8ctxc4b5y4ic1ra5eqp2ugkdt&dl=0) |
     | 2024-10-06 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/vgnd6ylxlty4ud8sg64vv/20241007-class-2-recording.mp3?rlkey=gb72p63of8jiwar3g3qubgvnb&dl=0) |
     | 2024-09-29 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/7xnpeh0sz8vwr8ekk21eb/20240929-class-1-recording.mp3?rlkey=62q5ni2wewxuq8ochrabpa4he&dl=0) |
 
