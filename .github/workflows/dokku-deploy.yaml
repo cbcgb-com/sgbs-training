@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Push to dokku
-        uses: dokku/github-action@v1.6.1
+        uses: dokku/github-action@v1.7.0
         with:
           branch: 'main'
           git_remote_url: ${{ secrets.DOKKU_GIT_REMOTE_URL}}
