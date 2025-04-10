@@ -1,3 +1,10 @@
+"""
+This file is used to deploy the email generator app to Modal.
+
+It is deployed on CI/CD to ericmjl's test environment on PR branches
+and to the main environment on pushes to main.
+"""
+
 import modal
 
 
