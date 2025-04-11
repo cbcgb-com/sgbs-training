@@ -1,0 +1,36 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    env:
+      MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+      MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+      DEPLOY_ENV: ${{ github.event_name == 'pull_request' && 'test' || 'main' }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
+      - name: Install Modal
+        run: |
+          uv tool install modal
+
+      - name: Deploy job
+        run: |
+          echo "Deploying with $DEPLOY_ENV environment"
+          modal deploy deployments/email_generator.py -e $DEPLOY_ENV

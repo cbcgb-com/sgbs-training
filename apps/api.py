@@ -1,6 +1,5 @@
 """FastAPI-based implementation of each of the components of SGBS training."""
 
-
 from typing import Annotated
 
 from fastapi import FastAPI, Form, Request
@@ -10,7 +9,11 @@ from fastapi.templating import Jinja2Templates
 from markdown import markdown
 
 from sgbs_training.docs import create_exercises
-from sgbs_training.email import compose_homework_email, compose_reinvitation_email, compose_homework_reminder_email
+from sgbs_training.email import (
+    compose_homework_email,
+    compose_reinvitation_email,
+    compose_homework_reminder_email,
+)
 
 app = FastAPI()
 
