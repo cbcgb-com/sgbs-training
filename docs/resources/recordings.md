@@ -3,6 +3,7 @@
 === "2025春季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
     |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+    | 2025-04-13 |     [论说文](../class-notes/lesson-4-argumentation.md)     | [link](https://www.dropbox.com/scl/fi/hb7ilf9dkyz5gf5rky8ng/20250413-class-4-recording.mp3?rlkey=l1qadhi7xof58ucy2to58huw2&dl=0) |
     | 2025-04-06 |   [提问题的技术](../class-notes/lesson-3-questioning.md)   | [link](https://www.dropbox.com/scl/fi/hgm9ca3gfd8pngglnsfyt/20250406-class-3-recording.mp3?rlkey=4l5kacbmh6amci4unzvzkhdc7&dl=0) |
     | 2025-03-30 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/41jjoqkm8jp1v6ps57w6z/20250330-class-2-recording.mp3?rlkey=ekjhmtppmdh0294ecv31jw7vi&dl=0) |
     | 2025-03-23 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/18i12163h4pn9tg6grj5y/20250323-class-1-recording.mp3?rlkey=ihwewh9czk11bo085kpxqs3f1&dl=0) |
