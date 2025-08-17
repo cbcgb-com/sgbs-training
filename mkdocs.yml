@@ -19,6 +19,7 @@ nav:
   - 工具:
       - 論說⽂體的歸納法查經: tools/ibs-argumentation-notes.md
       - 敘述⽂體的歸納法查經: tools/ibs-narrative-notes.md
+      - 空間生態學分析工具: tools/space-ecology-notes.md
   - 範例:
       - 路加福音筆記: examples/luke-study-notes.md
       - 路加福音中的文學手法: examples/luke-literary-devices.md
@@ -31,6 +32,7 @@ nav:
       課堂錄音: resources/recordings.md
       更多神學裝備: resources/theology-equipments.md
       對於生成式AI的反思: resources/genai.md
+      太空生態學: resources/space-ecology.md
 
 extra_css:
   - stylesheets/extra.css
