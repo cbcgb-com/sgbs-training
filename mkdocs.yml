@@ -3,10 +3,10 @@ site_name: 小組查經帶領訓練
 #   - Home: index.md
 
 theme:
-  name: "material"
-  palette:
-    primary: "light blue"
-    accent: "light blue"
+  name: "shadcn"
+  # palette:
+  #   primary: "light blue"
+  #   accent: "light blue"
 
 nav:
   - 主頁: index.md
