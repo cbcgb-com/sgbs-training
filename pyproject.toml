@@ -1,6 +1,6 @@
 [project]
 authors = [{name = "Eric Ma", email = "ericmajinglong@gmail.com"}]
-dependencies = []
+dependencies = ["mkdocs-shadcn>=0.4.2,<0.10"]
 description = "Add a short description here"
 name = "sgbs-training"
 requires-python = ">= 3.11"
