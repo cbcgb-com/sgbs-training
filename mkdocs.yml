@@ -1,12 +1,7 @@
 site_name: 小組查經帶領訓練
-# nav:
-#   - Home: index.md
 
 theme:
-  name: "material"
-  palette:
-    primary: "light blue"
-    accent: "light blue"
+  name: "shadcn"
 
 nav:
   - 主頁: index.md
@@ -24,13 +19,13 @@ nav:
       - 路加福音中的文學手法: examples/luke-literary-devices.md
       - 馬太福音筆記: examples/matthew-study-notes.md
   - 資源:
-      線上查經注意事項: resources/virtual-study.md
-      提問題的模板: resources/questions.md
-      設計查經主題: resources/theme.md
-      聖經參考書: resources/books.md
-      課堂錄音: resources/recordings.md
-      更多神學裝備: resources/theology-equipments.md
-      對於生成式AI的反思: resources/genai.md
+      - 線上查經注意事項: resources/virtual-study.md
+      - 提問題的模板: resources/questions.md
+      - 設計查經主題: resources/theme.md
+      - 聖經參考書: resources/books.md
+      - 課堂錄音: resources/recordings.md
+      - 更多神學裝備: resources/theology-equipments.md
+      - 對於生成式AI的反思: resources/genai.md
 
 extra_css:
   - stylesheets/extra.css
