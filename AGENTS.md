@@ -12,7 +12,9 @@ All content should be written in Traditional Chinese (繁體中文) and maintain
 
 ## Content Structure Standards
 
-Clear learning objectives should be included at the beginning of each lesson to help students understand what they will gain from the session. Homework assignments should be specific and actionable, operating on an honor system where students are trusted to complete readings and assignments without instructor oversight. Discussion questions should use consistent formatting with the ??? question format. Every lesson should include reflection and application sections to help students connect the material to their own contexts. Content should be designed to work both for live teaching and as standalone reference material, supporting the flipped classroom approach where students do readings for preparation and engage in activities during class time.
+Clear learning objectives should be included at the beginning of each lesson to help students understand what they will gain from the session. Homework assignments should be specific and actionable, operating on an honor system where students are trusted to complete readings and assignments without instructor oversight. Discussion questions should use consistent formatting with the ??? question format. Every lesson should include reflection and application sections to help students connect the material to their own contexts. Content should be designed to work both for live teaching and as standalone reference material.
+
+**Important**: Within any single markdown file, avoid duplicated content unless it is present for deliberate emphasis. Each piece of information should appear only once in its most appropriate location to maintain clarity and avoid confusion.
 
 ## Cultural and Contextual Considerations
 
@@ -49,6 +51,14 @@ The course follows a flipped classroom approach where students are expected to d
 ## Assessment and Feedback Standards
 
 Students must attend 4 out of 5 sessions, meaning they can only miss 1 class to maintain course completion status. Homework operates on an honor system where it is not checked by instructors; students are trusted to complete readings and assignments on their own initiative. Feedback is primarily peer-to-peer during in-class activities rather than instructor-given, fostering a collaborative learning environment where students learn from each other's experiences and insights. The course assumes that students have basic sound instincts about what makes a good Bible study, building on their existing knowledge and experience rather than starting from scratch. The focus is on practical application and peer learning rather than formal evaluation, emphasizing real-world skills over academic assessment.
+
+## Homework Policy
+
+Homework assignments are designed to prepare students for the next lesson's content, not to reinforce the current lesson's material. This means:
+- Homework always focuses on preparation for upcoming lessons
+- We never assign homework that covers material already taught in the current lesson
+- The final lesson (Lesson 5) will not have homework since there is no next lesson to prepare for
+- This approach ensures students come to class ready to engage with new material rather than reviewing what was already covered
 
 ## Course Roles and Terminology
 
