@@ -49,3 +49,13 @@ The course follows a flipped classroom approach where students are expected to d
 ## Assessment and Feedback Standards
 
 Students must attend 4 out of 5 sessions, meaning they can only miss 1 class to maintain course completion status. Homework operates on an honor system where it is not checked by instructors; students are trusted to complete readings and assignments on their own initiative. Feedback is primarily peer-to-peer during in-class activities rather than instructor-given, fostering a collaborative learning environment where students learn from each other's experiences and insights. The course assumes that students have basic sound instincts about what makes a good Bible study, building on their existing knowledge and experience rather than starting from scratch. The focus is on practical application and peer learning rather than formal evaluation, emphasizing real-world skills over academic assessment.
+
+## Course Roles and Terminology
+
+The course uses specific role terminology that should be consistently applied throughout all lesson materials:
+
+- **主領** (Leader): The person who leads the weekly mock Bible study discussion and facilitates the group
+- **觀察員** (Observer): The person who observes the weekly mock Bible study session and provides feedback to the leader
+- **其他人** (Others): All other participants in the weekly mock Bible study who are not in the leader or observer roles
+
+These role terms should be used consistently in homework assignments, class activities, and throughout all lesson notes to maintain clarity and consistency for students.
