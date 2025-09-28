@@ -1,4 +1,5 @@
 """Email-related code and templates."""
+
 from .scriptures import scripture_mapping
 
 
@@ -27,10 +28,10 @@ def compose_homework_email(scripture: str, questions_doc: dict, notes_doc: dict)
 功課（二）：本週經文：{scripture.reference()}
 
 **a) 帶領者和觀察員**<br>
-請你們把預備的題目放在[「查經題目」]({questions_doc['alternateLink']})上，每個小組一頁。第一頁有相關的提示和預備資源。
+請你們把預備的題目放在[『查經題目』]({questions_doc["alternateLink"]})上，每個小組一頁。第一頁有相關的提示和預備資源。
 
 **b) 其他組員**<br>
-請你們把查經筆記寫在[「查經筆記」]({notes_doc['alternateLink']})上，每個人一頁。第一頁同樣有提示和資源可供參考。
+請你們把查經筆記寫在[『查經筆記』]({notes_doc["alternateLink"]})上，每個人一頁。第一頁同樣有提示和資源可供參考。
 
 {scripture.extra_content()}
 

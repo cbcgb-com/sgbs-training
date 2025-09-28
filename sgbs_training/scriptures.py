@@ -50,7 +50,7 @@ class Luke(Scripture):
 
     @classmethod
     def class_notes(self):
-        return "[「如何理解敘述文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)以及《你們給他們吃吧！》第一章和第四章。"
+        return "[『如何理解敘述文的筆記』](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)以及《你們給他們吃吧！》第一章和第四章。"
 
     @classmethod
     def reference(self):
@@ -89,7 +89,7 @@ class John(Scripture):
 
     @classmethod
     def class_notes(self):
-        return "[「如何理解敘述文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)"
+        return "[『如何理解敘述文的筆記』](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)"
 
     @classmethod
     def reference(self):
@@ -120,7 +120,7 @@ class James(Scripture):
 
     @classmethod
     def class_notes(self):
-        return "[「如何理解論說文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
+        return "[『如何理解論說文的筆記』](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
 
     @classmethod
     def reference(self):
@@ -151,7 +151,7 @@ class Ephesians(Scripture):
 
     @classmethod
     def class_notes(self):
-        return "[「如何理解論說文的筆記」](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
+        return "[『如何理解論說文的筆記』](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
 
     @classmethod
     def reference(self):
