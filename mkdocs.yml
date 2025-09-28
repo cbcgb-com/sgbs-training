@@ -2,6 +2,7 @@ site_name: 小組查經帶領訓練
 
 theme:
   name: "shadcn"
+  custom_dir: "docs/templates"
 
 nav:
   - 主頁: index.md
@@ -29,6 +30,7 @@ nav:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/transition.css
 
 plugins:
   - search
