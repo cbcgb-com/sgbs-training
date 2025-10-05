@@ -188,7 +188,11 @@ to scan and understand.
 
 ## Bible Study Question Design Standards
 
-When creating example Bible study questions, avoid using "why" questions as they can be ambiguous and lead to unclear discussion directions. Instead, use more specific question formats that guide participants toward clear thinking and discussion. This principle is emphasized in lesson-3-questioning.md and should be consistently applied across all example materials.
+When creating example Bible study questions, avoid using "why" questions as they
+can be ambiguous and lead to unclear discussion directions. Instead, use more
+specific question formats that guide participants toward clear thinking and
+discussion. This principle is emphasized in lesson-3-questioning.md and should be
+consistently applied across all example materials.
 
 ## Markdown Linting
 
@@ -197,6 +201,21 @@ editing. Run `markdownlint filename.md` to check for issues and fix any
 violations before committing changes. This ensures consistent formatting and
 readability across all documentation.
 
+**Installation**: If markdownlint is not installed, install it using:
+
+```bash
+pixi global install markdownlint-cli
+```
+
 **Important**: When markdownlint raises issues, fix ALL of them, not just the ones
 introduced by your current changes. Even if the issues existed before your edits,
-you should still fix them to maintain code quality and consistency.
+you should still fix them to maintain code quality and consistency. Always run
+`markdownlint filename.md` on any markdown file you edit and address all
+violations before considering the task complete.
+
+## Notebook Usage
+
+We use marimo notebooks going forward for interactive development and prototyping.
+Do not edit existing .ipynb (Jupyter notebook) files in this repository, as they
+are legacy files that should not be modified. If notebook functionality is needed,
+create new marimo notebooks instead.

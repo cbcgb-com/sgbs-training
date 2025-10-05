@@ -10,7 +10,7 @@ from markdown import markdown
 
 from sgbs_training.docs import create_exercises
 from sgbs_training.email import (
-    compose_homework_email,
+    compose_homework_email_legacy,
     compose_reinvitation_email,
     compose_homework_reminder_email,
 )
@@ -49,7 +49,7 @@ To generate an email, adjust the form parameters below.
 @app.get("/{scripture}/{num_students}/{num_groups}", response_class=HTMLResponse)
 def exercises(request: Request, scripture: str, num_students: int, num_groups: int):
     questions, notes = create_exercises(scripture, num_students, num_groups)
-    email_text = compose_homework_email(scripture, questions, notes)
+    email_text = compose_homework_email_legacy(scripture, questions, notes)
     email_html = markdown(email_text)
     return templates.TemplateResponse(
         "template.html",
@@ -69,7 +69,7 @@ def form_scripture(
     num_groups: Annotated[int, Form()],
 ):
     questions, notes = create_exercises(scripture, num_students, num_groups)
-    email_text = compose_homework_email(scripture, questions, notes)
+    email_text = compose_homework_email_legacy(scripture, questions, notes)
     email_html = markdown(email_text)
     return email_html
 

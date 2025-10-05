@@ -3,6 +3,74 @@
 from .scriptures import scripture_mapping
 
 
+def get_lesson_info(scripture_name: str):
+    """Get lesson information based on scripture name.
+
+    Args:
+        scripture_name: The scripture name (e.g., "Luke", "John", "Ephesians", "James")
+
+    Returns:
+        dict: Dictionary containing lesson_number, reading_assignments, and additional_exercises
+    """
+    lesson_mapping = {
+        "Luke": {
+            "lesson_number": 1,
+            "reading_assignments": [
+                "請閱讀[【敘述文體的歸納法查經】](../tools/ibs-narrative-notes.md)",
+                "請閱讀【你們喂他們吃吧】第1和4章",
+                "**下週課程預備**：請閱讀[【敘述文】](lesson-2-narrative.md)第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）",
+            ],
+            "additional_exercises": [],
+        },
+        "John": {
+            "lesson_number": 2,
+            "reading_assignments": [
+                "請閱讀[【預備查經題目】](lesson-3-questioning.md)第一部分（課前預讀內容），了解問題設計的基本原則"
+            ],
+            "additional_exercises": [
+                "問題評估練習：",
+                "    1. **主領和觀察員**：對你們設計的查經問題進行自我評估，並提出改進建議",
+                "    2. **其他人**：基於你們的查經筆記，設計1-2個查經問題，並對每個問題進行評估：",
+                "       - 這個問題可以用「是/否」簡單回答嗎？",
+                "       - 這個問題可以直接從經文中找到答案嗎？",
+                "       - 這個問題是否清晰，不容易誤解？",
+                "       - 這個問題是否引導組員思考，而非僅僅找答案？",
+                "    3. 將問題設計、評估結果和改進建議整理到共享的Google文件中，供下週課程深入討論",
+            ],
+        },
+        "Ephesians": {
+            "lesson_number": 3,
+            "reading_assignments": [
+                "請閱讀[【論說文體的歸納法查經】](../tools/ibs-argumentation-notes.md)"
+            ],
+            "additional_exercises": [
+                "史特朗號碼詞彙研究：",
+                "    1. 請先閱讀[第四課講義](lesson-4-argumentation.md)第一部分『字詞研究的工具：聖經原文的史特朗號碼』章節，了解史特朗號碼的使用方法和解經原則",
+                "    2. 請選擇以弗所書2:1-10中的三個關鍵詞彙（建議：『死』（第1節）、『活』（第1節）、『恩典』（第5節）），查找其史特朗號碼，並記錄每個詞在經文中的原文含義",
+            ],
+        },
+        "James": {
+            "lesson_number": 4,
+            "reading_assignments": [
+                "請閱讀《你們餵他們吃吧》第2和5章",
+                "請閱讀第五課第一部分：課前預讀內容",
+            ],
+            "additional_exercises": [
+                "臨場狀況觀察記錄：",
+                "    1. 在你的查經筆記或問題設計中，請記錄一次你曾經觀察到的查經聚會中發生的困難情況",
+                "    2. 描述當時的情況：發生了什麼？涉及哪些人？對小組氛圍產生了什麼影響？",
+                "    3. 記錄帶領者當時採取了什麼措施來嘗試解決或應對這個情況",
+                "    4. 思考：你認為帶領者的應對方式是否有效？為什麼？如果換作是你，你會如何處理？",
+            ],
+        },
+    }
+
+    return lesson_mapping.get(
+        scripture_name,
+        {"lesson_number": 1, "reading_assignments": [], "additional_exercises": []},
+    )
+
+
 def compose_homework_email(
     lesson_number: int,
     scripture: str,
@@ -73,6 +141,32 @@ def compose_homework_email(
 林意 和 Eric
     """
     return text
+
+
+def compose_homework_email_legacy(
+    scripture: str, questions_doc: dict, notes_doc: dict
+) -> str:
+    """Legacy wrapper for backward compatibility.
+
+    Args:
+        scripture: The scripture reference.
+        questions_doc: Questions document.
+        notes_doc: Notes document.
+
+    Returns:
+        str: The email text as Markdown.
+    """
+    # Get lesson info from scripture name
+    lesson_info = get_lesson_info(scripture)
+
+    return compose_homework_email(
+        lesson_number=lesson_info["lesson_number"],
+        scripture=scripture,
+        questions_doc=questions_doc,
+        notes_doc=notes_doc,
+        reading_assignments=lesson_info["reading_assignments"],
+        additional_exercises=lesson_info["additional_exercises"],
+    )
 
 
 def compose_book_reflection_email():

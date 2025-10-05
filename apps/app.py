@@ -1,7 +1,7 @@
 """Panel app to generate email and Google docs."""
 
 import panel as pn
-from sgbs_training.email import compose_homework_email
+from sgbs_training.email import compose_homework_email_legacy
 from sgbs_training.docs import create_exercises
 from markdown import markdown
 
@@ -33,7 +33,7 @@ def write_email(event):
     questions, notes = create_exercises(
         scripture.value, num_students=num_students.value, num_groups=num_groups.value
     )
-    text = compose_homework_email(scripture.value, questions, notes)
+    text = compose_homework_email_legacy(scripture.value, questions, notes)
     email_html.object = markdown(text)
 
 
