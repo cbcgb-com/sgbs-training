@@ -2,6 +2,54 @@ details * {
     font-size: large;
 }
 
+/* Smooth transitions for collapsible details blocks */
+details {
+    transition: all 0.3s ease-in-out;
+}
+
+details[open] {
+    transition: all 0.3s ease-in-out;
+}
+
+details summary {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+}
+
+details summary:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: -2px -4px;
+}
+
+details summary::-webkit-details-marker {
+    transition: transform 0.2s ease-in-out;
+}
+
+details[open] summary::-webkit-details-marker {
+    transform: rotate(90deg);
+}
+
+/* Smooth content reveal animation */
+details {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Use a more reliable approach with max-height */
+details > *:not(summary) {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+details[open] > *:not(summary) {
+    max-height: 1000px; /* Large enough to accommodate content */
+    opacity: 1;
+}
+
 :root {
   --md-text-font-size: 1rem;
 }
@@ -42,5 +90,7 @@ body {
 .md-header__title {
   font-size: 20px;  /* Increase the site title size */
 }
+
+/* ... continue for other heading levels if needed ... */
 
 /* ... continue for other heading levels if needed ... */
