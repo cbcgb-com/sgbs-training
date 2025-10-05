@@ -10,22 +10,24 @@ def get_lesson_info(scripture_name: str):
         scripture_name: The scripture name (e.g., "Luke", "John", "Ephesians", "James")
 
     Returns:
-        dict: Dictionary containing lesson_number, reading_assignments, and additional_exercises
+        dict: Dictionary containing lesson_number, reading_assignments, additional_exercises, and greeting
     """
     lesson_mapping = {
         "Luke": {
             "lesson_number": 1,
+            "greeting": "感恩今天有機會跟大家一起探討查經的意義和裝備！",
             "reading_assignments": [
-                "請閱讀[【敘述文體的歸納法查經】](../tools/ibs-narrative-notes.md)",
+                "請閱讀[【敘述文體的歸納法查經】](https://cbcgb-com.github.io/sgbs-training/tools/ibs-narrative-notes/)",
                 "請閱讀【你們喂他們吃吧】第1和4章",
-                "**下週課程預備**：請閱讀[【敘述文】](lesson-2-narrative.md)第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）",
+                "**下週課程預備**：請閱讀[【敘述文】](https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-2-narrative/)第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）",
             ],
             "additional_exercises": [],
         },
         "John": {
             "lesson_number": 2,
+            "greeting": "感恩今天有機會跟大家一起學習敘述文的分析技巧！",
             "reading_assignments": [
-                "請閱讀[【預備查經題目】](lesson-3-questioning.md)第一部分（課前預讀內容），了解問題設計的基本原則"
+                "請閱讀[【預備查經題目】](https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-3-questioning/)第一部分（課前預讀內容），了解問題設計的基本原則"
             ],
             "additional_exercises": [
                 "問題評估練習：",
@@ -40,17 +42,19 @@ def get_lesson_info(scripture_name: str):
         },
         "Ephesians": {
             "lesson_number": 3,
+            "greeting": "感恩今天有機會跟大家一起學習提問題的技術！",
             "reading_assignments": [
-                "請閱讀[【論說文體的歸納法查經】](../tools/ibs-argumentation-notes.md)"
+                "請閱讀[【論說文體的歸納法查經】](https://cbcgb-com.github.io/sgbs-training/tools/ibs-argumentation-notes/)"
             ],
             "additional_exercises": [
                 "史特朗號碼詞彙研究：",
-                "    1. 請先閱讀[第四課講義](lesson-4-argumentation.md)第一部分『字詞研究的工具：聖經原文的史特朗號碼』章節，了解史特朗號碼的使用方法和解經原則",
+                "    1. 請先閱讀[第四課講義](https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-4-argumentation/)第一部分『字詞研究的工具：聖經原文的史特朗號碼』章節，了解史特朗號碼的使用方法和解經原則",
                 "    2. 請選擇以弗所書2:1-10中的三個關鍵詞彙（建議：『死』（第1節）、『活』（第1節）、『恩典』（第5節）），查找其史特朗號碼，並記錄每個詞在經文中的原文含義",
             ],
         },
         "James": {
             "lesson_number": 4,
+            "greeting": "感恩今天有機會跟大家一起學習論說文的分析技巧！",
             "reading_assignments": [
                 "請閱讀《你們餵他們吃吧》第2和5章",
                 "請閱讀第五課第一部分：課前預讀內容",
@@ -67,7 +71,12 @@ def get_lesson_info(scripture_name: str):
 
     return lesson_mapping.get(
         scripture_name,
-        {"lesson_number": 1, "reading_assignments": [], "additional_exercises": []},
+        {
+            "lesson_number": 1,
+            "greeting": "感恩今天有機會跟大家一起探討查經！",
+            "reading_assignments": [],
+            "additional_exercises": [],
+        },
     )
 
 
@@ -78,6 +87,7 @@ def compose_homework_email(
     notes_doc: dict,
     reading_assignments: list = None,
     additional_exercises: list = None,
+    greeting: str = "感恩今天有機會跟大家一起探討查經！",
 ) -> str:
     """Compose a homework email for any lesson.
 
@@ -90,6 +100,7 @@ def compose_homework_email(
             Should be returned from `sgbs_training.docs.create_exercises`.
         reading_assignments: List of reading assignments for the lesson.
         additional_exercises: List of additional exercises for the lesson.
+        greeting: Custom greeting message for the lesson.
 
     Returns:
         str: The email text as Markdown.
@@ -97,9 +108,9 @@ def compose_homework_email(
     scripture = scripture_mapping[scripture]
 
     # Standardized role assignments
-    leader_observer_text = f"""**主領和觀察員**：設計查經問題，並將問題整理到[『查經題目』]({questions_doc["alternateLink"]})中，該文件將通過電子郵件發送給所有學員"""
+    leader_observer_text = f"""**主領和觀察員**：設計查經問題，並將問題整理到[『查經題目』]({questions_doc["alternateLink"]})中"""
 
-    others_text = f"""**其他人**：完成查經筆記，並將筆記整理到[『查經筆記』]({notes_doc["alternateLink"]})中，該文件將通過電子郵件發送給所有學員"""
+    others_text = f"""**其他人**：完成查經筆記，並將筆記整理到[『查經筆記』]({notes_doc["alternateLink"]})中"""
 
     # Build homework content
     homework_items = []
@@ -123,13 +134,11 @@ def compose_homework_email(
     # Join homework items
     homework_content = "\n".join(homework_items)
 
-    text = f"""各位主內同工們好！
+    text = f"""## 小組查經帶領訓練課堂「{lesson_number}」功課
 
-感恩今天有機會跟大家一起探討查經！以下是第{lesson_number}堂課的學習內容。
+各位主內同工們好！
 
-## 功課
-
-第{lesson_number}堂課的功課如下：
+{greeting}以下是第{lesson_number}堂課的功課：
 
 {homework_content}
 
@@ -166,6 +175,7 @@ def compose_homework_email_legacy(
         notes_doc=notes_doc,
         reading_assignments=lesson_info["reading_assignments"],
         additional_exercises=lesson_info["additional_exercises"],
+        greeting=lesson_info["greeting"],
     )
 
 
