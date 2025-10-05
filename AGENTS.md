@@ -196,3 +196,7 @@ All markdown files must be checked with markdownlint (the CLI tool) after
 editing. Run `markdownlint filename.md` to check for issues and fix any
 violations before committing changes. This ensures consistent formatting and
 readability across all documentation.
+
+**Important**: When markdownlint raises issues, fix ALL of them, not just the ones
+introduced by your current changes. Even if the issues existed before your edits,
+you should still fix them to maintain code quality and consistency.

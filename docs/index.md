@@ -9,14 +9,14 @@
 
 本網頁的二維碼：
 
-![](./images/website-qrcode.png){: style="width:150px"}
+![本網頁的二維碼](./images/website-qrcode.png){: style="width:150px"}
 
 ## 註冊
 
 請點擊[此鏈接註冊](https://airtable.com/shrS5gKu57LudKDSh)
 或掃描以下的二維碼：
 
-![](./images/registration-qrcode.png){: style="width:150px"}
+![註冊二維碼](./images/registration-qrcode.png){: style="width:150px"}
 
 <!-- 本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。-->
 
@@ -50,7 +50,7 @@
 
 ### 課程內容
 
-| Week   | Activity     | Topic                                                   |
+| Week   | Activity     | Topic |
 |--------|--------------|---------------------------------------------------------|
 | 第一週 | 課程信息介紹 | [查經的意義和裝備](class-notes/lesson-1-foundations.md) |
 | 第二週 | 分組模擬查經 | 敘述文 路7:36-50                                        |
@@ -80,6 +80,8 @@
 | **查經主領** | 預備下一周模擬查經的查經題目，在週中與觀察員一起預覽查經題目，設想並預備臨場查經時可能會出現的狀況 |
 | **觀察員** | 與查經主領緊密同工，在週中預覽並和查經主領討論所設計的題目，輔助查經主領預備 |
 | **其他組員** | 在週中預覽本週經文，預備查經筆記 |
+
+**所有學員**：在週中預覽下一堂課的課程講義，為課堂討論做好準備
 
 #### 查經筆記
 
