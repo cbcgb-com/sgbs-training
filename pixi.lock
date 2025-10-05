@@ -4335,7 +4335,7 @@ packages:
 - pypi: ./
   name: sgbs-training
   version: 0.1.0
-  sha256: 7fe07f295300113dd2996c87c323feb318eab8b5c9ac4b07883822660d35a6d1
+  sha256: 093398a8675426b342650bfef345003f1dca01ffc4377c477d4ab9a2c47cc5a7
   requires_dist:
   - mkdocs-shadcn>=0.4.2,<0.10
   requires_python: '>=3.11'

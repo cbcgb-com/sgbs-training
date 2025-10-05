@@ -219,3 +219,95 @@ We use marimo notebooks going forward for interactive development and prototypin
 Do not edit existing .ipynb (Jupyter notebook) files in this repository, as they
 are legacy files that should not be modified. If notebook functionality is needed,
 create new marimo notebooks instead.
+
+## Email Generator App Architecture
+
+The email generator app is a FastAPI + HTMX + shadcn/ui application that generates
+personalized homework emails for Bible study groups. Here are the key architectural
+elements:
+
+### Technology Stack
+
+- **Backend**: FastAPI with Jinja2 templating
+- **Frontend**: HTMX for dynamic interactions, Tailwind CSS for styling
+- **UI Components**: shadcn/ui design system with custom CSS variables
+- **Deployment**: Modal.com with pixi for dependency management
+- **Authentication**: Google Drive API integration
+
+### Core Application Structure
+
+- **Entry Point**: `apps/api.py` - FastAPI application with route handlers
+- **Legacy Entry Point**: `apps/app.py` - Panel-based interface (legacy)
+- **Template**: `apps/templates/template.html` - Single-page HTMX application
+- **Deployment**: `deployments/email_generator.py` - Modal deployment configuration
+
+### Key Functional Components
+
+#### 1. Route Handlers (`apps/api.py`)
+
+- `GET /` - Serves the main HTMX interface
+- `GET /{scripture}/{num_students}/{num_groups}` - Direct URL-based email
+  generation
+- `POST /form/scripture` - HTMX form submission handler
+- `POST /validate/num_students` & `POST /validate/num_groups` - Real-time
+  validation
+- `GET /reinvitation-email` & `GET /homework-reminder-email` - Quick action
+  endpoints
+
+#### 2. Email Composition (`sgbs_training/email.py`)
+
+- `get_lesson_info()` - Maps scripture names to lesson metadata
+- `compose_homework_email()` - Main email composition with role-based
+  assignments
+- `compose_homework_email_legacy()` - Backward compatibility wrapper
+- `compose_reinvitation_email()` & `compose_homework_reminder_email()` -
+  Specialized emails
+
+#### 3. Document Generation (`sgbs_training/docs.py`)
+
+- `create_exercises()` - Creates Google Docs for questions and notes
+- Integrates with Google Drive API for document creation and sharing
+- Returns document metadata for email linking
+
+#### 4. Exercise Templates (`sgbs_training/exercises.py`)
+
+- `study_questions()` - Generates structured question templates
+- `study_notes()` - Creates study note templates
+- Supports multiple groups and students with role-based content
+
+#### 5. Scripture Classes (`sgbs_training/scriptures.py`)
+
+- Abstract `Scripture` base class with standardized methods
+- Concrete implementations for Luke, John, Ephesians, James
+- Provides lesson-specific resources, references, and instructions
+
+### Frontend Architecture
+
+- **Single Template**: `template.html` contains the entire application
+- **HTMX Integration**: Real-time form validation and content updates
+- **shadcn/ui Styling**: Custom CSS variables for consistent theming
+- **Responsive Design**: Tailwind CSS with mobile-first approach
+- **Loading States**: HTMX indicators for user feedback
+
+### Data Flow
+
+1. User selects scripture, number of students/groups
+2. Form submission triggers `POST /form/scripture`
+3. Backend calls `create_exercises()` to generate Google Docs
+4. Email composition uses lesson metadata and document links
+5. Markdown email content is rendered and returned to frontend
+6. HTMX updates the preview area with generated content
+
+### Authentication & External Services
+
+- **Google Drive API**: Service account authentication for document creation
+- **Modal Secrets**: Environment variables managed through Modal's secret system
+- **Credential Management**: `sgbs_training/authentication.py` handles Google API
+  credentials
+
+### Deployment Configuration
+
+- **Modal Image**: Debian-based with pixi package manager
+- **Dependencies**: Managed through `pyproject.toml` with pixi features
+- **Port Configuration**: Runs on port 5006 with 120s startup timeout
+- **CI/CD**: Automatic deployment on PR branches and main branch pushes

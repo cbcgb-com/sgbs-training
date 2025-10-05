@@ -1,56 +1,521 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    {{ stylesheet_url | safe }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGBS Training Email Generator</title>
     <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96%;
+            --secondary-foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96%;
+            --accent-foreground: 222.2 84% 4.9%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 221.2 83.2% 53.3%;
+            --radius: 0.5rem;
+        }
+
+        .htmx-indicator {
+            display: none;
+        }
+
+        .htmx-request .htmx-indicator {
+            display: inline;
+        }
+
+        .htmx-request.htmx-indicator {
+            display: inline;
+        }
+
+        /* Email content styling */
+        #composed-email h1, #composed-email h2, #composed-email h3, #composed-email h4, #composed-email h5, #composed-email h6 {
+            font-weight: bold;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        #composed-email h1 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+
+        #composed-email h2 {
+            font-size: 1.25rem;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.25rem;
+        }
+
+        #composed-email h3 {
+            font-size: 1.125rem;
+        }
+
+        #composed-email p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        #composed-email ul, #composed-email ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        #composed-email li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        #composed-email strong, #composed-email b {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        #composed-email em, #composed-email i {
+            font-style: italic;
+        }
+
+        #composed-email blockquote {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+
+        #composed-email hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 2rem 0;
+        }
+
+        #composed-email a {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        #composed-email a:hover {
+            color: #1d4ed8;
+        }
+
+        #composed-email code {
+            background-color: #f3f4f6;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        #composed-email pre {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        #composed-email table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        #composed-email th, #composed-email td {
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        #composed-email th {
+            background-color: #f9fafb;
+            font-weight: 600;
+        }
+
+        /* Clean up extra whitespace in email content */
+        #composed-email {
+            white-space: normal;
+        }
+
+        #composed-email p:empty,
+        #composed-email div:empty {
+            display: none;
+        }
+
+        #composed-email br + br {
+            display: none;
+        }
+
+        #composed-email * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #composed-email p {
+            margin-bottom: 1rem;
+        }
+
+        #composed-email li {
+            margin-bottom: 0.5rem;
+        }
+
+        #composed-email h1, #composed-email h2, #composed-email h3, #composed-email h4, #composed-email h5, #composed-email h6 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 
-<body>
-    <div class="">
-        {{ body | safe }}
+<body class="min-h-screen bg-background font-sans antialiased">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold tracking-tight text-foreground">SGBS Training Email Generator</h1>
+            <p class="text-muted-foreground mt-2">Generate personalized homework emails for your Bible study groups</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid gap-8 lg:grid-cols-2">
+            <!-- Form Section -->
+            <div class="space-y-6">
+                <div class="rounded-lg border bg-card p-6">
+                    <h2 class="text-xl font-semibold mb-4">Email Configuration</h2>
+
+                    <form id="form" class="space-y-4">
+                        <!-- Scripture Selection -->
+                        <div class="space-y-2">
+                            <label for="scripture" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                Scripture
+                            </label>
+                            <select
+                                name="scripture"
+                                id="scripture"
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                                <option value="Luke">Lesson 1: Luke</option>
+                                <option value="John">Lesson 2: John</option>
+                                <option value="Ephesians">Lesson 3: Ephesians</option>
+                                <option value="James">Lesson 4: James</option>
+                            </select>
+                        </div>
+
+                        <!-- Number of Students -->
+                        <div class="space-y-2">
+                            <label for="num_students" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                Number of Students
+                            </label>
+                            <input
+                                type="number"
+                                name="num_students"
+                                id="num_students"
+                                placeholder="Number of students"
+                                value="15"
+                                min="1"
+                                max="50"
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                hx-post="/validate/num_students"
+                                hx-target="#num-students-error"
+                                hx-swap="innerHTML"
+                            >
+                            <div id="num-students-error" class="text-sm text-destructive"></div>
+                        </div>
+
+                        <!-- Number of Groups -->
+                        <div class="space-y-2">
+                            <label for="num_groups" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                Number of Groups
+                            </label>
+                            <input
+                                type="number"
+                                name="num_groups"
+                                id="num_groups"
+                                placeholder="Number of groups"
+                                value="5"
+                                min="1"
+                                max="20"
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                hx-post="/validate/num_groups"
+                                hx-target="#num-groups-error"
+                                hx-swap="innerHTML"
+                            >
+                            <div id="num-groups-error" class="text-sm text-destructive"></div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                            hx-post="/form/scripture"
+                            hx-target="#composed-email"
+                            hx-indicator="#indicator"
+                        >
+                            <span class="htmx-indicator" id="indicator">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                            Generate Homework Email
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="rounded-lg border bg-card p-6">
+                    <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full"
+                            hx-get="/reinvitation-email"
+                            hx-target="#composed-email"
+                            hx-indicator="#reinvitation-indicator"
+                        >
+                            <span class="htmx-indicator" id="reinvitation-indicator">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                            Get Reinvitation Email
+                        </button>
+
+                        <button
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full"
+                            hx-get="/homework-reminder-email"
+                            hx-target="#composed-email"
+                            hx-indicator="#homework-reminder-indicator"
+                        >
+                            <span class="htmx-indicator" id="homework-reminder-indicator">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                            Get Homework Reminder Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Preview Section -->
+            <div class="space-y-6">
+                <div class="rounded-lg border bg-card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold">Email Preview</h2>
+                        <button
+                            id="copy-button"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3 py-2"
+                            onclick="copyEmailContent()"
+                            disabled
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                            <span id="copy-text">Copy Email</span>
+                        </button>
+                    </div>
+                    <div id="composed-email" class="min-h-[400px] p-4 border rounded-md bg-muted/50">
+                        <p class="text-muted-foreground text-center">Select options above to generate your email</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 pt-8 border-t">
+            <p class="text-sm text-muted-foreground text-center">
+                SGBS Training Email Generator - Powered by FastAPI & HTMX
+            </p>
+        </div>
     </div>
 
-    <div id="email-form">
-        <form id="form">
-            <label for="scripture">Scripture</label>
-            <select name="scripture" id="scripture">
-                <option value="Luke">Lesson 1: Luke</option>
-                <option value="John">Lesson 2: John</option>
-                <option value="Ephesians">Lesson 3: Ephesians</option>
-                <option value="James">Lesson 4: James</option>
-            </select>
+    <script>
+        // Copy email content to clipboard
+        async function copyEmailContent() {
+            const emailContent = document.getElementById('composed-email');
+            const copyButton = document.getElementById('copy-button');
+            const copyText = document.getElementById('copy-text');
 
-            <label for="num_students">Num Students</label>
-            <input type="text" name="num_students" id="num_students" placeholder="Number of students" value="15"
-                hx-post="/validate/num_students" hx-target="#num-students-error" hx-swap="innerHTML">
-            <div id="num-students-error"></div>
+            try {
+                // Get the HTML content and clean it up
+                let htmlContent = emailContent.innerHTML;
 
-            <label for="num_groups">Num Groups</label>
-            <input type="text" name="num_groups" id="num_groups" placeholder="Number of groups" value="5"
-                hx-post="/validate/num_groups" hx-target="#num-groups-error" hx-swap="innerHTML">
-            <div id="num-groups-error"></div>
+                // Clean up the HTML content
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlContent;
 
-            <input type="submit" value="Submit" hx-post="/form/scripture" hx-target="#composed-email"
-                hx-indicator="#indicator">
-            <img id="indicator" class="htmx-indicator" src="/static/img/bars.svg" />
-        </form>
+                // Remove extra whitespace and clean up formatting
+                function cleanElement(element) {
+                    // Remove empty paragraphs and divs
+                    const emptyElements = element.querySelectorAll('p:empty, div:empty');
+                    emptyElements.forEach(el => el.remove());
 
-        <!-- Add the new buttons here -->
-        <button hx-get="/reinvitation-email" hx-target="#composed-email" hx-indicator="#reinvitation-indicator">
-            Get Reinvitation Email
-        </button>
-        <img id="reinvitation-indicator" class="htmx-indicator" src="/static/img/bars.svg" />
+                    // Clean up whitespace in text nodes
+                    const walker = document.createTreeWalker(
+                        element,
+                        NodeFilter.SHOW_TEXT,
+                        null,
+                        false
+                    );
 
-        <button hx-get="/homework-reminder-email" hx-target="#composed-email" hx-indicator="#homework-reminder-indicator">
-            Get Homework Reminder Email
-        </button>
-        <img id="homework-reminder-indicator" class="htmx-indicator" src="/static/img/bars.svg" />
-    </div>
+                    let node;
+                    while (node = walker.nextNode()) {
+                        // Remove excessive whitespace but preserve single spaces
+                        node.textContent = node.textContent.replace(/\s+/g, ' ').trim();
+                    }
 
-    <div id="composed-email"></div>
+                    // Remove elements that only contain whitespace
+                    const allElements = element.querySelectorAll('*');
+                    allElements.forEach(el => {
+                        if (el.textContent.trim() === '' && el.children.length === 0) {
+                            el.remove();
+                        }
+                    });
+                }
 
+                cleanElement(tempDiv);
+
+                // Get the cleaned HTML
+                const cleanHtml = tempDiv.innerHTML;
+
+                // Create a clean plain text version
+                const plainText = tempDiv.textContent
+                    .replace(/\n\s*\n\s*\n/g, '\n\n') // Remove excessive line breaks
+                    .replace(/^\s+|\s+$/gm, '') // Trim each line
+                    .trim();
+
+                // Use the modern clipboard API to copy HTML
+                if (navigator.clipboard && window.ClipboardItem) {
+                    try {
+                        await navigator.clipboard.write([
+                            new ClipboardItem({
+                                'text/html': new Blob([cleanHtml], { type: 'text/html' }),
+                                'text/plain': new Blob([plainText], { type: 'text/plain' })
+                            })
+                        ]);
+                    } catch (clipboardError) {
+                        // Fallback: copy as plain text
+                        await navigator.clipboard.writeText(plainText);
+                    }
+                } else {
+                    // Fallback for older browsers
+                    await navigator.clipboard.writeText(plainText);
+                }
+
+                // Update button to show success
+                copyText.textContent = 'Copied!';
+                copyButton.classList.remove('hover:bg-accent', 'hover:text-accent-foreground');
+                copyButton.classList.add('bg-green-100', 'text-green-800', 'border-green-300');
+
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    copyText.textContent = 'Copy Email';
+                    copyButton.classList.remove('bg-green-100', 'text-green-800', 'border-green-300');
+                    copyButton.classList.add('hover:bg-accent', 'hover:text-accent-foreground');
+                }, 2000);
+
+            } catch (err) {
+                console.error('Failed to copy email content:', err);
+                copyText.textContent = 'Copy Failed';
+                setTimeout(() => {
+                    copyText.textContent = 'Copy Email';
+                }, 2000);
+            }
+        }
+
+        // Enable copy button when email content is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monitor for changes in the composed email div
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                        const emailContent = document.getElementById('composed-email');
+                        const copyButton = document.getElementById('copy-button');
+                        const placeholder = emailContent.querySelector('.text-muted-foreground');
+
+                        // Enable copy button if there's actual content (not just the placeholder)
+                        if (!placeholder && emailContent.innerHTML.trim() !== '') {
+                            copyButton.disabled = false;
+                            copyButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                        } else {
+                            copyButton.disabled = true;
+                            copyButton.classList.add('opacity-50', 'cursor-not-allowed');
+                        }
+                    }
+                });
+            });
+
+            const emailContent = document.getElementById('composed-email');
+            observer.observe(emailContent, {
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
+        });
+    </script>
 </body>
-
 </html>

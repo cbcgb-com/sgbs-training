@@ -22,25 +22,15 @@ app.mount("/static", StaticFiles(directory="apps/static"), name="static")
 
 templates = Jinja2Templates(directory="apps/templates")
 
-stylesheet_urls = {
-    "terminal": '<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />',
-    "pure": '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">',
-    "simple": '<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">',
-}
+# Stylesheet URLs removed - now using Tailwind CSS directly in template
 
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    body = """# SGBS Training Email Generator
-
-To generate an email, adjust the form parameters below.
-"""
     return templates.TemplateResponse(
         "template.html",
         {
             "request": request,
-            "body": markdown(body),
-            "stylesheet_url": stylesheet_urls["simple"],
         },
         media_type="html",
     )
@@ -56,7 +46,6 @@ def exercises(request: Request, scripture: str, num_students: int, num_groups: i
         {
             "request": request,
             "body": email_html,
-            "stylesheet_url": stylesheet_urls["simple"],
         },
         media_type="html",
     )
