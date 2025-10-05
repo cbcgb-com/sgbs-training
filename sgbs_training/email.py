@@ -3,35 +3,67 @@
 from .scriptures import scripture_mapping
 
 
-def compose_homework_email(scripture: str, questions_doc: dict, notes_doc: dict) -> str:
-    """Compose a homework email.
+def compose_homework_email(
+    lesson_number: int,
+    scripture: str,
+    questions_doc: dict,
+    notes_doc: dict,
+    reading_assignments: list = None,
+    additional_exercises: list = None,
+) -> str:
+    """Compose a homework email for any lesson.
 
     Args:
-
+        lesson_number: The lesson number (1-4).
         scripture: The scripture reference.
         questions_doc: Questions document.
             Should be returned from `sgbs_training.docs.create_exercises`.
         notes_doc: Notes document.
             Should be returned from `sgbs_training.docs.create_exercises`.
+        reading_assignments: List of reading assignments for the lesson.
+        additional_exercises: List of additional exercises for the lesson.
 
     Returns:
-
         str: The email text as Markdown.
     """
     scripture = scripture_mapping[scripture]
+
+    # Standardized role assignments
+    leader_observer_text = f"""**主領和觀察員**：設計查經問題，並將問題整理到[『查經題目』]({questions_doc["alternateLink"]})中，該文件將通過電子郵件發送給所有學員"""
+
+    others_text = f"""**其他人**：完成查經筆記，並將筆記整理到[『查經筆記』]({notes_doc["alternateLink"]})中，該文件將通過電子郵件發送給所有學員"""
+
+    # Build homework content
+    homework_items = []
+
+    # Add reading assignments
+    if reading_assignments:
+        for i, assignment in enumerate(reading_assignments, 1):
+            homework_items.append(f"{i}. {assignment}")
+
+    # Add Bible study preparation
+    bible_study_num = len(reading_assignments) + 1 if reading_assignments else 1
+    homework_items.append(f"{bible_study_num}. 預備查經【{scripture.reference()}】")
+    homework_items.append(f"    1. {leader_observer_text}")
+    homework_items.append(f"    2. {others_text}")
+
+    # Add additional exercises
+    if additional_exercises:
+        for i, exercise in enumerate(additional_exercises, bible_study_num + 1):
+            homework_items.append(f"{i}. {exercise}")
+
+    # Join homework items
+    homework_content = "\n".join(homework_items)
+
     text = f"""各位主內同工們好！
 
-感恩今天有機會跟大家一起探討查經！以下是這一週的學習內容。
+感恩今天有機會跟大家一起探討查經！以下是第{lesson_number}堂課的學習內容。
 
-功課（一）：請大家閱讀{scripture.class_notes()}
+## 功課
 
-功課（二）：本週經文：{scripture.reference()}
+第{lesson_number}堂課的功課如下：
 
-**a) 帶領者和觀察員**<br>
-請你們把預備的題目放在[『查經題目』]({questions_doc["alternateLink"]})上，每個小組一頁。第一頁有相關的提示和預備資源。
-
-**b) 其他組員**<br>
-請你們把查經筆記寫在[『查經筆記』]({notes_doc["alternateLink"]})上，每個人一頁。第一頁同樣有提示和資源可供參考。
+{homework_content}
 
 {scripture.extra_content()}
 
