@@ -3,6 +3,7 @@
 === "2025秋季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
     |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+    | 2025-10-12 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/kduykmpqzxwe0839qakmx/20251012-class-2-recording.mp3?rlkey=hq5zwrsypl3oyyujr7ephltoj&dl=0) |
     | 2025-10-05 | [查經的意義和裝備](../class-notes/lesson-1-foundations.md) | [link](https://www.dropbox.com/scl/fi/9wl41twdl916u9ivpa2lb/20251005-class-1-recording.mp3?rlkey=tjqlfd1qab70t9u5zw3mrtrb9&dl=0) |
 
 === "2025春季"
