@@ -82,6 +82,11 @@ pixi global install markdownlint-cli
 **Raw HTML Exception**: Ignore MD033 issues - HTML is present for good reasons
 (e.g., visual formatting for grammatical analysis).
 
+**MkDocs Sub-bullet Indentation**: Use 4 spaces for sub-bullet points in TOC lists
+so MkDocs properly renders them as nested items. The project includes a
+`.markdownlint.json` configuration file that sets MD007 to expect 4 spaces,
+eliminating markdownlint warnings while maintaining proper MkDocs rendering.
+
 ### Notebooks
 
 Use marimo notebooks for new development. Don't edit existing .ipynb files (legacy).
