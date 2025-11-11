@@ -1,8 +1,10 @@
+<!-- markdownlint-disable MD013 MD059 -->
 # 課堂錄音
 
 === "2025秋季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
     |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
+    | 2025-11-09 |     [臨場狀況](../class-notes/lesson-5-situations.md)      | [link](https://www.dropbox.com/scl/fi/9d2uvpq1ut69p0t3dup02/20251109-class-5-recording.mp3?rlkey=8aq9a83ukgdgydacekjl8xnw9&dl=0) |
     | 2025-11-02 |     [論說文](../class-notes/lesson-4-argumentation.md)     | [link](https://www.dropbox.com/scl/fi/s1omn08r20bneew2vqt2y/20251102-class-4-recording.mp3?rlkey=dtxuyg3raupd7vqsi5jzgbpaa&dl=0) |
     | 2025-10-19 |   [提问题的技术](../class-notes/lesson-3-questioning.md)   | [link](https://www.dropbox.com/scl/fi/825zy11yir0312ash6883/20251019-class-3-recording.mp3?rlkey=6r7zv1aijrtyml080bcdl3vas&dl=0) |
     | 2025-10-12 |       [敘述文](../class-notes/lesson-2-narrative.md)       | [link](https://www.dropbox.com/scl/fi/kduykmpqzxwe0839qakmx/20251012-class-2-recording.mp3?rlkey=hq5zwrsypl3oyyujr7ephltoj&dl=0) |
