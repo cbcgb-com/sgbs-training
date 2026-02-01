@@ -74,19 +74,53 @@
 大家將會被分成4人一個小組。
 每個小組每週輪流兩人成為『查經主領』和『觀察員』這兩個角色：
 
-| 角色 | 職責 |
-|------|------|
-| **查經主領** | 在模擬查經中扮演帶領著的角色，帶大家查考當週的經文 |
-| **觀察員** | 扮演查經主領的輔助者角色，幫助主領預備，在模擬查經之後帶領組員給查經主領反饋意見 |
-| **其他組員** | 扮演小組查經的普通參與者角色，在模擬查經時給查經主領提供反饋意見 |
+<div class="role-cards">
+
+<div class="role-card">
+<h4 class="role-card__title">查經主領</h4>
+<div class="role-card__body">
+<div class="role-card__col">
+<p class="role-card__label">職責</p>
+<p class="role-card__text">在模擬查經中扮演帶領著的角色，帶大家查考當週的經文。</p>
+</div>
+<div class="role-card__col">
+<p class="role-card__label">每週功課</p>
+<p class="role-card__text">預備下一周模擬查經的查經題目，在週中與觀察員一起預覽查經題目，設想並預備臨場查經時可能會出現的狀況。</p>
+</div>
+</div>
+</div>
+
+<div class="role-card">
+<h4 class="role-card__title">觀察員</h4>
+<div class="role-card__body">
+<div class="role-card__col">
+<p class="role-card__label">職責</p>
+<p class="role-card__text">扮演查經主領的輔助者角色，幫助主領預備，在模擬查經之後帶領組員給查經主領反饋意見。</p>
+</div>
+<div class="role-card__col">
+<p class="role-card__label">每週功課</p>
+<p class="role-card__text">與查經主領緊密同工，在週中預覽並和查經主領討論所設計的題目，輔助查經主領預備。</p>
+</div>
+</div>
+</div>
+
+<div class="role-card">
+<h4 class="role-card__title">其他組員</h4>
+<div class="role-card__body">
+<div class="role-card__col">
+<p class="role-card__label">職責</p>
+<p class="role-card__text">扮演小組查經的普通參與者角色，在模擬查經時給查經主領提供反饋意見。</p>
+</div>
+<div class="role-card__col">
+<p class="role-card__label">每週功課</p>
+<p class="role-card__text">在週中預覽本週經文，預備查經筆記。</p>
+</div>
+</div>
+</div>
+
+</div>
 
 ### 每週功課
-
-| 角色 | 每週功課 |
-|------|----------|
-| **查經主領** | 預備下一周模擬查經的查經題目，在週中與觀察員一起預覽查經題目，設想並預備臨場查經時可能會出現的狀況 |
-| **觀察員** | 與查經主領緊密同工，在週中預覽並和查經主領討論所設計的題目，輔助查經主領預備 |
-| **其他組員** | 在週中預覽本週經文，預備查經筆記 |
 
 **所有學員**：在週中預覽下一堂課的課程講義，為課堂討論做好準備
 

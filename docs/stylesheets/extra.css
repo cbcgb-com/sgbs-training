@@ -479,3 +479,69 @@ article.typography table tbody tr:hover,
         grid-template-columns: 1fr;
     }
 }
+
+/*
+ * Role cards – one card per role (主領 / 觀察員 / 其他組員), 職責 + 每週功課.
+ */
+.role-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.role-card {
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.role-card__title {
+    font-weight: 600;
+    font-size: 1.05em;
+    margin: 0 0 0.75rem 0;
+    padding: 0;
+}
+
+.role-card__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.role-card__col {
+    min-width: 0;
+}
+
+.role-card__label {
+    font-weight: 600;
+    font-size: 0.9em;
+    margin: 0 0 0.2rem 0;
+    padding: 0;
+    color: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.7));
+}
+
+.role-card__text {
+    margin: 0;
+    padding: 0;
+    font-size: 0.98em;
+    line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+    .role-cards {
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+    }
+
+    .role-card {
+        padding: 1rem 1.25rem;
+    }
+
+    .role-card__body {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
