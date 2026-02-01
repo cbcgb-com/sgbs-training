@@ -33,6 +33,9 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/transition.css
 
+extra_javascript:
+  - javascripts/expandable-cards.js
+
 plugins:
   - search
 
