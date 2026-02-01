@@ -348,7 +348,7 @@
 <div class="homework-item">
 <span class="homework-item__num">1</span>
 <div class="homework-item__content">
-<p>請閱讀<a href="lesson-3-questioning.md">【預備查經題目】</a>第一部分（課前預讀內容），了解問題設計的基本原則。</p>
+<p>請閱讀<a href="/class-notes/lesson-3-questioning">【預備查經題目】</a>第一部分（課前預讀內容），了解問題設計的基本原則。</p>
 </div>
 </div>
 

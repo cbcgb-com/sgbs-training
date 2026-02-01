@@ -217,7 +217,7 @@
 <div class="homework-item">
 <span class="homework-item__num">1</span>
 <div class="homework-item__content">
-<p>請閱讀<a href="../tools/ibs-narrative-notes.md">【敘述文體的歸納法查經】</a>。</p>
+<p>請閱讀<a href="/tools/ibs-narrative-notes">【敘述文體的歸納法查經】</a>。</p>
 </div>
 </div>
 
@@ -242,14 +242,14 @@
 <div class="homework-item">
 <span class="homework-item__num">4</span>
 <div class="homework-item__content">
-<p><strong>下週課程預備</strong>：請閱讀<a href="lesson-2-narrative.md">【敘述文】</a>第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）。</p>
+<p><strong>下週課程預備</strong>：請閱讀<a href="/class-notes/lesson-2-narrative">【敘述文】</a>第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）。</p>
 </div>
 </div>
 
 </div>
 
 <div class="homework-section__footer">
-<p><strong>查經筆記撰寫指南</strong>：如需詳細的查經筆記撰寫方法，請參考<a href="../resources/bible-study-notes.md">查經筆記指南</a>，其中包含敘述文和論說文的具體分析方法和範例。</p>
+<p><strong>查經筆記撰寫指南</strong>：如需詳細的查經筆記撰寫方法，請參考<a href="/resources/bible-study-notes">查經筆記指南</a>，其中包含敘述文和論說文的具體分析方法和範例。</p>
 </div>
 
 </div>

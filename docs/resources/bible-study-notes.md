@@ -272,7 +272,7 @@
 
 ### 敘述文範例
 
-完整的敘述文查經筆記範例請參考：[路加福音查經預備範例](../examples/luke-study-notes.md)
+完整的敘述文查經筆記範例請參考：[路加福音查經預備範例](/examples/luke-study-notes)
 
 ### 論說文範例
 

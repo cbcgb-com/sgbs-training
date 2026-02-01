@@ -53,7 +53,7 @@
 
 ### 論說文和敘述文的差異 {#lunshuo-wen-he-xushu-wen-de-chayi}
 
-> **回顧**：在[第二課：敘述文](lesson-2-narrative.md)中，我們學習了如何分析敘述文的要素和結構。現在讓我們對比論說文與敘述文的不同。
+> **回顧**：在[第二課：敘述文](/class-notes/lesson-2-narrative)中，我們學習了如何分析敘述文的要素和結構。現在讓我們對比論說文與敘述文的不同。
 
 **敘述文（Narrative）**的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。例如，《路加福音》7:36-50描述耶穌與一位罪人的相遇，藉由事件的發展和人物的互動，讓我們看見赦免與愛的主題。
 
@@ -67,9 +67,9 @@
 
 ### 歸納法四步驟在論說文的應用 {#guina-fa-si-buzhou-zai-lunshuo-wen-de-yingyong}
 
-> **回顧**：在[第一課：基礎](lesson-1-foundations.md)中，我們學習了歸納式查經的基本方法。現在讓我們更深入地探討，如何將這四個步驟具體應用在論說文（如書信、講章、先知書的勸勉段落）中。
+> **回顧**：在[第一課：基礎](/class-notes/lesson-1-foundations)中，我們學習了歸納式查經的基本方法。現在讓我們更深入地探討，如何將這四個步驟具體應用在論說文（如書信、講章、先知書的勸勉段落）中。
 >
-> **參考資源**：本節內容主要參考[論說文體的歸納法查經](../tools/ibs-argumentation-notes.md)，該文件提供了更詳細的方法論和實作指引。
+> **參考資源**：本節內容主要參考[論說文體的歸納法查經](/tools/ibs-argumentation-notes)，該文件提供了更詳細的方法論和實作指引。
 
 #### 1. 觀察（Observation）：聖經說些什麼？
 
@@ -217,7 +217,7 @@
 
 ### 論說文的問題設計 {#lunshuo-wen-de-wenti-sheji}
 
-> **回顧**：在[第三課：提問技巧](lesson-3-questioning.md)中，我們學習了如何設計有效的查經問題。現在讓我們看看如何將這些技巧應用到論說文中。
+> **回顧**：在[第三課：提問技巧](/class-notes/lesson-3-questioning)中，我們學習了如何設計有效的查經問題。現在讓我們看看如何將這些技巧應用到論說文中。
 
 #### 幾種不同類型的問題
 
@@ -300,7 +300,7 @@
 <div class="homework-item">
 <span class="homework-item__num">2</span>
 <div class="homework-item__content">
-<p>請閱讀<a href="lesson-5-situations.md">第五課</a>第一部分：課前預讀內容。</p>
+<p>請閱讀<a href="/class-notes/lesson-5-situations">第五課</a>第一部分：課前預讀內容。</p>
 </div>
 </div>
 
