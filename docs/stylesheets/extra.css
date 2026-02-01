@@ -194,7 +194,7 @@ body {
     opacity: 0;
     padding: 0 1.25rem 0;
     padding-left: calc(1.25rem + 1.75rem + 0.75rem);
-    transition: max-height 0.35s ease-out, opacity 0.25s ease-out, padding 0.25s ease-out;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .expandable-card.is-open .expandable-card__body {
@@ -202,7 +202,7 @@ body {
     opacity: 1;
     padding: 1rem 1.25rem 1.25rem;
     padding-left: calc(1.25rem + 1.75rem + 0.75rem);
-    transition: max-height 0.4s ease-in, opacity 0.25s ease-in, padding 0.25s ease-out;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .expandable-card__body strong {
