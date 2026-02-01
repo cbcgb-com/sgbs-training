@@ -284,15 +284,50 @@
 
 ## 課後功課 {#kehou-gongke}
 
-第四堂課的功課如下：
+<div class="homework-section">
 
-1. 請閱讀《你們餵他們吃吧》第2和5章
-2. 請閱讀第五課第一部分：課前預讀內容
-3. 預備查經《雅各書》3:1-12
-    1. **主領和觀察員**：設計查經問題，並將問題整理到共享的Google文件中，該文件將通過電子郵件發送給所有學員
-    2. **其他人**：完成查經筆記，並將筆記整理到另一個共享的Google文件中，該文件將通過電子郵件發送給所有學員
-4. 臨場狀況觀察記錄：
-    1. 在你的查經筆記或問題設計中，請記錄一次你曾經觀察到的查經聚會中發生的困難情況
-    2. 描述當時的情況：發生了什麼？涉及哪些人？對小組氛圍產生了什麼影響？
-    3. 記錄帶領者當時採取了什麼措施來嘗試解決或應對這個情況
-    4. 思考：你認為帶領者的應對方式是否有效？為什麼？如果換作是你，你會如何處理？
+<p class="homework-section__intro">第四堂課的功課如下：</p>
+
+<div class="homework-list">
+
+<div class="homework-item">
+<span class="homework-item__num">1</span>
+<div class="homework-item__content">
+<p>請閱讀《你們餵他們吃吧》第2和5章。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">2</span>
+<div class="homework-item__content">
+<p>請閱讀<a href="lesson-5-situations.md">第五課</a>第一部分：課前預讀內容。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">3</span>
+<div class="homework-item__content">
+<p>預備查經《雅各書》3:1-12：</p>
+<ul>
+<li><strong>主領和觀察員</strong>：設計查經問題，並將問題整理到共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+<li><strong>其他人</strong>：完成查經筆記，並將筆記整理到另一個共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+</ul>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">4</span>
+<div class="homework-item__content">
+<p><strong>臨場狀況觀察記錄</strong>：</p>
+<ul>
+<li>在你的查經筆記或問題設計中，請記錄一次你曾經觀察到的查經聚會中發生的困難情況。</li>
+<li>描述當時的情況：發生了什麼？涉及哪些人？對小組氛圍產生了什麼影響？</li>
+<li>記錄帶領者當時採取了什麼措施來嘗試解決或應對這個情況。</li>
+<li>思考：你認為帶領者的應對方式是否有效？為什麼？如果換作是你，你會如何處理？</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+</div>
