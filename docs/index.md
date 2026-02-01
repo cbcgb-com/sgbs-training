@@ -51,7 +51,7 @@
 
 ### 出席要求
 
-如果你希望獲得完成這門主日學的記錄，要求你註冊課程並且在五堂課中出席至少四次。詳情請參閱[出席政策](/completion-policy)。
+如果你希望獲得完成這門主日學的記錄，要求你註冊課程並且在五堂課中出席至少四次。詳情請參閱[出席政策](completion-policy)。
 一些團契在安排查經帶領時會考慮這門主日學課程的完成情況。
 如果你這段時間無法出席足夠的次數，非常歡迎你旁聽參加討論，也歡迎你下一個季度再來註冊。
 
@@ -59,15 +59,15 @@
 
 | Week   | Activity     | Topic |
 |--------|--------------|---------------------------------------------------------|
-| 第一週 | 課程信息介紹 | [查經的意義和裝備](class-notes/lesson-1-foundations.md) |
+| 第一週 | 課程信息介紹 | [查經的意義和裝備](class-notes/lesson-1-foundations) |
 | 第二週 | 分組模擬查經 | 敘述文 路7:36-50                                        |
-|        | 專題討論     | [分析敘述文](class-notes/lesson-2-narrative.md)         |
+|        | 專題討論     | [分析敘述文](class-notes/lesson-2-narrative)         |
 | 第三週 | 分組模擬查經 | 敘述文 約2:1-12                                         |
-|        | 專題討論     | [提問題的技術](class-notes/lesson-3-questioning.md)     |
+|        | 專題討論     | [提問題的技術](class-notes/lesson-3-questioning)     |
 | 第四週 | 分組模擬查經 | 論說文 弗2:1-10                                         |
-|        | 專題討論     | [分析論說文](class-notes/lesson-4-argumentation.md)     |
+|        | 專題討論     | [分析論說文](class-notes/lesson-4-argumentation)     |
 | 第五週 | 分組模擬查經 | 論說文 各3:1-12                                         |
-|        | 專題討論     | [應對臨場狀況](class-notes/lesson-5-situations.md)      |
+|        | 專題討論     | [應對臨場狀況](class-notes/lesson-5-situations)      |
 
 ### 分組模擬查經
 
@@ -136,7 +136,7 @@
 - 對於經文的疑惑，以及詢問他人/咨詢資料之後所得出來的答案
 - 對經文重點的認識，方便與其他同工對照、討論
 
-詳細的查經筆記撰寫方法請參考：[查經筆記指南](/resources/bible-study-notes)
+詳細的查經筆記撰寫方法請參考：[查經筆記指南](resources/bible-study-notes)
 
 #### 查經題目
 

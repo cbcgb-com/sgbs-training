@@ -1,4 +1,5 @@
 site_name: 小組查經帶領訓練
+site_url: https://cbcgb-com.github.io/sgbs-training/
 
 theme:
   name: "shadcn"

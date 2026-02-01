@@ -446,7 +446,7 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 <div class="homework-item">
 <span class="homework-item__num">1</span>
 <div class="homework-item__content">
-<p>請閱讀<a href="/tools/ibs-argumentation-notes">【論說文體的歸納法查經】</a>。</p>
+<p>請閱讀<a href="../../tools/ibs-argumentation-notes">【論說文體的歸納法查經】</a>。</p>
 </div>
 </div>
 
@@ -466,7 +466,7 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 <div class="homework-item__content">
 <p><strong>史特朗號碼詞彙研究</strong>：</p>
 <ul>
-<li>請先閱讀<a href="/class-notes/lesson-4-argumentation">第四課講義</a>第一部分『字詞研究的工具：聖經原文的史特朗號碼』章節，了解史特朗號碼的使用方法和解經原則。</li>
+<li>請先閱讀<a href="../lesson-4-argumentation">第四課講義</a>第一部分『字詞研究的工具：聖經原文的史特朗號碼』章節，了解史特朗號碼的使用方法和解經原則。</li>
 <li>請選擇以弗所書2:1-10中的三個關鍵詞彙（建議：『死』（第1節）、『活』（第1節）、『恩典』（第5節）），查找其史特朗號碼，並記錄每個詞在經文中的原文含義。</li>
 </ul>
 </div>
