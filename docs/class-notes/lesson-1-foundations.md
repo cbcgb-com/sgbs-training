@@ -36,61 +36,63 @@
 
 讓我們一起探討查經背後的聖經根據。請根據以下經文，分組討論並分享你們的發現：
 
-/// details | 我們的使命是什麼？
+<div class="expandable-cards">
 
-**馬太福音28章16-20節**
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">1</span>
+<span class="expandable-card__title">我們的使命是什麼？</span>
+<span class="expandable-card__action">查看經文</span>
+</button>
+<div class="expandable-card__body">
+<strong>馬太福音28章16-20節</strong>
+<p>十一個門徒往加利利去，到了耶穌約定的山上。他們見了耶穌就拜他，然而還有人疑惑。耶穌進前來，對他們說：『天上地下所有的權柄都賜給我了。所以，你們要去，使萬民作我的門徒，奉父、子、聖靈的名給他們施洗或譯：給他們施洗，歸於父、子、聖靈的名。凡我所吩咐你們的，都教訓他們遵守，我就常與你們同在，直到世界的末了。』</p>
+<strong>創世記12章1-3節</strong>
+<p>耶和華對亞伯蘭說：『你要離開本地、本族、父家，往我所要指示你的地去。我必叫你成為大國。我必賜福給你，叫你的名為大；你也要叫別人得福。為你祝福的，我必賜福與他；那咒詛你的，我必咒詛他。地上的萬族都要因你得福。』</p>
+</div>
+</div>
 
-十一個門徒往加利利去，到了耶穌約定的山上。
-他們見了耶穌就拜他，然而還有人疑惑。
-耶穌進前來，對他們說：『天上地下所有的權柄都賜給我了。
-所以，你們要去，使萬民作我的門徒，奉父、子、聖靈的名給他們施洗或譯：
-給他們施洗，歸於父、子、聖靈的名。
-凡我所吩咐你們的，都教訓他們遵守，我就常與你們同在，直到世界的末了。』
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">2</span>
+<span class="expandable-card__title">對於查經，我們可以學習的模範是什麼？</span>
+<span class="expandable-card__action">查看經文</span>
+</button>
+<div class="expandable-card__body">
+<strong>使徒行傳17章11節</strong>
+<p>這地方的人賢於帖撒羅尼迦的人，甘心領受這道，天天考查聖經，要曉得這道是與不是。</p>
+</div>
+</div>
 
-**創世記12章1-3節**
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">3</span>
+<span class="expandable-card__title">查經的用處在哪裡？</span>
+<span class="expandable-card__action">查看經文</span>
+</button>
+<div class="expandable-card__body">
+<strong>提摩太后書3章16節</strong>
+<p>聖經都是上帝所默示的，凡上帝所默示的聖經，於教訓、督責、使人歸正、教導人學義都是有益的...</p>
+<strong>腓立比書2章14-16節</strong>
+<p>...凡所行的，都不要發怨言，起爭論，使你們無可指摘，誠實無偽，在這彎曲悖謬的世代作上帝無瑕疵的兒女。你們顯在這世代中，好像明光照耀，將生命的道表明出來...</p>
+</div>
+</div>
 
-耶和華對亞伯蘭說：
-『你要離開本地、本族、父家，往我所要指示你的地去。
-我必叫你成為大國。我必賜福給你，叫你的名為大；
-你也要叫別人得福。
-為你祝福的，我必賜福與他；那咒詛你的，我必咒詛他。
-地上的萬族都要因你得福。』
-///
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">4</span>
+<span class="expandable-card__title">作為同工，我們對自己可以持有什麼樣的標準？</span>
+<span class="expandable-card__action">查看經文</span>
+</button>
+<div class="expandable-card__body">
+<strong>腓立比書2章14-16節</strong>
+<p>...凡所行的，都不要發怨言，起爭論，使你們無可指摘，誠實無偽，在這彎曲悖謬的世代作上帝無瑕疵的兒女。你們顯在這世代中，好像明光照耀，將生命的道表明出來...</p>
+<strong>歌羅西書3章16節</strong>
+<p>當用各樣的智慧，把基督的道理豐豐富富地存在心裡，用詩章、頌詞、靈歌，彼此教導，互相勸戒，心被恩感，歌頌上帝。</p>
+</div>
+</div>
 
-/// details | 對於查經，我們可以學習的模範是什麼？
-
-**使徒行傳17章11節**
-
-這地方的人賢於帖撒羅尼迦的人，甘心領受這道，天天考查聖經，要曉得這道是與不是。
-///
-
-/// details | 查經的用處在哪裡？
-
-**提摩太后書3章16節**
-
-聖經都是上帝所默示的，凡上帝所默示的聖經，
-於教訓、督責、使人歸正、教導人學義都是有益的...
-
-**腓立比書2章14-16節**
-
-...凡所行的，都不要發怨言，起爭論，使你們無可指摘，誠實無偽，
-在這彎曲悖謬的世代作上帝無瑕疵的兒女。
-你們顯在這世代中，好像明光照耀，將生命的道表明出來...
-///
-
-/// details | 作為同工，我們對自己可以持有什麼樣的標準？
-
-**腓立比書2章14-16節**
-
-...凡所行的，都不要發怨言，起爭論，使你們無可指摘，誠實無偽，
-在這彎曲悖謬的世代作上帝無瑕疵的兒女。
-你們顯在這世代中，好像明光照耀，將生命的道表明出來...
-
-**歌羅西書3章16節**
-
-當用各樣的智慧，把基督的道理豐豐富富地存在心裡，
-用詩章、頌詞、靈歌，彼此教導，互相勸戒，心被恩感，歌頌上帝。
-///
+</div>
 
 **小組討論重點：**
 
@@ -108,13 +110,25 @@
 - 帶領者是如何帶動小組討論，維持討論氣氛的？
 - 帶領者背後的預備有哪些？
 
-/// details | 什麼樣的小組查經是『好』的？特質有哪些？
-歷屆從帶領同工們的答覆中得到的答案基本上包括：
+<div class="expandable-cards">
 
-- 帶領者會避免講道，盡量以提問討論的形式帶領查經。
-- 帶領者在心理和知識上有提前做好充分的預備。
-- 帶領者與同工們會一同關注氣氛，盡量營造既輕鬆又認真的查經氣氛。
-///
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">1</span>
+<span class="expandable-card__title">什麼樣的小組查經是『好』的？特質有哪些？</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>歷屆從帶領同工們的答覆中得到的答案基本上包括：</p>
+<ul>
+<li>帶領者會避免講道，盡量以提問討論的形式帶領查經。</li>
+<li>帶領者在心理和知識上有提前做好充分的預備。</li>
+<li>帶領者與同工們會一同關注氣氛，盡量營造既輕鬆又認真的查經氣氛。</li>
+</ul>
+</div>
+</div>
+
+</div>
 
 **討論問題：**
 
@@ -130,27 +144,55 @@
 
 **作為查經帶領者需要什麼樣的裝備?**
 
-/// details | **心理預備**
+<div class="expandable-cards">
 
-- 我願意裝備他人，將從上帝的話語中所學到的與其他門徒一同分享，讓他們也受益。
-- 我願意跟從使命，與其他門徒一同走天路，為耶穌留下的使命一同勞碌。
-///
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">1</span>
+<span class="expandable-card__title">心理預備</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<ul>
+<li>我願意裝備他人，將從上帝的話語中所學到的與其他門徒一同分享，讓他們也受益。</li>
+<li>我願意跟從使命，與其他門徒一同走天路，為耶穌留下的使命一同勞碌。</li>
+</ul>
+</div>
+</div>
 
-/// details | **知識預備**
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">2</span>
+<span class="expandable-card__title">知識預備</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<ul>
+<li>我需要理解聖經概論，有夠廣的背景知識，認識書卷之間的關係以及聖經的主要脈絡。</li>
+<li>我也需要認識耶穌，祂來世上的生、死、復活之目的，以及祂所教導的一切。</li>
+</ul>
+</div>
+</div>
 
-- 我需要理解聖經概論，有夠廣的背景知識，認識書卷之間的關係以及聖經的主要脈絡。
-- 我也需要認識耶穌，祂來世上的生、死、復活之目的，以及祂所教導的一切。
-///
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">3</span>
+<span class="expandable-card__title">技術預備</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<ul>
+<li>我需要給大家什麼樣的背景知識來理解今天經文的內容？</li>
+<li>我需要考慮到，有哪些小細節會影響查經的氣氛？</li>
+<li>我需要考慮如何設計問題，尤其是怎樣設計問題能讓大家跟得上我的思路？</li>
+<li>查經不是講道，那麼要如何通過不講道卻能傳達聖經的信息？</li>
+<li>在查完經之後，我需要怎麼準備才能幫助大家看到這段經文與聖經信息及個人生活的關係？</li>
+<li>最後，我在禱告上的裝備要如何做得更造就人？</li>
+</ul>
+</div>
+</div>
 
-/// details | **技術預備**
-
-- 我需要給大家什麼樣的背景知識來理解今天經文的內容？
-- 我需要考慮到，有哪些小細節會影響查經的氣氛？
-- 我需要考慮如何設計問題，尤其是怎樣設計問題能讓大家跟得上我的思路？
-- 查經不是講道，那麼要如何通過不講道卻能傳達聖經的信息？
-- 在查完經之後，我需要怎麼準備才能幫助大家看到這段經文與聖經信息及個人生活的關係？
-- 最後，我在禱告上的裝備要如何做得更造就人？
-///
+</div>
 
 **反思問題：**
 
@@ -166,13 +208,48 @@
 
 ## 功課 {#gongke}
 
-第一堂課的功課如下：
+<div class="homework-section">
 
-1. 請閱讀[【敘述文體的歸納法查經】](../tools/ibs-narrative-notes.md)
-2. 請閱讀【你們喂他們吃吧】第1和4章
-3. 預備查經【路7:36-50】
-    1. **主領和觀察員**：設計查經問題，並將問題整理到共享的Google文件中，該文件將通過電子郵件發送給所有學員
-    2. **其他人**：完成查經筆記，並將筆記整理到另一個共享的Google文件中，該文件將通過電子郵件發送給所有學員
-4. **下週課程預備**：請閱讀[【敘述文】](lesson-2-narrative.md)第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）
+<p class="homework-section__intro">第一堂課的功課如下：</p>
 
-**查經筆記撰寫指南**：如需詳細的查經筆記撰寫方法，請參考[查經筆記指南](../resources/bible-study-notes.md)，其中包含敘述文和論說文的具體分析方法和範例。
+<div class="homework-list">
+
+<div class="homework-item">
+<span class="homework-item__num">1</span>
+<div class="homework-item__content">
+<p>請閱讀<a href="../tools/ibs-narrative-notes.md">【敘述文體的歸納法查經】</a>。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">2</span>
+<div class="homework-item__content">
+<p>請閱讀【你們喂他們吃吧】第1和4章。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">3</span>
+<div class="homework-item__content">
+<p>預備查經【路7:36-50】：</p>
+<ul>
+<li><strong>主領和觀察員</strong>：設計查經問題，並將問題整理到共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+<li><strong>其他人</strong>：完成查經筆記，並將筆記整理到另一個共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+</ul>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">4</span>
+<div class="homework-item__content">
+<p><strong>下週課程預備</strong>：請閱讀<a href="lesson-2-narrative.md">【敘述文】</a>第一部分（課前預讀內容），了解敘述文分析的基本原則和文學工具，並在查經筆記中特別留意作者使用了哪些文學技巧（如重複、對比、對話、詳細描述等）。</p>
+</div>
+</div>
+
+</div>
+
+<div class="homework-section__footer">
+<p><strong>查經筆記撰寫指南</strong>：如需詳細的查經筆記撰寫方法，請參考<a href="../resources/bible-study-notes.md">查經筆記指南</a>，其中包含敘述文和論說文的具體分析方法和範例。</p>
+</div>
+
+</div>
