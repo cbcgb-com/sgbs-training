@@ -428,3 +428,54 @@ article.typography table tbody tr:hover,
         font-size: 0.95em;
     }
 }
+
+/*
+ * QR code options – two clear cards so "which QR?" is obvious.
+ */
+.qrcode-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.qrcode-option {
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+    border-radius: 10px;
+    padding: 1.25rem;
+    background: var(--background, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.qrcode-option__title {
+    font-weight: 600;
+    font-size: 1.05em;
+    margin: 0 0 0.35rem 0;
+}
+
+.qrcode-option__hint {
+    font-size: 0.9em;
+    opacity: 0.85;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+}
+
+.qrcode-option img {
+    display: block;
+    width: 140px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.qrcode-option__link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.9em;
+}
+
+@media (max-width: 560px) {
+    .qrcode-options {
+        grid-template-columns: 1fr;
+    }
+}
