@@ -7,16 +7,26 @@
 我們期待看到您在這方面的成長。
 願這個網頁成為您的資源，更成為您的祝福！
 
-本網頁的二維碼：
+### 二維碼
 
-![本網頁的二維碼](./images/website-qrcode.png){: style="width:150px"}
+依你的需要選一個掃描：
 
-## 註冊
+<div class="qrcode-options">
 
-請點擊[此鏈接註冊](https://airtable.com/shrS5gKu57LudKDSh)
-或掃描以下的二維碼：
+<div class="qrcode-option">
+<p class="qrcode-option__title">進入課程網頁</p>
+<p class="qrcode-option__hint">分享此頁給別人，或自己瀏覽講義與資源時用。進入後可再點擊報名連結。</p>
+<img src="./images/website-qrcode.png" alt="課程網頁二維碼" width="140" height="140">
+</div>
 
-![註冊二維碼](./images/registration-qrcode.png){: style="width:150px"}
+<div class="qrcode-option">
+<p class="qrcode-option__title">直接報名</p>
+<p class="qrcode-option__hint">現場讓人直接掃描報名時用。</p>
+<img src="./images/registration-qrcode.png" alt="報名二維碼" width="140" height="140">
+<p class="qrcode-option__link"><a href="https://airtable.com/shrS5gKu57LudKDSh">或點此連結報名</a></p>
+</div>
+
+</div>
 
 <!-- 本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。-->
 
