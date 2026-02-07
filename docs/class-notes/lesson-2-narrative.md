@@ -10,6 +10,7 @@
     - [預備查經筆記](#yubei-chajing-biji)
     - [背景知識](#beijing-zhishi)
     - [基本觀察](#jiben-guancha)
+    - [定量語境（數量與尺度）](#dingliang-yujing)
     - [文學工具](#wenxue-gongju)
     - [經文分析](#jingwen-fenxi)
     - [實作建議](#shizuo-jianyi)
@@ -85,6 +86,136 @@
 | 人物 | 經文中出現哪些主要人物？他們的關係如何？ | 大衛（牧童）、歌利亞（非利士巨人）、掃羅（以色列王）、以色列軍隊 |
 | 文學位置 | 這段經文在整卷書中的位置和上下文是什麼？ | 位於大衛被膏立為王之後、登上王位之前，展現大衛的勇敢和對神的信心 |
 | 文化背景 | 有哪些重要的文化、宗教或社會背景需要了解？ | 非利士人的軍事威脅、以色列人對巨人的恐懼、牧童的社會地位、神與人的關係 |
+| 數量與尺度 | 經文中的數字、金錢、時間在當時的意義？如何換算成可理解的尺度？ | 例：三十塊銀子約等於四個月工價；三百銀子約一年工價（見下方定量語境） |
+
+### 定量語境（數量與尺度） {#dingliang-yujing}
+
+經文裡的數字（金錢、時間、距離、數量等）在當時的經濟與社會中代表什麼？若換算成「工價」「天數」或我們能感知的尺度，就能更體會作者要傳達的輕重、對比或象徵。
+
+<details>
+<summary><strong>為什麼定量語境有助於讀敘事？</strong> 展開</summary>
+<p><strong>讓數字有感覺</strong>：不只看「三十塊銀子」或「三百銀子」，而是知道一個工人要工作多久才能賺到，才能體會馬利亞的奉獻與猶大之價的對比。</p>
+<p><strong>發現對比與象徵</strong>：同一卷書或同一時期經文中的數字常形成對比（如猶大 vs. 馬利亞）或呼應（如四十日、三日）。</p>
+<p><strong>避免現代誤解</strong>：用當時的尺度理解，才不會用今天的物價或感覺取代古代讀者的感受。</p>
+</details>
+
+以下請依需要展開查看。
+
+<div class="expandable-cards">
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">1</span>
+<span class="expandable-card__title">金錢與工價換算表（1 銀錢 ≈ 一日工價）</span>
+<span class="expandable-card__action">查看表格</span>
+</button>
+<div class="expandable-card__body">
+<table>
+<thead>
+<tr><th>經文</th><th>數量</th><th>約當工價</th><th>敘事作用</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>猶大賣主（太 26:15）</td>
+<td>三十塊銀子（推測為推羅舍客勒）</td>
+<td>約一百二十日（約四個月）</td>
+<td>出21:32奴隸價；與馬利亞膏抹對比</td>
+</tr>
+<tr>
+<td>馬利亞膏抹耶穌腳（約 12:3–5）</td>
+<td>香膏可賣三百銀子</td>
+<td>約一年</td>
+<td>極貴重；與猶大之「價」形成強烈對比（愛 vs. 出賣）</td>
+</tr>
+<tr>
+<td>路加 7:41 比喻</td>
+<td>五十兩 vs. 五兩銀子</td>
+<td>約五十日 vs. 五日</td>
+<td>耶穌用數額差異說明「多得恩免，愛就多」（詳見<a href="../examples/luke-literary-devices">路加福音文學手法示例</a>）</td>
+</tr>
+<tr>
+<td>寡婦的小錢（可 12:42–44）</td>
+<td>兩個小錢（lepta）</td>
+<td>約一日工價的極小部分</td>
+<td>比例上的「全部」vs. 富人的「有餘」，凸顯心意與評價標準</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">2</span>
+<span class="expandable-card__title">時間數字的常見模式（四十、三日）</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>聖經敘事中「四十」常標記試煉或預備（洪水四十晝夜、摩西在西奈四十日、以色列曠野四十年、耶穌受試探四十日、尼尼微四十日）；「三日」則常見於短時段與成全（約拿在魚腹、耶穌受難到復活）。認識這些模式有助辨識敘事類型與主題。</p>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">3</span>
+<span class="expandable-card__title">距離／長度</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>歌利亞「六肘零一虎口」（撒上 17:4）換算約三公尺，使威脅具體可感（與本課「詳細描述」文學工具呼應）；安息日可走的路程（徒 1:12）約一公里。</p>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">4</span>
+<span class="expandable-card__title">重量／容量</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>按才幹受託的比喻（太 25）中一「他連得」為極大數額（約多年工價），凸顯主人託付之重；馬利亞的香膏「一斤」（約 12:3）強調是大量貴重香膏。</p>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">5</span>
+<span class="expandable-card__title">數量（人數、物數）</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>五餅二魚與五千人（可 6 等）—一份小午餐與龐大群眾的對比；二千頭豬（可 5:13）—巨大經濟損失與地域衝擊。</p>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">6</span>
+<span class="expandable-card__title">年齡</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>耶穌「約三十歲」開始傳道（路 3:23）與當時「三十」為承擔職任之齡（參民 4:3）相呼應；撒拉九十歲生子（創 17:17）以人看來不可能凸顯應許。</p>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">7</span>
+<span class="expandable-card__title">重複次數</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>彼得三次不認主與後來三次「你餵養我的羊」（約 21）形成對照；「七十個七次」（太 18:22）表達無限饒恕，可對比拉麥「七十七倍」報復（創 4:24）。</p>
+</div>
+</div>
+
+</div>
+
+<details>
+<summary><strong>實作建議</strong> 展開</summary>
+<p>查經時若經文出現具體金額、時間長度或數量，可查考註釋書或可靠資源，將之換算為「約等於多少日工價」或「當時的社會意義」，並問：作者用這個數字要突出什麼對比或重點？</p>
+</details>
 
 ### 文學工具 {#wenxue-gongju}
 
@@ -201,6 +332,17 @@
 </button>
 <div class="expandable-card__body">
 <p>例：大衛對歌利亞說「你來攻擊我，是靠著刀槍和銅戟；我來攻擊你，是靠著萬軍之耶和華的名」，這句話成為對抗的高潮</p>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">11</span>
+<span class="expandable-card__title">數量與尺度：作者是否用具體的數字、金錢或時間來傳達對比、強調或象徵？</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p>例：猶大三十塊銀子（約四個月工價）與馬利亞香膏三百銀子（約一年工價）形成價值觀的對比；歌利亞「六肘零一虎口」的具體身高使威脅可感。詳見上方「定量語境」。</p>
 </div>
 </div>
 
