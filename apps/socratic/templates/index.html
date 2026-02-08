@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socratic Coach — 路加福音 7:36–50</title>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .passage-panel { display: none; }
+        .passage-panel.active { display: block; }
+        .tab.active { font-weight: 600; border-bottom: 2px solid currentColor; }
+        .verse-highlight { background-color: rgba(250, 204, 21, 0.35); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 h-screen flex flex-col overflow-hidden">
+    <div class="flex flex-1 min-h-0">
+        <!-- Left: Scripture -->
+        <aside class="w-1/2 flex flex-col border-r border-gray-200 bg-white shrink-0">
+            <div class="px-4 py-3 border-b border-gray-200 shrink-0">
+                <h1 class="text-lg font-semibold">Socratic Coach</h1>
+                <p class="text-sm text-gray-600">{{ passage.reference_zh }} / {{ passage.reference_en }}</p>
+            </div>
+            <div class="flex border-b border-gray-200 shrink-0">
+                <button type="button" class="tab active px-4 py-2 text-sm" data-panel="simplified">简体中文</button>
+                <button type="button" class="tab px-4 py-2 text-sm" data-panel="traditional">繁體中文</button>
+                <button type="button" class="tab px-4 py-2 text-sm" data-panel="niv">NIV English</button>
+            </div>
+            <div class="flex-1 overflow-auto p-4 text-gray-800">
+                <div id="panel-simplified" class="passage-panel active">
+                    {% for v in passage_verses.simplified %}<span data-verse="{{ v.n }}" class="verse block mb-1">{{ v.n }} {{ v.text }}</span>{% endfor %}
+                </div>
+                <div id="panel-traditional" class="passage-panel">
+                    {% for v in passage_verses.traditional %}<span data-verse="{{ v.n }}" class="verse block mb-1">{{ v.n }} {{ v.text }}</span>{% endfor %}
+                </div>
+                <div id="panel-niv" class="passage-panel">
+                    {% for v in passage_verses.niv %}<span data-verse="{{ v.n }}" class="verse block mb-1">{{ v.n }} {{ v.text }}</span>{% endfor %}
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right: Coach conversation -->
+        <main class="flex-1 flex flex-col min-w-0 min-h-0">
+            <div id="conversation" class="flex-1 flex flex-col min-h-0 px-4 py-4">
+                {% include "partials/thread_and_form.html" %}
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.body.dataset.coachLang = 'simplified';
+        document.querySelectorAll('.tab').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.body.dataset.coachLang = btn.dataset.panel || 'simplified';
+                var langEl = document.getElementById('coach_lang_input');
+                if (langEl) langEl.value = document.body.dataset.coachLang || 'simplified';
+                var panelId = 'panel-' + btn.dataset.panel;
+                document.querySelectorAll('.tab').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.passage-panel').forEach(function(p) { p.classList.remove('active'); });
+                btn.classList.add('active');
+                var panel = document.getElementById(panelId);
+                if (panel) panel.classList.add('active');
+            });
+        });
+        document.body.addEventListener('htmx:afterSwap', function(evt) {
+            if (evt.detail && evt.detail.target && evt.detail.target.id === 'conversation') {
+                var el = document.getElementById('coach_lang_input');
+                if (el) el.value = document.body.dataset.coachLang || 'simplified';
+            }
+        });
+
+        document.body.addEventListener('highlightVerses', function(evt) {
+            var verses = (evt.detail && evt.detail.value !== undefined) ? evt.detail.value : [];
+            if (!Array.isArray(verses)) verses = [];
+            document.querySelectorAll('.verse').forEach(function(span) {
+                span.classList.remove('verse-highlight');
+            });
+            verses.forEach(function(n) {
+                var num = typeof n === 'number' ? n : parseInt(n, 10);
+                if (isNaN(num)) return;
+                document.querySelectorAll('[data-verse="' + num + '"]').forEach(function(span) {
+                    span.classList.add('verse-highlight');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
