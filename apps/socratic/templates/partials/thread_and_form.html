@@ -14,7 +14,7 @@
             hx-swap="innerHTML"
             hx-indicator="#form-spinner"
         >
-            <input type="hidden" name="messages_encoded" value="{{ messages_encoded }}">
+            <input type="hidden" name="messages_encoded" id="messages_encoded_input" value="{{ messages_encoded }}">
             <input type="hidden" name="coach_lang" id="coach_lang_input" value="simplified">
             <label for="user_message" class="block text-sm font-medium text-gray-700 mb-1">Your response</label>
             <textarea

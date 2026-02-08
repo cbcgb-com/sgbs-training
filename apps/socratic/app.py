@@ -39,6 +39,7 @@ def index(request: Request):
     """Landing: passage (three versions) + first AI message + form."""
     # Default tab is 简体, so show first question in Simplified Chinese to match
     messages = [{"role": "assistant", "content": FIRST_QUESTION_ZH_SIMPLIFIED}]
+    initial_encoded = _encode_messages(messages)
     return templates.TemplateResponse(
         "index.html",
         {
@@ -46,7 +47,8 @@ def index(request: Request):
             "passage": PASSAGE,
             "passage_verses": get_passage_verses(PASSAGE),
             "messages": messages,
-            "messages_encoded": _encode_messages(messages),
+            "messages_encoded": initial_encoded,
+            "initial_messages_encoded": initial_encoded,
         },
     )
 
