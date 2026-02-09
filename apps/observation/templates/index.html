@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>观察阶段 — {{ passage.reference_zh }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .entity { cursor: pointer; border-radius: 2px; padding: 0 1px; }
+        .entity:hover { opacity: 0.9; }
+        .entity-who { background-color: rgba(147, 197, 253, 0.5); }
+        .entity-when { background-color: rgba(254, 215, 170, 0.7); }
+        .entity-where { background-color: rgba(167, 243, 208, 0.6); }
+        .passage-container.hide-who .entity-who { background: none; color: inherit; }
+        .passage-container.hide-when .entity-when { background: none; color: inherit; }
+        .passage-container.hide-where .entity-where { background: none; color: inherit; }
+        .passage-container.only-kept-highlights .entity:not(.entity-kept) { background: none; color: inherit; }
+        .obs-card-who { background-color: rgba(147, 197, 253, 0.25); border-color: rgba(147, 197, 253, 0.5); }
+        .obs-card-when { background-color: rgba(254, 215, 170, 0.4); border-color: rgba(251, 146, 60, 0.5); }
+        .obs-card-where { background-color: rgba(167, 243, 208, 0.35); border-color: rgba(52, 211, 153, 0.5); }
+        .popover { position: fixed; z-index: 50; background: white; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); padding: 12px; min-width: 260px; }
+        .right-panel-view { display: none !important; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
+        .right-panel-view.active { display: flex !important; }
+        .event-card { cursor: grab; user-select: none; }
+        .event-card:active { cursor: grabbing; }
+        .event-card.dragging { opacity: 0.5; }
+        .event-card.drag-over { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.5); }
+        .question-card { cursor: grab; user-select: none; }
+        .question-card:active { cursor: grabbing; }
+        .question-card.dragging { opacity: 0.5; }
+        .question-card.drag-over { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.5); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 h-screen flex flex-col overflow-hidden">
+    <div class="flex flex-1 min-h-0">
+        <!-- Left: Scripture (simplified only) -->
+        <aside class="w-1/2 flex flex-col border-r border-gray-200 bg-white shrink-0">
+            <div class="px-4 py-3 border-b border-gray-200 shrink-0">
+                <h1 class="text-lg font-semibold">观察阶段</h1>
+                <p class="text-sm text-gray-600">{{ passage.reference_zh }} / {{ passage.reference_en }}</p>
+            </div>
+            <div id="passage-container" class="passage-container flex-1 overflow-auto p-4 text-gray-800 leading-relaxed">
+                {% for row in verse_rows %}
+                <div class="verse-block mb-2" data-verse="{{ row.verse_n }}">
+                    <span class="text-gray-500 font-medium mr-1">{{ row.verse_n }}</span>
+                    {% for seg in row.segments %}
+                    {% if seg.kind == "text" %}
+                    {{ seg.content }}
+                    {% else %}
+                    <span class="entity entity-{{ seg.entity_type }}" data-entity-id="{{ seg.entity_id }}" data-entity-type="{{ seg.entity_type }}" data-entity-label="{{ seg.entity_label }}">{{ seg.content }}</span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <!-- Right: three panels — observation (step 1a), sequence (step 1b), explanation (step 2) -->
+        <main class="flex-1 flex flex-col min-w-0 min-h-0 bg-white overflow-hidden">
+            <div id="panel-observation" class="right-panel-view active">
+                <div class="px-4 py-3 border-b border-gray-200 shrink-0 flex items-center justify-between">
+                    <h2 class="text-base font-semibold text-gray-800">步骤 1：观察（谁 / 何时 / 何处）</h2>
+                    <button type="button" id="btn-next" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">下一步</button>
+                </div>
+                <div class="px-4 py-3 border-b border-gray-200 shrink-0">
+                    <p class="text-sm font-medium text-gray-700 mb-2">高亮类型</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <button type="button" id="btn-who" class="toggle-btn px-3 py-1.5 rounded text-sm bg-blue-100 text-blue-800 border border-blue-200" data-type="who">谁 (Who)</button>
+                        <button type="button" id="btn-when" class="toggle-btn px-3 py-1.5 rounded text-sm bg-orange-100 text-orange-800 border border-orange-200" data-type="when">何时 (When)</button>
+                        <button type="button" id="btn-where" class="toggle-btn px-3 py-1.5 rounded text-sm bg-green-100 text-green-800 border border-green-200" data-type="where">何处 (Where)</button>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-auto px-4 py-4">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-2">我的观察</h3>
+                    <p class="text-xs text-gray-500 mb-2">点击经文中高亮词语可保留为观察并填写「为何重要」。</p>
+                    <ul id="observations-list" class="space-y-2"></ul>
+                </div>
+            </div>
+            <div id="panel-sequence" class="right-panel-view">
+                <div class="px-4 py-4 border-b border-gray-200 shrink-0 flex items-center justify-between bg-gray-50">
+                    <h2 class="text-base font-semibold text-gray-800">步骤 1：观察事件顺序（何事）</h2>
+                    <div class="flex gap-2">
+                        <button type="button" id="btn-sequence-back" class="px-3 py-1.5 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300">上一步</button>
+                        <button type="button" id="btn-sequence-next" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">下一步</button>
+                    </div>
+                </div>
+                <div class="px-4 py-3 shrink-0">
+                    <p class="text-sm text-gray-600">拖拽卡片排列故事发生的顺序。</p>
+                </div>
+                <ul id="sequence-list" class="flex-1 overflow-auto px-4 pb-4 space-y-2 min-h-0"></ul>
+            </div>
+            <div id="panel-explanation" class="right-panel-view">
+                <div class="px-4 py-3 border-b border-gray-200 shrink-0 flex items-center justify-between">
+                    <h2 class="text-base font-semibold text-gray-800">步骤 2：解释性问题（为何 / 何意）</h2>
+                    <button type="button" id="btn-explanation-back" class="px-3 py-1.5 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300">上一步</button>
+                </div>
+                <div class="flex-1 overflow-auto px-4 py-4 min-h-0 flex flex-col">
+                    <p class="text-sm text-gray-700 mb-1">这些问题帮助你思考经文的『为什么』和『什么意思』，从而更理解这段经文。</p>
+                    <p class="text-xs text-gray-500 mb-2">针对你保留的观察，写下能帮助你理解动机、背景与意义的问题。</p>
+                    <p id="explanation-kept-summary" class="text-xs text-gray-600 mb-2"></p>
+                    <details class="mb-3 text-sm text-gray-600">
+                        <summary class="cursor-pointer text-gray-500 hover:text-gray-700">示例问题</summary>
+                        <ul class="mt-2 space-y-1 list-disc list-inside">
+                            <li>西门心里可能怎样看待这位女人？经文没有明说，我们可以根据上下文一起推测。</li>
+                            <li>耶稣对女人说「你的罪赦了」想表达什么？</li>
+                        </ul>
+                    </details>
+                    <div id="explanation-empty" class="flex flex-col gap-3 py-4">
+                        <button type="button" id="btn-template-first" class="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 w-fit">用模板写第一个问题</button>
+                        <p class="text-xs text-gray-500">或</p>
+                        <button type="button" id="btn-generate-first" class="px-4 py-2 text-sm bg-gray-100 text-gray-800 border border-gray-300 rounded hover:bg-gray-200 w-fit">生成示例问题（可修改）</button>
+                        <p class="text-xs text-gray-500">参考示例的问法，写出能帮助你理解经文的问题。</p>
+                    </div>
+                    <div id="explanation-list-block" class="hidden flex-1 flex flex-col min-h-0">
+                        <h3 class="text-sm font-semibold text-gray-700 mb-2">我的解释性问题</h3>
+                        <p class="text-xs text-gray-500 mb-2">列出后可以逐题思考这些问题，帮助自己更理解经文。可以拖拽调整顺序，从简单到深入。</p>
+                        <ul id="explanation-list" class="space-y-2 flex-1 overflow-auto min-h-0"></ul>
+                        <div class="flex flex-wrap gap-2 mt-3 shrink-0">
+                            <button type="button" id="btn-template-add" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">用模板添加</button>
+                            <button type="button" id="btn-add-question" class="px-3 py-1.5 text-sm bg-gray-100 text-gray-800 border border-gray-300 rounded hover:bg-gray-200">添加问题</button>
+                            <button type="button" id="btn-generate-more" class="px-3 py-1.5 text-sm bg-gray-100 text-gray-800 border border-gray-300 rounded hover:bg-gray-200">生成示例问题（可修改）</button>
+                        </div>
+                    </div>
+                    <div id="explanation-template-form" class="hidden mt-3 p-3 border border-gray-200 rounded-lg bg-gray-50">
+                        <p class="text-sm font-medium text-gray-700 mb-2">用模板添加</p>
+                        <div class="mb-2">
+                            <span class="text-xs text-gray-600">问题类型：</span>
+                            <label class="ml-2"><input type="radio" name="expl-template-type" value="motive" /> 动机</label>
+                            <label class="ml-2"><input type="radio" name="expl-template-type" value="culture" /> 文化·背景</label>
+                            <label class="ml-2"><input type="radio" name="expl-template-type" value="meaning" /> 意义</label>
+                        </div>
+                        <div id="expl-template-target-wrap" class="mb-2">
+                            <label class="text-xs text-gray-600">针对谁？</label>
+                            <select id="expl-template-who" class="ml-2 border border-gray-300 rounded px-2 py-1 text-sm"></select>
+                        </div>
+                        <div id="expl-template-culture-wrap" class="mb-2 hidden">
+                            <label class="text-xs text-gray-600">针对哪件事/哪个观察？</label>
+                            <select id="expl-template-target" class="ml-2 border border-gray-300 rounded px-2 py-1 text-sm"></select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="text-xs text-gray-600 block mb-1">问题（可编辑）：</label>
+                            <textarea id="expl-template-text" rows="2" class="w-full border border-gray-300 rounded px-2 py-1 text-sm"></textarea>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="button" id="expl-template-submit" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">添加</button>
+                            <button type="button" id="expl-template-cancel" class="px-3 py-1.5 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300">取消</button>
+                        </div>
+                    </div>
+                    <div id="explanation-freeform-form" class="hidden mt-3 p-3 border border-gray-200 rounded-lg bg-gray-50">
+                        <p class="text-sm font-medium text-gray-700 mb-2">添加问题</p>
+                        <textarea id="expl-freeform-text" rows="2" class="w-full border border-gray-300 rounded px-2 py-1 text-sm mb-2" placeholder="输入你的问题…"></textarea>
+                        <div class="flex gap-2">
+                            <button type="button" id="expl-freeform-submit" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">添加</button>
+                            <button type="button" id="expl-freeform-cancel" class="px-3 py-1.5 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="application/json" id="event-cards-json">{{ event_cards_json | safe }}</script>
+
+    <!-- Modal: merge or replace explanation questions after AI generate -->
+    <div id="explanation-merge-modal" class="popover hidden" aria-hidden="true" style="left:50%;top:50%;transform:translate(-50%,-50%);">
+        <p class="text-sm font-medium text-gray-700 mb-2">已生成示例问题，请选择：</p>
+        <label class="block mb-2"><input type="radio" name="expl-merge-mode" value="append" /> 加入列表 — 将示例问题追加到现有问题后</label>
+        <label class="block mb-3"><input type="radio" name="expl-merge-mode" value="replace" /> 替换当前列表 — 用示例问题替换全部</label>
+        <div class="flex gap-2">
+            <button type="button" id="expl-merge-confirm" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">确定</button>
+            <button type="button" id="expl-merge-cancel" class="px-3 py-1.5 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300">取消</button>
+        </div>
+    </div>
+
+    <!-- Popover for keep + annotate (hidden by default) -->
+    <div id="popover" class="popover hidden" aria-hidden="true">
+        <p id="popover-label" class="text-sm font-medium text-gray-700 mb-2"></p>
+        <label class="block text-xs text-gray-600 mb-1">
+            <input type="checkbox" id="popover-keep" /> 保留为观察
+        </label>
+        <label class="block text-xs text-gray-600 mb-2">
+            为何重要？
+            <textarea id="popover-annotation" rows="2" class="mt-1 w-full border border-gray-300 rounded px-2 py-1 text-sm" placeholder="简要说明…"></textarea>
+        </label>
+        <div class="flex gap-2">
+            <button type="button" id="popover-save" class="px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">保存</button>
+            <button type="button" id="popover-cancel" class="px-3 py-1.5 text-sm bg-gray-200 text-gray-800 rounded hover:bg-gray-300">取消</button>
+        </div>
+    </div>
+
+    <script>
+        var PASSAGE_REF = "{{ passage_ref }}";
+        var STORAGE_KEY = 'socratic_observations_' + PASSAGE_REF;
+        var EVENTS_ORDER_KEY = 'socratic_events_order_' + PASSAGE_REF;
+        var EVENTS_CARDS_KEY = 'socratic_events_cards_' + PASSAGE_REF;
+        var EXPLANATION_KEY = 'socratic_explanation_questions_' + PASSAGE_REF;
+        var EVENT_CARDS = [];
+        var PENDING_EXPLANATION_QUESTIONS = [];
+        try { EVENT_CARDS = JSON.parse(document.getElementById('event-cards-json').textContent); } catch (e) {}
+        try {
+            var cached = localStorage.getItem(EVENTS_CARDS_KEY);
+            if (cached) { var arr = JSON.parse(cached); if (Array.isArray(arr) && arr.length > 0) EVENT_CARDS = arr; }
+        } catch (e) {}
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text == null ? '' : text;
+            return div.innerHTML;
+        }
+
+        function getObservations() {
+            try {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return {};
+                var data = JSON.parse(raw);
+                return typeof data === 'object' && data !== null ? data : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function setObservations(data) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {}
+        }
+
+        function getExplanationQuestions() {
+            try {
+                var raw = localStorage.getItem(EXPLANATION_KEY);
+                if (!raw) return [];
+                var arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch (e) {
+                return [];
+            }
+        }
+        function setExplanationQuestions(arr) {
+            try {
+                localStorage.setItem(EXPLANATION_KEY, JSON.stringify(arr));
+            } catch (e) {}
+        }
+
+        /** Return unique labels from kept observations (who only for 动机 dropdown). */
+        function getKeptObservationLabels(whoOnly) {
+            var observations = getObservations();
+            var kept = Object.keys(observations).filter(function(id) { return observations[id].kept; });
+            var seen = {};
+            var labels = [];
+            kept.forEach(function(id) {
+                var o = observations[id];
+                var type = (o.type === 'who' || o.type === 'when' || o.type === 'where') ? o.type : 'who';
+                if (whoOnly && type !== 'who') return;
+                var label = (o.label || id).trim();
+                var key = label + '|' + type;
+                if (seen[key]) return;
+                seen[key] = true;
+                labels.push({ label: label, type: type });
+            });
+            return labels;
+        }
+
+        function renderObservationsList() {
+            var observations = getObservations();
+            var list = document.getElementById('observations-list');
+            var kept = Object.keys(observations).filter(function(id) { return observations[id].kept; });
+            // Dedupe by (label, type): only show first occurrence so list has no duplicate labels
+            var seen = {};
+            kept = kept.filter(function(id) {
+                var o = observations[id];
+                var type = (o.type === 'who' || o.type === 'when' || o.type === 'where') ? o.type : 'who';
+                var key = (o.label || id).trim() + '|' + type;
+                if (seen[key]) return false;
+                seen[key] = true;
+                return true;
+            });
+            if (kept.length === 0) {
+                list.innerHTML = '<li class="text-sm text-gray-500">暂无保留的观察。点击经文中高亮词语添加。</li>';
+                return;
+            }
+            list.innerHTML = kept.map(function(entityId) {
+                var o = observations[entityId];
+                var type = (o.type === 'who' || o.type === 'when' || o.type === 'where') ? o.type : 'who';
+                var label = escapeHtml(o.label || entityId);
+                var typeLabel = (type === 'who' ? '谁' : type === 'when' ? '何时' : '何处');
+                var ann = escapeHtml(o.annotation || '');
+                return '<li class="obs-card obs-card-' + type + ' border rounded p-2 text-sm" data-entity-id="' + escapeHtml(entityId) + '">' +
+                    '<span class="font-medium">' + label + '</span> ' +
+                    '<span class="text-gray-500 text-xs">(' + typeLabel + ')</span>' +
+                    (ann ? '<p class="mt-1 text-gray-600">' + ann + '</p>' : '') +
+                    ' <button type="button" class="edit-obs text-blue-600 text-xs">编辑</button>' +
+                    ' <button type="button" class="remove-obs text-gray-500 text-xs">移除</button>' +
+                    '</li>';
+            }).join('');
+
+            list.querySelectorAll('.edit-obs').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var li = btn.closest('li');
+                    var id = li && li.getAttribute('data-entity-id');
+                    if (id) openPopoverFor(id);
+                });
+            });
+            list.querySelectorAll('.remove-obs').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var li = btn.closest('li');
+                    var id = li && li.getAttribute('data-entity-id');
+                    if (!id) return;
+                    var data = getObservations();
+                    var o = data[id];
+                    if (!o) return;
+                    var label = (o.label || '').trim();
+                    var type = (o.type === 'who' || o.type === 'when' || o.type === 'where') ? o.type : 'who';
+                    // Remove from all instances of this term (same label + type)
+                    Object.keys(data).forEach(function(k) {
+                        var other = data[k];
+                        var ol = (other.label || '').trim();
+                        var ot = (other.type === 'who' || other.type === 'when' || other.type === 'where') ? other.type : 'who';
+                        if (ol === label && ot === type) other.kept = false;
+                    });
+                    setObservations(data);
+                    renderObservationsList();
+                });
+            });
+        }
+
+        function renderExplanationList() {
+            var list = getExplanationQuestions();
+            var emptyEl = document.getElementById('explanation-empty');
+            var listBlock = document.getElementById('explanation-list-block');
+            var listUl = document.getElementById('explanation-list');
+            if (list.length === 0) {
+                emptyEl.classList.remove('hidden');
+                listBlock.classList.add('hidden');
+                listUl.innerHTML = '';
+                return;
+            }
+            emptyEl.classList.add('hidden');
+            listBlock.classList.remove('hidden');
+            listUl.innerHTML = list.map(function(q) {
+                var reflection = (q.reflection != null) ? String(q.reflection) : '';
+                return '<li class="question-card border border-gray-200 rounded-lg p-3 bg-white shadow-sm" draggable="true" data-question-id="' + escapeHtml(q.id) + '">' +
+                    '<div class="flex items-start gap-2">' +
+                    '<span class="text-gray-400 mt-0.5 select-none cursor-grab">≡</span>' +
+                    '<span class="question-text text-sm text-gray-800 flex-1">' + escapeHtml(q.text) + '</span>' +
+                    ' <button type="button" class="edit-question text-blue-600 text-xs">编辑</button>' +
+                    ' <button type="button" class="remove-question text-gray-500 text-xs">移除</button>' +
+                    '</div>' +
+                    '<div class="mt-2 ml-6">' +
+                    '<label class="text-xs text-gray-500 block mb-0.5">我的初步想法</label>' +
+                    '<textarea class="expl-reflection w-full border border-gray-300 rounded px-2 py-1 text-sm resize-y min-h-[48px]" rows="1" placeholder="写下你的理解，帮助自己更理解经文…" data-question-id="' + escapeHtml(q.id) + '">' + escapeHtml(reflection) + '</textarea>' +
+                    '</div>' +
+                    '</li>';
+            }).join('');
+
+            listUl.querySelectorAll('.question-card').forEach(function(card) {
+                card.addEventListener('dragstart', onQuestionCardDragStart);
+                card.addEventListener('dragend', onQuestionCardDragEnd);
+            });
+            listUl.querySelectorAll('.question-card').forEach(function(card) {
+                card.addEventListener('dragover', onQuestionCardDragOver);
+                card.addEventListener('drop', onQuestionCardDrop);
+                card.addEventListener('dragleave', onQuestionCardDragLeave);
+            });
+            listUl.querySelectorAll('.edit-question').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var li = btn.closest('li');
+                    var id = li && li.getAttribute('data-question-id');
+                    if (!id) return;
+                    var questions = getExplanationQuestions();
+                    var q = questions.find(function(x) { return x.id === id; });
+                    if (!q) return;
+                    li.innerHTML = '<span class="text-gray-400 mt-0.5 select-none">≡</span>' +
+                        '<textarea class="expl-edit-text flex-1 border border-gray-300 rounded px-2 py-1 text-sm min-h-[60px]" rows="2">' + escapeHtml(q.text) + '</textarea>' +
+                        ' <button type="button" class="expl-edit-save text-blue-600 text-xs">保存</button>' +
+                        ' <button type="button" class="expl-edit-cancel text-gray-500 text-xs">取消</button>';
+                    var textarea = li.querySelector('.expl-edit-text');
+                    li.querySelector('.expl-edit-save').addEventListener('click', function() {
+                        var newText = (textarea.value || '').trim();
+                        if (newText) {
+                            q.text = newText;
+                            setExplanationQuestions(questions);
+                        }
+                        renderExplanationList();
+                    });
+                    li.querySelector('.expl-edit-cancel').addEventListener('click', function() { renderExplanationList(); });
+                    textarea.focus();
+                });
+            });
+            listUl.querySelectorAll('.remove-question').forEach(function(btn) {
+                btn.addEventListener('click', removeQuestionHandler);
+            });
+            listUl.querySelectorAll('.expl-reflection').forEach(function(textarea) {
+                textarea.addEventListener('blur', function() {
+                    var id = textarea.getAttribute('data-question-id');
+                    if (!id) return;
+                    var questions = getExplanationQuestions();
+                    var q = questions.find(function(x) { return x.id === id; });
+                    if (!q) return;
+                    q.reflection = (textarea.value || '').trim();
+                    setExplanationQuestions(questions);
+                });
+            });
+        }
+
+        function removeQuestionHandler(evt) {
+            var li = evt.target.closest('li');
+            var id = li && li.getAttribute('data-question-id');
+            if (!id) return;
+            var questions = getExplanationQuestions().filter(function(q) { return q.id !== id; });
+            setExplanationQuestions(questions);
+            renderExplanationList();
+        }
+
+        var draggedQuestionId = null;
+        function onQuestionCardDragStart(evt) {
+            draggedQuestionId = evt.target.getAttribute('data-question-id');
+            evt.target.classList.add('dragging');
+            evt.dataTransfer.effectAllowed = 'move';
+            evt.dataTransfer.setData('text/plain', draggedQuestionId);
+        }
+        function onQuestionCardDragEnd(evt) {
+            evt.target.classList.remove('dragging');
+            draggedQuestionId = null;
+        }
+        function onQuestionCardDragOver(evt) {
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = 'move';
+            var card = evt.target.closest('.question-card');
+            if (card && card.getAttribute('data-question-id') !== draggedQuestionId) card.classList.add('drag-over');
+        }
+        function onQuestionCardDragLeave(evt) {
+            var card = evt.target.closest('.question-card');
+            if (card) card.classList.remove('drag-over');
+        }
+        function onQuestionCardDrop(evt) {
+            evt.preventDefault();
+            var card = evt.target.closest('.question-card');
+            if (!card || !draggedQuestionId) return;
+            card.classList.remove('drag-over');
+            var targetId = card.getAttribute('data-question-id');
+            if (targetId === draggedQuestionId) return;
+            var questions = getExplanationQuestions();
+            var order = questions.map(function(q) { return q.id; });
+            var dragIdx = order.indexOf(draggedQuestionId);
+            var targetIdx = order.indexOf(targetId);
+            if (dragIdx === -1 || targetIdx === -1) return;
+            var reordered = questions.slice(0);
+            var removed = reordered.splice(dragIdx, 1)[0];
+            if (dragIdx < targetIdx) targetIdx--;
+            reordered.splice(targetIdx, 0, removed);
+            setExplanationQuestions(reordered);
+            renderExplanationList();
+        }
+
+        var popover = document.getElementById('popover');
+        var popoverLabel = document.getElementById('popover-label');
+        var popoverKeep = document.getElementById('popover-keep');
+        var popoverAnnotation = document.getElementById('popover-annotation');
+        var currentEntityId = null;
+
+        function openPopoverFor(entityId) {
+            var span = document.querySelector('[data-entity-id="' + escapeHtml(entityId) + '"]');
+            if (!span || span.closest('#observations-list')) return;
+            var rect = span.getBoundingClientRect();
+            currentEntityId = entityId;
+            var observations = getObservations();
+            var o = observations[entityId] || { kept: false, annotation: '', label: span.getAttribute('data-entity-label') || entityId, type: span.getAttribute('data-entity-type') || '' };
+            popoverLabel.textContent = o.label || entityId;
+            popoverKeep.checked = o.kept;
+            popoverAnnotation.value = o.annotation || '';
+            popover.classList.remove('hidden');
+            popover.setAttribute('aria-hidden', 'false');
+            // Position with viewport coordinates (popover is position: fixed)
+            var gap = 8;
+            var viewportW = window.innerWidth;
+            var viewportH = window.innerHeight;
+            // Measure popover after it is visible
+            var popW = popover.offsetWidth;
+            var popH = popover.offsetHeight;
+            var top = rect.bottom + 4;
+            if (top + popH > viewportH - gap) {
+                top = rect.top - popH - 4;
+            }
+            if (top < gap) top = gap;
+            var left = rect.left;
+            if (left + popW > viewportW - gap) left = viewportW - popW - gap;
+            if (left < gap) left = gap;
+            popover.style.left = left + 'px';
+            popover.style.top = top + 'px';
+        }
+
+        function closePopover() {
+            popover.classList.add('hidden');
+            popover.setAttribute('aria-hidden', 'true');
+            currentEntityId = null;
+        }
+
+        /** Return all entity IDs in the passage that have the same label and type (all instances of that term). */
+        function getPassageEntityIdsByLabelAndType(label, type) {
+            var container = document.getElementById('passage-container');
+            if (!container) return [];
+            var spans = container.querySelectorAll('.entity');
+            var normType = (type === 'who' || type === 'when' || type === 'where') ? type : 'who';
+            var normLabel = (label || '').trim();
+            var ids = [];
+            spans.forEach(function(span) {
+                if (span.getAttribute('data-entity-label') === normLabel && (span.getAttribute('data-entity-type') === normType || (span.getAttribute('data-entity-type') === '' && normType === 'who'))) {
+                    var id = span.getAttribute('data-entity-id');
+                    if (id) ids.push(id);
+                }
+            });
+            return ids;
+        }
+
+        function savePopover() {
+            if (!currentEntityId) return;
+            var observations = getObservations();
+            var o = observations[currentEntityId] || { label: '', type: '' };
+            var span = document.querySelector('[data-entity-id="' + escapeHtml(currentEntityId) + '"]');
+            if (span && !span.closest('#observations-list')) {
+                o.label = span.getAttribute('data-entity-label') || o.label;
+                o.type = span.getAttribute('data-entity-type') || o.type;
+            }
+            o.kept = popoverKeep.checked;
+            o.annotation = (popoverAnnotation.value || '').trim();
+            var label = (o.label || '').trim();
+            var type = (o.type === 'who' || o.type === 'when' || o.type === 'where') ? o.type : 'who';
+            if (o.kept) {
+                // Apply this observation to all instances of this term in the passage
+                var allIds = getPassageEntityIdsByLabelAndType(label, type);
+                allIds.forEach(function(id) {
+                    observations[id] = { kept: true, annotation: o.annotation, label: label, type: type };
+                });
+            } else {
+                // Un-keep all instances of this term
+                var allIds = getPassageEntityIdsByLabelAndType(label, type);
+                allIds.forEach(function(id) {
+                    var existing = observations[id] || { label: label, type: type };
+                    existing.kept = false;
+                    existing.annotation = o.annotation;
+                    observations[id] = existing;
+                });
+            }
+            setObservations(observations);
+            renderObservationsList();
+            closePopover();
+        }
+
+        document.getElementById('popover-save').addEventListener('click', savePopover);
+        document.getElementById('popover-cancel').addEventListener('click', closePopover);
+
+        document.getElementById('passage-container').addEventListener('click', function(evt) {
+            var span = evt.target.closest('.entity');
+            if (!span) return;
+            evt.preventDefault();
+            openPopoverFor(span.getAttribute('data-entity-id'));
+        });
+
+        document.querySelectorAll('.toggle-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var type = btn.getAttribute('data-type');
+                var container = document.getElementById('passage-container');
+                if (!container) return;
+                var cls = 'hide-' + type;
+                if (container.classList.contains(cls)) {
+                    container.classList.remove(cls);
+                    btn.classList.remove('opacity-50');
+                } else {
+                    container.classList.add(cls);
+                    btn.classList.add('opacity-50');
+                }
+            });
+        });
+
+        function getEventsOrder() {
+            try {
+                var raw = localStorage.getItem(EVENTS_ORDER_KEY);
+                if (!raw) return [];
+                var arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch (e) { return []; }
+        }
+        function setEventsOrder(ids) {
+            try { localStorage.setItem(EVENTS_ORDER_KEY, JSON.stringify(ids)); } catch (e) {}
+        }
+        function getEventsCards() {
+            try {
+                var raw = localStorage.getItem(EVENTS_CARDS_KEY);
+                if (!raw) return [];
+                var arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr : [];
+            } catch (e) { return []; }
+        }
+        function setEventsCards(cards) {
+            try { localStorage.setItem(EVENTS_CARDS_KEY, JSON.stringify(cards)); } catch (e) {}
+        }
+        function shuffleArray(arr) {
+            for (var i = arr.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+            }
+            return arr;
+        }
+
+        function showObservationPanel() {
+            document.getElementById('panel-observation').classList.add('active');
+            document.getElementById('panel-sequence').classList.remove('active');
+            document.getElementById('panel-explanation').classList.remove('active');
+            var container = document.getElementById('passage-container');
+            if (container) container.classList.remove('only-kept-highlights');
+            document.querySelectorAll('#passage-container .entity').forEach(function(el) { el.classList.remove('entity-kept'); });
+        }
+        function showSequencePanel() {
+            document.getElementById('panel-observation').classList.remove('active');
+            document.getElementById('panel-sequence').classList.add('active');
+            document.getElementById('panel-explanation').classList.remove('active');
+            var observations = getObservations();
+            var keptIds = Object.keys(observations).filter(function(id) { return observations[id].kept; });
+            var keptSet = {};
+            keptIds.forEach(function(id) { keptSet[id] = true; });
+            document.querySelectorAll('#passage-container .entity').forEach(function(el) {
+                var id = el.getAttribute('data-entity-id');
+                if (id && keptSet[id]) el.classList.add('entity-kept');
+                else el.classList.remove('entity-kept');
+            });
+            document.getElementById('passage-container').classList.add('only-kept-highlights');
+            var list = document.getElementById('sequence-list');
+            if (EVENT_CARDS.length === 0) EVENT_CARDS = getEventsCards();
+            if (EVENT_CARDS.length > 0) {
+                renderSequenceCards();
+                return;
+            }
+            list.innerHTML = '<li class="text-sm text-gray-500 py-4">正在生成 3–5 个主要事件…</li>';
+            fetch('/api/events')
+                .then(function(r) { return r.json(); })
+                .then(function(events) {
+                    if (Array.isArray(events) && events.length > 0) {
+                        EVENT_CARDS = events;
+                        setEventsCards(events);
+                        var ids = events.map(function(c) { return c.id; });
+                        setEventsOrder(shuffleArray(ids.slice(0)));
+                        renderSequenceCards();
+                    } else {
+                        list.innerHTML = '<li class="text-sm text-gray-500 py-4">暂无事件。请确认已设置 GROQ_API_KEY。</li>';
+                    }
+                })
+                .catch(function() {
+                    list.innerHTML = '<li class="text-sm text-red-600 py-4">加载失败，请稍后重试。</li>';
+                });
+        }
+
+        function renderSequenceCards() {
+            var list = document.getElementById('sequence-list');
+            if (EVENT_CARDS.length === 0) return;
+            var order = getEventsOrder();
+            var ids = order.length === EVENT_CARDS.length ? order : EVENT_CARDS.map(function(c) { return c.id; });
+            var byId = {};
+            EVENT_CARDS.forEach(function(c) { byId[c.id] = c; });
+            var ordered = ids.filter(function(id) { return byId[id]; }).map(function(id) { return byId[id]; });
+            var missing = EVENT_CARDS.filter(function(c) { return ids.indexOf(c.id) === -1; });
+            ordered = ordered.concat(missing);
+            setEventsOrder(ordered.map(function(c) { return c.id; }));
+
+            list.innerHTML = ordered.map(function(card, index) {
+                return '<li class="event-card border border-gray-200 rounded-lg p-3 bg-white shadow-sm flex items-start gap-2" draggable="true" data-event-id="' + escapeHtml(card.id) + '">' +
+                    '<span class="text-gray-400 mt-0.5 select-none">' + (index + 1) + '.</span>' +
+                    '<span class="text-sm text-gray-800 flex-1">' + escapeHtml(card.label) + '</span>' +
+                    '</li>';
+            }).join('');
+
+            list.querySelectorAll('.event-card').forEach(function(card) {
+                card.addEventListener('dragstart', onEventCardDragStart);
+                card.addEventListener('dragend', onEventCardDragEnd);
+            });
+            list.querySelectorAll('.event-card').forEach(function(card) {
+                card.addEventListener('dragover', onEventCardDragOver);
+                card.addEventListener('drop', onEventCardDrop);
+                card.addEventListener('dragleave', onEventCardDragLeave);
+            });
+        }
+
+        var draggedCardId = null;
+        function onEventCardDragStart(evt) {
+            draggedCardId = evt.target.getAttribute('data-event-id');
+            evt.target.classList.add('dragging');
+            evt.dataTransfer.effectAllowed = 'move';
+            evt.dataTransfer.setData('text/plain', draggedCardId);
+        }
+        function onEventCardDragEnd(evt) {
+            evt.target.classList.remove('dragging');
+            draggedCardId = null;
+        }
+        function onEventCardDragOver(evt) {
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = 'move';
+            var card = evt.target.closest('.event-card');
+            if (card && card.getAttribute('data-event-id') !== draggedCardId) card.classList.add('drag-over');
+        }
+        function onEventCardDragLeave(evt) {
+            var card = evt.target.closest('.event-card');
+            if (card) card.classList.remove('drag-over');
+        }
+        function onEventCardDrop(evt) {
+            evt.preventDefault();
+            var card = evt.target.closest('.event-card');
+            if (!card || !draggedCardId) return;
+            card.classList.remove('drag-over');
+            var targetId = card.getAttribute('data-event-id');
+            if (targetId === draggedCardId) return;
+            var order = getEventsOrder();
+            var dragIdx = order.indexOf(draggedCardId);
+            var targetIdx = order.indexOf(targetId);
+            if (dragIdx === -1 || targetIdx === -1) return;
+            order.splice(dragIdx, 1);
+            if (dragIdx < targetIdx) targetIdx--;
+            order.splice(targetIdx, 0, draggedCardId);
+            setEventsOrder(order);
+            renderSequenceCards();
+        }
+
+        function showExplanationPanel() {
+            document.getElementById('panel-observation').classList.remove('active');
+            document.getElementById('panel-sequence').classList.remove('active');
+            document.getElementById('panel-explanation').classList.add('active');
+            var labels = getKeptObservationLabels(false);
+            var summaryEl = document.getElementById('explanation-kept-summary');
+            if (labels.length > 0) {
+                summaryEl.textContent = '你保留了：' + labels.map(function(x) { return x.label; }).join('、');
+                summaryEl.classList.remove('hidden');
+            } else {
+                summaryEl.textContent = '';
+                summaryEl.classList.add('hidden');
+            }
+            document.getElementById('explanation-template-form').classList.add('hidden');
+            document.getElementById('explanation-freeform-form').classList.add('hidden');
+            renderExplanationList();
+        }
+
+        document.getElementById('btn-next').addEventListener('click', showSequencePanel);
+        document.getElementById('btn-sequence-back').addEventListener('click', showObservationPanel);
+        document.getElementById('btn-sequence-next').addEventListener('click', showExplanationPanel);
+        document.getElementById('btn-explanation-back').addEventListener('click', showSequencePanel);
+
+        function showExplanationTemplateForm() {
+            var form = document.getElementById('explanation-template-form');
+            var typeWrap = form.querySelector('#expl-template-target-wrap');
+            var cultureWrap = document.getElementById('expl-template-culture-wrap');
+            var whoSelect = document.getElementById('expl-template-who');
+            var targetSelect = document.getElementById('expl-template-target');
+            var textArea = document.getElementById('expl-template-text');
+            var whoLabels = getKeptObservationLabels(true);
+            var allLabels = getKeptObservationLabels(false);
+            var eventLabels = (EVENT_CARDS || []).map(function(c) { return c.label; });
+            whoSelect.innerHTML = whoLabels.map(function(x) { return '<option value="' + escapeHtml(x.label) + '">' + escapeHtml(x.label) + '</option>'; }).join('');
+            targetSelect.innerHTML = allLabels.map(function(x) { return '<option value="' + x.label + '">' + escapeHtml(x.label) + '</option>'; }).join('');
+            eventLabels.forEach(function(l) {
+                var opt = document.createElement('option');
+                opt.value = l;
+                opt.textContent = l;
+                targetSelect.appendChild(opt);
+            });
+            form.querySelector('input[name="expl-template-type"][value="motive"]').checked = true;
+            typeWrap.classList.remove('hidden');
+            cultureWrap.classList.add('hidden');
+            textArea.value = whoLabels.length ? (whoLabels[0].label + '这样说/这样做，可能在想什么？') : '［人物］这样说/这样做，可能在想什么？';
+            form.classList.remove('hidden');
+        }
+        function updateExplanationTemplatePrefill() {
+            var form = document.getElementById('explanation-template-form');
+            var checked = form.querySelector('input[name="expl-template-type"]:checked');
+            var type = checked ? checked.value : 'motive';
+            var whoSelect = document.getElementById('expl-template-who');
+            var targetSelect = document.getElementById('expl-template-target');
+            var textArea = document.getElementById('expl-template-text');
+            var typeWrap = document.getElementById('expl-template-target-wrap');
+            var cultureWrap = document.getElementById('expl-template-culture-wrap');
+            if (type === 'motive') {
+                typeWrap.classList.remove('hidden');
+                cultureWrap.classList.add('hidden');
+                var who = (whoSelect && whoSelect.value) || '';
+                textArea.value = who ? (who + '这样说/这样做，可能在想什么？') : '［人物］这样说/这样做，可能在想什么？';
+            } else if (type === 'culture') {
+                typeWrap.classList.add('hidden');
+                cultureWrap.classList.remove('hidden');
+                var t = (targetSelect && targetSelect.value) || '';
+                textArea.value = t ? ('关于' + t + '，当时的人可能会怎样理解？') : '关于［某观察或事件］，当时的人可能会怎样理解？';
+            } else {
+                typeWrap.classList.add('hidden');
+                cultureWrap.classList.add('hidden');
+                textArea.value = '这段经文在这里想表达什么？';
+            }
+        }
+        document.getElementById('btn-template-first').addEventListener('click', showExplanationTemplateForm);
+        document.getElementById('btn-template-add').addEventListener('click', showExplanationTemplateForm);
+        document.getElementById('explanation-template-form').addEventListener('change', function(evt) {
+            if (evt.target.name === 'expl-template-type' || evt.target.id === 'expl-template-who' || evt.target.id === 'expl-template-target') updateExplanationTemplatePrefill();
+        });
+        document.getElementById('expl-template-submit').addEventListener('click', function() {
+            var text = (document.getElementById('expl-template-text').value || '').trim();
+            if (!text) return;
+            var questions = getExplanationQuestions();
+            questions.push({ id: 'eq_' + Date.now(), text: text });
+            setExplanationQuestions(questions);
+            document.getElementById('explanation-template-form').classList.add('hidden');
+            renderExplanationList();
+        });
+        document.getElementById('expl-template-cancel').addEventListener('click', function() {
+            document.getElementById('explanation-template-form').classList.add('hidden');
+        });
+
+        document.getElementById('btn-add-question').addEventListener('click', function() {
+            document.getElementById('explanation-freeform-form').classList.remove('hidden');
+            document.getElementById('expl-freeform-text').value = '';
+            document.getElementById('expl-freeform-text').focus();
+        });
+        document.getElementById('expl-freeform-submit').addEventListener('click', function() {
+            var text = (document.getElementById('expl-freeform-text').value || '').trim();
+            if (!text) return;
+            var questions = getExplanationQuestions();
+            questions.push({ id: 'eq_' + Date.now(), text: text });
+            setExplanationQuestions(questions);
+            document.getElementById('explanation-freeform-form').classList.add('hidden');
+            renderExplanationList();
+        });
+        document.getElementById('expl-freeform-cancel').addEventListener('click', function() {
+            document.getElementById('explanation-freeform-form').classList.add('hidden');
+        });
+
+        function fetchAndShowExplanationMergeModal() {
+            var btnFirst = document.getElementById('btn-generate-first');
+            var btnMore = document.getElementById('btn-generate-more');
+            var origFirst = btnFirst.textContent;
+            var origMore = btnMore.textContent;
+            btnFirst.disabled = true;
+            btnMore.disabled = true;
+            btnFirst.textContent = '生成中…';
+            btnMore.textContent = '生成中…';
+            fetch('/api/explanation-questions')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    btnFirst.disabled = false;
+                    btnMore.disabled = false;
+                    btnFirst.textContent = origFirst;
+                    btnMore.textContent = origMore;
+                    PENDING_EXPLANATION_QUESTIONS = Array.isArray(data) ? data : [];
+                    var modal = document.getElementById('explanation-merge-modal');
+                    var radio = modal.querySelector('input[name="expl-merge-mode"][value="' + (getExplanationQuestions().length > 0 ? 'append' : 'replace') + '"]');
+                    if (radio) radio.checked = true;
+                    modal.classList.remove('hidden');
+                    modal.setAttribute('aria-hidden', 'false');
+                })
+                .catch(function() {
+                    btnFirst.disabled = false;
+                    btnMore.disabled = false;
+                    btnFirst.textContent = origFirst;
+                    btnMore.textContent = origMore;
+                    alert('加载失败，请稍后重试。');
+                });
+        }
+        document.getElementById('btn-generate-first').addEventListener('click', fetchAndShowExplanationMergeModal);
+        document.getElementById('btn-generate-more').addEventListener('click', fetchAndShowExplanationMergeModal);
+        document.getElementById('expl-merge-confirm').addEventListener('click', function() {
+            var mode = (document.querySelector('input[name="expl-merge-mode"]:checked') || {}).value;
+            var existing = getExplanationQuestions();
+            if (mode === 'replace') {
+                setExplanationQuestions(PENDING_EXPLANATION_QUESTIONS.slice(0));
+            } else {
+                var seen = {};
+                existing.forEach(function(q) { seen[q.text] = true; });
+                PENDING_EXPLANATION_QUESTIONS.forEach(function(q) {
+                    if (!seen[q.text]) {
+                        seen[q.text] = true;
+                        existing.push({ id: q.id || ('eq_' + Date.now() + '_' + Math.random().toString(36).slice(2)), text: q.text });
+                    }
+                });
+                setExplanationQuestions(existing);
+            }
+            PENDING_EXPLANATION_QUESTIONS = [];
+            document.getElementById('explanation-merge-modal').classList.add('hidden');
+            document.getElementById('explanation-merge-modal').setAttribute('aria-hidden', 'true');
+            renderExplanationList();
+        });
+        document.getElementById('expl-merge-cancel').addEventListener('click', function() {
+            PENDING_EXPLANATION_QUESTIONS = [];
+            document.getElementById('explanation-merge-modal').classList.add('hidden');
+            document.getElementById('explanation-merge-modal').setAttribute('aria-hidden', 'true');
+            renderExplanationList();
+        });
+
+        renderObservationsList();
+    </script>
+</body>
+</html>
