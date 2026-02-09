@@ -40,6 +40,7 @@ litellm = ">=1.0.0"
 [tool.pixi.feature.api.tasks]
 app = "uvicorn apps.api:app --host 0.0.0.0 --port 5006 --reload"
 socratic = "uvicorn apps.socratic.app:app --host 0.0.0.0 --port 5007 --reload"
+observation = "uvicorn apps.observation.app:app --host 0.0.0.0 --port 5008 --reload"
 
 [tool.pixi.feature.devtools.dependencies]
 ipython = "*"
