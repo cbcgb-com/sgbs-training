@@ -5,8 +5,8 @@
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
     |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
     | 2026-02-01 | [查經的意義和裝備](../../class-notes/lesson-1-foundations) | [link](https://www.dropbox.com/scl/fi/ujauxnos032r7bk646ots/20260201-lesson-1.mp3?rlkey=fuixpbxql9lexn9qf4xh8imzk&dl=0) |
-    | 2026-02-01 |       [敘述文](../../class-notes/lesson-2-narrative)       | [link](https://www.dropbox.com/scl/fi/b9c5a11mr7qdd6d7thumu/20260201-lesson-2.mp3?rlkey=6hx3kjep90r328hkgkeva4egt&dl=0) |
-    | 2026-02-01 | [提問題的技術](../../class-notes/lesson-3-questioning)   | [link](https://www.dropbox.com/scl/fi/wy6dbcqh9aydcqyyxelek/20260201-lesson-3.mp3?rlkey=fn8l17h31wlprhz6yebpql0ev&dl=0) |
+    | 2026-02-08 |       [敘述文](../../class-notes/lesson-2-narrative)       | [link](https://www.dropbox.com/scl/fi/b9c5a11mr7qdd6d7thumu/20260201-lesson-2.mp3?rlkey=6hx3kjep90r328hkgkeva4egt&dl=0) |
+    | 2026-02-15 | [提問題的技術](../../class-notes/lesson-3-questioning)   | [link](https://www.dropbox.com/scl/fi/wy6dbcqh9aydcqyyxelek/20260201-lesson-3.mp3?rlkey=fn8l17h31wlprhz6yebpql0ev&dl=0) |
 
 === "2025秋季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
