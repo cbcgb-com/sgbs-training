@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socratic Coach — 路加福音 7:36–50</title>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .passage-panel { display: none; }
+        .passage-panel.active { display: block; }
+        .tab.active { font-weight: 600; border-bottom: 2px solid currentColor; }
+        .verse-highlight { background-color: rgba(250, 204, 21, 0.35); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 h-screen flex flex-col overflow-hidden">
+    <div class="flex flex-1 min-h-0">
+        <!-- Left: Scripture -->
+        <aside class="w-1/2 flex flex-col border-r border-gray-200 bg-white shrink-0">
+            <div class="px-4 py-3 border-b border-gray-200 shrink-0">
+                <h1 class="text-lg font-semibold">Socratic Coach</h1>
+                <p class="text-sm text-gray-600">{{ passage.reference_zh }} / {{ passage.reference_en }}</p>
+            </div>
+            <div class="flex border-b border-gray-200 shrink-0">
+                <button type="button" class="tab active px-4 py-2 text-sm" data-panel="simplified">简体中文</button>
+                <button type="button" class="tab px-4 py-2 text-sm" data-panel="traditional">繁體中文</button>
+                <button type="button" class="tab px-4 py-2 text-sm" data-panel="niv">NIV English</button>
+            </div>
+            <div class="flex-1 overflow-auto p-4 text-gray-800">
+                <div id="panel-simplified" class="passage-panel active">
+                    {% for v in passage_verses.simplified %}<span data-verse="{{ v.n }}" class="verse block mb-1">{{ v.n }} {{ v.text }}</span>{% endfor %}
+                </div>
+                <div id="panel-traditional" class="passage-panel">
+                    {% for v in passage_verses.traditional %}<span data-verse="{{ v.n }}" class="verse block mb-1">{{ v.n }} {{ v.text }}</span>{% endfor %}
+                </div>
+                <div id="panel-niv" class="passage-panel">
+                    {% for v in passage_verses.niv %}<span data-verse="{{ v.n }}" class="verse block mb-1">{{ v.n }} {{ v.text }}</span>{% endfor %}
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right: Coach conversation -->
+        <main class="flex-1 flex flex-col min-w-0 min-h-0">
+            <div class="px-4 pt-2 pb-1 border-b border-gray-200 bg-gray-50 shrink-0 flex items-center gap-2 flex-wrap">
+                <button type="button" id="btn-new-session" class="text-sm px-3 py-1.5 bg-white border border-gray-300 rounded hover:bg-gray-100">New conversation</button>
+                <div id="recent-sessions" class="flex items-center gap-2 flex-wrap text-sm text-gray-600"></div>
+            </div>
+            <div id="conversation" class="flex-1 flex flex-col min-h-0 px-4 py-4 overflow-auto" data-initial-messages="{{ initial_messages_encoded }}">
+                {% include "partials/thread_and_form.html" %}
+            </div>
+        </main>
+    </div>
+
+    <script>
+        var STORAGE_KEY = 'socratic_sessions';
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function encodeMessages(messages) {
+            return btoa(unescape(encodeURIComponent(JSON.stringify(messages))));
+        }
+
+        function decodeMessages(encoded) {
+            if (!encoded) return [];
+            try {
+                return JSON.parse(decodeURIComponent(escape(atob(encoded))));
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function renderConversation(messages, coachLang) {
+            coachLang = coachLang || document.body.dataset.coachLang || 'simplified';
+            var encoded = encodeMessages(messages);
+            var threadHtml = '<div class="flex-1 overflow-auto pb-4">';
+            for (var i = 0; i < messages.length; i++) {
+                var msg = messages[i];
+                var isAssistant = msg.role === 'assistant';
+                var blockClass = isAssistant ? 'mb-4 bg-blue-50 border-l-4 border-blue-400 pl-4 py-2 rounded-r' : 'mb-4 bg-gray-100 pl-4 py-2 rounded';
+                var label = isAssistant ? 'Coach' : 'You';
+                threadHtml += '<div class="' + blockClass + '">';
+                threadHtml += '<p class="text-xs font-medium text-gray-500 mb-1">' + escapeHtml(label) + '</p>';
+                threadHtml += '<p class="whitespace-pre-wrap">' + escapeHtml(msg.content || '') + '</p></div>';
+            }
+            threadHtml += '</div>';
+            var formHtml = '<div class="shrink-0 border-t border-gray-200 bg-gray-50 pt-4 pb-2">';
+            formHtml += '<form hx-post="/reply" hx-target="#conversation" hx-swap="innerHTML" hx-indicator="#form-spinner">';
+            formHtml += '<input type="hidden" name="messages_encoded" id="messages_encoded_input" value="' + escapeHtml(encoded) + '">';
+            formHtml += '<input type="hidden" name="coach_lang" id="coach_lang_input" value="' + escapeHtml(coachLang) + '">';
+            formHtml += '<label for="user_message" class="block text-sm font-medium text-gray-700 mb-1">Your response</label>';
+            formHtml += '<textarea id="user_message" name="user_message" rows="3" class="w-full border border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder-gray-500 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 bg-white" placeholder="Type your thoughts..." required></textarea>';
+            formHtml += '<div class="mt-2 flex items-center gap-2">';
+            formHtml += '<button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Send</button>';
+            formHtml += '<span id="form-spinner" class="htmx-indicator text-sm text-gray-500">Thinking...</span></div></form></div>';
+            var container = document.getElementById('conversation');
+            if (container) {
+                container.innerHTML = '<div class="flex flex-col flex-1 min-h-0">' + threadHtml + formHtml + '</div>';
+                if (window.htmx) htmx.process(container);
+            }
+        }
+
+        function getStored() {
+            try {
+                var raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return { sessions: {}, currentId: null };
+                var data = JSON.parse(raw);
+                return data && typeof data.sessions === 'object' ? data : { sessions: {}, currentId: null };
+            } catch (e) {
+                return { sessions: {}, currentId: null };
+            }
+        }
+
+        function setStored(data) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {}
+        }
+
+        function saveToStore(messagesEncoded, isNewSession) {
+            var data = getStored();
+            var id = data.currentId;
+            if (!id || isNewSession) {
+                id = crypto.randomUUID && crypto.randomUUID() || 'id-' + Date.now();
+                data.currentId = id;
+            }
+            var messages = decodeMessages(messagesEncoded);
+            var title = '';
+            for (var j = 0; j < messages.length; j++) {
+                if (messages[j].role === 'user' && messages[j].content) {
+                    title = messages[j].content.slice(0, 40);
+                    if (messages[j].content.length > 40) title += '…';
+                    break;
+                }
+            }
+            var now = new Date().toISOString();
+            if (!data.sessions[id]) {
+                data.sessions[id] = { messages_encoded: messagesEncoded, createdAt: now, updatedAt: now, title: title };
+            } else {
+                data.sessions[id].messages_encoded = messagesEncoded;
+                data.sessions[id].updatedAt = now;
+                if (title) data.sessions[id].title = title;
+            }
+            setStored(data);
+            renderRecentList();
+        }
+
+        function renderRecentList() {
+            var data = getStored();
+            var ids = Object.keys(data.sessions || {});
+            if (ids.length === 0) {
+                document.getElementById('recent-sessions').innerHTML = '';
+                return;
+            }
+            ids.sort(function(a, b) {
+                var tA = (data.sessions[a].updatedAt || data.sessions[a].createdAt) || '';
+                var tB = (data.sessions[b].updatedAt || data.sessions[b].createdAt) || '';
+                return tB.localeCompare(tA);
+            });
+            var html = '<span class="text-gray-500">Recent:</span> ';
+            for (var i = 0; i < Math.min(ids.length, 10); i++) {
+                var sid = ids[i];
+                var s = data.sessions[sid];
+                var label = (s.title || 'Conversation').slice(0, 30);
+                if ((s.title || '').length > 30) label += '…';
+                html += '<button type="button" class="session-open px-2 py-1 rounded hover:bg-gray-200" data-session-id="' + escapeHtml(sid) + '">' + escapeHtml(label) + '</button>';
+            }
+            document.getElementById('recent-sessions').innerHTML = html;
+            document.querySelectorAll('#recent-sessions .session-open').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var id = btn.getAttribute('data-session-id');
+                    var data = getStored();
+                    if (data.sessions[id]) {
+                        data.currentId = id;
+                        setStored(data);
+                        var messages = decodeMessages(data.sessions[id].messages_encoded);
+                        var coachLang = document.body.dataset.coachLang || 'simplified';
+                        renderConversation(messages, coachLang);
+                    }
+                });
+            });
+        }
+
+        document.body.dataset.coachLang = 'simplified';
+        document.querySelectorAll('.tab').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.body.dataset.coachLang = btn.dataset.panel || 'simplified';
+                var langEl = document.getElementById('coach_lang_input');
+                if (langEl) langEl.value = document.body.dataset.coachLang || 'simplified';
+                var panelId = 'panel-' + btn.dataset.panel;
+                document.querySelectorAll('.tab').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.passage-panel').forEach(function(p) { p.classList.remove('active'); });
+                btn.classList.add('active');
+                var panel = document.getElementById(panelId);
+                if (panel) panel.classList.add('active');
+            });
+        });
+
+        document.getElementById('btn-new-session').addEventListener('click', function() {
+            var container = document.getElementById('conversation');
+            var initialEncoded = container && container.getAttribute('data-initial-messages');
+            if (!initialEncoded) return;
+            var messages = decodeMessages(initialEncoded);
+            if (messages.length === 0) return;
+            var newId = crypto.randomUUID && crypto.randomUUID() || 'id-' + Date.now();
+            var data = getStored();
+            data.currentId = newId;
+            data.sessions[newId] = { messages_encoded: initialEncoded, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(), title: '' };
+            setStored(data);
+            var coachLang = document.body.dataset.coachLang || 'simplified';
+            renderConversation(messages, coachLang);
+            renderRecentList();
+        });
+
+        document.body.addEventListener('htmx:afterSwap', function(evt) {
+            if (evt.detail && evt.detail.target && evt.detail.target.id === 'conversation') {
+                var el = document.getElementById('coach_lang_input');
+                if (el) el.value = document.body.dataset.coachLang || 'simplified';
+                var encEl = document.getElementById('messages_encoded_input');
+                if (encEl && encEl.value) {
+                    saveToStore(encEl.value, false);
+                }
+            }
+        });
+
+        document.body.addEventListener('highlightVerses', function(evt) {
+            var verses = (evt.detail && evt.detail.value !== undefined) ? evt.detail.value : [];
+            if (!Array.isArray(verses)) verses = [];
+            document.querySelectorAll('.verse').forEach(function(span) {
+                span.classList.remove('verse-highlight');
+            });
+            verses.forEach(function(n) {
+                var num = typeof n === 'number' ? n : parseInt(n, 10);
+                if (isNaN(num)) return;
+                document.querySelectorAll('[data-verse="' + num + '"]').forEach(function(span) {
+                    span.classList.add('verse-highlight');
+                });
+            });
+        });
+
+        (function restoreOnLoad() {
+            try {
+                var data = getStored();
+                var id = data.currentId;
+                if (id && data.sessions && data.sessions[id]) {
+                    var messages = decodeMessages(data.sessions[id].messages_encoded);
+                    if (messages.length > 0) {
+                        var coachLang = document.body.dataset.coachLang || 'simplified';
+                        renderConversation(messages, coachLang);
+                        renderRecentList();
+                        return;
+                    }
+                }
+                renderRecentList();
+            } catch (e) {
+                renderRecentList();
+            }
+        })();
+    </script>
+</body>
+</html>
