@@ -47,8 +47,10 @@
 
     function toggleVariant() {
         if (currentVariant === VARIANT_TRAD) {
-            convertPage();
-            localStorage.setItem(STORAGE_KEY, VARIANT_SIMP);
+            loadOpenCC(function () {
+                convertPage();
+                localStorage.setItem(STORAGE_KEY, VARIANT_SIMP);
+            });
         } else {
             restorePage();
             localStorage.setItem(STORAGE_KEY, VARIANT_TRAD);
