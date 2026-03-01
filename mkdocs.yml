@@ -36,6 +36,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/expandable-cards.js
+  - javascripts/chinese-toggle.js
 
 plugins:
   - search

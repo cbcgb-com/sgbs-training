@@ -545,3 +545,54 @@ article.typography table tbody tr:hover,
         gap: 1rem;
     }
 }
+
+.chinese-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+    background: var(--background, #fff);
+    color: var(--foreground, #1a1a1a);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chinese-toggle-btn:hover {
+    background: var(--muted, rgba(0, 0, 0, 0.06));
+    transform: scale(1.05);
+}
+
+.chinese-toggle-btn:focus-visible {
+    outline: 2px solid var(--ring, #2563eb);
+    outline-offset: 2px;
+}
+
+.dark .chinese-toggle-btn {
+    background: var(--background, #1a1a1a);
+    color: var(--foreground, #fafafa);
+    border-color: var(--border, rgba(255, 255, 255, 0.12));
+}
+
+.dark .chinese-toggle-btn:hover {
+    background: var(--muted, rgba(255, 255, 255, 0.1));
+}
+
+@media (max-width: 600px) {
+    .chinese-toggle-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.9rem;
+    }
+}
