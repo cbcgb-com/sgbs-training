@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // for search plugin notably
+        const base_url = "https://cbcgb-com.github.io/sgbs-training/";
+    </script>
+    <script>
+        const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        darkTheme.onchange = (e) => {
+            if (e.matches) {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove("dark")
+                localStorage.removeItem("theme")
+            }
+        };
+
+        // On page load. Priotiry to lcaolStorage
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+        } else if (darkTheme.matches) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>課堂（三）提問題的技術 - 小組查經帶領訓練</title>
+    
+
+
+<title>課堂（三）提問題的技術</title>
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-3-questioning/">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+
+<meta property="og:title" content="課堂（三）提問題的技術">
+
+
+
+
+
+<meta property="og:url" content="https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-3-questioning/">
+
+
+
+
+
+
+<!-- Twitter Card -->
+
+<meta name="twitter:title" content="課堂（三）提問題的技術">
+
+
+
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+
+    <link rel="icon" href="../../img/favicon.ico">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/geist.css" rel="stylesheet">
+    
+    <link href="../../css/pygments/dracula.css" rel="stylesheet">
+    
+    <link href="../../stylesheets/extra.css" rel="stylesheet">
+    <link href="../../stylesheets/transition.css" rel="stylesheet">
+
+    <script src="../../js/callbacks.js"></script>
+
+    
+
+    
+
+    
+
+</head>
+
+<body class="w-screen overflow-x-hidden bg-foreground md:bg-background text-foreground scroll-smooth m-0 p-0">
+    <div id="inner-body"
+        class="min-h-screen bg-background origin-[top_center_0px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <header
+    class="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="w-full mx-auto 3xl:max-w-8xl">
+        <div
+            class="xl:px-6 h-14 w-full max-w-8xl mx-auto px-4 border-x border-grid flex flex-row justify-between items-center">
+            <div class="mr-4 hidden md:flex">
+                <a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+                    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+    class="h-6 w-6">
+    <rect width="256" height="256" fill="none"></rect>
+    <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+    <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+</svg>
+
+                    <h1 class="hidden lg:inline-block font-bold text-md">
+                        
+                        小組查經帶領訓練
+                        
+                    </h1>
+                </a>
+            </div>
+            <button
+                class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground py-2 -ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R15u6ja:"
+                data-state="closed" onclick="onMobileMenuButtonClick(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="!size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+                </svg>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
+                <button onclick="onSearchBarClick(event)"
+    class="cursor-pointer inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64">
+    <span class="hidden lg:inline-flex">Search documentation...</span>
+    <span class="inline-flex lg:hidden">Search...</span>
+    <kbd
+        class="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <span class="text-xs">⌘</span>K
+    </kbd>
+</button>
+<dialog id="search-dialog" onclick="onSearchDialogClick(event)"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background rounded-lg shadow-lg border overflow-hidden p-0">
+    <div class="w-lg gap-4">
+        <div class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
+            <div class="w-full flex items-center border-b px-3" cmdk-input-wrapper="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="mr-2 h-4 w-4 shrink-0 opacity-50">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <!-- <script>
+                    let debounceTimer;
+                    const onInputHandler = function (event) {
+                        const query = event.target.value;
+                        clearTimeout(debounceTimer);
+                        debounceTimer = setTimeout(() => {
+                            if (searchWorker && (query.length > 2)) {
+                                console.log(`Posting message { "query": "${query}" }`)
+                                // https://lunrjs.com/guides/searching.html
+                                // we should append a wilcard and also a boost on exact term
+                                const lunrQuery = `${query}^10 ${query}* ${query}~1`;
+                                searchWorker.postMessage({ "query": lunrQuery });
+                            } else if (query.length > 2) {
+                                console.warn("searchWorker is not defined")
+                            } else {
+                                const results = document.getElementById("mkdocs-search-results");
+                                if (results) {
+                                    while (results.firstChild) {
+                                        results.removeChild(results.firstChild);
+                                    }
+                                }
+                            }
+                        }, 300);
+                    };
+                </script> -->
+                <input
+                    class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false"
+                    aria-autocomplete="list" role="combobox" aria-expanded="true" type="text" value=""
+                    oninput="onInputHandler(event)">
+            </div>
+        </div>
+        <div id="mkdocs-search-results" class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+            <!-- search results go there -->
+        </div>
+    </div>
+</dialog>
+<script>
+    document.removeEventListener("keydown", searchShortcutHandler);
+    document.addEventListener("keydown", searchShortcutHandler);
+</script>
+                <div class="flex items-center gap-0.5">
+                    
+                    <button
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 w-8 px-0"><a
+                            target="_blank" rel="noreferrer" href="https://github.com/cbcgb-com/sgbs-training">
+                            
+                            <svg viewBox="0 0 438.549 438.549" class="h-4 w-4">
+    <path fill="currentColor"
+        d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z">
+    </path>
+</svg>
+                            <span class="sr-only">GitHub</span>
+                            
+                        </a>
+                    </button>
+                    
+                    <button
+                        class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground py-2 group/toggle h-8 w-8 px-0"
+                        onclick="onThemeSwitch(event)">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 dark:hidden not-dark:block">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+</svg>
+                        
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 not-dark:hidden dark:block">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+                        
+                        <span class="sr-only">Toggle theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="border-grid flex flex-1 flex-col">
+            <div class="w-full mx-auto 3xl:max-w-8xl">
+                <div
+                    class="px-4 w-full max-w-8xl mx-auto xl:px-6 flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside
+                        class="border-grid fixed top-14 z-30 hidden h-[calc(100vh-3.55rem)] w-full shrink-0 border-r md:sticky md:block">
+                        <div
+    class="no-scrollbar [&::-webkit-scrollbar]:hidden h-full overflow-auto py-6 pr-4 lg:py-8 flex flex-col gap-[.125rem]">
+    
+    
+    
+
+    
+    
+    <a href="../.." 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    主頁
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+
+
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">課堂講義</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../lesson-1-foundations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（一）查經的意義和裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../lesson-2-narrative/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（二）分析敘述文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="./" data-active 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（三）提問題的技術
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../lesson-4-argumentation/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（四）分析論說文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../lesson-5-situations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（五）應對臨場狀況
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">工具</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../tools/ibs-argumentation-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    論說⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../tools/ibs-narrative-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    敘述⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">範例</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../examples/luke-literary-devices/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音中的文學手法
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../examples/luke-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音筆記
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../examples/romans-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    羅馬書查經筆記範例
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">資源</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../resources/bible-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    查經筆記指南
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/books/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    聖經參考書
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/genai/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    對於生成式AI的反思
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/questions/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    提問題的模板
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/recordings/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂錄音
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/theme/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    設計查經主題
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/theology-equipments/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    更多神學裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/virtual-study/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    線上查經注意事項
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+</div>
+                    </aside>
+                    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+                        <div class="mx-auto w-full min-w-0 xl:max-w-2xl">
+                            <article class="typography w-full">
+    
+    <div class="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
+    
+
+
+<span class="truncate">課堂講義</span>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-3.5 w-3.5">
+    <path d="m9 18 6-6-6-6"></path>
+</svg>
+<div class="text-foreground">課堂（三）提問題的技術</div>
+
+</div>
+    
+    
+    
+    <h1 id="_1">預備查經題目</h1>
+<h2 id="_2">目錄</h2>
+<ul>
+<li><a href="#xuexi-mubiao">學習目標</a></li>
+<li><a href="#kecheng-shijian-anpai">課程時間安排</a></li>
+<li><a href="#diyi-bufen-keqian-yudu-neirong">第一部分：課前預讀內容</a><ul>
+<li><a href="#ti-wenti-de-zhongyao-xing">提問題的重要性</a></li>
+<li><a href="#you-fangxiang-de-chajing">有方向的查經</a></li>
+<li><a href="#ti-wenti-de-yuanze">提問題的原則</a></li>
+<li><a href="#yao-buyao-you-pobing-ti">要不要有破冰題？</a></li>
+<li><a href="#timu-yao-ruhe-wen">題目要如何問？</a></li>
+<li><a href="#timu-yao-ruhe-bianpai">題目要如何編排？</a></li>
+<li><a href="#you-shenme-yang-de-gongju-keyi-fuzhu-sheji-qingchu-yidong-de-taolun-timu-ne">有什麼樣的工具可以輔助設計清楚易懂的討論題目呢？</a></li>
+<li><a href="#ruhe-sikao-zai-chajing-zhong-shiyong-genai">如何思考在查經中使用GenAI？</a></li>
+<li><a href="#guanyu-genai-shiyong-yuanze-de-tantao">關於GenAI使用原則的探討</a></li>
+</ul>
+</li>
+<li><a href="#dier-bufen-ketang-shizuo-huodong">第二部分：課堂實作活動</a><ul>
+<li><a href="#keqian-gongke-taolun">課前功課討論</a></li>
+<li><a href="#shizuo-huodong-wenti-ji-pinggu">實作活動：問題集評估</a></li>
+<li><a href="#genai-shizuo-huodong-wenti-shengcheng-yu-pipan-xing-pinggu">GenAI實作活動：問題生成與批判性評估</a></li>
+<li><a href="#fansi-taolun">反思討論</a></li>
+</ul>
+</li>
+<li><a href="#kehou-gongke">課後功課</a></li>
+</ul>
+<h2 id="xuexi-mubiao">學習目標</h2>
+<p>完成本課後，學員將能夠：</p>
+<ol>
+<li>理解提問的重要性：掌握為什麼提問比講道更適合小組查經，以及如何通過問題引導組員參與</li>
+<li>設計有效問題：學會設計清晰、有層次、避免突兀情況的查經問題</li>
+<li>運用提問工具：掌握問題提示、問題編排等實用技巧，提升問題設計的質量</li>
+<li>評估問題集：能夠分析不同問題集的優缺點，並提出改進建議</li>
+<li>合理使用GenAI：了解在查經準備中如何恰當地使用生成式人工智慧工具</li>
+</ol>
+<h2 id="kecheng-shijian-anpai">課程時間安排</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前30分鐘</td>
+<td>模擬查經練習</td>
+</tr>
+<tr>
+<td>5分鐘</td>
+<td>回饋時間</td>
+</tr>
+<tr>
+<td>5分鐘</td>
+<td>公開討論</td>
+</tr>
+<tr>
+<td>剩餘50分鐘</td>
+<td>問題設計評估實作活動</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diyi-bufen-keqian-yudu-neirong">第一部分：課前預讀內容</h2>
+<blockquote>
+<p><strong>重要提醒</strong>：請在上課前仔細閱讀以下內容，這將幫助你更好地參與課堂活動。課堂時間將主要用於實作練習，而非理論講解。</p>
+</blockquote>
+<p>作為小組查經帶領者，我們需要學會的一門技術和藝術就是如何通過問題來引導大家的思路。</p>
+<h3 id="ti-wenti-de-zhongyao-xing">提問題的重要性</h3>
+<p>為何要提問題呢？為何不以講道的方式進行小組查經呢？
+要回答這個問題的話，我們需要理解為何「問題」如此的有力量。</p>
+<p>當我們在一個「講道」的環境時，
+台上的講員處於「積極」狀態。
+他/她已經提前下功夫，與經文有自己的一番掙扎。
+而台下的聽眾則比較高概率會處於「消極」狀態。
+當然，不排除聽眾當中肯定有積極聽講道的聽眾。</p>
+<p>反觀一個以「提問」為主的小組查經，
+被提問的組員們不得不在被提問之後來一個回復。
+因此，提問題相當於一個邀請，邀請組員們參與在討論之中，
+與經文的內容掙扎一番，並且做出自己的回應。
+如此的討論方式對於組員們來說更加積極，
+也因此更能記得住那周的查經內容。</p>
+<h3 id="you-fangxiang-de-chajing">有方向的查經</h3>
+<p>與此同時，作為查經帶領者，我們需要給小組查經的討論定下一個方向。
+沒有方向的查經如同聖經所描述的，瞎子領瞎子，盲目地為了查經而查經 --
+寧願把那種查經改成禱告會好了，如此會更造就人。</p>
+<p>假如還沒有開始做的話，鼓勵同工們在擬定查經計劃的時候，
+邀請一兩位同工給大家定一個整體的方向。
+比如說，查約翰福音的時候，不一定非得要每章每節都查完，
+可以按照一個事先定好的主題（例如「榮耀」的主題）
+挑選合適的經文來學習（例如「耶穌所行的神跡」），
+然後鼓勵同工們在預備查經的時候，
+根據大主題擬定當天的主題
+（例如，開篇神跡加拿的婚宴中可以探討這個神跡顯出耶穌榮耀的哪方面）。
+這份工作自然是要留給有經驗的同工，
+但也要記得找一位有心學習的同工一起下手，不然的話少了傳承的機會。</p>
+<p>在這個前提下，每周的查經可以更有方向感，
+你作為預備查經的同工也可以更容易挑選合適的查經方向。
+假如你也可以考慮到組員們的需要，
+而不是僅憑個人的感動和偏向而已，
+你的小組的查經成為一個你服事他人、造就他人的良好途徑。</p>
+<h3 id="ti-wenti-de-yuanze">提問題的原則</h3>
+<p>那麼，如何出查經題目呢？是不是還是一臉「懵」，感覺有點不知所措呢？
+假如你有看過別人帶領查經的話，你可能會認為，有沒有什麼模版可以跟著走呢？</p>
+<p>別擔心，在這個部分中，我們會嘗試給你一些可以考慮和嘗試的方向。
+不過我們會強調一點：查經的每個元素都必須要有存在的目的。
+與其提供一個可能會成為你的拐杖的「完整查經模版」，我們會提供給你一些可以考慮的方向。</p>
+<p>這個section背後的一個假設就是：你已經做好前期預備了，
+你也已經擬定了一個查經重點和方向，
+而你現在掙扎的是要怎麼出題才不會導致小組查經無效。</p>
+<h3 id="yao-buyao-you-pobing-ti">要不要有破冰題？</h3>
+<p>答案是：「看你的處境！」</p>
+<p>如果一個破冰題目可以引導組員們去思考最後你想要大家思考的方向的話，就不妨把它加進去吧！
+又或者，假如你的破冰題目可以讓大家以一個放鬆的方式進入到查經的狀態里，也可以考慮把它加進去。</p>
+<p>千萬不要為了有破冰題目加一個破冰題目！</p>
+<h3 id="timu-yao-ruhe-wen">題目要如何問？</h3>
+<p>當你在思考每一道題目要如何出的時候，我們的建議是按照「減少突兀情況」的原則來出題。
+那麼，什麼樣的題目類型會導致「突兀情況」出現呢？請參考以下的出題反模式（anti-patterns）：</p>
+<ul>
+<li>題目不闡明是否要思考還是要看經文找答案</li>
+<li>題目一下子就問很大的概念</li>
+<li>題目可以用簡單的一句的話就回答</li>
+<li>題目有模糊不清、容易被誤解的地方</li>
+<li>題目對於背景知識的要求高過組員們已有的裝備</li>
+</ul>
+<p>如果要避免這類情況的話，可以在設計討論題目的時候考慮下面的一些問題：</p>
+<p><strong>基本考量：</strong></p>
+<table>
+<thead>
+<tr>
+<th>考量項目</th>
+<th>問題</th>
+<th>注意事項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回答類型</td>
+<td>題目是不是可以用一句「是」或「不是」來回答？</td>
+<td>此類問題有它的用處，但查經的時候不能全部都是。</td>
+</tr>
+<tr>
+<td>答案來源</td>
+<td>題目是不是可以直接從經文裡頭找出答案？</td>
+<td>如同上述的問題類型，查經時不能全部都是。</td>
+</tr>
+<tr>
+<td>清晰度</td>
+<td>題目有沒有含糊不清的地方，或者會不會容易被小組組員們誤會？</td>
+<td>這當中需要依靠你對小組組員們的認識。</td>
+</tr>
+</tbody>
+</table>
+<p>深入思考：</p>
+<ul>
+<li>題目之間有沒有連貫性或複雜度的層次，來輔助大家一步一步建立對經文的認識？</li>
+<li>設身處地去想一想你對小組的認識，大家碰上這道題目會怎麼回答？</li>
+<li>順著題目下來，每一道題目有沒有足夠的鋪墊輔助大家回答？</li>
+<li>你所出的題目，是不是可以在沒有正式的帶領著的情況下，依然可以被小組使用呢？</li>
+</ul>
+<h3 id="timu-yao-ruhe-bianpai">題目要如何編排？</h3>
+<p>當你在思考如何編排題目的時候，
+我們的建議是從簡單的題目開始下手，
+一步一步深入到需要更多思考的題目。
+一開始如果來一個很大的問題，
+你會高概率發現小組無法討論下去，
+氣氛也會變得一度尷尬，後面的討論也可能會比較吃力一些。</p>
+<p>千萬要記得：每一個查經題目必須要有它存在的意義！不要為了濫竽充數而添加題目。</p>
+<h3 id="you-shenme-yang-de-gongju-keyi-fuzhu-sheji-qingchu-yidong-de-taolun-timu-ne">有什麼樣的工具可以輔助設計清楚易懂的討論題目呢？</h3>
+<h4 id="_3">題目中的提示</h4>
+<p>問題中的提示（prompts）可以輔助大家參與。假如你的用意是要大家：</p>
+<ul>
+<li>從經文中找答案，不妨加一個<strong>「根據經文...」</strong>這樣的一句話？</li>
+<li>單獨思考後再分享，不妨加一句<strong>「請單獨思考一下再分享，...」</strong>？</li>
+<li>一起討論，不妨提示大家<strong>「請一起思考並討論...」</strong>？</li>
+<li>無標準答案的題目，不妨提示大家<strong>「這道題目沒有標準答案，歡迎大家分享自己的看法」</strong>？</li>
+</ul>
+<p>提供輕微的架構可以使得大家更容易參與進來！</p>
+<h4 id="_4">把「為什麼」類型的問題問得仔細一些</h4>
+<p>為什麼呢？🤣</p>
+<p>主要原因是因為「為什麼」問題背後有很多未知的因素。</p>
+<p>首先，一個沒有任何限定條件（qualifier）的問題會令組員們以為這道題目有個標準答案，
+因此而絞盡腦汁想盡辦法把思路朝向標準答案走。
+而如果你的問題本身是想邀請大家去思考一番的話，這樣會限制大家的思路。</p>
+<p>其次，當我們問「為什麼某某某會這麼做」之類的問題的時候，
+被問到問題的組員可能會想：「組長這是在問來龍去脈還是耶穌的意圖？」
+帶領者的意圖不明，會導致組員們的思路不清。</p>
+<p>如果要闡明你背後的意圖的話，不妨考慮把題目問得仔細一點。</p>
+<p>再次借用約翰福音迦拿婚宴為例，
+與其問：「為什麼瑪麗亞跟耶穌說『酒沒了』呢？」，
+不如問：「瑪麗亞跟耶穌說『酒沒了』背後可能在想什麼呢？」
+一方面後者出題者思路比較清楚（要大家思考，不要去經文找答案），
+另一方面也比較有代入感，邀請大家換位思考，從人物的角色去體會他/她的觀點和感受。</p>
+<h3 id="ruhe-sikao-zai-chajing-zhong-shiyong-genai">如何思考在查經中使用GenAI？</h3>
+<p>我們認為生成式人工智慧（GenAI）是一個強大的工具，可以輔助我們進行查經，但不應該用來取代我們的思考和反思。</p>
+<p>查經的主要目的是增進我們的信心，而個人與聖經的深入對話是這個成長過程中不可或缺的一部分。</p>
+<p>如果我們僅僅依賴GenAI來生成討論問題，而不進行個人的思考和反思，我們就可能錯失與上帝話語真正對話的寶貴機會。</p>
+<p>因此，我們應該將GenAI視為一個輔助工具，它可以啟發我們的思考，擴展我們的視角，但絕不能替代我們自身與聖經的互動和領悟。</p>
+<p>在這個基礎上，我們相信GenAI可以成為一個有價值的資源，然而，需要謹慎使用！</p>
+<blockquote>
+<p><strong>GenAI使用的正面例子</strong></p>
+<p>以下是一些具體任務，我們認為GenAI可以協助我們，而不會削弱我們的個人反思、與上帝話語的對話，以及與其他信徒的交流。</p>
+<ol>
+<li>將你的問題從母語翻譯成小組的主要使用語言。</li>
+<li>翻譯非母語的聖經學習資源。</li>
+<li>生成一個忠實但不一定深入的總結，以記錄查經討論內容。（忠實指準確性和真實性，深入則指在上帝話語指引下，從討論中進行個人反思和獲得更深層次的洞察。）</li>
+<li>利用生成的文本作為提示，提醒自己可能遺漏的話題，無需討論。</li>
+<li>將GenAI作為『第二讀者』，檢查你的問題和答案中可能存在的基本錯誤，但不能依賴它來理解經文。</li>
+<li>作為搜索關鍵詞生成器，協助你使用搜索引擎深入研究某個主題。</li>
+<li>作為創意來源，生成一些破冰問題。</li>
+<li>生成輔助查經的討論活動。</li>
+</ol>
+<p><strong>GenAI使用的負面例子</strong></p>
+<p>以下是一些我們認為最好避免使用GenAI的任務：</p>
+<ol>
+<li>將GenAI作為神學討論的主要對話對象。</li>
+<li>完全依賴GenAI生成查經問題，而不進行個人思考。</li>
+<li>將GenAI視為歷史事實的權威來源，而不進行交叉驗證。</li>
+<li>將GenAI產生的內容視為神學洞察的唯一來源，忽視傳統神學研究和個人靈修。</li>
+</ol>
+<p><strong>使用GenAI的一般原則</strong></p>
+<ol>
+<li>使用GenAI時要保持透明，明確說明使用情況。</li>
+<li>將GenAI作為輔助工具，增強而非取代自己的思考能力。</li>
+<li>對GenAI生成的內容進行仔細核實，確保每個細節的準確性。</li>
+<li>對於使用GenAI生成的內容，要能夠解釋並為每一部分負責。</li>
+<li>不要為了達到目的而濫用GenAI，應該遵循道德和倫理準則。</li>
+</ol>
+</blockquote>
+<p>（有關生成式人工智慧的內容原由馬靖龍弟兄以英文撰寫，後經由人工智能模型 Claude 3.5 Sonnet 翻譯成中文。）</p>
+<h3 id="guanyu-genai-shiyong-yuanze-de-tantao">關於GenAI使用原則的探討</h3>
+<p>GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使用這個工具，我們需要先了解這個工具的優勢和局限性，然後區分我們的信仰生活中的哪些部分可以用工具替代，哪些部分必須要由我們人自身來親身參與。</p>
+<p>首先，作為工具，GenAI擅長把大量零碎的信息按照既定規則重新組合和整理，但是它注重形式高過內容本身的準確性和邏輯性。GenAI很可能會生成一篇表面流暢華麗，實則信息虛假、邏輯混亂、以偏概全的回答，成為一個似是而非、歪曲聖經的假教導。在使用GenAI時，我們最好自己為GenAI提供可靠的歷史和解經資料，只使用GenAI作為初步的整理和提煉工具，並仔細審閱整理GenAI生成的內容，特別是確認其中生成的內容中所引述的事實和解讀於我們所提供的資料一致。在查經中，這包括幫助我們把大量資料梳理成提綱，潤色查經問題的敘述方式，涉及查經過程的互動性，輔助我們檢查是否遺漏了關鍵信息等等。</p>
+<p>例如，矽谷生命河靈糧堂基於其主任牧師劉彤牧師的講道內容開發了GenAI工具 <a href="https://tongbot.bubbleapps.io/login">信仰阿彤博 TongBot</a>。以下是我和這個GenAI關於苦難話題的簡短對話。熟悉苦難問題的人大致可以理解GenAI的這個回答，但初次接觸這個話題的人很容易誤解為苦難全部都是人罪有應得的懲罰。這個回答體現出GenAI的侷限：它傾向於把複雜的問題和有限的訓練數據建立勉強的聯繫（並且我們還很難確認訓練數據裡的教導是否完全可靠）。</p>
+<blockquote>
+<p><strong>GenAI問答</strong></p>
+<p><strong>我：</strong>如何看待良善的上帝允許世上存在的苦難？</p>
+<p><strong>Tongbot：</strong>面對世界的苦難和上帝的良善，劉彤牧師在他的講道中提到，這些苦難實際上是人的罪帶來的結果，不僅污染了大地，也讓人類活在罪惡的選擇中，因而受苦。然而，即便在苦難中，上帝仍然賜下恩典和憐憫。有時，上帝會派遣天使保護我們，有時則透過弟兄姊妹的安慰與代禱來支持我們。劉彤牧師強調，許多時候我們能夠經歷並克服苦難，是因為周圍有充滿愛心的弟兄姊妹的支持。上帝有時甚至透過禱告來醫治我們，在苦難中顯明祂的憐憫。他提醒我們，上帝是充滿憐憫的，甚至整個宇宙和大地都明白上帝的憐憫，因此大地也在盼望等候上帝的工作。劉彤牧師鼓勵我們，即使在充滿黑暗和罪惡的世界中，我們仍然要感謝上帝，因為祂仍然在掌權，在苦難中向我們施恩。</p>
+<p><strong>我：</strong>可是也有無辜的人會受到苦難，例如自然災害的受害者，例如約伯</p>
+<p><strong>TongBot：</strong>在面對無辜之人遭受苦難的問題時，劉彤牧師的講道中並沒有直接提及自然災害或約伯的例子。然而，從提供的資料中，我們可以看到劉彤牧師強調了人類罪惡的本質，以及人們如何因著自己的驕傲和自我中心而遠離神。例如，在詩篇14篇1-7節的講道中，劉彤牧師提到愚頑人心裡說沒有神，他們的行為邪惡，並沒有尋求神。這種心態導致他們走在黑暗中，而當人走在黑暗中時，他們是非常怕見光的。</p>
+<p>雖然這並不直接回答為什麼無辜的人會遭受苦難，如自然災害，但它提醒我們，世界上的罪惡和苦難是人類遠離神、不尋求神的結果之一。在面對苦難時，劉彤牧師的信息鼓勵我們轉向神，尋求祂的面，並在祂的光中行走，而不是留在黑暗中。</p>
+<p>如果您有更多關於劉彤牧師對於苦難、信仰或其他相關主題的問題，請隨時提問。我們在這裡，願意幫助您尋找答案和安慰。</p>
+</blockquote>
+<p>其次，不過無論未來人類會創造出多麼強大智能的GenAI工具，人本身的參與在信仰活動中始終是不可替代的。要理解哪些角色是人類獨有的，我們需要先認識基督教世界觀中人和機器或動物的本質區別。</p>
+<p>在基督教世界觀中，人是上帝直接創造的，是有血有肉有上帝形象的活人。無論能力大小，所有人都有上帝的形象和上帝賜予的尊貴冠冕，這是人與機器和動物的本質區別。所以剛出生不會說話的嬰兒或是昏迷臥床的植物人有上帝的形象，但是再聰明靈巧的猴子或萬能的智能機器人也沒有。我們信仰中罪核心的元素也大多是只屬於人的，比如罪、信、愛、救贖、盼望等等。聖經的核心教導基本都是關於人和神的關係以及人和人的關係，這些都是機器和工具不能參與的。此外，最重要的，信主的基督徒有上帝應許的聖靈住在我們心中。聖靈教導我們，讓我們在靈裡彼此溝通。各樣的查經工具，例如解經書，聖經檢索，原文字典，甚至歸納式查經法，都工具不能替代我們作為人的角色，在查經中融入自己的真實經歷，和其他有上帝形象有聖靈內住的人在靈裡產生真切的互動。</p>
+<p>在實際的信仰生活中，並不是所有情況我們都容易清楚分別哪些任務可以由工具替代，哪些的任務一定需要我們人親身的參與呢。所以，我們試著通過以下若干經文的分析，例舉在一些信仰生活場景中GenAI和其他工具恰當的使用界線，幫助大家形成初步的概念。</p>
+<ol>
+<li>
+<p><strong>敬拜神。</strong>『那真正拜父的，要用心靈和誠實拜他』（約翰福音 4:23）。敬拜是人和神的連結和溝通，需要人心靈和誠實的參與。這並不完全排除我們使用工具來幫助我們敬拜，例如樂器、影像等，但是如果這些工具影響到我們敬拜時的心思意念（例如用GenAI領會帶領會眾共同默想），則需要謹慎確認工具確實能夠觸及大家的心靈，而不是使敬拜僅僅停留於形式。</p>
+</li>
+<li>
+<p><strong>明白神對個人和對團契的異象和帶領。</strong>新約中，神用聖靈的帶領和看顧取代了律法的條文，也真正成全了律法的精神。至此，每個人的靈命成長、感動、呼召都可以直接來自神。悉心傾聽主的聲音和帶領是GenAI完全無法替代的。例如，『但我們既然在捆我們的律法上死了，現今就脫離了律法，叫我們服事主，要按著心靈的新樣，不按著儀文的舊樣』（羅馬書7:6），『不要消滅聖靈的感動；不要藐視先知的講論』（帖撒羅尼加前書 5:19-20）</p>
+</li>
+<li>
+<p><strong>講論神的話。</strong>聖經多處提到當我們的講論有聖經帶領時會有大能力，例如『司提反是以智慧和聖靈說話，眾人抵擋不住』（使徒行傳 6:10）以及『所以我告訴你們，被神的靈感動的，沒有說”耶穌是可咒詛”的；若不是被聖靈感動的，也沒有能說“耶穌是主”的。』（哥林多前書 12:3）。被聖靈感動的講論可能有多種方式：聖靈完全控制講話者的言語表情，或聖靈引導講話者的內容完全符合神想要傳講的含義，或聖靈引導聽眾完全接收到神想讓聽眾得到的內容。在準備講道或是查經資料時，如果使用GenAI，需要確定其突出的內容和重點與自己所領受的感動一致。『當用各樣的智慧，把基督的道理豐豐富富地存在心裡，用詩章、頌詞、靈歌，彼此教導，互相勸戒，心被恩感，歌頌神』（歌羅西書 3：16）。</p>
+</li>
+<li>
+<p><strong>學習神的話。</strong>如果沒有聖靈的光照，即便看到聽到最準確的字句，也仍然無法真正明白其中所啓示的神的奧祕，例如『要使這百姓心蒙脂油，耳朵發沉，眼睛昏迷；恐怕眼睛看見，耳朵聽見，心裡明白，迴轉過來，便得醫治』（以賽亞書 6:10，也在新約中被馬太福音 13:15和使徒行傳 28:27引用），『正當那時，耶穌被聖靈感動就快樂，說：“父啊，天地的主，我感謝你！因為你將這些事向聰明通達人就藏起來，向嬰孩就顯出來。父啊！是的，因為你的美意本是如此』（路加福音 10:21）。GenAI只能幫助我們粗略初步分析神話語的表面信息，不能代替我們作為學習者在聖靈帶領中看到的獨屬於我們的亮光。</p>
+</li>
+<li>
+<p><strong>在聚會中建立團契關係。</strong>建立小組關係也是查經的一個重要目標。GenAI可以為我們的聚會提供素材或資料，但是這不能替代人與人之間真實的互動，因為這背後是我們每個人心中的聖靈在幫助我們交通，彼此合一。『因為無論在哪裡，有兩三個人奉我的名聚會，那裏就有我在他們中間』（馬太福音 18:20），『禱告完了，聚會的地方震動，他們就都被聖靈充滿，放膽講論神的道。』（使徒行傳 4:31），『用和平彼此聯絡，竭力保守聖靈所賜合而為一的心。身體只有一個，聖靈只有一個，正如你們蒙召同有一個指望。一主，一信，一洗，一神，就是眾人的父，超乎眾人之上，貫乎眾人之中，也住在眾人之內。』（以弗所書 4:3-6）</p>
+</li>
+<li>
+<p><strong>禱告。</strong>與敬拜一樣，禱告的實質是自己（或大家一起）來到神的面前與神交流。在使用GenAI幫助我們寫下禱告的時候，切忌捨本逐末地追求漂亮的禱告詞句，因為神不看重最漂亮的詞句，而是看重我們的心靈，即便無言的禱告神也一樣聆聽，因為在我們還不會說話的時候，神就已經知道我們想說的了。『況且，我們的軟弱有聖靈幫助；我們本不曉得當怎樣禱告，只是聖靈親自用說不出來的嘆息替我們禱告』（羅馬書 8:26）</p>
+</li>
+</ol>
+<h2 id="dier-bufen-ketang-shizuo-huodong">第二部分：課堂實作活動</h2>
+<h3 id="keqian-gongke-taolun">課前功課討論</h3>
+<ul>
+<li>邀請幾位學員分享他們在設計查經問題時遇到的挑戰</li>
+<li>討論不同類型問題的優缺點和適用場景</li>
+<li>簡短回顧問題設計的基本原則和技巧</li>
+</ul>
+<h3 id="shizuo-huodong-wenti-ji-pinggu">實作活動：問題集評估</h3>
+<p>在本課的後半段，我們將進行一個特別的實作活動：</p>
+<ol>
+<li><strong>分組討論</strong>：學員將分為小組，對以下兩個問題集進行評估</li>
+<li><strong>評估標準</strong>：使用本課學習的原則來分析問題集的優缺點</li>
+<li><strong>改進建議</strong>：為每個問題集提出具體的改進建議</li>
+<li><strong>全班分享</strong>：各小組分享評估結果和改進建議</li>
+</ol>
+<p><strong>評估問題集：</strong></p>
+<p>以下是兩組針對約翰福音2:1-11段落的聖經學習問題集。請以觀察員的角色對它們進行評論。</p>
+<div class="expandable-cards">
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">1</span>
+<span class="expandable-card__title">問題集1</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p><strong>破冰題目：</strong> 你有因为身边的人做了某件特别的事情而印象很深刻，特别佩服TA的经历吗？对你有什么影响？</p>
+<p><strong>討論題目</strong></p>
+<ul>
+<li>问题一：这一段经文记载了什么事情？</li>
+<li>问题二：1 ３ 5 观察 耶稣母亲在宴席中扮演什么角色？</li>
+<li>问题三：３４耶稣的话想要表达什么？</li>
+<li>问题四：5 玛利亚是如何回应耶稣的回复的？</li>
+<li>问题五：6 观察题， 洁净的规矩， 两三桶水？</li>
+<li>问题六：7 8 用人是怎么做的？9 他们为什么要这么做？他们可能是怎么想的？</li>
+<li>问题七：10 11 神迹指什么，究竟神在哪？ 为什么门徒会信他？</li>
+<li>问题八：（对慕道友）如果你就是在场的门徒，你也会信吗？在今天的你读了这段经文会愿意相信耶稣吗？</li>
+<li>问题九：耶稣为什么要这样做？如果你是耶稣的话你会做一模一样的事情吗? 为什么不是直接在酒杯里变出酒来？</li>
+</ul>
+<p><strong>進一步思考題目</strong></p>
+<ul>
+<li>思考題一: 耶稣对玛利亚吩咐的回应对你有什么启示？</li>
+<li>思考題二: 玛利亚对耶稣回答的回应，以及用人对耶稣吩咐的回应对你有什么启示？</li>
+</ul>
+<p><strong>總結點</strong></p>
+<ul>
+<li>第一點: 只有完全顺服于神的人，才能经历并见证主奇妙的作为</li>
+<li>第二點: 不应该要求主立刻应允我们的祈求，因为祂有自己最美善的时间表。</li>
+</ul>
+</div>
+</div>
+
+<div class="expandable-card">
+<button type="button" class="expandable-card__header" aria-expanded="false">
+<span class="expandable-card__num">2</span>
+<span class="expandable-card__title">問題集2</span>
+<span class="expandable-card__action">展開</span>
+</button>
+<div class="expandable-card__body">
+<p><strong>破冰題目：</strong>在你生活中，有沒有經歷過某件普通的事情卻帶來意想不到的驚喜？那次經歷對你有怎樣的影響？</p>
+<p><strong>討論題目：</strong></p>
+<ul>
+<li>這個故事發生在哪裡？發生了什麼事件？</li>
+<li>經文中提到的主要人物是誰？</li>
+<li>婚宴中遇到了什麼問題？</li>
+<li>當耶穌的母親向他說話時，耶穌是如何回應的？</li>
+</ul>
+<p><strong>進一步思考題目</strong></p>
+<ul>
+<li>你覺得為什麼耶穌在第4節中以這樣的方式回應他的母親？他可能在暗示什麼關於他的使命或時間？</li>
+<li>潔淨用的水缸有什麼重要性？為什麼耶穌選擇這些特定的水缸來行神蹟？這可能說明他如何看待宗教傳統和儀式？水變為酒的神蹟是否象徵著更深層次的屬靈轉變？</li>
+<li>經文提到管宴席的並不知道酒從哪裡來，但舀水的僕人知道。這可能暗示了什麼關於神的工作方式？</li>
+<li>第11節提到耶穌的神蹟是"顯出他的榮耀來"。這說明了神蹟在耶穌事工中的作用是什麼？</li>
+<li>你如何看待瑪利亞在這個故事中的角色？你曾有過類似把需求或擔憂帶到神面前的經歷嗎？那次經歷如何？</li>
+<li>耶穌將水變為酒，把一個潛在的尷尬變成了美好的事物。你是否覺得在你生活中有些地方神也有能力帶來轉變？這可能是什麼樣子？</li>
+<li>瑪利亞對僕人說"他告訴你們什麼，你們就做什麼"，強調了順服的意義。今天，順服耶穌在你生活中是怎樣的表現？</li>
+<li>迦拿的神蹟展示了神的慷慨（在最後提供最好的酒）。這如何反映你對神在你生命中供應的看法？</li>
+</ul>
+<p><strong>總結點</strong></p>
+<p>這個故事講述了轉變和耶穌所提供的豐盛恩典。將水變為酒的第一個神蹟象徵著耶穌如何帶來新生命、喜樂以及在平凡時刻中的意外祝福。儘管他的"時刻尚未到"，這個小而個人的行動預示著他通過死而復活所成就的更大工作，不僅僅是將水變為酒，而是將我們從破碎轉變為完全。</p>
+</div>
+</div>
+
+</div>
+
+<p><strong>評估重點：</strong></p>
+<p>請使用本課學習的原則來評估這兩個問題集：</p>
+<p><strong>1. 基本考量評估：</strong></p>
+<ul>
+<li>哪些問題可以用「是」或「不是」簡單回答？這些問題是否過多？</li>
+<li>哪些問題可以直接從經文中找到答案？這些問題是否過多？</li>
+<li>哪些問題可能有含糊不清的地方，容易被誤解？</li>
+</ul>
+<p><strong>2. 問題設計原則評估：</strong></p>
+<ul>
+<li>破冰題目是否引導組員思考查經方向，還是只是為了有破冰題目而加？</li>
+<li>問題之間是否有連貫性和複雜度的層次，幫助大家逐步建立對經文的認識？</li>
+<li>問題是否從簡單開始，逐步深入到需要更多思考的題目？</li>
+<li>每個問題是否都有存在的意義，還是有些是為了濫竽充數？</li>
+</ul>
+<p><strong>3. 問題提示和清晰度評估：</strong></p>
+<ul>
+<li>哪些問題缺乏明確的提示（如「根據經文...」、「請思考...」等）？</li>
+<li>哪些「為什麼」類型的問題過於模糊，需要更仔細的表述？</li>
+<li>問題是否考慮到小組成員的背景知識水平？</li>
+</ul>
+<p><strong>4. 整體評估：</strong></p>
+<ul>
+<li>每個問題集的優點是什麼？</li>
+<li>每個問題集的缺點是什麼？</li>
+<li>你會如何改進每個問題集？</li>
+<li>你認為創建這些問題的人的查經經驗和水平如何？</li>
+</ul>
+<h3 id="genai-shizuo-huodong-wenti-shengcheng-yu-pipan-xing-pinggu">GenAI實作活動：問題生成與批判性評估</h3>
+<p><strong>活動目標：</strong> 學習如何恰當地使用GenAI輔助查經問題設計，並培養對AI生成內容的批判性思維。</p>
+<p>現在我們要進行一個實作活動，讓大家親自體驗如何使用GenAI來輔助查經問題設計。我們會分成兩組進行不同的任務。</p>
+<p><strong>A組（問題生成組）</strong>將使用ChatGPT、Claude、Gemini或DeepSeek等AI工具，針對約翰福音2:1-11段落請AI生成一套完整的查經問題集，包括破冰題目、討論題目、進一步思考題目和總結點。</p>
+<p><strong>B組（問題改進組）</strong>則使用AI工具來改進你們已經準備好的查經問題，可以請AI重新表述問題、增加問題提示、調整問題順序、或補充遺漏的問題。</p>
+<p>對於AI使用，我們建議使用這樣的提示詞：</p>
+<blockquote>
+<p>請為約翰福音2:1-11（迦拿婚宴神蹟）設計一套小組查經問題。要求：</p>
+<ol>
+<li>包含破冰題目、討論題目、進一步思考題目、總結點</li>
+<li>問題要有層次，從簡單到深入</li>
+<li>避免可以用「是/否」簡單回答的問題</li>
+<li>問題要引導組員思考，而非僅僅找答案</li>
+<li>適合中文小組使用</li>
+<li>考慮不同信仰背景的組員</li>
+</ol>
+</blockquote>
+<p>接下來，我們要對AI生成的內容進行批判性評估。請從以下幾個角度來檢視：</p>
+<p><strong>內容準確性方面</strong>，AI生成的問題是否基於正確的經文理解？是否有神學上的偏差或錯誤？問題是否與經文內容相符？</p>
+<p><strong>問題設計質量方面</strong>，問題是否符合本課學習的設計原則？是否有過多可以用「是/否」回答的問題？問題之間是否有邏輯層次？破冰題目是否真正引導思考方向？</p>
+<p><strong>實用性評估方面</strong>，問題是否適合你們小組的實際情況？是否考慮到組員的背景知識水平？問題表述是否清晰，不易誤解？</p>
+<p>基於你們的評估結果，現在要對AI生成的問題進行修改：重新表述模糊的問題，增加必要的問題提示，調整問題順序和層次，刪除不適合的問題，補充遺漏的重要問題。</p>
+<p>然後，將修改後的問題再次提交給AI，請其進一步優化。要求AI解釋每個問題的設計意圖，並若有必要，請AI提供替代的問題表述方式。</p>
+<p>最後，我們來分享和討論。A組展示AI原始生成的問題集，分享你們的評估發現和改進過程，討論AI的優點和局限性。B組展示原始問題和AI改進後的版本，分享改進過程中的挑戰和收穫，討論AI在問題優化中的作用。</p>
+<p><strong>討論問題：</strong></p>
+<ul>
+<li>你認為AI在查經問題設計中最大的優勢是什麼？</li>
+<li>AI生成內容的主要問題和局限性是什麼？</li>
+<li>如何確保AI輔助下的問題設計仍然保持個人思考和聖靈帶領？</li>
+<li>在實際查經準備中，你會如何使用AI工具？</li>
+</ul>
+<h3 id="fansi-taolun">反思討論</h3>
+<ul>
+<li>你認為設計查經問題時最重要的原則是什麼？</li>
+<li>在今天的評估活動中，你學到了什麼新的問題設計技巧？</li>
+<li>你認為GenAI在查經問題設計中可以發揮什麼作用？有哪些限制？</li>
+<li>如何在使用AI工具的同時保持對聖經的個人思考和聖靈帶領？</li>
+</ul>
+<h2 id="kehou-gongke">課後功課</h2>
+<div class="homework-section">
+
+<p class="homework-section__intro">第三堂課的功課如下：</p>
+
+<div class="homework-list">
+
+<div class="homework-item">
+<span class="homework-item__num">1</span>
+<div class="homework-item__content">
+<p>請閱讀<a href="../../tools/ibs-argumentation-notes">【論說文體的歸納法查經】</a>。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">2</span>
+<div class="homework-item__content">
+<p>預備查經【以弗所書2:1-10】：</p>
+<ul>
+<li><strong>主領和觀察員</strong>：設計查經問題，並將問題整理到共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+<li><strong>其他人</strong>：完成查經筆記，並將筆記整理到另一個共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+</ul>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">3</span>
+<div class="homework-item__content">
+<p><strong>史特朗號碼詞彙研究</strong>：</p>
+<ul>
+<li>請先閱讀<a href="../lesson-4-argumentation">第四課講義</a>第一部分『字詞研究的工具：聖經原文的史特朗號碼』章節，了解史特朗號碼的使用方法和解經原則。</li>
+<li>請選擇以弗所書2:1-10中的三個關鍵詞彙（建議：『死』（第1節）、『活』（第1節）、『恩典』（第5節）），查找其史特朗號碼，並記錄每個詞在經文中的原文含義。</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+</div>
+</article>
+                        </div>
+                        <div class="hidden text-sm xl:block">
+                            <div class="sticky top-20 -mt-6 pt-4">
+    <div class="no-scrollbar h-full overflow-auto pb-10">
+        <div class="space-y-2">
+            <p class="font-medium">On This Page</p>
+            <ul class="m-0 list-none">
+                
+                
+                
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_2">目錄</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#xuexi-mubiao">學習目標</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#kecheng-shijian-anpai">課程時間安排</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#diyi-bufen-keqian-yudu-neirong">第一部分：課前預讀內容</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#ti-wenti-de-zhongyao-xing">提問題的重要性</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#you-fangxiang-de-chajing">有方向的查經</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#ti-wenti-de-yuanze">提問題的原則</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#yao-buyao-you-pobing-ti">要不要有破冰題？</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#timu-yao-ruhe-wen">題目要如何問？</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#timu-yao-ruhe-bianpai">題目要如何編排？</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#you-shenme-yang-de-gongju-keyi-fuzhu-sheji-qingchu-yidong-de-taolun-timu-ne">有什麼樣的工具可以輔助設計清楚易懂的討論題目呢？</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#ruhe-sikao-zai-chajing-zhong-shiyong-genai">如何思考在查經中使用GenAI？</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#guanyu-genai-shiyong-yuanze-de-tantao">關於GenAI使用原則的探討</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#dier-bufen-ketang-shizuo-huodong">第二部分：課堂實作活動</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#keqian-gongke-taolun">課前功課討論</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#shizuo-huodong-wenti-ji-pinggu">實作活動：問題集評估</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#genai-shizuo-huodong-wenti-shengcheng-yu-pipan-xing-pinggu">GenAI實作活動：問題生成與批判性評估</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#fansi-taolun">反思討論</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#kehou-gongke">課後功課</a>
+                    
+                </li>
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <dialog id="bottom-sidebar" data-closing="0"
+    class="backdrop:bg-black backdrop:opacity-80 backdrop:transition-all backdrop:duration-500 text-foreground"
+    onclick="onBottomSidebarDialogClick(event)">
+    <div
+        class="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background max-h-[60svh] p-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"></div>
+        <div class="overflow-auto p-6 space-y-3">
+            
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../.." class="text-base shrink-0">
+    主頁
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">課堂講義 </h4>
+                    
+                    <a href="../lesson-1-foundations/" class="text-base shrink-0">
+    課堂（一）查經的意義和裝備
+</a>
+                    
+                    <a href="../lesson-2-narrative/" class="text-base shrink-0">
+    課堂（二）分析敘述文
+</a>
+                    
+                    <a href="./" class="text-base shrink-0">
+    課堂（三）提問題的技術
+</a>
+                    
+                    <a href="../lesson-4-argumentation/" class="text-base shrink-0">
+    課堂（四）分析論說文
+</a>
+                    
+                    <a href="../lesson-5-situations/" class="text-base shrink-0">
+    課堂（五）應對臨場狀況
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">工具 </h4>
+                    
+                    <a href="../../tools/ibs-argumentation-notes/" class="text-base shrink-0">
+    論說⽂體的歸納法查經
+</a>
+                    
+                    <a href="../../tools/ibs-narrative-notes/" class="text-base shrink-0">
+    敘述⽂體的歸納法查經
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">範例 </h4>
+                    
+                    <a href="../../examples/luke-study-notes/" class="text-base shrink-0">
+    路加福音筆記
+</a>
+                    
+                    <a href="../../examples/luke-literary-devices/" class="text-base shrink-0">
+    路加福音中的文學手法
+</a>
+                    
+                    <a href="../../examples/romans-study-notes/" class="text-base shrink-0">
+    羅馬書查經筆記範例
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">資源 </h4>
+                    
+                    <a href="../../resources/bible-study-notes/" class="text-base shrink-0">
+    查經筆記指南
+</a>
+                    
+                    <a href="../../resources/virtual-study/" class="text-base shrink-0">
+    線上查經注意事項
+</a>
+                    
+                    <a href="../../resources/questions/" class="text-base shrink-0">
+    提問題的模板
+</a>
+                    
+                    <a href="../../resources/theme/" class="text-base shrink-0">
+    設計查經主題
+</a>
+                    
+                    <a href="../../resources/books/" class="text-base shrink-0">
+    聖經參考書
+</a>
+                    
+                    <a href="../../resources/recordings/" class="text-base shrink-0">
+    課堂錄音
+</a>
+                    
+                    <a href="../../resources/theology-equipments/" class="text-base shrink-0">
+    更多神學裝備
+</a>
+                    
+                    <a href="../../resources/genai/" class="text-base shrink-0">
+    對於生成式AI的反思
+</a>
+                    
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</dialog>
+        </div>
+    </div> 
+    
+    <script src="../../javascripts/expandable-cards.js"></script>
+     
+    
+    <script src="../../javascripts/chinese-toggle.js"></script>
+     
+    
+    <script src="../../search/main.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+    <script src="../../js/copy-button.js"></script>
+</body>
+
+</html>

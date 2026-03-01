@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // for search plugin notably
+        const base_url = "https://cbcgb-com.github.io/sgbs-training/";
+    </script>
+    <script>
+        const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        darkTheme.onchange = (e) => {
+            if (e.matches) {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove("dark")
+                localStorage.removeItem("theme")
+            }
+        };
+
+        // On page load. Priotiry to lcaolStorage
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+        } else if (darkTheme.matches) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>線上查經注意事項 - 小組查經帶領訓練</title>
+    
+
+
+<title>線上查經注意事項</title>
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://cbcgb-com.github.io/sgbs-training/resources/virtual-study/">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+
+<meta property="og:title" content="線上查經注意事項">
+
+
+
+
+
+<meta property="og:url" content="https://cbcgb-com.github.io/sgbs-training/resources/virtual-study/">
+
+
+
+
+
+
+<!-- Twitter Card -->
+
+<meta name="twitter:title" content="線上查經注意事項">
+
+
+
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+
+    <link rel="icon" href="../../img/favicon.ico">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/geist.css" rel="stylesheet">
+    
+    <link href="../../css/pygments/dracula.css" rel="stylesheet">
+    
+    <link href="../../stylesheets/extra.css" rel="stylesheet">
+    <link href="../../stylesheets/transition.css" rel="stylesheet">
+
+    <script src="../../js/callbacks.js"></script>
+
+    
+
+    
+
+    
+
+</head>
+
+<body class="w-screen overflow-x-hidden bg-foreground md:bg-background text-foreground scroll-smooth m-0 p-0">
+    <div id="inner-body"
+        class="min-h-screen bg-background origin-[top_center_0px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <header
+    class="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="w-full mx-auto 3xl:max-w-8xl">
+        <div
+            class="xl:px-6 h-14 w-full max-w-8xl mx-auto px-4 border-x border-grid flex flex-row justify-between items-center">
+            <div class="mr-4 hidden md:flex">
+                <a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+                    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+    class="h-6 w-6">
+    <rect width="256" height="256" fill="none"></rect>
+    <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+    <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+</svg>
+
+                    <h1 class="hidden lg:inline-block font-bold text-md">
+                        
+                        小組查經帶領訓練
+                        
+                    </h1>
+                </a>
+            </div>
+            <button
+                class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground py-2 -ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R15u6ja:"
+                data-state="closed" onclick="onMobileMenuButtonClick(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="!size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+                </svg>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
+                <button onclick="onSearchBarClick(event)"
+    class="cursor-pointer inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64">
+    <span class="hidden lg:inline-flex">Search documentation...</span>
+    <span class="inline-flex lg:hidden">Search...</span>
+    <kbd
+        class="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <span class="text-xs">⌘</span>K
+    </kbd>
+</button>
+<dialog id="search-dialog" onclick="onSearchDialogClick(event)"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background rounded-lg shadow-lg border overflow-hidden p-0">
+    <div class="w-lg gap-4">
+        <div class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
+            <div class="w-full flex items-center border-b px-3" cmdk-input-wrapper="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="mr-2 h-4 w-4 shrink-0 opacity-50">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <!-- <script>
+                    let debounceTimer;
+                    const onInputHandler = function (event) {
+                        const query = event.target.value;
+                        clearTimeout(debounceTimer);
+                        debounceTimer = setTimeout(() => {
+                            if (searchWorker && (query.length > 2)) {
+                                console.log(`Posting message { "query": "${query}" }`)
+                                // https://lunrjs.com/guides/searching.html
+                                // we should append a wilcard and also a boost on exact term
+                                const lunrQuery = `${query}^10 ${query}* ${query}~1`;
+                                searchWorker.postMessage({ "query": lunrQuery });
+                            } else if (query.length > 2) {
+                                console.warn("searchWorker is not defined")
+                            } else {
+                                const results = document.getElementById("mkdocs-search-results");
+                                if (results) {
+                                    while (results.firstChild) {
+                                        results.removeChild(results.firstChild);
+                                    }
+                                }
+                            }
+                        }, 300);
+                    };
+                </script> -->
+                <input
+                    class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false"
+                    aria-autocomplete="list" role="combobox" aria-expanded="true" type="text" value=""
+                    oninput="onInputHandler(event)">
+            </div>
+        </div>
+        <div id="mkdocs-search-results" class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+            <!-- search results go there -->
+        </div>
+    </div>
+</dialog>
+<script>
+    document.removeEventListener("keydown", searchShortcutHandler);
+    document.addEventListener("keydown", searchShortcutHandler);
+</script>
+                <div class="flex items-center gap-0.5">
+                    
+                    <button
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 w-8 px-0"><a
+                            target="_blank" rel="noreferrer" href="https://github.com/cbcgb-com/sgbs-training">
+                            
+                            <svg viewBox="0 0 438.549 438.549" class="h-4 w-4">
+    <path fill="currentColor"
+        d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z">
+    </path>
+</svg>
+                            <span class="sr-only">GitHub</span>
+                            
+                        </a>
+                    </button>
+                    
+                    <button
+                        class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground py-2 group/toggle h-8 w-8 px-0"
+                        onclick="onThemeSwitch(event)">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 dark:hidden not-dark:block">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+</svg>
+                        
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 not-dark:hidden dark:block">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+                        
+                        <span class="sr-only">Toggle theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="border-grid flex flex-1 flex-col">
+            <div class="w-full mx-auto 3xl:max-w-8xl">
+                <div
+                    class="px-4 w-full max-w-8xl mx-auto xl:px-6 flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside
+                        class="border-grid fixed top-14 z-30 hidden h-[calc(100vh-3.55rem)] w-full shrink-0 border-r md:sticky md:block">
+                        <div
+    class="no-scrollbar [&::-webkit-scrollbar]:hidden h-full overflow-auto py-6 pr-4 lg:py-8 flex flex-col gap-[.125rem]">
+    
+    
+    
+
+    
+    
+    <a href="../.." 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    主頁
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+
+
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">課堂講義</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../class-notes/lesson-1-foundations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（一）查經的意義和裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../class-notes/lesson-2-narrative/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（二）分析敘述文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../class-notes/lesson-3-questioning/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（三）提問題的技術
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../class-notes/lesson-4-argumentation/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（四）分析論說文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../class-notes/lesson-5-situations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（五）應對臨場狀況
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">工具</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../tools/ibs-argumentation-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    論說⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../tools/ibs-narrative-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    敘述⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">範例</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../examples/luke-literary-devices/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音中的文學手法
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../examples/luke-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音筆記
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../examples/romans-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    羅馬書查經筆記範例
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">資源</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../bible-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    查經筆記指南
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../books/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    聖經參考書
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../genai/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    對於生成式AI的反思
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../questions/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    提問題的模板
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../recordings/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂錄音
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../theme/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    設計查經主題
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../theology-equipments/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    更多神學裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="./" data-active 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    線上查經注意事項
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+</div>
+                    </aside>
+                    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+                        <div class="mx-auto w-full min-w-0 xl:max-w-2xl">
+                            <article class="typography w-full">
+    
+    <div class="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
+    
+
+
+<span class="truncate">資源</span>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-3.5 w-3.5">
+    <path d="m9 18 6-6-6-6"></path>
+</svg>
+<div class="text-foreground">線上查經注意事項</div>
+
+</div>
+    
+    
+    
+    <h1 id="_1">線上查經</h1>
+<p>因為特殊情況，有可能會需要在線上查經。</p>
+<p>線上查經並不是代替in-person查經的長期方法，
+它應當被看為一個為特殊時期而使用的工具。
+在這裡，我們要分享一些線上查經需要注意的事項。</p>
+<h2 id="_2">面對面查經的假設</h2>
+<p>面對面查經的時候，不免會有些我們當作是理所當然的事情：</p>
+<ul>
+<li>你會比較容易看到組員們的非肢體語言，
+從而能知道有沒有人跟不上、有疑惑、想發言、有沒有分心等等。</li>
+<li>與線上查經比起來，氣氛會比較容易带起來，
+特別是面對稍微尷尬的時候。</li>
+<li>可能會比較容易找到不被外界影響的空間來查經。</li>
+<li>言語上的溝通會很順暢，不會斷線。</li>
+<li>因為溝通比較順暢，可以概括的內容會比較多。</li>
+<li>稍微😊容易一起享用零食（如果有人帶過來的話）。</li>
+</ul>
+<h2 id="_3">線上查經的一些建議</h2>
+<p>線上查經會打破不少面對面查經我們當作是理所當然的假設，
+從而帶來一些挑戰。
+這些挑戰大多數是溝通上的挑戰。
+當我們線上查經的時候，我們可以做什麼來克服這些挑戰呢？</p>
+<h3 id="_4">查經前的預備</h3>
+<p><strong>帶領者</strong>可以做的預備如下：</p>
+<ol>
+<li>靜心禱告，並且確保你作為帶領者對經文的預備是盡量完備的。
+這樣當你面對突發狀況時，會比較平穩地去面對。</li>
+<li>提前確認好線上會議的工具是什麼（Zoom，Google Meet，等等），
+並且確保線上會議工具能支持你想像中的流程。</li>
+<li>提前跟小組溝通好主要和備用線上查經工具有哪些。</li>
+<li>提前與另一位同工商量好，由這位同工負責確保大家都在線，
+並且讓他/她負責與掉線的同學們溝通。</li>
+<li>內容預備要適當；切記線上查經的速度會比較慢，所以能概括的內容會比較少。</li>
+</ol>
+<p><strong>所有人</strong>（包括帶領者在內）可以預備的如下：</p>
+<ol>
+<li>找一個安靜且沒有噪音的地方。你的背景噪音會直接影響查經的氛圍。</li>
+<li>確保你有戴耳機；有的手機和電腦會有迴響。</li>
+<li>假如找不到安靜的地方，
+那麼進到線上會議的軟件時<strong>一定要把自己調成靜音模式（mute yourself！）</strong>。</li>
+<li>測試線上會議（Google Meet，Zoom，Discord等等）工具是否可用，
+有沒有容易造成連接不上的問題（e.g., 不能使用學校郵箱登入）</li>
+<li>至少要準時上線，因為有可能會錯過一些聚會時logistics的信息。</li>
+</ol>
+<h3 id="_5">查經中可以注意的事情</h3>
+<p><strong>帶領者</strong>開始時：</p>
+<ol>
+<li>提醒大家備用溝通方式，並且如果掉線了要聯繫誰。</li>
+<li>如果有組員第一次使用線上會議軟件的話，
+一定要跟他們過一遍線上會議軟件的功能。</li>
+<li>借用破冰題目，或者借用瞭解大家彼此的狀況，
+來營造比較友善的氣氛。</li>
+<li>可以考慮使用Google doc等工具，讓大家一起完成一份內容。
+這樣可以提高線上查經的互動，並且增加方向感。</li>
+<li>考慮一下把大家分成4-6個人的小小組，這樣比較容易討論起來。
+（前提是軟件支持這樣的功能，或者你知道怎麼創意使用軟件。）</li>
+<li>若要輪流讀經，可以用生日月份決定順序。</li>
+<li>有必要的話，溫柔地點名來推進查經進度。</li>
+<li>不需要避免困難的問題，
+鼓勵大家在發言機制建立好的前提下充分討論，
+避免以後大家會無意識地收回自己的問題。</li>
+</ol>
+<p><strong>所有人</strong>可以注意的：</p>
+<ol>
+<li>不免會有同時說話的時候，互相理解，彼此謙讓。</li>
+<li>幫助帶領者記住一些小細節，比方說輪流讀經的順序，或者如何有秩序地提問題。</li>
+<li>既然是線上查經，如果你願意針對比較難的問題查資料的話，
+跟帶領者說一下，並且記得跟大家匯報你所查到的。
+（記得要選擇reputable以及scholarly sources！）</li>
+<li>充分利用chat頻道，貼上一些網絡資源，
+例如：視頻，音頻，webpage link</li>
+<li>如果你的流量允許的話，盡量打開視頻，
+因這樣可以更容易跟大家有肢體語言的溝通
+（比如說，要問問題的時候可以舉手，而大家可以看得到）。</li>
+<li>如果有的選項可以讓你同時看到大家的視頻的話，
+應當使用這個功能，這樣可以看到大家的反應。</li>
+</ol>
+<h3 id="_6">查經結束時</h3>
+<p>在查經結束時：</p>
+<ol>
+<li>記得要提醒大家注意自己的安全。</li>
+<li>如果時間允許，跟大家徵詢改進查經的建議。</li>
+<li>開放查經結束之後有短短聊天的時間，目的一樣是幫助大家多交流。</li>
+<li>可以分配組員們彼此『認領』代禱事項，在周間跟進，
+促進組員們之間的交流，因為不見面的時候特別需要更多的交流和關懷。</li>
+</ol>
+<h2 id="_7">用什麼線上會議軟件呢？</h2>
+<div class="tabbed-set" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Jitsi Meet</label><div class="tabbed-content">
+<p>Jitsi Meet is an <a href="https://github.com/jitsi">open source</a>,
+end-to-end encrypted,
+and completely free service at <a href="http://meet.jit.si">https://meet.jit.si</a>.
+It does not require a user account,
+it is cross-platform,
+and can be used with no special software installed,
+as all that is required is a web browser.
+Meeting rooms are accessible only by those who have the URL,
+and a password can be optionally added.
+This is suitable for those who wish to connect in fellowship
+with those who trapped behind firewalls.</p>
+<p>If you are technically inclined,
+it is also possible to set up your own Jitsi Meet server.</p>
+<p>One limitation of Jitsi is that its design limits how many concurrent participants can be present.
+Load tests show that on a single compute node with 4 CPUs,
+it can handle 3-5 individuals.
+Jitsi's public servers can handle about 20.</p>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Google Meet</label><div class="tabbed-content">
+<p>Google Meet是免費的，並且沒有時限。
+此外，若要分小小組的話，你可以任意創建多個Meet空間。
+另外，它不需要大家特意裝任何軟件，就可以使用。</p>
+<p>一個Meet空間能容納100人。
+對於小組而言，這應該足夠。
+然而，我的個人經歷是Meet的語音和視頻延遲問題比Zoom嚴重很多，
+這樣會直接影響查經的氣氛。</p>
+<p>然而，如果有大陸的弟兄姊妹們想參與的話，
+Google的服務會成為一個障礙。</p>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Discord</label><div class="tabbed-content">
+<p>Though Discord was originally for gamers,
+it quickly evolved into a useful tool for general purpose communication.
+It has a focus on real-time audio communication,
+though its video communication tooling is also quite usable.</p>
+<p>We once considered Discord as a backup to WeChat
+in the event that WeChat was banned in the United States.</p>
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">WeChat/微信</label><div class="tabbed-content">
+<p>微信的视频功能可以作为备用工具。
+它可容纳10个人；如果中途Zoom room被停掉的话，
+可以快速重建一个微信群恢复查经。</p>
+</div>
+<input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><label for="__tabbed_1_5">Zoom</label><div class="tabbed-content">
+<ul>
+<li>視頻與語音延遲問題比起其他軟件來說不嚴重。（每個軟件多少都會有。）</li>
+<li>它具備Breakout Room功能，可以把大家分成小小組進行討論。（需要在自己帳戶上調設置）</li>
+<li>除了用軟件連接以外，也可以打電話連接；這樣它就具備備用聯繫方式。</li>
+</ul>
+<p>Zoom最大的限制就是免費版本的會議時限是40分鐘。
+最便宜的服務是每個月$14.00（三杯latte☕️的錢）。</p>
+<p>如果可以的話，建議用自己機構的帳戶（小羊組在2020冠狀病毒瘟疫中使用了哈佛大學的）。</p>
+<p>不過基於Zoom對於免費階層隱私保護不全面
+（免費階層似乎沒有全程保密，end-to-end encryption），
+故此如果你的機構/學校沒有提供的話，
+建議不使用。</p>
+</div>
+</div>
+<hr />
+<p>很关键的一点是带领者以及同工们要很熟悉所选择的工具。
+这样，科技就不会成为查经的障碍。</p>
+<h2 id="_8">感謝</h2>
+<p>感謝2020春季的同學們在一段非常時期一起線上上課時所提供上述的建議。</p>
+<ul>
+<li>劉萱茗</li>
+<li>俞潤昕</li>
+<li>陳緒捷</li>
+<li>李祈</li>
+<li>謝予璇</li>
+<li>張先潔</li>
+<li>劉宸瑋</li>
+<li>楊子涵</li>
+<li>羅璇</li>
+<li>李佳音</li>
+<li>李季欣</li>
+<li>林意</li>
+</ul>
+</article>
+                        </div>
+                        <div class="hidden text-sm xl:block">
+                            <div class="sticky top-20 -mt-6 pt-4">
+    <div class="no-scrollbar h-full overflow-auto pb-10">
+        <div class="space-y-2">
+            <p class="font-medium">On This Page</p>
+            <ul class="m-0 list-none">
+                
+                
+                
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_2">面對面查經的假設</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_3">線上查經的一些建議</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#_4">查經前的預備</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#_5">查經中可以注意的事情</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#_6">查經結束時</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_7">用什麼線上會議軟件呢？</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_8">感謝</a>
+                    
+                </li>
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <dialog id="bottom-sidebar" data-closing="0"
+    class="backdrop:bg-black backdrop:opacity-80 backdrop:transition-all backdrop:duration-500 text-foreground"
+    onclick="onBottomSidebarDialogClick(event)">
+    <div
+        class="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background max-h-[60svh] p-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"></div>
+        <div class="overflow-auto p-6 space-y-3">
+            
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../.." class="text-base shrink-0">
+    主頁
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">課堂講義 </h4>
+                    
+                    <a href="../../class-notes/lesson-1-foundations/" class="text-base shrink-0">
+    課堂（一）查經的意義和裝備
+</a>
+                    
+                    <a href="../../class-notes/lesson-2-narrative/" class="text-base shrink-0">
+    課堂（二）分析敘述文
+</a>
+                    
+                    <a href="../../class-notes/lesson-3-questioning/" class="text-base shrink-0">
+    課堂（三）提問題的技術
+</a>
+                    
+                    <a href="../../class-notes/lesson-4-argumentation/" class="text-base shrink-0">
+    課堂（四）分析論說文
+</a>
+                    
+                    <a href="../../class-notes/lesson-5-situations/" class="text-base shrink-0">
+    課堂（五）應對臨場狀況
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">工具 </h4>
+                    
+                    <a href="../../tools/ibs-argumentation-notes/" class="text-base shrink-0">
+    論說⽂體的歸納法查經
+</a>
+                    
+                    <a href="../../tools/ibs-narrative-notes/" class="text-base shrink-0">
+    敘述⽂體的歸納法查經
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">範例 </h4>
+                    
+                    <a href="../../examples/luke-study-notes/" class="text-base shrink-0">
+    路加福音筆記
+</a>
+                    
+                    <a href="../../examples/luke-literary-devices/" class="text-base shrink-0">
+    路加福音中的文學手法
+</a>
+                    
+                    <a href="../../examples/romans-study-notes/" class="text-base shrink-0">
+    羅馬書查經筆記範例
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">資源 </h4>
+                    
+                    <a href="../bible-study-notes/" class="text-base shrink-0">
+    查經筆記指南
+</a>
+                    
+                    <a href="./" class="text-base shrink-0">
+    線上查經注意事項
+</a>
+                    
+                    <a href="../questions/" class="text-base shrink-0">
+    提問題的模板
+</a>
+                    
+                    <a href="../theme/" class="text-base shrink-0">
+    設計查經主題
+</a>
+                    
+                    <a href="../books/" class="text-base shrink-0">
+    聖經參考書
+</a>
+                    
+                    <a href="../recordings/" class="text-base shrink-0">
+    課堂錄音
+</a>
+                    
+                    <a href="../theology-equipments/" class="text-base shrink-0">
+    更多神學裝備
+</a>
+                    
+                    <a href="../genai/" class="text-base shrink-0">
+    對於生成式AI的反思
+</a>
+                    
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</dialog>
+        </div>
+    </div> 
+    
+    <script src="../../javascripts/expandable-cards.js"></script>
+     
+    
+    <script src="../../javascripts/chinese-toggle.js"></script>
+     
+    
+    <script src="../../search/main.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+    <script src="../../js/copy-button.js"></script>
+</body>
+
+</html>

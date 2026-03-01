@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // for search plugin notably
+        const base_url = "https://cbcgb-com.github.io/sgbs-training/";
+    </script>
+    <script>
+        const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        darkTheme.onchange = (e) => {
+            if (e.matches) {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove("dark")
+                localStorage.removeItem("theme")
+            }
+        };
+
+        // On page load. Priotiry to lcaolStorage
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+        } else if (darkTheme.matches) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>課堂（四）分析論說文 - 小組查經帶領訓練</title>
+    
+
+
+<title>課堂（四）分析論說文</title>
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-4-argumentation/">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+
+<meta property="og:title" content="課堂（四）分析論說文">
+
+
+
+
+
+<meta property="og:url" content="https://cbcgb-com.github.io/sgbs-training/class-notes/lesson-4-argumentation/">
+
+
+
+
+
+
+<!-- Twitter Card -->
+
+<meta name="twitter:title" content="課堂（四）分析論說文">
+
+
+
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+
+    <link rel="icon" href="../../img/favicon.ico">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/geist.css" rel="stylesheet">
+    
+    <link href="../../css/pygments/dracula.css" rel="stylesheet">
+    
+    <link href="../../stylesheets/extra.css" rel="stylesheet">
+    <link href="../../stylesheets/transition.css" rel="stylesheet">
+
+    <script src="../../js/callbacks.js"></script>
+
+    
+
+    
+
+    
+
+</head>
+
+<body class="w-screen overflow-x-hidden bg-foreground md:bg-background text-foreground scroll-smooth m-0 p-0">
+    <div id="inner-body"
+        class="min-h-screen bg-background origin-[top_center_0px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <header
+    class="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="w-full mx-auto 3xl:max-w-8xl">
+        <div
+            class="xl:px-6 h-14 w-full max-w-8xl mx-auto px-4 border-x border-grid flex flex-row justify-between items-center">
+            <div class="mr-4 hidden md:flex">
+                <a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+                    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+    class="h-6 w-6">
+    <rect width="256" height="256" fill="none"></rect>
+    <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+    <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+</svg>
+
+                    <h1 class="hidden lg:inline-block font-bold text-md">
+                        
+                        小組查經帶領訓練
+                        
+                    </h1>
+                </a>
+            </div>
+            <button
+                class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground py-2 -ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R15u6ja:"
+                data-state="closed" onclick="onMobileMenuButtonClick(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="!size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+                </svg>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
+                <button onclick="onSearchBarClick(event)"
+    class="cursor-pointer inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64">
+    <span class="hidden lg:inline-flex">Search documentation...</span>
+    <span class="inline-flex lg:hidden">Search...</span>
+    <kbd
+        class="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <span class="text-xs">⌘</span>K
+    </kbd>
+</button>
+<dialog id="search-dialog" onclick="onSearchDialogClick(event)"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background rounded-lg shadow-lg border overflow-hidden p-0">
+    <div class="w-lg gap-4">
+        <div class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
+            <div class="w-full flex items-center border-b px-3" cmdk-input-wrapper="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="mr-2 h-4 w-4 shrink-0 opacity-50">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <!-- <script>
+                    let debounceTimer;
+                    const onInputHandler = function (event) {
+                        const query = event.target.value;
+                        clearTimeout(debounceTimer);
+                        debounceTimer = setTimeout(() => {
+                            if (searchWorker && (query.length > 2)) {
+                                console.log(`Posting message { "query": "${query}" }`)
+                                // https://lunrjs.com/guides/searching.html
+                                // we should append a wilcard and also a boost on exact term
+                                const lunrQuery = `${query}^10 ${query}* ${query}~1`;
+                                searchWorker.postMessage({ "query": lunrQuery });
+                            } else if (query.length > 2) {
+                                console.warn("searchWorker is not defined")
+                            } else {
+                                const results = document.getElementById("mkdocs-search-results");
+                                if (results) {
+                                    while (results.firstChild) {
+                                        results.removeChild(results.firstChild);
+                                    }
+                                }
+                            }
+                        }, 300);
+                    };
+                </script> -->
+                <input
+                    class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false"
+                    aria-autocomplete="list" role="combobox" aria-expanded="true" type="text" value=""
+                    oninput="onInputHandler(event)">
+            </div>
+        </div>
+        <div id="mkdocs-search-results" class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+            <!-- search results go there -->
+        </div>
+    </div>
+</dialog>
+<script>
+    document.removeEventListener("keydown", searchShortcutHandler);
+    document.addEventListener("keydown", searchShortcutHandler);
+</script>
+                <div class="flex items-center gap-0.5">
+                    
+                    <button
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 w-8 px-0"><a
+                            target="_blank" rel="noreferrer" href="https://github.com/cbcgb-com/sgbs-training">
+                            
+                            <svg viewBox="0 0 438.549 438.549" class="h-4 w-4">
+    <path fill="currentColor"
+        d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z">
+    </path>
+</svg>
+                            <span class="sr-only">GitHub</span>
+                            
+                        </a>
+                    </button>
+                    
+                    <button
+                        class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground py-2 group/toggle h-8 w-8 px-0"
+                        onclick="onThemeSwitch(event)">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 dark:hidden not-dark:block">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+</svg>
+                        
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 not-dark:hidden dark:block">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+                        
+                        <span class="sr-only">Toggle theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="border-grid flex flex-1 flex-col">
+            <div class="w-full mx-auto 3xl:max-w-8xl">
+                <div
+                    class="px-4 w-full max-w-8xl mx-auto xl:px-6 flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside
+                        class="border-grid fixed top-14 z-30 hidden h-[calc(100vh-3.55rem)] w-full shrink-0 border-r md:sticky md:block">
+                        <div
+    class="no-scrollbar [&::-webkit-scrollbar]:hidden h-full overflow-auto py-6 pr-4 lg:py-8 flex flex-col gap-[.125rem]">
+    
+    
+    
+
+    
+    
+    <a href="../.." 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    主頁
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+
+
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">課堂講義</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../lesson-1-foundations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（一）查經的意義和裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../lesson-2-narrative/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（二）分析敘述文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../lesson-3-questioning/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（三）提問題的技術
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="./" data-active 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（四）分析論說文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../lesson-5-situations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（五）應對臨場狀況
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">工具</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../tools/ibs-argumentation-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    論說⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../tools/ibs-narrative-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    敘述⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">範例</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../examples/luke-literary-devices/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音中的文學手法
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../examples/luke-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音筆記
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../examples/romans-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    羅馬書查經筆記範例
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">資源</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../resources/bible-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    查經筆記指南
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/books/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    聖經參考書
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/genai/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    對於生成式AI的反思
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/questions/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    提問題的模板
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/recordings/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂錄音
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/theme/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    設計查經主題
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/theology-equipments/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    更多神學裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../resources/virtual-study/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    線上查經注意事項
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+</div>
+                    </aside>
+                    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+                        <div class="mx-auto w-full min-w-0 xl:max-w-2xl">
+                            <article class="typography w-full">
+    
+    <div class="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
+    
+
+
+<span class="truncate">課堂講義</span>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-3.5 w-3.5">
+    <path d="m9 18 6-6-6-6"></path>
+</svg>
+<div class="text-foreground">課堂（四）分析論說文</div>
+
+</div>
+    
+    
+    
+    <h1 id="_1">論說文</h1>
+<h2 id="_2">目錄</h2>
+<ul>
+<li><a href="#xuexi-mubiao">學習目標</a></li>
+<li><a href="#kecheng-shijian-anpai">課程時間安排</a></li>
+<li><a href="#diyi-bufen-keqian-yudu-neirong">第一部分：課前預讀內容</a><ul>
+<li><a href="#fenxi-lunshuo-wen">分析論說文</a></li>
+<li><a href="#lunshuo-wen-he-xushu-wen-de-chayi">論說文和敘述文的差異</a></li>
+<li><a href="#guina-fa-si-buzhou-zai-lunshuo-wen-de-yingyong">歸納法四步驟在論說文的應用</a></li>
+<li><a href="#guancha-pianzhang-jiegou-de-gongju-yingwen-wenfa-fenxi">觀察篇章結構的工具：英文文法分析</a></li>
+<li><a href="#ruhe-faxian-lunshuo-wen-zhong-de-luoji-guanxi">如何發現論說文中的邏輯關係</a></li>
+<li><a href="#zici-yanjiu-de-gongju-shengjing-yuanwen-de-shitelang-haoma-strongs-exhaustive-concordance">字詞研究的工具：聖經原文的史特朗號碼（Strong's Exhaustive Concordance）</a></li>
+<li><a href="#lunshuo-wen-de-wenti-sheji">論說文的問題設計</a></li>
+</ul>
+</li>
+<li><a href="#dier-bufen-ketang-shizuo-huodong">第二部分：課堂實作活動</a><ul>
+<li><a href="#keqian-gongke-taolun">課前功課討論</a></li>
+<li><a href="#shizuo-huodong">實作活動</a></li>
+<li><a href="#fansi-taolun">反思討論</a></li>
+</ul>
+</li>
+<li><a href="#kehou-gongke">課後功課</a></li>
+</ul>
+<h2 id="xuexi-mubiao">學習目標</h2>
+<p>完成本課後，學員將能夠：</p>
+<ol>
+<li>識別論說文文體：區分論說文與敘述文的不同特徵和要素</li>
+<li>分析論證結構：使用英文文法分析工具創建經文大綱，找出論點、論據和邏輯關係</li>
+<li>進行詞彙研究：運用史特朗號碼工具研究關鍵詞彙，深入理解經文含義</li>
+<li>設計查經問題：為論說文經文設計有效的觀察、解釋、歸納和應用問題</li>
+<li>整合分析工具：結合語言分析和詞彙研究，全面理解論說文經文的核心信息</li>
+</ol>
+<h2 id="kecheng-shijian-anpai">課程時間安排</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>活動內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前30分鐘</td>
+<td>模擬查經練習</td>
+</tr>
+<tr>
+<td>5分鐘</td>
+<td>回饋時間</td>
+</tr>
+<tr>
+<td>5分鐘</td>
+<td>公開討論</td>
+</tr>
+<tr>
+<td>剩餘50分鐘</td>
+<td>論說文分析工作坊實作活動</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diyi-bufen-keqian-yudu-neirong">第一部分：課前預讀內容</h2>
+<blockquote>
+<p><strong>重要提醒</strong>：請在上課前仔細閱讀以下內容，這將幫助你更好地參與課堂活動。課堂時間將主要用於實作練習，而非理論講解。</p>
+</blockquote>
+<h3 id="fenxi-lunshuo-wen">分析論說文</h3>
+<p>聖經中的論說文：</p>
+<ul>
+<li>新約書信。例如：《羅馬書》、《腓立比書》、《雅各書》等。</li>
+<li>新約耶穌和使徒的長篇演講。如：《馬太福音》6:25-34（不要憂慮），《使徒行傳》7:2-53（司提反的申訴）</li>
+<li>舊約先知的講話。如：《撒母耳記上》12:6-17（撒母耳最後的勸勉）</li>
+</ul>
+<p>閱讀聖經時，留意<strong>不同文體的混合</strong></p>
+<h3 id="lunshuo-wen-he-xushu-wen-de-chayi">論說文和敘述文的差異</h3>
+<blockquote>
+<p><strong>回顧</strong>：在<a href="../lesson-2-narrative">第二課：敘述文</a>中，我們學習了如何分析敘述文的要素和結構。現在讓我們對比論說文與敘述文的不同。</p>
+</blockquote>
+<p><strong>敘述文（Narrative）</strong>的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。例如，《路加福音》7:36-50描述耶穌與一位罪人的相遇，藉由事件的發展和人物的互動，讓我們看見赦免與愛的主題。</p>
+<p>在歸納式查經的應用上，敘述文在觀察階段的重點在於細緻記錄故事的時間、地點、人物關係、事件發展等細節；在解釋階段，思考事件背後的文化背景、人物動機與神學意義；在歸納與應用階段，總結故事主題，並思考其對我們生命的提醒與挑戰。我們需要關注背景的帶入感、情節的細節、人物的特點與轉變，以及故事如何啟發我們的信仰生活。神也透過故事的發展和我們的<strong>情感</strong>來傳達祂的信息，邀請我們用心靈去經歷、感受並回應祂的真理。</p>
+<p><strong>論說文（Argumentation/Epistle）</strong>的基本要素包括論點（作者要表達的中心思想）、論據（支持論點的理由或證據）、論證（推理過程與邏輯結構）。這種文體呈現主題的方式是作者明確提出觀點，並透過層層論據與邏輯推理來說服讀者。例如，《羅馬書》8:28-39中，保羅以多重論據證明神的愛與主權，並用邏輯推理帶領讀者思考信仰的確據。</p>
+<p>在歸納式查經的應用上，論說文在觀察階段需特別注意段落結構、邏輯連詞（如「所以」、「因為」、「然而」等）、重複詞語與關鍵句子；在解釋階段，分析論點與論據之間的邏輯關係，並查考關鍵詞彙的原文含義；在歸納與應用階段，總結作者的教導與勸勉，思考其對我們信仰生活的實際意義。我們需要關注邏輯鏈條、論證方法（舉例、引用、對比、比喻、歸納、演繹推理等），以及如何從經文中歸納出核心教義與實踐原則。神透過人的<strong>理性</strong>來傳達祂的信息，邀請我們用心思意念去明白、思考並回應祂的真理。</p>
+<blockquote>
+<p><strong>小結</strong>：歸納式查經強調「觀察、解釋、歸納、應用」四個步驟，無論是敘述文還是論說文，都需要根據文體特點調整觀察與分析的重點。敘述文著重於故事細節與人物塑造，論說文則強調邏輯結構與論證過程。作為查經帶領者，學會根據不同文體選擇合適的分析工具，能幫助小組成員更全面地理解經文，並將真理落實在生活中。</p>
+</blockquote>
+<h3 id="guina-fa-si-buzhou-zai-lunshuo-wen-de-yingyong">歸納法四步驟在論說文的應用</h3>
+<blockquote>
+<p><strong>回顧</strong>：在<a href="../lesson-1-foundations">第一課：基礎</a>中，我們學習了歸納式查經的基本方法。現在讓我們更深入地探討，如何將這四個步驟具體應用在論說文（如書信、講章、先知書的勸勉段落）中。</p>
+<p><strong>參考資源</strong>：本節內容主要參考<a href="../../tools/ibs-argumentation-notes">論說文體的歸納法查經</a>，該文件提供了更詳細的方法論和實作指引。</p>
+</blockquote>
+<h4 id="1-observation">1. 觀察（Observation）：聖經說些什麼？</h4>
+<p><strong>經文背景觀察</strong>：</p>
+<ul>
+<li>作者背景（家庭、信仰、成長經歷）</li>
+<li>寫作原因及目的</li>
+<li>寫作時間地點</li>
+<li>時代背景（政治、文化、社會、教會狀況）</li>
+<li>收信者身份及與作者的關係</li>
+</ul>
+<p><strong>論說文體的小段落觀察</strong>：</p>
+<ul>
+<li><strong>重點</strong>：分析經文的論述方式，掌握重點並透過英文語法結構來分析主要的論點</li>
+<li><strong>方法</strong>：<ul>
+<li>先找出該段經文裡「每一個主要句子」的起始及結束</li>
+<li>從每一主要句子找出句子的主幹：主詞、謂語(動詞)、賓語(受詞)，放在最左邊</li>
+<li>觀察主要句子之間用哪一個連接詞來連接句子，以此看出作者的思路發展</li>
+<li>觀察那些主題的論述篇幅很長，它們也是重點之一</li>
+<li>觀察有無重複字詞、相似詞、對照/對比詞</li>
+</ul>
+</li>
+<li><strong>工具</strong>：英文文法分析（因為中文語法較不講究文法，而英文的邏輯陳述通常非常精確和明確）</li>
+</ul>
+<h4 id="2-explanation">2. 解釋（Explanation）：聖經內容的含義</h4>
+<p><strong>重要原則</strong>：聖經的書信是應時文件，不是神學論文，不應隨意取其片段進行深度的神學分析。</p>
+<p><strong>提問方法</strong>：</p>
+<ul>
+<li>定義性問題：某字詞的意思是什麼？</li>
+<li>關聯性問題：人、事、時之關係，經文上下文的語句關聯</li>
+<li>推理性問題：問「為什麼」？</li>
+<li>含義性問題：字面背後要表達的含意</li>
+</ul>
+<p><strong>解釋原則</strong>：</p>
+<ul>
+<li>先找出經文對當時、當地、直接受者的意義</li>
+<li>回答的內容必須有根據（上下文經文、其他經文、或註釋書為佐證），而不是憑空猜測</li>
+<li>從經文本身或上下文找答案</li>
+<li>從該卷的整體經文找答案</li>
+<li>查看註釋書，找尋資料以幫助解釋回答問題</li>
+</ul>
+<h4 id="3-induction">3. 歸納（Induction）：這段經文可歸納出那些信息或信仰原則？</h4>
+<p><strong>重點</strong>：</p>
+<ul>
+<li>將所得的解釋加以系統化，成為幾個要點或原則</li>
+<li>這段經文的主要信息是什麼？</li>
+<li>根據經文的重點整理出作者所要教導的信息或原則</li>
+<li><strong>歸納的原則：合於信仰教義</strong></li>
+</ul>
+<h4 id="4-application">4. 應用（Application）：根據歸納所得信息，我如何回應？</h4>
+<p><strong>重點</strong>：從所歸納出原文的含義及教導的原則，思考這些信息或原則對現今的讀者帶來那些信仰上的更新或提醒？或如何應用在現今讀者的處境（我和神的關係、我和自己的關係、我和別人的關係：家庭、工作、學業、教會、社會、國家、世界）？</p>
+<p><strong>討論問題：在論說文中，觀察、解釋、歸納的重點有哪些？你在帶領查經時，最容易忽略哪一個步驟？為什麼？</strong></p>
+<h3 id="guancha-pianzhang-jiegou-de-gongju-yingwen-wenfa-fenxi">觀察篇章結構的工具：英文文法分析</h3>
+<p>藉英文文法分析，寫出經文大綱(outlines)</p>
+<p><strong>為什麼使用英文分析？</strong> 中文語法有時較為隱晦，而英文的邏輯陳述通常非常精確和明確。透過分析英文譯本的語法結構，我們能更清楚地看到作者的論證邏輯和思路發展。</p>
+<h3 id="ruhe-faxian-lunshuo-wen-zhong-de-luoji-guanxi">如何發現論說文中的邏輯關係</h3>
+<p>論說文的精髓在於邏輯推理。要準確把握作者的思路，需要細心觀察字詞、句子、段落之間的邏輯連結。</p>
+<p><strong>討論問題：你認為在查考論說文時，如何有效發現字間、句間、段落間的邏輯關係？</strong></p>
+<ul>
+<li>語義分析：理解每個詞語、短語的語意，特別是轉折、因果、遞進、對比等語氣。</li>
+<li>邏輯連詞：標記如「因為」、「所以」、「然而」、「既然」、「如果...就...」、「不但...而且...」等，這些詞語常常揭示作者的推理路徑。</li>
+<li>英文文法分析工具：利用英文譯本的語法結構（如主句、從句、連接詞），幫助我們梳理出經文的邏輯大綱。</li>
+<li>圖表或大綱：將經文內容用邏輯圖、思維導圖或分層大綱的方式呈現，視覺化論證結構。</li>
+<li>小組討論：集思廣益，彼此補足盲點，發現更多潛在的邏輯關係。</li>
+<li>實際操作建議：<ul>
+<li>先用不同顏色標記連接詞和重複詞語</li>
+<li>嘗試將經文拆解成「主題句—支持句—例證」的結構</li>
+<li>用自己的話重述作者的推理過程，檢查是否通順合理</li>
+</ul>
+</li>
+</ul>
+<p><strong>範例說明：以《羅馬書》8:28為例</strong></p>
+<blockquote>
+<p>我們曉得萬事都互相效力，叫愛神的人得益處，就是按他旨意被召的人。</p>
+</blockquote>
+<p><strong>英文文法分析步驟：</strong></p>
+<ol>
+<li><strong>找出主要句子</strong>：這是一個複合句，包含一個主句和兩個從句</li>
+<li><strong>分解句子結構</strong>：</li>
+</ol>
+<div style="font-family: monospace; line-height: 1.8; margin: 20px 0;">
+<div><strong>主句（最左邊，作者要強調的）：</strong></div>
+<div><span style="color:#1f77b4;">我們</span> <span style="background-color:#b6d7a8; padding: 2px 4px;">曉得</span>
+<span style="background-color:#ffe599; padding: 2px 4px;">萬事都互相效力</span></div>
+<div style="margin-left: 20px;">↓</div>
+<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">叫</span></div>
+<div style="margin-left: 20px;">↓</div>
+<div><strong>從句1：</strong><span style="background-color:#ffe599; padding: 2px 4px;">愛神的人</span>
+<span style="background-color:#b6d7a8; padding: 2px 4px;">得益處</span></div>
+<div style="margin-left: 20px;">↓</div>
+<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">就是</span></div>
+<div style="margin-left: 20px;">↓</div>
+<div><strong>從句2：</strong><span style="background-color:#ffe599; padding: 2px 4px;">按他旨意被召的人</span></div>
+</div>
+
+<p><strong>顏色說明：</strong></p>
+<ul>
+<li><span style="color:#1f77b4;">藍色</span>：主詞（主句的主語）</li>
+<li><span style="background-color:#b6d7a8; padding: 2px 4px;">綠色底色</span>：謂語/動詞（主要動作）</li>
+<li><span style="background-color:#ffe599; padding: 2px 4px;">黃色底色</span>：賓語/受詞（動作的對象或內容）</li>
+<li><span style="color:#d62728;">紅色</span>：連接詞（顯示邏輯關係）</li>
+</ul>
+<p><strong>邏輯關係分析：</strong></p>
+<ul>
+<li>主句提出核心論點：「我們曉得萬事都互相效力」</li>
+<li>從句1說明目的：「叫愛神的人得益處」</li>
+<li>從句2進一步限定範圍：「就是按他旨意被召的人」</li>
+</ul>
+<p><strong>用自己的話重述推理過程：</strong> 保羅強調，所有的事情（無論好壞）都在神的主權下運作，最終目的是讓那些愛神、並且蒙神呼召的人得著益處。這裡的「益處」不是指世俗的好處，而是與神的旨意相符的祝福。保羅的推理是：因為神掌管一切，所以信徒可以確信，無論遭遇什麼，最終都會成為屬靈的益處。</p>
+<blockquote>
+<p><strong>提醒</strong>：論說文的查經需要理性思考與細緻分析，但也要留意作者的情感色彩和寫作目的。不要只停留在邏輯推理，更要體會經文背後的屬靈動機與生命呼召！</p>
+</blockquote>
+<p><a href="https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit">Google doc草稿</a></p>
+<h4 id="_3">英文分析步驟</h4>
+<ol>
+<li>先找出該段經文裡「每一個主要句子」的起始及結束。</li>
+<li>從每一主要句子找出句子的主幹：主詞、謂語(動詞)、賓語(受詞)，在筆記本上重新整理並把它們放在最左邊。而所附屬的句子、字詞、片語，則放在所要形容的子句或字詞的右下側。</li>
+<li>觀察放在最左邊的是主要句子有哪些，將它們連貫起來看，觀察句子之間的主語、謂語(時態、次序、重複)有何關聯？這樣做的原因在於，句子最左邊的部分，常常是聖經作者要強調的部分，因此值得我們注意。</li>
+<li>觀察主要句子之間用哪一個連接詞(but, so that, in order that, for, because, and, if)來連接句子？以此看出作者的思路發展。</li>
+<li>觀察那些主題的論述篇幅很長，它們也是重點之一。</li>
+<li>觀察有無重複字詞、相似詞、對照/對比詞？這些詞可以反映出作者所要強調的。</li>
+</ol>
+<h4 id="_4">英文分析示例</h4>
+<ol>
+<li><a href="https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit?usp=sharing">《以弗所書》2:1-10</a></li>
+<li><a href="https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing">《約翰一書》4:7-21</a></li>
+<li><a href="https://drive.google.com/file/d/1gR-darNwkft-d0GPycFqSbru6qLZhmij/view?usp=sharing">《哥林多前書》1:1-25</a></li>
+<li><a href="https://drive.google.com/file/d/1xEr40gQBhCvU184yJ0GAUiTG0tXGzPkt/view?usp=sharing">《哥林多前書》1:26-2:16</a></li>
+</ol>
+<h3 id="zici-yanjiu-de-gongju-shengjing-yuanwen-de-shitelang-haoma-strongs-exhaustive-concordance">字詞研究的工具：聖經原文的史特朗號碼（Strong's Exhaustive Concordance）</h3>
+<p><strong>為什麼要閱讀原文？</strong> 所有翻譯都包含一定程度的詮釋，即使是最用心的譯者，也只能根據目標讀者的需要做出合適的翻譯。因此，翻譯過程中可能會有信息的遺失、增補或改變。當我們只依賴翻譯本、缺乏上下文時，對單字的理解容易受限於譯者的選擇。</p>
+<p>史特朗號碼用一串數字來表示一個原文單字，將各個譯本與原文逐字對應，方便不熟悉原文語言的人研究原文。對於不熟悉希臘文或希伯來文的查經者，史特朗號碼提供了一個橋樑，讓我們能夠追蹤同一個原文詞彙在不同經文中的使用，理解詞彙的原始含義和語境，並避免因翻譯差異而錯失重要的神學概念。我們可以使用<a href="https://wd.bible/exegesis">微讀聖經——原文工具</a>（有手機App）來對照原文字典的字意和聖經中其他段落對這個單字的用法，確認其字意。</p>
+<p>在進行字詞研究時，我們需要遵循以下解經原則：信仰原則優先於字意本身，字意本身優先於經文本身加上上下文，經文本身加上上下文優先於本書卷，本書卷優先於其他書卷。</p>
+<h3 id="lunshuo-wen-de-wenti-sheji">論說文的問題設計</h3>
+<blockquote>
+<p><strong>回顧</strong>：在<a href="../lesson-3-questioning">第三課：提問技巧</a>中，我們學習了如何設計有效的查經問題。現在讓我們看看如何將這些技巧應用到論說文中。</p>
+</blockquote>
+<h4 id="_5">幾種不同類型的問題</h4>
+<ul>
+<li><strong>引導梳理經文，劃分層次、理解各層次之間的邏輯關係：</strong><ul>
+<li>2-3節中，保羅提到死在過犯罪惡中的景況有哪些？</li>
+<li>前兩層次（1-3節，4-7節）和第8節的聯繫是什麼？</li>
+</ul>
+</li>
+<li><strong>思考重點字詞、理解所舉的事例：</strong><ul>
+<li>可以從哪些角度來理解，第1節中的「死」和「活」兩個字的含義？</li>
+<li>第3節，保羅舉出過犯罪惡的例子之一是「隨著肉體和心中所喜好的去行」，你認為這可能包括哪些具體動作？</li>
+</ul>
+</li>
+<li><strong>幫助大家帶入真情實感，聯繫具體生活：</strong><ul>
+<li>你曾經歷過在過犯罪惡中「死」的滋味嗎？請分享你當時的感受</li>
+</ul>
+</li>
+</ul>
+<p>交替安排這幾種問題，避免枯燥，又幫助大家進入經文。</p>
+<h4 id="_6">準確表述你的問題</h4>
+<p>在設計查經問題時，我們需要明確問題的範圍和導向。例如，當我們問「神豐富的憐憫體現在哪裡？」時，需要區分是要「根據本段經文」回答還是「根據基督教信仰」回答。如果根據本段經文，答案可能是「不願我們在罪中死，叫我們與基督一同復活」；如果根據全部信仰，答案則包括「供應我們每日物質的需要，在試煉中與我們同在，瞭解我們的情感，理解我們的軟弱，不斷給我們機會悔改」等更廣泛的內容。</p>
+<p>當我們問「為什麼作者說XXX？」時，這個問題實際上包含兩個層面：一是「寫XXX在行文中的目的/作用」，二是「XXX這個結論成立的理由」。以「為什麼保羅說我們『本為可怒之子』？」為例，從行文作用的角度來看，這是為了提醒信徒記得自己得救前絕望無助的景況，從而幫助他們認識到救恩是神的恩典，進而告訴他們要回應恩典；從結論成立的理由來看，這是因為「世人都犯了罪，虧缺了神的榮耀，活在公義神的震怒之下」。</p>
+<p>我們也需要區分問題是要「聯繫生活實例回答」還是「回憶聖經教導回答」。以「神預備叫我們行的善事有哪些？」為例，如果從聖經教導的角度回答，可能包括「踐行律法愛神愛人的精神，過聖潔的生活，傳福音」等；如果從生活實例的角度回答，則可能包括「主動去關心、鼓勵身邊有需要的同學/同事，用同理心體會別人的感受，在自己的工作上盡職盡責，在團契小組裡帶領查經」等具體行動。</p>
+<p>「為什麼」的問題往往過於模糊，需要進一步明確。例如，如果我們問「為什麼爐子上的水壺在響？」這個問題可能有兩種完全不同的答案：一種是物理機制層面的回答（熱能產生蒸汽，蒸汽壓力推動空氣通過壺嘴，產生聲響），另一種是意圖層面的回答（我想泡茶，所以燒了水）。為了避免這種混淆，我們應該將問題細化為：「水壺響聲的物理原理是什麼？」或「我為什麼要燒水？」</p>
+<p>在提問時，我們應該多鋪墊背景、給出提示，幫助小組成員更好地理解問題的意圖。同時，我們要避開過於深奧、過於神學性、聖經學者尚無答案的問題，因為這些問題通常不適合小組討論。</p>
+<h2 id="dier-bufen-ketang-shizuo-huodong">第二部分：課堂實作活動</h2>
+<h3 id="keqian-gongke-taolun">課前功課討論</h3>
+<ul>
+<li>邀請幾位學員分享他們在《以弗所書》2:1-10中研究的史特朗號碼詞彙</li>
+<li>討論「死」、「活」、「恩典」等關鍵詞的原文含義如何幫助理解經文</li>
+<li>簡短回顧史特朗號碼研究的基本原則和方法</li>
+</ul>
+<h3 id="shizuo-huodong">實作活動</h3>
+<p>本活動將學員分為兩組：一半進行英文文法分析，另一半進行詞彙研究。我們將使用新約中不同的經文段落，每組都有指定的分析任務。下表列出了可選的經文段落，以及詞彙研究組需要研究的關鍵詞彙。</p>
+<p>活動目標：透過實際操作，讓學員體驗英文文法分析和詞彙研究的具體方法，為未來的查經準備建立實用技能。</p>
+<table>
+<thead>
+<tr>
+<th>經文</th>
+<th>關鍵經句</th>
+<th>討論焦點</th>
+<th>詞彙研究組關鍵詞</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>《羅馬書》8:28-39</td>
+<td>"萬事互相效力"</td>
+<td>神的主權和愛在苦難中的彰顯</td>
+<td>「互相效力」(συνεργέω)、「預定」(προορίζω)、「愛」(ἀγάπη)、「分離」(χωρίζω)</td>
+</tr>
+<tr>
+<td>《哥林多前書》13:1-13</td>
+<td>"愛是恆久忍耐"</td>
+<td>愛超越屬靈恩賜的優越性</td>
+<td>「愛」(ἀγάπη)、「忍耐」(μακροθυμέω)、「恩賜」(χαρίσματα)、「完全」(τέλειος)</td>
+</tr>
+<tr>
+<td>《腓立比書》2:1-11</td>
+<td>"以基督耶穌的心為心"</td>
+<td>基督的謙卑作為基督徒生活的榜樣</td>
+<td>「心志」(φρόνημα)、「虛己」(κενόω)、「順服」(ὑπακούω)、「高舉」(ὑπερυψόω)</td>
+</tr>
+<tr>
+<td>《加拉太書》5:13-26</td>
+<td>"順著聖靈而行"</td>
+<td>在基督裡的自由 vs. 放縱肉體的機會</td>
+<td>「自由」(ἐλευθερία)、「肉體」(σάρξ)、「聖靈」(πνεῦμα)、「果子」(καρπός)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>詞彙研究組：</strong></p>
+<ul>
+<li>請使用<a href="https://docs.google.com/document/d/1g1c2oU-Obz3fszjdbfe979cTE9EzGG4eZ55_10GPFJQ/edit?usp=sharing">詞彙研究模板</a>，複製並填寫每個經文的4個關鍵詞研究</li>
+<li>準備向全班分享2個你研究的詞彙</li>
+<li>重點說明：進行詞彙研究如何改變了你對該詞彙或經文的理解</li>
+</ul>
+<p><strong>英文文法分析組：</strong></p>
+<ul>
+<li>請分析經文的邏輯結構，找出主句、從句、連接詞等語法要素，並整理出論證的邏輯大綱</li>
+<li>準備向全班展示你的結構分析</li>
+<li>帶領全班走過你的思考過程</li>
+</ul>
+<h3 id="fansi-taolun">反思討論</h3>
+<ul>
+<li>你認為英文文法分析如何幫助你預備下一次的查經？</li>
+<li>你認為詞彙研究如何幫助你更好地理解經文？</li>
+</ul>
+<h2 id="kehou-gongke">課後功課</h2>
+<div class="homework-section">
+
+<p class="homework-section__intro">第四堂課的功課如下：</p>
+
+<div class="homework-list">
+
+<div class="homework-item">
+<span class="homework-item__num">1</span>
+<div class="homework-item__content">
+<p>請閱讀《你們餵他們吃吧》第2和5章。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">2</span>
+<div class="homework-item__content">
+<p>請閱讀<a href="../lesson-5-situations">第五課</a>第一部分：課前預讀內容。</p>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">3</span>
+<div class="homework-item__content">
+<p>預備查經《雅各書》3:1-12：</p>
+<ul>
+<li><strong>主領和觀察員</strong>：設計查經問題，並將問題整理到共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+<li><strong>其他人</strong>：完成查經筆記，並將筆記整理到另一個共享的 Google 文件中，該文件將通過電子郵件發送給所有學員。</li>
+</ul>
+</div>
+</div>
+
+<div class="homework-item">
+<span class="homework-item__num">4</span>
+<div class="homework-item__content">
+<p><strong>臨場狀況觀察記錄</strong>：</p>
+<ul>
+<li>在你的查經筆記或問題設計中，請記錄一次你曾經觀察到的查經聚會中發生的困難情況。</li>
+<li>描述當時的情況：發生了什麼？涉及哪些人？對小組氛圍產生了什麼影響？</li>
+<li>記錄帶領者當時採取了什麼措施來嘗試解決或應對這個情況。</li>
+<li>思考：你認為帶領者的應對方式是否有效？為什麼？如果換作是你，你會如何處理？</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+</div>
+</article>
+                        </div>
+                        <div class="hidden text-sm xl:block">
+                            <div class="sticky top-20 -mt-6 pt-4">
+    <div class="no-scrollbar h-full overflow-auto pb-10">
+        <div class="space-y-2">
+            <p class="font-medium">On This Page</p>
+            <ul class="m-0 list-none">
+                
+                
+                
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_2">目錄</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#xuexi-mubiao">學習目標</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#kecheng-shijian-anpai">課程時間安排</a>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#diyi-bufen-keqian-yudu-neirong">第一部分：課前預讀內容</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#fenxi-lunshuo-wen">分析論說文</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#lunshuo-wen-he-xushu-wen-de-chayi">論說文和敘述文的差異</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#guina-fa-si-buzhou-zai-lunshuo-wen-de-yingyong">歸納法四步驟在論說文的應用</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#guancha-pianzhang-jiegou-de-gongju-yingwen-wenfa-fenxi">觀察篇章結構的工具：英文文法分析</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#ruhe-faxian-lunshuo-wen-zhong-de-luoji-guanxi">如何發現論說文中的邏輯關係</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#zici-yanjiu-de-gongju-shengjing-yuanwen-de-shitelang-haoma-strongs-exhaustive-concordance">字詞研究的工具：聖經原文的史特朗號碼（Strong's Exhaustive Concordance）</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#lunshuo-wen-de-wenti-sheji">論說文的問題設計</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#dier-bufen-ketang-shizuo-huodong">第二部分：課堂實作活動</a>
+                    
+                    <ul class="m-0 list-none pl-4">
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#keqian-gongke-taolun">課前功課討論</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#shizuo-huodong">實作活動</a>
+                        </li>
+                        
+                        <li class="mt-0 pt-2">
+                            <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                                href="#fansi-taolun">反思討論</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#kehou-gongke">課後功課</a>
+                    
+                </li>
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <dialog id="bottom-sidebar" data-closing="0"
+    class="backdrop:bg-black backdrop:opacity-80 backdrop:transition-all backdrop:duration-500 text-foreground"
+    onclick="onBottomSidebarDialogClick(event)">
+    <div
+        class="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background max-h-[60svh] p-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"></div>
+        <div class="overflow-auto p-6 space-y-3">
+            
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../.." class="text-base shrink-0">
+    主頁
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">課堂講義 </h4>
+                    
+                    <a href="../lesson-1-foundations/" class="text-base shrink-0">
+    課堂（一）查經的意義和裝備
+</a>
+                    
+                    <a href="../lesson-2-narrative/" class="text-base shrink-0">
+    課堂（二）分析敘述文
+</a>
+                    
+                    <a href="../lesson-3-questioning/" class="text-base shrink-0">
+    課堂（三）提問題的技術
+</a>
+                    
+                    <a href="./" class="text-base shrink-0">
+    課堂（四）分析論說文
+</a>
+                    
+                    <a href="../lesson-5-situations/" class="text-base shrink-0">
+    課堂（五）應對臨場狀況
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">工具 </h4>
+                    
+                    <a href="../../tools/ibs-argumentation-notes/" class="text-base shrink-0">
+    論說⽂體的歸納法查經
+</a>
+                    
+                    <a href="../../tools/ibs-narrative-notes/" class="text-base shrink-0">
+    敘述⽂體的歸納法查經
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">範例 </h4>
+                    
+                    <a href="../../examples/luke-study-notes/" class="text-base shrink-0">
+    路加福音筆記
+</a>
+                    
+                    <a href="../../examples/luke-literary-devices/" class="text-base shrink-0">
+    路加福音中的文學手法
+</a>
+                    
+                    <a href="../../examples/romans-study-notes/" class="text-base shrink-0">
+    羅馬書查經筆記範例
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">資源 </h4>
+                    
+                    <a href="../../resources/bible-study-notes/" class="text-base shrink-0">
+    查經筆記指南
+</a>
+                    
+                    <a href="../../resources/virtual-study/" class="text-base shrink-0">
+    線上查經注意事項
+</a>
+                    
+                    <a href="../../resources/questions/" class="text-base shrink-0">
+    提問題的模板
+</a>
+                    
+                    <a href="../../resources/theme/" class="text-base shrink-0">
+    設計查經主題
+</a>
+                    
+                    <a href="../../resources/books/" class="text-base shrink-0">
+    聖經參考書
+</a>
+                    
+                    <a href="../../resources/recordings/" class="text-base shrink-0">
+    課堂錄音
+</a>
+                    
+                    <a href="../../resources/theology-equipments/" class="text-base shrink-0">
+    更多神學裝備
+</a>
+                    
+                    <a href="../../resources/genai/" class="text-base shrink-0">
+    對於生成式AI的反思
+</a>
+                    
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</dialog>
+        </div>
+    </div> 
+    
+    <script src="../../javascripts/expandable-cards.js"></script>
+     
+    
+    <script src="../../javascripts/chinese-toggle.js"></script>
+     
+    
+    <script src="../../search/main.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+    <script src="../../js/copy-button.js"></script>
+</body>
+
+</html>
