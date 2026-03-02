@@ -8,6 +8,7 @@
     | 2026-02-08 |       [敘述文](../../class-notes/lesson-2-narrative)       | [link](https://www.dropbox.com/scl/fi/b9c5a11mr7qdd6d7thumu/20260207-lesson-2.mp3?rlkey=6hx3kjep90r328hkgkeva4egt&dl=0) |
     | 2026-02-15 | [提問題的技術](../../class-notes/lesson-3-questioning)   | [link](https://www.dropbox.com/scl/fi/wy6dbcqh9aydcqyyxelek/20260214-lesson-3.mp3?rlkey=fn8l17h31wlprhz6yebpql0ev&dl=0) |
     | 2026-02-22 |     [論說文](../../class-notes/lesson-4-argumentation)     | [link](https://www.dropbox.com/scl/fi/kp7spv7ob3vq6org3bctf/20260222-lesson-4.mp3?rlkey=mvv8xdlp0vf3mo5ee0vsrvp96&dl=0) |
+    | 2026-02-22 |     [臨場狀況](../../class-notes/lesson-5-situations)      | [link](https://www.dropbox.com/scl/fi/zo1r8i9wjz39hckq5i17w/20260222-lesson-5.mp3?rlkey=ei3df70l5v1fjymlrvtbv38kg&dl=0) |
 
 === "2025秋季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
