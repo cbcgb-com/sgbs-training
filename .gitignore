@@ -119,3 +119,4 @@ cbcgb-com-sgbs-training-*.json
 
 # SQLite database
 message_log.db
+.envrc
