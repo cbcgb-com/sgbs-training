@@ -59,6 +59,22 @@
             });
         }
 
+        function panelIndexForHash() {
+            var hash = window.location.hash;
+            if (!hash || hash.length < 2) return null;
+            var target = document.getElementById(hash.slice(1));
+            if (!target) return null;
+            for (var i = 0; i < panels.length; i++) {
+                if (panels[i].contains(target)) return i;
+            }
+            return null;
+        }
+
+        function activateFromHash() {
+            var idx = panelIndexForHash();
+            if (idx !== null) activate(idx);
+        }
+
         panels.forEach(function (panel, index) {
             var label =
                 panel.getAttribute("data-label") || "選項 " + (index + 1);
@@ -124,6 +140,9 @@
 
         var firstPanel = panels[0];
         root.insertBefore(tablist, firstPanel);
+
+        activateFromHash();
+        window.addEventListener("hashchange", activateFromHash);
     }
 
     document.querySelectorAll(".content-panels").forEach(initPanels);

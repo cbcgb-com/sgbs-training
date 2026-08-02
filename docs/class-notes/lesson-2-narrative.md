@@ -14,6 +14,10 @@
     - [文學工具](#wenxue-gongju)
     - [經文分析](#jingwen-fenxi)
         - [示範：《撒母耳記上》17:1-58](#san-bu-zhou-shifan)
+            - [步驟一：識別主要信息](#buzhou-yi-shibie-zhuyao-xinxi)
+            - [步驟二：分析傳達方式](#buzhou-er-fenxi-chuanda-fangshi)
+            - [步驟三：整理分析結果](#buzhou-san-zhengli-fenxi-jieguo)
+        - [小練習：示範段的三步檢核](#san-bu-zhou-xiao-lianxi)
         - [半自主練習：《路加福音》7:36-50](#san-bu-zhou-lianxi)
     - [實作建議](#shizuo-jianyi)
     - [思考信息](#sikao-xinxi)
@@ -1055,7 +1059,7 @@ data-style="steps">
 
 </div>
 
-#### 小練習：示範段的三步檢核
+#### 小練習：示範段的三步檢核 {#san-bu-zhou-xiao-lianxi}
 
 跟完上面三個步驟後，用 3 題快速檢核（系統會一次出 3 題；選完看簡短回饋）。
 
