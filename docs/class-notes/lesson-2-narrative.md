@@ -563,15 +563,15 @@ data-sample-size="2">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">人物：主要在描寫西門這個人的品格。</span>
+<span class="content-quiz__choice-text">人物：因為出現西門的名字，所以主要是在介紹他是誰。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">情節：這已經是故事的高潮轉折。</span>
+<span class="content-quiz__choice-text">情節：已經寫出衝突如何收束，是結局句。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">應用：直接告訴我們今天該怎樣作東。</span>
+<span class="content-quiz__choice-text">情節：只要標記「赴宴」這個動作，就算完成情節分析。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -580,15 +580,15 @@ data-sample-size="2">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>這裡提到西門，但重點是「在誰家、什麼場合」，先定位場景。人物分析要再往他的態度、議論與反應看。</p>
+<p>這裡提到西門，但句子在定位「在誰家、什麼場合」。人物分析要再往他的態度、議論與反應看。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>宴席是事件的起點舞台，還不是高潮。情節的轉折要看後續婦人進前、西門議論，以及耶穌的回應。</p>
+<p>宴席是事件的起點舞台，還不是高潮或結局。轉折要看婦人進前、西門議論，以及耶穌的回應。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>這句仍在觀察故事世界，還沒到應用。先分辨背景／人物／情節，再談對今日生活的提醒。</p>
+<p>「赴宴」只是情節開端的一環；這句本身主要在搭舞台。先分背景，再沿事件軌跡往下標記。</p>
 </div>
 </div>
 
@@ -600,7 +600,7 @@ data-sample-size="2">
 <div class="content-quiz__choices">
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">A</span>
-<span class="content-quiz__choice-text">背景：這只是在補充宴席的菜單與座位。</span>
+<span class="content-quiz__choice-text">背景：主要在交代宴席的待客規矩，判斷婦人是否「合宜」進場。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
@@ -608,16 +608,16 @@ data-sample-size="2">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">情節：這已是整段故事的最終結果。</span>
+<span class="content-quiz__choice-text">情節：這句已把衝突推到最高點並交代結局。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">無關要素：內心戲對敘述文分析不重要。</span>
+<span class="content-quiz__choice-text">情節：內心議論只是過渡，真正重要的是後面比喻的字面情節。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
 <strong>再看一下</strong>
-<p>這不是場地設備，而是人物內心與關係張力。背景問「在哪裡」；這裡問的是「誰怎麼看誰」。</p>
+<p>宴席規範確實屬背景，但這句焦點是西門「心裡怎麼看」、耶穌怎麼洞察——先歸在人物，再連回場合規範。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>答對了</strong>
@@ -625,11 +625,11 @@ data-sample-size="2">
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>這是中段張力，不是結局。最終收束還包括比喻、赦免宣告，以及「你的信救了你」。</p>
+<p>這裡升高張力，但還沒收束。結局仍包括比喻、赦免宣告，以及「你的信救了你」。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>敘述文很常藉內心反應與對比塑造人物；略過這些，主題很容易變成抽象口號。</p>
+<p>比喻很重要，但西門未說出口的議論是轉折的伏筆；略過內心反應，人物與情節都容易讀扁。</p>
 </div>
 </div>
 
@@ -641,11 +641,11 @@ data-sample-size="2">
 <div class="content-quiz__choices">
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">A</span>
-<span class="content-quiz__choice-text">背景：只是再說明一次宴席地點。</span>
+<span class="content-quiz__choice-text">人物塑造：只是補充耶穌「全知」的形象，與故事走向無關。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">人物名單：只是新登場一個角色。</span>
+<span class="content-quiz__choice-text">道德教訓：可直接抽成「不要論斷人」的規範，不必標在情節裡。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
@@ -653,16 +653,16 @@ data-sample-size="2">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">註腳：與故事主線無關的附加說明。</span>
+<span class="content-quiz__choice-text">背景：比喻只是在說明當時債務與待客的文化習俗。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
 <strong>再看一下</strong>
-<p>這裡推動的是事件發展與結論，不是重述舞台。背景通常先搭好，情節才在其上轉折。</p>
+<p>耶穌的洞察確實塑造人物，但這裡同時推動衝突如何化解——要把「誰回應誰」放進事件軌跡裡看。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>角色早已在場；重點是耶穌如何回應、故事如何轉折，屬於情節推進。</p>
+<p>經文當然有倫理張力，但作者是用「先比喻、再宣告」推進故事；先標轉折，再從整段歸納教訓。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>答對了</strong>
@@ -670,7 +670,7 @@ data-sample-size="2">
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>這恰恰是主線高潮，不是附件。讀敘述文時，要把這類轉折標出來，再問它指向什麼主題。</p>
+<p>債戶比喻帶文化色彩，但在此是推動衝突與宣告的敘事手段；文化細節服務情節，不宜當成整句的主軸分類。</p>
 </div>
 </div>
 
@@ -1471,15 +1471,15 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">文化背景：主要在介紹非利士人的軍事裝備規格。</span>
+<span class="content-quiz__choice-text">人物塑造：核心是刻畫大衛的勇敢與機智，神學宣告只是附帶點綴。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">歷史意義：只是為後面家譜名單做無主題的鋪墊。</span>
+<span class="content-quiz__choice-text">文化背景：主要在介紹非利士與以色列的軍制差異。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">情感共鳴：重點只是讓讀者感受戰場氣氛，沒有真理指向。</span>
+<span class="content-quiz__choice-text">情感共鳴：恐懼、懸疑與逆轉的張力最突出，讀者主要是被帶入戰場心理。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -1488,15 +1488,15 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>裝備與場面可能提供背景，但對比信心／驕傲所指向的，是關於神與人的真理。</p>
+<p>大衛確實被塑造，但作者用對比與「耶和華的名」宣告，把讀者帶向神如何行事；不宜把神學降為附帶。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>事件當然有歷史位置，但本課舉這例是為了說明核心信息，不是說它沒有主題。</p>
+<p>裝備與場面可服務背景，但本段對比信心／驕傲所指向的是關於神與人的真理。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>情感可能被帶動，但作者同時在宣告關於神能力的真理；不必把感受與信息對立。</p>
+<p>讀者會被帶入張力，但本課把這例歸在神學真理；感受支撐信息，不宜單獨當成最突出的類型。</p>
 </div>
 </div>
 
