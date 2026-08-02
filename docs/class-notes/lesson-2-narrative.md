@@ -543,7 +543,7 @@ data-label="敘述文三要素">
 
 #### 小練習：這細節屬於哪一要素？
 
-讀完上面三個鏡頭後，試著分辨下列細節最直接屬於哪一類。系統會抽 2 題；選完會標示對錯，並用簡短說明幫你對齊概念。
+讀完上面三個鏡頭後，試著分辨下列細節最直接屬於哪一類。題庫共 3 題，每次隨機抽 2 題；四個選項常對應常見歸類習慣（例如見到人名就歸人物、見到動作就當成情節高潮）。選完會標示對錯，並用簡短說明幫你對齊概念。
 
 <div
 class="content-quiz"
@@ -1061,7 +1061,7 @@ data-style="steps">
 
 #### 小練習：示範段的三步檢核 {#san-bu-zhou-xiao-lianxi}
 
-跟完上面三個步驟後，用下面題庫快速檢核：共 **10 題**，每次會**隨機抽 3 題**（各題的四個選項順序也會打亂）；選完看簡短回饋。
+跟完上面三個步驟後，用下面題庫快速檢核：共 **10 題**，每次會**隨機抽 3 題**（各題的四個選項順序也會打亂）。錯誤選項多半對應三步驟裡常見的跳步、貼標籤，或把背景細節誤當成完整分析；選完看簡短回饋。
 
 <div
 class="content-quiz"
@@ -1323,7 +1323,7 @@ data-sample-size="3">
 <div class="content-quiz__choices">
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">A</span>
-<span class="content-quiz__choice-text">歌利亞的身高數字。</span>
+<span class="content-quiz__choice-text">只要結局夠戲劇，讀者自然會得出「神有能力」，不必分析對比與宣告如何鋪陳。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
@@ -1331,16 +1331,16 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">經文是否出自舊約歷史書。</span>
+<span class="content-quiz__choice-text">步驟二只要記住「有對比、有宣告」的標籤，具體哪幾方對比、如何指向信息可以略過。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">大衛與掃羅的君臣關係。</span>
+<span class="content-quiz__choice-text">把焦點放在掃羅是否允許大衛上陣，就等於說清楚作者如何傳達主要信息。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
 <strong>再看一下</strong>
-<p>細節可少，但失去的是手法如何鋪陳信息，不是單一數字。</p>
+<p>得勝結局重要，但若略過驕傲／信心／恐懼與宣告，讀者容易只記住英雄事蹟，而看不清「信靠神」如何被敘事驗證。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>答對了</strong>
@@ -1348,11 +1348,11 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>書卷歸類不變；缺的是敘事如何傳達信息。</p>
+<p>貼「對比、宣告」標籤不算完成步驟二；要說明哪幾方對比、如何一起指向步驟一那句主要信息。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>掃羅線索在別處展開；本問聚焦對比與宣告如何服務主要信息。</p>
+<p>掃羅線索有助理解大衛處境，但本段傳達方式的核心仍是戰場上的對比、公開宣告與勝利驗證，不宜用君臣情節取代。</p>
 </div>
 </div>
 
@@ -1409,15 +1409,15 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">歌利亞辱罵的用詞與次數。</span>
+<span class="content-quiz__choice-text">只要統計歌利亞辱罵的用詞與次數，就算寫出步驟三第二條的敘事依據。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">掃羅盔甲合不合大衛身型。</span>
+<span class="content-quiz__choice-text">盔甲不合身最能證明信心；大衛請戰與全軍恐懼只是順帶背景。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">戰後如何分配歌利亞的兵器。</span>
+<span class="content-quiz__choice-text">信息點應從戰後分配歌利亞兵器寫起，那才是「行動帶來果效」的依據。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -1426,15 +1426,15 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>辱罵加深張力，但第二條信息點核心是請戰與全軍反應的對比。</p>
+<p>辱罵加深張力，但「信心帶來行動」要對照大衛請戰與全軍退縮；只數辱罵會把步驟三寫成情節摘要。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>盔甲情節有趣，但示範把「行動」放在大衛請戰與軍隊恐懼的對照上。</p>
+<p>盔甲情節服務「神使用弱小器皿」，但示範第二條明確依據請戰與恐懼的並置，不宜用盔甲取代這組對比。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>戰利品在結局之後；此信息點從對決前的行動與態度推出。</p>
+<p>戰利品在勝利之後；「行動」在此指的是對決前大衛主動請戰，對照全軍恐懼，不是事後分配兵器。</p>
 </div>
 </div>
 
@@ -1450,15 +1450,15 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">說明驕傲、信心、恐懼如何層層加深讀者對「倚靠神」的看見。</span>
+<span class="content-quiz__choice-text">只逐條描述驕傲、信心、恐懼各自出現，不說它們如何一起指向「倚靠神」。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">把公開宣告與勝利結局連起來，視為對神能力的敘事驗證。</span>
+<span class="content-quiz__choice-text">只寫「大衛得勝」當手法，不連公開宣告，也不說勝利如何驗證主要信息。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">指出對話如何把「仗靠誰」說清楚，而不只描述場面。</span>
+<span class="content-quiz__choice-text">只摘錄「耶和華的名」等金句，不說對話在對比結構裡做什麼。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -1467,15 +1467,15 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>這正是示範步驟二的寫法之一，說明對比如何運作。</p>
+<p>列出態度還不夠；步驟二要說明這幾極如何<strong>一起</strong>把讀者帶向「倚靠神」，而不是分段劇情摘要。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>把結局與宣告連到驗證，是完整的傳達方式描述。</p>
+<p>結局重要，但若只寫得勝、不連宣告與信息，仍像貼標籤；示範要求把驗證過程說清楚。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>說明對話功能，符合「如何傳達」的要求，不是空泛標籤。</p>
+<p>金句要放回對比與宣告的結構裡，說明它如何讓「仗靠誰」被聽見；只摘句仍不完整。</p>
 </div>
 </div>
 
@@ -1485,6 +1485,8 @@ data-sample-size="3">
 #### 半自主練習：《路加福音》7:36-50 {#san-bu-zhou-lianxi}
 
 換一段你已在三要素裡接觸過的經文。**步驟一先替你收好**，請你完成步驟二、三（各選一項，再看回饋）。
+
+下面題庫共 2 題，各對應步驟二與步驟三；錯誤選項常是把宴席背景、路加整卷特色或情節摘要，誤當成「傳達方式」或信息點的完整說明。
 
 !!! tip "步驟一（已示範）"
     主要信息可表述為：<strong>被赦免多的人，愛也多；赦免與愛彼此相連。</strong>
@@ -1508,7 +1510,7 @@ data-sample-size="2">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">路加常關心邊緣人，因此本段手法重點是突顯「罪人」標籤與群體排斥。</span>
+<span class="content-quiz__choice-text">路加整卷常關心邊緣人，所以步驟二只要寫「突顯罪人標籤與排斥」就夠，不必追內心議論與比喻。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
@@ -1525,7 +1527,7 @@ data-sample-size="2">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>邊緣人視角可呼應路加，但本段信息是赦免與愛的相連；要把西門、婦人、比喻如何推進這句信息說清楚。</p>
+<p>路加整卷關心邊緣人是重要背景，但這是<strong>整卷</strong>線索，不是步驟二的完整答案；本段仍要說明內心議論、行動對比與「債戶」比喻如何推進「赦免與愛」。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>答對了</strong>
@@ -1616,7 +1618,7 @@ data-sample-size="2">
 
 ### 預讀複習題 {#yudu-fuxi-ti}
 
-讀完第一部分後，用下面的複習題快速核對幾個關鍵概念。系統會隨機抽 3 題；選完會標示對錯，並用簡短說明幫你回到正文。
+讀完第一部分後，用下面的複習題快速核對幾個關鍵概念。題庫共 6 題，每次隨機抽 3 題；錯誤選項各對應一種常見誤解（例如跳過歸納、把背景當全部、或先寫應用再找經文）。選完會標示對錯，並用簡短說明幫你回到正文。
 
 <div
 class="content-quiz"
