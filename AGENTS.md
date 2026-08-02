@@ -114,9 +114,10 @@ Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in
 - Markup: `.content-deck` > optional `.content-deck__intro` + two or more
   `.content-deck__card` with `data-label="…"`
 - Optional `data-label` on the root names the region for accessibility
-- Optional `data-index="true"` shows a wrap-around list of all card
-  `data-label` values above the stage; highlights the active card and lets
-  readers jump directly (still use 上一張／下一張 to flip)
+- Optional `data-index="true"` shows chip tabs for all card `data-label`
+  values above the stage; highlights the active card and supports jump
+- Optional `data-nav="false"` hides 上一張／下一張 (use with `data-index` for
+  chip-only navigation, e.g. 文學工具)
 - Prefer short prompt + one `.content-deck__example` callout per card
 - Shows the full set in authored order (no random sampling)
 - Traditional Chinese; keep each card scannable on its own
