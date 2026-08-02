@@ -1151,7 +1151,7 @@ data-sample-size="3">
 </div>
 </div>
 
-<div class="content-quiz__item" data-correct="3">
+<div class="content-quiz__item" data-correct="2">
 <p class="content-quiz__prompt">
 <span class="content-quiz__num">3</span>
 <span>步驟三要整理信息點。下列哪一項<strong>不適合</strong>作為《撒母耳記上》17 本段的主要信息點？</span>
@@ -1159,19 +1159,19 @@ data-sample-size="3">
 <div class="content-quiz__choices">
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">A</span>
-<span class="content-quiz__choice-text">神的能力勝過人的力量（對比驕傲／信心，並以勝利證實）。</span>
+<span class="content-quiz__choice-text">神的能力勝過人的力量——對比驕傲與信心，並以公開宣告與勝利收束。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">真正的信心會帶來行動（大衛請戰對照全軍退縮）。</span>
+<span class="content-quiz__choice-text">真正的信心會帶來行動——大衛主動請戰，對照全軍恐懼退縮。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">神可使用看似弱小的器皿（大衛與歌利亞的對比）。</span>
+<span class="content-quiz__choice-text">不要以外貌評斷人——本段主軸就是「看起來弱小者也能勝」，與大衛、歌利亞的體型對比。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">大衛的投石技術證明：只要勤練本領，不必依靠神也能勝利。</span>
+<span class="content-quiz__choice-text">神使用看似弱小的器皿——年幼大衛與壯碩歌利亞的對比，顯示神不按人的標準。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -1183,12 +1183,12 @@ data-sample-size="3">
 <p>這是從大衛行動與全軍反應對比推出的合理信息點。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
-<strong>再看一下</strong>
-<p>這條從人物對比與選角邏輯推出，符合本段敘事。</p>
+<strong>答對了</strong>
+<p>體型對比確實存在，但作者把焦點放在大衛仗靠「耶和華的名」與神能力的驗證；若把「勿以貌取人」單獨當主軸，容易略過本段的神學宣告。示範第三點應寫成「神使用看似弱小的器皿」，而不是一般道德口號。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
-<strong>答對了</strong>
-<p>這把焦點移到人的技術，與大衛仗靠「耶和華的名」的敘事方向相反；步驟三要與整段信息一致。</p>
+<strong>再看一下</strong>
+<p>這條從人物對比推出，與步驟三示範的第三點表述一致。</p>
 </div>
 </div>
 
