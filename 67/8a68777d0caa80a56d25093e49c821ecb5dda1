@@ -1,0 +1,25 @@
+docs/javascripts/content-deck.js
+  s_57e01f3e893110::t_ac0ccf1946bb70 144-149,155-161,163-175
+  s_57e01f3e893110::t_9f66aa6a5a8b80 11-14,181
+  s_57e01f3e893110::t_615b1dae740d2f 113-117
+docs/class-notes/lesson-2-narrative.md
+  s_57e01f3e893110::t_4927a3d66b637f 240-241,243
+AGENTS.md
+  s_57e01f3e893110::t_9b319852fa66a6 117-120
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "678a68777d0caa80a56d25093e49c821ecb5dda1",
+  "prompts": {},
+  "sessions": {
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
