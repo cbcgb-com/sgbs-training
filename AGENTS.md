@@ -66,11 +66,16 @@ obvious winner.
 before「第二部分：課堂實作活動」. Comprehension check on section content. Each
 `.content-quiz__item` needs `data-correct="0"`-based index; wrong/right choices
 are marked, and the selected option’s reflection explains using「答對了」/
-「再看一下」.
+「再看一下」. **Always four options (A–D)** per item: the three distractors
+should each name a **plausible learner misconception** (e.g. skipping to
+application, mistaking one OEIA step for another, treating background as the
+whole message), and each wrong option’s reflection should briefly **illuminate
+why that path misleads**—not just say「錯了」.
 
 Inline mini-checks (also `data-mode="review"`) may sit mid-section after a
 framework interactive; keep the bank small (`data-sample-size="2"`) and tightly
-tied to the just-taught idea.
+tied to the just-taught idea. Same **four-option / misconception** rule as
+section-end review quizzes.
 
 ### Content panels (`.content-panels`)
 
