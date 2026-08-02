@@ -1,0 +1,77 @@
+docs/quizzes/lesson-2/review.html
+  s_17553b34381c5c::t_dbdc1beb8aa848 66
+  s_ad94e19cba6a69::t_b7b0f4b5d9abda 173
+  s_17553b34381c5c::t_9b56cb252bcbd5 78
+  s_09c80d4126d704::t_806793622f0000 184,193,197,201,206,210,214,218
+  s_7252e13739b9db::t_3582109b31dde5 124
+  s_17553b34381c5c::t_3366cc1b405749 61
+  s_ad94e19cba6a69::t_4b521edec9569e 156
+  s_1ed04870319920::t_ee72208fcf1fc6 230
+  s_17553b34381c5c::t_e6892ed7617cd4 83
+  s_57e01f3e893110::t_1eebdc4e1592ea 20,25,29,33,37,42,46,50
+  s_7252e13739b9db::t_3bc37cab0f937c 102
+  s_1ed04870319920::t_d46a75f319a054 238
+  s_1ed04870319920::t_0cb42e6a208a57 259
+  s_ad94e19cba6a69::t_18deaaea425513 165
+  s_1ed04870319920::t_cecf23aed4817f 225
+  s_1ed04870319920::t_512bd3a6cec1c2 242
+  s_1ed04870319920::t_34e0903e70883d 247,251
+  s_17553b34381c5c::t_87ff1c5de4f06b 95
+  s_ad94e19cba6a69::t_fe17933fe0fe41 143
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "c871599513a2c79721311f5ea713fe865041ce7c",
+  "prompts": {},
+  "sessions": {
+    "s_09c80d4126d704": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03c3c949dffesZvj1cAkJSBwTV",
+        "model": "composer-2.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_17553b34381c5c": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03c3ef927ffe4CHmE8y1RQcaeB",
+        "model": "composer-2.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_1ed04870319920": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03c3ba4daffe5re97Hi7iA50N8",
+        "model": "composer-2.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_7252e13739b9db": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03c3e3f31ffePYcJp9ma12b1vA",
+        "model": "composer-2.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_ad94e19cba6a69": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03c3d695dffeBAnjYAmlouGG5X",
+        "model": "composer-2.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
