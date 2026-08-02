@@ -237,9 +237,10 @@ data-style="steps">
 class="content-deck"
 id="content-deck-lesson-2-literary-tools"
 data-label="文學工具"
-data-index="true">
+data-index="true"
+data-nav="false">
 
-<p class="content-deck__intro">下面十種文學工具常見於敘述文。上方目錄可一次看見全部項目並跳讀；也可用<strong>上一張／下一張</strong>逐項翻看。例文皆取自《撒母耳記上》17:1-58。</p>
+<p class="content-deck__intro">下面十種文學工具常見於敘述文。點選上方標籤即可跳讀各項。例文皆取自《撒母耳記上》17:1-58。</p>
 
 <div class="content-deck__card" data-label="重複">
 <h4>重複</h4>

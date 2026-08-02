@@ -8,9 +8,10 @@
  *     <div class="content-deck__card" data-label="人物塑造">...</div>
  *   </div>
  *
- * Shows one card at a time with 上一張／下一張. Optional data-index="true"
- * renders a full list of labels above the stage; the active item is highlighted
- * and clickable. No sampling/shuffle.
+ * Shows one card at a time with 上一張／下一張 unless data-nav="false".
+ * Optional data-index="true" renders chip tabs above the stage (highlight +
+ * jump). Use data-nav="false" with data-index for chip-only navigation.
+ * No sampling/shuffle.
  */
 (function () {
     function cardChildren(root) {
@@ -109,8 +110,11 @@
         root.setAttribute("data-deck-ready", "true");
 
         var current = 0;
-        var controls = createNav();
-        root.appendChild(controls.nav);
+        var navEnabled = root.getAttribute("data-nav") !== "false";
+        var controls = navEnabled ? createNav() : null;
+        if (controls) {
+            root.appendChild(controls.nav);
+        }
 
         var groupLabel = root.getAttribute("data-label");
         if (groupLabel) {
@@ -137,34 +141,38 @@
             cards[current].hidden = false;
             cards[current].classList.add("is-active");
 
-            controls.status.textContent =
-                "第 " + (current + 1) + " / " + cards.length + " 張";
-            controls.prev.disabled = current === 0;
-            controls.next.disabled = current === cards.length - 1;
+            if (controls) {
+                controls.status.textContent =
+                    "第 " + (current + 1) + " / " + cards.length + " 張";
+                controls.prev.disabled = current === 0;
+                controls.next.disabled = current === cards.length - 1;
+            }
             syncIndex(indexTabs, current);
         }
 
         indexTabs = createIndex(root, cards, show);
 
-        controls.prev.addEventListener("click", function () {
-            if (current > 0) show(current - 1);
-        });
-        controls.next.addEventListener("click", function () {
-            if (current < cards.length - 1) show(current + 1);
-        });
+        if (controls) {
+            controls.prev.addEventListener("click", function () {
+                if (current > 0) show(current - 1);
+            });
+            controls.next.addEventListener("click", function () {
+                if (current < cards.length - 1) show(current + 1);
+            });
 
-        root.addEventListener("keydown", function (event) {
-            if (event.key === "ArrowLeft" && current > 0) {
-                event.preventDefault();
-                show(current - 1);
-            } else if (
-                event.key === "ArrowRight" &&
-                current < cards.length - 1
-            ) {
-                event.preventDefault();
-                show(current + 1);
-            }
-        });
+            root.addEventListener("keydown", function (event) {
+                if (event.key === "ArrowLeft" && current > 0) {
+                    event.preventDefault();
+                    show(current - 1);
+                } else if (
+                    event.key === "ArrowRight" &&
+                    current < cards.length - 1
+                ) {
+                    event.preventDefault();
+                    show(current + 1);
+                }
+            });
+        }
 
         show(0);
     }
