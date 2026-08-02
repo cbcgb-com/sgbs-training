@@ -261,6 +261,221 @@ body {
 }
 
 /*
+ * Pre-lesson quiz – Socratic MCQs with soft reflection (no correct answer).
+ */
+.content-quiz {
+    --content-quiz-correct: #2e7d32;
+    --content-quiz-correct-bg: rgba(46, 125, 50, 0.08);
+    --content-quiz-incorrect: #c62828;
+    --content-quiz-incorrect-bg: rgba(198, 40, 40, 0.08);
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-quiz__intro {
+    margin: 0 0 1.25rem 0;
+    line-height: 1.65;
+}
+
+.content-quiz__item {
+    padding: 0.25rem 0 0.5rem;
+}
+
+.content-quiz__item[hidden] {
+    display: none !important;
+}
+
+.content-quiz__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-quiz__nav-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-quiz__nav-btn:hover:not(:disabled),
+.content-quiz__nav-btn:focus-visible:not(:disabled) {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-quiz__nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.content-quiz__nav-status {
+    flex: 1;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.content-quiz__prompt {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin: 0 0 0.9rem 0;
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.content-quiz__num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: 0.1rem;
+    border-radius: 50%;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+.content-quiz__choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0 0 0.75rem 0;
+}
+
+.content-quiz__choice {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    text-align: left;
+    font: inherit;
+    line-height: 1.5;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-quiz__choice:hover,
+.content-quiz__choice:focus-visible {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.04));
+}
+
+.content-quiz__choice.is-selected {
+    border-color: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.35));
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.06));
+}
+
+.content-quiz__choice:disabled {
+    cursor: default;
+}
+
+.content-quiz__choice.is-correct {
+    border-color: var(--content-quiz-correct);
+    background: var(--content-quiz-correct-bg);
+}
+
+.content-quiz__choice.is-incorrect {
+    border-color: var(--content-quiz-incorrect);
+    background: var(--content-quiz-incorrect-bg);
+}
+
+.content-quiz__choice-label {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.05rem;
+    border-radius: 50%;
+    border: 1px solid var(--md-default-fg-color--light, rgba(0, 0, 0, 0.25));
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.content-quiz__choice.is-selected .content-quiz__choice-label {
+    background: var(--md-default-fg-color, #111);
+    border-color: var(--md-default-fg-color, #111);
+    color: var(--md-default-bg-color, #fff);
+}
+
+.content-quiz__choice.is-correct .content-quiz__choice-label {
+    background: var(--content-quiz-correct);
+    border-color: var(--content-quiz-correct);
+    color: #fff;
+}
+
+.content-quiz__choice.is-incorrect .content-quiz__choice-label {
+    background: var(--content-quiz-incorrect);
+    border-color: var(--content-quiz-incorrect);
+    color: #fff;
+}
+
+.content-quiz__choice-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.content-quiz__reflection {
+    margin: 0.35rem 0 0;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+    line-height: 1.6;
+}
+
+.content-quiz__reflection[hidden] {
+    display: none !important;
+}
+
+.content-quiz__reflection strong {
+    display: block;
+    margin: 0 0 0.35rem 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.content-quiz__reflection p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .content-quiz {
+        padding: 1rem 1rem 1.25rem;
+        margin: 1.25rem 0 1.75rem;
+    }
+
+    .content-quiz__choice {
+        padding: 0.7rem 0.75rem;
+    }
+}
+
+/*
  * Homework section – card-style blocks for visual flow.
  */
 .homework-section {
