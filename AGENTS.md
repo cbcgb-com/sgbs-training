@@ -40,6 +40,38 @@ different experience levels.
 - Prefer: bullet lists, prose, or tables
 - Avoid "why" questions (use specific formats instead)
 
+### Content quizzes (`.content-quiz`)
+
+Shared vanilla HTML/JS pattern (`docs/javascripts/content-quiz.js`, wired in
+`mkdocs.yml`) for MCQs in class notes. One module, two modes via `data-mode`:
+
+- Markup: `.content-quiz` > `.content-quiz__item` with choices + per-choice
+  `.content-quiz__reflection` (`data-choice="0"` …)
+- Author a full question bank in the markdown; JS randomly samples
+  `data-sample-size` items (default 3), **shuffles each item's option order**
+  (and relabels A/B/C…), then presents questions one-at-a-time with
+  上一題／下一題 flip-through. Keep `data-correct` / `data-choice` on the
+  authored option indices; only presentation order is random.
+- Stems avoid bare「為什麼」; prefer「怎樣／哪一種／最需要小心的是」等具體框架
+- Traditional Chinese; keep tone respectful for adult learners
+- Update the lesson TOC when adding a quiz section
+
+**`data-mode="reflect"`** (課前思考題): place **immediately above** the first
+pre-reading subsection (e.g. before「分析敘述文」). No correct answer; every
+option gets a soft「值得思考」note that primes the reader for the section ahead.
+Questions should be thought-provoking, with plausible distractors and no
+obvious winner.
+
+**`data-mode="review"`** (預讀複習題): place at the **end of 第一部分**, right
+before「第二部分：課堂實作活動」. Comprehension check on section content. Each
+`.content-quiz__item` needs `data-correct="0"`-based index; wrong/right choices
+are marked, and the selected option’s reflection explains using「答對了」/
+「再看一下」.
+
+Inline mini-checks (also `data-mode="review"`) may sit mid-section after a
+framework interactive; keep the bank small (`data-sample-size="2"`) and tightly
+tied to the just-taught idea.
+
 ## Course Structure
 
 **Flipped classroom**: Students read beforehand, class focuses on interactive
