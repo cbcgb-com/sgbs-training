@@ -72,6 +72,23 @@ Inline mini-checks (also `data-mode="review"`) may sit mid-section after a
 framework interactive; keep the bank small (`data-sample-size="2"`) and tightly
 tied to the just-taught idea.
 
+### Content panels (`.content-panels`)
+
+Shared vanilla HTML/JS pattern (`docs/javascripts/content-panels.js`, wired in
+`mkdocs.yml`) for chip/tab + one-panel reveals. Use when a framework would
+otherwise become a wall of prose (e.g. 三要素、OEIA 焦點).
+
+- Markup: `.content-panels` > optional `.content-panels__intro` + two or more
+  `.content-panels__panel` with `data-label="…"`
+- Optional `data-label` on the root names the tablist for accessibility
+- Optional `data-style="steps"` numbers the tabs for sequences
+  (觀察 → 解釋 → 歸納 → 應用)
+- Prefer short bullets + one `.content-panels__example` callout per panel
+- Traditional Chinese; teach one lens at a time, don’t dump all panels as prose
+- Inductive method acronym in this course is **OEIA**: 觀察（Observation）、
+  解釋（Explanation）、歸納（Induction）、應用（Application）. Do not collapse
+  into OIA, and do not gloss 歸納 as Interpretation.
+
 ## Course Structure
 
 **Flipped classroom**: Students read beforehand, class focuses on interactive
