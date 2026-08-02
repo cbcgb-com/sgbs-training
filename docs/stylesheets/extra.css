@@ -607,6 +607,114 @@ body {
 }
 
 /*
+ * Paginated content decks (quiz-style flip-through cards).
+ * Used for typed inventories that should be browsed one at a time.
+ */
+.content-deck {
+    margin: 1.25rem 0 1.75rem;
+    padding: 1.15rem 1.35rem 1.35rem;
+    border-radius: 12px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-deck__intro {
+    margin: 0 0 0.9rem 0;
+    line-height: 1.65;
+}
+
+.content-deck__card {
+    padding: 0.15rem 0.15rem 0.25rem;
+    line-height: 1.65;
+}
+
+.content-deck__card[hidden] {
+    display: none !important;
+}
+
+.content-deck__card > :first-child {
+    margin-top: 0;
+}
+
+.content-deck__card > :last-child {
+    margin-bottom: 0;
+}
+
+.content-deck__card h4 {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.05em;
+}
+
+.content-deck__example {
+    margin: 0.85rem 0 0;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+    line-height: 1.6;
+}
+
+.content-deck__example strong {
+    display: block;
+    margin: 0 0 0.3rem 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.content-deck__example p {
+    margin: 0;
+}
+
+.content-deck__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-deck__nav-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-deck__nav-btn:hover:not(:disabled),
+.content-deck__nav-btn:focus-visible:not(:disabled) {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-deck__nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.content-deck__nav-status {
+    flex: 1;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+    .content-deck {
+        padding: 1rem 1rem 1.15rem;
+    }
+}
+
+/*
  * Homework section – card-style blocks for visual flow.
  */
 .homework-section {
