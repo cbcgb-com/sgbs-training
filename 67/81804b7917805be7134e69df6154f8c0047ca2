@@ -1,0 +1,19 @@
+docs/resources/recordings.md
+  s_cb541123c64941::t_57965d67399a3a 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "6781804b7917805be7134e69df6154f8c0047ca2",
+  "prompts": {},
+  "sessions": {
+    "s_cb541123c64941": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03d039a1effeicWy9Nx3ZLnb6J",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
