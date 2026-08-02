@@ -1,0 +1,26 @@
+docs/stylesheets/extra.css
+  s_57e01f3e893110::t_00de55f76c063c 610-716
+  s_57e01f3e893110::t_5f8c333c84e282 609
+AGENTS.md
+  s_57e01f3e893110::t_41ab75becddc92 92-105
+docs/javascripts/content-deck.js
+  s_57e01f3e893110::t_dbe94f16994bac 1-112
+mkdocs.yml
+  s_57e01f3e893110::t_2bbebed7143a8b 41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "593eb2e14f20ee342dc744dd17f2bf38768243a4",
+  "prompts": {},
+  "sessions": {
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
