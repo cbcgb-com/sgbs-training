@@ -476,6 +476,137 @@ body {
 }
 
 /*
+ * Segmented content panels (chips / tabs + one reveal stage).
+ * Used for teaching frameworks without a wall of prose.
+ */
+.content-panels {
+    margin: 1.25rem 0 1.75rem;
+    padding: 1.15rem 1.35rem 1.35rem;
+    border-radius: 12px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-panels__intro {
+    margin: 0 0 0.9rem 0;
+    line-height: 1.65;
+}
+
+.content-panels__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.content-panels__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 999px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-panels__tab:hover,
+.content-panels__tab:focus-visible {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-panels__tab.is-active {
+    border-color: var(--md-default-fg-color, #111);
+    background: var(--md-default-fg-color, #111);
+    color: var(--md-default-bg-color, #fff);
+}
+
+.content-panels__tab-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: 700;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+}
+
+.content-panels__tab.is-active .content-panels__tab-num {
+    background: rgba(255, 255, 255, 0.22);
+    color: inherit;
+}
+
+.content-panels__panel {
+    padding: 0.15rem 0.15rem 0;
+    line-height: 1.65;
+}
+
+.content-panels__panel[hidden] {
+    display: none !important;
+}
+
+.content-panels__panel > :first-child {
+    margin-top: 0;
+}
+
+.content-panels__panel > :last-child {
+    margin-bottom: 0;
+}
+
+.content-panels__panel h4 {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.05em;
+}
+
+.content-panels__panel ul {
+    margin: 0.4rem 0 0.6rem 1.2rem;
+}
+
+.content-panels__panel li {
+    margin: 0.25rem 0;
+}
+
+.content-panels__example {
+    margin: 0.85rem 0 0;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+    line-height: 1.6;
+}
+
+.content-panels__example strong {
+    display: block;
+    margin: 0 0 0.3rem 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.content-panels__example p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .content-panels {
+        padding: 1rem 1rem 1.15rem;
+    }
+
+    .content-panels__tab {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/*
  * Homework section – card-style blocks for visual flow.
  */
 .homework-section {
