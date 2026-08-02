@@ -1020,7 +1020,7 @@ data-style="steps">
 <h4 id="buzhou-yi-shibie-zhuyao-xinxi">步驟一：識別主要信息</h4>
 <p>在已觀察到的文學工具基礎上，推測作者最想讓讀者帶走的主要信息，並對照上面六類信息：這段最突出哪一類？</p>
 <ul>
-<li>歌利亞驕傲、大衛信靠「萬軍之耶和華的名」、以色列軍隊恐懼——對比的是<strong>人看得到的力</strong>與<strong>信靠神的能力</strong>。</li>
+<li>歌利亞驕傲、大衛信靠「萬軍之耶和華的名」、以色列軍隊恐懼——對比的是<strong>人看得到的力量</strong>與<strong>信靠神的能力</strong>。</li>
 <li>較穩妥的表述：<strong>「神的能力勝過人的力量」</strong>，屬於<strong>神學真理</strong>（也帶動人物塑造）。</li>
 </ul>
 <div class="content-panels__example">
