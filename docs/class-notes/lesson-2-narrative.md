@@ -1192,6 +1192,294 @@ data-sample-size="3">
 </div>
 </div>
 
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">4</span>
+<span>【步驟一】若只能先寫一句「作者主要想說什麼」，下列哪一句最貼近本課示範？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">大衛比歌利亞更勇敢，所以少年也能打贏巨人。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">神的能力勝過人的力量。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">以色列全軍應更團結，不要因恐懼而退縮。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">非利士與以色列的衝突，主要在說明古代近東的決鬥規則。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>勇敢是人物面向，但示範把焦點放在大衛信靠「耶和華的名」與神能力的驗證，不宜只收成個人英雄主義。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>這句對準對比與宣告所指向的神學真理，也是步驟三第一條信息點的核心。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>全軍恐懼是對比的一極，但主要信息是關於神與人的力量，不是只提團隊道德教訓。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>決鬥規則可服務背景理解，但不是本段作者要讀者帶走的主要宣告。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">5</span>
+<span>【步驟二】大衛當眾提到「耶和華的名」，在示範中主要服務什麼？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">補充歷史地理，讓讀者知道戰場在哪裡。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">把對比收束成可聽見的宣告，說明信靠的對象是神。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">純粹修辭潤飾，與主要信息無關。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">主要是製造懸疑，讓讀者猜大衛會用什麼武器。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>地點背景重要，但「耶和華的名」是對話裡的神學宣告，要把信心內容說清楚。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>宣告讓對比不只停在畫面，讀者聽見大衛仗靠誰，並與後面勝利呼應。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>步驟二要求說明手法如何生效；這句宣告直接支撐「神的能力勝過人的力量」。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>情節有張力，但作者用宣告表明信靠對象，不是只玩懸念。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">6</span>
+<span>【步驟三】下列哪一項<strong>適合</strong>作為示範列出的第三條信息點？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">勿以外貌評斷人——這是本段唯一主軸。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">神使用看似弱小的器皿——年幼大衛與壯碩歌利亞的對比。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">這一戰證明大衛必作王——預表整卷《撒母耳記》的結局。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">歌利亞代表一切外邦邪惡——本段主要在諷刺非利士宗教。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>體型對比存在，但示範第三點寫成「神使用弱小的器皿」，並連到神不按人的標準，不宜收成一般道德口號。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>與示範步驟三第三條一致：從整段敘述的人物對比推出，並服務神學信息。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>大衛將來作王是整卷脈絡，但本段信息點應從這場對決的敘述推出，不宜跳去全卷結論。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>歌利亞確實是敵方代表，但作者焦點在信靠神與能力對比，不宜把單一角色變成抽象象徵的全部。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">7</span>
+<span>【步驟二】若只保留「大衛得勝」的結局，拿掉前面的對比與公開宣告，讀者最可能失去什麼？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">歌利亞的身高數字。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">看見驕傲、信心、恐懼如何一起指向「信靠神」的過程。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">經文是否出自舊約歷史書。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">大衛與掃羅的君臣關係。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>細節可少，但失去的是手法如何鋪陳信息，不是單一數字。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>示範自問正是：若拿掉對比，讀者還能否同樣清楚看見神的能力；過程與宣告不能省略。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>書卷歸類不變；缺的是敘事如何傳達信息。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>掃羅線索在別處展開；本問聚焦對比與宣告如何服務主要信息。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="0">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">8</span>
+<span>【步驟一】「以色列全軍恐懼退縮」在示範中宜如何理解？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">與歌利亞驕傲、大衛信心並列，對比人看見的力量與信靠神。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">證明以色列軍隊道德敗壞，是本段唯一要責備的重點。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">只是情節過渡，與主要信息無關，分析時可略過。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">代表《撒母耳記》對所有軍隊的一貫評價，與本段無特別關係。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>答對了</strong>
+<p>恐懼是對比的一極，與驕傲、信心一起加深「誰倚靠神」這條線。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>全軍確實軟弱，但作者用它襯托信靠神，不宜把整段讀成只責備軍隊。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>恐懼不是可有可無的過場；步驟二把它與驕傲、信心串成整體手法。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>可連整卷，但本段分析仍要問：這細節在此場對決中如何服務信息。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="0">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">9</span>
+<span>【步驟三】示範第二條「真正的信心會帶來行動」，主要依據哪組敘事細節？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">大衛主動請戰，對照全軍恐懼退縮。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">歌利亞辱罵的用詞與次數。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">掃羅盔甲合不合大衛身型。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">戰後如何分配歌利亞的兵器。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>答對了</strong>
+<p>行動與退縮的並置，支撐「信心帶來行動」這條信息點。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>辱罵加深張力，但第二條信息點核心是請戰與全軍反應的對比。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>盔甲情節有趣，但示範把「行動」放在大衛請戰與軍隊恐懼的對照上。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>戰利品在結局之後；此信息點從對決前的行動與態度推出。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="0">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">10</span>
+<span>【步驟二】下列哪一種寫法<strong>最不宜</strong>當作「傳達方式」的完整說明？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">只寫「作者用了對比」，不說對比哪幾方、如何指向主要信息。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">說明驕傲、信心、恐懼如何層層加深讀者對「倚靠神」的看見。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">把公開宣告與勝利結局連起來，視為對神能力的敘事驗證。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">指出對話如何把「仗靠誰」說清楚，而不只描述場面。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>答對了</strong>
+<p>步驟二忌只貼標籤；要說明工具如何一起生效，指向步驟一那句主要信息。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>這正是示範步驟二的寫法之一，說明對比如何運作。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>把結局與宣告連到驗證，是完整的傳達方式描述。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>說明對話功能，符合「如何傳達」的要求，不是空泛標籤。</p>
+</div>
+</div>
+
+
 </div>
 
 #### 半自主練習：《路加福音》7:36-50 {#san-bu-zhou-lianxi}
