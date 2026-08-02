@@ -45,9 +45,19 @@ different experience levels.
 Shared vanilla HTML/JS pattern (`docs/javascripts/content-quiz.js`, wired in
 `mkdocs.yml`) for MCQs in class notes. One module, two modes via `data-mode`:
 
+- **Modular authoring (Lesson 2+)**: keep each quiz bank in
+  `docs/quizzes/lesson-N/<slug>.html` (standalone page: quiz markup + quiz JS/CSS).
+  In the lesson markdown, embed with a borderless iframe—no inline quiz HTML:
+
+  `<iframe class="content-quiz-frame" src="../../quizzes/lesson-2/reflect.html"
+  title="…" loading="lazy" scrolling="no"></iframe>`
+
+  Parent pages load `content-quiz-frame.js` + `content-quiz-embed.css`; the iframe
+  reports height via `postMessage` so the frame fits content with **no scrollbars**.
+  Copy an existing `docs/quizzes/lesson-2/*.html` shell when adding a new bank.
 - Markup: `.content-quiz` > `.content-quiz__item` with choices + per-choice
   `.content-quiz__reflection` (`data-choice="0"` …)
-- Author a full question bank in the markdown; JS randomly samples
+- Author a full question bank in the quiz HTML file; JS randomly samples
   `data-sample-size` items (default 3), **shuffles each item's option order**
   (and relabels A/B/C…), then presents questions one-at-a-time with
   上一題／下一題 flip-through. Keep `data-correct` / `data-choice` on the

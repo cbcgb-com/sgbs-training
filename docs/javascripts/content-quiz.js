@@ -11,6 +11,56 @@
  * data-correct / data-choice stay stable; only presentation order is random.
  */
 (function () {
+    var HEIGHT_MSG = "content-quiz-frame-height";
+
+    function syncEmbedThemeFromParent() {
+        if (window.parent === window) return;
+        try {
+            var scheme = window.parent.document.documentElement.getAttribute(
+                "data-md-color-scheme"
+            );
+            if (scheme) {
+                document.documentElement.setAttribute(
+                    "data-md-color-scheme",
+                    scheme
+                );
+            }
+        } catch (err) {
+            /* cross-origin or restricted parent */
+        }
+    }
+
+    function reportEmbedHeight() {
+        if (window.parent === window) return;
+        var root = document.documentElement;
+        var height = Math.max(
+            root.scrollHeight,
+            document.body ? document.body.scrollHeight : 0
+        );
+        window.parent.postMessage(
+            { type: HEIGHT_MSG, height: height },
+            "*"
+        );
+    }
+
+    function scheduleEmbedHeightReport() {
+        if (window.parent === window) return;
+        requestAnimationFrame(function () {
+            reportEmbedHeight();
+            requestAnimationFrame(reportEmbedHeight);
+        });
+    }
+
+    function observeEmbedHeight() {
+        if (window.parent === window || !window.ResizeObserver) return;
+        var target = document.body || document.documentElement;
+        var observer = new ResizeObserver(scheduleEmbedHeightReport);
+        observer.observe(target);
+        document.querySelectorAll(".content-quiz").forEach(function (quiz) {
+            observer.observe(quiz);
+        });
+    }
+
     function shuffle(items) {
         var arr = Array.prototype.slice.call(items);
         for (var i = arr.length - 1; i > 0; i--) {
@@ -115,6 +165,7 @@
                         selectedIndex === correctIndex ? "答對了" : "再看一下";
                 }
                 showReflection(reflections, selectedIndex, label);
+                scheduleEmbedHeightReport();
             });
         });
     }
@@ -185,6 +236,7 @@
                 "第 " + (current + 1) + " / " + selected.length + " 題";
             controls.prev.disabled = current === 0;
             controls.next.disabled = current === selected.length - 1;
+            scheduleEmbedHeightReport();
         }
 
         controls.prev.addEventListener("click", function () {
@@ -195,7 +247,11 @@
         });
 
         show(0);
+        scheduleEmbedHeightReport();
     }
 
+    syncEmbedThemeFromParent();
     document.querySelectorAll(".content-quiz").forEach(initQuiz);
+    observeEmbedHeight();
+    scheduleEmbedHeightReport();
 })();

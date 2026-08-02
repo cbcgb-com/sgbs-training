@@ -33,10 +33,12 @@ nav:
 extra_css:
   - stylesheets/extra.css
   - stylesheets/transition.css
+  - stylesheets/content-quiz-embed.css
 
 extra_javascript:
   - javascripts/expandable-cards.js
   - javascripts/content-quiz.js
+  - javascripts/content-quiz-frame.js
   - javascripts/content-panels.js
   - javascripts/content-deck.js
   - javascripts/chinese-toggle.js
