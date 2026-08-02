@@ -5,6 +5,7 @@
 - [學習目標](#xuexi-mubiao)
 - [課程時間安排](#kecheng-shijian-anpai)
 - [第一部分：課前預讀內容](#diyi-bufen-keqian-yudu-neirong)
+    - [課前思考題](#keqian-sikao-ti)
     - [分析敘述文](#fenxi-xushu-wen)
     - [如何在敘述文體上應用歸納式查經](#ruhe-zai-xushu-wenti-shang-yingyong-guina-shi-chajing)
     - [預備查經筆記](#yubei-chajing-biji)
@@ -14,6 +15,7 @@
     - [經文分析](#jingwen-fenxi)
     - [實作建議](#shizuo-jianyi)
     - [思考信息](#sikao-xinxi)
+    - [預讀複習題](#yudu-fuxi-ti)
 - [第二部分：課堂實作活動](#dier-bufen-ketang-shizuo-huodong)
     - [課前功課討論](#keqian-gongke-taolun)
     - [實作活動：敘述文分析工作坊](#shizuo-huodong-xushu-wen-fenxi-gongzuofang)
@@ -44,6 +46,429 @@
 
 > **重要提醒**：請在上課前仔細閱讀以下內容，這將幫助你更好地參與課堂活動。課堂時間將主要用於實作練習，而非理論講解。
 
+### 課前思考題 {#keqian-sikao-ti}
+
+先用幾分鐘回答下列問題，再繼續往下讀。系統會從題庫中隨機抽出 3 題；用「上一題／下一題」翻頁作答。
+這些題目沒有標準答案；選一項後會出現簡短的思考提示，幫助你帶著問題進入後面的內容。
+
+<div
+class="content-quiz"
+id="content-quiz-lesson-2-reflect"
+data-mode="reflect"
+data-sample-size="3">
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">1</span>
+<span>當你打開一卷「看起來像歷史書」的經文時，你會先怎樣判斷這段是否適合用敘述文的方式來分析？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">先看它屬於哪一類書卷（歷史書、福音書等），再決定分析方式。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">先留意作者是否在用故事情節、人物與場景來推進信息。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">先找這段有沒有明確的神學命題或教導句，有的話就不算敘述文。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先看註釋書怎麼歸類，再跟著註釋的文體標籤走。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>書卷分類很有幫助，但同一卷書裡也可能出現不同寫作風格。往下讀時，留意「分類」與「這一段實際怎麼寫」之間可能有落差。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>你已經在注意寫作風格本身。往下讀時，試著把「敘述的風格」與「書卷名稱」分開看，看看作者如何用故事帶出主題。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>敘述文裡也可以出現重要的宣告或教導。往下讀時，留意故事情節本身如何承載信息，而不只尋找可抽離的句子。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>參考書能提供起點，但文體判斷最終仍要回到經文本身。往下讀時，練習先自己觀察作者如何鋪陳，再對照他人看法。</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">2</span>
+<span>預備敘述文查經時，你覺得「背景、人物、情節」這三個要素裡，哪一項最值得你先用力觀察？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">背景：時間與地點決定了整段故事的舞台。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">人物：人物的行動、對話與轉變最能顯出主題。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">情節：起因、經過、結果串起作者要我們跟隨的軌跡。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">三者彼此牽動，不應先預設哪一項永遠最重要。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>背景常被略過，卻能改變我們對人物選擇的理解。往下讀時，留意背景如何幫你進入故事的張力。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>人物確實是敘述文的重要載體。往下讀時，同時留意人物的轉變如何嵌在情節與背景之中。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>情節幫助我們看見故事往哪裡走。往下讀時，試著問：作者花最多篇幅寫的，是情節的哪一段？</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>這種整體觀很穩妥。往下讀時，練習在不同經文中辨認：這一次作者特別用力的是哪一個要素？</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">3</span>
+<span>相較於直接陳述道理的經文，敘述文通常比較倚靠哪一種方式來呈現主題？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">透過故事情節與場景鋪陳，讓主題在事件發展中漸漸顯明。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">透過人物對話中的關鍵句，把主題濃縮成一句可背誦的真理。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">透過讀者的情感體驗，邀請人先感受，再思想。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">透過省略說明，逼讀者自己從細節中拼湊作者的意圖。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>情節鋪陳是敘述文常見的路徑。往下讀時，留意主題如何「跟著事件走」，而不是一次講完。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>關鍵對話確實重要，但若抽離情節，可能誤會原意。往下讀時，把對話放回人物張力與場景中看。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>情感是敘述文常被忽略的通道。往下讀時，留意作者如何引導你的感受，並思考那與信息有何關聯。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>細節拼圖很重要，但作者也常給清楚的線索。往下讀時，兼顧「被省略的」與「被強調的」。</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">4</span>
+<span>在動手觀察經文細節之前，先整理書卷的背景知識（作者、對象、目的、架構），對你來說主要的價值是什麼？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">幫助我推測作者可能關心什麼，避免一開始就用自己的問題框住經文。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">給我一個可核對的框架，之後觀察細節時比較知道該留意什麼。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">提醒我這段經文不是孤立存在，它坐落在整卷書的某個位置。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">其實價值有限；真正關鍵仍是逐節觀察，背景可以後補。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>你意識到先入為主的危險。往下讀時，練習用背景知識「打開」問題，而不是用它「關閉」其他可能。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>框架能讓觀察更有方向。往下讀時，留意框架如何協助你，也留意它何時開始限制你。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>文學位置很關鍵。往下讀時，特別留意「這段在整卷書中的位置」如何影響你對情節的理解。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>逐節觀察確實不可少。往下讀時，試著比較：有背景預備與沒有背景預備時，你注意到的細節會不會不同？</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">5</span>
+<span>做敘述文的「基本觀察」時，你比較想把力氣放在哪一類細節上？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">時間、地點與文化背景：先弄清楚故事發生的世界。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">人物關係與各自立場：先弄清楚誰在與誰互動。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">這段經文在整卷書中的位置：先弄清楚上下文。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">反覆出現、被詳細描述或被對比的細節：先弄清楚作者強調什麼。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>這是穩妥的起點。往下讀時，留意背景細節如何改變你對人物行動的解讀。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>人物關係常是張力所在。往下讀時，試著把每位人物的動機與恐懼寫下來，再看情節如何推進。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>上下文能防止斷章取義。往下讀時，練習先問：若沒有前後文，我對這段的理解會差多少？</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>你已經在靠近文學工具的門檻。往下讀時，把「被強調的細節」與「作者可能要傳達的信息」連起來看。</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">6</span>
+<span>當你在敘述文裡認出重複、對比、詳細描述等文學手法時，你傾向怎樣理解它們的功用？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">它們主要是修辭裝飾，讓故事更好讀。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">它們是作者用來指向信息的線索，值得追問「強調了什麼」。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">它們幫助塑造人物，讓讀者對角色產生特定印象。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">它們可能同時做很多事；同一個手法不一定只有一種功用。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>可讀性確實重要，但聖經敘述往往「寫法即信息」。往下讀時，試著多問一句：這個手法把我的注意力拉到哪裡？</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>這是很有生產力的閱讀姿態。往下讀時，練習把「看見手法」推進到「推測它服務的信息」。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>人物塑造是常見功用之一。往下讀時，留意手法如何同時影響情節節奏與神學主題。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>多重功用的意識很健康。往下讀時，允許自己列出多個可能，再與他人核對，避免過早定案。</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">7</span>
+<span>本課提到，神也可能透過故事發展與我們的情感來傳達信息。你對這句話的第一反應比較接近哪一種？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">情感容易主觀，查經時應盡量壓低感受，專心找客觀信息。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">情感是進入故事的入口，但最終仍要回到經文細節來核對。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">若作者引導我感受赦免、恐懼或勇氣，那感受本身可能就是信息的一部分。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">情感適合應用階段討論，觀察與解釋階段暫時不必談。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>對主觀性的警戒很寶貴。往下讀時，試著區分「被經文引發的感受」與「從感受直接推出的應用」。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>你同時尊重體驗與文本。往下讀時，練習把感受記下來，再問：作者用了哪些細節引導出這種感受？</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>這會打開敘述文特有的深度。往下讀時，留意「情感共鳴」如何成為一種信息類型，而不只是讀後餘韻。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>階段劃分有助於紀律。往下讀時，想想：若完全延後談情感，是否會漏掉作者在故事中刻意鋪陳的張力？</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">8</span>
+<span>分析作者可能想傳達的信息時，你面前可能同時有道德教訓、人物塑造、神學真理等多個選項。你會怎樣起步？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">先選定最像「主要信息」的一類，再看文學工具是否支持它。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">先盡量列出所有可能的信息類型，再逐步收斂。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">先問這段對當時讀者最迫切的是什麼，再對應信息類型。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先找出作者花最多篇幅或對比最強烈的地方，讓經文自己指路。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>先立假設再驗證很有效率。往下讀時，記得保留「假設可能被推翻」的空間。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>廣列再收斂能減少遺漏。往下讀時，留意本課鼓勵多列信息點，並與他人討論以免偏見。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>這把歷史與文化背景帶進來了。往下讀時，同時核對：你對「當時讀者」的想像是否有經文與背景支持？</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>跟著篇幅與對比走，是很「敘述文」的做法。往下讀時，練習把「作者用力之處」寫成具體的信息點。</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">9</span>
+<span>從敘述文抽出「可應用的功課」時，你覺得最需要小心的是哪一件事？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">拿單一句對話或單一情節當普遍原則，忽略整段敘述的脈絡。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">把故事角色直接等同於「我應該成為的榜樣」，未經分辨。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">用今天的文化直覺改寫古代場景，卻沒有先理解原初背景。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">急著談應用，還沒有先整理作者透過文學手法所指向的信息。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>這正是本課對斷章取義的提醒。往下讀時，練習先從完整敘述結構體會原則，再談應用。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>人物確實能塑造我們，但不是每位角色、每個行動都可直接複製。往下讀時，問：作者要我們效法的是什麼？警戒的又是什麼？</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>文化落差常讓應用變形。往下讀時，留意背景知識如何保護你，避免現代化的誤解。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>應用需要根基。往下讀時，跟著本課的步驟走：先識別信息與傳達方式，再進入生活關聯。</p>
+</div>
+</div>
+
+<div class="content-quiz__item">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">10</span>
+<span>當你整理出「這段敘述對我個人、對社會、對教會」的應用方向後，下一步你最想做什麼？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">先自己寫成清楚的應用點，上課時再拿出來分享。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">找一位同伴或屬靈長輩核對，聽聽有沒有被我的偏見帶偏。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">回到經文，檢查這些應用是否與整段敘述及聖經整體教導一致。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">選一個最小、可實踐的下一步，先在生活中試著回應。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>值得思考</strong>
+<p>寫清楚有助於課堂討論。往下讀時，也為「可能被修正」留空間——獨自預備容易有盲點。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>值得思考</strong>
+<p>本課特別鼓勵與人核對。往下讀時，把「討論」視為分析過程的一部分，而不只是課後加分項。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>值得思考</strong>
+<p>這是穩妥的自我檢驗。往下讀時，把「避免斷章取義」與「尋求聖經整體性」當作應用前的固定步驟。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>值得思考</strong>
+<p>實踐讓信息落地。往下讀時，仍記得先確認應用是否忠於經文，再邁出那一小步。</p>
+</div>
+</div>
+
+</div>
+
 ### 分析敘述文 {#fenxi-xushu-wen}
 
 在聖經中，屬於敘述文的文體多半為歷史書
@@ -55,11 +480,307 @@
 
 ### 如何在敘述文體上應用歸納式查經 {#ruhe-zai-xushu-wenti-shang-yingyong-guina-shi-chajing}
 
-歸納式查經的主要工具是以自問自答的方式來認識並理解經文。
+歸納式查經的主要工具是以自問自答的方式來認識並理解經文。敘述文透過故事情節、人物與場景來承載主題；下面先拆開「三要素」，再對應到 OEIA（觀察、解釋、歸納、應用）四個步驟的焦點。
 
-**敘述文（Narrative）**的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。例如，《路加福音》7:36-50描述耶穌與一位罪人的相遇，藉由事件的發展和人物的互動，讓我們看見赦免與愛的主題。
+#### 敘述文的三要素
 
-在歸納式查經的應用上，敘述文在觀察階段的重點在於細緻記錄故事的時間、地點、人物關係、事件發展等細節；在解釋階段，思考事件背後的文化背景、人物動機與神學意義；在歸納與應用階段，總結故事主題，並思考其對我們生命的提醒與挑戰。我們需要關注背景的帶入感、情節的細節、人物的特點與轉變，以及故事如何啟發我們的信仰生活。神也透過故事的發展和我們的**情感**來傳達祂的信息，邀請我們用心靈去經歷、感受並回應祂的真理。
+點選一個要素，看看它是什麼、觀察時可以問什麼，以及在《路加福音》7:36-50 裡可能長什麼樣子。
+
+<div
+class="content-panels"
+id="content-panels-lesson-2-elements"
+data-label="敘述文三要素">
+
+<div class="content-panels__panel" data-label="背景">
+<h4>背景：故事的舞台</h4>
+<p>背景交代時間、地點，以及故事發生的社會／宗教氛圍，幫助讀者進入場景。</p>
+<ul>
+<li>這事發生在什麼時候？在哪裡？</li>
+<li>現場有什麼氣氛或規範（例如宴席、會堂、旅途）？</li>
+<li>若不先弄清舞台，後面的行動容易被現代直覺改寫。</li>
+</ul>
+<div class="content-panels__example">
+<strong>《路加福音》7:36-50</strong>
+<p>場景是法利賽人西門家裡的宴席；「誰被請、在誰家裡」構成整段互動的舞台。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="人物">
+<h4>人物：誰在場，誰在變</h4>
+<p>人物的身份、關係、對話、行動與轉變，常常是主題顯明的主要載體。</p>
+<ul>
+<li>經文出現哪些人？他們的關係與立場是什麼？</li>
+<li>誰主動、誰旁觀、誰改變？</li>
+<li>對話與內心反應如何塑造我們對角色的認識？</li>
+</ul>
+<div class="content-panels__example">
+<strong>《路加福音》7:36-50</strong>
+<p>耶穌、西門、那位「罪人」婦人形成張力：西門心裡議論，婦人以行動親近耶穌，耶穌則同時回應兩人。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="情節">
+<h4>情節：起因、經過、結果</h4>
+<p>情節把事件串成可跟隨的軌跡；主題往往在發展與轉折中漸漸顯明，而不是先拋一句命題。</p>
+<ul>
+<li>起因是什麼？衝突如何升高？</li>
+<li>轉折點在哪裡？結果如何收束？</li>
+<li>作者讓我們先看見什麼、後看見什麼？</li>
+</ul>
+<div class="content-panels__example">
+<strong>《路加福音》7:36-50</strong>
+<p>從赴宴、婦人進前、西門議論，到耶穌用比喻與宣告收束，事件發展把「赦免與愛」推到台前。</p>
+</div>
+</div>
+
+</div>
+
+#### 小練習：這細節屬於哪一要素？
+
+讀完上面三個鏡頭後，試著分辨下列細節最直接屬於哪一類。系統會抽 2 題；選完會標示對錯，並用簡短說明幫你對齊概念。
+
+<div
+class="content-quiz"
+id="content-quiz-lesson-2-elements-mini"
+data-mode="review"
+data-sample-size="2">
+
+<div class="content-quiz__item" data-correct="0">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">1</span>
+<span>「這事發生在法利賽人西門家裡的宴席上。」這句最直接屬於哪一要素？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">背景：交代故事發生的地點與場面。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">人物：主要在描寫西門這個人的品格。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">情節：這已經是故事的高潮轉折。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">應用：直接告訴我們今天該怎樣作東。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>答對了</strong>
+<p>地點與宴席場面先搭好舞台，後面的人物互動才站得住。背景不一定最精彩，卻常是讀懂張力的前提。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>這裡提到西門，但重點是「在誰家、什麼場合」，先定位場景。人物分析要再往他的態度、議論與反應看。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>宴席是事件的起點舞台，還不是高潮。情節的轉折要看後續婦人進前、西門議論，以及耶穌的回應。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>這句仍在觀察故事世界，還沒到應用。先分辨背景／人物／情節，再談對今日生活的提醒。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">2</span>
+<span>「西門心裡議論這婦人，卻沒有說出口；耶穌卻知道他的想法。」這細節最需要放在哪一要素下來追問？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">背景：這只是在補充宴席的菜單與座位。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">人物：顯出西門的內心立場，以及耶穌如何看人。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">情節：這已是整段故事的最終結果。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">無關要素：內心戲對敘述文分析不重要。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>這不是場地設備，而是人物內心與關係張力。背景問「在哪裡」；這裡問的是「誰怎麼看誰」。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>內心議論、隱藏態度與耶穌的洞察，都在塑造人物，也為後面的比喻與宣告鋪路。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>這是中段張力，不是結局。最終收束還包括比喻、赦免宣告，以及「你的信救了你」。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>敘述文很常藉內心反應與對比塑造人物；略過這些，主題很容易變成抽象口號。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="2">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">3</span>
+<span>「耶穌先用比喻指出西門的判斷，再當面宣告婦人的罪赦了。」這主要屬於哪一要素的發展？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">背景：只是再說明一次宴席地點。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">人物名單：只是新登場一個角色。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">情節：事件來到轉折與收束，主題在此顯明。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">註腳：與故事主線無關的附加說明。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>這裡推動的是事件發展與結論，不是重述舞台。背景通常先搭好，情節才在其上轉折。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>角色早已在場；重點是耶穌如何回應、故事如何轉折，屬於情節推進。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>答對了</strong>
+<p>比喻與赦免宣告是整段的關鍵轉折與收束；「赦免與愛」正是沿這條情節軌跡被推到台前。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>這恰恰是主線高潮，不是附件。讀敘述文時，要把這類轉折標出來，再問它指向什麼主題。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="3">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">4</span>
+<span>當你分辨細節屬於哪一要素時，哪一種做法最穩妥？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">每個細節只能歸入一類，永遠不要重疊。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">先挑最有感覺的要素，其他兩項可以略過。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">先寫應用，再回頭把細節塞進要素名稱裡。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先問「這細節主要幫我看舞台、看人，還是看事件發展」，允許次要重疊，但要能說出主軸。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>分類是幫手，不是牢籠。有些細節會同時碰觸人物與情節；關鍵是說清楚此刻你主要用它看見什麼。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>三要素彼此牽動。只追最有感覺的一項，容易漏掉作者鋪陳主題的其他線索。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>應用要建立在觀察之上。先把細節放回故事結構，再談提醒與挑戰，才不容易斷章取義。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>答對了</strong>
+<p>用「舞台／人物／事件發展」來判斷主軸，既保持彈性，也逼自己說清楚這細節到底在做什麼。</p>
+</div>
+</div>
+
+</div>
+
+#### OEIA 在敘述文中的焦點
+
+本課與全課程一致，使用四個步驟：觀察（Observation）、解釋（Explanation）、歸納（Induction）、應用（Application）。同樣一段敘述，在不同階段注意力會放在不同層次；點選一個步驟看看。
+
+<div
+class="content-panels"
+id="content-panels-lesson-2-oeia"
+data-label="OEIA 在敘述文中的焦點"
+data-style="steps">
+
+<div class="content-panels__panel" data-label="觀察">
+<h4>觀察（Observation）：聖經說些什麼？</h4>
+<p>細緻記錄時間、地點、人物關係、事件發展等細節，暫時先不急著下結論。</p>
+<ul>
+<li>背景有沒有帶入感？缺了哪一塊會讀不懂？</li>
+<li>人物說了什麼、做了什麼、有什麼對比？</li>
+<li>情節的起因、經過、結果怎樣串起來？</li>
+</ul>
+<div class="content-panels__example">
+<strong>自問自答示例</strong>
+<p>「誰先行動？衝突在哪一句話或哪一個動作升高？」先寫下經文裡實際出現的內容。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="解釋">
+<h4>解釋（Explanation）：聖經內容的含義是什麼？</h4>
+<p>根據觀察提出值得追問的問題，並嘗試回答：文化背景、人物動機、字詞與關聯，以及這段敘述可能指向的意義。</p>
+<ul>
+<li>當時聽眾／讀者會怎樣理解這個場面？</li>
+<li>人物這樣做／這樣說，可能出於什麼動機？</li>
+<li>作者藉這事件要讀者看見神的哪一面、人的哪一種光景？</li>
+</ul>
+<div class="content-panels__example">
+<strong>自問自答示例</strong>
+<p>「西門的議論與婦人的行動，對照出怎樣不同的『看待罪人／看待赦免』？」</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="歸納">
+<h4>歸納（Induction）：可整理出哪些信息或原則？</h4>
+<p>把解釋所得系統化，收束成幾個主要信息或信仰原則，並核對是否合於聖經整體教導。</p>
+<ul>
+<li>這段敘述最核心要我們看見的是什麼？</li>
+<li>這些要點怎樣從情節、人物與文學手法共同推出，而不是單節金句？</li>
+<li>歸納出的原則是否與信仰教義、聖經整體信息一致？</li>
+</ul>
+<div class="content-panels__example">
+<strong>自問自答示例</strong>
+<p>「若要把這段收成一句信息，較穩妥的是『被大赦免的人，愛也大』，還是別的表述？經文哪裡支持？」</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="應用">
+<h4>應用（Application）：我如何回應？</h4>
+<p>根據歸納所得，思想這些信息對現今讀者的提醒與挑戰，並落到可實踐的回應。</p>
+<ul>
+<li>對個人生命有什麼具體提醒？</li>
+<li>對社會處境或教會群體有什麼意義？</li>
+<li>今天有什麼最小、可核對的下一步？</li>
+</ul>
+<div class="content-panels__example">
+<strong>自問自答示例</strong>
+<p>「若赦免會生出愛，我目前更像西門的距離感，還是婦人的回應？下一步可以怎樣實踐？」</p>
+</div>
+</div>
+
+</div>
+
+!!! note "情感也是信息通道"
+    神也透過故事的發展和我們的**情感**來傳達祂的信息。讀敘述文時，感受赦免、羞愧、敬畏或安慰，不是查經的干擾，而是作者常用的邀請：用心靈去經歷、感受，再回到經文細節核對，並回應祂的真理。
 
 ### 預備查經筆記 {#yubei-chajing-biji}
 
@@ -212,14 +933,68 @@
 
 **作者可能想要傳達的信息類型：**
 
-| 信息類型 | 描述 | 經文例子 |
-|---------|------|----------|
-| 道德教訓 | 作者是否在傳達某種道德原則或生活智慧？ | 《路加福音》10:25-37（好撒瑪利亞人的比喻）教導愛鄰舍的功課 |
-| 人物塑造 | 作者是否在建立我們對某個角色的認識（如耶穌的品格、大衛的信心等）？ | 《馬可福音》4:35-41（平靜風浪）展現耶穌的權柄和門徒的信心成長 |
-| 神學真理 | 作者是否在闡述關於神的本性、救恩、或信仰的真理？ | 《約翰福音》3:16-17（尼哥德慕的對話）闡明神的愛和救恩計劃 |
-| 歷史意義 | 作者是否在記錄重要事件，為後續情節做鋪墊？ | 《撒母耳記上》16:1-13（大衛受膏）為大衛成為王做準備 |
-| 文化背景 | 作者是否在描繪當時的社會文化，幫助讀者理解背景？ | 《路得記》1:1-5（拿俄米返回伯利恆）描繪士師時代的社會狀況 |
-| 情感共鳴 | 作者是否在引導讀者體驗某種情感或感受？ | 《路加福音》7:36-50（有罪的女人膏抹耶穌）引導讀者感受神的赦免和愛 |
+下面六類信息常見於敘述文；請一張一張翻看，先抓住「這一類在問什麼」，再看經文例子。
+
+<div
+class="content-deck"
+id="content-deck-lesson-2-message-types"
+data-label="作者可能想要傳達的信息類型">
+
+<div class="content-deck__card" data-label="道德教訓">
+<h4>道德教訓</h4>
+<p>作者是否在傳達某種道德原則或生活智慧？</p>
+<div class="content-deck__example">
+<strong>經文例子</strong>
+<p>《路加福音》10:25-37（好撒瑪利亞人的比喻）教導愛鄰舍的功課。</p>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="人物塑造">
+<h4>人物塑造</h4>
+<p>作者是否在建立我們對某個角色的認識（如耶穌的品格、大衛的信心等）？</p>
+<div class="content-deck__example">
+<strong>經文例子</strong>
+<p>《馬可福音》4:35-41（平靜風浪）展現耶穌的權柄和門徒的信心成長。</p>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="神學真理">
+<h4>神學真理</h4>
+<p>作者是否在闡述關於神的本性、救恩、或信仰的真理？</p>
+<div class="content-deck__example">
+<strong>經文例子</strong>
+<p>《約翰福音》3:16-17（尼哥德慕的對話）闡明神的愛和救恩計劃。</p>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="歷史意義">
+<h4>歷史意義</h4>
+<p>作者是否在記錄重要事件，為後續情節做鋪墊？</p>
+<div class="content-deck__example">
+<strong>經文例子</strong>
+<p>《撒母耳記上》16:1-13（大衛受膏）為大衛成為王做準備。</p>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="文化背景">
+<h4>文化背景</h4>
+<p>作者是否在描繪當時的社會文化，幫助讀者理解背景？</p>
+<div class="content-deck__example">
+<strong>經文例子</strong>
+<p>《路得記》1:1-5（拿俄米返回伯利恆）描繪士師時代的社會狀況。</p>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="情感共鳴">
+<h4>情感共鳴</h4>
+<p>作者是否在引導讀者體驗某種情感或感受？</p>
+<div class="content-deck__example">
+<strong>經文例子</strong>
+<p>《路加福音》7:36-50（有罪的女人膏抹耶穌）引導讀者感受神的赦免和愛。</p>
+</div>
+</div>
+
+</div>
 
 聖經的道德信息並非每一句話都直接傳達道德教訓，而是需要透過作者整體敘述的脈絡來綜合理解。我們必須從完整的敘述結構中體會作者想要傳達的道德原則。切忌斷章取義，從單一經文或句子中推斷道德教訓，這樣容易導致錯誤的應用！
 
@@ -260,6 +1035,264 @@
 在應用這些信息時，要遵循幾個重要原則。首先，避免斷章取義，確保你的應用是基於對整段經文的完整理解。其次，尋求聖經的整體性，思考這個信息如何與聖經的其他教導一致。第三，考慮文化背景，理解經文的原始背景，避免現代化的誤解。最後，尋求智慧，在應用時尋求聖靈的引導和智慧。
 
 同樣的，這些思考應用的點子也需要與其他人核對，以防自己的偏見帶偏了討論。與小組成員、牧師或屬靈導師分享你的想法，聽取不同的觀點，這能幫助你更全面地理解經文的意義和應用。
+
+### 預讀複習題 {#yudu-fuxi-ti}
+
+讀完第一部分後，用下面的複習題快速核對幾個關鍵概念。系統會隨機抽 3 題；選完會標示對錯，並用簡短說明幫你回到正文。
+
+<div
+class="content-quiz"
+id="content-quiz-lesson-2-review"
+data-mode="review"
+data-sample-size="3">
+
+<div class="content-quiz__item" data-correct="3">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">1</span>
+<span>分析敘述文時，關於「背景、人物、情節」三要素，哪一種理解最穩妥？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">背景永遠最重要，因為沒有舞台就沒有故事。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">人物永遠最重要，主題幾乎都藏在主角身上。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">情節永遠最重要，只要抓住起因經過結果即可。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">三者彼此牽動；要問細節主要幫你看舞台、看人，還是看事件發展。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>背景很關鍵，但不應預設永遠最重要。有些段落的張力主要在人物對比或情節轉折。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>人物常承載主題，但仍需放回場景與情節軌跡中看，否則容易把角色抽離成抽象榜樣。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>情節很重要，但若忽略背景與人物，很容易只剩劇情摘要，抓不到作者為何這樣說故事。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>答對了</strong>
+<p>三要素是互相牽動的鏡頭。先判斷細節主要服務哪一層，再允許次要重疊，分析會比較穩。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="2">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">2</span>
+<span>本課的 OEIA 四步驟中，「歸納」主要在做什麼？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">盡量蒐集時間、地點、人物、對話等可觀察細節。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">解釋個別細節在原初情境中可能的意思。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">把多處觀察與解釋收束成這段敘述的核心信息。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">直接寫出今日生活中可執行的應用步驟。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>那是「觀察」：先看見經文裡有什麼。歸納是在觀察與解釋之後，收束主要信息。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>那是「解釋」：問細節在上下文中的意義。歸納要再往上整合成整段的核心信息。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>答對了</strong>
+<p>歸納（Induction）是把線索收成主題句／信息點，而不是停留在單一細節的解釋，也還不到應用。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>那是「應用」。若跳過歸納，應用很容易變成感受分享，而不是回應作者要傳達的信息。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">3</span>
+<span>看見重複、對比、詳細描述等文學工具時，最合適的第一步是什麼？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">先把它們當成修辭裝飾，欣賞文采即可。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">先追問：作者用這手法強調或指向什麼信息？</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">先假設每段經文都會用到全部文學工具。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先跳到應用，問這修辭今天怎樣激勵我。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>文學工具不只是裝飾；在敘述文裡，它們常常是作者指路的線索。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>先問「強調了什麼／指向什麼」，才能把技巧連回信息，而不是停在標籤名稱上。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>不是每段都會用齊所有工具。專注經文實際出現的手法，比硬套清單更可靠。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>應用要建立在信息之上。先弄清作者為何使用這手法，再談今日回應。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="0">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">4</span>
+<span>作者透過對比大衛的信心與歌利亞的驕傲，傳達「神的能力勝過人的力量」。這較接近哪一類信息？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">神學真理：關於神如何行事、人當如何信靠的核心宣告。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">文化背景：主要在介紹非利士人的軍事裝備規格。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">歷史意義：只是為後面家譜名單做無主題的鋪墊。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">情感共鳴：重點只是讓讀者感受戰場氣氛，沒有真理指向。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>答對了</strong>
+<p>這個例子在本課用來說明：文學對比可以服務神學真理——神的能力勝過人的力量。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>裝備與場面可能提供背景，但對比信心／驕傲所指向的，是關於神與人的真理。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>事件當然有歷史位置，但本課舉這例是為了說明核心信息，不是說它沒有主題。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>情感可能被帶動，但作者同時在宣告關於神能力的真理；不必把感受與信息對立。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="3">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">5</span>
+<span>從敘述文抽出「可應用的功課」時，哪一件事最需要小心？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">先把應用寫清楚，再回頭找經文細節支持。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">只用一句對話當普遍原則，不必看整段脈絡。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">把故事角色直接等同於「我應該成為的榜樣」，不需分辨。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先掌握整段敘述與作者指向的信息，再談個人／社會／教會的回應，並與人核對。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>這是倒過來做。應用若先於觀察與歸納，很容易變成把自己的結論塞進經文。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>斷章取義正是本課警告的陷阱。道德信息要從完整敘述脈絡綜合理解。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>人物可能是榜樣、反例，或複雜混合。先看作者如何塑造與評價，再談效法。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>答對了</strong>
+<p>先抓住整段信息，再從個人、社會、教會思考回應，並與他人核對，能減少偏見與斷章取義。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">6</span>
+<span>課堂工作坊分析一段敘述時，較合適的順序是哪一種？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">先寫應用金句 → 再補文學工具名稱 → 最後看背景。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">先辨認敘述文要素 → 再識別實際出現的文學工具 → 再分析它們如何支持核心信息。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">先假設六種信息類型都要找到 → 再硬找細節填滿表格。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先略過經文細節，直接討論今天小組最想聽的主題。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>這會讓經文服事預設金句。較穩的路是要素 → 文學工具 → 信息。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>這正是本課工作坊的分析步驟：先看清楚故事結構與手法，再談作者要傳達什麼。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>六類信息是參考框架，不是打卡清單。一段經文通常會有主要類型，不必強行找齊。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>課堂實作的目標是練習從經文長出分析，而不是先決定主題再回頭裝飾。</p>
+</div>
+</div>
+
+</div>
 
 ## 第二部分：課堂實作活動 {#dier-bufen-ketang-shizuo-huodong}
 
