@@ -1,0 +1,19 @@
+docs/quizzes/lesson-2/message-steps-demo.html
+  s_57e01f3e893110::t_984e939e72262c 17,20,25,33,41-42,49-50,431
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "261221d435f12d931f0dc1b6303eaabeed56c58c",
+  "prompts": {},
+  "sessions": {
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
