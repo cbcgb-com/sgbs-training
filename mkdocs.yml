@@ -38,6 +38,7 @@ extra_javascript:
   - javascripts/expandable-cards.js
   - javascripts/content-quiz.js
   - javascripts/content-panels.js
+  - javascripts/content-deck.js
   - javascripts/chinese-toggle.js
 
 plugins:

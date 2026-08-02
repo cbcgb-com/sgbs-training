@@ -89,6 +89,20 @@ otherwise become a wall of prose (e.g. 三要素、OEIA 焦點).
   解釋（Explanation）、歸納（Induction）、應用（Application）. Do not collapse
   into OIA, and do not gloss 歸納 as Interpretation.
 
+### Content decks (`.content-deck`)
+
+Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in
+`mkdocs.yml`) for quiz-style paginated cards: one card at a time with
+上一張／下一張. Use for typed inventories that should be browsed, not tabulated
+(e.g. 作者可能想要傳達的信息類型).
+
+- Markup: `.content-deck` > optional `.content-deck__intro` + two or more
+  `.content-deck__card` with `data-label="…"`
+- Optional `data-label` on the root names the region for accessibility
+- Prefer short prompt + one `.content-deck__example` callout per card
+- Shows the full set in authored order (no random sampling)
+- Traditional Chinese; keep each card scannable on its own
+
 ## Course Structure
 
 **Flipped classroom**: Students read beforehand, class focuses on interactive
