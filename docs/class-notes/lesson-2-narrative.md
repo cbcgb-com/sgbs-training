@@ -618,40 +618,80 @@ data-nav="false">
 
 具體的經文分配將在課堂上進行。
 
-#### 分析步驟
+#### 工作坊流程
 
-**第一步：敘述文要素識別（5分鐘）**
+<div class="content-timeline" aria-label="敘述文分析工作坊流程">
 
-- 時間：故事發生在什麼時候？有什麼歷史背景？
-- 地點：故事發生在哪裡？地理環境如何？
-- 人物：經文中出現哪些主要人物？他們的關係如何？
-- 情節：故事的起因、經過、結果是什麼？
-- 文化背景：有哪些重要的文化、宗教或社會背景需要了解？
+<div class="content-timeline__item">
+<div class="content-timeline__track" aria-hidden="true"><span class="content-timeline__dot"></span><span class="content-timeline__line"></span></div>
+<div class="content-timeline__card">
+<p class="content-timeline__meta"><span class="content-timeline__duration">5 分鐘</span></p>
+<h4 class="content-timeline__title">第一步：敘述文要素識別</h4>
+<ul>
+<li><strong>時間</strong>：故事發生在什麼時候？有什麼歷史背景？</li>
+<li><strong>地點</strong>：故事發生在哪裡？地理環境如何？</li>
+<li><strong>人物</strong>：經文中出現哪些主要人物？他們的關係如何？</li>
+<li><strong>情節</strong>：故事的起因、經過、結果是什麼？</li>
+<li><strong>文化背景</strong>：有哪些重要的文化、宗教或社會背景需要了解？</li>
+</ul>
+</div>
+</div>
 
-**第二步：文學工具識別（5分鐘）**
+<div class="content-timeline__item">
+<div class="content-timeline__track" aria-hidden="true"><span class="content-timeline__dot"></span><span class="content-timeline__line"></span></div>
+<div class="content-timeline__card">
+<p class="content-timeline__meta"><span class="content-timeline__duration">5 分鐘</span></p>
+<h4 class="content-timeline__title">第二步：文學工具識別</h4>
+<p>請識別經文中使用的文學工具（重複、穿插、比喻、類比、詳細描述、誇張、篇幅、順序、排比、核心）。<strong>注意</strong>：並非每段經文都會使用所有文學工具，請專注於觀察經文中實際使用的技巧。詳細說明請參考本課第一部分。</p>
+</div>
+</div>
 
-請識別經文中使用的文學工具（重複、穿插、比喻、類比、詳細描述、誇張、篇幅、順序、排比、核心）。**注意**：並非每段經文都會使用所有文學工具，請專注於觀察經文中實際使用的技巧。詳細說明請參考本課第一部分。
+<div class="content-timeline__item">
+<div class="content-timeline__track" aria-hidden="true"><span class="content-timeline__dot"></span><span class="content-timeline__line"></span></div>
+<div class="content-timeline__card">
+<p class="content-timeline__meta"><span class="content-timeline__duration">5 分鐘</span></p>
+<h4 class="content-timeline__title">第三步：信息分析</h4>
+<ul>
+<li>作者想要傳達什麼核心信息？</li>
+<li>這些文學技巧如何支持這個信息？</li>
+<li>這個信息屬於哪一類：道德教訓、人物塑造、神學真理、歷史意義、文化背景，還是情感共鳴？</li>
+</ul>
+</div>
+</div>
 
-**第三步：信息分析（5分鐘）**
+<div class="content-timeline__item content-timeline__item--tip">
+<div class="content-timeline__track" aria-hidden="true"><span class="content-timeline__dot"></span><span class="content-timeline__line"></span></div>
+<div class="content-timeline__card">
+<p class="content-timeline__meta"><span class="content-timeline__duration">提示</span></p>
+<h4 class="content-timeline__title">分析提示</h4>
+<ul>
+<li>仔細觀察經文中的細節描述</li>
+<li>注意人物之間的對話和互動</li>
+<li>思考作者為什麼要這樣安排情節</li>
+<li>準備向全班展示你們的發現</li>
+</ul>
+</div>
+</div>
 
-- 作者想要傳達什麼核心信息？
-- 這些文學技巧如何支持這個信息？
-- 這個信息屬於哪一類：道德教訓、人物塑造、神學真理、歷史意義、文化背景，還是情感共鳴？
+<div class="content-timeline__item">
+<div class="content-timeline__track" aria-hidden="true"><span class="content-timeline__dot"></span><span class="content-timeline__line"></span></div>
+<div class="content-timeline__card">
+<p class="content-timeline__meta"><span class="content-timeline__duration">20 分鐘</span></p>
+<h4 class="content-timeline__title">文學技巧分析</h4>
+<p>各組分析作者如何使用文學工具傳達信息，準備向全班展示分析結果。重點說明：這些文學技巧如何幫助作者傳達核心信息？</p>
+</div>
+</div>
 
-#### 分析提示
+<div class="content-timeline__item">
+<div class="content-timeline__track" aria-hidden="true"><span class="content-timeline__dot"></span></div>
+<div class="content-timeline__card">
+<p class="content-timeline__meta"><span class="content-timeline__duration">15 分鐘</span></p>
+<h4 class="content-timeline__title">全班分享與討論</h4>
+<p>各組輪流展示分析結果（每組 3–4 分鐘），全班討論不同敘述技巧的運用，思考如何將這些分析技巧應用到查經準備中。</p>
+</div>
+</div>
 
-- 仔細觀察經文中的細節描述
-- 注意人物之間的對話和互動
-- 思考作者為什麼要這樣安排情節
-- 準備向全班展示你們的發現
-
-#### 文學技巧分析（20分鐘）
-
-各組分析作者如何使用文學工具傳達信息，準備向全班展示分析結果。重點說明：這些文學技巧如何幫助作者傳達核心信息？
-
-#### 全班分享與討論（15分鐘）
-
-各組輪流展示分析結果（每組3-4分鐘），全班討論不同敘述技巧的運用，思考如何將這些分析技巧應用到查經準備中。
+</div>
 
 #### 分析重點
 

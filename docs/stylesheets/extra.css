@@ -777,6 +777,124 @@ body {
 }
 
 /*
+ * Vertical activity timeline (dots + connecting line).
+ */
+.content-timeline {
+    margin: 1.25rem 0 1.75rem;
+}
+
+.content-timeline__item {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0 1.15rem;
+    align-items: stretch;
+}
+
+.content-timeline__track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    padding-top: 0.35rem;
+}
+
+.content-timeline__dot {
+    flex-shrink: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--md-default-fg-color, #111);
+    box-shadow: 0 0 0 3px var(--md-default-bg-color, #fff),
+        0 0 0 4px var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+}
+
+.content-timeline__item--tip .content-timeline__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.45));
+}
+
+.content-timeline__line {
+    flex: 1;
+    width: 2px;
+    min-height: 1.25rem;
+    margin: 0.35rem 0 0;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.14));
+    border-radius: 1px;
+}
+
+.content-timeline__card {
+    margin-bottom: 1.15rem;
+    padding: 1rem 1.25rem 1.1rem;
+    border-radius: 10px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.content-timeline__item:last-child .content-timeline__card {
+    margin-bottom: 0;
+}
+
+.content-timeline__item--tip .content-timeline__card {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.04));
+    border-style: dashed;
+}
+
+.content-timeline__meta {
+    margin: 0 0 0.35rem 0;
+}
+
+.content-timeline__duration {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-timeline__title {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.05em;
+    line-height: 1.35;
+}
+
+.content-timeline__card > :last-child {
+    margin-bottom: 0;
+}
+
+.content-timeline__card p {
+    margin: 0;
+    line-height: 1.65;
+}
+
+.content-timeline__card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+}
+
+.content-timeline__card li {
+    margin-bottom: 0.35rem;
+}
+
+.content-timeline__card li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .content-timeline__item {
+        gap: 0 0.85rem;
+    }
+
+    .content-timeline__card {
+        padding: 0.9rem 1rem;
+    }
+}
+
+/*
  * Homework section – card-style blocks for visual flow.
  */
 .homework-section {
