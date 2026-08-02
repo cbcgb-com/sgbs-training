@@ -1,0 +1,45 @@
+AGENTS.md
+  s_57e01f3e893110::t_8ef074e1044c7c 48-57,60
+docs/quizzes/lesson-2/message-steps-demo.html
+  s_57e01f3e893110::t_b7eef1f9826a1d 1-431
+scripts/extract-lesson-2-quizzes.py
+  s_57e01f3e893110::t_01815c17c89d06 113,122
+  s_57e01f3e893110::t_91d7853dbd087f 1-112,114-121
+mkdocs.yml
+  s_57e01f3e893110::t_62574829e935ad 36,41,59
+docs/javascripts/content-quiz-frame.js
+  s_57e01f3e893110::t_c88bd22d6b1ccf 1-37
+docs/quizzes/lesson-2/message-steps-practice.html
+  s_57e01f3e893110::t_b7eef1f9826a1d 1-102
+docs/quizzes/lesson-2/reflect.html
+  s_57e01f3e893110::t_b7eef1f9826a1d 1-430
+docs/javascripts/content-quiz.js
+  s_57e01f3e893110::t_960c85fb4e29cd 14-63
+  s_57e01f3e893110::t_5f5bf2487f4125 168
+  s_57e01f3e893110::t_510bbd29c7482d 239,250,253,255-256
+docs/quizzes/lesson-2/review.html
+  s_57e01f3e893110::t_b7eef1f9826a1d 1-266
+docs/quizzes/lesson-2/elements-mini.html
+  s_57e01f3e893110::t_b7eef1f9826a1d 1-184
+docs/stylesheets/content-quiz-embed.css
+  s_57e01f3e893110::t_c109d13f0802bb 1-10,12-27
+  s_57e01f3e893110::t_951f8f2e553f29 11,28
+docs/class-notes/lesson-2-narrative.md
+  s_57e01f3e893110::t_18f3c9c96e5f10 60,132,480,492,532
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "d2e49429e398b99d2ad92815b194d508822f7c56",
+  "prompts": {},
+  "sessions": {
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
