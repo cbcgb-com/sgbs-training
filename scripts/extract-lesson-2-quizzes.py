@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Extract .content-quiz blocks from lesson-2 into docs/quizzes/lesson-2/*.html."""
 
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
