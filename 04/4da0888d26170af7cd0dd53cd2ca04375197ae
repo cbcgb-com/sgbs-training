@@ -1,0 +1,89 @@
+docs/quizzes/lesson-2/message-steps-demo.html
+  s_47249424a1aaeb::t_ab983a48f49d2b 148,156,160,165,173,177
+  s_802a8c2b03448c::t_f9adb159586d57 230,234,238,242,247,251,255,259
+  s_47249424a1aaeb::t_7242cc1958159c 66,74,83,87,91
+  s_802a8c2b03448c::t_5b0779f968fec1 394,398,402,406,411,415,419,423
+  s_802a8c2b03448c::t_ec9ea350f4d1cd 271,279,283,288,292,296,300
+  s_47249424a1aaeb::t_5183bb697f4647 124,128,136
+  s_47249424a1aaeb::t_4d30763357144f 189,197,201,206,210,214,218
+  s_802a8c2b03448c::t_4820417fdee93a 316,320,324,329,333,337,341
+  s_802a8c2b03448c::t_79f5d866794baa 357,361,365,370,374,378,382
+docs/quizzes/lesson-2/elements-mini.html
+  s_a7d9f517dc67ab::t_961870be0d98f1 102,107,111,115,119,124,128,132,136
+  s_a7d9f517dc67ab::t_e1f25191b489c4 25,29,33,37,42,46,50,54
+  s_a7d9f517dc67ab::t_d3b0ac478405df 66,70,74,78,83,87,91,95
+  s_a7d9f517dc67ab::t_6fbfe6af92e798 140,143,148,152,156,160,164-165,169,173,176-177
+docs/quizzes/lesson-2/message-steps-practice.html
+  s_46dcd588223f1c::t_678ef6f8583c25 78
+  s_46dcd588223f1c::t_6a569c407abdb1 95
+  s_46dcd588223f1c::t_497411ff29b708 37
+  s_46dcd588223f1c::t_c39c4ca02ee387 83
+  s_46dcd588223f1c::t_976be086d9ad8c 54
+docs/class-notes/lesson-2-narrative.md
+  s_a7d9f517dc67ab::t_8196d344e9163c 130
+docs/quizzes/lesson-2/reflect.html
+  s_8e49dbd7a8d4b6::t_670a89fd4c6e06 225,230,234,238,242,247,251,255,259
+  s_48dfe8875dc6b8::t_e6e8adf9ade741 37
+  s_48dfe8875dc6b8::t_d57eef8e304658 160
+  s_48dfe8875dc6b8::t_2dd36f909cde5b 184,189,193,197,201,206,210,214,218
+  s_48dfe8875dc6b8::t_deb05b82075e8d 102,107,111,115,119,124,128,132,136
+  s_48dfe8875dc6b8::t_eb52911e6328b7 61,66,70,74,78,83,87,91,95
+  s_8e49dbd7a8d4b6::t_a427abe2262016 394
+  s_8e49dbd7a8d4b6::t_a58b6add16ad06 411
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "044da0888d26170af7cd0dd53cd2ca04375197ae",
+  "prompts": {},
+  "sessions": {
+    "s_46dcd588223f1c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1caf4335-861a-4160-96ed-106dcf74494d",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_47249424a1aaeb": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "9240df81-f670-48b8-9686-f144af0e7ef4",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_48dfe8875dc6b8": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "9cbd58f1-aff0-469a-9fc2-0f5a7439c620",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_802a8c2b03448c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "580c199c-ae12-4d8a-b8b5-9ac6560fcd3b",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_8e49dbd7a8d4b6": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "778a9fbe-04c9-4a34-ac69-44025f1e4380",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_a7d9f517dc67ab": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "dcb8869d-ecc4-4a54-b2ca-d77d1b003dbc",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
