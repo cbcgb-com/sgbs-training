@@ -233,115 +233,101 @@ data-style="steps">
 
 <!-- NOTE TO SELF: Double-check the passage! -->
 
-<div class="expandable-cards">
+<div
+class="content-deck"
+id="content-deck-lesson-2-literary-tools"
+data-label="文學工具"
+data-index="true">
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">1</span>
-<span class="expandable-card__title">重複：作者是否重複某些詞語、短語或概念來強調重點？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：歌利亞重複四十天挑戰以色列人，強調威脅的持續性和嚴重性</p>
-</div>
-</div>
+<p class="content-deck__intro">下面十種文學工具常見於敘述文。上方目錄可一次看見全部項目並跳讀；也可用<strong>上一張／下一張</strong>逐項翻看。例文皆取自《撒母耳記上》17:1-58。</p>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">2</span>
-<span class="expandable-card__title">穿插：作者是否在敘述中穿插其他故事或背景信息？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：穿插大衛的牧羊經歷和對神的信心，為後面的勝利做鋪墊</p>
+<div class="content-deck__card" data-label="重複">
+<h4>重複</h4>
+<p>作者是否重複某些詞語、短語或概念來強調重點？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>歌利亞重複四十天挑戰以色列人，強調威脅的持續性和嚴重性。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">3</span>
-<span class="expandable-card__title">比喻：作者是否使用比喻或象徵來傳達深層意義？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>注意：《撒母耳記上》17:1-58中沒有比喻（parable）</p>
+<div class="content-deck__card" data-label="穿插">
+<h4>穿插</h4>
+<p>作者是否在敘述中穿插其他故事或背景信息？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>穿插大衛的牧羊經歷和對神的信心，為後面的勝利做鋪墊。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">4</span>
-<span class="expandable-card__title">類比：作者是否使用類比來幫助讀者理解？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：大衛用牧羊的經驗作為類比來對抗歌利亞，象徵神與人的關係</p>
+<div class="content-deck__card" data-label="比喻">
+<h4>比喻</h4>
+<p>作者是否使用比喻或象徵來傳達深層意義？</p>
+<div class="content-deck__example">
+<strong>注意</strong>
+<p>《撒母耳記上》17:1-58 中沒有比喻（parable）。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">5</span>
-<span class="expandable-card__title">詳細描述：作者是否使用具體的細節描述來強調重點？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：歌利亞的身高「六肘零一虎口」和裝備的詳細描述，突出其巨大威脅</p>
+<div class="content-deck__card" data-label="類比">
+<h4>類比</h4>
+<p>作者是否使用類比來幫助讀者理解？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>大衛用牧羊的經驗作為類比來對抗歌利亞，象徵神與人的關係。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">6</span>
-<span class="expandable-card__title">誇張：作者是否使用誇張的手法來突出某些特點？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>注意：《撒母耳記上》17:1-58中沒有使用誇張手法，歌利亞的身高和裝備描述都是精確細節，而非誇張。希伯來文舊版本記載歌利亞身高為四肘，七十士譯本記載為六肘，學者對此有不同解釋。</p>
+<div class="content-deck__card" data-label="詳細描述">
+<h4>詳細描述</h4>
+<p>作者是否使用具體的細節描述來強調重點？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>歌利亞的身高「六肘零一虎口」和裝備的詳細描述，突出其巨大威脅。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">7</span>
-<span class="expandable-card__title">篇幅：作者對不同情節的篇幅分配是否有特殊用意？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：詳細描述歌利亞的挑戰和裝備，簡潔描述大衛的勝利，突出信心勝過力量</p>
+<div class="content-deck__card" data-label="誇張">
+<h4>誇張</h4>
+<p>作者是否使用誇張的手法來突出某些特點？</p>
+<div class="content-deck__example">
+<strong>注意</strong>
+<p>《撒母耳記上》17:1-58 中沒有使用誇張手法；歌利亞的身高和裝備描述都是精確細節，而非誇張。希伯來文舊版本記載歌利亞身高為四肘，七十士譯本記載為六肘，學者對此有不同解釋。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">8</span>
-<span class="expandable-card__title">順序：作者安排情節的順序是否有特殊用意？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：先描述威脅，再描述大衛的信心，最後描述勝利，層層遞進</p>
+<div class="content-deck__card" data-label="篇幅">
+<h4>篇幅</h4>
+<p>作者對不同情節的篇幅分配是否有特殊用意？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>詳細描述歌利亞的挑戰和裝備，簡潔描述大衛的勝利，突出信心勝過力量。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">9</span>
-<span class="expandable-card__title">排比：作者是否使用排比結構來增強表達效果？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：歌利亞的挑戰和大衛的回應形成對比排比，突出不同的價值觀</p>
+<div class="content-deck__card" data-label="順序">
+<h4>順序</h4>
+<p>作者安排情節的順序是否有特殊用意？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>先描述威脅，再描述大衛的信心，最後描述勝利，層層遞進。</p>
 </div>
 </div>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
-<span class="expandable-card__num">10</span>
-<span class="expandable-card__title">核心：作者是否在關鍵時刻使用精妙的表達來達到故事高潮？</span>
-<span class="expandable-card__action">展開</span>
-</button>
-<div class="expandable-card__body">
-<p>例：大衛對歌利亞說「你來攻擊我，是靠著刀槍和銅戟；我來攻擊你，是靠著萬軍之耶和華的名」，這句話成為對抗的高潮</p>
+<div class="content-deck__card" data-label="排比">
+<h4>排比</h4>
+<p>作者是否使用排比結構來增強表達效果？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>歌利亞的挑戰和大衛的回應形成對比排比，突出不同的價值觀。</p>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="核心">
+<h4>核心</h4>
+<p>作者是否在關鍵時刻使用精妙的表達來達到故事高潮？</p>
+<div class="content-deck__example">
+<strong>例</strong>
+<p>大衛對歌利亞說「你來攻擊我，是靠著刀槍和銅戟；我來攻擊你，是靠著萬軍之耶和華的名」，這句話成為對抗的高潮。</p>
 </div>
 </div>
 
