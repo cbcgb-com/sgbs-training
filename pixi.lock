@@ -4836,7 +4836,7 @@ packages:
 - pypi: ./
   name: sgbs-training
   requires_dist:
-  - mkdocs-shadcn>=0.4.2,<0.10
+  - mkdocs-shadcn>=0.4.2,<0.13
   requires_python: '>=3.11'
 - pypi: https://files.pythonhosted.org/packages/01/61/d4b89fec821f72385526e1b9d9a3a0385dda4a72b206d28049e2c7cd39b8/gitpython-3.1.45-py3-none-any.whl
   name: gitpython
