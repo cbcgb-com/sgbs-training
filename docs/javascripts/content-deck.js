@@ -2,13 +2,15 @@
  * Paginated content cards for class notes (quiz-style flip-through).
  *
  * Markup:
- *   <div class="content-deck" data-label="可選名稱">
+ *   <div class="content-deck" data-label="可選名稱" data-index="true">
  *     <p class="content-deck__intro">...</p>   <!-- optional -->
  *     <div class="content-deck__card" data-label="道德教訓">...</div>
  *     <div class="content-deck__card" data-label="人物塑造">...</div>
  *   </div>
  *
- * Shows one card at a time with 上一張／下一張. No sampling/shuffle.
+ * Shows one card at a time with 上一張／下一張. Optional data-index="true"
+ * renders a full list of labels above the stage; the active item is highlighted
+ * and clickable. No sampling/shuffle.
  */
 (function () {
     function cardChildren(root) {
@@ -47,6 +49,59 @@
         return { nav: nav, prev: prev, next: next, status: status };
     }
 
+    function createIndex(root, cards, show) {
+        if (root.getAttribute("data-index") !== "true") return null;
+
+        var index = document.createElement("div");
+        index.className = "content-deck__index";
+        index.setAttribute("role", "tablist");
+        var groupLabel = root.getAttribute("data-label");
+        if (groupLabel) {
+            index.setAttribute("aria-label", groupLabel + " 一覽");
+        }
+
+        var tabs = [];
+        cards.forEach(function (card, i) {
+            var label =
+                card.getAttribute("data-label") || "第 " + (i + 1) + " 項";
+
+            var tab = document.createElement("button");
+            tab.type = "button";
+            tab.className = "content-deck__index-item";
+            tab.setAttribute("role", "tab");
+            tab.id = root.id ? root.id + "-index-" + i : undefined;
+
+            var num = document.createElement("span");
+            num.className = "content-deck__index-num";
+            num.textContent = String(i + 1);
+
+            var text = document.createElement("span");
+            text.className = "content-deck__index-label";
+            text.textContent = label;
+
+            tab.appendChild(num);
+            tab.appendChild(text);
+            tab.addEventListener("click", function () {
+                show(i);
+            });
+            index.appendChild(tab);
+            tabs.push(tab);
+        });
+
+        root.insertBefore(index, cards[0]);
+        return tabs;
+    }
+
+    function syncIndex(tabs, current) {
+        if (!tabs) return;
+        tabs.forEach(function (tab, i) {
+            var active = i === current;
+            tab.classList.toggle("is-active", active);
+            tab.setAttribute("aria-selected", active ? "true" : "false");
+            tab.tabIndex = active ? 0 : -1;
+        });
+    }
+
     function initDeck(root) {
         var cards = cardChildren(root);
         if (cards.length < 2) return;
@@ -66,10 +121,13 @@
         cards.forEach(function (card, index) {
             var label =
                 card.getAttribute("data-label") || "卡片 " + (index + 1);
+            card.setAttribute("role", "tabpanel");
             card.setAttribute("aria-label", label);
             card.hidden = index !== 0;
             card.classList.toggle("is-active", index === 0);
         });
+
+        var indexTabs = null;
 
         function show(index) {
             cards[current].hidden = true;
@@ -83,7 +141,10 @@
                 "第 " + (current + 1) + " / " + cards.length + " 張";
             controls.prev.disabled = current === 0;
             controls.next.disabled = current === cards.length - 1;
+            syncIndex(indexTabs, current);
         }
+
+        indexTabs = createIndex(root, cards, show);
 
         controls.prev.addEventListener("click", function () {
             if (current > 0) show(current - 1);
