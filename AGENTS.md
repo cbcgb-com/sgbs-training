@@ -122,6 +122,21 @@ Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in
 - Shows the full set in authored order (no random sampling)
 - Traditional Chinese; keep each card scannable on its own
 
+### Activity timeline (`.content-timeline`)
+
+CSS-only vertical timeline for in-class workshop flows (dots + connecting
+line). Styles in `docs/stylesheets/extra.css`; no extra JS.
+
+- Markup: `.content-timeline` > one or more `.content-timeline__item`, each with
+  `.content-timeline__track` (`.content-timeline__dot` + optional
+  `.content-timeline__line`) and `.content-timeline__card`
+- Optional `.content-timeline__item--tip` for mid-flow reminders (dashed card)
+- Inside the card: optional `.content-timeline__meta` >
+  `.content-timeline__duration`, then `.content-timeline__title`, then bullets
+  or short prose
+- Omit `.content-timeline__line` on the last item
+- Set `aria-label` on the root; use `aria-hidden="true"` on the track column
+
 ## Course Structure
 
 **Flipped classroom**: Students read beforehand, class focuses on interactive
