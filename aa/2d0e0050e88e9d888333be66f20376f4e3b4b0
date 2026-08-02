@@ -1,0 +1,19 @@
+docs/quizzes/lesson-2/review.html
+  s_57e01f3e893110::t_457f45585f3a29 99,107,111,115,119,124,127-128,131-132,136,266
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "aa2d0e0050e88e9d888333be66f20376f4e3b4b0",
+  "prompts": {},
+  "sessions": {
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
