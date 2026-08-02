@@ -11,13 +11,15 @@ import modal
 image = (
     modal.Image.debian_slim()
     .run_commands("apt-get update && apt-get install curl -y")
-    .run_commands("curl -fsSL https://pixi.sh/install.sh | sh")
+    .run_commands(
+        "curl -fsSL https://pixi.sh/install.sh | PIXI_VERSION=v0.72.0 bash"
+    )
     .add_local_dir("./apps", "/usr/local/src/apps", copy=True)
     .add_local_dir("./sgbs_training", "/usr/local/src/sgbs_training", copy=True)
     .add_local_file("./pyproject.toml", "/usr/local/src/pyproject.toml", copy=True)
     .add_local_file("./pixi.lock", "/usr/local/src/pixi.lock", copy=True)
     .workdir("/usr/local/src")
-    .run_commands("/root/.pixi/bin/pixi install")
+    .run_commands("/root/.pixi/bin/pixi install --locked")
 )
 
 app = modal.App(name="sgbs-training-emails-generator")
