@@ -1,0 +1,20 @@
+docs/class-notes/lesson-2-narrative.md
+  s_57e01f3e893110::t_abf25a4764cfe1 1003,1005
+  s_57e01f3e893110::t_619c37a2f937ec 16-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "74ce88260540017c8f9f8dad3e3edc7e52770a29",
+  "prompts": {},
+  "sessions": {
+    "s_57e01f3e893110": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03cfb132effeUj0840F1qTLShn",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
