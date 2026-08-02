@@ -1,0 +1,19 @@
+.gitignore
+  s_cb541123c64941::t_57965d67399a3a 122
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "ad9ea9482efd96bc465404494b7b9892e120a5b4",
+  "prompts": {},
+  "sessions": {
+    "s_cb541123c64941": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_03d039a1effeicWy9Nx3ZLnb6J",
+        "model": "grok-4.5"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
