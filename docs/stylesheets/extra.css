@@ -261,6 +261,640 @@ body {
 }
 
 /*
+ * Pre-lesson quiz – Socratic MCQs with soft reflection (no correct answer).
+ */
+.content-quiz {
+    --content-quiz-correct: #2e7d32;
+    --content-quiz-correct-bg: rgba(46, 125, 50, 0.08);
+    --content-quiz-incorrect: #c62828;
+    --content-quiz-incorrect-bg: rgba(198, 40, 40, 0.08);
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-quiz__intro {
+    margin: 0 0 1.25rem 0;
+    line-height: 1.65;
+}
+
+.content-quiz__item {
+    padding: 0.25rem 0 0.5rem;
+}
+
+.content-quiz__item[hidden] {
+    display: none !important;
+}
+
+.content-quiz__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-quiz__nav-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-quiz__nav-btn:hover:not(:disabled),
+.content-quiz__nav-btn:focus-visible:not(:disabled) {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-quiz__nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.content-quiz__nav-status {
+    flex: 1;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.content-quiz__prompt {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin: 0 0 0.9rem 0;
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.content-quiz__num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: 0.1rem;
+    border-radius: 50%;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+.content-quiz__choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0 0 0.75rem 0;
+}
+
+.content-quiz__choice {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    text-align: left;
+    font: inherit;
+    line-height: 1.5;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-quiz__choice:hover,
+.content-quiz__choice:focus-visible {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.04));
+}
+
+.content-quiz__choice.is-selected {
+    border-color: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.35));
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.06));
+}
+
+.content-quiz__choice:disabled {
+    cursor: default;
+}
+
+.content-quiz__choice.is-correct {
+    border-color: var(--content-quiz-correct);
+    background: var(--content-quiz-correct-bg);
+}
+
+.content-quiz__choice.is-incorrect {
+    border-color: var(--content-quiz-incorrect);
+    background: var(--content-quiz-incorrect-bg);
+}
+
+.content-quiz__choice-label {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.05rem;
+    border-radius: 50%;
+    border: 1px solid var(--md-default-fg-color--light, rgba(0, 0, 0, 0.25));
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.content-quiz__choice.is-selected .content-quiz__choice-label {
+    background: var(--md-default-fg-color, #111);
+    border-color: var(--md-default-fg-color, #111);
+    color: var(--md-default-bg-color, #fff);
+}
+
+.content-quiz__choice.is-correct .content-quiz__choice-label {
+    background: var(--content-quiz-correct);
+    border-color: var(--content-quiz-correct);
+    color: #fff;
+}
+
+.content-quiz__choice.is-incorrect .content-quiz__choice-label {
+    background: var(--content-quiz-incorrect);
+    border-color: var(--content-quiz-incorrect);
+    color: #fff;
+}
+
+.content-quiz__choice-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.content-quiz__reflection {
+    margin: 0.35rem 0 0;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+    line-height: 1.6;
+}
+
+.content-quiz__reflection[hidden] {
+    display: none !important;
+}
+
+.content-quiz__reflection strong {
+    display: block;
+    margin: 0 0 0.35rem 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.content-quiz__reflection p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .content-quiz {
+        padding: 1rem 1rem 1.25rem;
+        margin: 1.25rem 0 1.75rem;
+    }
+
+    .content-quiz__choice {
+        padding: 0.7rem 0.75rem;
+    }
+}
+
+/*
+ * Segmented content panels (chips / tabs + one reveal stage).
+ * Used for teaching frameworks without a wall of prose.
+ */
+.content-panels {
+    margin: 1.25rem 0 1.75rem;
+    padding: 1.15rem 1.35rem 1.35rem;
+    border-radius: 12px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-panels__intro {
+    margin: 0 0 0.9rem 0;
+    line-height: 1.65;
+}
+
+.content-panels__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.content-panels__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 999px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-panels__tab:hover,
+.content-panels__tab:focus-visible {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-panels__tab.is-active {
+    border-color: var(--md-default-fg-color, #111);
+    background: var(--md-default-fg-color, #111);
+    color: var(--md-default-bg-color, #fff);
+}
+
+.content-panels__tab-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: 700;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+}
+
+.content-panels__tab.is-active .content-panels__tab-num {
+    background: rgba(255, 255, 255, 0.22);
+    color: inherit;
+}
+
+.content-panels__panel {
+    padding: 0.15rem 0.15rem 0;
+    line-height: 1.65;
+}
+
+.content-panels__panel[hidden] {
+    display: none !important;
+}
+
+.content-panels__panel > :first-child {
+    margin-top: 0;
+}
+
+.content-panels__panel > :last-child {
+    margin-bottom: 0;
+}
+
+.content-panels__panel h4 {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.05em;
+}
+
+.content-panels__panel ul {
+    margin: 0.4rem 0 0.6rem 1.2rem;
+}
+
+.content-panels__panel li {
+    margin: 0.25rem 0;
+}
+
+.content-panels__example {
+    margin: 0.85rem 0 0;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+    line-height: 1.6;
+}
+
+.content-panels__example strong {
+    display: block;
+    margin: 0 0 0.3rem 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.content-panels__example p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .content-panels {
+        padding: 1rem 1rem 1.15rem;
+    }
+
+    .content-panels__tab {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/*
+ * Paginated content decks (quiz-style flip-through cards).
+ * Used for typed inventories that should be browsed one at a time.
+ */
+.content-deck {
+    margin: 1.25rem 0 1.75rem;
+    padding: 1.15rem 1.35rem 1.35rem;
+    border-radius: 12px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.content-deck__intro {
+    margin: 0 0 0.9rem 0;
+    line-height: 1.65;
+}
+
+.content-deck__index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0 0 1rem 0;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-deck__index-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.7rem;
+    font: inherit;
+    font-size: 0.88em;
+    font-weight: 600;
+    line-height: 1.25;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-deck__index-item:hover,
+.content-deck__index-item:focus-visible {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-deck__index-item.is-active {
+    border-color: var(--md-default-fg-color, #111);
+    background: var(--md-default-fg-color, #111);
+    color: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.content-deck__index-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.15rem;
+    border-radius: 999px;
+    font-size: 0.78em;
+    font-weight: 700;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+}
+
+.content-deck__index-item.is-active .content-deck__index-num {
+    background: rgba(255, 255, 255, 0.22);
+    color: inherit;
+}
+
+.content-deck__index-label {
+    text-align: left;
+}
+
+.content-deck__card {
+    padding: 0.15rem 0.15rem 0.25rem;
+    line-height: 1.65;
+}
+
+.content-deck__card[hidden] {
+    display: none !important;
+}
+
+.content-deck__card > :first-child {
+    margin-top: 0;
+}
+
+.content-deck__card > :last-child {
+    margin-bottom: 0;
+}
+
+.content-deck__card h4 {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.05em;
+}
+
+.content-deck__example {
+    margin: 0.85rem 0 0;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+    line-height: 1.6;
+}
+
+.content-deck__example strong {
+    display: block;
+    margin: 0 0 0.3rem 0;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+.content-deck__example p {
+    margin: 0;
+}
+
+.content-deck__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-deck__nav-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.15));
+    background: var(--md-default-bg-color, #fff);
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-deck__nav-btn:hover:not(:disabled),
+.content-deck__nav-btn:focus-visible:not(:disabled) {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.content-deck__nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.content-deck__nav-status {
+    flex: 1;
+    text-align: center;
+    font-size: 0.95em;
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+    .content-deck {
+        padding: 1rem 1rem 1.15rem;
+    }
+}
+
+/*
+ * Vertical activity timeline (dots + connecting line).
+ */
+.content-timeline {
+    margin: 1.25rem 0 1.75rem;
+}
+
+.content-timeline__item {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0 1.15rem;
+    align-items: stretch;
+}
+
+.content-timeline__track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    padding-top: 0.35rem;
+}
+
+.content-timeline__dot {
+    flex-shrink: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--md-default-fg-color, #111);
+    box-shadow: 0 0 0 3px var(--md-default-bg-color, #fff),
+        0 0 0 4px var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+}
+
+.content-timeline__item--tip .content-timeline__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.45));
+}
+
+.content-timeline__line {
+    flex: 1;
+    width: 2px;
+    min-height: 1.25rem;
+    margin: 0.35rem 0 0;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.14));
+    border-radius: 1px;
+}
+
+.content-timeline__card {
+    margin-bottom: 1.15rem;
+    padding: 1rem 1.25rem 1.1rem;
+    border-radius: 10px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.content-timeline__item:last-child .content-timeline__card {
+    margin-bottom: 0;
+}
+
+.content-timeline__item--tip .content-timeline__card {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.04));
+    border-style: dashed;
+}
+
+.content-timeline__meta {
+    margin: 0 0 0.35rem 0;
+}
+
+.content-timeline__duration {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+}
+
+.content-timeline__title {
+    margin: 0 0 0.55rem 0;
+    font-size: 1.05em;
+    line-height: 1.35;
+}
+
+.content-timeline__card > :last-child {
+    margin-bottom: 0;
+}
+
+.content-timeline__card p {
+    margin: 0;
+    line-height: 1.65;
+}
+
+.content-timeline__card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+}
+
+.content-timeline__card li {
+    margin-bottom: 0.35rem;
+}
+
+.content-timeline__card li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .content-timeline__item {
+        gap: 0 0.85rem;
+    }
+
+    .content-timeline__card {
+        padding: 0.9rem 1rem;
+    }
+}
+
+/*
  * Homework section – card-style blocks for visual flow.
  */
 .homework-section {
