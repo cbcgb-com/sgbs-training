@@ -13,6 +13,8 @@
     - [基本觀察](#jiben-guancha)
     - [文學工具](#wenxue-gongju)
     - [經文分析](#jingwen-fenxi)
+        - [示範：《撒母耳記上》17:1-58](#san-bu-zhou-shifan)
+        - [半自主練習：《路加福音》7:36-50](#san-bu-zhou-lianxi)
     - [實作建議](#shizuo-jianyi)
     - [思考信息](#sikao-xinxi)
     - [預讀複習題](#yudu-fuxi-ti)
@@ -998,23 +1000,298 @@ data-label="作者可能想要傳達的信息類型">
 
 聖經的道德信息並非每一句話都直接傳達道德教訓，而是需要透過作者整體敘述的脈絡來綜合理解。我們必須從完整的敘述結構中體會作者想要傳達的道德原則。切忌斷章取義，從單一經文或句子中推斷道德教訓，這樣容易導致錯誤的應用！
 
-當你識別出作者可能想要傳達的信息類型後，接下來要分析作者如何傳達這些信息：
+當你識別出作者可能想要傳達的信息類型後，接下來要分析作者**如何**傳達這些信息。下面用「完整示範 → 半自主練習」帶你走三個步驟：先跟著《撒母耳記上》17:1-58 逐步展開；再用《路加福音》7:36-50 自己補後兩步。
 
-#### 步驟一：識別主要信息 {#buzhou-yi-shibie-zhuyao-xinxi}
+#### 示範：《撒母耳記上》17:1-58 {#san-bu-zhou-shifan}
 
-當你觀察到經文中使用的文學工具後，下一步是推測作者想要傳達的主要信息是什麼。首先，判斷這個信息屬於哪一類：是道德教訓、人物塑造、神學真理、歷史意義、文化背景，還是情感共鳴？例如，在《撒母耳記上》17:1-58中，作者透過對比大衛和歌利亞的態度，傳達「神的能力勝過人的力量」這個神學真理。
+你已觀察過文學工具；現在依序點選三個步驟，看示範如何把「工具 → 信息 → 信息點」串起來。
 
-#### 步驟二：分析傳達方式 {#buzhou-er-fenxi-chuanda-fangshi}
+<div
+class="content-panels"
+id="content-panels-lesson-2-message-steps-demo"
+data-label="信息分析三步驟（示範）"
+data-style="steps">
 
-接下來，分析作者使用了哪些文學工具來支持這個信息，以及這些工具如何有效地傳達信息。在《撒母耳記上》17:1-58的例子中，作者透過「歌利亞的驕傲」對比「大衛的信心」，再對比「以色列軍隊的恐懼」，層層遞進地展現神的能力勝過人的力量。這種對比的手法讓讀者清楚地看到不同人物對神的態度，從而理解作者想要傳達的核心信息。
+<div class="content-panels__panel" data-label="步驟一：識別">
+<h4 id="buzhou-yi-shibie-zhuyao-xinxi">步驟一：識別主要信息</h4>
+<p>在已觀察到的文學工具基礎上，推測作者最想讓讀者帶走的主要信息，並對照上面六類信息：這段最突出哪一類？</p>
+<ul>
+<li>歌利亞驕傲、大衛信靠「萬軍之耶和華的名」、以色列軍隊恐懼——對比的是<strong>人看得到的力</strong>與<strong>信靠神的能力</strong>。</li>
+<li>較穩妥的表述：<strong>「神的能力勝過人的力量」</strong>，屬於<strong>神學真理</strong>（也帶動人物塑造）。</li>
+</ul>
+<div class="content-panels__example">
+<strong>自問</strong>
+<p>若只能先寫一句「作者主要想說什麼」，你會怎樣寫？再問：這句較接近六類中的哪一類？</p>
+</div>
+</div>
 
-#### 步驟三：整理分析結果 {#buzhou-san-zhengli-fenxi-jieguo}
+<div class="content-panels__panel" data-label="步驟二：傳達方式">
+<h4 id="buzhou-er-fenxi-chuanda-fangshi">步驟二：分析傳達方式</h4>
+<p>列出支持這句主要信息的文學工具，並說明它們<strong>如何</strong>一起生效——不要只貼標籤。</p>
+<ul>
+<li><strong>對比</strong>：歌利亞的驕傲 ↔ 大衛的信心 ↔ 以色列軍隊的恐懼，層層加深「誰真正倚靠神」。</li>
+<li><strong>對話／宣告</strong>：大衛在當眾說明仗靠的是「耶和華的名」，把對比收束成可聽見的宣告。</li>
+<li><strong>情節結果</strong>：看似不可能的勝利，讓前面的對比不只是道德口號，而是敘事上的證實。</li>
+</ul>
+<div class="content-panels__example">
+<strong>自問</strong>
+<p>「若拿掉對比，只保留勝利結局，讀者還能同樣清楚看見神的能力嗎？」</p>
+</div>
+</div>
 
-最後，將你的分析結果整理成具體的信息點。以《撒母耳記上》17:1-58為例，我們可以識別出三個主要信息：
+<div class="content-panels__panel" data-label="步驟三：整理">
+<h4 id="buzhou-san-zhengli-fenxi-jieguo">步驟三：整理分析結果</h4>
+<p>把分析收成幾條<strong>具體信息點</strong>：每條 = 一句信息 + 作者用哪些手法支撐（可略寫）。</p>
+<ol>
+<li><strong>神的能力勝過人的力量</strong>——歌利亞驕傲與大衛信心對比，並以大衛勝利與宣告收束。</li>
+<li><strong>真正的信心會帶來行動</strong>——大衛主動請戰，對照全軍恐懼退縮。</li>
+<li><strong>神使用看似弱小的器皿</strong>——大衛年幼、歌利亞強壯的對比，顯出神不按人的標準選人。</li>
+</ol>
+<div class="content-panels__example">
+<strong>自問</strong>
+<p>這三條是否都從<strong>整段敘述</strong>推出，而不是只從一節金句？還缺哪一條你觀察到、但尚未寫下的？</p>
+</div>
+</div>
 
-1. 「神的能力勝過人的力量」，作者透過對比歌利亞的驕傲自大和大衛的謙卑信心，再透過大衛的勝利宣告，層層遞進地展現這個真理。
-2. 「真正的信心會帶來行動」，作者透過大衛主動請戰對比以色列軍隊的恐懼退縮，展現真正的信心必然帶來勇敢的行動。
-3. 「神使用看似弱小的人成就大事」，作者透過大衛的年幼和歌利亞的強壯形成對比，展現神不按人的標準來選擇器皿，而是看人內心的信心和對神的依靠。
+</div>
+
+#### 小練習：示範段的三步檢核
+
+跟完上面三個步驟後，用 3 題快速檢核（系統會一次出 3 題；選完看簡短回饋）。
+
+<div
+class="content-quiz"
+id="content-quiz-lesson-2-message-steps-demo"
+data-mode="review"
+data-sample-size="3">
+
+<div class="content-quiz__item" data-correct="2">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">1</span>
+<span>《撒母耳記上》17 中，「神的能力勝過人的力量」較主要屬於哪一類信息？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">文化背景：主要在介紹非利士與以色列的軍制差異。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">歷史意義：只是為後文家譜做無主題鋪墊。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">神學真理：關於神如何行事、人當如何信靠的核心宣告。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">情感共鳴：重點只是戰場氣氛，沒有真理指向。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>裝備與場面可服務背景，但本段對比信心／驕傲所指向的是關於神與人的真理。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>事件有歷史位置，但作者藉對比與結局傳達明確主題，不是無主題記錄。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>答對了</strong>
+<p>步驟先要對準信息類型；這段的核心是神學真理，人物塑造與情節則支撐它。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>讀者會被帶入張力，但作者同時在宣告關於神能力的真理；感受與信息不必對立。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="1">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">2</span>
+<span>就步驟二而言，下列哪一項<strong>最</strong>能說明作者如何傳達「神的能力勝過人的力量」？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">只統計經文裡出現幾次「歌利亞」，數量本身即主題。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">對比歌利亞驕傲、大衛信心、全軍恐懼，並以大衛公開宣告與勝利收束。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">因為篇幅長，所以任何長段敘事都自動等於神學教導。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">先跳到應用：今天也要像大衛一樣勇敢，不必分析手法。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>步驟二要連結「手法 → 信息」，不是只做字面統計。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>答對了</strong>
+<p>對比加上宣告與結局，讓讀者看見不同態度，並在敘事中驗證神的能力。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>篇幅不是判準；要看作者刻意用哪些文學工具強調什麼。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>那是應用階段。先說清作者如何傳達，應用才不易斷章取義。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="3">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">3</span>
+<span>步驟三要整理信息點。下列哪一項<strong>不適合</strong>作為《撒母耳記上》17 本段的主要信息點？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">神的能力勝過人的力量（對比驕傲／信心，並以勝利證實）。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">真正的信心會帶來行動（大衛請戰對照全軍退縮）。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">神可使用看似弱小的器皿（大衛與歌利亞的對比）。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">大衛的投石技術證明：只要勤練本領，不必依靠神也能勝利。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>這是本課示範的核心信息點之一，且與對比、宣告相連。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>這是從大衛行動與全軍反應對比推出的合理信息點。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>這條從人物對比與選角邏輯推出，符合本段敘事。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>答對了</strong>
+<p>這把焦點移到人的技術，與大衛仗靠「耶和華的名」的敘事方向相反；步驟三要與整段信息一致。</p>
+</div>
+</div>
+
+</div>
+
+#### 半自主練習：《路加福音》7:36-50 {#san-bu-zhou-lianxi}
+
+換一段你已在三要素裡接觸過的經文。**步驟一先替你收好**，請你完成步驟二、三（各選一項，再看回饋）。
+
+!!! tip "步驟一（已示範）"
+    主要信息可表述為：<strong>被赦免多的人，愛也多；赦免與愛彼此相連。</strong>
+    這段同時觸及<strong>神學真理</strong>（神的赦免）、<strong>人物塑造</strong>（西門、婦人、耶穌）與<strong>情感共鳴</strong>（羞愧、愛、釋放）。
+
+<div
+class="content-quiz"
+id="content-quiz-lesson-2-message-steps-practice"
+data-mode="review"
+data-sample-size="2">
+
+<div class="content-quiz__item" data-correct="2">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">1</span>
+<span>【步驟二】就《路加福音》7:36-50，哪一組描述<strong>最</strong>能說明作者如何傳達步驟一的主要信息？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">只記錄宴席上有哪些菜色，與赦免無關也無妨。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">因為是路加寫的，所以任何段落都必定在講貧窮與社會正義。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">西門心裡議論與婦人行動對比，加上耶穌「債戶」比喻，把赦免與愛的關係說清楚。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">省略所有人物，只保留地點「西門家裡」就足夠傳達信息。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>再看一下</strong>
+<p>背景細節要服務信息；步驟二要指出<strong>對比、比喻、對話</strong>等如何支撐赦免與愛。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>不可先套用書卷標籤；要從這段實際的對比與比喻說明傳達方式。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>答對了</strong>
+<p>內心議論 ↔ 外在行動、再藉比喻收束，正是本段傳達赦免與愛的關鍵手法。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>地點是背景；信息主要靠人物反應與耶穌的教導推進。</p>
+</div>
+</div>
+
+<div class="content-quiz__item" data-correct="0">
+<p class="content-quiz__prompt">
+<span class="content-quiz__num">2</span>
+<span>【步驟三】下列哪一條<strong>最</strong>適合作為本段整理出的信息點？</span>
+</p>
+<div class="content-quiz__choices">
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">A</span>
+<span class="content-quiz__choice-text">被赦免多的人，愛也多——西門的冷淡與婦人的行動對比，並由耶穌宣告赦免收束。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">B</span>
+<span class="content-quiz__choice-text">凡擺設宴席者，都必須允許陌生人進門膏抹客人。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">C</span>
+<span class="content-quiz__choice-text">西門是壞人、婦人是好人，讀者只需選邊站，不必思想赦免。</span>
+</button>
+<button type="button" class="content-quiz__choice" aria-pressed="false">
+<span class="content-quiz__choice-label">D</span>
+<span class="content-quiz__choice-text">這段沒有信息，只是歷史軼事，無需整理信息點。</span>
+</button>
+</div>
+<div class="content-quiz__reflection" data-choice="0" hidden>
+<strong>答對了</strong>
+<p>好的信息點 = 一句信息 + 簡述支撐手法；這條與步驟一、二一致。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="1" hidden>
+<strong>再看一下</strong>
+<p>這像從單一細節硬抽道德規則，未從整段敘述歸納。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="2" hidden>
+<strong>再看一下</strong>
+<p>人物對比是手段；信息點應指向赦免與愛，而非簡化為標籤式評價。</p>
+</div>
+<div class="content-quiz__reflection" data-choice="3" hidden>
+<strong>再看一下</strong>
+<p>敘述文常藉故事傳達神學與道德信息；本段有清楚的情節與教導收束。</p>
+</div>
+</div>
+
+</div>
+
+<p>對照參考（步驟三還可再擴一條）：</p>
+<ul>
+<li><strong>認識自己需要多少赦免，會影響如何回應耶穌</strong>——西門與婦人對耶穌的不同態度，呼應「債戶」比喻。</li>
+</ul>
 
 #### 實作建議 {#shizuo-jianyi}
 
