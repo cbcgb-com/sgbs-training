@@ -1081,7 +1081,7 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">歷史意義：只是為後文家譜做無主題鋪墊。</span>
+<span class="content-quiz__choice-text">人物塑造：核心是刻畫大衛的勇敢與機智，神學宣告只是附帶點綴。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
@@ -1089,7 +1089,7 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">情感共鳴：重點只是戰場氣氛，沒有真理指向。</span>
+<span class="content-quiz__choice-text">情感共鳴：恐懼、懸疑與逆轉的張力最突出，讀者主要是被帶入戰場心理。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -1098,7 +1098,7 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>事件有歷史位置，但作者藉對比與結局傳達明確主題，不是無主題記錄。</p>
+<p>大衛確實被塑造，但作者用對比與「耶和華的名」宣告，把讀者帶向神如何行事；不宜把神學降為附帶。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>答對了</strong>
@@ -1106,7 +1106,7 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>讀者會被帶入張力，但作者同時在宣告關於神能力的真理；感受與信息不必對立。</p>
+<p>讀者會被帶入張力，但本課示範把步驟一歸在神學真理；感受支撐信息，不宜單獨當成最突出的類型。</p>
 </div>
 </div>
 
@@ -1118,7 +1118,7 @@ data-sample-size="3">
 <div class="content-quiz__choices">
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">A</span>
-<span class="content-quiz__choice-text">只統計經文裡出現幾次「歌利亞」，數量本身即主題。</span>
+<span class="content-quiz__choice-text">以歌利亞與大衛的外貌、裝備描寫為主，讓讀者具體看見「人的力量」有多可怕。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
@@ -1126,16 +1126,16 @@ data-sample-size="3">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">因為篇幅長，所以任何長段敘事都自動等於神學教導。</span>
+<span class="content-quiz__choice-text">以以色列全軍長期退縮為敘事主軸，說明缺乏信心會帶來集體癱瘓。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">先跳到應用：今天也要像大衛一樣勇敢，不必分析手法。</span>
+<span class="content-quiz__choice-text">以大衛與兄弟、父親的對話為主，說明家庭與身份如何塑造他的戰意。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
 <strong>再看一下</strong>
-<p>步驟二要連結「手法 → 信息」，不是只做字面統計。</p>
+<p>外貌與裝備確實服務對比，但步驟二要把<strong>驕傲／信心／恐懼</strong>與宣告、結局串成整體，不能只停在外在描寫。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>答對了</strong>
@@ -1143,11 +1143,11 @@ data-sample-size="3">
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>篇幅不是判準；要看作者刻意用哪些文學工具強調什麼。</p>
+<p>全軍恐懼是對比的一極，但本段信息是神的能力勝過人的力量；只強調集體癱瘓會略過大衛的信心與神的驗證。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>那是應用階段。先說清作者如何傳達，應用才不易斷章取義。</p>
+<p>家庭對話有助理解大衛，但作者傳達此信息主要靠戰場上的對比、宣告與勝利，不宜當成主軸手法。</p>
 </div>
 </div>
 
@@ -1216,11 +1216,11 @@ data-sample-size="2">
 <div class="content-quiz__choices">
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">A</span>
-<span class="content-quiz__choice-text">只記錄宴席上有哪些菜色，與赦免無關也無妨。</span>
+<span class="content-quiz__choice-text">以法利賽人宴席禮儀與賓客身分為主，說明當時社會階層如何決定誰能接近耶穌。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">因為是路加寫的，所以任何段落都必定在講貧窮與社會正義。</span>
+<span class="content-quiz__choice-text">路加常關心邊緣人，因此本段手法重點是突顯「罪人」標籤與群體排斥。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
@@ -1228,16 +1228,16 @@ data-sample-size="2">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">省略所有人物，只保留地點「西門家裡」就足夠傳達信息。</span>
+<span class="content-quiz__choice-text">按時間順序記錄耶穌在宴席上的言行，敘述本身中性，重點在忠實重現場景。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
 <strong>再看一下</strong>
-<p>背景細節要服務信息；步驟二要指出<strong>對比、比喻、對話</strong>等如何支撐赦免與愛。</p>
+<p>宴席背景有助理解，但步驟二要說明<strong>內心議論 ↔ 外在行動</strong>與比喻如何支撐「赦免與愛」，不宜只停在社會階層。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>不可先套用書卷標籤；要從這段實際的對比與比喻說明傳達方式。</p>
+<p>邊緣人視角可呼應路加，但本段信息是赦免與愛的相連；要把西門、婦人、比喻如何推進這句信息說清楚。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>答對了</strong>
@@ -1245,7 +1245,7 @@ data-sample-size="2">
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>地點是背景；信息主要靠人物反應與耶穌的教導推進。</p>
+<p>場景重現不是步驟二的答案；要指出作者用哪些文學工具，把赦免與愛的關係說清楚。</p>
 </div>
 </div>
 
@@ -1261,15 +1261,15 @@ data-sample-size="2">
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">B</span>
-<span class="content-quiz__choice-text">凡擺設宴席者，都必須允許陌生人進門膏抹客人。</span>
+<span class="content-quiz__choice-text">真愛必須當眾流淚並膏抹客人——婦人的動作是本段要我們複製的具體規範。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">C</span>
-<span class="content-quiz__choice-text">西門是壞人、婦人是好人，讀者只需選邊站，不必思想赦免。</span>
+<span class="content-quiz__choice-text">西門代表偽善宗教領袖、婦人代表真信徒——本段信息就是讀者不要像西門。</span>
 </button>
 <button type="button" class="content-quiz__choice" aria-pressed="false">
 <span class="content-quiz__choice-label">D</span>
-<span class="content-quiz__choice-text">這段沒有信息，只是歷史軼事，無需整理信息點。</span>
+<span class="content-quiz__choice-text">認識自己需要多少赦免，會影響如何回應耶穌——只從「債戶」比喻字面歸納即可。</span>
 </button>
 </div>
 <div class="content-quiz__reflection" data-choice="0" hidden>
@@ -1278,15 +1278,15 @@ data-sample-size="2">
 </div>
 <div class="content-quiz__reflection" data-choice="1" hidden>
 <strong>再看一下</strong>
-<p>這像從單一細節硬抽道德規則，未從整段敘述歸納。</p>
+<p>婦人的行動支撐赦免與愛，但不宜把單一細節硬抽成普遍禮儀規範；要對準步驟一那句主要信息。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="2" hidden>
 <strong>再看一下</strong>
-<p>人物對比是手段；信息點應指向赦免與愛，而非簡化為標籤式評價。</p>
+<p>人物對比是手法；信息點應寫成關於赦免與愛的句子，而不是標籤式「選邊站」。</p>
 </div>
 <div class="content-quiz__reflection" data-choice="3" hidden>
 <strong>再看一下</strong>
-<p>敘述文常藉故事傳達神學與道德信息；本段有清楚的情節與教導收束。</p>
+<p>這條接近對照參考裡的擴充點，且需西門與婦人的態度對比支撐；不能只摘比喻字面、略過整段敘述。</p>
 </div>
 </div>
 
