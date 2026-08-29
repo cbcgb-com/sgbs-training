@@ -1,0 +1,19 @@
+.markdownlint.json
+  s_ae2286e7417971::t_3fc3d18f542487 4-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "fb51b3bfe4d3df05a0ea874bbffeadba3cd2fb86",
+  "prompts": {},
+  "sessions": {
+    "s_ae2286e7417971": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fb17de45cffeLtlhcaz1up7P41",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
