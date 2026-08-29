@@ -1,0 +1,21 @@
+docs/index.md
+  s_ae2286e7417971::t_c246cb12cf6739 123-133
+docs/class-notes/lesson-1-foundations.md
+  s_ae2286e7417971::t_037bfe189130e4 127-129
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "044fe0d307ff14620a1d909c2bdc9a0171be5ec2",
+  "prompts": {},
+  "sessions": {
+    "s_ae2286e7417971": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fb17de45cffeLtlhcaz1up7P41",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
