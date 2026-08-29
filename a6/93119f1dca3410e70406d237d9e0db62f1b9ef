@@ -1,0 +1,21 @@
+docs/class-notes/lesson-3-questioning.md
+  s_ae2286e7417971::t_66c7c4006b89cf 14
+  s_ae2286e7417971::t_5af179f0e434ce 152-161
+  s_ae2286e7417971::t_17b5df2bad0da8 162
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "a693119f1dca3410e70406d237d9e0db62f1b9ef",
+  "prompts": {},
+  "sessions": {
+    "s_ae2286e7417971": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fb17de45cffeLtlhcaz1up7P41",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
