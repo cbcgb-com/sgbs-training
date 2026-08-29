@@ -1,0 +1,24 @@
+docs/class-notes/lesson-5-situations.md
+  s_ae2286e7417971::t_6aae53c09b8acf 161-163
+  s_ae2286e7417971::t_076a466a4229ce 111,118-125
+  s_ae2286e7417971::t_3d0dc788860dbc 71-92
+  s_ae2286e7417971::t_07bbfc3b450fb5 24
+  s_ae2286e7417971::t_54a5a37fda1afc 11
+  s_ae2286e7417971::t_5df60e3ab5f805 126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "10bcaaadafc683c98389d73f3f232477de695878",
+  "prompts": {},
+  "sessions": {
+    "s_ae2286e7417971": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fb17de45cffeLtlhcaz1up7P41",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
