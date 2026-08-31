@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/__clerk/:path*",
+      "destination": "https://clerk.sgbs-roster.vercel.app/__clerk/:path*"
+    }
+  ]
+}
