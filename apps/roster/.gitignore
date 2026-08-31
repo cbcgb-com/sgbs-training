@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env.local
+.env*.local
+.vercel
+
+# Local design-review artifacts
+.impeccable/
+seed/*.jsonl
+.vercel/
