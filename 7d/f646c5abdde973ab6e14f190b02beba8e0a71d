@@ -1,0 +1,18 @@
+apps/roster/convex/auth.config.ts
+  h_923f9eef54c2c1 3-12,16-19,23
+apps/roster/src/main.tsx
+  h_923f9eef54c2c1 11-15,34
+apps/roster/vercel.json
+  h_923f9eef54c2c1 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "7df646c5abdde973ab6e14f190b02beba8e0a71d",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
