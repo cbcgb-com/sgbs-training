@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #faf6ec;
+  --color-paper-deep: #f0e9d8;
+  --color-ink: #262116;
+  --color-ink-soft: #57503f;
+  --color-vermilion: #b3402a;
+  --color-gold: #c9a84c;
+  --color-rule: #d8d2c4;
+
+  --font-serif-tc: "Noto Serif TC", "Songti TC", "SimSun", serif;
+  --font-sans-tc: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei",
+    sans-serif;
+}
+
+html {
+  background: var(--color-paper-deep);
+  color-scheme: light;
+}
+
+/* Autofill and select popups sit inside the paper world, not system chrome. */
+input:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-paper) inset;
+  -webkit-text-fill-color: var(--color-ink);
+  transition: background-color 9999s ease-out;
+}
+
+/* Double-rule device: the strong border, then a hairline beneath. */
+.th-double {
+  position: relative;
+}
+
+.th-double::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+body {
+  font-family: var(--font-sans-tc);
+  color: var(--color-ink);
+  caret-color: var(--color-vermilion);
+}
+
+/* Browser surfaces carry the design too. */
+::selection {
+  background: var(--color-vermilion);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-vermilion);
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-rule) transparent;
+}
+
+/* The one authored moment: the quarter seal stamps onto the page. */
+@keyframes seal-stamp {
+  from {
+    opacity: 0;
+    transform: rotate(3deg) scale(1.3);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(3deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .seal-stamp {
+    animation: seal-stamp 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
+  }
+}
+
+/* Colophon reveal for the form's success state. */
+@keyframes ink-in {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ink-in {
+    animation: ink-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+}
