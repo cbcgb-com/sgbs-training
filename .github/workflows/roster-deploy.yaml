@@ -83,7 +83,8 @@ jobs:
           cat preview-url.txt
       - name: Add preview URL to job summary
         if: always()
-        run: echo "Preview: $(cat apps/roster/preview-url.txt 2>/dev/null || echo n/a)" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo "Preview: $(cat apps/roster/preview-url.txt 2>/dev/null || echo n/a)" >> "$GITHUB_STEP_SUMMARY"
 
   deploy-production:
     name: Vercel + Convex production
