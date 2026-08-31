@@ -1,0 +1,33 @@
+# Roster app CI: typecheck + build on every PR that touches the app.
+name: Roster CI
+
+on:
+  pull_request:
+    paths:
+      - apps/roster/**
+      - .github/workflows/roster-check.yaml
+
+jobs:
+  check:
+    name: Typecheck + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/roster/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/roster
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+        working-directory: apps/roster
+
+      - name: Build
+        run: npm run build
+        working-directory: apps/roster
