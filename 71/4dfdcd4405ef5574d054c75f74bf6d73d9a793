@@ -1,0 +1,16 @@
+apps/roster/api/clerk-proxy.ts
+  h_923f9eef54c2c1 1-69
+apps/roster/vercel.json
+  h_923f9eef54c2c1 5,8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "714dfdcd4405ef5574d054c75f74bf6d73d9a793",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
