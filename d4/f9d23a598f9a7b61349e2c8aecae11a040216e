@@ -1,0 +1,14 @@
+.github/workflows/roster-deploy.yaml
+  h_923f9eef54c2c1 123-125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "d4f9d23a598f9a7b61349e2c8aecae11a040216e",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
