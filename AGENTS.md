@@ -1,7 +1,7 @@
 # Notes for AI
 
-Every change MUST be self-coherent with existing content. Flag any contradictions or
-confusing content to me. Update AGENTS.md if needed.
+Every change MUST be self-coherent with existing content. Flag any
+contradictions or confusing content to me. Update AGENTS.md if needed.
 
 ## Audience & Purpose
 
@@ -109,3 +109,24 @@ Google Drive API
 
 **Flow**: User selects scripture → Form submission → Google Docs creation → Email
 composition → HTMX preview update
+
+## Roster App
+
+Self-hosted replacement for the Airtable 小组查经训练主日学 base (table
+学员名单 + registration form). Live at <https://sgbs-roster.vercel.app>.
+
+**Tech Stack**: Vite, React, Tailwind CSS (V4), Convex backend; frontend on
+Vercel (project `sgbs-roster`), data in Convex (prod `abundant-dodo-507`).
+
+**Key Files**:
+
+- `apps/roster/` - App root (independent npm project)
+- `apps/roster/convex/schema.ts` - `students` table (ASCII field names; UI
+  keeps Chinese labels)
+- `apps/roster/convex/students.ts` - View queries (12 Airtable views) +
+  `createStudent` registration mutation
+- `apps/roster/src/Form.tsx` - Reimplementation of the Airtable registration
+  form (shrS5gKu57LudKDSh)
+- `apps/roster/src/Roster.tsx` - Grid + kanban view browser
+- `airtable_dump/` - Airtable dump/transform/seed pipeline (see
+  `apps/roster/README.md` for the full re-import procedure)
