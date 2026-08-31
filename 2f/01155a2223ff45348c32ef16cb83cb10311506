@@ -1,0 +1,24 @@
+.gitignore
+  h_923f9eef54c2c1 123-129
+airtable_dump/convex_deploy_yes.py
+  h_923f9eef54c2c1 1-24
+airtable_dump/dump_airtable.py
+  h_923f9eef54c2c1 1-110
+airtable_dump/transform_seed.py
+  h_923f9eef54c2c1 1-157
+airtable_dump/transform_sessions.py
+  h_923f9eef54c2c1 1-77
+airtable_dump/vercel_env_preview.py
+  h_923f9eef54c2c1 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "2f01155a2223ff45348c32ef16cb83cb10311506",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
