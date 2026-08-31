@@ -120,7 +120,9 @@ jobs:
 
       - name: Deploy Convex functions (production)
         if: ${{ env.CONVEX_DEPLOY_KEY != '' }}
-        run: npx convex@latest deploy --prod
+        # CONVEX_DEPLOY_KEY must be a PROD deploy key (prod|...); the
+        # deployment target comes from the key itself, so no --prod flag.
+        run: npx convex@latest deploy
         working-directory: apps/roster
         env:
           CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
