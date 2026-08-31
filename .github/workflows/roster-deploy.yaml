@@ -1,0 +1,136 @@
+# Roster app CD: preview deploys on PRs, production on merge to master.
+#
+# Frontend (Vercel): preview on PR, production on master push.
+# Backend (Convex): production functions deploy on master push, gated on
+# the CONVEX_DEPLOY_KEY secret (generate in the Convex dashboard:
+# prod deployment -> Settings -> Deploy keys, then
+# `gh secret set CONVEX_DEPLOY_KEY --body <key>` on this repo).
+#
+# PR previews use the dev Convex deployment (project-level preview env);
+# production uses the prod deployment (project-level production env).
+
+name: Roster Deploy
+
+on:
+  pull_request:
+    paths:
+      - apps/roster/**
+      - .github/workflows/roster-deploy.yaml
+  push:
+    branches:
+      - master
+    paths:
+      - apps/roster/**
+      - .github/workflows/roster-deploy.yaml
+
+jobs:
+  check:
+    name: Typecheck + build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/roster/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/roster
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+        working-directory: apps/roster
+
+      - name: Build
+        run: npm run build
+        working-directory: apps/roster
+
+  deploy-preview:
+    name: Vercel preview
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: check
+    environment: preview
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/roster/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/roster
+
+      - name: Build
+        run: npm run build
+        working-directory: apps/roster
+
+      - name: Deploy preview
+        run: |
+          npx vercel@latest deploy --yes \
+            --token="$VERCEL_TOKEN" \
+            --cwd apps/roster > preview-url.txt
+          cat preview-url.txt
+      - name: Add preview URL to job summary
+        if: always()
+        run: echo "Preview: $(cat apps/roster/preview-url.txt 2>/dev/null || echo n/a)" >> "$GITHUB_STEP_SUMMARY"
+
+  deploy-production:
+    name: Vercel + Convex production
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: check
+    environment: production
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/roster/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/roster
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+        working-directory: apps/roster
+
+      - name: Build
+        run: npm run build
+        working-directory: apps/roster
+
+      - name: Deploy Convex functions (production)
+        if: ${{ env.CONVEX_DEPLOY_KEY != '' }}
+        run: npx convex@latest deploy --prod
+        working-directory: apps/roster
+        env:
+          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+
+      - name: Notice on missing Convex deploy key
+        if: ${{ env.CONVEX_DEPLOY_KEY == '' }}
+        run: |
+          echo "::warning::CONVEX_DEPLOY_KEY secret is not set - skipping the Convex functions deploy. Generate a prod deploy key in the Convex dashboard (deployment -> Settings -> Deploy keys) and add it as the CONVEX_DEPLOY_KEY secret to enable automatic deploys."
+
+      - name: Deploy frontend (Vercel production)
+        run: |
+          npx vercel@latest deploy --prod --yes \
+            --token="$VERCEL_TOKEN" \
+            --cwd apps/roster
