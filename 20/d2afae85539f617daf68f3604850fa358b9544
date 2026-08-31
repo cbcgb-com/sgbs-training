@@ -1,0 +1,106 @@
+apps/roster/.gitignore
+  h_923f9eef54c2c1 1-10
+apps/roster/DESIGN.md
+  h_923f9eef54c2c1 1-526
+apps/roster/PRODUCT.md
+  h_923f9eef54c2c1 1-82
+apps/roster/README.md
+  h_923f9eef54c2c1 1-146
+apps/roster/convex/_generated/api.d.ts
+  h_923f9eef54c2c1 1-53
+apps/roster/convex/_generated/api.js
+  h_923f9eef54c2c1 1-23
+apps/roster/convex/_generated/dataModel.d.ts
+  h_923f9eef54c2c1 1-60
+apps/roster/convex/_generated/server.d.ts
+  h_923f9eef54c2c1 1-162
+apps/roster/convex/_generated/server.js
+  h_923f9eef54c2c1 1-101
+apps/roster/convex/auth.config.ts
+  h_923f9eef54c2c1 1-14
+apps/roster/convex/demo.ts
+  h_923f9eef54c2c1 1-162
+apps/roster/convex/migrations.ts
+  h_923f9eef54c2c1 1-125
+apps/roster/convex/schema.ts
+  h_923f9eef54c2c1 1-76
+apps/roster/convex/students.ts
+  h_923f9eef54c2c1 1-563
+apps/roster/convex/tsconfig.json
+  h_923f9eef54c2c1 1-25
+apps/roster/docs/designs/authentication/LLD.md
+  h_923f9eef54c2c1 1-76
+apps/roster/docs/designs/authentication/roles-EARS.md
+  h_923f9eef54c2c1 1-46
+apps/roster/docs/designs/directory/LLD.md
+  h_923f9eef54c2c1 1-41
+apps/roster/docs/designs/directory/directory-EARS.md
+  h_923f9eef54c2c1 1-31
+apps/roster/docs/designs/group-assignment/LLD.md
+  h_923f9eef54c2c1 1-70
+apps/roster/docs/designs/group-assignment/divider-EARS.md
+  h_923f9eef54c2c1 1-35
+apps/roster/docs/designs/group-assignment/group-rename-EARS.md
+  h_923f9eef54c2c1 1-29
+apps/roster/docs/designs/registration/LLD.md
+  h_923f9eef54c2c1 1-78
+apps/roster/docs/designs/registration/photo-EARS.md
+  h_923f9eef54c2c1 1-33
+apps/roster/docs/designs/registration/registration-EARS.md
+  h_923f9eef54c2c1 1-47
+apps/roster/docs/designs/roster-views/LLD.md
+  h_923f9eef54c2c1 1-50
+apps/roster/docs/designs/roster-views/roster-views-EARS.md
+  h_923f9eef54c2c1 1-45
+apps/roster/docs/designs/schedule/LLD.md
+  h_923f9eef54c2c1 1-63
+apps/roster/docs/designs/schedule/instructor-assignments-EARS.md
+  h_923f9eef54c2c1 1-35
+apps/roster/docs/designs/schedule/student-self-service-EARS.md
+  h_923f9eef54c2c1 1-39
+apps/roster/docs/high-level-design.md
+  h_923f9eef54c2c1 1-140
+apps/roster/index.html
+  h_923f9eef54c2c1 1-42
+apps/roster/package-lock.json
+  h_923f9eef54c2c1 1-3065
+apps/roster/package.json
+  h_923f9eef54c2c1 1-28
+apps/roster/src/App.tsx
+  h_923f9eef54c2c1 1-241
+apps/roster/src/Directory.tsx
+  h_923f9eef54c2c1 1-123
+apps/roster/src/Form.tsx
+  h_923f9eef54c2c1 1-504
+apps/roster/src/GroupAssigner.tsx
+  h_923f9eef54c2c1 1-294
+apps/roster/src/MyGroup.tsx
+  h_923f9eef54c2c1 1-171
+apps/roster/src/Roster.tsx
+  h_923f9eef54c2c1 1-514
+apps/roster/src/ScheduleView.tsx
+  h_923f9eef54c2c1 1-494
+apps/roster/src/constants.ts
+  h_923f9eef54c2c1 1-30
+apps/roster/src/groups.ts
+  h_923f9eef54c2c1 1-154
+apps/roster/src/index.css
+  h_923f9eef54c2c1 1-100
+apps/roster/src/main.tsx
+  h_923f9eef54c2c1 1-35
+apps/roster/tsconfig.json
+  h_923f9eef54c2c1 1-15
+apps/roster/vite.config.ts
+  h_923f9eef54c2c1 1-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "20d2afae85539f617daf68f3604850fa358b9544",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
