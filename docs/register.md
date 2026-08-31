@@ -1,1 +1,7 @@
-<iframe src="https://ericmjl.notion.site/ebd/27c61f5f071d80478ef6f7acb8dfa4bb" width="100%" height="700" frameborder="0" allowfullscreen />
+# 報名
+
+課程報名已改用自建的報名系統，請前往：
+
+<https://sgbs-roster.vercel.app>
+
+也可以掃描[主頁](index.md)上的報名二維碼。
