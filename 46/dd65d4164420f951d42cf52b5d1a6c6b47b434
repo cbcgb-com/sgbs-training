@@ -1,0 +1,48 @@
+apps/roster/convex/_generated/api.d.ts
+  h_923f9eef54c2c1 11,23
+apps/roster/convex/auth.config.ts
+  h_923f9eef54c2c1 3-6,8-12,16-20
+apps/roster/convex/auth.ts
+  h_923f9eef54c2c1 1-308
+apps/roster/convex/migrations.ts
+  h_923f9eef54c2c1 2,4-9,11-22,25,27
+apps/roster/convex/schema.ts
+  h_923f9eef54c2c1 74-95
+apps/roster/convex/students.ts
+  h_923f9eef54c2c1 293-299,311,314-317,319,499-501
+apps/roster/docs/designs/authentication/LLD.md
+  h_923f9eef54c2c1 4,9-66,70-71,83-124,126,128-181,185-199,203-207,211-236,242-246
+apps/roster/docs/designs/authentication/roles-EARS.md
+  h_923f9eef54c2c1 44-78,81
+apps/roster/package-lock.json
+  h_923f9eef54c2c1 12,18,314-315,333-334,1474-1475,1533-1542,1727-1728,1862-1864,1883-1891,1897-1898,2462-2463,2479-2485
+apps/roster/package.json
+  h_923f9eef54c2c1 15,21
+apps/roster/scripts/make-auth-keys.py
+  h_923f9eef54c2c1 1-69
+apps/roster/src/App.tsx
+  h_923f9eef54c2c1 1,4-5,28,32-38,58,60-61,66-71,76,82-83,85-99,132-158,174,272
+apps/roster/src/Form.tsx
+  h_923f9eef54c2c1 2,5,16-24,28,32,35,37,92,109,116,126-127,135-151,174,256,259-269,363
+apps/roster/src/auth/SignIn.tsx
+  h_923f9eef54c2c1 1-195
+apps/roster/src/auth/session.ts
+  h_923f9eef54c2c1 1-59
+apps/roster/src/main.tsx
+  h_923f9eef54c2c1 1-2,5,10-17,19-54,58-60,62
+apps/roster/tsconfig.json
+  h_923f9eef54c2c1 12
+apps/roster/vercel.json
+  h_923f9eef54c2c1 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "46dd65d4164420f951d42cf52b5d1a6c6b47b434",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
