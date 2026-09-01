@@ -290,7 +290,13 @@ export const photoUrls = query({
   },
 });
 
-// ---- Registration (requires sign-in; identity provides name+email) ----
+// ---- Instructor-managed registration ----
+//
+// An active instructor registers someone else (e.g. an in-person signup)
+// by email. The student row is created immediately (the instructor
+// vouches for the address); the registrant signs in later by email
+// lookup — same as every Airtable-era row. Self-registration by members
+// goes through auth.verifyRegistrationCode (email-code proof) instead.
 
 export const registerStudent = mutation({
   args: {
@@ -302,32 +308,15 @@ export const registerStudent = mutation({
     confirmedAttendance: v.boolean(),
     quarter: v.optional(v.string()),
     photoStorageId: v.optional(v.id("_storage")),
-    // Instructors only: register on behalf of someone else (e.g. in-person
-    // sign-up). Students always register under their own identity email.
-    email: v.optional(v.string()),
+    email: v.string(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("請先登入");
-    const identityEmail = identity.email ?? "";
-
-    let targetEmail: string;
-    let targetName: string;
-    let clerkId: string | undefined = identity.subject;
-    if (args.email !== undefined) {
-      // Registering on behalf of someone else — active instructors only.
-      await requireInstructor(ctx);
-      targetEmail = args.email.trim().toLowerCase();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(targetEmail)) {
-        throw new Error("請填寫有效的電子郵箱");
-      }
-      targetName = args.name.trim();
-      clerkId = undefined; // the registrant has no Clerk account yet
-    } else {
-      targetEmail = identityEmail;
-      if (!targetEmail) throw new Error("登入帳號沒有電子郵箱，請聯絡同工。");
-      targetName = args.name.trim() || identity.name || "";
+    await requireInstructor(ctx);
+    const targetEmail = args.email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(targetEmail)) {
+      throw new Error("請填寫有效的電子郵箱");
     }
+    const targetName = args.name.trim();
 
     for (const [field, value] of Object.entries(args)) {
       if (
@@ -367,7 +356,6 @@ export const registerStudent = mutation({
       homeworkSubmitted: [],
       homeworkCount: 0,
       photoStorageId: args.photoStorageId,
-      clerkId,
       source: "form",
     });
     return { status: "created" as const, id };
@@ -508,6 +496,9 @@ export const renameMyGroup = mutation({
 
 export const generateUploadUrl = mutation({
   handler: (ctx) => {
+    // Guests may upload a registration photo before their identity
+    // exists — the photo belongs to the staged registration, not to a
+    // session. (Rate-limited implicitly by registration code sending.)
     return ctx.storage.generateUploadUrl();
   },
 });

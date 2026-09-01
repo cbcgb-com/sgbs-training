@@ -39,8 +39,6 @@ export default defineSchema({
     homeworkCount: v.number(),
     // Optional registration photo (front-camera snap or gallery pick).
     photoStorageId: v.optional(v.id("_storage")),
-    // Clerk user id (subject) set when a signed-in user registers.
-    clerkId: v.optional(v.string()),
     // "airtable" for migrated records, "form" for new registrations.
     source: v.optional(v.string()),
   })
@@ -73,4 +71,26 @@ export default defineSchema({
     name: v.optional(v.string()),
     active: v.optional(v.boolean()),
   }).index("by_email", ["email"]),
+
+  // 註冊驗證碼: one-time registration email-verification codes.
+  authCodes: defineTable({
+    email: v.string(),
+    code: v.string(),
+    name: v.optional(v.string()),
+    createdAt: v.number(),
+    expiresAt: v.number(),
+    usedAt: v.optional(v.number()),
+  }).index("by_email", ["email"]),
+
+  // 登入作業階段: issued session tokens (audit + revocation). The JWT
+  // itself is stateless; this table lets sign-out kill a copied token.
+  authSessions: defineTable({
+    jti: v.string(),
+    email: v.string(),
+    createdAt: v.number(),
+    expiresAt: v.number(),
+    revokedAt: v.optional(v.number()),
+  })
+    .index("by_jti", ["jti"])
+    .index("by_email", ["email"]),
 });
