@@ -1,7 +1,8 @@
-import { SignInButton, UserButton, useAuth } from "@clerk/react";
-import { useQuery } from "convex/react";
+import { useConvexAuth, useMutation, useQuery } from "convex/react";
 import { createContext, useContext, useState } from "react";
 import { api } from "../convex/_generated/api";
+import { SignInSheet } from "./auth/SignIn";
+import { sessionTokenStore } from "./auth/session";
 import { CURRENT_QUARTER } from "./constants";
 import Directory from "./Directory";
 import GroupAssigner from "./GroupAssigner";
@@ -24,11 +25,17 @@ const TabContext = createContext<{ tab: TabKey; setTab: (t: TabKey) => void }>({
 });
 
 export default function App() {
-  const { isLoaded, isSignedIn } = useAuth();
+  const { isLoading, isAuthenticated } = useConvexAuth();
   return (
     <div className="min-h-screen bg-paper-deep px-3 py-6 sm:px-6 sm:py-12">
       <div className="mx-auto max-w-5xl border border-rule bg-paper shadow-[0_1px_2px_rgba(38,33,22,0.05),0_32px_64px_-32px_rgba(38,33,22,0.3)]">
-        {!isLoaded || !isSignedIn ? <GuestView isLoaded={isLoaded} /> : <MemberView />}
+        {isLoading ? (
+          <LoadingSheet />
+        ) : !isAuthenticated || sessionTokenStore.isExpired() ? (
+          <GuestView />
+        ) : (
+          <MemberView />
+        )}
       </div>
     </div>
   );
@@ -48,51 +55,48 @@ function LoadingSheet() {
   );
 }
 
-// ---- Signed-out: invitation to sign in ----
+// ---- Signed-out: registration + sign-in on one sheet ----
 
-function GuestView({ isLoaded }: { isLoaded: boolean | undefined }) {
+function GuestView() {
+  const [mode, setMode] = useState<"register" | "signin">("register");
   return (
     <>
       <Header
         right={
-          <SignInButton mode="modal">
-            <button className="border border-rule px-4 py-2 font-serif-tc text-sm tracking-[0.2em] text-ink transition-colors hover:border-ink">
-              登入
-            </button>
-          </SignInButton>
+          <button
+            onClick={() => setMode(mode === "register" ? "signin" : "register")}
+            className="border border-rule px-4 py-2 font-serif-tc text-sm tracking-[0.2em] text-ink transition-colors hover:border-ink"
+          >
+            {mode === "register" ? "登入" : "報名"}
+          </button>
         }
         nav={
           <nav className="-mb-px mt-8 flex gap-1.5 text-sm sm:gap-2">
             <span className="rounded-t-md border border-b-0 border-rule bg-paper px-5 py-2 font-serif-tc font-bold tracking-[0.2em] text-ink sm:px-7">
-              報名
+              {mode === "register" ? "報名" : "登入"}
             </span>
           </nav>
         }
       />
       <main className="px-5 py-10 sm:px-12 sm:py-12">
-        {!isLoaded ? (
-          <p className="py-12 text-center font-serif-tc text-sm tracking-[0.3em] text-ink-soft">
-            載入中……
-          </p>
+        {mode === "signin" ? (
+          <SignInSheet />
         ) : (
-          <div className="ink-in mx-auto max-w-md py-8 text-center">
-            <p className="font-serif-tc text-xl font-bold leading-loose text-ink">
-              「你當竭力在神面前得蒙喜悅，作無愧的工人，
-              按著正意分解真理的道。」
-            </p>
-            <p className="mt-3 font-serif-tc text-xs tracking-[0.25em] text-vermilion">
-              提摩太後書二章十五節
-            </p>
-            <p className="mt-8 text-base leading-relaxed text-ink-soft">
-              登入後即可報名本季課程、查看小組成員、聯絡表與課堂安排。
-            </p>
-            <SignInButton mode="modal">
-              <button className="mt-8 w-full bg-ink py-3.5 font-serif-tc text-base font-bold tracking-[0.4em] text-paper transition-colors hover:bg-vermilion sm:w-auto sm:px-16">
-                登入
-              </button>
-            </SignInButton>
-            <p className="mt-4 text-[13px] text-ink-soft">請勿透過表單提交密碼。</p>
-          </div>
+          <>
+            <Form guestMode />
+            <div className="mx-auto mt-10 max-w-2xl border-t border-rule pt-6 text-center">
+              <p className="text-[13px] leading-relaxed text-ink-soft">
+                已於本季或以往報名？以登記的郵箱{" "}
+                <button
+                  onClick={() => setMode("signin")}
+                  className="font-serif-tc text-ink underline decoration-rule underline-offset-4 hover:decoration-ink"
+                >
+                  登入
+                </button>
+                查看小組與課堂安排。
+              </p>
+            </div>
+          </>
         )}
       </main>
       <Footer />
@@ -125,6 +129,33 @@ function MemberView() {
   );
 }
 
+function SignOutButton() {
+  const signOutServer = useMutation(api.auth.signOut);
+  const [busy, setBusy] = useState(false);
+
+  async function signOut() {
+    setBusy(true);
+    const jti = sessionTokenStore.jti();
+    try {
+      if (jti) await signOutServer({ jti });
+    } catch {
+      // Server-side revocation is best-effort; local sign-out always wins.
+    }
+    sessionTokenStore.clear();
+    window.location.reload();
+  }
+
+  return (
+    <button
+      onClick={signOut}
+      disabled={busy}
+      className="border border-rule px-3 py-1.5 font-serif-tc text-xs tracking-[0.2em] text-ink transition-colors hover:border-ink disabled:opacity-50"
+    >
+      登出
+    </button>
+  );
+}
+
 function TabShell({
   tabs,
   isInstructor,
@@ -140,7 +171,7 @@ function TabShell({
   return (
     <TabContext.Provider value={{ tab: active, setTab }}>
       <Header
-        right={<UserButton />}
+        right={<SignOutButton />}
         nav={
           <nav
             aria-label="主導覽"

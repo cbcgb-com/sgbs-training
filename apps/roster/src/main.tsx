@@ -1,41 +1,62 @@
-import { ClerkProvider, useAuth } from "@clerk/react";
-import { ConvexProviderWithClerk } from "convex/react-clerk";
-import { ConvexReactClient } from "convex/react";
-import { StrictMode } from "react";
+import { ConvexProviderWithAuth, ConvexReactClient } from "convex/react";
+import { StrictMode, useCallback, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { sessionTokenStore } from "./auth/session";
 import "./index.css";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
-// Vercel app-origin proxy for production Clerk (per the Clerk domain
-// configuration: https://sgbs-roster.vercel.app/__clerk). The dev
-// instance is used directly; the proxy only matters for the live key.
-const clerkProxyUrl = "https://sgbs-roster.vercel.app/__clerk";
+// Self-hosted passwordless auth (docs/designs/authentication/LLD.md):
+// the client holds the signed session JWT in localStorage and hands it
+// to Convex as the access token. `isAuthenticated` is true only while a
+// token exists; Convex decides what the identity may see.
+function useLocalAuth() {
+  const [token, setToken] = useState<string | null>(() =>
+    sessionTokenStore.get(),
+  );
 
-// Theme Clerk's sign-in/modal surfaces to match the 和合本 paper world.
-const clerkAppearance = {
-  variables: {
-    colorPrimary: "#b3402a",
-    colorBackground: "#faf6ec",
-    colorText: "#262116",
-    colorInputBackground: "#ffffff",
-    colorInputText: "#262116",
-    borderRadius: "0.375rem",
-    fontFamily: "'Noto Sans TC', 'PingFang TC', sans-serif",
-  },
-};
+  const fetchAccessToken = useCallback(
+    async ({ forceRefreshToken }: { forceRefreshToken: boolean }) => {
+      if (forceRefreshToken) {
+        // A forced refresh means the current token expired. There is no
+        // silent re-issue path here: the member signs in again (one
+        // email lookup). Clear so the UI returns to the sign-in sheet.
+        sessionTokenStore.clear();
+        setToken(null);
+        return null;
+      }
+      return sessionTokenStore.get();
+    },
+    [],
+  );
+
+  return useMemo(
+    () => ({
+      isLoading: false,
+      isAuthenticated: token !== null,
+      fetchAccessToken,
+    }),
+    [token, fetchAccessToken],
+  );
+}
+
+// The sign-in components swap the token after signIn /
+// verifyRegistrationCode succeed; onSignedIn persists it and reloads so
+// ConvexProviderWithAuth re-initializes with the new token.
+export function authActions() {
+  return {
+    onSignedIn(token: string) {
+      sessionTokenStore.set(token);
+      window.location.reload();
+    },
+  };
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ClerkProvider
-      publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY as string}
-      appearance={clerkAppearance}
-      proxyUrl={clerkProxyUrl}
-    >
-      <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
-        <App />
-      </ConvexProviderWithClerk>
-    </ClerkProvider>
+    <ConvexProviderWithAuth client={convex} useAuth={useLocalAuth}>
+      <App />
+    </ConvexProviderWithAuth>
   </StrictMode>,
 );

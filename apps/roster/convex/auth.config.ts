@@ -1,23 +1,23 @@
 import { AuthConfig } from "convex/server";
 
-// Clerk JWT validation. The production Clerk instance's Frontend API
-// domain is injected at deploy time via the CLERK_JWT_ISSUER_DOMAIN
-// environment variable (set on the Convex production deployment in the
-// dashboard; see the authentication LLD). The dev deployment keeps the
-// dev instance domain so local/preview auth is unaffected.
+// Self-hosted auth (docs/designs/authentication/LLD.md): the app issues
+// its own ES256 session JWTs — no external identity vendor. The issuer
+// and audience here MUST match convex/auth.ts (ISSUER / AUDIENCE
+// constants) exactly.
 //
-// NOTE: with the app-origin proxy configured (proxy URL
-// https://sgbs-roster.vercel.app/__clerk), tokens are still issued by the
-// domain below — the proxy only changes where the BROWSER sends Clerk
-// requests, not who signs them.
+// The JWKS is the embedded ES256 PUBLIC key (safe to commit). The
+// private counterpart lives only in the Convex environment variable
+// AUTH_PRIVATE_KEY on each deployment (node actions).
+//
+// Generate with: uv run scripts/make-auth-keys.py  (prints both).
 export default {
   providers: [
     {
-      domain:
-        (globalThis as Record<string, unknown>).CLERK_JWT_ISSUER_DOMAIN as
-          string | undefined ??
-        "https://quick-treefrog-3653.clerk.accounts.dev",
-      applicationID: "convex",
+      type: "customJwt",
+      applicationID: "sgbs-roster",
+      issuer: "https://sgbs-roster.vercel.app/",
+      algorithm: "ES256",
+      jwks: "data:application/json;base64,eyJrZXlzIjpbeyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjFuYlZBSDN0elJ1TmVfeXN1eHZJVVNpYjhkZ0V2ZHh2WE1VVmxGdkVQWFUiLCJ5IjoiaExISnI1c0h6dnpTNlNsaGRIVFVMZXZxZnJUWVYwNjRKR0kxeXpYWFV5ZyIsInVzZSI6InNpZyIsImFsZyI6IkVTMjU2Iiwia2lkIjoic2dicy1yb3N0ZXItc2Vzc2lvbi0xIn1dfQ==",
     },
   ],
 } satisfies AuthConfig;

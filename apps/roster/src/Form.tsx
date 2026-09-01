@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useMutation, useQuery } from "convex/react";
-import { useUser } from "@clerk/react";
+import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Id } from "../convex/_generated/dataModel";
+import { CodeStep, stageRegistration } from "./auth/SignIn";
 import {
   BAPTISM_TIMES,
   CURRENT_QUARTER,
@@ -13,20 +13,28 @@ import {
 
 // Faithful reimplementation of the Airtable form view 小组查经训练注册
 // (shrS5gKu57LudKDSh): the remaining fields + submit, set here as ruled
-// ledger lines on a scripture page. Name and email come from the Clerk
-// sign-in; the email is identity-authoritative and cannot be edited.
+// ledger lines on a scripture page.
+//
+// Modes:
+// - guestMode: the signed-out registration sheet. The form collects the
+//   registrant's email, sends a 6-digit code, and only on code entry is
+//   the student row created (and the member signed in).
+// - registered (signed-in student): already registered this quarter.
+// - adminMode (signed-in instructor): register on behalf of someone
+//   else; the code email goes to the registrant's address.
 export default function Form({
   registered,
   adminMode = false,
+  guestMode = false,
 }: {
   registered?: boolean;
   adminMode?: boolean;
+  guestMode?: boolean;
 }) {
-  const registerStudent = useMutation(api.students.registerStudent);
   const generateUploadUrl = useMutation(api.students.generateUploadUrl);
-  const { user } = useUser();
+  const requestCode = useMutation(api.auth.requestCode);
 
-  const clerkEmail = user?.primaryEmailAddress?.emailAddress ?? "";
+  const [stage, setStage] = useState<"form" | "code">("form");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,11 +45,6 @@ export default function Form({
   const [confirmed, setConfirmed] = useState(false);
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-
-  // Prefill the name from the Clerk profile (self-registration only).
-  useEffect(() => {
-    if (!adminMode && user?.fullName && name === "") setName(user.fullName);
-  }, [user, name, adminMode]);
 
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<"created" | "duplicate" | null>(null);
@@ -86,6 +89,7 @@ export default function Form({
     removePhoto();
     setResult(null);
     setError(null);
+    setStage("form");
   }
 
   async function uploadPhoto(
@@ -102,13 +106,14 @@ export default function Form({
     return storageId as Id<"_storage">;
   }
 
+  // Submit step 1 (form → code): stage the payload and email the code.
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
     try {
       const photoStorageId = photo ? await uploadPhoto(photo) : undefined;
-      const res = await registerStudent({
+      stageRegistration({
         name,
         gender,
         fellowship,
@@ -117,9 +122,9 @@ export default function Form({
         confirmedAttendance: confirmed,
         quarter: CURRENT_QUARTER,
         photoStorageId,
-        ...(adminMode ? { email } : {}),
       });
-      setResult(res.status);
+      await requestCode({ email, name });
+      setStage("code");
     } catch (err) {
       setError(friendlyError(err instanceof Error ? err.message : String(err)));
     } finally {
@@ -127,7 +132,23 @@ export default function Form({
     }
   }
 
-  if (!adminMode && registered) {
+  // Submit step 2 (code verified): the row is created server-side; the
+  // session token arrives with the response.
+  function onVerified() {
+    setResult("created");
+    setStage("form");
+  }
+
+  if (stage === "code") {
+    return (
+      <CodeStep
+        email={email}
+        onVerified={() => onVerified()}
+      />
+    );
+  }
+
+  if (!guestMode && !adminMode && registered) {
     return (
       <div className="ink-in mx-auto max-w-md py-10 text-center">
         <p className="font-serif-tc text-3xl font-black tracking-[0.3em] text-ink">
@@ -150,7 +171,7 @@ export default function Form({
         <p className="mt-6 text-sm leading-relaxed text-ink-soft">
           {result === "created"
             ? adminMode
-              ? `已為 ${name || "學員"} 登記 ${CURRENT_QUARTER} 的課程。`
+              ? `已為 ${name || "學員"} 登記 ${CURRENT_QUARTER} 的課程。學員現在可以用此郵箱登入。`
               : `您的報名已登記（${CURRENT_QUARTER}），我們會透過郵箱與您聯絡。`
             : "這個郵箱在本季度已經登記過了；如需更改資料，請聯絡同工。"}
         </p>
@@ -232,26 +253,20 @@ export default function Form({
           note={
             adminMode
               ? "填寫學員的電子郵箱（之後學員可用此郵箱登入查看自己的組別與安排）。"
-              : "郵箱來自您的登入帳號；如需更改請聯絡同工。若您有多於一個郵箱，請考慮到我們會用Google Docs，並儘量選擇可以登陸Google的帳號。"
+              : "我們會發送六位驗證碼到此郵箱以完成報名。請選擇您能收信的郵箱。"
           }
         >
-          {adminMode ? (
-            <input
-              id="reg-email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="name@example.com"
-              className={ruledInput}
-            />
-          ) : (
-            <p className="border-b border-rule py-2 text-lg text-ink">
-              {clerkEmail || "…"}
-            </p>
-          )}
+          <input
+            id="reg-email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="name@example.com"
+            className={ruledInput}
+          />
         </RuledField>
 
         <RuledField id="reg-baptism" label="受洗時間" required>
@@ -345,7 +360,7 @@ export default function Form({
       </button>
 
       <p className="mt-6 text-[13px] text-ink-soft">
-        請勿透過表單提交密碼。
+        遞交後我們會寄出六位驗證碼，輸入後即完成報名。請勿透過表單提交密碼。
       </p>
     </form>
   );
