@@ -6,8 +6,15 @@
 // convex/auth.config.ts exactly — Convex rejects tokens on any mismatch.
 
 import { v } from "convex/values";
-import { internalAction, internalMutation, mutation } from "./_generated/server";
+import {
+  action,
+  internalAction,
+  internalMutation,
+  internalQuery,
+  mutation,
+} from "./_generated/server";
 import { internal } from "./_generated/api";
+import type { Doc } from "./_generated/dataModel";
 import { CURRENT_QUARTER } from "../src/constants";
 import { SignJWT, importPKCS8 } from "jose";
 
@@ -32,7 +39,12 @@ function codesMatch(a: string, b: string): boolean {
   return diff === 0;
 }
 
-// ---- JWT issuance (node runtime; the private key never leaves here) ----
+// ---- JWT issuance (node action; the private key never leaves here) ----
+//
+// Mutations cannot use cryptographic randomness (Convex restriction), so
+// token signing happens here in node actions. The actions verify their
+// preconditions via runQuery (a consumed code / an existing roster row)
+// so the unauthenticated action surface cannot mint tokens arbitrarily.
 
 async function issueSessionToken(email: string, name: string): Promise<{
   token: string;
@@ -46,7 +58,7 @@ async function issueSessionToken(email: string, name: string): Promise<{
   const now = Date.now();
   const expiresAt = now + SESSION_TTL_MS;
   const token = await new SignJWT({ email, name })
-    .setProtectedHeader({ alg: "ES256", typ: "JWT" })
+    .setProtectedHeader({ alg: "ES256", typ: "JWT", kid: "sgbs-roster-session-1" })
     .setSubject(`email:${email}`)
     .setIssuer(ISSUER)
     .setAudience(AUDIENCE)
@@ -153,7 +165,9 @@ export const sendCodeEmail = internalAction({
 });
 
 // 3. Consume the code → finalize the registration payload. Creates the
-//    student row and returns the session token (signed in immediately).
+//    student row and returns the code's issuedAt, which the client then
+//    passes to completeRegistrationSignIn (a node action — JWT signing
+//    needs cryptographic randomness, unavailable in mutations).
 export const verifyRegistrationCode = mutation({
   args: {
     email: v.string(),
@@ -169,7 +183,10 @@ export const verifyRegistrationCode = mutation({
       quarter: v.optional(v.string()),
     }),
   },
-  handler: async (ctx, { email, code, registration }) => {
+  handler: async (ctx, { email, code, registration }): Promise<{
+    status: "created" | "duplicate";
+    codeIssuedAt: number;
+  }> => {
     const addr = normalizeEmail(email);
     if (!EMAIL_RE.test(addr)) throw new Error("請填寫有效的電子郵箱");
 
@@ -199,82 +216,133 @@ export const verifyRegistrationCode = mutation({
       .withIndex("by_email", (q) => q.eq("email", addr))
       .collect();
     const duplicate = existing.find((s) => s.quarter === quarter);
-    if (duplicate) {
-      const { token, expiresAt, jti } = await issueSessionToken(
-        addr,
-        duplicate.name,
-      );
-      await ctx.db.insert("authSessions", {
-        jti,
+    if (!duplicate) {
+      await ctx.db.insert("students", {
+        name,
+        gender: registration.gender,
+        fellowship: registration.fellowship,
         email: addr,
-        createdAt: now,
-        expiresAt,
+        baptismTime: registration.baptismTime,
+        leadingExperience: registration.leadingExperience,
+        quarter,
+        present: false,
+        missed: 0,
+        homeworkSubmitted: [],
+        homeworkCount: 0,
+        photoStorageId: registration.photoStorageId,
+        source: "form",
       });
-      return { status: "duplicate" as const, token, expiresAt };
     }
+    return {
+      status: duplicate ? ("duplicate" as const) : ("created" as const),
+      codeIssuedAt: match.createdAt,
+    };
+  },
+});
 
-    await ctx.db.insert("students", {
-      name,
-      gender: registration.gender,
-      fellowship: registration.fellowship,
+// 3b. Node action: complete registration sign-in. The precondition check
+//     (a code for this email was issued AND consumed) runs via runQuery
+//     so this unauthenticated action cannot mint tokens for unverified
+//     addresses.
+export const completeRegistrationSignIn = action({
+  args: { email: v.string(), codeIssuedAt: v.number() },
+  handler: async (ctx, { email, codeIssuedAt }): Promise<{
+    token: string;
+    expiresAt: number;
+  }> => {
+    const addr = normalizeEmail(email);
+    const rows = await ctx.runQuery(internal.auth.getCodesByEmail, {
       email: addr,
-      baptismTime: registration.baptismTime,
-      leadingExperience: registration.leadingExperience,
-      quarter,
-      present: false,
-      missed: 0,
-      homeworkSubmitted: [],
-      homeworkCount: 0,
-      photoStorageId: registration.photoStorageId,
-      source: "form",
     });
-    const { token, expiresAt, jti } = await issueSessionToken(addr, name);
-    await ctx.db.insert("authSessions", {
-      jti,
+    const consumed = rows.find(
+      (r) => r.createdAt === codeIssuedAt && r.usedAt !== undefined,
+    );
+    if (!consumed) throw new Error("驗證碼尚未確認");
+    const students = await ctx.runQuery(internal.auth.getStudentByEmail, {
       email: addr,
-      createdAt: now,
-      expiresAt,
     });
-    return { status: "created" as const, token, expiresAt };
+    const name = students[0]?.name ?? "";
+    return await issueSessionToken(addr, name);
   },
 });
 
 // 4. Sign-in: pure email lookup, no verification. Uniform rejection for
-//    unknown/malformed addresses (no user enumeration).
-export const signIn = mutation({
+//    unknown/malformed addresses (no user enumeration). Node action —
+//    existence check via runQuery, JWT signing needs node crypto.
+export const signIn = action({
   args: { email: v.string() },
-  handler: async (ctx, { email }) => {
+  handler: async (ctx, { email }): Promise<{
+    token: string;
+    expiresAt: number;
+  }> => {
     const addr = normalizeEmail(email);
     if (!EMAIL_RE.test(addr)) throw new Error("此電子郵箱尚未註冊");
 
-    const instructor = await ctx.db
-      .query("instructors")
-      .withIndex("by_email", (q) => q.eq("email", addr))
-      .unique();
+    const instructor = await ctx.runQuery(internal.auth.getInstructorByEmail, {
+      email: addr,
+    });
     let name: string | null = instructor?.name ?? null;
+    let exists = instructor?.active === true;
 
-    if (!instructor?.active) {
-      const student = (
-        await ctx.db
-          .query("students")
-          .withIndex("by_email", (q) => q.eq("email", addr))
-          .collect()
-      )[0];
-      if (!student) {
-        // Same error as malformed input (AUTH-PWORD-004).
-        throw new Error("此電子郵箱尚未註冊");
+    if (!exists) {
+      const students = await ctx.runQuery(internal.auth.getStudentByEmail, {
+        email: addr,
+      });
+      if (students.length) {
+        exists = true;
+        name = students[0].name;
       }
-      name = student.name;
     }
+    if (!exists) throw new Error("此電子郵箱尚未註冊");
 
-    const { token, expiresAt, jti } = await issueSessionToken(addr, name ?? "");
+    return await issueSessionToken(addr, name ?? "");
+  },
+});
+
+// Internal lookups + session recording used by the actions above.
+export const getCodesByEmail = internalQuery({
+  args: { email: v.string() },
+  handler: async (ctx, { email }): Promise<Array<Doc<"authCodes">>> => {
+    return await ctx.db
+      .query("authCodes")
+      .withIndex("by_email", (q) => q.eq("email", email))
+      .collect();
+  },
+});
+
+export const getStudentByEmail = internalQuery({
+  args: { email: v.string() },
+  handler: async (ctx, { email }): Promise<Array<Doc<"students">>> => {
+    return await ctx.db
+      .query("students")
+      .withIndex("by_email", (q) => q.eq("email", email))
+      .collect();
+  },
+});
+
+export const getInstructorByEmail = internalQuery({
+  args: { email: v.string() },
+  handler: async (ctx, { email }): Promise<Doc<"instructors"> | null> => {
+    return await ctx.db
+      .query("instructors")
+      .withIndex("by_email", (q) => q.eq("email", email))
+      .unique();
+  },
+});
+
+export const recordSession = internalMutation({
+  args: {
+    jti: v.string(),
+    email: v.string(),
+    expiresAt: v.number(),
+  },
+  handler: async (ctx, { jti, email, expiresAt }) => {
     await ctx.db.insert("authSessions", {
       jti,
-      email: addr,
+      email,
       createdAt: Date.now(),
       expiresAt,
     });
-    return { token, expiresAt };
   },
 });
 

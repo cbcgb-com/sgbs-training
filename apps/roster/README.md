@@ -1,15 +1,20 @@
 # sgbs-roster
 
 小組查經訓練主日學 roster app: a self-hosted replacement for the Airtable
-base `appPjFf1hVqSChSyo` (table 学员名单 `tblty4DoMC2Pmfrw6`), with Clerk
-authentication and role-gated views.
+base `appPjFf1hVqSChSyo` (table 学员名单 `tblty4DoMC2Pmfrw6`), with
+self-hosted passwordless authentication (no external identity vendor) and
+role-gated views.
 
 - **Live**: <https://sgbs-roster.vercel.app>
 - **Frontend**: Vite + React + Tailwind (this repo, deployed on Vercel as
   project `sgbs-roster`)
 - **Backend**: Convex (prod deployment `abundant-dodo-507`, dev
   `rugged-oriole-958`, team `eric-036a4`)
-- **Auth**: Clerk app `sgbs-roster` (dev instance `quick-treefrog-3653`)
+- **Auth**: self-hosted passwordless — registration verifies email
+  ownership once via a 6-digit Resend code; sign-in is an email lookup.
+  Sessions are app-issued ES256 JWTs (`AUTH_PRIVATE_KEY` Convex env var;
+  public JWK embedded in `convex/auth.config.ts`). See
+  [docs/designs/authentication/LLD.md](docs/designs/authentication/LLD.md)
 - **Design system**: see [DESIGN.md](DESIGN.md) — the 和合本 scripture-page
   world, including the role model notes below
 - **Design docs**: [docs/high-level-design.md](docs/high-level-design.md)
@@ -28,7 +33,7 @@ student; anything else is a guest.
 ### What each role sees
 
 - **註冊 registration** — Guest: sign-in prompt only. Student: the form
-  with a Clerk-locked email. Instructor: admin mode — register other
+  with an email-verification step. Instructor: admin mode — register other
   people (editable email), with the 登記另一位 loop for back-to-back
   sign-ups.
 - **我的組 my group** — Student only: own group mates with names, photos,
@@ -63,9 +68,11 @@ Intent rules that must survive refactors:
    era, leading experience) with manual override and renames. Dates are
    fixed at five classes; the first class is orientation and never carries
    assignments, so each season has exactly **four leading weeks**.
-5. **Registration has two modes.** Students register themselves with the
-   email from their Clerk identity (locked). Instructors register other
-   people: same form, editable email, repeatable via 登記另一位.
+5. **Registration has two modes.** Students register themselves: the
+   form collects the email and a 6-digit code sent to it proves ownership
+   (sign-in is then that email, codeless). Instructors register other
+   people: same form, editable email, they vouch for the address, and the
+   flow repeats via 登記另一位.
 6. **Instructor status is data, not code.** Activate/deactivate an
    instructor by flipping their row in the `instructors` table (one Convex
    run command) — no deploy. Currently active: Eric Ma and 林意 — the literal
@@ -81,8 +88,8 @@ is the gate.
 Convex requires ASCII field names, so documents use English keys
 (`name`, `fellowship`, `email`, `baptismTime`, `quarter`, `groupName`,
 `gender`, `leadingExperience`, `present`, `class1`-`class5`, `missed`,
-`homeworkSubmitted`, `homeworkCount`, `photoStorageId`, `clerkId`,
-`source`); the UI shows the original Chinese labels. Linked-record fields
+`homeworkSubmitted`, `homeworkCount`, `photoStorageId`, `source`); the
+UI shows the original Chinese labels. Linked-record fields
 were resolved to display values at import time (主领日期/观察日期 →
 课程日期, 功课（提交） → 功课, 助教 → 教师). The Airtable `Missed` formula
 (unchecked classes, 1-5) and `功课提交数目` count are replicated at
@@ -96,8 +103,10 @@ npx convex dev        # pushes functions to the dev deployment, watches
 npm run dev           # Vite dev server (reads VITE_CONVEX_URL from .env.local)
 ```
 
-`VITE_CLERK_PUBLISHABLE_KEY` and `VITE_CONVEX_URL` live in `.env.local`
-(`clerk env pull` + `convex dev` write them).
+`VITE_CONVEX_URL` lives in `.env.local` (`convex dev` writes it). The
+auth stack needs `RESEND_API_KEY` + `RESEND_FROM` (verification-code
+emails) and `AUTH_PRIVATE_KEY` (session-JWT signing) set on BOTH Convex
+deployments — secrets via `npx convex env set`, never in the repo.
 
 ## Redeploying
 
@@ -132,7 +141,7 @@ cd apps/roster && npx convex import --table students seed/students_seed.jsonl
 ## Known limitations
 
 - Spam protection (rate limiting / CAPTCHA) is not yet included on the
-  public registration form.
+  public registration form (rate limiting exists on code requests).
 - Airtable's API does not expose view *configurations* (filters, sorts,
   hidden columns), so each view's filter was reimplemented from its name
   and semantics. Tune the queries in `convex/students.ts` if the original
@@ -140,7 +149,11 @@ cd apps/roster && npx convex import --table students seed/students_seed.jsonl
 - Group assignment to students (who goes in which group) is still a Convex
   run command; the instructor UI covers the divider but not manual
   per-student group edits yet.
-- The Clerk instance is a development instance (dev-mode badge, usage
-  limits). Promoting to a production Clerk instance is a dashboard wizard
-  plus a swap of the domain in `convex/auth.config.ts` and the publishable
-  key in Vercel.
+- Sign-in is an email lookup (no secret). Documented exposure: anyone who
+  knows a registered member's address can view that group's contact
+  sheet — an accepted tradeoff for this deployment; revisit if the app
+  ever holds more sensitive data.
+- Resend's dev sender (`onboarding@resend.dev`) only delivers to the
+  Resend account owner's address; verify a sending domain in the Resend
+  dashboard (DNS records) and set `RESEND_FROM` before opening
+  registration to the congregation.

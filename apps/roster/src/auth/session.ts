@@ -57,3 +57,9 @@ export const sessionTokenStore = {
     return typeof payload?.exp === "number" && payload.exp * 1000 < Date.now();
   },
 };
+
+/** Persist a fresh session token and reload so the auth provider picks it up. */
+export function signInWithToken(token: string) {
+  sessionTokenStore.set(token);
+  window.location.reload();
+}

@@ -36,8 +36,9 @@ and instructors who manage everything.
   instructor attendance editor is future work.
 - **Instructor UI for per-student group assignment** — the divider is the
   primary path; manual per-student moves are a CLI command today.
-- **Production Clerk instance** — running on a development instance until
-  the dashboard wizard is run.
+- ~~**Production Clerk instance**~~ — replaced 2026-08-31: auth is now
+  self-hosted passwordless (see the authentication LLD); no Clerk
+  instance is needed at all.
 - **Past-season browsing for students** — students see the current season
   only, everywhere.
 
@@ -55,35 +56,38 @@ and instructors who manage everything.
 │  Vite + React + Tailwind   │  Vercel (sgbs-roster)
 │  和合本 scripture pages    │
 └──────────┬─────────────────┘
-           │ Clerk session → Convex JWT
+           │ session JWT (app-issued ES256)
 ┌──────────▼─────────────────┐
-│  Clerk (dev instance)      │  identity: Google / email code
-└──────────┬─────────────────┘
-           │
-┌──────────▼─────────────────┐
-│  Convex                    │  students, sessions, instructors
-│  role gate on every query  │
+│  Convex                    │  auth codes + sessions, students,
+│  role gate on every query  │  instructors; Resend sends codes
 └────────────────────────────┘
 ```
 
 ## Key Design Decisions
 
-### Decision 1: Clerk for identity, Convex for authorization
+### Decision 1: Self-hosted passwordless auth; Convex for authorization
 
-**Choice**: Clerk issues identity; Convex validates the JWT and derives
-the role server-side on every call.
+**Choice** (revised 2026-08-31, replacing the original Clerk design):
+the app issues its own ES256 session JWTs. Registration proves email
+ownership once with a 6-digit Resend code; sign-in is a plain email
+lookup. Convex validates the JWT and derives the role server-side on
+every call.
 **Rationale**: Students should not need accounts created for them, and the
 server — never the client — decides what a role may do. An email is an
 instructor only while its row in the `instructors` table has
-`active: true`, so instructor status is data, not code.
+`active: true`, so instructor status is data, not code. External identity
+vendors (Clerk) were removed after their production OAuth flow proved
+unroutable on a shared `*.vercel.app` domain (the Account Portal
+subdomain cannot be cert-ed without DNS we don't control).
 
-### Decision 2: Registration identity comes from Clerk
+### Decision 2: Registration identity is email-verified
 
-**Choice**: Self-registration takes the email from the signed-in identity
-(locked in the UI); instructors can register other people by supplying an
-email (admin mode).
-**Rationale**: A student can only ever register themselves, an instructor
-can register someone at the door, and nobody can impersonate an email.
+**Choice**: Self-registration collects the email and proves ownership
+with a 6-digit code; instructors can register other people directly
+(admin mode, vouching for the address).
+**Rationale**: A student can only ever register an address they control,
+an instructor can register someone at the door, and sign-in afterward is
+a zero-friction lookup — no passwords, no recovery flow.
 
 ### Decision 3: Season scoping
 

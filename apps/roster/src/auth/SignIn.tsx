@@ -5,16 +5,16 @@
 // Both are styled as ruled ledger lines on the 和合本 scripture page.
 
 import { useState } from "react";
-import { useMutation } from "convex/react";
+import { useAction, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import type { Id } from "../../convex/_generated/dataModel";
-import { authActions } from "../main";
+import { signInWithToken } from "./session";
 
 const ruledInput =
   "w-full border-0 border-b border-rule bg-transparent px-0 py-2 text-lg text-ink focus:border-vermilion focus:outline-none";
 
 export function SignInSheet() {
-  const signIn = useMutation(api.auth.signIn);
+  const signIn = useAction(api.auth.signIn);
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export function SignInSheet() {
     setBusy(true);
     try {
       const res = await signIn({ email });
-      authActions().onSignedIn(res.token);
+      signInWithToken(res.token);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
 setBusy(false);
@@ -82,6 +82,7 @@ export function CodeStep({
   onVerified: (token: string) => void;
 }) {
   const verify = useMutation(api.auth.verifyRegistrationCode);
+  const completeSignIn = useAction(api.auth.completeRegistrationSignIn);
   const requestCode = useMutation(api.auth.requestCode);
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
@@ -93,10 +94,14 @@ export function CodeStep({
     setError(null);
     setBusy(true);
     try {
-      // The full registration payload was staged by the caller; on
-      // success we get the session token either way (new or duplicate).
+      // Two-step: the mutation consumes the code + creates the row, then
+      // the node action signs the session JWT (crypto lives in actions).
       const res = await verifyWithStagedPayload(code);
-      onVerified(res.token);
+      const session = await completeSignIn({
+        email,
+        codeIssuedAt: res.codeIssuedAt,
+      });
+      signInWithToken(session.token);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
