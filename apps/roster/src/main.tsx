@@ -16,20 +16,12 @@ function useLocalAuth() {
     sessionTokenStore.get(),
   );
 
-  const fetchAccessToken = useCallback(
-    async ({ forceRefreshToken }: { forceRefreshToken: boolean }) => {
-      if (forceRefreshToken) {
-        // A forced refresh means the current token expired. There is no
-        // silent re-issue path here: the member signs in again (one
-        // email lookup). Clear so the UI returns to the sign-in sheet.
-        sessionTokenStore.clear();
-        setToken(null);
-        return null;
-      }
-      return sessionTokenStore.get();
-    },
-    [],
-  );
+  const fetchAccessToken = useCallback(async () => {
+    // forceRefreshToken means "bypass cache", not "session expired" — the
+    // JWT's exp claim is the expiry gate (server-side). We simply return
+    // the stored token; sign-out clears it explicitly.
+    return sessionTokenStore.get();
+  }, []);
 
   return useMemo(
     () => ({

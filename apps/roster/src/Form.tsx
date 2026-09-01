@@ -3,6 +3,7 @@ import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Id } from "../convex/_generated/dataModel";
 import { CodeStep, stageRegistration } from "./auth/SignIn";
+import { signInWithToken } from "./auth/session";
 import {
   BAPTISM_TIMES,
   CURRENT_QUARTER,
@@ -33,6 +34,7 @@ export default function Form({
 }) {
   const generateUploadUrl = useMutation(api.students.generateUploadUrl);
   const requestCode = useMutation(api.auth.requestCode);
+  const registerStudent = useMutation(api.students.registerStudent);
 
   const [stage, setStage] = useState<"form" | "code">("form");
 
@@ -107,11 +109,29 @@ export default function Form({
   }
 
   // Submit step 1 (form → code): stage the payload and email the code.
+  // Admin mode skips the code entirely — the instructor vouches for the
+  // address (registerStudent is instructor-gated server-side).
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
     try {
+      if (adminMode) {
+        const photoStorageId = photo ? await uploadPhoto(photo) : undefined;
+        await registerStudent({
+          name,
+          gender,
+          fellowship,
+          baptismTime,
+          leadingExperience,
+          confirmedAttendance: confirmed,
+          quarter: CURRENT_QUARTER,
+          photoStorageId,
+          email,
+        });
+        setResult("created");
+        return;
+      }
       const photoStorageId = photo ? await uploadPhoto(photo) : undefined;
       stageRegistration({
         name,
@@ -132,18 +152,17 @@ export default function Form({
     }
   }
 
-  // Submit step 2 (code verified): the row is created server-side; the
-  // session token arrives with the response.
-  function onVerified() {
-    setResult("created");
-    setStage("form");
+  // Submit step 2 (code verified): the row exists and the session token
+  // is in hand — persist it; the reload lands the member signed in.
+  function onVerified(token: string) {
+    signInWithToken(token);
   }
 
   if (stage === "code") {
     return (
       <CodeStep
         email={email}
-        onVerified={() => onVerified()}
+        onVerified={(token) => onVerified(token)}
       />
     );
   }

@@ -17,7 +17,7 @@ export default {
       applicationID: "sgbs-roster",
       issuer: "https://sgbs-roster.vercel.app/",
       algorithm: "ES256",
-      jwks: "data:application/json;base64,eyJrZXlzIjpbeyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6IjFuYlZBSDN0elJ1TmVfeXN1eHZJVVNpYjhkZ0V2ZHh2WE1VVmxGdkVQWFUiLCJ5IjoiaExISnI1c0h6dnpTNlNsaGRIVFVMZXZxZnJUWVYwNjRKR0kxeXpYWFV5ZyIsInVzZSI6InNpZyIsImFsZyI6IkVTMjU2Iiwia2lkIjoic2dicy1yb3N0ZXItc2Vzc2lvbi0xIn1dfQ==",
+      jwks: "data:application/json;base64,eyJrZXlzIjpbeyJrdHkiOiJFQyIsImNydiI6IlAtMjU2IiwieCI6InBXZENjUXFpRmNsRGMxamhyNkRSWXlvOGRvU2JHelJTR0Nha3FFREtqUGsiLCJ5IjoiTFdzU2p4YlpkR2RBY2gtNmFjVlVIQjlTY2RycXZmRVVKNFNTRTVhTTN1dyIsInVzZSI6InNpZyIsImFsZyI6IkVTMjU2Iiwia2lkIjoic2dicy1yb3N0ZXItc2Vzc2lvbi0xIn1dfQ==",
     },
   ],
 } satisfies AuthConfig;

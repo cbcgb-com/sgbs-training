@@ -117,14 +117,25 @@ Self-hosted replacement for the Airtable 小组查经训练主日学 base (table
 
 **Tech Stack**: Vite, React, Tailwind CSS (V4), Convex backend; frontend on
 Vercel (project `sgbs-roster`), data in Convex (prod `abundant-dodo-507`).
+Auth is self-hosted passwordless (no identity vendor): registration
+verifies email via a 6-digit Resend code; sign-in is an email lookup;
+sessions are app-issued ES256 JWTs (`AUTH_PRIVATE_KEY` Convex env var).
+See `apps/roster/docs/designs/authentication/LLD.md`.
 
 **Key Files**:
 
 - `apps/roster/` - App root (independent npm project)
+- `apps/roster/convex/auth.ts` - Passwordless auth: code request/verify,
+  Resend sending (node action), ES256 session-JWT issuance, sign-out
+- `apps/roster/convex/auth.config.ts` - Convex customJwt provider (public
+  JWK embedded as a data URI)
+- `apps/roster/scripts/make-auth-keys.py` - Generates the ES256 keypair
+  (private key → Convex env var; public JWKS → auth.config.ts)
 - `apps/roster/convex/schema.ts` - `students` table (ASCII field names; UI
-  keeps Chinese labels)
+  keeps Chinese labels) + `authCodes`/`authSessions` auth tables
 - `apps/roster/convex/students.ts` - View queries (12 Airtable views) +
-  `createStudent` registration mutation
+  `registerStudent` (instructor-managed) + role gates
+- `apps/roster/src/auth/` - Sign-in sheet, code-entry step, session store
 - `apps/roster/src/Form.tsx` - Reimplementation of the Airtable registration
   form (shrS5gKu57LudKDSh)
 - `apps/roster/src/Roster.tsx` - Grid + kanban view browser
