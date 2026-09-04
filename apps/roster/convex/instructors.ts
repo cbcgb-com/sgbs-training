@@ -10,6 +10,7 @@
 
 import { v } from "convex/values";
 import { internalMutation } from "./_generated/server";
+import { CURRENT_QUARTER } from "../src/constants";
 
 export const upsert = internalMutation({
   args: {
@@ -31,5 +32,28 @@ export const upsert = internalMutation({
       return row._id;
     }
     return await ctx.db.insert("instructors", { email: addr, name, active });
+  },
+});
+
+// ---- Session scaffolding ----
+
+// Create a class date for the season from the CLI. Idempotent per
+// quarter+date (skips when the session already exists):
+//   npx convex run instructors:createSession '{"date":"2026-09-20"}'
+export const createSession = internalMutation({
+  args: { date: v.string(), quarter: v.optional(v.string()) },
+  handler: async (ctx, { date, quarter }) => {
+    const q = quarter ?? CURRENT_QUARTER;
+    const existing = await ctx.db
+      .query("sessions")
+      .withIndex("by_quarter", (qq) => qq.eq("quarter", q))
+      .collect();
+    if (existing.some((s) => s.date === date)) return null;
+    return await ctx.db.insert("sessions", {
+      date,
+      quarter: q,
+      leaderIds: [],
+      observerIds: [],
+    });
   },
 });
