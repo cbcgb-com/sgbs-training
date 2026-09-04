@@ -23,7 +23,7 @@
 <p class="qrcode-option__title">直接報名</p>
 <p class="qrcode-option__hint">現場讓人直接掃描報名時用。</p>
 <img src="./images/registration-qrcode.png" alt="報名二維碼" width="140" height="140">
-<p class="qrcode-option__link"><a href="https://sgbs-roster.vercel.app">或點此連結報名</a></p>
+<p class="qrcode-option__link"><a href="https://sgbs-training.citylight.life">或點此連結報名</a></p>
 </div>
 
 </div>

@@ -5,7 +5,7 @@ base `appPjFf1hVqSChSyo` (table 学员名单 `tblty4DoMC2Pmfrw6`), with
 self-hosted passwordless authentication (no external identity vendor) and
 role-gated views.
 
-- **Live**: <https://sgbs-roster.vercel.app>
+- **Live**: <https://sgbs-training.citylight.life>
 - **Frontend**: Vite + React + Tailwind (this repo, deployed on Vercel as
   project `sgbs-roster`)
 - **Backend**: Convex (prod deployment `abundant-dodo-507`, dev

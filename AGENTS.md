@@ -113,7 +113,7 @@ composition → HTMX preview update
 ## Roster App
 
 Self-hosted replacement for the Airtable 小组查经训练主日学 base (table
-学员名单 + registration form). Live at <https://sgbs-roster.vercel.app>.
+学员名单 + registration form). Live at <https://sgbs-training.citylight.life>.
 
 **Tech Stack**: Vite, React, Tailwind CSS (V4), Convex backend; frontend on
 Vercel (project `sgbs-roster`), data in Convex (prod `abundant-dodo-507`).
