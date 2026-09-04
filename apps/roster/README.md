@@ -11,7 +11,8 @@ role-gated views.
 - **Backend**: Convex (prod deployment `abundant-dodo-507`, dev
   `rugged-oriole-958`, team `eric-036a4`)
 - **Auth**: self-hosted passwordless — registration verifies email
-  ownership once via a 6-digit Resend code; sign-in is an email lookup.
+  ownership once via a 6-digit code (sent from the church Gmail mailbox
+  via SMTP); sign-in is an email lookup.
   Sessions are app-issued ES256 JWTs (`AUTH_PRIVATE_KEY` Convex env var;
   public JWK embedded in `convex/auth.config.ts`). See
   [docs/designs/authentication/LLD.md](docs/designs/authentication/LLD.md)
@@ -104,9 +105,10 @@ npm run dev           # Vite dev server (reads VITE_CONVEX_URL from .env.local)
 ```
 
 `VITE_CONVEX_URL` lives in `.env.local` (`convex dev` writes it). The
-auth stack needs `RESEND_API_KEY` + `RESEND_FROM` (verification-code
-emails) and `AUTH_PRIVATE_KEY` (session-JWT signing) set on BOTH Convex
-deployments — secrets via `npx convex env set`, never in the repo.
+auth stack needs `SMTP_USER` + `SMTP_PASS` (verification-code emails via
+Gmail SMTP; `SMTP_PASS` is a Google App Password) and `AUTH_PRIVATE_KEY`
+(session-JWT signing) set on BOTH Convex deployments — secrets via
+`npx convex env set`, never in the repo.
 
 ## Redeploying
 
@@ -153,7 +155,9 @@ cd apps/roster && npx convex import --table students seed/students_seed.jsonl
   knows a registered member's address can view that group's contact
   sheet — an accepted tradeoff for this deployment; revisit if the app
   ever holds more sensitive data.
-- Resend's dev sender (`onboarding@resend.dev`) only delivers to the
-  Resend account owner's address; verify a sending domain in the Resend
-  dashboard (DNS records) and set `RESEND_FROM` before opening
-  registration to the congregation.
+- Codes are sent from the church mailbox `no-reply-com@cbcgb.org` via
+  Gmail SMTP with a Google App Password (login passwords are refused).
+  If sends start failing with auth errors, re-create the app password
+  (myaccount.google.com/apppasswords); a Google Workspace admin can also
+  disable app passwords org-wide. Gmail caps sends at ~2,000
+  recipients/day (Workspace) — far above this app's volume.

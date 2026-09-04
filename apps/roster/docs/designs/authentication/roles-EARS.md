@@ -58,9 +58,9 @@
 - [ ] **AUTH-CODE-001**: The system shall create a student row only when
       the registration email has a valid, unused, unexpired 6-digit code
       presented at submit time.
-- [ ] **AUTH-CODE-002**: The system shall send codes via the Resend API
-      from the deployment's configured verified sender, never from
-      client code.
+- [ ] **AUTH-CODE-002**: The system shall send codes via Gmail SMTP
+      (`convex/authEmail.ts`, nodemailer) from the deployment's
+      configured sending mailbox, never from client code.
 - [ ] **AUTH-CODE-003**: The system shall limit code requests to 3 per
       email address per 10 minutes; codes shall be single-use and expire
       after 15 minutes.

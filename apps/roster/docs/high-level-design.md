@@ -59,7 +59,7 @@ and instructors who manage everything.
            │ session JWT (app-issued ES256)
 ┌──────────▼─────────────────┐
 │  Convex                    │  auth codes + sessions, students,
-│  role gate on every query  │  instructors; Resend sends codes
+│  role gate on every query  │  instructors; Gmail SMTP sends codes
 └────────────────────────────┘
 ```
 
@@ -69,7 +69,7 @@ and instructors who manage everything.
 
 **Choice** (revised 2026-08-31, replacing the original Clerk design):
 the app issues its own ES256 session JWTs. Registration proves email
-ownership once with a 6-digit Resend code; sign-in is a plain email
+ownership once with a 6-digit code (Gmail SMTP); sign-in is a plain email
 lookup. Convex validates the JWT and derives the role server-side on
 every call.
 **Rationale**: Students should not need accounts created for them, and the

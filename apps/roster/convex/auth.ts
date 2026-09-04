@@ -8,7 +8,6 @@
 import { v } from "convex/values";
 import {
   action,
-  internalAction,
   internalMutation,
   internalQuery,
   mutation,
@@ -104,7 +103,7 @@ export const requestCode = mutation({
       createdAt: now,
       expiresAt: now + CODE_TTL_MS,
     });
-    await ctx.scheduler.runAfter(0, internal.auth.sendCodeEmail, {
+    await ctx.scheduler.runAfter(0, internal.authEmail.sendCodeEmail, {
       email: addr,
       code,
       name: name?.trim() || undefined,
@@ -113,56 +112,9 @@ export const requestCode = mutation({
   },
 });
 
-// 2. Node action: email the code via the Resend API. The deployment's
-//    RESEND_API_KEY does the auth; RESEND_FROM is the verified
-//    sender (e.g. "小組查經訓練 <roster@cbcgb.org>"). With no custom
-//    domain verified, Resend only delivers to the account owner's own
-//    address (onboarding@resend.dev sender) — set the domain before
-//    opening registration to the congregation.
-export const sendCodeEmail = internalAction({
-  args: { email: v.string(), code: v.string(), name: v.optional(v.string()) },
-  handler: async (_ctx, { email, code, name }) => {
-    const { RESEND_API_KEY, RESEND_FROM } = process.env;
-    if (!RESEND_API_KEY) throw new Error("RESEND_API_KEY is not set on this deployment");
-    const from = RESEND_FROM ?? "小組查經訓練 <onboarding@resend.dev>";
-    const greeting = name ? `${name}，平安！` : "平安！";
-
-    const resp = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: [email],
-        subject: `小組查經訓練報名驗證碼：${code}`,
-        text: [
-          greeting,
-          "",
-          `您的報名驗證碼是 ${code}。`,
-          "請在本頁輸入此六位數字以完成報名。驗證碼 15 分鐘內有效。",
-          "",
-          "若您並未嘗試報名，請忽略此郵件。",
-          "",
-          "小組查經訓練主日學 · CBCGB",
-        ].join("\n"),
-        html: [
-          `<p style="font-size:15px">${greeting}</p>`,
-          `<p style="font-size:15px">您的報名驗證碼是：</p>`,
-          `<p style="font-size:32px;font-weight:bold;letter-spacing:8px;color:#b3402a">${code}</p>`,
-          `<p style="font-size:13px;color:#555">請在本頁輸入此六位數字以完成報名。驗證碼 15 分鐘內有效。</p>`,
-          `<p style="font-size:13px;color:#555">若您並未嘗試報名，請忽略此郵件。</p>`,
-          `<p style="font-size:13px;color:#555">小組查經訓練主日學 · CBCGB</p>`,
-        ].join(""),
-      }),
-    });
-    if (!resp.ok) {
-      const detail = await resp.text();
-      throw new Error(`發送驗證碼失敗（${resp.status}）：請稍後再試或聯絡同工。${detail.slice(0, 140)}`);
-    }
-  },
-});
+// 2. Email delivery lives in authEmail.ts — a separate "use node" file,
+//    because SMTP needs Node's net/tls stack (unavailable in the default
+//    V8 runtime this file's mutations run in).
 
 // 3. Consume the code → finalize the registration payload. Creates the
 //    student row and returns the code's issuedAt, which the client then

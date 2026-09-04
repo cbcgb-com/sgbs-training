@@ -164,28 +164,63 @@ photo-upload flow is unchanged.
 
 ## Email sending
 
-A Convex **node action** (`sendAuthCode`) sends the code via the
-[Resend](https://resend.com) API (chosen over raw SMTP 2026-08-31 —
-Eric has a Resend account; no app password, better tooling):
+A Convex **node action** (`authEmail.sendCodeEmail`, file
+`convex/authEmail.ts`) sends the code via Gmail SMTP using
+[nodemailer](https://nodemailer.com) (switched from the Resend API
+2026-09-04 — the church's own mailbox sends the codes). It lives in a
+`"use node"` file because SMTP needs Node's net/tls stack, unavailable
+in the default V8 runtime:
 
-- `RESEND_API_KEY` — Resend API key (Convex env var only).
-- `RESEND_FROM` — verified sender, e.g.
-  `小組查經訓練 <roster@cbcgb.org>`. Resend's dev sender
-  (`onboarding@resend.dev`) delivers ONLY to the account owner's own
-  address; a custom sending domain (DNS SPF/DKIM records via the
-  Resend dashboard) must be verified before opening registration to
-  the congregation.
-- Both variables live ONLY in the Convex deployment environment —
+- `SMTP_USER` — sending mailbox: `no-reply-com@cbcgb.org`.
+- `SMTP_PASS` — Google **App Password** for that mailbox. Gmail refuses
+  account login passwords over SMTP (this changed 2024); if the App
+  Passwords page is unavailable, a Google Workspace admin must allow
+  app passwords for the org first.
+- `SMTP_FROM` — optional display-sender override (defaults to
+  `小組查經訓練 <SMTP_USER>`).
+- `SMTP_HOST` — optional (defaults to `smtp.gmail.com:465`, implicit
+  TLS).
+- All variables live ONLY in the Convex deployment environment —
   never in the repo.
 - Delivery target: whatever address the member typed. Failures return
   a friendly error; retry is free (regenerate the code).
+
+### Deliverability (verified 2026-09-04 via DNS + Resend API)
+
+- cbcgb.org DNS is hosted at easyDNS (`dns1.easydns.com` etc.) —
+  not Cloudflare; record changes go through easyDNS.
+- SPF: `v=spf1 include:aspmx.googlemail.com ~all` present; resolves via
+  `redirect=_spf.google.com`, so Google senders are authorized. Legacy
+  include, but functional.
+- DKIM: **not enabled** — no `google._domainkey` TXT (nor alternate
+  selectors). Google Workspace requires an admin (Apps → Google
+  Workspace → Gmail → Authenticate email) to generate the key, publish
+  it at easyDNS, and activate it. Without DKIM, SPF-only mail to Gmail
+  risks the same spam placement that forced the Resend→SMTP switch
+  (Resend path root cause: DKIM-only auth — SPF record was missing on
+  `mail.nonlinearlabs.ai` — plus a 4-day-old subdomain with zero
+  Gmail reputation; owner-side inbox delivery to HEY never tested
+  Gmail placement).
+- DMARC: `v=DMARC1; p=none` present (minimum requirement met). With
+  Gmail SMTP the envelope-from is the authenticated user, so SPF
+  aligns and DMARC passes even before DKIM lands — but Google's sender
+  guidelines want both.
+- Deployment sequencing: `SMTP_USER`/`SMTP_PASS` must be set on a
+  deployment BEFORE `authEmail.ts` deploys to it, or every code
+  request throws. As of 2026-09-04 neither deployment has them
+  (both still carry only the Resend vars, which should be removed
+  once the SMTP path passes a live E2E).
+- Acceptance test: live E2E to a non-owner Gmail address, then
+  "Show original" headers show SPF=PASS, DKIM=PASS (`d=cbcgb.org`),
+  DMARC=PASS, and inbox (not spam) placement.
 
 ## Functions
 
 - `auth.requestCode` (mutation) — validate email shape, rate-limit
   (3 codes / 10 min / address), insert authCodes, schedule
-  `auth.sendCodeEmail` node action.
-- `auth.sendCodeEmail` (internal action) — SMTP send.
+  `authEmail.sendCodeEmail` node action.
+- `authEmail.sendCodeEmail` (internal action, `convex/authEmail.ts`) —
+  Gmail SMTP send via nodemailer.
 - `auth.verifyCode` (mutation) — consume the code, insert/update the
   student row (self-registration path), create a session, return the
   JWT + its expiry.
@@ -230,7 +265,7 @@ the same issuer string.
   viewing; the student record still exists.
 - **Rate limiting** — 3 codes per address per 10 minutes; codes are
   single-use; expired codes are swept opportunistically.
-- **SMTP outage → Resend outage** — registration is blocked, not
+- **SMTP outage** — registration is blocked, not
   silently broken: the request mutation surfaces 發送失敗，請稍後再試. Members
   can be registered by instructors (who vouch for the address);
   sign-in continues to work (it needs no email).

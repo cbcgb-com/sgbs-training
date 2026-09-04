@@ -118,7 +118,8 @@ Self-hosted replacement for the Airtable 小组查经训练主日学 base (table
 **Tech Stack**: Vite, React, Tailwind CSS (V4), Convex backend; frontend on
 Vercel (project `sgbs-roster`), data in Convex (prod `abundant-dodo-507`).
 Auth is self-hosted passwordless (no identity vendor): registration
-verifies email via a 6-digit Resend code; sign-in is an email lookup;
+verifies email via a 6-digit code (Gmail SMTP, `no-reply-com@cbcgb.org`);
+sign-in is an email lookup;
 sessions are app-issued ES256 JWTs (`AUTH_PRIVATE_KEY` Convex env var).
 See `apps/roster/docs/designs/authentication/LLD.md`.
 
@@ -126,7 +127,10 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 
 - `apps/roster/` - App root (independent npm project)
 - `apps/roster/convex/auth.ts` - Passwordless auth: code request/verify,
-  Resend sending (node action), ES256 session-JWT issuance, sign-out
+  session-JWT issuance, sign-out
+- `apps/roster/convex/authEmail.ts` - Verification-code email sending
+  (node action; Gmail SMTP via nodemailer; `SMTP_USER`/`SMTP_PASS` env
+  vars)
 - `apps/roster/convex/auth.config.ts` - Convex customJwt provider (public
   JWK embedded as a data URI)
 - `apps/roster/scripts/make-auth-keys.py` - Generates the ES256 keypair

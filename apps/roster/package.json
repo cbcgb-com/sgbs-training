@@ -13,12 +13,14 @@
   "dependencies": {
     "convex": "^1.25.0",
     "jose": "^6.2.10",
+    "nodemailer": "^7.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
     "@types/node": "^26.4.0",
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.5.0",
