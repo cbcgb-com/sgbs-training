@@ -233,8 +233,8 @@ function Header({
 }) {
   return (
     <header className="relative border-b border-rule px-5 pb-0 pt-9 sm:px-12 sm:pt-12">
-      <div className="seal-stamp absolute right-14 top-4 sm:right-20 sm:top-8">
-        <div className="flex size-12 flex-col items-center justify-center border-2 border-vermilion sm:size-14">
+      <div className="absolute right-4 top-4 flex items-start gap-3 sm:right-6 sm:top-8 sm:gap-4">
+        <div className="seal-stamp flex size-12 flex-col items-center justify-center border-2 border-vermilion sm:size-14">
           <span className="font-serif-tc text-[10px] font-bold leading-tight tracking-[0.2em] text-vermilion sm:text-xs">
             {CURRENT_QUARTER.slice(0, 4)}
           </span>
@@ -242,10 +242,10 @@ function Header({
             {CURRENT_QUARTER.slice(4)}
           </span>
         </div>
+        {right}
       </div>
-      <div className="absolute right-4 top-4 sm:right-6 sm:top-8">{right}</div>
 
-      <h1 className="font-serif-tc text-[26px] font-black leading-tight tracking-[0.06em] text-ink sm:text-4xl">
+      <h1 className="mt-9 font-serif-tc text-[26px] font-black leading-tight tracking-[0.06em] text-ink sm:mt-0 sm:text-4xl">
         小組查經訓練主日學
       </h1>
       <p className="mt-2 text-xs tracking-[0.3em] text-ink-soft sm:text-[13px]">
