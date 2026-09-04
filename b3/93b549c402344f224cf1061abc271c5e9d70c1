@@ -1,0 +1,20 @@
+.vscode/settings.json
+  h_923f9eef54c2c1 14,17,19-26
+apps/roster/convex/_generated/api.d.ts
+  h_923f9eef54c2c1 13,26
+apps/roster/convex/auth.config.ts
+  h_923f9eef54c2c1 18
+apps/roster/convex/auth.ts
+  h_923f9eef54c2c1 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "b393b549c402344f224cf1061abc271c5e9d70c1",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
