@@ -1,0 +1,20 @@
+AGENTS.md
+  h_923f9eef54c2c1 116
+apps/roster/README.md
+  h_923f9eef54c2c1 8
+docs/index.md
+  h_923f9eef54c2c1 26
+docs/register.md
+  h_923f9eef54c2c1 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "0d431946d55b286cea3f567249863a31073adaa7",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
