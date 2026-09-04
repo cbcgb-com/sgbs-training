@@ -1,0 +1,18 @@
+AGENTS.md
+  h_923f9eef54c2c1 144-148
+docs/privacy.md
+  h_923f9eef54c2c1 1-47
+mkdocs.yml
+  h_923f9eef54c2c1 10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "4e0952f365e6a4627e52d73af08164f7a90331e7",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
