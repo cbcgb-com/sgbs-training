@@ -141,3 +141,8 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/src/Roster.tsx` - Grid + kanban view browser
 - `airtable_dump/` - Airtable dump/transform/seed pipeline (see
   `apps/roster/README.md` for the full re-import procedure)
+
+## Agent Rules
+
+- End every announced action with its tool call in the SAME turn — never
+  end a turn on 'Re-running X next:' verification prose

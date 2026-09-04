@@ -7,6 +7,7 @@ theme:
 
 nav:
   - 主頁: index.md
+  - 隱私權政策: privacy.md
   - 課堂講義:
       - 課堂（一）查經的意義和裝備: class-notes/lesson-1-foundations.md
       - 課堂（二）分析敘述文: class-notes/lesson-2-narrative.md
