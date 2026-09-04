@@ -1,0 +1,32 @@
+AGENTS.md
+  h_923f9eef54c2c1 121-122,130-133
+apps/roster/README.md
+  h_923f9eef54c2c1 14-15,108-111,158-163
+apps/roster/convex/_generated/api.d.ts
+  h_923f9eef54c2c1 12,26
+apps/roster/convex/auth.ts
+  h_923f9eef54c2c1 106,115-117
+apps/roster/convex/authEmail.ts
+  h_923f9eef54c2c1 1-69
+apps/roster/docs/designs/authentication/LLD.md
+  h_923f9eef54c2c1 167-183,188-216,221-223,268,281
+apps/roster/docs/designs/authentication/roles-EARS.md
+  h_923f9eef54c2c1 61-63
+apps/roster/docs/high-level-design.md
+  h_923f9eef54c2c1 62,72
+apps/roster/package-lock.json
+  h_923f9eef54c2c1 13,20,1545-1554,2265-2273
+apps/roster/package.json
+  h_923f9eef54c2c1 16,23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "6a1afcc227366aef24c094382f29489ae3a1811a",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
