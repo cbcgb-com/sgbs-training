@@ -10,6 +10,7 @@
 
 import type * as auth from "../auth.js";
 import type * as demo from "../demo.js";
+import type * as instructors from "../instructors.js";
 import type * as migrations from "../migrations.js";
 import type * as students from "../students.js";
 
@@ -22,6 +23,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   demo: typeof demo;
+  instructors: typeof instructors;
   migrations: typeof migrations;
   students: typeof students;
 }>;

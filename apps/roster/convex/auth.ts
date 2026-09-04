@@ -18,7 +18,7 @@ import type { Doc } from "./_generated/dataModel";
 import { CURRENT_QUARTER } from "../src/constants";
 import { SignJWT, importPKCS8 } from "jose";
 
-const ISSUER = "https://sgbs-roster.vercel.app/";
+const ISSUER = "https://sgbs-training.citylight.life/";
 const AUDIENCE = "sgbs-roster";
 const CODE_TTL_MS = 15 * 60 * 1000;
 const SESSION_TTL_MS = 12 * 60 * 60 * 1000;
