@@ -117,8 +117,8 @@ npx convex deploy     # push functions to prod (confirm the Y/n prompt)
 vercel deploy --prod  # build + ship the frontend
 ```
 
-CI (`.github/workflows/roster.yml`, added 2026-09-05, upgraded to real
-Convex preview deployments 2026-09-05): the Vercel build command runs
+CI (`.github/workflows/roster.yml`, added 2026-09-05; same-day upgrade
+to per-branch Convex preview deployments): the Vercel build command runs
 `npx convex deploy --cmd 'npm run build'` (see `apps/roster/vercel.json`),
 so Convex functions and the frontend always deploy together.
 
