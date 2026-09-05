@@ -118,10 +118,10 @@ vercel deploy --prod  # build + ship the frontend
 ```
 
 Per Eric (2026-08-30): **do not deploy prod by hand** — wire GitHub CI so
-PRs get preview deploys and merges to main auto-deploy prod. This is set
-up as `.github/workflows/*` at the repo root; secrets live on the GitHub
-repo. Until that lands, preview deploys go through `vercel deploy`
-(non-prod) and prod stays pinned to the last merged state.
+PRs get preview deploys and merges to master auto-deploy prod. As of
+2026-09-04 no `.github/workflows/` exist yet, so Convex function deploys
+are still manual (`npx convex deploy`); preview deploys go through
+`vercel deploy` (non-prod).
 
 ## Migration pipeline (airtable_dump/ at repo root)
 
