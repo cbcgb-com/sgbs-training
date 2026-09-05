@@ -10,13 +10,21 @@
   observingSessions arrays; homework columns are no longer tracked.
 - Replicates the Missed formula (5 - number of checked 課堂) and verifies it
   against Airtable's stored value.
+- Converts Airtable's createdTime into the document's true system
+  `_creationTime` (the single creation-time column in Convex).
 - Writes students_seed.jsonl (one document per line) for `npx convex import`.
 """
 
 import json
+from datetime import datetime
 from pathlib import Path
 
 HERE = Path(__file__).parent  # airtable_dump/ — dumps live here
+
+
+def iso_to_ms(iso: str) -> float:
+    """Parse an ISO-8601 timestamp (Airtable createdTime) to epoch ms."""
+    return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp() * 1000.0
 
 TBL_STUDENTS = "tblty4DoMC2Pmfrw6"
 LINKS = {
@@ -90,7 +98,9 @@ def main() -> None:
         f = rec["fields"]
         doc = {
             "airtableId": rec["id"],
-            "createdTime": rec["createdTime"],
+            # The system _creationTime is the single creation-time column;
+            # seed imports backfill it with Airtable's true createdTime.
+            "_creationTime": iso_to_ms(rec["createdTime"]),
         }
 
         # Scalar fields, copied as-is.

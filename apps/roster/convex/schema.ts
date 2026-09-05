@@ -7,7 +7,6 @@ import { v } from "convex/values";
 export default defineSchema({
   students: defineTable({
     airtableId: v.optional(v.string()),
-    createdTime: v.optional(v.string()),
     name: v.string(),
     fellowship: v.optional(v.string()),
     email: v.optional(v.string()),

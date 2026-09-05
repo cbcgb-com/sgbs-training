@@ -1,4 +1,4 @@
-import { internalMutation } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 import type { Doc } from "./_generated/dataModel";
 
 // One-time cleanup (2026-08-31): remove the legacy `clerkId` field from
@@ -39,9 +39,10 @@ export const dropLegacyClerkIds = internalMutation({
 //    mark recorded are left untouched. `missed` (the replicated
 //    unchecked-class count) is recomputed to 0 for those rows so the
 //    缺課 column agrees with the all-attended marks.
-// 5. Backfill createdTime on app-created rows (which never set it) from
-//    the system _creationTime; imported Airtable rows keep their true
-//    value.
+// 5. Strip any leftover `createdTime` field — it was superseded by the
+//    system `_creationTime`, which the export→transform→import
+//    round-trip backfilled with the true creation dates (see README,
+//    "Migration pipeline").
 // Safe to re-run — every pass no-ops when nothing matches. Run via:
 //   npx convex run migrations:cleanupStudentFields [--prod]
 export const cleanupStudentFields = internalMutation({
@@ -51,7 +52,7 @@ export const cleanupStudentFields = internalMutation({
     let stripped = 0;
     let presentSet = 0;
     let classesBackfilled = 0;
-    let createdBackfilled = 0;
+    let createdStripped = 0;
     for (const s of await ctx.db.query("students").collect()) {
       seen++;
       // Cast needed: these fields are deliberately absent from the
@@ -129,11 +130,10 @@ export const cleanupStudentFields = internalMutation({
         classesBackfilled++;
       }
 
-      // App-created rows never set createdTime; backfill it from the
-      // system creation time so every row carries its true date.
-      if (legacy.createdTime === undefined) {
-        patch.createdTime = new Date(s._creationTime).toISOString();
-        createdBackfilled++;
+      // createdTime is superseded by the true system _creationTime.
+      if (legacy.createdTime !== undefined) {
+        patch.createdTime = undefined;
+        createdStripped++;
       }
 
       if (Object.keys(patch).length > 0) {
@@ -150,7 +150,41 @@ export const cleanupStudentFields = internalMutation({
       stripped,
       presentSet,
       classesBackfilled,
-      createdBackfilled,
+      createdStripped,
+    };
+  },
+});
+
+// Data audit (2026-09-05, from the creation-time spike): verifies
+// student/session integrity after the re-imports and that no legacy
+// `createdTime` field remains. Run via:
+//   npx convex run migrations:verifyStudents [--prod]
+export const verifyStudents = internalQuery({
+  handler: async (ctx) => {
+    const students = await ctx.db.query("students").collect();
+    const sessions = await ctx.db.query("sessions").collect();
+    const ids = new Set(students.map((s) => s._id));
+    let danglingSessionRefs = 0;
+    for (const s of sessions) {
+      for (const id of [...s.leaderIds, ...s.observerIds]) {
+        if (!ids.has(id)) danglingSessionRefs++;
+      }
+    }
+    const withLegacyCreatedTime = students.filter(
+      (s) => (s as { createdTime?: string }).createdTime !== undefined,
+    ).length;
+    const times = students.map((s) => s._creationTime);
+    return {
+      count: students.length,
+      sessions: sessions.length,
+      danglingSessionRefs,
+      withLegacyCreatedTime,
+      creationYearRange: students.length
+        ? [
+            new Date(Math.min(...times)).getUTCFullYear(),
+            new Date(Math.max(...times)).getUTCFullYear(),
+          ]
+        : [],
     };
   },
 });
