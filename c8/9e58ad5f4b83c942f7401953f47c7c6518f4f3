@@ -1,0 +1,14 @@
+apps/roster/convex/demo.ts
+  h_923f9eef54c2c1 27-29,125-179
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "c89e58ad5f4b83c942f7401953f47c7c6518f4f3",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
