@@ -1,0 +1,14 @@
+apps/roster/README.md
+  h_923f9eef54c2c1 120-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "a8d49135d6199f81526fc4f465ff09fc520f194a",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
