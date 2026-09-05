@@ -19,7 +19,6 @@ never reach this surface. The tab opens on 本季度 (current season), not
 | 帶領經驗 | students:withExperience | leadingExperience ≠ 沒帶過 |
 | 主領日期 | students:leaders | derived: leads ≥ 1 session |
 | 觀察日期 | students:observers | derived: observes ≥ 1 session |
-| 功課 | students:withHomework | homeworkCount > 0 |
 | Missed 缺課 | students:withMissed | missed > 0 |
 | 團契/受洗/性別/季度 看板 | students:grouped | grouped by select field |
 

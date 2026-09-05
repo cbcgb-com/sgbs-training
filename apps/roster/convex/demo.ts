@@ -61,8 +61,7 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         class4: attended >= 4,
         class5: attended >= 5,
         missed: 5 - attended,
-        homeworkSubmitted: [],
-        homeworkCount: attended >= 3 ? 2 : attended,
+        createdTime: new Date().toISOString(),
         source: "preview-demo",
       });
       idByEmail.set(s.email, id);
