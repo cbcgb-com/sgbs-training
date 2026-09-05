@@ -89,18 +89,20 @@ is the gate.
 Convex requires ASCII field names, so documents use English keys
 (`name`, `fellowship`, `email`, `baptismTime`, `quarter`, `groupName`,
 `gender`, `leadingExperience`, `present`, `class1`-`class5`, `missed`,
-`leadingSessions`, `observingSessions`, `photoStorageId`, `source`);
-the UI shows the original Chinese labels. Linked-record fields
-were resolved to display values at import time (主领日期/观察日期 →
-课程日期, 助教 → 教师). The Airtable `Missed` formula (unchecked
-classes, 1-5) is replicated at write time and verified to match all
-284 migrated records.
+`leadingSessions`, `observingSessions`, `photoStorageId`); the UI shows
+the original Chinese labels. Linked-record fields were resolved to
+display values at import time (主领日期/观察日期 → 课程日期). The Airtable
+`Missed` formula (unchecked classes, 1-5) is replicated at write time
+and verified to match all 284 migrated records.
 
 Dropped in the 2026-09-05 cleanup: the homework columns
-(功课（提交）→`homeworkSubmitted`, 功课提交数目→`homeworkCount`) are no
-longer tracked, and the scalar 带领日期/观察的日期 were harmonized into
-the `leadingSessions`/`observingSessions` arrays by
-`migrations:cleanupStudentFields`.
+(功课（提交）→`homeworkSubmitted`, 功课提交数目→`homeworkCount`), the
+scalar 带领日期/观察的日期 (harmonized into the
+`leadingSessions`/`observingSessions` arrays), `source`, and
+`teachingAssistants` — all stripped from existing rows by
+`migrations:cleanupStudentFields`. The same migration sets `present`
+to true on every row and backfills `class1`-`class5` = true (with
+`missed` = 0) for rows whose five attendance marks were all blank.
 
 ## Local development
 

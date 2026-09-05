@@ -4,8 +4,8 @@
 """Transform the Airtable 学员名单 dump into Convex-ready seed documents.
 
 - Flattens record.fields into top-level keys (Chinese field names preserved).
-- Resolves multipleRecordLinks (主领日期/观察日期 -> 课程日期, 助教 -> 教师)
-  into arrays of display values using the other dumps.
+- Resolves multipleRecordLinks (主领日期/观察日期 -> 课程日期) into
+  arrays of display values using the other dumps.
 - Generalizes the scalar 带领日期/观察的日期 into the leadingSessions/
   observingSessions arrays; homework columns are no longer tracked.
 - Replicates the Missed formula (5 - number of checked 課堂) and verifies it
@@ -23,7 +23,6 @@ LINKS = {
     "主领日期": ("tblQgLBaK0KENUuwT", "主领日期"),
     "观察日期": ("tblQgLBaK0KENUuwT", "观察日期"),
     "功课（提交）": ("tblzkrTts5Fr5kw1l", "功课（提交）"),
-    "助教": ("tblK2NxjToVdVQZuJ", "助教"),
 }
 CLASS_CHECKBOXES = ["課堂（一）", "課堂（二）", "課堂（三）", "課堂（四）", "課堂（五）"]
 
@@ -47,7 +46,6 @@ KEY_MAP = {
     "Missed": "missed",
     "主领日期": "leadingSessions",
     "观察日期": "observingSessions",
-    "助教": "teachingAssistants",
     "书本订购": "bookOrder",
 }
 

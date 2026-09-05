@@ -11,7 +11,7 @@
 
 - [x] **ROSTER-GRID-001**: The Master view shall show every student with
       name, fellowship, gender, email, quarter, group, leading
-      experience, missed count, and source.
+      experience, and missed count.
 - [x] **ROSTER-GRID-002**: The 本季度 view shall show only students whose
       quarter equals the current quarter.
 - [x] **ROSTER-GRID-003**: The 帶領經驗 view shall show only students with
