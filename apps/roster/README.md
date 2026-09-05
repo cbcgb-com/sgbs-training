@@ -106,6 +106,11 @@ place. `missed` is the replicated absent count, maintained at write
 time. Instructors are never students in the current quarter: enforced
 at both registration paths and by the backfill migration.
 
+For legacy seasons, unrecorded classes were backfilled as explicit
+absences (`migrations:backfillLegacyAbsences`) — Airtable's unchecked
+課堂 box meant absent, and the Missed formula counted it. In the
+current quarter, classes that haven't been marked stay unrecorded.
+
 Dropped in the 2026-09-05 cleanup: the homework columns
 (功课（提交）→`homeworkSubmitted`, 功课提交数目→`homeworkCount`), the
 scalar 带领日期/观察的日期 (harmonized into the

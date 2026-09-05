@@ -378,3 +378,52 @@ export const backfillAttendance = internalMutation({
     return report;
   },
 });
+
+// One-time legacy-absence backfill (2026-09-05): Airtable stored
+// unchecked 課堂 boxes by omission, and the first attendance backfill
+// only recorded the checked (attended) classes — so past-season gaps
+// stayed "unrecorded". In Airtable's own semantics (the Missed
+// formula counted unchecked as missed) those gaps meant absent, so
+// this pass records every remaining (student, session date) pair of a
+// PAST quarter as an explicit absence. The current quarter is
+// untouched: its classes haven't happened, so unrecorded stays
+// unrecorded there until marked.
+// Idempotent — every gap already recorded no-ops. Run via:
+//   npx convex run migrations:backfillLegacyAbsences [--prod]
+export const backfillLegacyAbsences = internalMutation({
+  handler: async (ctx) => {
+    let students = 0;
+    let absencesCreated = 0;
+    for (const s of await ctx.db.query("students").collect()) {
+      if (!s.quarter || s.quarter === CURRENT_QUARTER) continue;
+      const sessions = (
+        await ctx.db
+          .query("sessions")
+          .withIndex("by_quarter", (q) => q.eq("quarter", s.quarter))
+          .collect()
+      ).sort((a, b) => a.date.localeCompare(b.date));
+      if (sessions.length === 0) continue;
+      students++;
+      const recorded = new Set(
+        (
+          await ctx.db
+            .query("attendance")
+            .withIndex("by_student", (q) => q.eq("studentId", s._id))
+            .collect()
+        ).map((r) => r.date),
+      );
+      for (const sess of sessions) {
+        if (recorded.has(sess.date)) continue;
+        const result = await upsertAttendance(
+          ctx,
+          s._id,
+          s.quarter,
+          sess.date,
+          false,
+        );
+        if (result === "created") absencesCreated++;
+      }
+    }
+    return { students, absencesCreated };
+  },
+});
