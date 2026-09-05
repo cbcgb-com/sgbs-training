@@ -213,19 +213,27 @@ function ObserversView() {
   );
 }
 
+type Mark = "yes" | "no" | "none";
+
 function MissedView() {
-  const students = useQuery(api.students.withMissed);
-  const photos = useQuery(api.students.photoUrls);
+  const data = useQuery(api.students.quarterAttendance, {});
+  if (!data) return <Loading />;
+  const rows = data.students
+    .filter((s) => s.marks.includes("no"))
+    .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"));
   return (
     <div>
       <StudentTable
-        students={students}
-        photos={photos}
+        students={rows}
         markColumns
         columns={[
           ["名字", (s) => s.name, "serif"],
-          ["團契", (s) => s.fellowship ?? ""],
-          ["缺課", (s) => String(s.missed), "margin"],
+          ["團契", (s) => s.fellowship],
+          [
+            "缺課",
+            (s) => String(s.marks.filter((m) => m === "no").length),
+            "margin",
+          ],
         ]}
       />
       <BeatLegend />
@@ -235,22 +243,17 @@ function MissedView() {
 
 // ---- Attendance beat line (the Missed view's marks) ----
 
-function BeatMarks({
-  s,
-}: {
-  s: Pick<Student, "class1" | "class2" | "class3" | "class4" | "class5">;
-}) {
-  const marks = [s.class1, s.class2, s.class3, s.class4, s.class5];
-  const yes = marks.filter((m) => m === true).length;
-  const no = marks.filter((m) => m === false).length;
+function DateMarks({ marks }: { marks: Mark[] }) {
+  const yes = marks.filter((m) => m === "yes").length;
+  const no = marks.filter((m) => m === "no").length;
   return (
     <span
       className="inline-flex items-center gap-1.5"
       role="img"
       aria-label={`課堂出席：${yes} 堂出席、${no} 堂缺席`}
     >
-      {marks.map((attended, i) => (
-        <Mark key={i} state={attended === undefined ? "none" : attended ? "yes" : "no"} />
+      {marks.map((state, i) => (
+        <Mark key={i} state={state} />
       ))}
     </span>
   );
@@ -377,11 +380,7 @@ function StudentTable<
     _id: Id<"students">;
     name: string;
     photoStorageId?: Id<"_storage">;
-    class1?: boolean;
-    class2?: boolean;
-    class3?: boolean;
-    class4?: boolean;
-    class5?: boolean;
+    marks?: Mark[];
   },
 >({
   students,
@@ -427,7 +426,7 @@ function StudentTable<
                 scope="col"
                 className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
               >
-                課堂（一至五）
+                課堂日期
               </th>
             )}
           </tr>
@@ -472,7 +471,7 @@ function StudentTable<
               ))}
               {markColumns && (
                 <td className="px-3 py-2.5">
-                  <BeatMarks s={s} />
+                  <DateMarks marks={s.marks ?? []} />
                 </td>
               )}
             </tr>

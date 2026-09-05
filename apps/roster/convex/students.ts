@@ -83,13 +83,119 @@ export const observers = query({
   },
 });
 
-// Missed: students who missed at least one class.
-export const withMissed = query({
-  handler: async (ctx) => {
+// 出勤: per-student attendance marks over a quarter's session dates.
+// `marks` align with `dates` (same order); each is yes/no, or none when
+// attendance was never recorded for that date.
+export const quarterAttendance = query({
+  args: { quarter: v.optional(v.string()) },
+  handler: async (ctx, { quarter }) => {
     await requireInstructor(ctx);
-    return (await ctx.db.query("students").collect()).filter(
-      (s) => s.missed > 0,
+    const q = quarter ?? CURRENT_QUARTER;
+    const sessions = (
+      await ctx.db
+        .query("sessions")
+        .withIndex("by_quarter", (x) => x.eq("quarter", q))
+        .collect()
+    ).sort((a, b) => a.date.localeCompare(b.date));
+    const students = await ctx.db
+      .query("students")
+      .withIndex("by_quarter", (x) => x.eq("quarter", q))
+      .collect();
+    const rows = await ctx.db
+      .query("attendance")
+      .withIndex("by_quarter_date", (x) => x.eq("quarter", q))
+      .collect();
+    const attendedAt = new Map(
+      rows.map((r) => [`${r.studentId}:${r.date}`, r.attended]),
     );
+    type Mark = "yes" | "no" | "none";
+    return {
+      quarter: q,
+      dates: sessions.map((s) => s.date),
+      students: students.map((s) => ({
+        _id: s._id,
+        name: s.name,
+        fellowship: s.fellowship ?? "",
+        missed: s.missed,
+        marks: sessions.map((sess): Mark => {
+          const a = attendedAt.get(`${s._id}:${sess.date}`);
+          return a === undefined ? "none" : a ? "yes" : "no";
+        }),
+      })),
+    };
+  },
+});
+
+// ---- Attendance writes (出勤) ----
+
+// Upsert one (student, date) attendance row and keep the replicated
+// `missed` count in sync. Callers must validate that `date` is an
+// active session date of `quarter` — recordAttendance does; the
+// backfill migration maps positional marks against the quarter's
+// calendar instead.
+export async function upsertAttendance(
+  ctx: MutationCtx,
+  studentId: Id<"students">,
+  quarter: string,
+  date: string,
+  attended: boolean,
+): Promise<"created" | "updated" | "unchanged"> {
+  const existingRows = await ctx.db
+    .query("attendance")
+    .withIndex("by_student", (q) => q.eq("studentId", studentId))
+    .collect();
+  const existing = existingRows.find((a) => a.date === date);
+  let result: "created" | "updated" | "unchanged" = "unchanged";
+  if (existing) {
+    if (existing.attended !== attended) {
+      await ctx.db.patch(existing._id, { attended });
+      result = "updated";
+    }
+  } else {
+    await ctx.db.insert("attendance", {
+      studentId,
+      quarter,
+      date,
+      attended,
+    });
+    result = "created";
+  }
+  const missed = (
+    await ctx.db
+      .query("attendance")
+      .withIndex("by_student", (q) => q.eq("studentId", studentId))
+      .collect()
+  ).filter((a) => !a.attended).length;
+  const student = await ctx.db.get(studentId);
+  if (student && student.missed !== missed) {
+    await ctx.db.patch(studentId, { missed });
+  }
+  return result;
+}
+
+// Record one attendance mark (instructors only). The class date must be
+// an active session date of the student's quarter — the write is
+// rejected otherwise, so attendance can never point at a non-class day.
+export const recordAttendance = mutation({
+  args: {
+    studentId: v.id("students"),
+    date: v.string(),
+    attended: v.boolean(),
+  },
+  handler: async (ctx, { studentId, date, attended }) => {
+    await requireInstructor(ctx);
+    const student = await ctx.db.get(studentId);
+    if (!student) throw new Error("找不到此學員");
+    const quarter = student.quarter;
+    if (!quarter) throw new Error("學員沒有所屬季度");
+    const sessions = await ctx.db
+      .query("sessions")
+      .withIndex("by_quarter", (q) => q.eq("quarter", quarter))
+      .collect();
+    if (!sessions.some((s) => s.date === date)) {
+      throw new Error("此日期不是該季的上課日期");
+    }
+    await upsertAttendance(ctx, studentId, quarter, date, attended);
   },
 });
 
@@ -305,6 +411,11 @@ export const registerStudent = mutation({
     const targetEmail = args.email.trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(targetEmail)) {
       throw new Error("請填寫有效的電子郵箱");
+    }
+    // Instructor rule: active instructors are never students in the
+    // current quarter.
+    if (await isInstructor(ctx, targetEmail)) {
+      throw new Error("同工不需要報名學員名單");
     }
     const targetName = args.name.trim();
 

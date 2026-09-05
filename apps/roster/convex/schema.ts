@@ -15,13 +15,11 @@ export default defineSchema({
     groupName: v.optional(v.string()),
     gender: v.optional(v.string()),
     leadingExperience: v.optional(v.string()),
+    // 出席 is true on every row (2026-09-05 cleanup).
     present: v.optional(v.boolean()),
-    class1: v.optional(v.boolean()),
-    class2: v.optional(v.boolean()),
-    class3: v.optional(v.boolean()),
-    class4: v.optional(v.boolean()),
-    class5: v.optional(v.boolean()),
-    // Replicated Airtable formula: number of unchecked classes (1-5).
+    // Replicated count: this row's attendance rows marked absent —
+    // maintained at write time by recordAttendance / the backfill
+    // migration (successor of the Airtable Missed formula).
     missed: v.number(),
     // Legacy per-student assignment history (Airtable 主领日期/观察日期
     // links plus the older scalar 带领日期/观察的日期, harmonized into
@@ -38,7 +36,12 @@ export default defineSchema({
 
   // 课程日期 (tblQgLBaK0KENUuwT): one class session with its leading and
   // observing assignments. The session row is the source of truth; the
-  // per-student views derive from these arrays.
+  // per-student views derive from these arrays. A quarter is "active"
+  // on exactly the dates listed here — 4-6 variable weeks, gaps allowed.
+  // Quarters whose dates Airtable never recorded were synthesized by
+  // migrations:backfillAttendance and carry estimated: true (first five
+  // Sundays of April/October). Correct any wrong date in place; the
+  // attendance rows follow the (quarter, date) pair, not the estimate.
   sessions: defineTable({
     date: v.string(),
     quarter: v.optional(v.string()),
@@ -52,10 +55,29 @@ export default defineSchema({
     // removed by the migrations:wireSessionAssignments migration.
     leaderAirtableIds: v.optional(v.array(v.string())),
     observerAirtableIds: v.optional(v.array(v.string())),
+    // True for synthesized calendar rows (Airtable lacked the dates).
+    estimated: v.optional(v.boolean()),
   }).index("by_quarter", ["quarter"]),
+
+  // 出勤記錄: one row per (student, class date) — a student's attendance
+  // for a specific session of their quarter. Writes go through
+  // recordAttendance, which validates that `date` is an active session
+  // date of the student's quarter. A missing row means "not recorded";
+  // attended=false means the student was absent.
+  attendance: defineTable({
+    studentId: v.id("students"),
+    quarter: v.string(),
+    date: v.string(),
+    attended: v.boolean(),
+  })
+    .index("by_student", ["studentId"])
+    .index("by_quarter_date", ["quarter", "date"]),
 
   // 同工 / instructors: emails allowed to see and edit everything.
   // active=false rows are kept for history but have no access.
+  // The instructor rule: active instructors are never students in the
+  // current quarter (enforced at registration and by the backfill
+  // migration).
   instructors: defineTable({
     email: v.string(),
     name: v.optional(v.string()),

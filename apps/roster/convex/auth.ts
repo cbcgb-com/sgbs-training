@@ -142,6 +142,16 @@ export const verifyRegistrationCode = mutation({
     const addr = normalizeEmail(email);
     if (!EMAIL_RE.test(addr)) throw new Error("請填寫有效的電子郵箱");
 
+    // Instructor rule: active instructors are never students in the
+    // current quarter.
+    const instructorRow = await ctx.db
+      .query("instructors")
+      .withIndex("by_email", (q) => q.eq("email", addr))
+      .unique();
+    if (instructorRow?.active === true) {
+      throw new Error("同工不需要報名學員名單");
+    }
+
     const rows = await ctx.db
       .query("authCodes")
       .withIndex("by_email", (q) => q.eq("email", addr))

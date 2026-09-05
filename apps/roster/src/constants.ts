@@ -12,6 +12,17 @@ export const QUARTERS = [
 // The newest quarter — what the 本季度 view and new registrations use.
 export const CURRENT_QUARTER = "2026秋季";
 
+// The five class dates of the current season (Sundays, 2026-09-20
+// onward). The sessions table is the runtime source of truth; this
+// list seeds it and anchors the demo data.
+export const CURRENT_QUARTER_SESSION_DATES = [
+  "2026-09-20",
+  "2026-09-27",
+  "2026-10-04",
+  "2026-10-11",
+  "2026-10-18",
+] as const;
+
 export const FELLOWSHIPS = [
   "樂河團契",
   "學生團契（研究生）",
