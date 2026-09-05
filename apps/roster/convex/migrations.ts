@@ -156,6 +156,12 @@ export const verifyStudents = internalQuery({
       attendanceAbsent: attendance.filter((a) => !a.attended).length,
       estimatedSessions: sessions.filter((s) => s.estimated === true).length,
       duplicateSessionDates,
+      crossQuarterAttendance: (() => {
+        const byId = new Map(students.map((s) => [s._id, s.quarter]));
+        return attendance.filter(
+          (a) => byId.get(a.studentId) !== a.quarter,
+        ).length;
+      })(),
       assignmentWires: sessions.reduce(
         (n, s) => n + s.leaderIds.length + s.observerIds.length,
         0,
@@ -713,23 +719,24 @@ export const restoreUnrecordedSessions = internalMutation({
         observerAirtableIds: [] as string[],
         attendeeAirtableIds: [
           "rectmyV7A0ELygQEr",
-          "reczhHcJc94WxxUQQ",
           "reccVM8hCuKr7YwFx",
-          "recRAhXwwpXyQ7VkC",
-          "recCXzhGyxefkR4X1",
           "rec5BdXT5ndt3r51I",
           "recWIT361Lo5YZ7Rq",
           "reci9jaBcJ5Kp5X0X",
-          "rece05wfisCZGEnyA",
           "rec7vcS9NJN1NVVOj",
           "recQXCX2OBJm0VICD",
           "recZfRh60zF4YAtu9",
-          "recwuHjNm4aparTrx",
-          "recn8JBNvSurbiCon",
           "recgeKYbxhLTJBVSr",
           "recCLQNUnyPFL1ipM",
           "recRa7PKSdI1q5wWD",
           "recZ9YC8ryf27qDXO",
+          "recmeXYSSteqEwWjk",
+          "recpL39PwRhrnFAe2",
+          "recoC14nRwmpR0Olx",
+          "recXRNUnmEwTXYeP1",
+          "rec5holNdVbWl1NaT",
+          "recpqa757vQ7cWlNs",
+          "recOcg3C8e6dw64kc",
         ],
       },
       {
@@ -738,15 +745,15 @@ export const restoreUnrecordedSessions = internalMutation({
         leaderAirtableIds: ["recn8JBNvSurbiCon", "recCXzhGyxefkR4X1"],
         observerAirtableIds: ["recrIWRiXV2cvQqwN", "reczhHcJc94WxxUQQ"],
         attendeeAirtableIds: [
-          "rec0vMJyi075KuIOc",
-          "recmeXYSSteqEwWjk",
-          "recpL39PwRhrnFAe2",
-          "recoC14nRwmpR0Olx",
-          "recXRNUnmEwTXYeP1",
-          "rec5holNdVbWl1NaT",
-          "recpqa757vQ7cWlNs",
-          "recrIWRiXV2cvQqwN",
           "reczhHcJc94WxxUQQ",
+          "recRAhXwwpXyQ7VkC",
+          "recCXzhGyxefkR4X1",
+          "rece05wfisCZGEnyA",
+          "recwuHjNm4aparTrx",
+          "recn8JBNvSurbiCon",
+          "rec0vMJyi075KuIOc",
+          "recrIWRiXV2cvQqwN",
+          "rec3E1NeKH0zxFqqr",
         ],
       },
     ];
@@ -832,6 +839,85 @@ export const restoreUnrecordedSessions = internalMutation({
           attended: true,
         });
         report.attendanceAdded++;
+      }
+    }
+    return report;
+  },
+});
+
+// Repair pass (2026-09-05): the first run of restoreUnrecordedSessions
+// split the attendee lists across the two seasons incorrectly, giving
+// twelve students a cross-quarter attendance row and leaving thirteen
+// without their restored row. This pass makes the two restored seasons
+// exact: every student of 2022秋季/2023春季 ends up with attended rows
+// on all five real class dates and no rows outside them. Idempotent.
+// Run via: npx convex run migrations:fixRestoredAttendance [--prod]
+export const fixRestoredAttendance = internalMutation({
+  handler: async (ctx) => {
+    const report = {
+      crossQuarterDeleted: 0,
+      staleDeleted: 0,
+      added: 0,
+      studentsTouched: 0,
+    };
+    const SEASONS: Record<string, string[]> = {
+      "2022秋季": [
+        "2022-10-16",
+        "2022-10-23",
+        "2022-10-30",
+        "2022-11-06",
+        "2022-11-13",
+      ],
+      "2023春季": [
+        "2023-02-19",
+        "2023-02-26",
+        "2023-03-05",
+        "2023-03-12",
+        "2023-03-19",
+      ],
+    };
+    for (const [quarter, dates] of Object.entries(SEASONS)) {
+      const dateSet = new Set(dates);
+      for (const s of await ctx.db
+        .query("students")
+        .withIndex("by_quarter", (q) => q.eq("quarter", quarter))
+        .collect()) {
+        const rows = await ctx.db
+          .query("attendance")
+          .withIndex("by_student", (q) => q.eq("studentId", s._id))
+          .collect();
+        let changed = false;
+        for (const row of rows) {
+          if (row.quarter !== quarter || !dateSet.has(row.date)) {
+            await ctx.db.delete(row._id);
+            if (row.quarter !== quarter) report.crossQuarterDeleted++;
+            else report.staleDeleted++;
+            changed = true;
+          }
+        }
+        const have = new Set(
+          (
+            await ctx.db
+              .query("attendance")
+              .withIndex("by_student", (q) => q.eq("studentId", s._id))
+              .collect()
+          )
+            .filter((r) => r.attended)
+            .map((r) => r.date),
+        );
+        for (const date of dates) {
+          if (!have.has(date)) {
+            await ctx.db.insert("attendance", {
+              studentId: s._id,
+              quarter,
+              date,
+              attended: true,
+            });
+            report.added++;
+            changed = true;
+          }
+        }
+        if (changed) report.studentsTouched++;
       }
     }
     return report;
