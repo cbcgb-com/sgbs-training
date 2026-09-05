@@ -1,0 +1,14 @@
+scripts/generate_qrcodes.py
+  h_923f9eef54c2c1 2,4-5,7-19,27-32,36,39,42-127,132,135-136,140
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "3507b43a5364001913ab601f6ca6861dac815ef4",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
