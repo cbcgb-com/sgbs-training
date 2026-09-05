@@ -1,0 +1,20 @@
+airtable_dump/transform_seed.py
+  h_923f9eef54c2c1 7-9,109-111
+apps/roster/convex/migrations.ts
+  h_923f9eef54c2c1 35,39-40,159-162,410-497
+apps/roster/convex/students.ts
+  h_923f9eef54c2c1 58-60,64,69-82
+apps/roster/src/Roster.tsx
+  h_923f9eef54c2c1 178
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "693c46d70af78aee05d2fdd98a29b638bd0c643f",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
