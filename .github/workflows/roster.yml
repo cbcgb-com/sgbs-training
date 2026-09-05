@@ -1,15 +1,19 @@
-# Roster app CI: PR previews + prod deploys.
+# Roster app CI.
 #
-# - pull_request → Vercel preview deploy; the preview URL is commented on
-#   the PR. Previews build against the DEV Convex backend (Preview-target
-#   VITE_CONVEX_URL on the Vercel project), so QA never touches prod data.
-#   Convex FUNCTIONS are not pushed on PRs — preview backends track master
-#   until the next local `npx convex dev`.
-# - push to master → `npx convex deploy` (prod functions) then a Vercel
-#   production deploy of the frontend.
+# Both deploy paths run on Vercel's side: the project build command (see
+# apps/roster/vercel.json) is `npx convex deploy --cmd 'npm run build'
+# --cmd-url-env-var-name VITE_CONVEX_URL`, which pushes Convex functions
+# and bakes the backend URL into the frontend build. The deploy key lives
+# as a Vercel project env var (CONVEX_DEPLOY_KEY): Production target =
+# prod deploy key, Preview target = preview deploy key.
 #
-# Secrets: CONVEX_DEPLOY_KEY (prod deploy key), VERCEL_TOKEN,
-# VERCEL_ORG_ID, VERCEL_PROJECT_ID.
+# Preview deploys get a per-branch isolated Convex backend with this
+# branch's functions. It is seeded from the project's default env vars
+# for preview deployments (SMTP_USER/SMTP_PASS/AUTH_PRIVATE_KEY via
+# `npx convex env default --type preview`), so registration emails
+# really send — but its data is throwaway.
+#
+# Secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID.
 
 name: roster
 
@@ -41,12 +45,6 @@ jobs:
         working-directory: apps/roster
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: apps/roster/package-lock.json
-      - run: npm ci
       - name: Vercel preview deploy
         id: deploy
         run: |
@@ -61,8 +59,9 @@ jobs:
         run: |
           gh pr comment "$NUMBER" --body \
             "🔎 Vercel preview: $URL
-          Backend: dev Convex (rugged-oriole-958). Functions track master —
-          run \`npx convex dev\` locally after merging to sync them."
+          Backend: an isolated per-branch **Convex preview deployment**
+          running this PR's functions (throwaway data; preview default env
+          vars apply, so registration emails really send)."
         env:
           GH_TOKEN: ${{ github.token }}
           NUMBER: ${{ github.event.number }}
@@ -76,17 +75,7 @@ jobs:
         working-directory: apps/roster
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: apps/roster/package-lock.json
-      - run: npm ci
-      - name: Deploy Convex functions (prod)
-        run: npx convex deploy
-        env:
-          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
-      - name: Deploy frontend (Vercel prod)
+      - name: Vercel production deploy (Convex functions + frontend)
         run: npx vercel@latest deploy --prod --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

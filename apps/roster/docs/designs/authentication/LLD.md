@@ -192,27 +192,32 @@ in the default V8 runtime:
 - SPF: `v=spf1 include:aspmx.googlemail.com ~all` present; resolves via
   `redirect=_spf.google.com`, so Google senders are authorized. Legacy
   include, but functional.
-- DKIM: **not enabled** — no `google._domainkey` TXT (nor alternate
-  selectors). Google Workspace requires an admin (Apps → Google
-  Workspace → Gmail → Authenticate email) to generate the key, publish
-  it at easyDNS, and activate it. Without DKIM, SPF-only mail to Gmail
-  risks the same spam placement that forced the Resend→SMTP switch
-  (Resend path root cause: DKIM-only auth — SPF record was missing on
-  `mail.nonlinearlabs.ai` — plus a 4-day-old subdomain with zero
-  Gmail reputation; owner-side inbox delivery to HEY never tested
-  Gmail placement).
+- DKIM: not enabled (no `google._domainkey` TXT; enabling it requires
+  a Workspace admin). Decision 2026-09-04: proceed WITHOUT domain
+  DKIM. Google signs nothing for cbcgb.org on this path; the mail
+  rides on SPF (envelope-from is the authenticated mailbox, so SPF
+  aligns and passes), DMARC `p=none` (no enforcement even if
+  alignment broke), cbcgb.org's long-established domain reputation,
+  and tiny volume. This is the inverse of the failed Resend path
+  (DKIM-only auth on a 4-day-old subdomain with zero Gmail
+  reputation). If Gmail still junks codes after go-live, the
+  escalation ladder is: Workspace-admin DKIM enablement → affected
+  recipients mark "Not Spam" (trains their filter) → revisit
+  transport.
 - DMARC: `v=DMARC1; p=none` present (minimum requirement met). With
   Gmail SMTP the envelope-from is the authenticated user, so SPF
   aligns and DMARC passes even before DKIM lands — but Google's sender
   guidelines want both.
-- Deployment sequencing: `SMTP_USER`/`SMTP_PASS` must be set on a
-  deployment BEFORE `authEmail.ts` deploys to it, or every code
-  request throws. As of 2026-09-04 neither deployment has them
-  (both still carry only the Resend vars, which should be removed
-  once the SMTP path passes a live E2E).
-- Acceptance test: live E2E to a non-owner Gmail address, then
-  "Show original" headers show SPF=PASS, DKIM=PASS (`d=cbcgb.org`),
-  DMARC=PASS, and inbox (not spam) placement.
+- Deployment sequencing: `SMTP_PASS` must be set on a deployment
+  BEFORE `authEmail.ts` deploys to it, or every code request throws.
+  `SMTP_USER` was set on both deployments 2026-09-04; `SMTP_PASS`
+  (the app password) is pending. Both still carry the now-dead
+  Resend vars, which should be removed once the SMTP path passes a
+  live E2E.
+- Acceptance test: live E2E to a non-owner Gmail address (ideally the
+  member who first hit spam), then "Show original" headers show
+  SPF=PASS, DMARC=PASS, and inbox (not spam) placement. No DKIM
+  signature is expected under the no-DKIM decision above.
 
 ## Functions
 

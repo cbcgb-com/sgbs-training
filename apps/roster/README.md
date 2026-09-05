@@ -117,18 +117,26 @@ npx convex deploy     # push functions to prod (confirm the Y/n prompt)
 vercel deploy --prod  # build + ship the frontend
 ```
 
-CI (`.github/workflows/roster.yml`, added 2026-09-05) automates deploys:
+CI (`.github/workflows/roster.yml`, added 2026-09-05, upgraded to real
+Convex preview deployments 2026-09-05): the Vercel build command runs
+`npx convex deploy --cmd 'npm run build'` (see `apps/roster/vercel.json`),
+so Convex functions and the frontend always deploy together.
 
-- **Push to master** (touching `apps/roster/`) → `npx convex deploy`
-  (prod functions) + Vercel production deploy of the frontend.
-- **PRs touching `apps/roster/`** → Vercel preview deploy, URL commented
-  on the PR. Previews build against the DEV Convex backend (the
-  `VITE_CONVEX_URL` Preview target on the Vercel project), so QA never
-  touches prod data. Convex *functions* are not pushed on PRs — preview
-  backends track master until the next local `npx convex dev`.
+- **Push to master** (touching `apps/roster/`) → Vercel production
+  deploy: pushes functions to prod, then builds + ships the frontend
+  pointing at prod.
+- **PRs touching `apps/roster/`** → Vercel preview deploy with the URL
+  commented on the PR. Each preview gets a **per-branch isolated Convex
+  preview deployment** running the PR's functions. Fresh preview backends
+  are seeded from the project's **default env vars for preview
+  deployments** (`npx convex env default --type preview`: SMTP_USER,
+  SMTP_PASS, AUTH_PRIVATE_KEY) so the auth flow works — but their data
+  is throwaway and registration emails from a preview really send.
 
-Secrets (GitHub repo): `CONVEX_DEPLOY_KEY`, `VERCEL_TOKEN`,
-`VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+Deploy keys live as Vercel project env vars (`CONVEX_DEPLOY_KEY`:
+Production target = prod key, Preview target = preview key). Other
+secrets (GitHub repo): `VERCEL_TOKEN`, `VERCEL_ORG_ID`,
+`VERCEL_PROJECT_ID`.
 
 Manual fallback: `npx convex deploy` + `vercel deploy --prod` from
 `apps/roster/`.
