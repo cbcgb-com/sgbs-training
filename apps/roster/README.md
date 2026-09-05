@@ -117,11 +117,21 @@ npx convex deploy     # push functions to prod (confirm the Y/n prompt)
 vercel deploy --prod  # build + ship the frontend
 ```
 
-Per Eric (2026-08-30): **do not deploy prod by hand** — wire GitHub CI so
-PRs get preview deploys and merges to master auto-deploy prod. As of
-2026-09-04 no `.github/workflows/` exist yet, so Convex function deploys
-are still manual (`npx convex deploy`); preview deploys go through
-`vercel deploy` (non-prod).
+CI (`.github/workflows/roster.yml`, added 2026-09-05) automates deploys:
+
+- **Push to master** (touching `apps/roster/`) → `npx convex deploy`
+  (prod functions) + Vercel production deploy of the frontend.
+- **PRs touching `apps/roster/`** → Vercel preview deploy, URL commented
+  on the PR. Previews build against the DEV Convex backend (the
+  `VITE_CONVEX_URL` Preview target on the Vercel project), so QA never
+  touches prod data. Convex *functions* are not pushed on PRs — preview
+  backends track master until the next local `npx convex dev`.
+
+Secrets (GitHub repo): `CONVEX_DEPLOY_KEY`, `VERCEL_TOKEN`,
+`VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+
+Manual fallback: `npx convex deploy` + `vercel deploy --prod` from
+`apps/roster/`.
 
 ## Migration pipeline (airtable_dump/ at repo root)
 

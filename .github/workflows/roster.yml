@@ -1,0 +1,94 @@
+# Roster app CI: PR previews + prod deploys.
+#
+# - pull_request → Vercel preview deploy; the preview URL is commented on
+#   the PR. Previews build against the DEV Convex backend (Preview-target
+#   VITE_CONVEX_URL on the Vercel project), so QA never touches prod data.
+#   Convex FUNCTIONS are not pushed on PRs — preview backends track master
+#   until the next local `npx convex dev`.
+# - push to master → `npx convex deploy` (prod functions) then a Vercel
+#   production deploy of the frontend.
+#
+# Secrets: CONVEX_DEPLOY_KEY (prod deploy key), VERCEL_TOKEN,
+# VERCEL_ORG_ID, VERCEL_PROJECT_ID.
+
+name: roster
+
+on:
+  pull_request:
+    paths:
+      - "apps/roster/**"
+      - ".github/workflows/roster.yml"
+  push:
+    branches: [master]
+    paths:
+      - "apps/roster/**"
+      - ".github/workflows/roster.yml"
+
+concurrency:
+  group: roster-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/roster
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/roster/package-lock.json
+      - run: npm ci
+      - name: Vercel preview deploy
+        id: deploy
+        run: |
+          URL=$(npx vercel@latest deploy --token="$VERCEL_TOKEN" \
+            | grep -Eo 'https://[a-zA-Z0-9.-]*vercel\.app' | tail -1)
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Comment preview URL on PR
+        run: |
+          gh pr comment "$NUMBER" --body \
+            "🔎 Vercel preview: $URL
+          Backend: dev Convex (rugged-oriole-958). Functions track master —
+          run \`npx convex dev\` locally after merging to sync them."
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.number }}
+          URL: ${{ steps.deploy.outputs.url }}
+
+  deploy-prod:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/roster
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/roster/package-lock.json
+      - run: npm ci
+      - name: Deploy Convex functions (prod)
+        run: npx convex deploy
+        env:
+          CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
+      - name: Deploy frontend (Vercel prod)
+        run: npx vercel@latest deploy --prod --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
