@@ -54,7 +54,6 @@ KEY_MAP = {
     "Missed": "missed",
     "主领日期": "leadingSessions",
     "观察日期": "observingSessions",
-    "书本订购": "bookOrder",
 }
 
 
@@ -107,7 +106,7 @@ def main() -> None:
         for key in [
             "名字", "團契", "郵箱", "受洗時間", "参与训练的季度", "小组名字",
             "性別", "帶領查經經驗", "出席",
-            *CLASS_CHECKBOXES, "书本订购",
+            *CLASS_CHECKBOXES,
         ]:
             if key in f:
                 doc[key] = f[key]

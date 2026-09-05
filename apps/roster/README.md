@@ -103,6 +103,8 @@ scalar 带领日期/观察的日期 (harmonized into the
 `migrations:cleanupStudentFields`. The same migration sets `present`
 to true on every row and backfills `class1`-`class5` = true (with
 `missed` = 0) for rows whose five attendance marks were all blank.
+The never-filled `bookOrder` (Airtable 书本订购) was dropped the same
+day.
 
 There is a single creation-time column: the system `_creationTime`.
 The old `createdTime` string column was dropped by exporting the
