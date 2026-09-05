@@ -21,12 +21,6 @@ export default defineSchema({
     // maintained at write time by recordAttendance / the backfill
     // migration (successor of the Airtable Missed formula).
     missed: v.number(),
-    // Legacy per-student assignment history (Airtable 主领日期/观察日期
-    // links plus the older scalar 带领日期/观察的日期, harmonized into
-    // these arrays by migrations:cleanupStudentFields). Assignment truth
-    // now lives on the sessions table.
-    leadingSessions: v.optional(v.array(v.string())),
-    observingSessions: v.optional(v.array(v.string())),
     // Optional registration photo (front-camera snap or gallery pick).
     photoStorageId: v.optional(v.id("_storage")),
   })

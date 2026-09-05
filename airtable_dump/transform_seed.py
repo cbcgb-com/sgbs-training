@@ -4,10 +4,9 @@
 """Transform the Airtable 学员名单 dump into Convex-ready seed documents.
 
 - Flattens record.fields into top-level keys (Chinese field names preserved).
-- Resolves multipleRecordLinks (主领日期/观察日期 -> 课程日期) into
-  arrays of display values using the other dumps.
-- Generalizes the scalar 带领日期/观察的日期 into the leadingSessions/
-  observingSessions arrays; homework columns are no longer tracked.
+- Assignments (主领日期/观察日期) are NOT imported: they live in the
+  sessions table (leaderIds/observerIds), already reconciled from the
+  legacy per-student arrays.
   against Airtable's stored value.
 - Converts Airtable's createdTime into the document's true system
   `_creationTime` (the single creation-time column in Convex).
@@ -30,8 +29,6 @@ def iso_to_ms(iso: str) -> float:
 
 TBL_STUDENTS = "tblty4DoMC2Pmfrw6"
 LINKS = {
-    "主领日期": ("tblQgLBaK0KENUuwT", "主领日期"),
-    "观察日期": ("tblQgLBaK0KENUuwT", "观察日期"),
     "功课（提交）": ("tblzkrTts5Fr5kw1l", "功课（提交）"),
 }
 
@@ -46,8 +43,6 @@ KEY_MAP = {
     "小组名字": "groupName",
     "性別": "gender",
     "帶領查經經驗": "leadingExperience",
-    "主领日期": "leadingSessions",
-    "观察日期": "observingSessions",
 }
 
 
@@ -111,15 +106,9 @@ def main() -> None:
                 for rid in ids if rid in lookup[ref_table]
             ]
 
-        # Generalize the scalar 带领日期/观察的日期 into the session
-        # arrays; homework columns are no longer tracked in Convex.
-        for sessions_key, scalar_key in (
-            ("主领日期", "带领日期"),
-            ("观察日期", "观察的日期"),
-        ):
-            scalar = doc.pop(scalar_key, None)
-            if scalar and scalar not in doc[sessions_key]:
-                doc[sessions_key] = [*doc[sessions_key], scalar]
+        # Assignments live in the sessions table (leaderIds/observerIds),
+        # already reconciled from the legacy per-student arrays; they are
+        # not imported from Airtable.
         doc.pop("功课（提交）", None)
         doc.pop("功课提交数目", None)
 

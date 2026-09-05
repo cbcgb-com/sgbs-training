@@ -175,7 +175,7 @@ function ExperienceView() {
         ["名字", (s) => s.name, "serif"],
         ["團契", (s) => s.fellowship ?? ""],
         ["帶領經驗", (s) => s.leadingExperience ?? ""],
-        ["帶領日期", (s) => (s.leadingSessions ?? []).join("、"), "margin"],
+        ["帶領日期", (s) => (s.leadingDates ?? []).join("、"), "margin"],
       ]}
     />
   );

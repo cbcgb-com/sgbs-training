@@ -32,15 +32,12 @@ export const dropLegacyClerkIds = internalMutation({
 });
 
 // One-time cleanup (2026-09-05) accompanying the schema slim-down:
-// 1. Harmonize the legacy scalar dates (leadingDate/observingDate, from
-//    Airtable 带领日期/观察的日期) into the leadingSessions/
-//    observingSessions arrays.
-// 2. Strip the fields dropped from the schema: the homework columns
+// 1. Strip the fields dropped from the schema: the homework columns
 //    (homeworkSubmitted/homeworkCount), the scalar date fields, the
 //    provenance `source`, the legacy `teachingAssistants` links, and
 //    the never-filled `bookOrder`.
-// 3. Set `present` to true on every row.
-// 4. Strip any leftover `createdTime` field — it was superseded by the
+// 2. Set `present` to true on every row.
+// 3. Strip any leftover `createdTime` field — it was superseded by the
 //    system `_creationTime`, which the export→transform→import
 //    round-trip backfilled with the true creation dates (see README,
 //    "Migration pipeline").
@@ -51,7 +48,6 @@ export const dropLegacyClerkIds = internalMutation({
 export const cleanupStudentFields = internalMutation({
   handler: async (ctx) => {
     let seen = 0;
-    let harmonized = 0;
     let stripped = 0;
     let presentSet = 0;
     let createdStripped = 0;
@@ -71,24 +67,6 @@ export const cleanupStudentFields = internalMutation({
         createdTime?: string;
       };
       const patch: Record<string, unknown> = {};
-
-      // Merge the scalar date into the session array (dedupe; sorted
-      // oldest-first when every entry is an ISO date).
-      const merge = (
-        scalar: string | undefined,
-        sessions: string[] | undefined,
-      ): string[] | undefined => {
-        if (!scalar) return undefined;
-        const merged = [...new Set([...(sessions ?? []), scalar])];
-        if (merged.every((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))) {
-          merged.sort();
-        }
-        return merged;
-      };
-      const leading = merge(legacy.leadingDate, s.leadingSessions);
-      if (leading) patch.leadingSessions = leading;
-      const observing = merge(legacy.observingDate, s.observingSessions);
-      if (observing) patch.observingSessions = observing;
 
       // Unset the fields removed from the schema.
       if (
@@ -127,12 +105,10 @@ export const cleanupStudentFields = internalMutation({
           s._id,
           patch as unknown as Partial<Doc<"students">>,
         );
-        if (leading || observing) harmonized++;
       }
     }
     return {
       seen,
-      harmonized,
       stripped,
       presentSet,
       createdStripped,
@@ -180,6 +156,10 @@ export const verifyStudents = internalQuery({
       attendanceAbsent: attendance.filter((a) => !a.attended).length,
       estimatedSessions: sessions.filter((s) => s.estimated === true).length,
       duplicateSessionDates,
+      assignmentWires: sessions.reduce(
+        (n, s) => n + s.leaderIds.length + s.observerIds.length,
+        0,
+      ),
       creationYearRange: students.length
         ? [
             new Date(Math.min(...times)).getUTCFullYear(),
@@ -425,5 +405,93 @@ export const backfillLegacyAbsences = internalMutation({
       }
     }
     return { students, absencesCreated };
+  },
+});
+
+// One-time assignment reconciliation (2026-09-05): the legacy
+// per-student leadingSessions/observingSessions arrays held assignment
+// history the sessions table lacked — students wired in the arrays but
+// not in leaderIds/observerIds, and real class dates never recorded in
+// the 课程日期 calendar (e.g. 2023春季 ran Feb-Mar, not the synthesized
+// April Sundays). This pass creates the missing session rows
+// (estimated: true), wires every stored date into the sessions table,
+// then strips the arrays — leaving sessions.leaderIds/observerIds the
+// single source of assignment truth, with the per-student views
+// deriving from it. Idempotent: wiring dedupes; the strip no-ops once
+// applied. Run via: npx convex run migrations:reconcileAssignments [--prod]
+export const reconcileAssignments = internalMutation({
+  handler: async (ctx) => {
+    const report = {
+      sessionsCreated: 0,
+      wiresAdded: 0,
+      studentsStripped: 0,
+    };
+    const sessionsByKey = new Map(
+      (await ctx.db.query("sessions").collect()).map((s) => [
+        `${s.quarter}:${s.date}`,
+        s,
+      ]),
+    );
+    const pending = new Map<
+      Id<"sessions">,
+      { leaderIds: Id<"students">[]; observerIds: Id<"students">[] }
+    >();
+    for (const s of await ctx.db.query("students").collect()) {
+      const arrays = s as {
+        leadingSessions?: string[];
+        observingSessions?: string[];
+      };
+      const roles = [
+        { dates: arrays.leadingSessions, field: "leaderIds" },
+        { dates: arrays.observingSessions, field: "observerIds" },
+      ] as const;
+      let touched = false;
+      for (const { dates, field } of roles) {
+        for (const date of dates ?? []) {
+          if (!s.quarter) continue;
+          const key = `${s.quarter}:${date}`;
+          let sess = sessionsByKey.get(key);
+          if (!sess) {
+            const id = await ctx.db.insert("sessions", {
+              date,
+              quarter: s.quarter,
+              leaderIds: [],
+              observerIds: [],
+              estimated: true,
+            });
+            sess = (await ctx.db.get(id))!;
+            sessionsByKey.set(key, sess);
+            report.sessionsCreated++;
+          }
+          if (sess[field].includes(s._id)) continue;
+          const slot = pending.get(sess._id) ?? {
+            leaderIds: [],
+            observerIds: [],
+          };
+          slot[field].push(s._id);
+          pending.set(sess._id, slot);
+          report.wiresAdded++;
+          touched = true;
+        }
+      }
+      if (touched || arrays.leadingSessions || arrays.observingSessions) {
+        await ctx.db.patch(s._id, {
+          leadingSessions: undefined,
+          observingSessions: undefined,
+        } as unknown as Partial<Doc<"students">>);
+        report.studentsStripped++;
+      }
+    }
+    for (const [id, slot] of pending) {
+      const sess = await ctx.db.get(id);
+      if (!sess) continue;
+      await ctx.db.patch(id, {
+        leaderIds: [...new Set([...sess.leaderIds, ...slot.leaderIds])],
+        observerIds: [
+          ...new Set([...sess.observerIds, ...slot.observerIds]),
+        ],
+      });
+    }
+    return report;
   },
 });
