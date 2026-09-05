@@ -596,3 +596,129 @@ article.typography table tbody tr:hover,
         font-size: 0.9rem;
     }
 }
+
+/*
+ * Scripture-page theme (matches the roster app, apps/roster/DESIGN.md):
+ * warm paper, ink text, vermilion marks, gold accents, Noto Serif TC.
+ * Remaps the shadcn/Tailwind theme variables so the whole surface —
+ * header, sidebar, cards, tables, code blocks, links — follows the
+ * roster world instead of shadcn's neutral gray.
+ */
+:root {
+  /* Palette (RGB for the alpha-carrying rgba() forms below). */
+  --sgbs-paper: #faf6ec;
+  --sgbs-paper-deep: #f0e9d8;
+  --sgbs-ink: #262116;
+  --sgbs-ink-soft: #57503f;
+  --sgbs-vermilion: #b3402a;
+  --sgbs-gold: #c9a84c;
+  --sgbs-rule: #d8d2c4;
+  --sgbs-paper-rgb: 250, 246, 236;
+  --sgbs-ink-rgb: 38, 33, 22;
+  --sgbs-vermilion-rgb: 179, 64, 42;
+
+  /* shadcn theme variables (docs/stylesheets load after base.css). */
+  --background: var(--sgbs-paper);
+  --foreground: var(--sgbs-ink);
+  --card: #fffdf6;
+  --card-foreground: var(--sgbs-ink);
+  --popover: var(--sgbs-paper);
+  --popover-foreground: var(--sgbs-ink);
+  --primary: var(--sgbs-ink);
+  --primary-foreground: var(--sgbs-paper);
+  --secondary: var(--sgbs-paper-deep);
+  --secondary-foreground: var(--sgbs-ink);
+  --muted: var(--sgbs-paper-deep);
+  --muted-foreground: var(--sgbs-ink-soft);
+  --accent: var(--sgbs-paper-deep);
+  --accent-foreground: var(--sgbs-ink);
+  --border: var(--sgbs-rule);
+  --input: var(--sgbs-rule);
+  --ring: var(--sgbs-vermilion);
+
+  /* Serif typography: the scripture-page world is a printed sheet. */
+  --font-sans: "Noto Serif TC", "Songti TC", "SimSun", ui-serif, Georgia,
+    serif;
+}
+
+.dark {
+  /* Night reading: same warm world, deepened — not pure black. */
+  --sgbs-paper: #191510;
+  --sgbs-paper-deep: #241e16;
+  --sgbs-ink: #ece4d2;
+  --sgbs-ink-soft: #a89e88;
+  --sgbs-vermilion: #d4593f;
+  --sgbs-gold: #c9a84c;
+  --sgbs-rule: #3a3227;
+  --sgbs-paper-rgb: 25, 21, 16;
+  --sgbs-ink-rgb: 236, 228, 210;
+  --sgbs-vermilion-rgb: 212, 89, 63;
+  --card: #201a13;
+  --primary: var(--sgbs-ink);
+  --primary-foreground: #191510;
+  --ring: var(--sgbs-vermilion);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--sgbs-paper);
+  color: var(--sgbs-ink);
+}
+
+/* Typography: serif headings like the roster display face. */
+.typography h1,
+.typography h2,
+.typography h3,
+.typography h4 {
+  font-family: "Noto Serif TC", "Songti TC", "SimSun", serif;
+  letter-spacing: 0.05em;
+}
+
+/* Links: vermilion underlines, echoing the roster's mark color. */
+.typography a {
+  color: var(--sgbs-vermilion);
+  text-decoration-color: rgba(var(--sgbs-vermilion-rgb), 0.45);
+  text-underline-offset: 3px;
+}
+.typography a:hover {
+  color: var(--sgbs-ink);
+  text-decoration-color: var(--sgbs-ink);
+}
+
+/* Tables: ruled ledger lines on paper. */
+.typography table {
+  border-collapse: collapse;
+}
+.typography table th {
+  border-bottom: 2px solid var(--sgbs-ink);
+  color: var(--sgbs-ink);
+  font-family: "Noto Serif TC", "Songti TC", "SimSun", serif;
+}
+.typography table td {
+  border-bottom: 1px solid var(--sgbs-rule);
+}
+
+/* Code blocks sit on deep paper with an ink border. */
+.typography pre {
+  background: var(--sgbs-paper-deep);
+  border: 1px solid var(--sgbs-rule);
+}
+
+/* QR cards: paper-deep fill, ink border, rounded as before. */
+.qrcode-option {
+  background: var(--sgbs-paper-deep);
+  border-color: var(--sgbs-rule);
+  box-shadow: none;
+}
+
+/* Expandable / role cards follow the same surface. */
+.expandable-card,
+.role-card {
+  border-color: var(--sgbs-rule);
+  background: var(--sgbs-paper-deep);
+}
+
+/* The details/summary hover from the legacy rules reads as ink-on-paper. */
+details summary:hover {
+  background-color: rgba(var(--sgbs-ink-rgb), 0.06);
+}
