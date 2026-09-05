@@ -24,19 +24,15 @@ export default defineSchema({
     class5: v.optional(v.boolean()),
     // Replicated Airtable formula: number of unchecked classes (1-5).
     missed: v.number(),
-    // Legacy Airtable per-student assignment fields. Assignments now live
-    // on the sessions table; these remain only for migrated history.
+    // Legacy per-student assignment history (Airtable 主领日期/观察日期
+    // links plus the older scalar 带领日期/观察的日期, harmonized into
+    // these arrays by migrations:cleanupStudentFields). Assignment truth
+    // now lives on the sessions table.
     leadingSessions: v.optional(v.array(v.string())),
     observingSessions: v.optional(v.array(v.string())),
-    leadingDate: v.optional(v.string()),
-    observingDate: v.optional(v.string()),
-    // Resolved display values (was multipleRecordLinks).
-    homeworkSubmitted: v.array(v.string()),
     // Legacy from Airtable 助教 links; kept for history.
     teachingAssistants: v.optional(v.array(v.string())),
     bookOrder: v.optional(v.string()),
-    // Replicated Airtable count field.
-    homeworkCount: v.number(),
     // Optional registration photo (front-camera snap or gallery pick).
     photoStorageId: v.optional(v.id("_storage")),
     // "airtable" for migrated records, "form" for new registrations.

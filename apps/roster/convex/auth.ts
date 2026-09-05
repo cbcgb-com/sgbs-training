@@ -179,8 +179,7 @@ export const verifyRegistrationCode = mutation({
         quarter,
         present: false,
         missed: 0,
-        homeworkSubmitted: [],
-        homeworkCount: 0,
+        createdTime: new Date().toISOString(),
         photoStorageId: registration.photoStorageId,
         source: "form",
       });

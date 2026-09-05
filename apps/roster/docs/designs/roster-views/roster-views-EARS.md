@@ -21,8 +21,6 @@
       the sessions table.
 - [x] **ROSTER-GRID-005**: The 觀察日期 view shall show each student who
       observes at least one session, with their observing dates.
-- [x] **ROSTER-GRID-006**: The 功課 view shall show each student with at
-      least one submitted homework and the submission count.
 - [x] **ROSTER-GRID-007**: The 缺課 view shall show the five class marks
       (attended / absent / unrecorded) per student with a legend, and only
       students with missed > 0.

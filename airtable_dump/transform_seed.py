@@ -4,10 +4,12 @@
 """Transform the Airtable 学员名单 dump into Convex-ready seed documents.
 
 - Flattens record.fields into top-level keys (Chinese field names preserved).
-- Resolves multipleRecordLinks (主领日期/观察日期 -> 课程日期, 功课（提交） -> 功课,
-  助教 -> 教师) into arrays of display values using the other dumps.
+- Resolves multipleRecordLinks (主领日期/观察日期 -> 课程日期, 助教 -> 教师)
+  into arrays of display values using the other dumps.
+- Generalizes the scalar 带领日期/观察的日期 into the leadingSessions/
+  observingSessions arrays; homework columns are no longer tracked.
 - Replicates the Missed formula (5 - number of checked 課堂) and verifies it
-  against Airtable's stored value; same for 功课提交数目 (count of 功课（提交）).
+  against Airtable's stored value.
 - Writes students_seed.jsonl (one document per line) for `npx convex import`.
 """
 
@@ -34,8 +36,6 @@ KEY_MAP = {
     "受洗時間": "baptismTime",
     "参与训练的季度": "quarter",
     "小组名字": "groupName",
-    "带领日期": "leadingDate",
-    "观察的日期": "observingDate",
     "性別": "gender",
     "帶領查經經驗": "leadingExperience",
     "出席": "present",
@@ -47,10 +47,8 @@ KEY_MAP = {
     "Missed": "missed",
     "主领日期": "leadingSessions",
     "观察日期": "observingSessions",
-    "功课（提交）": "homeworkSubmitted",
     "助教": "teachingAssistants",
     "书本订购": "bookOrder",
-    "功课提交数目": "homeworkCount",
 }
 
 
@@ -90,7 +88,6 @@ def main() -> None:
 
     docs = []
     mismatch_missed = 0
-    mismatch_count = 0
     for rec in students:
         f = rec["fields"]
         doc = {
@@ -101,7 +98,7 @@ def main() -> None:
         # Scalar fields, copied as-is.
         for key in [
             "名字", "團契", "郵箱", "受洗時間", "参与训练的季度", "小组名字",
-            "带领日期", "观察的日期", "性別", "帶領查經經驗", "出席",
+            "性別", "帶領查經經驗", "出席",
             *CLASS_CHECKBOXES, "书本订购",
         ]:
             if key in f:
@@ -115,7 +112,19 @@ def main() -> None:
                 for rid in ids if rid in lookup[ref_table]
             ]
 
-        # Replicate computed fields + verify.
+        # Generalize the scalar 带领日期/观察的日期 into the session
+        # arrays; homework columns are no longer tracked in Convex.
+        for sessions_key, scalar_key in (
+            ("主领日期", "带领日期"),
+            ("观察日期", "观察的日期"),
+        ):
+            scalar = doc.pop(scalar_key, None)
+            if scalar and scalar not in doc[sessions_key]:
+                doc[sessions_key] = [*doc[sessions_key], scalar]
+        doc.pop("功课（提交）", None)
+        doc.pop("功课提交数目", None)
+
+        # Replicate the Missed formula + verify.
         computed_missed = sum(1 for c in CLASS_CHECKBOXES if not f.get(c))
         if "Missed" in f and f["Missed"] != computed_missed:
             mismatch_missed += 1
@@ -124,15 +133,6 @@ def main() -> None:
                 f"computed={computed_missed}"
             )
         doc["Missed"] = computed_missed
-
-        computed_count = len(f.get("功课（提交）", []))
-        if "功课提交数目" in f and f["功课提交数目"] != computed_count:
-            mismatch_count += 1
-            print(
-                f"  功课提交数目 mismatch {rec['id']}: "
-                f"airtable={f['功课提交数目']} computed={computed_count}"
-            )
-        doc["功课提交数目"] = computed_count
 
         docs.append(doc)
 
@@ -144,11 +144,10 @@ def main() -> None:
 
     print(f"wrote {len(docs)} documents -> {out}")
     print(f"Missed formula mismatches: {mismatch_missed}")
-    print(f"功课提交数目 mismatches: {mismatch_count}")
 
     # Quarter distribution (for the 本季度 view sanity check).
     from collections import Counter
-    quarters = Counter(d.get("quarter") for d in docs)
+    quarters = Counter(d.get("参与训练的季度") for d in docs)
     for q, n in sorted(quarters.items(), key=lambda kv: str(kv[0])):
         print(f"  {q}: {n}")
 

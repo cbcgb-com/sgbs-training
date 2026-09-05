@@ -83,16 +83,6 @@ export const observers = query({
   },
 });
 
-// 功课: students with at least one submitted homework.
-export const withHomework = query({
-  handler: async (ctx) => {
-    await requireInstructor(ctx);
-    return (await ctx.db.query("students").collect()).filter(
-      (s) => s.homeworkCount > 0,
-    );
-  },
-});
-
 // Missed: students who missed at least one class.
 export const withMissed = query({
   handler: async (ctx) => {
@@ -353,8 +343,9 @@ export const registerStudent = mutation({
       present: false,
       // Attendance starts unrecorded (0 misses recorded), not 5.
       missed: 0,
-      homeworkSubmitted: [],
-      homeworkCount: 0,
+      // Airtable-era rows carry createdTime from the dump; new rows
+      // stamp it here (ISO-8601, same format).
+      createdTime: new Date().toISOString(),
       photoStorageId: args.photoStorageId,
       source: "form",
     });

@@ -13,7 +13,6 @@ const VIEWS = [
   { key: "experience", label: "帶領經驗" },
   { key: "leaders", label: "主領" },
   { key: "observers", label: "觀察" },
-  { key: "homework", label: "功課" },
   { key: "missed", label: "缺課" },
   { key: "k-fellowship", label: "團契" },
   { key: "k-baptism", label: "受洗" },
@@ -60,7 +59,6 @@ export default function Roster() {
         {view === "experience" && "有帶領查經經驗的學員"}
         {view === "leaders" && "曾主領或已排定主領日期的學員"}
         {view === "observers" && "曾觀察或已排定觀察日期的學員"}
-        {view === "homework" && "已提交功課的學員"}
         {view === "missed" && "本季有缺課記錄的學員"}
         {(view === "k-fellowship" ||
           view === "k-baptism" ||
@@ -75,7 +73,6 @@ export default function Roster() {
         {view === "experience" && <ExperienceView />}
         {view === "leaders" && <LeadersView />}
         {view === "observers" && <ObserversView />}
-        {view === "homework" && <HomeworkView />}
         {view === "missed" && <MissedView />}
         {view === "k-fellowship" && <Kanban field="fellowship" label="團契" />}
         {view === "k-baptism" && (
@@ -178,7 +175,7 @@ function ExperienceView() {
         ["名字", (s) => s.name, "serif"],
         ["團契", (s) => s.fellowship ?? ""],
         ["帶領經驗", (s) => s.leadingExperience ?? ""],
-        ["帶領日期", (s) => s.leadingDate ?? "", "margin"],
+        ["帶領日期", (s) => (s.leadingSessions ?? []).join("、"), "margin"],
       ]}
     />
   );
@@ -211,22 +208,6 @@ function ObserversView() {
         ["名字", (s: LeaderRow) => s.name, "serif"],
         ["團契", (s: LeaderRow) => s.fellowship ?? ""],
         ["觀察日期", (s: LeaderRow) => s.dates.join("、"), "margin"],
-      ]}
-    />
-  );
-}
-
-function HomeworkView() {
-  const students = useQuery(api.students.withHomework);
-  const photos = useQuery(api.students.photoUrls);
-  return (
-    <StudentTable
-      students={students}
-      photos={photos}
-      columns={[
-        ["名字", (s) => s.name, "serif"],
-        ["功課（提交）", (s) => s.homeworkSubmitted.join("、")],
-        ["數目", (s) => String(s.homeworkCount), "margin"],
       ]}
     />
   );
