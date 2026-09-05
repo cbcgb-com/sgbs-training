@@ -24,9 +24,10 @@ const FAKE_STUDENTS = [
 ];
 
 // 2026秋季 Sunday schedule. Dates that already exist are patched with the
-// extra assignments rather than duplicated.
+// extra assignments rather than duplicated. The first class of the season
+// (2026-09-20, 課程信息介紹) is deliberately absent — orientation never
+// carries 主領/觀察; only the four leading weeks appear here.
 const FAKE_SESSIONS = [
-  { date: "2026-09-20", leaderEmails: ["demo1@demo.sgbs"], observerEmails: ["demo4@demo.sgbs", "demo7@demo.sgbs"] },
   { date: "2026-09-27", leaderEmails: ["demo5@demo.sgbs", "demo2@demo.sgbs"], observerEmails: ["demo8@demo.sgbs"] },
   { date: "2026-10-04", leaderEmails: ["demo6@demo.sgbs"], observerEmails: ["demo3@demo.sgbs", "demo5@demo.sgbs"] },
   { date: "2026-10-11", leaderEmails: ["demo4@demo.sgbs", "demo7@demo.sgbs"], observerEmails: ["demo1@demo.sgbs"] },
@@ -118,6 +119,61 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
     }
 
     return { studentsAdded, sessionsAdded };
+  },
+});
+
+// 15 ungrouped test registrations (2026-09-05): fake students for testing
+// the instructor grouping flow. No groupName — the divider starts from a
+// fully unassigned pool. Run via
+//   npx convex run demo:seedUngroupedStudents
+// Safe to re-run: matched by email, students already registered this
+// quarter are left untouched.
+const UNGROUPED_STUDENTS = [
+  { name: "林嘉豪", email: "demo10@demo.sgbs", fellowship: "MIT團契（工作組之一）", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，多於5次" },
+  { name: "黃詩敏", email: "demo11@demo.sgbs", fellowship: "樂河團契", gender: "女", baptismTime: "1到5年", leadingExperience: "沒帶過" },
+  { name: "張雅雯", email: "demo12@demo.sgbs", fellowship: "Longwood 團契", gender: "女", baptismTime: "少於1年", leadingExperience: "沒帶過" },
+  { name: "李志強", email: "demo13@demo.sgbs", fellowship: "Malden 團契", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，1到5次" },
+  { name: "陳美恩", email: "demo14@demo.sgbs", fellowship: "學生團契（研究生）", gender: "女", baptismTime: "1到5年", leadingExperience: "帶過，1到5次" },
+  { name: "周天樂", email: "demo15@demo.sgbs", fellowship: "學生團契（本科生）", gender: "男", baptismTime: "少於1年", leadingExperience: "沒帶過" },
+  { name: "許文靜", email: "demo16@demo.sgbs", fellowship: "MIT團契（學生組）", gender: "女", baptismTime: "1到5年", leadingExperience: "沒帶過" },
+  { name: "王守信", email: "demo17@demo.sgbs", fellowship: "樂河團契", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，多於5次" },
+  { name: "葉恩慈", email: "demo18@demo.sgbs", fellowship: "其他", gender: "女", baptismTime: "少於1年", leadingExperience: "沒帶過" },
+  { name: "蔡明軒", email: "demo19@demo.sgbs", fellowship: "Longwood 團契", gender: "男", baptismTime: "1到5年", leadingExperience: "帶過，1到5次" },
+  { name: "羅以琳", email: "demo20@demo.sgbs", fellowship: "Malden 團契", gender: "女", baptismTime: "超過5年", leadingExperience: "沒帶過" },
+  { name: "楊約翰", email: "demo21@demo.sgbs", fellowship: "MIT團契（工作組之一）", gender: "男", baptismTime: "1到5年", leadingExperience: "帶過，多於5次" },
+  { name: "許佳音", email: "demo22@demo.sgbs", fellowship: "學生團契（研究生）", gender: "女", baptismTime: "少於1年", leadingExperience: "沒帶過" },
+  { name: "馮保羅", email: "demo23@demo.sgbs", fellowship: "其他", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，1到5次" },
+  { name: "鄧曉琳", email: "demo24@demo.sgbs", fellowship: "樂河團契", gender: "女", baptismTime: "1到5年", leadingExperience: "帶過，1到5次" },
+];
+
+export const seedUngroupedStudents = internalMutation({
+  handler: async (ctx) => {
+    let added = 0;
+    const skipped: string[] = [];
+    for (const s of UNGROUPED_STUDENTS) {
+      const existing = await ctx.db
+        .query("students")
+        .withIndex("by_email", (q) => q.eq("email", s.email))
+        .collect();
+      if (existing.find((e) => e.quarter === CURRENT_QUARTER)) {
+        skipped.push(s.name);
+        continue;
+      }
+      await ctx.db.insert("students", {
+        name: s.name,
+        email: s.email,
+        fellowship: s.fellowship,
+        gender: s.gender,
+        baptismTime: s.baptismTime,
+        leadingExperience: s.leadingExperience,
+        quarter: CURRENT_QUARTER,
+        present: true,
+        missed: 0,
+        // No groupName: the instructor assigns groups later.
+      });
+      added++;
+    }
+    return { added, skipped };
   },
 });
 
