@@ -32,7 +32,8 @@ export const dropLegacyClerkIds = internalMutation({
 //    observingSessions arrays.
 // 2. Strip the fields dropped from the schema: the homework columns
 //    (homeworkSubmitted/homeworkCount), the scalar date fields, the
-//    provenance `source`, and the legacy `teachingAssistants` links.
+//    provenance `source`, the legacy `teachingAssistants` links, and
+//    the never-filled `bookOrder`.
 // 3. Set `present` to true on every row.
 // 4. Backfill `class1`-`class5` = true for rows whose five attendance
 //    marks are ALL blank (attendance never recorded); rows with any
@@ -65,6 +66,7 @@ export const cleanupStudentFields = internalMutation({
         homeworkCount?: number;
         source?: string;
         teachingAssistants?: string[];
+        bookOrder?: string;
         createdTime?: string;
       };
       const patch: Record<string, unknown> = {};
@@ -94,7 +96,8 @@ export const cleanupStudentFields = internalMutation({
         legacy.homeworkSubmitted !== undefined ||
         legacy.homeworkCount !== undefined ||
         legacy.source !== undefined ||
-        legacy.teachingAssistants !== undefined
+        legacy.teachingAssistants !== undefined ||
+        legacy.bookOrder !== undefined
       ) {
         patch.leadingDate = undefined;
         patch.observingDate = undefined;
@@ -102,6 +105,7 @@ export const cleanupStudentFields = internalMutation({
         patch.homeworkCount = undefined;
         patch.source = undefined;
         patch.teachingAssistants = undefined;
+        patch.bookOrder = undefined;
         stripped++;
       }
 

@@ -29,7 +29,6 @@ export default defineSchema({
     // now lives on the sessions table.
     leadingSessions: v.optional(v.array(v.string())),
     observingSessions: v.optional(v.array(v.string())),
-    bookOrder: v.optional(v.string()),
     // Optional registration photo (front-camera snap or gallery pick).
     photoStorageId: v.optional(v.id("_storage")),
   })
