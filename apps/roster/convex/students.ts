@@ -55,15 +55,31 @@ export const byQuarter = query({
   },
 });
 
-// 带领经验: everyone with actual leading experience (帶過…).
+// 带领经验: everyone with actual leading experience (帶過…), enriched
+// with the class dates they led — derived from the sessions table
+// (leaderIds), the single source of assignment truth.
 export const withExperience = query({
   handler: async (ctx) => {
     await requireInstructor(ctx);
-    return (await ctx.db.query("students").collect()).filter(
+    const students = (await ctx.db.query("students").collect()).filter(
       (s) =>
         s.leadingExperience !== undefined &&
         s.leadingExperience !== "沒帶過",
     );
+    const byId = new Map(students.map((s) => [s._id, s]));
+    const dates = new Map<Id<"students">, string[]>();
+    for (const session of await ctx.db.query("sessions").collect()) {
+      for (const id of session.leaderIds) {
+        if (!byId.has(id)) continue;
+        const list = dates.get(id) ?? [];
+        list.push(session.date);
+        dates.set(id, list);
+      }
+    }
+    return students.map((s) => ({
+      ...s,
+      leadingDates: (dates.get(s._id) ?? []).sort(),
+    }));
   },
 });
 
