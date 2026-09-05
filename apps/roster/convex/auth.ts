@@ -177,11 +177,10 @@ export const verifyRegistrationCode = mutation({
         baptismTime: registration.baptismTime,
         leadingExperience: registration.leadingExperience,
         quarter,
-        present: false,
+        present: true,
         missed: 0,
         createdTime: new Date().toISOString(),
         photoStorageId: registration.photoStorageId,
-        source: "form",
       });
     }
     return {

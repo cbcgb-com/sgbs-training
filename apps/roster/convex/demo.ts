@@ -54,7 +54,7 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         leadingExperience: s.leadingExperience,
         groupName: s.groupName,
         quarter: CURRENT_QUARTER,
-        present: attended >= 4,
+        present: true,
         class1: attended >= 1,
         class2: attended >= 2,
         class3: attended >= 3,
@@ -62,7 +62,6 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         class5: attended >= 5,
         missed: 5 - attended,
         createdTime: new Date().toISOString(),
-        source: "preview-demo",
       });
       idByEmail.set(s.email, id);
       studentsAdded++;
@@ -132,7 +131,6 @@ export const resetQuarterData = internalMutation({
       await ctx.db.patch(s._id, {
         groupName: undefined,
         missed: 0,
-        present: undefined,
         class1: undefined,
         class2: undefined,
         class3: undefined,

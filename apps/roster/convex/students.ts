@@ -340,14 +340,14 @@ export const registerStudent = mutation({
       baptismTime: args.baptismTime,
       leadingExperience: args.leadingExperience,
       quarter,
-      present: false,
+      // 出席 is true on every row (2026-09-05 cleanup).
+      present: true,
       // Attendance starts unrecorded (0 misses recorded), not 5.
       missed: 0,
       // Airtable-era rows carry createdTime from the dump; new rows
       // stamp it here (ISO-8601, same format).
       createdTime: new Date().toISOString(),
       photoStorageId: args.photoStorageId,
-      source: "form",
     });
     return { status: "created" as const, id };
   },

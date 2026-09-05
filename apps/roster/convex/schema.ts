@@ -30,13 +30,9 @@ export default defineSchema({
     // now lives on the sessions table.
     leadingSessions: v.optional(v.array(v.string())),
     observingSessions: v.optional(v.array(v.string())),
-    // Legacy from Airtable 助教 links; kept for history.
-    teachingAssistants: v.optional(v.array(v.string())),
     bookOrder: v.optional(v.string()),
     // Optional registration photo (front-camera snap or gallery pick).
     photoStorageId: v.optional(v.id("_storage")),
-    // "airtable" for migrated records, "form" for new registrations.
-    source: v.optional(v.string()),
   })
     .index("by_quarter", ["quarter"])
     .index("by_email", ["email"])
