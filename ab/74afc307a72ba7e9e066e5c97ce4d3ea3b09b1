@@ -1,0 +1,16 @@
+apps/roster/README.md
+  h_923f9eef54c2c1 107-111
+apps/roster/convex/migrations.ts
+  h_923f9eef54c2c1 498-686
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "ab74afc307a72ba7e9e066e5c97ce4d3ea3b09b1",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
