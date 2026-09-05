@@ -179,7 +179,6 @@ export const verifyRegistrationCode = mutation({
         quarter,
         present: true,
         missed: 0,
-        createdTime: new Date().toISOString(),
         photoStorageId: registration.photoStorageId,
       });
     }

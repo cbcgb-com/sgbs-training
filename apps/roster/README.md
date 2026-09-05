@@ -104,6 +104,15 @@ scalar 带领日期/观察的日期 (harmonized into the
 to true on every row and backfills `class1`-`class5` = true (with
 `missed` = 0) for rows whose five attendance marks were all blank.
 
+There is a single creation-time column: the system `_creationTime`.
+The old `createdTime` string column was dropped by exporting the
+table, rewriting each document's `_creationTime` from its true
+`createdTime` value (Airtable-era rows) and re-importing with
+`npx convex import --table students --replace` (document ids are
+preserved, so session assignments stay wired). `transform_seed.py`
+emits `_creationTime` directly. Audit any deployment with
+`npx convex run migrations:verifyStudents [--prod]`.
+
 ## Local development
 
 ```bash
@@ -158,12 +167,14 @@ One-time-ish scripts for re-dumping and re-importing the Airtable data:
 uv run airtable_dump/dump_airtable.py
 
 # 2. Transform 学员名单 into Convex-ready seed docs (ASCII keys, resolved
-#    links, replicated Missed/count fields + verification report)
+#    links, true _creationTime, replicated Missed field + verification
+#    report)
 uv run airtable_dump/transform_seed.py
 cp airtable_dump/students_seed.jsonl apps/roster/seed/students_seed.jsonl
 
-# 3. Import (add --prod for production)
+# 3. Import (add --prod for production), then run the cleanup migration
 cd apps/roster && npx convex import --table students seed/students_seed.jsonl
+npx convex run migrations:cleanupStudentFields
 ```
 
 ## Known limitations

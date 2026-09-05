@@ -344,9 +344,6 @@ export const registerStudent = mutation({
       present: true,
       // Attendance starts unrecorded (0 misses recorded), not 5.
       missed: 0,
-      // Airtable-era rows carry createdTime from the dump; new rows
-      // stamp it here (ISO-8601, same format).
-      createdTime: new Date().toISOString(),
       photoStorageId: args.photoStorageId,
     });
     return { status: "created" as const, id };
