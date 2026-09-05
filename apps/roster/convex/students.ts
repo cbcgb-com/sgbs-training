@@ -607,6 +607,86 @@ export const renameMyGroup = mutation({
   },
 });
 
+// ---- 我的資料: student self-service profile (own row only) ----
+
+// The signed-in student's own full registration record + a servable photo
+// URL. Guests and instructors (the instructor rule keeps them out of the
+// students table) get registered: false. Read model for the 我的資料 tab.
+export const myProfile = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) return { registered: false, student: null, photoUrl: null };
+    const email = identity.email ?? "";
+    const mine = (
+      await ctx.db
+        .query("students")
+        .withIndex("by_email", (q) => q.eq("email", email))
+        .collect()
+    ).find((s) => s.quarter === CURRENT_QUARTER);
+    if (!mine) return { registered: false, student: null, photoUrl: null };
+    return {
+      registered: true,
+      student: {
+        _id: mine._id,
+        name: mine.name,
+        email: mine.email ?? "",
+        gender: mine.gender ?? "",
+        fellowship: mine.fellowship ?? "",
+        baptismTime: mine.baptismTime ?? "",
+        leadingExperience: mine.leadingExperience ?? "",
+        groupName: mine.groupName ?? null,
+        quarter: mine.quarter ?? "",
+        photoStorageId: mine.photoStorageId ?? null,
+      },
+      photoUrl: mine.photoStorageId
+        ? await ctx.storage.getUrl(mine.photoStorageId)
+        : null,
+    };
+  },
+});
+
+// Update the student's own particulars — the registration fields minus
+// 郵箱 (identity-authoritative; sign-in is that email) and minus 小組/
+// 季度/出勤 (instructor territory). Validation mirrors registration:
+// non-empty after trimming, Chinese errors.
+export const updateMyProfile = mutation({
+  args: {
+    name: v.string(),
+    gender: v.string(),
+    fellowship: v.string(),
+    baptismTime: v.string(),
+    leadingExperience: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const me = await requireCurrentStudent(ctx);
+    const trimmed = {
+      name: args.name.trim(),
+      gender: args.gender.trim(),
+      fellowship: args.fellowship.trim(),
+      baptismTime: args.baptismTime.trim(),
+      leadingExperience: args.leadingExperience.trim(),
+    };
+    for (const [field, value] of Object.entries(trimmed)) {
+      if (!value) throw new Error(`缺少必填欄位：${field}`);
+    }
+    await ctx.db.patch(me._id, trimmed);
+  },
+});
+
+// Set or clear the student's own photo. Passing no photoStorageId removes
+// the photo; replacing it deletes the previous blob so photos don't
+// accumulate in storage (same cleanup as row deletion).
+export const updateMyPhoto = mutation({
+  args: { photoStorageId: v.optional(v.id("_storage")) },
+  handler: async (ctx, { photoStorageId }) => {
+    const me = await requireCurrentStudent(ctx);
+    if (me.photoStorageId && me.photoStorageId !== photoStorageId) {
+      await ctx.storage.delete(me.photoStorageId);
+    }
+    await ctx.db.patch(me._id, { photoStorageId });
+  },
+});
+
 // ---- File upload (photo) ----
 
 export const generateUploadUrl = mutation({

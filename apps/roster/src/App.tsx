@@ -8,11 +8,13 @@ import Directory from "./Directory";
 import GroupAssigner from "./GroupAssigner";
 import Form from "./Form";
 import MyGroup from "./MyGroup";
+import MyProfile from "./MyProfile";
 import Roster from "./Roster";
 import ScheduleView from "./ScheduleView";
 
 type TabKey =
   | "register"
+  | "profile"
   | "group"
   | "directory"
   | "schedule"
@@ -119,6 +121,7 @@ function MemberView() {
       ]
     : [
         { key: "register", label: "註冊" },
+        { key: "profile", label: "我的資料" },
         { key: "group", label: "我的組" },
         { key: "directory", label: "聯絡表" },
         { key: "schedule", label: "課堂安排" },
@@ -211,6 +214,7 @@ function TabShell({
         ) : (
           <>
             {active === "register" && <Form registered={registered} />}
+            {active === "profile" && <MyProfile />}
             {active === "group" && <MyGroup />}
             {active === "directory" && <Directory isInstructor={isInstructor} />}
             {active === "schedule" && <ScheduleView isInstructor={false} />}

@@ -174,8 +174,9 @@ export default function Form({
           已登記
         </p>
         <p className="mt-5 text-sm leading-relaxed text-ink-soft">
-          您已登記 {CURRENT_QUARTER} 的課程。請在「我的組」查看組員，
-          在「課堂安排」查看主領與觀察的日期。
+          您已登記 {CURRENT_QUARTER} 的課程。請在「我的資料」查看或更新
+          報名資料，在「我的組」查看組員，在「課堂安排」查看主領與觀察的
+          日期。
         </p>
       </div>
     );
@@ -192,7 +193,7 @@ export default function Form({
             ? adminMode
               ? `已為 ${name || "學員"} 登記 ${CURRENT_QUARTER} 的課程。學員現在可以用此郵箱登入。`
               : `您的報名已登記（${CURRENT_QUARTER}），我們會透過郵箱與您聯絡。`
-            : "這個郵箱在本季度已經登記過了；如需更改資料，請聯絡同工。"}
+            : "這個郵箱在本季度已經登記過了；學員可於「我的資料」自行查看或更新資料。"}
         </p>
         {adminMode && (
           <button
