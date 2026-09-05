@@ -322,7 +322,7 @@ function Kanban({
   if (!groups) return <Loading />;
   const sorted = [...groups].sort((a, b) => b.count - a.count);
   return (
-    <div className="flex gap-5 overflow-x-auto pb-4">
+    <div className="flex gap-5 overflow-x-auto overflow-y-clip pb-4">
       {sorted.map((g) => (
         <section key={g.value} className="w-60 shrink-0">
           <header className="flex items-baseline justify-between border-b-2 border-ink pb-2">
@@ -405,7 +405,7 @@ function StudentTable<
     );
   }
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto overflow-y-clip">
       <table className="w-full border-collapse text-left text-base tabular-nums">
         <thead>
           <tr className="border-b-2 border-ink">

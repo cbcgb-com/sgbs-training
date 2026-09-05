@@ -158,7 +158,7 @@ function GroupScheduleTable({
           {members.length} 位
         </span>
       </div>
-      <div className="mt-2 overflow-x-auto">
+      <div className="mt-2 overflow-x-auto overflow-y-clip">
         <table className="w-full border-collapse text-left text-base">
           <thead>
             <tr className="border-b-2 border-ink">
@@ -367,7 +367,7 @@ function StudentSchedule({ sessions }: { sessions: SessionRow[] }) {
           {error}
         </p>
       )}
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-4 overflow-x-auto overflow-y-clip">
         <table className="w-full border-collapse text-left text-base">
           <thead>
             <tr className="border-b-2 border-ink">

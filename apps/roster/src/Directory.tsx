@@ -67,7 +67,7 @@ export default function Directory({
           本季度尚無記錄
         </p>
       ) : (
-        <div className="mt-2 overflow-x-auto">
+        <div className="mt-2 overflow-x-auto overflow-y-clip">
           <table className="w-full border-collapse text-left text-base tabular-nums">
             <thead>
               <tr className="border-b-2 border-ink">
