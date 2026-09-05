@@ -203,7 +203,28 @@ export const resetQuarterData = internalMutation({
 });
 
 // The first class of a season is orientation (課程信息介紹) — it never has
-// 主領/觀察. Each season only carries four leading weeks. Run via
+// 主領/觀察. Ensure its session row exists (empty assignments) so the
+// schedule shows the full five-Sunday calendar. Run via
+//   npx convex run demo:ensureOrientationSession
+export const ensureOrientationSession = internalMutation({
+  handler: async (ctx) => {
+    const date = CURRENT_QUARTER_SESSION_DATES[0];
+    const existing = (await ctx.db.query("sessions").collect()).find(
+      (x) => x.date === date && x.quarter === CURRENT_QUARTER,
+    );
+    if (existing) return { status: "exists" as const };
+    await ctx.db.insert("sessions", {
+      date,
+      quarter: CURRENT_QUARTER,
+      leaderIds: [],
+      observerIds: [],
+    });
+    return { status: "created" as const };
+  },
+});
+
+// One-off cleanup: delete a session row by date (e.g. a mis-seeded
+// orientation assignment). Run via
 // `npx convex run demo:deleteSessionByDate '{"date":"2026-09-13"}'`.
 export const deleteSessionByDate = internalMutation({
   args: { date: v.string() },
