@@ -495,3 +495,192 @@ export const reconcileAssignments = internalMutation({
     return report;
   },
 });
+
+// Authoritative class calendars for the recording era, taken from the
+// course website's 錄影 page
+// (https://cbcgb-com.github.io/sgbs-training/resources/recordings/).
+// Only quarters whose current calendar is estimated-only are aligned;
+// quarters with Airtable-imported calendars (2017-2022, 2026秋季) are
+// left untouched, since their dates are first-party data.
+const RECORDINGS_CALENDARS: Record<string, string[]> = {
+  "2023春季": ["2023-02-19", "2023-02-26", "2023-03-05", "2023-03-19"],
+  "2023秋季": [
+    "2023-10-08",
+    "2023-10-15",
+    "2023-10-22",
+    "2023-10-29",
+    "2023-11-05",
+  ],
+  "2024春季": [
+    "2024-02-25",
+    "2024-03-03",
+    "2024-03-10",
+    "2024-03-17",
+    "2024-03-24",
+  ],
+  "2024秋季": [
+    "2024-09-29",
+    "2024-10-06",
+    "2024-10-20",
+    "2024-10-27",
+    "2024-11-03",
+  ],
+  "2025春季": [
+    "2025-03-23",
+    "2025-03-30",
+    "2025-04-06",
+    "2025-04-13",
+    "2025-05-27",
+  ],
+  "2025秋季": [
+    "2025-10-05",
+    "2025-10-12",
+    "2025-10-19",
+    "2025-11-02",
+    "2025-11-09",
+  ],
+  "2026春季": [
+    "2026-02-01",
+    "2026-02-08",
+    "2026-02-15",
+    "2026-02-22",
+    "2026-03-01",
+  ],
+};
+
+// One-time calendar alignment (2026-09-05): the synthesized estimated
+// calendars (first five Sundays of April/October) guessed wrong for
+// several seasons. This pass replaces the estimated calendar of every
+// quarter in RECORDINGS_CALENDARS with the real dates:
+// 1. Missing real dates are created; real dates already present have
+//    their estimated flag cleared.
+// 2. Estimated rows outside the real calendar are deleted — their
+//    leader/observer wires merge into the temporally nearest real
+//    date.
+// 3. Attendance rows remap positionally (Nth class → Nth real date,
+//    matching Airtable's positional 課堂 marks); rows beyond the real
+//    season length are deleted, shorter histories are extended with
+//    absences, and `missed` is recomputed.
+// Quarters without recordings (2015/2016 fall, 2020 fall, 2021 spring)
+// keep their estimated calendars. Idempotent. Run via:
+//   npx convex run migrations:alignCalendarsToRecordings [--prod]
+export const alignCalendarsToRecordings = internalMutation({
+  handler: async (ctx) => {
+    const report = {
+      quartersAligned: 0,
+      sessionsCreated: 0,
+      sessionsDeleted: 0,
+      flagsCleared: 0,
+      wiresMerged: 0,
+      attendanceRemapped: 0,
+      attendanceDeleted: 0,
+      attendanceAdded: 0,
+      studentsTouched: 0,
+    };
+    const day = (d: string) => Date.parse(d + "T00:00:00Z");
+    for (const [quarter, real] of Object.entries(RECORDINGS_CALENDARS)) {
+      const existing = (
+        await ctx.db
+          .query("sessions")
+          .withIndex("by_quarter", (q) => q.eq("quarter", quarter))
+          .collect()
+      ).sort((a, b) => a.date.localeCompare(b.date));
+      const realSet = new Set(real);
+      const realSorted = [...real].sort();
+
+      // 1. Ensure every real date has a row; confirm existing ones.
+      const rowByDate = new Map(existing.map((s) => [s.date, s]));
+      for (const date of real) {
+        const row = rowByDate.get(date);
+        if (!row) {
+          const id = await ctx.db.insert("sessions", {
+            date,
+            quarter,
+            leaderIds: [],
+            observerIds: [],
+          });
+          rowByDate.set(date, (await ctx.db.get(id))!);
+          report.sessionsCreated++;
+        } else if (row.estimated === true) {
+          await ctx.db.patch(row._id, { estimated: undefined });
+          report.flagsCleared++;
+        }
+      }
+
+      // 2. Delete estimated rows outside the real calendar, merging
+      // their wires into the temporally nearest real date.
+      for (const row of existing) {
+        if (row.estimated !== true || realSet.has(row.date)) continue;
+        const nearest = realSorted.reduce((best, d) =>
+          Math.abs(day(d) - day(row.date)) < Math.abs(day(best) - day(row.date))
+            ? d
+            : best,
+        );
+        const target = rowByDate.get(nearest);
+        if (target) {
+          await ctx.db.patch(target._id, {
+            leaderIds: [
+              ...new Set([...target.leaderIds, ...row.leaderIds]),
+            ],
+            observerIds: [
+              ...new Set([...target.observerIds, ...row.observerIds]),
+            ],
+          });
+          report.wiresMerged +=
+            row.leaderIds.length + row.observerIds.length;
+        }
+        await ctx.db.delete(row._id);
+        rowByDate.delete(row.date);
+        report.sessionsDeleted++;
+      }
+
+      // 3. Attendance remap: positional (Nth class → Nth real date).
+      for (const s of await ctx.db
+        .query("students")
+        .withIndex("by_quarter", (q) => q.eq("quarter", quarter))
+        .collect()) {
+        const rows = (
+          await ctx.db
+            .query("attendance")
+            .withIndex("by_student", (q) => q.eq("studentId", s._id))
+            .collect()
+        ).sort((a, b) => a.date.localeCompare(b.date));
+        if (rows.length === 0) continue;
+        const identical =
+          rows.length === realSorted.length &&
+          rows.every((r, i) => r.date === realSorted[i]);
+        if (identical) continue;
+        report.studentsTouched++;
+        for (const row of rows) await ctx.db.delete(row._id);
+        const keep = Math.min(rows.length, realSorted.length);
+        for (let i = 0; i < keep; i++) {
+          await ctx.db.insert("attendance", {
+            studentId: s._id,
+            quarter,
+            date: realSorted[i],
+            attended: rows[i].attended,
+          });
+          report.attendanceRemapped++;
+        }
+        report.attendanceDeleted += rows.length - keep;
+        for (let i = rows.length; i < realSorted.length; i++) {
+          await ctx.db.insert("attendance", {
+            studentId: s._id,
+            quarter,
+            date: realSorted[i],
+            attended: false,
+          });
+          report.attendanceAdded++;
+        }
+        const all = await ctx.db
+          .query("attendance")
+          .withIndex("by_student", (q) => q.eq("studentId", s._id))
+          .collect();
+        const missed = all.filter((a) => !a.attended).length;
+        if (s.missed !== missed) await ctx.db.patch(s._id, { missed });
+      }
+      report.quartersAligned++;
+    }
+    return report;
+  },
+});
