@@ -88,12 +88,23 @@ is the gate.
 
 Convex requires ASCII field names, so documents use English keys
 (`name`, `fellowship`, `email`, `baptismTime`, `quarter`, `groupName`,
-`gender`, `leadingExperience`, `present`, `class1`-`class5`, `missed`,
+`gender`, `leadingExperience`, `present`, `missed`,
 `leadingSessions`, `observingSessions`, `photoStorageId`); the UI shows
 the original Chinese labels. Linked-record fields were resolved to
-display values at import time (主领日期/观察日期 → 课程日期). The Airtable
-`Missed` formula (unchecked classes, 1-5) is replicated at write time
-and verified to match all 284 migrated records.
+display values at import time (主领日期/观察日期 → 课程日期).
+
+Attendance (出勤) lives in the `attendance` table: one row per
+(student, class date), written through `students:recordAttendance`,
+which validates that the date is an active session date of the
+student's quarter — attendance can never point at a non-class day. A
+quarter's active dates are its rows in the `sessions` table (4-6
+variable weeks, gaps allowed). Quarters whose dates Airtable never
+recorded (2023-2026 spring among others) were synthesized by
+`migrations:backfillAttendance` — first five Sundays of
+April/October — and carry `estimated: true`; correct any wrong date in
+place. `missed` is the replicated absent count, maintained at write
+time. Instructors are never students in the current quarter: enforced
+at both registration paths and by the backfill migration.
 
 Dropped in the 2026-09-05 cleanup: the homework columns
 (功课（提交）→`homeworkSubmitted`, 功课提交数目→`homeworkCount`), the

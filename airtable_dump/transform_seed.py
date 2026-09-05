@@ -8,10 +8,12 @@
   arrays of display values using the other dumps.
 - Generalizes the scalar 带领日期/观察的日期 into the leadingSessions/
   observingSessions arrays; homework columns are no longer tracked.
-- Replicates the Missed formula (5 - number of checked 課堂) and verifies it
   against Airtable's stored value.
 - Converts Airtable's createdTime into the document's true system
   `_creationTime` (the single creation-time column in Convex).
+- Emits present=true and missed=0: attendance lives in the Convex
+  attendance table (one row per student per session date) and is NOT
+  reconstructible from Airtable — preserve it via `convex export`.
 - Writes students_seed.jsonl (one document per line) for `npx convex import`.
 """
 
@@ -32,7 +34,6 @@ LINKS = {
     "观察日期": ("tblQgLBaK0KENUuwT", "观察日期"),
     "功课（提交）": ("tblzkrTts5Fr5kw1l", "功课（提交）"),
 }
-CLASS_CHECKBOXES = ["課堂（一）", "課堂（二）", "課堂（三）", "課堂（四）", "課堂（五）"]
 
 # Convex field names must be non-control ASCII, so documents use English
 # keys (UI labels remain Chinese).
@@ -45,13 +46,6 @@ KEY_MAP = {
     "小组名字": "groupName",
     "性別": "gender",
     "帶領查經經驗": "leadingExperience",
-    "出席": "present",
-    "課堂（一）": "class1",
-    "課堂（二）": "class2",
-    "課堂（三）": "class3",
-    "課堂（四）": "class4",
-    "課堂（五）": "class5",
-    "Missed": "missed",
     "主领日期": "leadingSessions",
     "观察日期": "observingSessions",
 }
@@ -92,7 +86,6 @@ def main() -> None:
     students = json.loads((HERE / f"{TBL_STUDENTS}_table.json").read_text())
 
     docs = []
-    mismatch_missed = 0
     for rec in students:
         f = rec["fields"]
         doc = {
@@ -105,8 +98,7 @@ def main() -> None:
         # Scalar fields, copied as-is.
         for key in [
             "名字", "團契", "郵箱", "受洗時間", "参与训练的季度", "小组名字",
-            "性別", "帶領查經經驗", "出席",
-            *CLASS_CHECKBOXES,
+            "性別", "帶領查經經驗",
         ]:
             if key in f:
                 doc[key] = f[key]
@@ -131,15 +123,11 @@ def main() -> None:
         doc.pop("功课（提交）", None)
         doc.pop("功课提交数目", None)
 
-        # Replicate the Missed formula + verify.
-        computed_missed = sum(1 for c in CLASS_CHECKBOXES if not f.get(c))
-        if "Missed" in f and f["Missed"] != computed_missed:
-            mismatch_missed += 1
-            print(
-                f"  Missed mismatch {rec['id']}: airtable={f['Missed']} "
-                f"computed={computed_missed}"
-            )
-        doc["Missed"] = computed_missed
+        # Attendance lives in the Convex attendance table (one row per
+        # student per session date) and is NOT reconstructible from
+        # Airtable. 出席 is always true; missed starts at 0.
+        doc["present"] = True
+        doc["missed"] = 0
 
         docs.append(doc)
 
@@ -150,7 +138,6 @@ def main() -> None:
             fh.write(json.dumps(ascii_doc, ensure_ascii=False) + "\n")
 
     print(f"wrote {len(docs)} documents -> {out}")
-    print(f"Missed formula mismatches: {mismatch_missed}")
 
     # Quarter distribution (for the 本季度 view sanity check).
     from collections import Counter

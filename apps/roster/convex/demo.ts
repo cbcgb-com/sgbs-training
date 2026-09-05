@@ -1,7 +1,11 @@
 import { internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
-import { CURRENT_QUARTER } from "../src/constants";
+import { upsertAttendance } from "./students";
+import {
+  CURRENT_QUARTER,
+  CURRENT_QUARTER_SESSION_DATES,
+} from "../src/constants";
 
 // Preview/demo seeding: fake students, groups, and a fake 2026秋季 session
 // schedule on the DEV deployment only. Run via
@@ -22,10 +26,11 @@ const FAKE_STUDENTS = [
 // 2026秋季 Sunday schedule. Dates that already exist are patched with the
 // extra assignments rather than duplicated.
 const FAKE_SESSIONS = [
-  { date: "2026-09-13", leaderEmails: ["demo1@demo.sgbs"], observerEmails: ["demo4@demo.sgbs", "demo7@demo.sgbs"] },
-  { date: "2026-09-20", leaderEmails: ["demo5@demo.sgbs", "demo2@demo.sgbs"], observerEmails: ["demo8@demo.sgbs"] },
-  { date: "2026-09-27", leaderEmails: ["demo6@demo.sgbs"], observerEmails: ["demo3@demo.sgbs", "demo5@demo.sgbs"] },
+  { date: "2026-09-20", leaderEmails: ["demo1@demo.sgbs"], observerEmails: ["demo4@demo.sgbs", "demo7@demo.sgbs"] },
+  { date: "2026-09-27", leaderEmails: ["demo5@demo.sgbs", "demo2@demo.sgbs"], observerEmails: ["demo8@demo.sgbs"] },
+  { date: "2026-10-04", leaderEmails: ["demo6@demo.sgbs"], observerEmails: ["demo3@demo.sgbs", "demo5@demo.sgbs"] },
   { date: "2026-10-11", leaderEmails: ["demo4@demo.sgbs", "demo7@demo.sgbs"], observerEmails: ["demo1@demo.sgbs"] },
+  { date: "2026-10-18", leaderEmails: ["demo2@demo.sgbs"], observerEmails: ["demo6@demo.sgbs"] },
 ];
 
 export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
@@ -55,13 +60,13 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         groupName: s.groupName,
         quarter: CURRENT_QUARTER,
         present: true,
-        class1: attended >= 1,
-        class2: attended >= 2,
-        class3: attended >= 3,
-        class4: attended >= 4,
-        class5: attended >= 5,
-        missed: 5 - attended,
+        missed: 0,
       });
+      // Attendance: attended the first `attended` sessions, absent for
+      // the rest (upsertAttendance keeps `missed` in sync).
+      for (const [i, date] of CURRENT_QUARTER_SESSION_DATES.entries()) {
+        await upsertAttendance(ctx, id, CURRENT_QUARTER, date, i < attended);
+      }
       idByEmail.set(s.email, id);
       studentsAdded++;
     }
@@ -127,15 +132,14 @@ export const resetQuarterData = internalMutation({
     for (const s of students) {
       if (s.quarter !== CURRENT_QUARTER) continue;
       names.push(s.name);
-      await ctx.db.patch(s._id, {
-        groupName: undefined,
-        missed: 0,
-        class1: undefined,
-        class2: undefined,
-        class3: undefined,
-        class4: undefined,
-        class5: undefined,
-      });
+      const attendanceRows = await ctx.db
+        .query("attendance")
+        .withIndex("by_student", (q) => q.eq("studentId", s._id))
+        .collect();
+      for (const row of attendanceRows) {
+        await ctx.db.delete(row._id);
+      }
+      await ctx.db.patch(s._id, { groupName: undefined, missed: 0 });
       reset++;
     }
     return { reset, names };
