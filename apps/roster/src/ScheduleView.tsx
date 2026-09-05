@@ -50,10 +50,18 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
     );
   }
 
-  if (!isInstructor) {
-    return <StudentSchedule sessions={sessions} />;
-  }
+  // The earliest date of the season is orientation week (課程信息介紹):
+  // it never carries 主領/觀察, in either view.
+  const orientationDate = sessions[0]?.date ?? null;
 
+  if (!isInstructor) {
+    return (
+      <StudentSchedule
+        sessions={sessions}
+        orientationDate={orientationDate}
+      />
+    );
+  }
 
   return (
     <div>
@@ -68,7 +76,11 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
       <p className="mt-3 text-sm leading-relaxed text-ink-soft">
         按小組填寫每週的主領與觀察；日期已固定，每組輪流服事。
       </p>
-      <GroupSections sessions={sessions} roster={roster ?? []} />
+      <GroupSections
+        sessions={sessions}
+        roster={roster ?? []}
+        orientationDate={orientationDate}
+      />
     </div>
   );
 }
@@ -76,9 +88,11 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
 function GroupSections({
   sessions,
   roster,
+  orientationDate,
 }: {
   sessions: SessionRow[];
   roster: Doc<"students">[];
+  orientationDate: string | null;
 }) {
   const named = useMemo(() => {
     const map = new Map<string, Doc<"students">[]>();
@@ -107,6 +121,7 @@ function GroupSections({
           groupName={name}
           members={members}
           sessions={sessions}
+          orientationDate={orientationDate}
         />
       ))}
       {named.ungrouped.length > 0 && (
@@ -114,6 +129,7 @@ function GroupSections({
           groupName="未分組"
           members={named.ungrouped}
           sessions={sessions}
+          orientationDate={orientationDate}
         />
       )}
     </div>
@@ -124,10 +140,12 @@ function GroupScheduleTable({
   groupName,
   members,
   sessions,
+  orientationDate,
 }: {
   groupName: string;
   members: Doc<"students">[];
   sessions: SessionRow[];
+  orientationDate: string | null;
 }) {
   const assign = useMutation(api.students.updateSessionAssignments);
   const memberIds = useMemo(() => new Set(members.map((m) => m._id)), [members]);
@@ -188,6 +206,24 @@ function GroupScheduleTable({
               const weekday = [
                 "日", "一", "二", "三", "四", "五", "六",
               ][dateObj.getDay()];
+              if (s.date === orientationDate) {
+                return (
+                  <tr key={s._id} className="border-b border-rule">
+                    <td className="whitespace-nowrap px-3 py-3 align-top font-serif-tc text-[15px] font-bold text-ink">
+                      {s.date.slice(5)}
+                      <span className="ml-1.5 text-xs font-normal text-ink-soft">
+                        週{weekday}
+                      </span>
+                    </td>
+                    <td
+                      colSpan={2}
+                      className="px-3 py-3 font-serif-tc text-sm text-ink-soft"
+                    >
+                      課程信息介紹 — 本週無主領觀察
+                    </td>
+                  </tr>
+                );
+              }
               return (
                 <tr
                   key={s._id}
@@ -312,7 +348,13 @@ function roleLabel(role: Role) {
 }
 
 
-function StudentSchedule({ sessions }: { sessions: SessionRow[] }) {
+function StudentSchedule({
+  sessions,
+  orientationDate,
+}: {
+  sessions: SessionRow[];
+  orientationDate: string | null;
+}) {
   const { setTab } = useTab();
   const me = useQuery(api.students.me);
   const group = useQuery(api.students.myGroup);
@@ -397,6 +439,24 @@ function StudentSchedule({ sessions }: { sessions: SessionRow[] }) {
               const weekday = [
                 "日", "一", "二", "三", "四", "五", "六",
               ][dateObj.getDay()];
+              if (s.date === orientationDate) {
+                return (
+                  <tr key={s._id} className="border-b border-rule">
+                    <td className="whitespace-nowrap px-3 py-3 align-top font-serif-tc text-[17px] font-bold text-ink">
+                      {s.date}
+                      <span className="ml-2 text-sm font-normal text-ink-soft">
+                        週{weekday}
+                      </span>
+                    </td>
+                    <td
+                      colSpan={2}
+                      className="px-3 py-3 font-serif-tc text-sm text-ink-soft"
+                    >
+                      課程信息介紹 — 本週無主領觀察
+                    </td>
+                  </tr>
+                );
+              }
               const iLead = myId !== null && s.leaders.some((l) => l._id === myId);
               const iObserve =
                 myId !== null && s.observers.some((o) => o._id === myId);
