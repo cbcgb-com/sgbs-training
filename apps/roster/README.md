@@ -37,6 +37,12 @@ student; anything else is a guest.
   with an email-verification step. Instructor: admin mode — register other
   people (editable email), with the 登記另一位 loop for back-to-back
   sign-ups.
+- **我的資料 my profile** — Student only: own registration record as the
+  ruled sheet they signed up with — view the resting state, 更新資料 to
+  edit particulars, re-upload or remove the photo, fill anything the
+  registration left blank (email and 小組 stay read-only: identity and
+  instructor territory). Instructor: never (the instructor rule keeps
+  them out of the students table).
 - **我的組 my group** — Student only: own group mates with names, photos,
   and contact info, plus the editable group name. Instructor: never (not
   their surface).
@@ -58,7 +64,9 @@ Intent rules that must survive refactors:
 2. **Students edit only themselves.** In 課堂安排 a student can add or
    remove their own name as 主領/觀察 for any of the four leading weeks —
    never anyone else's. Adding one role for a week removes them from the
-   other role that week.
+   other role that week. In 我的資料 a student edits their own
+   particulars and photo only — never the email (identity) or 小組/季度
+   (instructor territory), enforced server-side by `requireCurrentStudent`.
 3. **Groups are self-naming.** Any member can rename the group (點擊組名);
    the rename sweeps every member that season. Groups start as
    第1組/第2組/... from the one-click divider and get real names on day one

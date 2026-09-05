@@ -142,6 +142,8 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/src/auth/` - Sign-in sheet, code-entry step, session store
 - `apps/roster/src/Form.tsx` - Reimplementation of the Airtable registration
   form (shrS5gKu57LudKDSh)
+- `apps/roster/src/MyProfile.tsx` - Student self-service profile 我的資料
+  (view/update own record + photo)
 - `apps/roster/src/Roster.tsx` - Grid + kanban view browser
 - `airtable_dump/` - Airtable dump/transform/seed pipeline (see
   `apps/roster/README.md` for the full re-import procedure)

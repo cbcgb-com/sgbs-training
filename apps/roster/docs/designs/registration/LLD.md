@@ -65,7 +65,8 @@ never reach a Chinese-language form.
 ## Edge Cases
 
 - **Already registered**: same email + quarter returns status duplicate →
-  UI shows 已註冊 with a recovery line (聯絡同工), not a second record.
+  UI shows 已註冊 pointing at 我的資料 for self-serve updates, not a
+  second record.
 - **New registrations start at missed: 0** — "5" meant attendance was
   never recorded, never "missed everything" (Eric: out at ~3).
 - **Instructor registering a duplicate** still returns duplicate, never a
