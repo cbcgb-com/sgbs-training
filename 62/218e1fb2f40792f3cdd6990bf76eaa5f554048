@@ -1,0 +1,14 @@
+apps/roster/src/ScheduleView.tsx
+  h_923f9eef54c2c1 53-56,58-63,79-83,91,95,124,132,143,148,209-226,351-357,442-459
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "62218e1fb2f40792f3cdd6990bf76eaa5f554048",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
