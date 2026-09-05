@@ -1,0 +1,18 @@
+airtable_dump/transform_seed.py
+  h_923f9eef54c2c1 109
+apps/roster/README.md
+  h_923f9eef54c2c1 106-107
+apps/roster/convex/migrations.ts
+  h_923f9eef54c2c1 35-36,69,99-100,108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "7b42f848338e75f425fbf36a71fe62248713b45d",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
