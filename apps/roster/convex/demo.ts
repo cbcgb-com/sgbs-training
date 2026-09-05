@@ -202,6 +202,26 @@ export const resetQuarterData = internalMutation({
   },
 });
 
+// Wipe all 主領/觀察 assignments from the current quarter's sessions so
+// the schedule starts blank (orientation week stays an empty row). Run
+// via `npx convex run demo:clearSessionAssignments '{}'`.
+export const clearSessionAssignments = internalMutation({
+  handler: async (ctx) => {
+    const sessions = await ctx.db
+      .query("sessions")
+      .withIndex("by_quarter", (q) => q.eq("quarter", CURRENT_QUARTER))
+      .collect();
+    let cleared = 0;
+    for (const s of sessions) {
+      if (s.leaderIds.length > 0 || s.observerIds.length > 0) {
+        await ctx.db.patch(s._id, { leaderIds: [], observerIds: [] });
+        cleared++;
+      }
+    }
+    return { cleared, total: sessions.length };
+  },
+});
+
 // The first class of a season is orientation (課程信息介紹) — it never has
 // 主領/觀察. Ensure its session row exists (empty assignments) so the
 // schedule shows the full five-Sunday calendar. Run via

@@ -655,6 +655,38 @@ export const updateSessionAssignments = mutation({
   },
 });
 
+// ---- Production cleanup (CLI-only, run with npx convex run --prod) ----
+
+// Delete one student row and its dependent attendance rows by email.
+// Safe no-op when the email has no student row. Instructors table is
+// intentionally untouched. Run via
+//   npx convex run students:deleteStudentByEmail '{"email":"a@b.c"}'
+export const deleteStudentByEmail = internalMutation({
+  args: { email: v.string() },
+  handler: async (ctx, { email }) => {
+    const target = email.trim().toLowerCase();
+    const rows = (await ctx.db.query("students").collect()).filter(
+      (s) => (s.email ?? "").trim().toLowerCase() === target,
+    );
+    let attendanceDeleted = 0;
+    for (const s of rows) {
+      const att = await ctx.db
+        .query("attendance")
+        .withIndex("by_student", (q) => q.eq("studentId", s._id))
+        .collect();
+      for (const row of att) {
+        await ctx.db.delete(row._id);
+        attendanceDeleted++;
+      }
+      if (s.photoStorageId) {
+        await ctx.storage.delete(s.photoStorageId);
+      }
+      await ctx.db.delete(s._id);
+    }
+    return { studentsDeleted: rows.length, attendanceDeleted };
+  },
+});
+
 // ---- Admin cleanup (not exposed to clients) ----
 
 export const deleteStudent = internalMutation({
