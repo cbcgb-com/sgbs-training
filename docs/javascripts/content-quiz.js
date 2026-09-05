@@ -32,13 +32,17 @@
 
     function reportEmbedHeight() {
         if (window.parent === window) return;
-        var root = document.documentElement;
-        var height = Math.max(
-            root.scrollHeight,
-            document.body ? document.body.scrollHeight : 0
-        );
+        // scrollHeight (root or body) is clamped by the iframe's own
+        // viewport height, so it can never report a value SMALLER than
+        // the current frame — the frame could grow but never shrink,
+        // leaving dead space below the quiz (Eric, 2026-09-05). Measure
+        // the quiz element(s) directly: offsetHeight is never clamped.
+        var content = 0;
+        document.querySelectorAll(".content-quiz").forEach(function (q) {
+            content = Math.max(content, q.offsetHeight);
+        });
         window.parent.postMessage(
-            { type: HEIGHT_MSG, height: height },
+            { type: HEIGHT_MSG, height: content },
             "*"
         );
     }
@@ -250,8 +254,25 @@
         scheduleEmbedHeightReport();
     }
 
+    window.addEventListener("message", function (event) {
+        var data = event.data;
+        if (data && data.type === "content-quiz-frame-measure") {
+            scheduleEmbedHeightReport();
+        }
+    });
+
     syncEmbedThemeFromParent();
     document.querySelectorAll(".content-quiz").forEach(initQuiz);
     observeEmbedHeight();
     scheduleEmbedHeightReport();
+
+    // Keep shrinking honest: re-report periodically for a moment after
+    // load so late layout settles (fonts/images) never leaves the frame
+    // taller than the quiz it wraps.
+    (function settleReports() {
+        var ticks = [120, 400, 1000, 2200];
+        ticks.forEach(function (ms) {
+            setTimeout(scheduleEmbedHeightReport, ms);
+        });
+    })();
 })();
