@@ -89,9 +89,14 @@ is the gate.
 Convex requires ASCII field names, so documents use English keys
 (`name`, `fellowship`, `email`, `baptismTime`, `quarter`, `groupName`,
 `gender`, `leadingExperience`, `present`, `missed`,
-`leadingSessions`, `observingSessions`, `photoStorageId`); the UI shows
-the original Chinese labels. Linked-record fields were resolved to
-display values at import time (主领日期/观察日期 → 课程日期).
+`photoStorageId`); the UI shows the original Chinese labels.
+
+Leading/observing assignments live only in the `sessions` table
+(`leaderIds`/`observerIds`); the per-student views derive them at
+query time, so there is no second copy to drift. The legacy
+per-student assignment arrays were reconciled into sessions and
+dropped (`migrations:reconcileAssignments`), surfacing real class
+dates the calendar had lacked (e.g. 2023春季 ran Feb-Mar).
 
 Attendance (出勤) lives in the `attendance` table: one row per
 (student, class date), written through `students:recordAttendance`,
@@ -113,8 +118,7 @@ current quarter, classes that haven't been marked stay unrecorded.
 
 Dropped in the 2026-09-05 cleanup: the homework columns
 (功课（提交）→`homeworkSubmitted`, 功课提交数目→`homeworkCount`), the
-scalar 带领日期/观察的日期 (harmonized into the
-`leadingSessions`/`observingSessions` arrays), `source`, and
+scalar 带领日期/观察的日期, `source`, and
 `teachingAssistants` — all stripped from existing rows by
 `migrations:cleanupStudentFields`. The same migration sets `present`
 to true on every row and backfills `class1`-`class5` = true (with
