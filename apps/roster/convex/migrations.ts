@@ -923,3 +923,38 @@ export const fixRestoredAttendance = internalMutation({
     return report;
   },
 });
+
+// One-time port (2026-09-05): Lujia Lin registered on the legacy Airtable
+// form after the roster cutover (recCILHezIoeNdee2, created
+// 2026-09-05). Port her row into the prod students table so she can sign
+// in with the new email-lookup auth without re-registering. Seeded from
+// her Airtable row; quarter/present/missed follow the current
+// registration shape (2026秋季, present: true, missed: 0 — the Airtable
+// row's Missed=5 is the legacy-form default, not attendance history).
+// Idempotent — skips when the email already has a current-quarter row.
+// Run via: npx convex run migrations:portLujiaLin [--prod]
+export const portLujiaLin = internalMutation({
+  handler: async (ctx) => {
+    const email = "lujialin0407@gmail.com";
+    const existing = await ctx.db
+      .query("students")
+      .withIndex("by_email", (q) => q.eq("email", email))
+      .collect();
+    if (existing.some((s) => s.quarter === CURRENT_QUARTER)) {
+      return { status: "already-present" as const, id: existing[0]._id };
+    }
+    const id = await ctx.db.insert("students", {
+      airtableId: "recCILHezIoeNdee2",
+      name: "Lujia Lin",
+      gender: "女",
+      fellowship: "MIT團契（工作組之一）",
+      email,
+      baptismTime: "超過5年",
+      leadingExperience: "帶過，1到5次",
+      quarter: CURRENT_QUARTER,
+      present: true,
+      missed: 0,
+    });
+    return { status: "created" as const, id };
+  },
+});
