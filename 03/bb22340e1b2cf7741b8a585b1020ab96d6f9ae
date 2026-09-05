@@ -1,0 +1,14 @@
+docs/stylesheets/extra.css
+  h_923f9eef54c2c1 599-724
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "03bb22340e1b2cf7741b8a585b1020ab96d6f9ae",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
