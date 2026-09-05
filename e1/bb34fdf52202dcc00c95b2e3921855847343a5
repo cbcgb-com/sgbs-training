@@ -1,0 +1,26 @@
+airtable_dump/transform_seed.py
+  h_923f9eef54c2c1 7-8
+apps/roster/README.md
+  h_923f9eef54c2c1 92-96,99-105
+apps/roster/convex/auth.ts
+  h_923f9eef54c2c1 180
+apps/roster/convex/demo.ts
+  h_923f9eef54c2c1 57
+apps/roster/convex/migrations.ts
+  h_923f9eef54c2c1 33-42,52-53,65-66,94-96,102-103,107-131,147-154
+apps/roster/convex/students.ts
+  h_923f9eef54c2c1 343-344
+apps/roster/docs/designs/roster-views/roster-views-EARS.md
+  h_923f9eef54c2c1 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "e1bb34fdf52202dcc00c95b2e3921855847343a5",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
