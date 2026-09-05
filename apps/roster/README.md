@@ -104,10 +104,11 @@ which validates that the date is an active session date of the
 student's quarter — attendance can never point at a non-class day. A
 quarter's active dates are its rows in the `sessions` table (4-6
 variable weeks, gaps allowed). Quarters whose dates Airtable never
-recorded (2023-2026 spring among others) were synthesized by
-`migrations:backfillAttendance` — first five Sundays of
-April/October — and carry `estimated: true`; correct any wrong date in
-place. `missed` is the replicated absent count, maintained at write
+recorded were reconstructed: 2022秋季-2026春季 are aligned to the
+course website's 錄影 page (authoritative dates, via
+`migrations:alignCalendarsToRecordings`), and the four older seasons
+without recordings (2015/2016 fall, 2020 fall, 2021 spring) carry
+`estimated: true` (first five Sundays of April/October). `missed` is the replicated absent count, maintained at write
 time. Instructors are never students in the current quarter: enforced
 at both registration paths and by the backfill migration.
 
