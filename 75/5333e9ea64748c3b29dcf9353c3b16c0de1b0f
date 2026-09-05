@@ -1,0 +1,20 @@
+.github/workflows/roster.yml
+  h_923f9eef54c2c1 1,3-8,10-16,62-64,78
+apps/roster/README.md
+  h_923f9eef54c2c1 120-139
+apps/roster/docs/designs/authentication/LLD.md
+  h_923f9eef54c2c1 195-206,211-220
+apps/roster/vercel.json
+  h_923f9eef54c2c1 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "755333e9ea64748c3b29dcf9353c3b16c0de1b0f",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
