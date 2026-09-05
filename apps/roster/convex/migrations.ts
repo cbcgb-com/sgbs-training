@@ -684,3 +684,156 @@ export const alignCalendarsToRecordings = internalMutation({
     return report;
   },
 });
+
+// One-time restoration of two unrecorded classes (2026-09-05): the
+// 錄影 page's lesson topics reveal two seasons hosted a class whose
+// recording is missing, which the calendar alignment therefore missed:
+// - 2022秋季 lists lessons 2-4 (敘述文/提問題/論說文 on 10-23/10-30/
+//   11-06) — lesson 1 met the week before on 10-16, and lesson 5
+//   closed the season on 11-13 (already in the Airtable calendar).
+// - 2023春季 lists lessons 1-3 and 5 — lesson 4 met on the 03-12 gap
+//   week (unrecorded).
+// All 28 students of those two seasons carry TTTTT attendance in the
+// original Airtable dump, so each restored date gets an attended row
+// per season member. The 2023-03-12 wires come from the
+// pre-reconciliation per-student arrays. Idempotent. Run via:
+//   npx convex run migrations:restoreUnrecordedSessions [--prod]
+export const restoreUnrecordedSessions = internalMutation({
+  handler: async (ctx) => {
+    const report = {
+      sessionsCreated: 0,
+      wiresAdded: 0,
+      attendanceAdded: 0,
+    };
+    const RESTORED = [
+      {
+        quarter: "2022秋季",
+        date: "2022-10-16",
+        leaderAirtableIds: [] as string[],
+        observerAirtableIds: [] as string[],
+        attendeeAirtableIds: [
+          "rectmyV7A0ELygQEr",
+          "reczhHcJc94WxxUQQ",
+          "reccVM8hCuKr7YwFx",
+          "recRAhXwwpXyQ7VkC",
+          "recCXzhGyxefkR4X1",
+          "rec5BdXT5ndt3r51I",
+          "recWIT361Lo5YZ7Rq",
+          "reci9jaBcJ5Kp5X0X",
+          "rece05wfisCZGEnyA",
+          "rec7vcS9NJN1NVVOj",
+          "recQXCX2OBJm0VICD",
+          "recZfRh60zF4YAtu9",
+          "recwuHjNm4aparTrx",
+          "recn8JBNvSurbiCon",
+          "recgeKYbxhLTJBVSr",
+          "recCLQNUnyPFL1ipM",
+          "recRa7PKSdI1q5wWD",
+          "recZ9YC8ryf27qDXO",
+        ],
+      },
+      {
+        quarter: "2023春季",
+        date: "2023-03-12",
+        leaderAirtableIds: ["recn8JBNvSurbiCon", "recCXzhGyxefkR4X1"],
+        observerAirtableIds: ["recrIWRiXV2cvQqwN", "reczhHcJc94WxxUQQ"],
+        attendeeAirtableIds: [
+          "rec0vMJyi075KuIOc",
+          "recmeXYSSteqEwWjk",
+          "recpL39PwRhrnFAe2",
+          "recoC14nRwmpR0Olx",
+          "recXRNUnmEwTXYeP1",
+          "rec5holNdVbWl1NaT",
+          "recpqa757vQ7cWlNs",
+          "recrIWRiXV2cvQqwN",
+          "reczhHcJc94WxxUQQ",
+        ],
+      },
+    ];
+    const resolveByAirtableId = async (ids: string[]) => {
+      const out: Id<"students">[] = [];
+      for (const aid of ids) {
+        const s = await ctx.db
+          .query("students")
+          .withIndex("by_airtableId", (q) => q.eq("airtableId", aid))
+          .unique();
+        if (s) out.push(s._id);
+      }
+      return out;
+    };
+    for (const r of RESTORED) {
+      // Session row (estimated: reconstructed, not from the Airtable
+      // calendar).
+      const existing = (
+        await ctx.db
+          .query("sessions")
+          .withIndex("by_quarter", (q) => q.eq("quarter", r.quarter))
+          .collect()
+      ).find((s) => s.date === r.date);
+      let sessionId: Id<"sessions">;
+      if (existing) {
+        sessionId = existing._id;
+      } else {
+        sessionId = await ctx.db.insert("sessions", {
+          date: r.date,
+          quarter: r.quarter,
+          leaderIds: [],
+          observerIds: [],
+          estimated: true,
+        });
+        report.sessionsCreated++;
+      }
+
+      // Leadership/observation wires from the legacy arrays.
+      if (r.leaderAirtableIds.length || r.observerAirtableIds.length) {
+        const sess = await ctx.db.get(sessionId);
+        if (sess) {
+          const leaders = await resolveByAirtableId(r.leaderAirtableIds);
+          const observers = await resolveByAirtableId(r.observerAirtableIds);
+          const mergedLeaders = [
+            ...new Set([...sess.leaderIds, ...leaders]),
+          ];
+          const mergedObservers = [
+            ...new Set([...sess.observerIds, ...observers]),
+          ];
+          if (
+            mergedLeaders.length !== sess.leaderIds.length ||
+            mergedObservers.length !== sess.observerIds.length
+          ) {
+            await ctx.db.patch(sessionId, {
+              leaderIds: mergedLeaders,
+              observerIds: mergedObservers,
+            });
+            report.wiresAdded +=
+              mergedLeaders.length -
+              sess.leaderIds.length +
+              (mergedObservers.length - sess.observerIds.length);
+          }
+        }
+      }
+
+      // Attendance: every season member attended the restored class
+      // (TTTTT in the original Airtable dump).
+      for (const aid of r.attendeeAirtableIds) {
+        const s = await ctx.db
+          .query("students")
+          .withIndex("by_airtableId", (q) => q.eq("airtableId", aid))
+          .unique();
+        if (!s) continue;
+        const rows = await ctx.db
+          .query("attendance")
+          .withIndex("by_student", (q) => q.eq("studentId", s._id))
+          .collect();
+        if (rows.some((row) => row.date === r.date)) continue;
+        await ctx.db.insert("attendance", {
+          studentId: s._id,
+          quarter: r.quarter,
+          date: r.date,
+          attended: true,
+        });
+        report.attendanceAdded++;
+      }
+    }
+    return report;
+  },
+});
