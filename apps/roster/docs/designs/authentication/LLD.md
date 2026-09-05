@@ -85,7 +85,7 @@ Helpers in `convex/students.ts`: `requireAuth`, `requireInstructor`
 Convex validates a **Custom JWT** issued by the app itself
 (docs.convex.dev/auth/advanced/custom-jwt):
 
-- `iss`: `https://sgbs-roster.vercel.app/` (constant; the app origin)
+- `iss`: `https://sgbs-training.citylight.life/` (constant; the app origin)
 - `aud`: `"sgbs-roster"` (constant; a second app on the same issuer
   would need its own audience)
 - `sub`: `email:<registered email>`
@@ -105,7 +105,7 @@ needed.
 {
   type: "customJwt",
   applicationID: "sgbs-roster",
-  issuer: "https://sgbs-roster.vercel.app/",
+  issuer: "https://sgbs-training.citylight.life/",
   jwks: "data:application/json;base64,<public JWKS>",
   algorithm: "ES256",
 }
