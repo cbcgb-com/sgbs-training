@@ -1,0 +1,32 @@
+AGENTS.md
+  h_923f9eef54c2c1 145-146
+apps/roster/README.md
+  h_923f9eef54c2c1 40-45,67-69
+apps/roster/convex/students.ts
+  h_923f9eef54c2c1 610-689
+apps/roster/docs/designs/authentication/roles-EARS.md
+  h_923f9eef54c2c1 81
+apps/roster/docs/designs/profile/LLD.md
+  h_923f9eef54c2c1 1-53
+apps/roster/docs/designs/profile/profile-EARS.md
+  h_923f9eef54c2c1 1-55
+apps/roster/docs/designs/registration/LLD.md
+  h_923f9eef54c2c1 68-69
+apps/roster/src/App.tsx
+  h_923f9eef54c2c1 11,17,124,217
+apps/roster/src/Form.tsx
+  h_923f9eef54c2c1 177-179,196
+apps/roster/src/MyProfile.tsx
+  h_923f9eef54c2c1 1-557
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "0f5f705bbcf5f8fa6b853251f6af27d6337785d9",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
