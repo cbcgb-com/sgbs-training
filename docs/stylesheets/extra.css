@@ -1115,46 +1115,6 @@ article.typography table tbody tr:hover,
 }
 
 /*
- * Landing registration CTA – the one prominent action on the home page.
- * Vermilion seal-style fill; ghost-on-hover like the ledger buttons.
- * Scoped to .typography a to outrank the global link styling.
- */
-.typography a.register-cta {
-    display: inline-block;
-    padding: 0.6rem 1.75rem;
-    font-family: "Noto Serif TC", "Songti TC", "SimSun", serif;
-    font-size: 1.05em;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: var(--sgbs-paper);
-    background: var(--sgbs-vermilion);
-    border: 1px solid var(--sgbs-vermilion);
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease,
-        border-color 0.15s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.typography a.register-cta:hover,
-.typography a.register-cta:focus-visible {
-    color: var(--sgbs-vermilion);
-    background: transparent;
-    text-decoration: none;
-}
-
-.typography a.register-cta:focus-visible {
-    outline: 2px solid var(--sgbs-vermilion);
-    outline-offset: 2px;
-}
-
-/* A hair lighter than --sgbs-vermilion so paper-dark text keeps AA. */
-.dark .typography a.register-cta {
-    background: #d4603f;
-    border-color: #d4603f;
-}
-
-/*
  * QR share card – a single card for handing the page to someone else.
  * (Two QRs side by side read as "scan one of these," which made no
  * sense on the page itself; registration now leads as a text CTA.)
@@ -1177,7 +1137,143 @@ article.typography table tbody tr:hover,
 /* Clickable QR image: no link chrome, gentle hover/focus cue. */
 .typography a.qrcode-option__qr-link {
     display: inline-block;
+    position: relative;
     text-decoration: none;
+}
+
+/*
+ * First-load tap hint: a cursor (mouse) or finger (touch) nudges in
+ * from the corner, taps the QR a few times, then fades for good.
+ * The icon swaps on input modality; reduced-motion users never see
+ * it, and hovering/focusing the QR dismisses it immediately.
+ */
+.tap-hint {
+    position: absolute;
+    right: 4px;
+    bottom: 2px;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    opacity: 0;
+    animation: tap-hint-move 1.9s ease-in-out 0.4s 3 both;
+}
+
+.tap-hint svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.tap-hint__cursor {
+    display: block;
+}
+
+.tap-hint__finger {
+    display: none;
+}
+
+/* Touch screens get the finger; mouse-driven pointers get the cursor. */
+@media (hover: none), (pointer: coarse) {
+    .tap-hint__cursor {
+        display: none;
+    }
+
+    .tap-hint__finger {
+        display: block;
+    }
+}
+
+.tap-hint__ripple {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    border-radius: 50%;
+    border: 2px solid var(--sgbs-vermilion);
+    opacity: 0;
+    animation: tap-hint-ripple 1.9s ease-out 0.4s 3 both;
+}
+
+@keyframes tap-hint-move {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    45% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 1;
+    }
+
+    54% {
+        transform: translate(-51px, -53px) scale(1);
+        opacity: 1;
+    }
+
+    62% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 1;
+    }
+
+    82% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 0;
+    }
+}
+
+@keyframes tap-hint-ripple {
+    0%,
+    48% {
+        opacity: 0;
+        transform: scale(0.35);
+    }
+
+    55% {
+        opacity: 0.9;
+        transform: scale(0.45);
+    }
+
+    80% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+/* Any attention on the QR itself dismisses the hint right away. */
+.typography a.qrcode-option__qr-link:hover .tap-hint,
+.typography a.qrcode-option__qr-link:focus-visible .tap-hint {
+    animation: none;
+    opacity: 0;
+}
+
+.typography a.qrcode-option__qr-link:hover .tap-hint__ripple,
+.typography a.qrcode-option__qr-link:focus-visible .tap-hint__ripple {
+    animation: none;
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tap-hint {
+        display: none;
+    }
 }
 
 .typography a.qrcode-option__qr-link:hover img,
