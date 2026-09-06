@@ -201,7 +201,9 @@ action (not an awaited send), the registration mutation returns first
 scheduled actions at most once (no automatic retry), so the action
 performs its own small retry (3 attempts) around transient SMTP
 failures; a permanent failure surfaces as a failed job in the Convex
-dashboard and the member can simply be emailed manually.
+dashboard and the member can simply be emailed manually. (The note was
+also sent manually to pre-launch registrants on 2026-09-06 — one
+address at go-live — from the same mailbox, same copy.)
 
 ### Deliverability (verified 2026-09-04 via DNS + Resend API)
 
