@@ -1478,6 +1478,17 @@ article.typography table tbody tr:hover,
   --input: var(--sgbs-rule);
   --ring: var(--sgbs-vermilion);
 
+  /* Legacy mkdocs-material token names still referenced by some older
+     components (role-card 職責/每週功課 labels, expandable-card headings,
+     homework cards). The vars are undefined in this theme, so their
+     light-only rgba(0,0,0,…)/#fff fallbacks were being used — invisible
+     on dark paper. Alias them to the scripture palette; since .dark
+     remaps the underlying --sgbs-* and --card tokens, these follow
+     light/dark with the rest of the system. */
+  --md-default-fg-color--light: var(--sgbs-ink-soft);
+  --md-default-fg-color--lightest: rgba(var(--sgbs-ink-rgb), 0.08);
+  --md-default-bg-color: var(--card);
+
   /* Serif typography: the scripture-page world is a printed sheet. */
   --font-sans: "Noto Serif TC", "Songti TC", "SimSun", ui-serif, Georgia,
     serif;
