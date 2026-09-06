@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
 details * {
     font-size: large;
@@ -1493,11 +1493,13 @@ article.typography table tbody tr:hover,
   /* Typography: ONE font family site-wide — 思源宋體 Noto Serif TC, the
      Song-style serif of printed Chinese Bibles, engineered for screens.
      Both vars point at the same family on purpose; everything (body,
-     headings, components, scripture) renders in it. */
-  --font-sans: "Noto Serif TC", "Songti TC", "SimSun", ui-serif, Georgia,
-    serif;
-  --font-serif: "Noto Serif TC", "Songti TC", "SimSun", ui-serif, Georgia,
-    serif;
+     headings, components, scripture) renders in it. Noto Serif SC keeps
+     simplified text (the 简/繁 toggle sets lang=zh-CN) in the same serif
+     design instead of falling back to system sans. */
+  --font-sans: "Noto Serif TC", "Noto Serif SC", "Songti TC", "SimSun",
+    ui-serif, Georgia, serif;
+  --font-serif: "Noto Serif TC", "Noto Serif SC", "Songti TC", "SimSun",
+    ui-serif, Georgia, serif;
 }
 
 .dark {
@@ -1547,6 +1549,16 @@ body {
 /* CJK prose breathes: denser glyphs need a taller leading than Latin. */
 .typography p {
   line-height: 1.75;
+}
+
+/* Generic markdown blockquotes: same deep-paper note surface as the
+   component callouts — no left-border strips, no fake italic on CJK. */
+.typography blockquote {
+  border-left: 0;
+  font-style: normal;
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
+  background: var(--sgbs-paper-deep);
 }
 
 /* Tables: ruled ledger lines on paper. */

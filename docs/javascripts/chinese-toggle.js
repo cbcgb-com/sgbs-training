@@ -4,7 +4,7 @@
     const VARIANT_SIMP = 'zh-cn';
 
     let converter = null;
-    let htmlConverter = null;
+    let htmlConverter = null; // main document only (OpenCC cannot cross iframes)
     let currentVariant = VARIANT_TRAD;
 
     function setLangAttribute() {
@@ -26,11 +26,42 @@
         converter = window.OpenCC.Converter({ from: 'tw', to: 'cn' });
     }
 
+    // The 简/繁 toggle must also reach content rendered inside same-origin
+    // iframes (the content-quiz embeds). OpenCC's HTMLConverter silently
+    // no-ops on foreign documents, so convert their text nodes manually
+    // with the string converter; restore = reload the frame.
+    function convertIframeTexts() {
+        document.querySelectorAll('iframe').forEach(function (frame) {
+            try {
+                if (frame.dataset.simpConverted === '1') return;
+                const doc = frame.contentDocument;
+                if (!doc || !doc.body) return;
+                const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
+                const nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+                nodes.forEach(function (node) {
+                    const converted = converter(node.nodeValue);
+                    if (converted !== node.nodeValue) node.nodeValue = converted;
+                });
+                frame.dataset.simpConverted = '1';
+            } catch (err) { /* cross-origin or not ready: skip */ }
+        });
+    }
+
+    function restoreIframes() {
+        document.querySelectorAll('iframe[data-simp-converted]').forEach(function (frame) {
+            try {
+                frame.contentWindow.location.reload();
+            } catch (err) { /* skip */ }
+            delete frame.dataset.simpConverted;
+        });
+    }
+
     function convertPage() {
         if (!converter) initConverter();
-        const rootNode = document.documentElement;
-        htmlConverter = window.OpenCC.HTMLConverter(converter, rootNode, 'zh-TW', 'zh-CN');
+        htmlConverter = window.OpenCC.HTMLConverter(converter, document.documentElement, 'zh-TW', 'zh-CN');
         htmlConverter.convert();
+        convertIframeTexts();
         currentVariant = VARIANT_SIMP;
         setLangAttribute();
         updateToggleButton();
@@ -39,7 +70,9 @@
     function restorePage() {
         if (htmlConverter) {
             htmlConverter.restore();
+            htmlConverter = null;
         }
+        restoreIframes();
         currentVariant = VARIANT_TRAD;
         setLangAttribute();
         updateToggleButton();
@@ -95,6 +128,14 @@
             });
         }
     }
+
+    // Quiz iframes load lazily; when one finishes loading while the page is
+    // already in simplified mode, convert it too.
+    document.addEventListener('load', function (event) {
+        if (currentVariant === VARIANT_SIMP && event.target.tagName === 'IFRAME' && converter) {
+            convertIframeTexts();
+        }
+    }, true);
 
     function init() {
         setLangAttribute();
