@@ -210,22 +210,100 @@ data-style="steps">
 
 在開始分析經文之前，首先記錄你對經文所在書卷的基本認識。這些背景知識將幫助你更好地理解經文的意義和作者的寫作意圖。
 
-| 要素 | 問題 | 實例（撒母耳記上17:1-58） |
-|------|------|---------------------------|
-| 作者 | 誰寫了這卷書？作者的身份、背景和經歷如何影響他的寫作？ | 傳統認為是撒母耳，但實際可能是多位作者在不同時期編纂而成 |
-| 寫作對象 | 這卷書是寫給誰的？當時的讀者群體有什麼特點？ | 以色列民族，特別是在王國分裂後需要重新思考神權統治的讀者 |
-| 寫作目的 | 作者為什麼要寫這卷書？想要達到什麼目的？ | 記錄以色列從士師時代到王國時代的轉變，展現神如何揀選和使用合祂心意的人 |
-| 書本基本架構 | 整卷書的主要結構和主題是什麼？ | 從撒母耳的出生到掃羅的興衰，再到大衛的興起，展現神的主權和人的回應 |
+<div class="content-panels" data-label="背景知識">
+
+<p class="content-panels__intro">點選一個要素，看看該問什麼，以及《撒母耳記上》17:1-58 的實例。</p>
+
+<div class="content-panels__panel" data-label="作者">
+<h4>作者：書卷的來源</h4>
+<p>誰寫了這卷書？作者的身份、背景和經歷如何影響他的寫作？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>傳統認為是撒母耳，但實際可能是多位作者在不同時期編纂而成。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="寫作對象">
+<h4>寫作對象：書卷寫給誰</h4>
+<p>這卷書是寫給誰的？當時的讀者群體有什麼特點？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>以色列民族，特別是在王國分裂後需要重新思考神權統治的讀者。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="寫作目的">
+<h4>寫作目的：作者的心意</h4>
+<p>作者為什麼要寫這卷書？想要達到什麼目的？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>記錄以色列從士師時代到王國時代的轉變，展現神如何揀選和使用合祂心意的人。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="書本基本架構">
+<h4>書本基本架構：整卷的輪廓</h4>
+<p>整卷書的主要結構和主題是什麼？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>從撒母耳的出生到掃羅的興衰，再到大衛的興起，展現神的主權和人的回應。</p>
+</div>
+</div>
+
+</div>
 
 ### 基本觀察 {#jiben-guancha}
 
-| 要素 | 問題 | 實例（撒母耳記上17:1-58） |
-|------|------|---------------------------|
-| 時間 | 故事發生在什麼時候？有什麼歷史背景？ | 掃羅作王期間，以色列與非利士人爭戰的時期 |
-| 地點 | 故事發生在哪裡？地理環境如何？ | 以拉谷，位於猶大山地，是兩軍對峙的戰場 |
-| 人物 | 經文中出現哪些主要人物？他們的關係如何？ | 大衛（牧童）、歌利亞（非利士巨人）、掃羅（以色列王）、以色列軍隊 |
-| 文學位置 | 這段經文在整卷書中的位置和上下文是什麼？ | 位於大衛被膏立為王之後、登上王位之前，展現大衛的勇敢和對神的信心 |
-| 文化背景 | 有哪些重要的文化、宗教或社會背景需要了解？ | 非利士人的軍事威脅、以色列人對巨人的恐懼、牧童的社會地位、神與人的關係 |
+<div class="content-panels" data-label="基本觀察">
+
+<p class="content-panels__intro">點選一個要素，看看觀察時該問什麼，以及《撒母耳記上》17:1-58 的實例。</p>
+
+<div class="content-panels__panel" data-label="時間">
+<h4>時間：故事的時候</h4>
+<p>故事發生在什麼時候？有什麼歷史背景？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>掃羅作王期間，以色列與非利士人爭戰的時期。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="地點">
+<h4>地點：故事的場景</h4>
+<p>故事發生在哪裡？地理環境如何？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>以拉谷，位於猶大山地，是兩軍對峙的戰場。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="人物">
+<h4>人物：誰在故事裡</h4>
+<p>經文中出現哪些主要人物？他們的關係如何？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>大衛（牧童）、歌利亞（非利士巨人）、掃羅（以色列王）、以色列軍隊。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="文學位置">
+<h4>文學位置：在整卷書的位置</h4>
+<p>這段經文在整卷書中的位置和上下文是什麼？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>位於大衛被膏立為王之後、登上王位之前，展現大衛的勇敢和對神的信心。</p>
+</div>
+</div>
+
+<div class="content-panels__panel" data-label="文化背景">
+<h4>文化背景：需要認識的背景</h4>
+<p>有哪些重要的文化、宗教或社會背景需要了解？</p>
+<div class="content-panels__example">
+<strong>實例（撒母耳記上17:1-58）</strong>
+<p>非利士人的軍事威脅、以色列人對巨人的恐懼、牧童的社會地位、神與人的關係。</p>
+</div>
+</div>
+
+</div>
 
 ### 文學工具 {#wenxue-gongju}
 
