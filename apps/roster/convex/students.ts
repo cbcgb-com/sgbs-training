@@ -1,5 +1,6 @@
 import { internalMutation, mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 import type { Doc, Id } from "./_generated/dataModel";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { CURRENT_QUARTER } from "../src/constants";
@@ -472,6 +473,15 @@ export const registerStudent = mutation({
       // Attendance starts unrecorded (0 misses recorded), not 5.
       missed: 0,
       photoStorageId: args.photoStorageId,
+    });
+    // Welcome email for in-person signups too (2026-09-06 decision):
+    // the instructor vouches for the address, so no code email
+    // preceded this — the welcome note IS their first contact.
+    // Scheduled, not awaited: the instructor's save never blocks or
+    // fails on SMTP trouble.
+    await ctx.scheduler.runAfter(0, internal.authEmail.sendWelcomeEmail, {
+      email: targetEmail,
+      name: targetName,
     });
     return { status: "created" as const, id };
   },
