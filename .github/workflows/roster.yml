@@ -44,7 +44,7 @@ jobs:
       run:
         working-directory: apps/roster
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Vercel preview deploy
         id: deploy
         run: |
@@ -74,7 +74,7 @@ jobs:
       run:
         working-directory: apps/roster
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Vercel production deploy (Convex functions + frontend)
         run: npx vercel@latest deploy --prod --token="$VERCEL_TOKEN"
         env:
