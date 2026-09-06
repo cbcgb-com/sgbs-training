@@ -50,11 +50,13 @@ plugins:
 # Taken from here: https://squidfunk.github.io/mkdocs-material/extensions/codehilite/
 markdown_extensions:
   - admonition
+  - md_in_html
   - pymdownx.details
   - pymdownx.blocks.details
   - pymdownx.superfences
   - markdown.extensions.attr_list
   - pymdownx.tabbed
+  - sgbs_training.mdx_scripture
 
 repo_name: "cbcgb-com/sgbs-training"
 repo_url: "https://github.com/cbcgb-com/sgbs-training"

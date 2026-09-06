@@ -104,6 +104,31 @@ otherwise become a wall of prose (e.g. 三要素、OEIA 焦點).
   解釋（Explanation）、歸納（Induction）、應用（Application）. Do not collapse
   into OIA, and do not gloss 歸納 as Interpretation.
 
+### Scripture quotations (`/// scripture` shortcode)
+
+Quoted Bible passages MUST use the custom `scripture` Markdown block
+(`sgbs_training/mdx_scripture.py`, enabled in `mkdocs.yml` as
+`sgbs_training.mdx_scripture`) instead of hand-written HTML, so scripture
+renders consistently everywhere:
+
+```text
+/// scripture | 馬太福音28章16-20節
+十一個門徒往加利利去，到了耶穌約定的山上……
+///
+```
+
+- One block per passage; the reference goes in the argument after `|`;
+  verse text is a plain paragraph, copied verbatim.
+- Renders `<blockquote class="scripture">` with a `p.scripture__ref`
+  followed by verse paragraphs; styled once, site-wide, as the 引文箋
+  paper slip in `docs/stylesheets/extra.css` (light/dark via the
+  `--sgbs-*` tokens).
+- Inside raw-HTML containers (e.g. `expandable-card__body`), add
+  `markdown="1"` to the wrapping div **and to every raw-HTML ancestor up
+  to the top of the HTML block** (`expandable-card`, `expandable-cards`) —
+  md_in_html never processes a marked element buried inside unmarked raw
+  HTML — and keep a blank line between the div edge and each block.
+
 ### Content decks (`.content-deck`)
 
 Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in

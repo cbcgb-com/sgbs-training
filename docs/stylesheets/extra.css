@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap');
+
 details * {
     font-size: large;
 }
@@ -55,7 +57,8 @@ details[open] > *:not(summary) {
 }
 
 body {
-  font-size: 18px;  /* Increase base font size */
+  font-size: 20px;  /* one-notch bump: 18 → 19 → 20, traditional-Chinese comfort size */
+  line-height: 1.75;
 }
 
 .md-typeset {
@@ -73,7 +76,7 @@ body {
 
 /* Increase navigation font size */
 .md-nav {
-  font-size: 16px;  /* Adjust this value as needed */
+  font-size: 17px;  /* Adjust this value as needed */
 }
 
 .md-nav__item {
@@ -88,7 +91,7 @@ body {
 
 /* Adjust the site title size */
 .md-header__title {
-  font-size: 20px;  /* Increase the site title size */
+  font-size: 21px;  /* Increase the site title size */
 }
 
 /* ... continue for other heading levels if needed ... */
@@ -278,7 +281,7 @@ body {
     --cm-vermilion-rgb: var(--sgbs-vermilion-rgb, 179, 64, 42);
     --cm-gold: var(--sgbs-gold, #c9a84c);
     --cm-rule: var(--sgbs-rule, rgba(38, 33, 22, 0.14));
-    --cm-serif: "Noto Serif TC", "Songti TC", "SimSun", serif;
+    --cm-serif: var(--font-serif);
     --cm-correct: #2e7d32;
     --cm-correct-bg: rgba(46, 125, 50, 0.1);
     --cm-incorrect: #c0392b;
@@ -485,12 +488,11 @@ body {
     min-width: 0;
 }
 
-/* Reflections: the margin-note surface — deep paper, gold hairline. */
+/* Reflections: the margin-note surface — deep paper, no strip. */
 .content-quiz__reflection {
     margin: 0.35rem 0 0;
     padding: 0.85rem 1rem;
     border-radius: 8px;
-    border-left: 1px solid rgba(201, 168, 76, 0.75);
     background: var(--cm-paper-deep);
     line-height: 1.6;
 }
@@ -691,7 +693,6 @@ body {
     margin: 0.85rem 0 0;
     padding: 0.75rem 0.9rem;
     border-radius: 8px;
-    border-left: 1px solid rgba(201, 168, 76, 0.75);
     background: var(--cm-paper-deep);
     line-height: 1.6;
 }
@@ -1489,8 +1490,13 @@ article.typography table tbody tr:hover,
   --md-default-fg-color--lightest: rgba(var(--sgbs-ink-rgb), 0.08);
   --md-default-bg-color: var(--card);
 
-  /* Serif typography: the scripture-page world is a printed sheet. */
+  /* Typography: ONE font family site-wide — 思源宋體 Noto Serif TC, the
+     Song-style serif of printed Chinese Bibles, engineered for screens.
+     Both vars point at the same family on purpose; everything (body,
+     headings, components, scripture) renders in it. */
   --font-sans: "Noto Serif TC", "Songti TC", "SimSun", ui-serif, Georgia,
+    serif;
+  --font-serif: "Noto Serif TC", "Songti TC", "SimSun", ui-serif, Georgia,
     serif;
 }
 
@@ -1523,7 +1529,7 @@ body {
 .typography h2,
 .typography h3,
 .typography h4 {
-  font-family: "Noto Serif TC", "Songti TC", "SimSun", serif;
+  font-family: var(--font-serif);
   letter-spacing: 0.05em;
 }
 
@@ -1538,6 +1544,11 @@ body {
   text-decoration-color: var(--sgbs-ink);
 }
 
+/* CJK prose breathes: denser glyphs need a taller leading than Latin. */
+.typography p {
+  line-height: 1.75;
+}
+
 /* Tables: ruled ledger lines on paper. */
 .typography table {
   border-collapse: collapse;
@@ -1545,7 +1556,7 @@ body {
 .typography table th {
   border-bottom: 2px solid var(--sgbs-ink);
   color: var(--sgbs-ink);
-  font-family: "Noto Serif TC", "Songti TC", "SimSun", serif;
+  font-family: var(--font-serif);
 }
 .typography table td {
   border-bottom: 1px solid var(--sgbs-rule);
@@ -1574,4 +1585,77 @@ body {
 /* The details/summary hover from the legacy rules reads as ink-on-paper. */
 details summary:hover {
   background-color: rgba(var(--sgbs-ink-rgb), 0.06);
+}
+
+/*
+ * Scripture quotation component — the `/// scripture | reference` shortcode
+ * (sgbs_training/mdx_scripture.py). Renders 引文箋: each quoted passage
+ * becomes a bright paper slip on the deep-paper sheet — a printed-page
+ * fragment, not a callout: no strips, no bars; the reference sits centered
+ * like a Bible pericope heading. Styled once so every lesson renders
+ * scripture consistently.
+ */
+.typography blockquote.scripture {
+  margin: 0;
+  padding: 0.95rem 1.15rem 1.05rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow:
+    0 1px 2px rgba(38, 33, 22, 0.06),
+    0 16px 32px -24px rgba(38, 33, 22, 0.32);
+  font-style: normal;
+}
+
+.typography blockquote.scripture + blockquote.scripture {
+  margin-top: 0.8rem;
+}
+
+.typography blockquote.scripture .scripture__ref {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-serif);
+  font-size: 0.84em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--sgbs-vermilion);
+}
+
+.typography blockquote.scripture p:not(.scripture__ref) {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05em;
+  line-height: 1.9;
+}
+
+@media (max-width: 600px) {
+  .typography blockquote.scripture {
+    padding: 0.85rem 1rem 0.95rem;
+  }
+}
+
+/* Scripture slips inside discussion cards: align edge-to-edge with the
+   card (not the question gutter) and quiet the shadow — the card already
+   provides elevation. */
+.typography .expandable-card__body:has(> .scripture) {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.typography .expandable-card.is-open .expandable-card__body:has(> .scripture) {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.typography .expandable-card blockquote.scripture {
+  box-shadow:
+    0 1px 2px rgba(38, 33, 22, 0.05),
+    0 10px 22px -18px rgba(38, 33, 22, 0.25);
+}
+
+@media (max-width: 600px) {
+  .typography .expandable-card__body:has(> .scripture),
+  .typography .expandable-card.is-open .expandable-card__body:has(> .scripture) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
