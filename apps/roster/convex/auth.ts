@@ -191,6 +191,13 @@ export const verifyRegistrationCode = mutation({
         missed: 0,
         photoStorageId: registration.photoStorageId,
       });
+      // Welcome email fires once, on the quarter's creating registration
+      // only. Scheduled (not awaited send): the mutation returns first,
+      // so SMTP trouble never blocks or fails the sign-up itself.
+      await ctx.scheduler.runAfter(0, internal.authEmail.sendWelcomeEmail, {
+        email: addr,
+        name,
+      });
     }
     return {
       status: duplicate ? ("duplicate" as const) : ("created" as const),

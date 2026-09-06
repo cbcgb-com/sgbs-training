@@ -185,6 +185,24 @@ in the default V8 runtime:
 - Delivery target: whatever address the member typed. Failures return
   a friendly error; retry is free (regenerate the code).
 
+### Welcome email
+
+A second action in the same file (`authEmail.sendWelcomeEmail`) sends a
+brief welcome note — registration confirmation, the first class date
+(derived from `CURRENT_QUARTER_SESSION_DATES`, so a new quarter cannot
+send stale dates), the 4-of-5 attendance rule, and a link to the
+course site. It is scheduled from `auth.verifyRegistrationCode` on the
+**created** path only: duplicate registrations and returning members
+re-verifying for the quarter stay silent. `students.registerStudent`
+(instructor-managed signups) schedules the same action on its created
+path. Because it is a scheduled
+action (not an awaited send), the registration mutation returns first
+— SMTP trouble never blocks or fails the sign-up. Convex runs
+scheduled actions at most once (no automatic retry), so the action
+performs its own small retry (3 attempts) around transient SMTP
+failures; a permanent failure surfaces as a failed job in the Convex
+dashboard and the member can simply be emailed manually.
+
 ### Deliverability (verified 2026-09-04 via DNS + Resend API)
 
 - cbcgb.org DNS is hosted at easyDNS (`dns1.easydns.com` etc.) —
@@ -226,15 +244,21 @@ in the default V8 runtime:
   `authEmail.sendCodeEmail` node action.
 - `authEmail.sendCodeEmail` (internal action, `convex/authEmail.ts`) —
   Gmail SMTP send via nodemailer.
-- `auth.verifyCode` (mutation) — consume the code, insert/update the
-  student row (self-registration path), create a session, return the
-  JWT + its expiry.
-- `auth.signIn` (mutation) — email lookup per the Sign-in flow; create
-  session, return JWT. Uniform failure for unknown emails (no user
-  enumeration).
+- `auth.verifyRegistrationCode` (mutation) — consume the code, create
+  the student row (self-registration path), schedule
+  `authEmail.sendWelcomeEmail` on the created path, return the code's
+  issuedAt for the follow-up sign-in.
+- `auth.completeRegistrationSignIn` (action) — verify a consumed code
+  exists for the email, issue the session JWT.
+- `auth.signIn` (action) — email lookup per the Sign-in flow; issue
+  JWT. Uniform failure for unknown emails (no user enumeration).
 - `auth.signOut` (mutation) — mark the session revoked.
-- `students.registerInstructorManaged` — as before (admin mode), now
-  creating the same authCodes row for the registrant's email.
+- `students.registerStudent` — instructor-managed registration
+  (admin mode): the instructor vouches for the address; the student
+  row is created directly, no authCodes row involved. Also schedules
+  the welcome email on the created path (2026-09-06 decision —
+  in-person signups get the same first-class-details note; no code
+  email precedes it, so the welcome note is their first contact).
 
 Legacy helpers unchanged; `clerkId` references removed.
 
