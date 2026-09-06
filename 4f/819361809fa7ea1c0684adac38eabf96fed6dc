@@ -1,0 +1,16 @@
+docs/javascripts/chinese-toggle.js
+  h_923f9eef54c2c1 7,29-59,62,64,73,75,132-139
+docs/stylesheets/extra.css
+  h_923f9eef54c2c1 1,1496-1502,1554-1563
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "4f819361809fa7ea1c0684adac38eabf96fed6dc",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
