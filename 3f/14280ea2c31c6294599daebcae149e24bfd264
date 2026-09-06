@@ -1,0 +1,24 @@
+AGENTS.md
+  h_923f9eef54c2c1 107-131
+docs/class-notes/lesson-1-foundations.md
+  h_923f9eef54c2c1 39,41,47-57,61,67-72,76,82-92,96,102-112
+docs/examples/luke-literary-devices.md
+  h_923f9eef54c2c1 5-27
+docs/stylesheets/extra.css
+  h_923f9eef54c2c1 1-2,60-61,79,94,284,491,1493-1496,1499-1500,1532,1547-1551,1559,1589-1661
+mkdocs.yml
+  h_923f9eef54c2c1 53,59
+sgbs_training/mdx_scripture.py
+  h_923f9eef54c2c1 1-59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "3f14280ea2c31c6294599daebcae149e24bfd264",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
