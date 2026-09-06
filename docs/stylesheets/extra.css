@@ -1174,6 +1174,17 @@ article.typography table tbody tr:hover,
     margin-right: auto;
 }
 
+/* Clickable QR image: no link chrome, gentle hover/focus cue. */
+.typography a.qrcode-option__qr-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.typography a.qrcode-option__qr-link:hover img,
+.typography a.qrcode-option__qr-link:focus-visible img {
+    opacity: 0.8;
+}
+
 .qrcode-option {
     border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
     border-radius: 10px;

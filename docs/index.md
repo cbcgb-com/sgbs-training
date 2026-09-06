@@ -13,6 +13,16 @@
 
 <a class="register-cta" href="https://sgbs-training.citylight.life">前往報名</a>
 
+<div class="qrcode-options qrcode-options--single">
+
+<div class="qrcode-option">
+<p class="qrcode-option__title">報名二維碼</p>
+<p class="qrcode-option__hint">讓身旁的人直接掃描進入報名表；點擊二維碼也可以報名。</p>
+<a class="qrcode-option__qr-link" href="https://sgbs-training.citylight.life"><img src="./images/registration-qrcode.png" alt="報名二維碼" width="140" height="140"></a>
+</div>
+
+</div>
+
 <!-- 本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。-->
 
 ## 課程信息
