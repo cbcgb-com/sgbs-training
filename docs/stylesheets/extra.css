@@ -1115,13 +1115,63 @@ article.typography table tbody tr:hover,
 }
 
 /*
- * QR code options – two clear cards so "which QR?" is obvious.
+ * Landing registration CTA – the one prominent action on the home page.
+ * Vermilion seal-style fill; ghost-on-hover like the ledger buttons.
+ * Scoped to .typography a to outrank the global link styling.
+ */
+.typography a.register-cta {
+    display: inline-block;
+    padding: 0.6rem 1.75rem;
+    font-family: "Noto Serif TC", "Songti TC", "SimSun", serif;
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--sgbs-paper);
+    background: var(--sgbs-vermilion);
+    border: 1px solid var(--sgbs-vermilion);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.typography a.register-cta:hover,
+.typography a.register-cta:focus-visible {
+    color: var(--sgbs-vermilion);
+    background: transparent;
+    text-decoration: none;
+}
+
+.typography a.register-cta:focus-visible {
+    outline: 2px solid var(--sgbs-vermilion);
+    outline-offset: 2px;
+}
+
+/* A hair lighter than --sgbs-vermilion so paper-dark text keeps AA. */
+.dark .typography a.register-cta {
+    background: #d4603f;
+    border-color: #d4603f;
+}
+
+/*
+ * QR share card – a single card for handing the page to someone else.
+ * (Two QRs side by side read as "scan one of these," which made no
+ * sense on the page itself; registration now leads as a text CTA.)
  */
 .qrcode-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
     margin: 1.5rem 0;
+}
+
+/* Single share card sits centered instead of stretching the grid. */
+.qrcode-options--single {
+    grid-template-columns: 1fr;
+    max-width: 26rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .qrcode-option {

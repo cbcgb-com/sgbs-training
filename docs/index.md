@@ -7,26 +7,11 @@
 我們期待看到您在這方面的成長。
 願這個網頁成為您的資源，更成為您的祝福！
 
-### 二維碼
+### 報名
 
-依你的需要選一個掃描：
+2026年秋季課程現正接受報名。
 
-<div class="qrcode-options">
-
-<div class="qrcode-option">
-<p class="qrcode-option__title">進入課程網頁</p>
-<p class="qrcode-option__hint">分享此頁給別人，或自己瀏覽講義與資源時用。進入後可再點擊報名連結。</p>
-<img src="./images/website-qrcode.png" alt="課程網頁二維碼" width="140" height="140">
-</div>
-
-<div class="qrcode-option">
-<p class="qrcode-option__title">直接報名</p>
-<p class="qrcode-option__hint">現場讓人直接掃描報名時用。</p>
-<img src="./images/registration-qrcode.png" alt="報名二維碼" width="140" height="140">
-<p class="qrcode-option__link"><a href="https://sgbs-training.citylight.life">或點此連結報名</a></p>
-</div>
-
-</div>
+<a class="register-cta" href="https://sgbs-training.citylight.life">前往報名</a>
 
 <!-- 本季課堂已停止接受註冊，請等到下一季課堂開放再註冊。-->
 
@@ -47,7 +32,7 @@
 
 <!-- 疫情期間，我們的課堂會在Discord上進行。 -->
 
-2026年春季課程將在線下舉行，2月1日開始，共五週，在CBCGB城光堂三樓聚會。
+2026年秋季課程將在線下舉行，9月20日開始，共五週，在CBCGB城光堂三樓聚會。
 
 ### 出席要求
 
@@ -169,3 +154,19 @@
 
 - [YouTube頻道](https://www.youtube.com/user/jointhebibleproject/)
 - [網站](https://bibleproject.com)
+
+## 分享這門課
+
+把這個畫面給身旁的弟兄姊妹掃一掃，邀請他們一起來學習帶領查經，
+掃描後就能進入本頁查看課程信息並報名。
+不方便掃描時，也可以直接分享網址：[cbcgb-com.github.io/sgbs-training](https://cbcgb-com.github.io/sgbs-training/)
+
+<div class="qrcode-options qrcode-options--single">
+
+<div class="qrcode-option">
+<p class="qrcode-option__title">課程網頁二維碼</p>
+<p class="qrcode-option__hint">進入後可查看上課時間、講義資源與報名連結。</p>
+<img src="./images/website-qrcode.png" alt="課程網頁二維碼" width="140" height="140">
+</div>
+
+</div>
