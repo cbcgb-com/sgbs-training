@@ -1,0 +1,22 @@
+docs/class-notes/lesson-3-questioning.md
+  h_923f9eef54c2c1 8,18,51,53,55,57-89,97-131,135-136,138-139,141-142,156-211,223-227,231-232,234-235,241-296,303-305,307-313,315-323,326,328,337,340-383,389-582
+docs/quizzes/lesson-3/antipatterns-mini.html
+  h_923f9eef54c2c1 1-431
+docs/quizzes/lesson-3/prompts-mini.html
+  h_923f9eef54c2c1 1-431
+docs/quizzes/lesson-3/reflect.html
+  h_923f9eef54c2c1 1-430
+docs/quizzes/lesson-3/review.html
+  h_923f9eef54c2c1 1-431
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "ae4337a43c3d07dec04371491bb5542c7c664d39",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
