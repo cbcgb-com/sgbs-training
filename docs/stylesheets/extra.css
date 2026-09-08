@@ -707,6 +707,19 @@ body {
     color: var(--cm-vermilion);
 }
 
+/* strong nested inside an example paragraph is inline emphasis
+   (e.g. the added prompt phrase in a 改寫前／改寫後 pair),
+   not the block-level example header */
+.content-panels__example p strong,
+.content-deck__example p strong {
+    display: inline;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+}
+
 .content-panels__example p,
 .content-deck__example p {
     margin: 0;

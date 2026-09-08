@@ -9,6 +9,10 @@
  * shuffles each sampled item's option order (relabeling A/B/C…), and presents
  * questions one-at-a-time with 上一題／下一題. Authoring indices in
  * data-correct / data-choice stay stable; only presentation order is random.
+ *
+ * Review quizzes may opt into early completion with data-pass-correct="N":
+ * once the learner has answered N items correctly, the quiz ends with a
+ * 練習完成 message (remaining questions are skipped).
  */
 (function () {
     var HEIGHT_MSG = "content-quiz-frame-height";
@@ -116,7 +120,7 @@
         });
     }
 
-    function bindChoices(item, mode) {
+    function bindChoices(item, mode, onAnswered) {
         var choices = item.querySelectorAll(".content-quiz__choice");
         var reflections = item.querySelectorAll(".content-quiz__reflection");
         var isReview = mode === "review";
@@ -170,6 +174,9 @@
                 }
                 showReflection(reflections, selectedIndex, label);
                 scheduleEmbedHeightReport();
+                if (onAnswered) {
+                    onAnswered(isReview && selectedIndex === correctIndex);
+                }
             });
         });
     }
@@ -207,11 +214,35 @@
         var sampleSize = parseInt(quiz.getAttribute("data-sample-size"), 10);
         if (isNaN(sampleSize) || sampleSize < 1) sampleSize = 3;
 
+        // review quizzes may end early once the learner answers
+        // data-pass-correct items correctly (opt-in attribute)
+        var passTarget = parseInt(quiz.getAttribute("data-pass-correct"), 10);
+        if (mode !== "review" || isNaN(passTarget) || passTarget < 1) {
+            passTarget = null;
+        }
+
         var selected = shuffle(allItems).slice(
             0,
             Math.min(sampleSize, allItems.length)
         );
         var current = 0;
+        var correctCount = 0;
+        var finished = false;
+
+        var controls = createNav();
+
+        function finish() {
+            finished = true;
+            controls.next.disabled = true;
+            controls.status.textContent =
+                "練習完成！已答對 " + correctCount + " 題。";
+        }
+
+        function onAnswered(isCorrect) {
+            if (passTarget === null || !isCorrect || finished) return;
+            correctCount += 1;
+            if (correctCount >= passTarget) finish();
+        }
 
         allItems.forEach(function (item) {
             item.hidden = true;
@@ -220,12 +251,11 @@
 
         selected.forEach(function (item, index) {
             shuffleChoices(item);
-            bindChoices(item, mode);
+            bindChoices(item, mode, onAnswered);
             var num = item.querySelector(".content-quiz__num");
             if (num) num.textContent = String(index + 1);
         });
 
-        var controls = createNav();
         quiz.appendChild(controls.nav);
 
         function show(index) {
@@ -236,10 +266,16 @@
             selected[current].hidden = false;
             selected[current].classList.add("is-active");
 
-            controls.status.textContent =
-                "第 " + (current + 1) + " / " + selected.length + " 題";
-            controls.prev.disabled = current === 0;
-            controls.next.disabled = current === selected.length - 1;
+            if (finished) {
+                controls.next.disabled = true;
+                controls.status.textContent =
+                    "練習完成！已答對 " + correctCount + " 題。";
+            } else {
+                controls.status.textContent =
+                    "第 " + (current + 1) + " / " + selected.length + " 題";
+                controls.prev.disabled = current === 0;
+                controls.next.disabled = current === selected.length - 1;
+            }
             scheduleEmbedHeightReport();
         }
 
