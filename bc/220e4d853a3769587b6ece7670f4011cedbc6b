@@ -1,0 +1,24 @@
+docs/class-notes/lesson-2-narrative.md
+  h_923f9eef54c2c1 21,57,129,543,547,549,667
+docs/quizzes/lesson-2/elements-mini.html
+  h_923f9eef54c2c1 15-16,38,112,182-427
+docs/quizzes/lesson-2/message-steps-demo.html
+  h_923f9eef54c2c1 15-16
+docs/quizzes/lesson-2/message-steps-practice.html
+  h_923f9eef54c2c1 15-16,100-427
+docs/quizzes/lesson-2/reflect.html
+  h_923f9eef54c2c1 370
+docs/quizzes/lesson-2/review.html
+  h_923f9eef54c2c1 15-16,264-427
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "bc220e4d853a3769587b6ece7670f4011cedbc6b",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
