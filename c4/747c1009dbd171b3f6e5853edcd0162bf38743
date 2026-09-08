@@ -1,0 +1,16 @@
+docs/javascripts/content-quiz.js
+  h_923f9eef54c2c1 12-15,123,177-179,217-223,229-245,254,269-278
+docs/stylesheets/extra.css
+  h_923f9eef54c2c1 710-722
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "c4747c1009dbd171b3f6e5853edcd0162bf38743",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
