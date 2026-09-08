@@ -62,6 +62,35 @@ Shared vanilla HTML/JS pattern (`docs/javascripts/content-quiz.js`, wired in
   (and relabels A/B/C…), then presents questions one-at-a-time with
   上一題／下一題 flip-through. Keep `data-correct` / `data-choice` on the
   authored option indices; only presentation order is random.
+- **Course convention (2026-09)**: two question categories.
+  課前思考題 (reflect) banks hold 10 items with `data-sample-size="3"` —
+  each visit samples 3, in randomized question and option order; no correct
+  answers, no `data-pass-correct`; every option is partially-right with no
+  winner, and each reflection leaves something worth thinking about.
+  All other MCQ banks hold 10 items with `data-sample-size="10"` (all shown,
+  random order) and `data-pass-correct="4"` (quiz ends early with
+  「練習完成！」 once 4 items are answered correctly). Review distractors
+  must each expose a specific student misconception; the selected option's
+  feedback names and corrects that misconception. **Option subtlety bar**:
+  the correct answer must not be identifiable by style — keep all four
+  options similar in length and register; no strawmen or dismissive tone
+  (「跳過就好」「只是…無關」「是組員不夠認真」) — every distractor carries a
+  true-sounding core with a subtle flaw (wrong scope, right conclusion wrong
+  reason, half-true, plausible-but-arranges-the-wrong-thing); don't echo the
+  lesson's key phrase only in the correct option; don't telegraph the answer
+  in the stem. **Vary question types within
+  each bank** — never ask the same format ten times; rotate through archetypes
+  (forward scenario→answer, reverse intent-inference, best-fix/rewording,
+  odd-one-out, misfire diagnosis, prevention diagnosis, definition matching,
+  sequencing, classification, spot-the-misclassification, which-is-NOT,
+  evidence-matching). Quiz intro lines are
+  one short, warm invitation to attempt the quiz —
+  「讀完第一部分了嗎？用下面的複習題測試一下自己，看看掌握了多少。」 —
+  keeping only load-bearing functional clauses (the pass rule, or
+  「步驟一已替你準備」); no misconception previews, no mechanics, no
+  describing the feedback system.
+  Authoring guide & verification procedure:
+  `.agents/skills/sgbs-quiz-authoring/SKILL.md`.
 - Stems avoid bare「為什麼」; prefer「怎樣／哪一種／最需要小心的是」等具體框架
 - Traditional Chinese; keep tone respectful for adult learners
 - Update the lesson TOC when adding a quiz section
