@@ -18,7 +18,7 @@
             - [步驟二：分析傳達方式](#buzhou-er-fenxi-chuanda-fangshi)
             - [步驟三：整理分析結果](#buzhou-san-zhengli-fenxi-jieguo)
         - [小練習：示範段的三步檢核](#san-bu-zhou-xiao-lianxi)
-        - [半自主練習：《路加福音》7:36-50](#san-bu-zhou-lianxi)
+        - [半自主練習：三步驟跨經文練習](#san-bu-zhou-lianxi)
     - [實作建議](#shizuo-jianyi)
     - [思考信息](#sikao-xinxi)
     - [預讀複習題](#yudu-fuxi-ti)
@@ -54,8 +54,7 @@
 
 ### 課前思考題 {#keqian-sikao-ti}
 
-先用幾分鐘回答下列問題，再繼續往下讀。系統會從題庫中隨機抽出 3 題；用「上一題／下一題」翻頁作答。
-這些題目沒有標準答案；選一項後會出現簡短的思考提示，幫助你帶著問題進入後面的內容。
+先用幾分鐘回答下面的問題，再繼續往下讀。沒有標準答案，誠實選一個，看看它帶你想到什麼。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-2/reflect.html" title="課前思考題" loading="lazy" scrolling="no"></iframe>
 
@@ -127,7 +126,7 @@ data-label="敘述文三要素">
 
 #### 小練習：這細節屬於哪一要素？
 
-讀完上面三個鏡頭後，試著分辨下列細節最直接屬於哪一類。題庫共 4 題，每次隨機抽 2 題；四個選項常對應常見歸類習慣（例如見到人名就歸人物、見到動作就當成情節高潮）。選完會標示對錯，並用簡短說明幫你對齊概念。
+讀完上面三個鏡頭後，試著分辨：下面的細節最直接屬於哪一要素？
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-2/elements-mini.html" title="三要素小練習" loading="lazy" scrolling="no"></iframe>
 
@@ -541,15 +540,13 @@ data-style="steps">
 
 #### 小練習：示範段的三步檢核 {#san-bu-zhou-xiao-lianxi}
 
-跟完上面三個步驟後，用下面題庫快速檢核：共 **10 題**，每次會**隨機抽 3 題**（各題的四個選項順序也會打亂）。錯誤選項多半對應三步驟裡常見的跳步、貼標籤，或把背景細節誤當成完整分析；選完看簡短回饋。
+跟完三個步驟了嗎？用下面的題庫檢核一下自己。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-2/message-steps-demo.html" title="示範段三步檢核小練習" loading="lazy" scrolling="no"></iframe>
 
-#### 半自主練習：《路加福音》7:36-50 {#san-bu-zhou-lianxi}
+#### 半自主練習：三步驟跨經文練習 {#san-bu-zhou-lianxi}
 
-換一段你已在三要素裡接觸過的經文。**步驟一先替你收好**，請你完成步驟二、三（各選一項，再看回饋）。
-
-下面題庫共 2 題，各對應步驟二與步驟三；錯誤選項常是把宴席背景、路加整卷特色或情節摘要，誤當成「傳達方式」或信息點的完整說明。
+換幾段經文練習：每題都先把步驟一的結論交給你，請你完成步驟二或三。
 
 !!! tip "步驟一（已示範）"
     主要信息可表述為：<strong>被赦免多的人，愛也多；赦免與愛彼此相連。</strong>
@@ -667,7 +664,7 @@ data-nav="false">
 
 ### 預讀複習題 {#yudu-fuxi-ti}
 
-讀完第一部分後，用下面的複習題快速核對幾個關鍵概念。題庫共 6 題，每次隨機抽 3 題；錯誤選項各對應一種常見誤解（例如跳過歸納、把背景當全部、或先寫應用再找經文）。選完會標示對錯，並用簡短說明幫你回到正文。
+讀完第一部分了嗎？用下面的複習題測試一下自己，看看掌握了多少。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-2/review.html" title="預讀複習題" loading="lazy" scrolling="no"></iframe>
 
