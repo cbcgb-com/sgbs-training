@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Doc } from "../convex/_generated/dataModel";
+import Avatar from "./Avatar";
 import { computeDiverseGroups, groupDiversitySummary } from "./groups";
 import { CURRENT_QUARTER } from "./constants";
 
@@ -18,6 +19,7 @@ const UNGROUPED = "未分組";
 // The draft lives in local state until 儲存分組 persists it.
 export default function GroupAssigner() {
   const roster = useQuery(api.students.byQuarter, {});
+  const photos = useQuery(api.students.photoUrls);
   const saveGroups = useMutation(api.students.saveGroups);
   const renameGroupMut = useMutation(api.students.renameGroup);
 
@@ -264,8 +266,19 @@ export default function GroupAssigner() {
                       key={m._id}
                       className="flex items-center justify-between gap-2 bg-paper-deep/60 px-2.5 py-1.5"
                     >
-                      <span className="truncate font-serif-tc text-[15px] font-bold text-ink">
-                        {m.name}
+                      <span className="flex min-w-0 items-center gap-2">
+                        <Avatar
+                          name={m.name}
+                          url={
+                            m.photoStorageId
+                              ? photos?.[m.photoStorageId]
+                              : undefined
+                          }
+                          size={30}
+                        />
+                        <span className="min-w-0 truncate font-serif-tc text-[15px] font-bold text-ink">
+                          {m.name}
+                        </span>
                       </span>
                       <select
                         value={isUngrouped ? "" : g.name}

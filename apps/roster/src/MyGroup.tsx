@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
+import Avatar from "./Avatar";
 import { useTab } from "./App";
 
 // 我的組: my group mates this quarter — names, photos, contact info.
@@ -134,38 +135,5 @@ export default function MyGroup() {
         ))}
       </ul>
     </div>
-  );
-}
-
-function Avatar({
-  name,
-  url,
-  size,
-}: {
-  name: string;
-  url?: string | null;
-  size: number;
-}) {
-  if (url) {
-    return (
-      <img
-        src={url}
-        alt={`${name}的照片`}
-        width={size}
-        height={size}
-        loading="lazy"
-        className="shrink-0 rounded-full border border-rule object-cover"
-        style={{ width: size, height: size }}
-      />
-    );
-  }
-  return (
-    <span
-      aria-hidden
-      className="inline-flex shrink-0 items-center justify-center rounded-full border border-rule bg-paper-deep font-serif-tc text-ink-soft"
-      style={{ width: size, height: size, fontSize: Math.round(size * 0.46) }}
-    >
-      {name.charAt(0)}
-    </span>
   );
 }

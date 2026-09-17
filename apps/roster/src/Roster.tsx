@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
+import Avatar from "./Avatar";
 import { CURRENT_QUARTER } from "./constants";
 
 type Student = Doc<"students">;
@@ -84,41 +85,6 @@ export default function Roster() {
         )}
       </div>
     </div>
-  );
-}
-
-// ---- Avatars: photo when present, otherwise an initial-character seal ----
-
-function Avatar({
-  name,
-  url,
-  size = 26,
-}: {
-  name: string;
-  url?: string | null;
-  size?: number;
-}) {
-  if (url) {
-    return (
-      <img
-        src={url}
-        alt={`${name}的照片`}
-        width={size}
-        height={size}
-        loading="lazy"
-        className="shrink-0 rounded-full border border-rule object-cover"
-        style={{ width: size, height: size }}
-      />
-    );
-  }
-  return (
-    <span
-      aria-hidden
-      className="inline-flex shrink-0 items-center justify-center rounded-full border border-rule bg-paper-deep font-serif-tc text-ink-soft"
-      style={{ width: size, height: size, fontSize: Math.round(size * 0.46) }}
-    >
-      {name.charAt(0)}
-    </span>
   );
 }
 
