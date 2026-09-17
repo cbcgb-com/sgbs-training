@@ -1,0 +1,20 @@
+apps/roster/src/Avatar.tsx
+  h_923f9eef54c2c1 1-34
+apps/roster/src/GroupAssigner.tsx
+  h_923f9eef54c2c1 5,22,269-281
+apps/roster/src/MyGroup.tsx
+  h_923f9eef54c2c1 4
+apps/roster/src/Roster.tsx
+  h_923f9eef54c2c1 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "2648f1703e4aeee1283128209596143470b494f7",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
