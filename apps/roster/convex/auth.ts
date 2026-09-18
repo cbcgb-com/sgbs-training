@@ -136,7 +136,7 @@ export const verifyRegistrationCode = mutation({
     }),
   },
   handler: async (ctx, { email, code, registration }): Promise<{
-    status: "created" | "duplicate";
+    status: "created" | "duplicate" | "reactivated";
     codeIssuedAt: number;
   }> => {
     const addr = normalizeEmail(email);
@@ -178,6 +178,41 @@ export const verifyRegistrationCode = mutation({
       .withIndex("by_email", (q) => q.eq("email", addr))
       .collect();
     const duplicate = existing.find((s) => s.quarter === quarter);
+    if (duplicate && duplicate.withdrawnAt !== undefined) {
+      // 退出報名 reactivation: a withdrawn student returning for the SAME
+      // quarter patches their row active instead of dead-ending on
+      // duplicate or inserting a second row (see
+      // docs/designs/withdrawal/LLD.md). Registration fields refresh from
+      // this submission; a newly uploaded photo replaces the stored one.
+      if (
+        registration.photoStorageId &&
+        duplicate.photoStorageId &&
+        duplicate.photoStorageId !== registration.photoStorageId
+      ) {
+        await ctx.storage.delete(duplicate.photoStorageId);
+      }
+      await ctx.db.patch(duplicate._id, {
+        name,
+        gender: registration.gender,
+        fellowship: registration.fellowship,
+        baptismTime: registration.baptismTime,
+        leadingExperience: registration.leadingExperience,
+        quarter,
+        present: true,
+        withdrawnAt: undefined,
+        withdrawnReason: undefined,
+        photoStorageId:
+          registration.photoStorageId ?? duplicate.photoStorageId,
+      });
+      await ctx.scheduler.runAfter(0, internal.authEmail.sendWelcomeEmail, {
+        email: addr,
+        name,
+      });
+      return {
+        status: "reactivated" as const,
+        codeIssuedAt: match.createdAt,
+      };
+    }
     if (!duplicate) {
       await ctx.db.insert("students", {
         name,

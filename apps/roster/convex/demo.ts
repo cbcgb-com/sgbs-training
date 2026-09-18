@@ -1,7 +1,7 @@
 import { internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
-import { upsertAttendance } from "./students";
+import { upsertAttendance, applyWithdrawal } from "./students";
 import {
   CURRENT_QUARTER,
   CURRENT_QUARTER_SESSION_DATES,
@@ -255,5 +255,27 @@ export const deleteSessionByDate = internalMutation({
       await ctx.db.delete(s._id);
     }
     return { deleted: targets.length };
+  },
+});
+
+// Preview-only: withdraw one demo student (退出報名 walkthrough) so the
+// 已退出 view and the 已退出 badge have something to show. Runs the real
+// applyWithdrawal (soft state + group clear + current-quarter sweep), so
+// the preview path cannot drift from the mutation. Run via
+//   npx convex run demo:withdrawDemoStudent
+// Safe to re-run: an already-withdrawn row is a no-op (the original reason
+// and date are preserved), matching the mutation.
+export const withdrawDemoStudent = internalMutation({
+  handler: async (ctx) => {
+    const email = "demo3@demo.sgbs";
+    const student = (
+      await ctx.db
+        .query("students")
+        .withIndex("by_email", (q) => q.eq("email", email))
+        .collect()
+    ).find((s) => s.quarter === CURRENT_QUARTER);
+    if (!student) return { status: "not-found" as const };
+    const res = await applyWithdrawal(ctx, student, "時間無法配合");
+    return { status: res.status, swept: res.swept };
   },
 });

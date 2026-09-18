@@ -32,9 +32,43 @@ async function requireInstructor(ctx: Ctx) {
   return identity;
 }
 
+// 退出報名: a student row is withdrawn while its withdrawnAt is set —
+// presence is the whole state. See docs/designs/withdrawal/LLD.md.
+function isWithdrawn(s: Doc<"students">): boolean {
+  return s.withdrawnAt !== undefined;
+}
+
+// Sweep a student out of every current-quarter session's 主領/觀察 arrays,
+// so 課堂安排 cannot show a ghost 主領/觀察 after they leave. Historical
+// quarters keep their assignments as history. Returns sessions touched.
+async function sweepFromSessions(
+  ctx: MutationCtx,
+  studentId: Id<"students">,
+): Promise<number> {
+  const sessions = await ctx.db
+    .query("sessions")
+    .withIndex("by_quarter", (q) => q.eq("quarter", CURRENT_QUARTER))
+    .collect();
+  let swept = 0;
+  for (const session of sessions) {
+    const leaderIds = session.leaderIds.filter((id) => id !== studentId);
+    const observerIds = session.observerIds.filter((id) => id !== studentId);
+    if (
+      leaderIds.length !== session.leaderIds.length ||
+      observerIds.length !== session.observerIds.length
+    ) {
+      await ctx.db.patch(session._id, { leaderIds, observerIds });
+      swept++;
+    }
+  }
+  return swept;
+}
+
 // ---- Views: instructor-only (the full roster) ----
 
-// Master View: everyone.
+// Master View: everyone, including withdrawn students (soft state keeps
+// history — the UI badges them 已退出). This is deliberately the one roster
+// view that does not filter withdrawnAt.
 export const all = query({
   handler: async (ctx) => {
     await requireInstructor(ctx);
@@ -42,17 +76,41 @@ export const all = query({
   },
 });
 
-// 本季度: students registered for the given quarter (default: current).
+// 本季度: active students registered for the given quarter (default:
+// current). Withdrawn students are excluded.
 export const byQuarter = query({
   args: { quarter: v.optional(v.string()) },
   handler: async (ctx, { quarter }) => {
     await requireInstructor(ctx);
-    return await ctx.db
-      .query("students")
-      .withIndex("by_quarter", (q) =>
-        q.eq("quarter", quarter ?? CURRENT_QUARTER),
-      )
-      .collect();
+    return (
+      await ctx.db
+        .query("students")
+        .withIndex("by_quarter", (q) =>
+          q.eq("quarter", quarter ?? CURRENT_QUARTER),
+        )
+        .collect()
+    ).filter((s) => !isWithdrawn(s));
+  },
+});
+
+// 已退出: withdrawn students for the dedicated filterable view (all
+// quarters; the UI filters). Instructor-only, like every roster view.
+export const withdrawn = query({
+  handler: async (ctx) => {
+    await requireInstructor(ctx);
+    return (await ctx.db.query("students").collect())
+      .filter(isWithdrawn)
+      .map((s) => ({
+        _id: s._id,
+        name: s.name,
+        email: s.email ?? "",
+        fellowship: s.fellowship ?? "",
+        groupName: s.groupName ?? "",
+        quarter: s.quarter ?? "",
+        withdrawnAt: s.withdrawnAt!,
+        withdrawnReason: s.withdrawnReason ?? "",
+        photoStorageId: s.photoStorageId,
+      }));
   },
 });
 
@@ -118,6 +176,9 @@ export const quarterAttendance = query({
       .query("students")
       .withIndex("by_quarter", (x) => x.eq("quarter", q))
       .collect();
+    // Withdrawn students leave the attendance view (their attendance rows
+    // are kept — history — but they are no longer a current-quarter row).
+    const active = students.filter((s) => !isWithdrawn(s));
     const rows = await ctx.db
       .query("attendance")
       .withIndex("by_quarter_date", (x) => x.eq("quarter", q))
@@ -129,7 +190,7 @@ export const quarterAttendance = query({
     return {
       quarter: q,
       dates: sessions.map((s) => s.date),
-      students: students.map((s) => ({
+      students: active.map((s) => ({
         _id: s._id,
         name: s.name,
         fellowship: s.fellowship ?? "",
@@ -228,7 +289,9 @@ export const grouped = query({
   },
   handler: async (ctx, { field }) => {
     await requireInstructor(ctx);
-    const students = await ctx.db.query("students").collect();
+    const students = (await ctx.db.query("students").collect()).filter(
+      (s) => !isWithdrawn(s),
+    );
     const groups = new Map<string, typeof students>();
     for (const s of students) {
       const key = s[field] ?? "（未填）";
@@ -284,7 +347,7 @@ export const me = query({
             .query("students")
             .withIndex("by_email", (q) => q.eq("email", email))
             .collect()
-        ).find((s) => s.quarter === CURRENT_QUARTER)
+        ).find((s) => s.quarter === CURRENT_QUARTER && !isWithdrawn(s))
       : undefined;
     return {
       email,
@@ -304,12 +367,15 @@ export const me = query({
 
 // 聯絡表: the class contact directory (name, email, fellowship, group).
 // Students see only the current season; instructors see every quarter.
+// Withdrawn students are excluded for both — they have left the class.
 export const directory = query({
   handler: async (ctx) => {
     const identity = await requireAuth(ctx);
     const email = identity.email ?? "";
     const instructor = await isInstructor(ctx, email);
-    const students = await ctx.db.query("students").collect();
+    const students = (await ctx.db.query("students").collect()).filter(
+      (s) => !isWithdrawn(s),
+    );
     const visible = instructor
       ? students
       : students.filter((s) => s.quarter === CURRENT_QUARTER);
@@ -338,14 +404,20 @@ export const myGroup = query({
         .withIndex("by_email", (q) => q.eq("email", email))
         .collect()
     ).find((s) => s.quarter === CURRENT_QUARTER);
-    if (!mine) return { registered: false, groupName: null, members: [] };
+    if (!mine || isWithdrawn(mine)) {
+      // A withdrawn student is no longer a member of a group this quarter.
+      return { registered: false, groupName: null, members: [] };
+    }
     if (!mine.groupName) {
       return { registered: true, groupName: null, members: [] };
     }
     const all = await ctx.db.query("students").collect();
     const members = all
       .filter(
-        (s) => s.quarter === CURRENT_QUARTER && s.groupName === mine.groupName,
+        (s) =>
+          s.quarter === CURRENT_QUARTER &&
+          s.groupName === mine.groupName &&
+          !isWithdrawn(s),
       )
       .map((s) => ({
         _id: s._id,
@@ -456,8 +528,40 @@ export const registerStudent = mutation({
       .withIndex("by_email", (q) => q.eq("email", targetEmail))
       .collect();
     const duplicate = existing.find((s) => s.quarter === quarter);
-    if (duplicate) {
+    if (duplicate && !isWithdrawn(duplicate)) {
       return { status: "duplicate" as const, id: duplicate._id };
+    }
+    if (duplicate) {
+      // Reactivation (退出報名): the returning student re-registers for the
+      // SAME quarter — patch the row active and refresh the registration
+      // fields from this submission rather than inserting a second row
+      // (see docs/designs/withdrawal/LLD.md).
+      if (
+        args.photoStorageId &&
+        duplicate.photoStorageId &&
+        duplicate.photoStorageId !== args.photoStorageId
+      ) {
+        await ctx.storage.delete(duplicate.photoStorageId);
+      }
+      await ctx.db.patch(duplicate._id, {
+        name: targetName,
+        gender: args.gender,
+        fellowship: args.fellowship,
+        baptismTime: args.baptismTime,
+        leadingExperience: args.leadingExperience,
+        quarter,
+        present: true,
+        withdrawnAt: undefined,
+        withdrawnReason: undefined,
+        photoStorageId: args.photoStorageId ?? duplicate.photoStorageId,
+      });
+      // Reactivation sends the welcome email too (2026-09-17 decision):
+      // the same first-contact path as a first registration.
+      await ctx.scheduler.runAfter(0, internal.authEmail.sendWelcomeEmail, {
+        email: targetEmail,
+        name: targetName,
+      });
+      return { status: "reactivated" as const, id: duplicate._id };
     }
 
     const id = await ctx.db.insert("students", {
@@ -506,7 +610,7 @@ export const saveGroups = mutation({
     let updated = 0;
     for (const { studentId, groupName } of assignments) {
       const s = await ctx.db.get(studentId);
-      if (!s || s.quarter !== CURRENT_QUARTER) continue;
+      if (!s || s.quarter !== CURRENT_QUARTER || isWithdrawn(s)) continue;
       if (s.groupName !== groupName) {
         await ctx.db.patch(
           studentId,
@@ -529,7 +633,10 @@ export const renameGroup = mutation({
     if (!name) throw new Error("組名不可空白");
     if (name === from) return 0;
     const members = (await ctx.db.query("students").collect()).filter(
-      (s) => s.quarter === CURRENT_QUARTER && s.groupName === from,
+      (s) =>
+        s.quarter === CURRENT_QUARTER &&
+        s.groupName === from &&
+        !isWithdrawn(s),
     );
     for (const m of members) {
       await ctx.db.patch(m._id, { groupName: name });
@@ -540,7 +647,9 @@ export const renameGroup = mutation({
 
 // ---- Student self-service (own group + own schedule entries) ----
 
-// The signed-in user's current-quarter student record.
+// The signed-in user's current-quarter student record. A withdrawn student
+// is not a member of the class: they get the 請先註冊本季課程 path again,
+// not student features (re-registration reactivates the same row).
 async function requireCurrentStudent(ctx: QueryCtx | MutationCtx) {
   const identity = await requireAuth(ctx);
   const email = identity.email ?? "";
@@ -549,7 +658,7 @@ async function requireCurrentStudent(ctx: QueryCtx | MutationCtx) {
       .query("students")
       .withIndex("by_email", (q) => q.eq("email", email))
       .collect()
-  ).find((s) => s.quarter === CURRENT_QUARTER);
+  ).find((s) => s.quarter === CURRENT_QUARTER && !isWithdrawn(s));
   if (!me) throw new Error("請先註冊本季課程");
   return me;
 }
@@ -608,7 +717,10 @@ export const renameMyGroup = mutation({
     if (!me.groupName) throw new Error("尚未分配小組");
     if (me.groupName === name) return 0;
     const members = (await ctx.db.query("students").collect()).filter(
-      (s) => s.quarter === CURRENT_QUARTER && s.groupName === me.groupName,
+      (s) =>
+        s.quarter === CURRENT_QUARTER &&
+        s.groupName === me.groupName &&
+        !isWithdrawn(s),
     );
     for (const m of members) {
       await ctx.db.patch(m._id, { groupName: name });
@@ -622,10 +734,22 @@ export const renameMyGroup = mutation({
 // The signed-in student's own full registration record + a servable photo
 // URL. Guests and instructors (the instructor rule keeps them out of the
 // students table) get registered: false. Read model for the 我的資料 tab.
+//
+// A withdrawn student still resolves: `withdrawn: true` drives the 已退出
+// state (with a 重新報名 path), while `registered` stays true because the
+// quarter's row exists. Active students see `withdrawn: false`.
 export const myProfile = query({
   handler: async (ctx) => {
+    const empty = {
+      registered: false,
+      withdrawn: false,
+      withdrawnAt: null,
+      withdrawnReason: null,
+      student: null,
+      photoUrl: null,
+    };
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) return { registered: false, student: null, photoUrl: null };
+    if (!identity) return empty;
     const email = identity.email ?? "";
     const mine = (
       await ctx.db
@@ -633,9 +757,12 @@ export const myProfile = query({
         .withIndex("by_email", (q) => q.eq("email", email))
         .collect()
     ).find((s) => s.quarter === CURRENT_QUARTER);
-    if (!mine) return { registered: false, student: null, photoUrl: null };
+    if (!mine) return empty;
     return {
       registered: true,
+      withdrawn: isWithdrawn(mine),
+      withdrawnAt: mine.withdrawnAt ?? null,
+      withdrawnReason: mine.withdrawnReason ?? null,
       student: {
         _id: mine._id,
         name: mine.name,
@@ -697,6 +824,77 @@ export const updateMyPhoto = mutation({
   },
 });
 
+// ---- 退出報名: soft-state withdrawal ----
+//
+// See docs/designs/withdrawal/LLD.md. Withdrawal never deletes: it sets
+// withdrawnAt on the row, clears the group assignment, and sweeps the
+// student out of the current quarter's session assignments. Attendance
+// rows and `missed` stay untouched — the quarter's history is the point of
+// soft state over deletion.
+
+// Shared write: soft-state withdrawal + group clear + session sweep.
+// Exported for the demo seeder so the preview path cannot drift from the
+// real mutation.
+export async function applyWithdrawal(
+  ctx: MutationCtx,
+  student: Doc<"students">,
+  reason: string | undefined,
+): Promise<{ status: "withdrawn" | "already"; swept: number }> {
+  // Already withdrawn: no-op (never overwrite the recorded reason/date).
+  // Still sweep, defensively: a malformed client could have re-added the
+  // student to a session after they left.
+  if (isWithdrawn(student)) {
+    return { status: "already", swept: await sweepFromSessions(ctx, student._id) };
+  }
+  const trimmed = reason?.trim();
+  await ctx.db.patch(student._id, {
+    withdrawnAt: Date.now(),
+    withdrawnReason: trimmed ? trimmed : undefined,
+    groupName: undefined,
+  });
+  const swept = await sweepFromSessions(ctx, student._id);
+  return { status: "withdrawn", swept };
+}
+
+// Self-service: the signed-in student leaves their quarter. Idempotent.
+export const withdrawFromQuarter = mutation({
+  args: { reason: v.optional(v.string()) },
+  handler: async (ctx, { reason }) => {
+    const me = await requireCurrentStudent(ctx);
+    return await applyWithdrawal(ctx, me, reason);
+  },
+});
+
+// Instructor on-behalf withdrawal (they said so in person). Not limited to
+// the current quarter; the session sweep always is.
+export const withdrawStudent = mutation({
+  args: { studentId: v.id("students"), reason: v.optional(v.string()) },
+  handler: async (ctx, { studentId, reason }) => {
+    await requireInstructor(ctx);
+    const student = await ctx.db.get(studentId);
+    if (!student) throw new Error("找不到此學員");
+    return await applyWithdrawal(ctx, student, reason);
+  },
+});
+
+// Instructor undo (see LLD: a small addition beyond the issue — an
+// accidental on-behalf withdrawal is otherwise unrecoverable). Clears the
+// soft state; group assignment and swept sessions stay as they were.
+export const reactivateStudent = mutation({
+  args: { studentId: v.id("students") },
+  handler: async (ctx, { studentId }) => {
+    await requireInstructor(ctx);
+    const student = await ctx.db.get(studentId);
+    if (!student) throw new Error("找不到此學員");
+    if (!isWithdrawn(student)) return { status: "already-active" as const };
+    await ctx.db.patch(studentId, {
+      withdrawnAt: undefined,
+      withdrawnReason: undefined,
+    });
+    return { status: "reactivated" as const };
+  },
+});
+
 // ---- File upload (photo) ----
 
 export const generateUploadUrl = mutation({
@@ -741,6 +939,14 @@ export const updateSessionAssignments = mutation({
   },
   handler: async (ctx, { sessionId, leaderIds, observerIds }) => {
     await requireInstructor(ctx);
+    // A withdrawn student must never be (re-)assigned: the withdrawal sweep
+    // removes them, and this is the one writer that could put them back.
+    for (const id of [...leaderIds, ...observerIds]) {
+      const s = await ctx.db.get(id);
+      if (s && isWithdrawn(s)) {
+        throw new Error(`${s.name} 已退出本季課程，無法安排主領或觀察`);
+      }
+    }
     await ctx.db.patch(sessionId, { leaderIds, observerIds });
   },
 });

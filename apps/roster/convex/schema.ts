@@ -23,6 +23,13 @@ export default defineSchema({
     missed: v.number(),
     // Optional registration photo (front-camera snap or gallery pick).
     photoStorageId: v.optional(v.id("_storage")),
+    // 退出報名: set (ms) when the student withdraws from their quarter.
+    // Presence = withdrawn; cleared (undefined) when re-activated. Mirrors
+    // the instructors.active precedent — kept for history, no access.
+    // See docs/designs/withdrawal/LLD.md.
+    withdrawnAt: v.optional(v.number()),
+    // Optional reason captured at withdrawal (dropdown or free text).
+    withdrawnReason: v.optional(v.string()),
   })
     .index("by_quarter", ["quarter"])
     .index("by_email", ["email"])
