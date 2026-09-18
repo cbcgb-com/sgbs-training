@@ -39,3 +39,15 @@ export const BAPTISM_TIMES = ["少於1年", "1到5年", "超過5年"] as const;
 export const EXPERIENCES = ["沒帶過", "帶過，1到5次", "帶過，多於5次"] as const;
 
 export const GENDERS = ["女", "男"] as const;
+
+// 退出原因: the withdrawal-reason dropdown. 其他 reveals a free-text box.
+// Stored as a single optional string on the student row.
+export const WITHDRAWAL_REASONS = [
+  "時間無法配合",
+  "課程內容與期待不同",
+  "個人因素",
+  "其他",
+] as const;
+
+// The sentinel that reveals the free-text reason box.
+export const WITHDRAWAL_REASON_OTHER = "其他";

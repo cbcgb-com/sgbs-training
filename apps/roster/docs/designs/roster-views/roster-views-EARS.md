@@ -24,6 +24,13 @@
 - [x] **ROSTER-GRID-007**: The 缺課 view shall show the five class marks
       (attended / absent / unrecorded) per student with a legend, and only
       students with missed > 0.
+- [x] **ROSTER-GRID-008**: The 本季度 view shall exclude withdrawn
+      students and offer a 標記退出 control per active row.
+- [x] **ROSTER-GRID-009**: The 已退出 view shall list withdrawn students
+      with quarter, reason, and withdrawal date, filterable by quarter, and
+      offer 復原 (reactivate) per row.
+- [x] **ROSTER-GRID-010**: The Master view shall keep withdrawn students
+      with a 已退出 badge so history survives.
 
 ## Kanban Views
 

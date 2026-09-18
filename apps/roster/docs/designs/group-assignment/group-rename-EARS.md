@@ -6,7 +6,8 @@
 
 - [x] **GRP-REN-001**: When an instructor renames a saved group, the
       system shall update the groupName of every current-quarter member of
-      that group, including students added after the rename.
+      that group, including students added after the rename. Withdrawn
+      students are skipped.
 - [x] **GRP-REN-002**: When an instructor renames an unsaved draft column,
       the system shall rename only the draft until 儲存分組.
 

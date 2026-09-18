@@ -48,6 +48,17 @@
 - [x] **PROF-032**: Replacing or removing a photo shall delete the
       previous stored blob so photos don't accumulate in storage.
 
+## Withdrawal (退出報名)
+
+- [x] **PROF-040**: The system shall render `withdrawn: true` as a distinct
+      已退出 state (headline, effect copy, recorded reason/date when
+      present) with a 重新報名 action that opens the registration tab.
+- [x] **PROF-041**: While the student is active, the system shall offer a
+      退出本季課程 action behind an inline confirmation carrying the
+      effect copy and the optional reason (dropdown + free text on 其他).
+- [x] **PROF-042**: A withdrawn student's profile shall not be editable
+      (the backend rejects with 請先註冊本季課程).
+
 ## Related Documents
 
 - [Student Profile LLD](./LLD.md)

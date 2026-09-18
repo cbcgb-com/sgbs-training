@@ -7,8 +7,10 @@
 - [x] **AUTH-ROLE-001**: The system shall treat an email as an instructor
       only while an `instructors` row with that email has `active: true`.
 - [x] **AUTH-ROLE-002**: The system shall treat any other signed-in email
-      as a student when a `students` row exists with that email and the
-      current quarter.
+      as a student when a `students` row exists with that email, the
+      current quarter, and no 退出報名 soft state (a withdrawn student is
+      not a student member; see the [Withdrawal
+      LLD](../withdrawal/LLD.md)).
 - [x] **AUTH-ROLE-003**: The system shall derive the role on the server
       for every gated query and mutation, independent of what the UI
       renders.

@@ -22,6 +22,9 @@
       system shall update the session for all viewers in real time.
 - [x] **SCH-ADM-012**: The system shall exclude a candidate from a week's
       add-list when they are already assigned to that week in either role.
+- [x] **SCH-ADM-013**: If an assignment write includes a withdrawn
+      student, then the system shall reject it with a named error, so the
+      withdrawal sweep cannot be undone.
 
 ## Derived Views
 

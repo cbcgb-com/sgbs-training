@@ -142,3 +142,4 @@ portable.
 - [Schedule LLD](./designs/schedule/LLD.md)
 - [Directory LLD](./designs/directory/LLD.md)
 - [Roster Views LLD](./designs/roster-views/LLD.md)
+- [Withdrawal LLD](./designs/withdrawal/LLD.md)

@@ -50,6 +50,19 @@ own group's people. The student's own chips carry a remove control; empty
 slots offer 我來主領 / 我來觀察. One role per student per week: adding
 oneself to a role removes them from the other role of the same week.
 
+A withdrawn student (退出報名) is not a member: their self-service
+mutations are rejected by `requireCurrentStudent`, and their group view
+reports 尚未登記, so the schedule shows the 前往註冊 path instead.
+
+## Withdrawal sweep
+
+Withdrawal removes the student from every current-quarter session's
+`leaderIds`/`observerIds` so 課堂安排 cannot show a ghost 主領/觀察 after
+they leave. `updateSessionAssignments` refuses a withdrawn student, so the
+sweep cannot be undone by an assignment write. Historical quarters keep
+their assignments as history. See
+[Withdrawal LLD](../withdrawal/LLD.md).
+
 ## Derived Views (instructor roster)
 
 主領日期 / 觀察日期 list views invert the sessions: per student, the

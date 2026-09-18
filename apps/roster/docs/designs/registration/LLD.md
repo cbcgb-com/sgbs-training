@@ -67,6 +67,10 @@ never reach a Chinese-language form.
 - **Already registered**: same email + quarter returns status duplicate →
   UI shows 已註冊 pointing at 我的資料 for self-serve updates, not a
   second record.
+- **Withdrawn duplicate**: a same-quarter row in the 退出報名 soft state is
+  **reactivated** (patched active, fields refreshed, welcome email sent)
+  instead of returning duplicate — the returning student's path back.
+  Status `"reactivated"`; see [Withdrawal LLD](../withdrawal/LLD.md).
 - **New registrations start at missed: 0** — "5" meant attendance was
   never recorded, never "missed everything" (Eric: out at ~3).
 - **Instructor registering a duplicate** still returns duplicate, never a

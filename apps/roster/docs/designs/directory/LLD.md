@@ -18,6 +18,10 @@ Enforcement is in the `directory` query, not the component.
 - student → same projection filtered to
   `quarter === CURRENT_QUARTER`.
 
+Withdrawn students (退出報名 soft state) are excluded for both roles — a
+student who has left is no longer on the class contact sheet. See
+[Withdrawal LLD](../withdrawal/LLD.md).
+
 The light projection carries name, email, fellowship, groupName, quarter,
 and photoStorageId — never attendance, never missed counts.
 

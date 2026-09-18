@@ -26,7 +26,7 @@
       group via a per-student control while the draft is unsaved.
 - [x] **GRP-OVR-003**: When 儲存分組 is clicked, the system shall persist
       the draft as groupName on each current-quarter student and touch no
-      other quarters.
+      other quarters. Withdrawn students are skipped.
 - [x] **GRP-OVR-004**: Group names shall default to 第N組 and remain
       editable at any time (see Group Rename).
 
