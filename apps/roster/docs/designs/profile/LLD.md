@@ -15,12 +15,18 @@ their own particulars and photo.
 ## Backend (convex/students.ts)
 
 - **`myProfile`** — query, gated on the session identity. Returns the
-  student's own current-quarter row plus the photo URL. No
+  student's own current-quarter row plus the photo URL, and reports
+  `withdrawn: true` (+ `withdrawnAt`/`withdrawnReason`) when the row is in
+  the 退出報名 soft state so the tab can render the 已退出 view. No
   client-supplied student id anywhere.
 - **`updateMyProfile`** — mutation, gated by `requireCurrentStudent`.
   Updates the five registrable fields; trimmed non-empty (缺少必填欄位).
 - **`updateMyPhoto`** — mutation, gated by `requireCurrentStudent`. Sets
   or clears `photoStorageId`; deletes the previous blob.
+- **`withdrawFromQuarter`** — mutation, gated by `requireCurrentStudent`.
+  Leaves the quarter (soft state: `withdrawnAt` + optional reason, group
+  cleared, current-quarter sessions swept). See
+  [Withdrawal LLD](../withdrawal/LLD.md).
 
 Out of scope by design: email (identity-authoritative — sign-in is that
 email), 小組/季度/出勤 (instructor territory, intent rule 4). The

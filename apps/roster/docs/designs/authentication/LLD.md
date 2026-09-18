@@ -72,9 +72,12 @@ in this order:
 
 1. **Instructor** — an `instructors` table row with the same email AND
    `active: true`.
-2. **Student** — otherwise, when a `students` row exists with that email
-   and `quarter === CURRENT_QUARTER`.
-3. **Authenticated guest** — signed in, no student record.
+2. **Student** — otherwise, when a `students` row exists with that email,
+   `quarter === CURRENT_QUARTER`, and no 退出報名 soft state
+   (`withdrawnAt === undefined`). A withdrawn student is an authenticated
+   guest until they re-register (which reactivates the same row); see the
+   [Withdrawal LLD](../withdrawal/LLD.md).
+3. **Authenticated guest** — signed in, no active student record.
 
 Helpers in `convex/students.ts`: `requireAuth`, `requireInstructor`
 (active instructor or throws 僅限同工存取), `requireCurrentStudent`

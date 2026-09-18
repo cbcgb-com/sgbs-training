@@ -18,6 +18,10 @@
 - [x] **REG-SUB-002**: When the same email is already registered for the
       same quarter, the system shall return duplicate and render the
       已註冊 panel instead of creating a record.
+- [x] **REG-SUB-006**: When the same-quarter row is withdrawn, the system
+      shall reactivate it (status `"reactivated"`, fields refreshed,
+      welcome email sent) instead of returning duplicate or inserting a
+      second row.
 - [x] **REG-SUB-003**: When registration succeeds, the system shall record
       missed = 0 (attendance starts unrecorded) and source = "form".
 - [x] **REG-SUB-004**: If any required field is missing, then the system

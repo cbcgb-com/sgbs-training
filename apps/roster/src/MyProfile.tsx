@@ -9,7 +9,10 @@ import {
   EXPERIENCES,
   FELLOWSHIPS,
   GENDERS,
+  WITHDRAWAL_REASON_OTHER,
+  WITHDRAWAL_REASONS,
 } from "./constants";
+import { withdrawReasonValue, zhDate } from "./withdrawal";
 
 // 我的資料: the signed-in student's own record, rendered as the same
 // ruled ledger sheet they registered on (Form.tsx) — viewing is the
@@ -21,12 +24,20 @@ export default function MyProfile() {
   const updateProfile = useMutation(api.students.updateMyProfile);
   const updatePhoto = useMutation(api.students.updateMyPhoto);
   const generateUploadUrl = useMutation(api.students.generateUploadUrl);
+  const withdraw = useMutation(api.students.withdrawFromQuarter);
   const { setTab } = useTab();
 
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // 退出本季課程 confirmation strip (no modal in the design system; the
+  // confirm is an inline slip, like every other state on this ledger).
+  const [confirmingWithdrawal, setConfirmingWithdrawal] = useState(false);
+  const [withdrawing, setWithdrawing] = useState(false);
+  const [reasonChoice, setReasonChoice] = useState("");
+  const [reasonOther, setReasonOther] = useState("");
 
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
@@ -49,6 +60,59 @@ export default function MyProfile() {
       <p className="py-12 text-center font-serif-tc text-sm tracking-[0.3em] text-ink-soft">
         載入中……
       </p>
+    );
+  }
+
+  if (profile.withdrawn) {
+    return (
+      <div className="ink-in mx-auto max-w-xl py-8">
+        <div className="border-b-2 border-ink pb-4">
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-serif-tc text-2xl font-bold tracking-[0.15em] text-ink">
+              已退出
+            </h2>
+            <span className="font-serif-tc text-sm font-bold text-vermilion">
+              {profile.student?.quarter || CURRENT_QUARTER}
+            </span>
+          </div>
+        </div>
+        <p className="mt-6 text-sm leading-relaxed text-ink-soft">
+          您已退出 {profile.student?.quarter || CURRENT_QUARTER} 的課程。您的名字已從本季名單、聯絡表、小組與課堂安排中移除；出席紀錄會保留。
+        </p>
+        {(profile.withdrawnAt || profile.withdrawnReason) && (
+          <dl className="mt-6 space-y-3 border-l border-gold/70 pl-4 text-sm">
+            {profile.withdrawnAt && (
+              <div>
+                <dt className="font-serif-tc font-bold tracking-[0.1em] text-ink">
+                  退出日期
+                </dt>
+                <dd className="mt-0.5 text-ink-soft">
+                  {zhDate(profile.withdrawnAt)}
+                </dd>
+              </div>
+            )}
+            {profile.withdrawnReason && (
+              <div>
+                <dt className="font-serif-tc font-bold tracking-[0.1em] text-ink">
+                  退出原因
+                </dt>
+                <dd className="mt-0.5 text-ink-soft">
+                  {profile.withdrawnReason}
+                </dd>
+              </div>
+            )}
+          </dl>
+        )}
+        <p className="mt-8 text-sm leading-relaxed text-ink-soft">
+          如想重新加入，可重新提交註冊；您的出席紀錄與資料會保留。
+        </p>
+        <button
+          onClick={() => setTab("register")}
+          className="mt-6 w-full bg-ink py-3.5 font-serif-tc pl-[0.4em] text-base font-bold tracking-[0.4em] text-paper transition-colors hover:bg-vermilion sm:w-auto sm:px-16"
+        >
+          重新報名
+        </button>
+      </div>
     );
   }
 
@@ -163,6 +227,21 @@ export default function MyProfile() {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
       setSaving(false);
+    }
+  }
+
+  // 退出本季課程: sets the soft state, clears my group, and sweeps my
+  // 主領/觀察 assignments; the tab then renders the 已退出 state.
+  async function handleWithdraw() {
+    setError(null);
+    setWithdrawing(true);
+    try {
+      await withdraw({ reason: withdrawReasonValue(reasonChoice, reasonOther) });
+      setConfirmingWithdrawal(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setWithdrawing(false);
     }
   }
 
@@ -397,6 +476,96 @@ export default function MyProfile() {
       <p className="mt-6 text-[13px] text-ink-soft">
         郵箱與小組由同工管理；其他欄位可隨時更新。
       </p>
+
+      {!editing && (
+        <div className="mt-10 border-t border-rule pt-5">
+          {confirmingWithdrawal ? (
+            <div className="border border-vermilion/40 px-4 py-4">
+              <p className="font-serif-tc text-sm font-bold tracking-[0.1em] text-ink">
+                確定退出本季課程？
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
+                退出後，您的名字將從本季名單、聯絡表、小組與課堂安排中移除；出席紀錄會保留。如想重新加入，可重新提交註冊。
+              </p>
+              <div className="mt-4 space-y-2">
+                <label
+                  htmlFor="withdraw-reason"
+                  className="font-serif-tc text-[15px] font-bold tracking-[0.1em] text-ink"
+                >
+                  退出原因
+                  <span className="ml-1 text-[13px] font-normal text-ink-soft">
+                    （選填）
+                  </span>
+                </label>
+                <select
+                  id="withdraw-reason"
+                  value={reasonChoice}
+                  onChange={(e) => setReasonChoice(e.target.value)}
+                  className={
+                    ruledInput +
+                    " cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22><path d=%22M1 1l5 5 5-5%22 fill=%22none%22 stroke=%22%2357503f%22 stroke-width=%221.5%22/></svg>')] bg-[position:right_0.25rem_center] bg-no-repeat pr-8"
+                  }
+                >
+                  <option value="">不填寫</option>
+                  {WITHDRAWAL_REASONS.map((r) => (
+                    <option key={r} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+                {reasonChoice === WITHDRAWAL_REASON_OTHER && (
+                  <input
+                    type="text"
+                    value={reasonOther}
+                    onChange={(e) => setReasonOther(e.target.value)}
+                    onKeyDown={(e) => {
+                      // The strip lives inside the profile <form>; Enter in
+                      // this lone text input would implicitly submit the
+                      // (empty) profile save instead of confirming.
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleWithdraw();
+                      }
+                    }}
+                    placeholder="請簡述原因"
+                    aria-label="其他原因"
+                    className={ruledInput}
+                  />
+                )}
+              </div>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleWithdraw}
+                  disabled={withdrawing}
+                  className="border border-vermilion bg-ink px-6 py-2.5 font-serif-tc text-sm font-bold tracking-[0.2em] text-paper transition-colors hover:bg-vermilion disabled:opacity-50"
+                >
+                  {withdrawing ? "處理中" : "確認退出"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setConfirmingWithdrawal(false)}
+                  disabled={withdrawing}
+                  className="border border-rule px-6 py-2.5 font-serif-tc text-sm font-bold tracking-[0.2em] text-ink transition-colors hover:border-ink disabled:opacity-50"
+                >
+                  取消
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                setConfirmingWithdrawal(true);
+                setSaved(false);
+              }}
+              className="font-serif-tc text-sm tracking-[0.1em] text-vermilion underline underline-offset-4 hover:text-ink"
+            >
+              退出本季課程
+            </button>
+          )}
+        </div>
+      )}
     </form>
   );
 }

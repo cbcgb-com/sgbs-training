@@ -14,17 +14,23 @@ never reach this surface. The tab opens on 本季度 (current season), not
 
 | View | Query | Rule |
 | ---- | ----- | ---- |
-| Master (全體) | students:all | everyone |
-| 本季度 (default) | students:byQuarter | quarter = current |
+| Master (全體) | students:all | everyone, **including withdrawn** (已退出 badge) |
+| 本季度 (default) | students:byQuarter | quarter = current, excluding withdrawn |
 | 帶領經驗 | students:withExperience | leadingExperience ≠ 沒帶過 |
 | 主領日期 | students:leaders | derived: leads ≥ 1 session |
 | 觀察日期 | students:observers | derived: observes ≥ 1 session |
 | Missed 缺課 | students:withMissed | missed > 0 |
+| 已退出 | students:withdrawn | withdrawn only (soft state; filterable) |
 | 團契/受洗/性別/季度 看板 | students:grouped | grouped by select field |
 
 主領日期 and 觀察日期 are **derived at query time** by inverting the
 sessions table — no stored copy to drift. 缺課 shows the attendance beat
 marks (五堂 as filled/hollow/dash marks) with a legend.
+
+Withdrawal (退出報名) is soft state on the student row (`withdrawnAt`), so
+Master and the derived history views keep withdrawn students while every
+current-quarter view filters them out; the 已退出 view is their dedicated
+surface. See [Withdrawal LLD](../withdrawal/LLD.md).
 
 ## Table Conventions
 

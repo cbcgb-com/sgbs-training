@@ -33,6 +33,9 @@
       the current season's sessions only.
 - [x] **SCH-SELF-022**: The system shall propagate self-service changes to
       every open viewer in real time.
+- [x] **SCH-SELF-023**: When a student withdraws (退出報名), the system
+      shall remove them from every current-quarter session's 主領/觀察
+      arrays, and shall not list them in the student schedule.
 
 ## Related Documents
 

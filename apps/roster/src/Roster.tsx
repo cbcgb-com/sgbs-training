@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
 import Avatar from "./Avatar";
-import { CURRENT_QUARTER } from "./constants";
+import {
+  CURRENT_QUARTER,
+  WITHDRAWAL_REASON_OTHER,
+  WITHDRAWAL_REASONS,
+} from "./constants";
+import { withdrawReasonValue, zhDate } from "./withdrawal";
 
 type Student = Doc<"students">;
 type LeaderRow = Student & { dates: string[] };
@@ -15,6 +20,7 @@ const VIEWS = [
   { key: "leaders", label: "主領" },
   { key: "observers", label: "觀察" },
   { key: "missed", label: "缺課" },
+  { key: "withdrawn", label: "已退出" },
   { key: "k-fellowship", label: "團契" },
   { key: "k-baptism", label: "受洗" },
   { key: "k-gender", label: "性別" },
@@ -61,6 +67,8 @@ export default function Roster() {
         {view === "leaders" && "曾主領或已排定主領日期的學員"}
         {view === "observers" && "曾觀察或已排定觀察日期的學員"}
         {view === "missed" && "本季有缺課記錄的學員"}
+        {view === "withdrawn" &&
+          "已退出本季課程的學員；可按季度篩選。出席紀錄保留在資料庫中。"}
         {(view === "k-fellowship" ||
           view === "k-baptism" ||
           view === "k-gender" ||
@@ -75,6 +83,7 @@ export default function Roster() {
         {view === "leaders" && <LeadersView />}
         {view === "observers" && <ObserversView />}
         {view === "missed" && <MissedView />}
+        {view === "withdrawn" && <WithdrawnView />}
         {view === "k-fellowship" && <Kanban field="fellowship" label="團契" />}
         {view === "k-baptism" && (
           <Kanban field="baptismTime" label="受洗時間" />
@@ -111,6 +120,8 @@ function MasterView() {
   );
 }
 
+// 本季度: the active roster, with the instructor's 標記退出 control — the
+// on-behalf withdrawal surface.
 function QuarterView() {
   const students = useQuery(api.students.byQuarter, {});
   const photos = useQuery(api.students.photoUrls);
@@ -118,6 +129,11 @@ function QuarterView() {
     <StudentTable
       students={students}
       photos={photos}
+      renderAction={(s) =>
+        s.withdrawnAt === undefined ? (
+          <WithdrawalAction studentId={s._id} name={s.name} />
+        ) : null
+      }
       columns={[
         ["名字", (s) => s.name, "serif"],
         ["團契", (s) => s.fellowship ?? ""],
@@ -127,6 +143,270 @@ function QuarterView() {
         ["缺課", (s) => String(s.missed), "margin"],
       ]}
     />
+  );
+}
+
+// ---- 退出報名 (instructor side) ----
+
+// Per-row mark-withdrawn control: a quiet text action that opens a compact
+// inline confirmation with the optional reason (same dropdown + free text
+// as the student's own 退出 form). See docs/designs/withdrawal/LLD.md.
+function WithdrawalAction({
+  studentId,
+  name,
+}: {
+  studentId: Id<"students">;
+  name: string;
+}) {
+  const withdraw = useMutation(api.students.withdrawStudent);
+  const [open, setOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [choice, setChoice] = useState("");
+  const [other, setOther] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  async function confirm() {
+    setError(null);
+    setBusy(true);
+    try {
+      await withdraw({ studentId, reason: withdrawReasonValue(choice, other) });
+      setOpen(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="font-serif-tc text-sm tracking-[0.1em] text-ink-soft underline underline-offset-4 transition-colors hover:text-vermilion"
+      >
+        標記退出
+      </button>
+    );
+  }
+
+  return (
+    <div className="min-w-56 border border-vermilion/40 bg-paper-deep/40 px-3 py-3 text-left">
+      <p className="font-serif-tc text-sm font-bold text-ink">
+        確定讓 {name} 退出？
+      </p>
+      <select
+        value={choice}
+        onChange={(e) => setChoice(e.target.value)}
+        aria-label="退出原因"
+        className="mt-2 w-full cursor-pointer border border-rule bg-paper px-2 py-1 text-sm text-ink focus:border-ink focus:outline-none"
+      >
+        <option value="">不填寫原因</option>
+        {WITHDRAWAL_REASONS.map((r) => (
+          <option key={r} value={r}>
+            {r}
+          </option>
+        ))}
+      </select>
+      {choice === WITHDRAWAL_REASON_OTHER && (
+        <input
+          type="text"
+          value={other}
+          onChange={(e) => setOther(e.target.value)}
+          placeholder="請簡述原因"
+          aria-label="其他原因"
+          className="mt-2 w-full border border-rule bg-paper px-2 py-1 text-sm text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none"
+        />
+      )}
+      {error && (
+        <p role="alert" className="mt-2 text-xs text-vermilion">
+          {error}
+        </p>
+      )}
+      <div className="mt-3 flex items-center gap-2">
+        <button
+          type="button"
+          onClick={confirm}
+          disabled={busy}
+          className="border border-vermilion bg-ink px-3 py-1 font-serif-tc text-xs font-bold tracking-[0.15em] text-paper transition-colors hover:bg-vermilion disabled:opacity-50"
+        >
+          {busy ? "處理中" : "確認退出"}
+        </button>
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          disabled={busy}
+          className="border border-rule px-3 py-1 font-serif-tc text-xs font-bold tracking-[0.15em] text-ink transition-colors hover:border-ink disabled:opacity-50"
+        >
+          取消
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// 已退出: withdrawn students, filterable by quarter, with 復原 (instructor
+// undo). Attendance history stays in the database; this view is the
+// lifecycle manager for the soft state.
+function WithdrawnView() {
+  const rows = useQuery(api.students.withdrawn);
+  const photos = useQuery(api.students.photoUrls);
+  const reactivate = useMutation(api.students.reactivateStudent);
+  // Default to 全部: a quarter is only an option when a withdrawal happened
+  // in it, so defaulting to CURRENT_QUARTER could show an empty view while
+  // historical rows exist (and leave the select with no matching option).
+  const [quarter, setQuarter] = useState<string>("all");
+  const [busyId, setBusyId] = useState<Id<"students"> | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  if (!rows) return <Loading />;
+
+  const quarters = [...new Set(rows.map((r) => r.quarter))]
+    .filter(Boolean)
+    .sort((a, b) => b.localeCompare(a));
+  const filtered =
+    quarter === "all" ? rows : rows.filter((r) => r.quarter === quarter);
+  const sorted = [...filtered].sort(
+    (a, b) =>
+      b.withdrawnAt - a.withdrawnAt ||
+      a.name.localeCompare(b.name, "zh-Hant"),
+  );
+
+  async function restore(id: Id<"students">) {
+    setError(null);
+    setBusyId(id);
+    try {
+      await reactivate({ studentId: id });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3">
+        <span className="font-serif-tc text-sm text-ink-soft">
+          共 {sorted.length} 位已退出
+        </span>
+        <label className="flex items-center gap-2 text-sm text-ink-soft">
+          季度
+          <select
+            value={quarter}
+            onChange={(e) => setQuarter(e.target.value)}
+            className="cursor-pointer border border-rule bg-paper px-2 py-1 font-serif-tc text-base text-ink focus:border-ink focus:outline-none"
+          >
+            {quarters.map((q) => (
+              <option key={q} value={q}>
+                {q}
+              </option>
+            ))}
+            <option value="all">全部</option>
+          </select>
+        </label>
+      </div>
+
+      {error && (
+        <p
+          role="alert"
+          className="mt-3 border-t border-vermilion pt-3 font-serif-tc text-sm text-vermilion"
+        >
+          {error}
+        </p>
+      )}
+
+      {sorted.length === 0 ? (
+        <p className="py-14 text-center font-serif-tc text-base tracking-[0.25em] text-ink-soft">
+          此檢視暫無記錄
+        </p>
+      ) : (
+        <div className="mt-2 overflow-x-auto overflow-y-clip">
+          <table className="w-full border-collapse text-left text-base tabular-nums">
+            <thead>
+              <tr className="border-b-2 border-ink">
+                <th className="th-double w-10 px-1 py-2.5">
+                  <span className="sr-only">序號</span>
+                </th>
+                {[
+                  "名字",
+                  "團契",
+                  "小組",
+                  "季度",
+                  "郵箱",
+                  "退出日期",
+                  "退出原因",
+                  "",
+                ].map((label, i) => (
+                  <th
+                    key={label || `col-${i}`}
+                    scope="col"
+                    className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                  >
+                    {label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map((s, i) => (
+                <tr
+                  key={s._id}
+                  className="border-b border-rule transition-colors hover:bg-paper-deep/60"
+                >
+                  <td className="px-1 py-2.5 text-right font-serif-tc text-sm text-vermilion">
+                    {i + 1}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5">
+                    <span className="flex items-center gap-2.5">
+                      <Avatar
+                        name={s.name}
+                        url={
+                          s.photoStorageId
+                            ? photos?.[s.photoStorageId]
+                            : undefined
+                        }
+                      />
+                      <span className="font-serif-tc text-[17px] font-bold text-ink">
+                        {s.name}
+                      </span>
+                    </span>
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5 text-ink">
+                    {s.fellowship || "—"}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5 text-ink">
+                    {s.groupName || "—"}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5 text-right text-ink-soft">
+                    {s.quarter || "—"}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5 text-ink">
+                    {s.email || "—"}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5 text-right text-ink-soft">
+                    {zhDate(s.withdrawnAt)}
+                  </td>
+                  <td className="px-3 py-2.5 text-ink-soft">
+                    {s.withdrawnReason || "—"}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-2.5">
+                    <button
+                      type="button"
+                      onClick={() => restore(s._id)}
+                      disabled={busyId === s._id}
+                      className="font-serif-tc text-sm tracking-[0.1em] text-ink-soft underline underline-offset-4 transition-colors hover:text-ink disabled:opacity-50"
+                    >
+                      {busyId === s._id ? "處理中" : "復原"}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -347,17 +627,20 @@ function StudentTable<
     name: string;
     photoStorageId?: Id<"_storage">;
     marks?: Mark[];
+    withdrawnAt?: number;
   },
 >({
   students,
   columns,
   markColumns,
   photos,
+  renderAction,
 }: {
   students: T[] | undefined;
   columns: [string, (s: T) => string, ColumnStyle?][];
   markColumns?: boolean;
   photos?: Record<string, string | null>;
+  renderAction?: (s: T) => React.ReactNode;
 }) {
   if (!students) return <Loading />;
   const sorted = [...students].sort((a, b) =>
@@ -395,6 +678,14 @@ function StudentTable<
                 課堂日期
               </th>
             )}
+            {renderAction && (
+              <th
+                scope="col"
+                className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+              >
+                <span className="sr-only">操作</span>
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -429,6 +720,11 @@ function StudentTable<
                         }
                       />
                       <span className="font-serif-tc text-[17px] font-bold">{get(s)}</span>
+                      {s.withdrawnAt !== undefined && (
+                        <span className="shrink-0 border border-vermilion/50 px-1.5 py-0.5 text-[13px] font-bold tracking-[0.1em] text-vermilion">
+                          已退出
+                        </span>
+                      )}
                     </span>
                   ) : (
                     (get(s) || "—")
@@ -439,6 +735,9 @@ function StudentTable<
                 <td className="px-3 py-2.5">
                   <DateMarks marks={s.marks ?? []} />
                 </td>
+              )}
+              {renderAction && (
+                <td className="px-3 py-2.5">{renderAction(s)}</td>
               )}
             </tr>
           ))}

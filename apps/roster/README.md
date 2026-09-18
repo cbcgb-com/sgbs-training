@@ -51,7 +51,9 @@ student; anything else is a guest.
 - **課堂安排 schedule** — Student: own group's people only, four leading
   weeks, self-serve 我來主領/我來觀察. Instructor: every group's table
   with full assignment editing.
-- **名單 full roster** — Instructor only: all 12 views.
+- **名單 full roster** — Instructor only: all 12 views, plus a 已退出
+  view (退出報名 soft state) filterable by quarter, and a 標記退出 control
+  on the 本季度 rows for on-behalf withdrawals.
 - **分組 group divider** — Instructor only: one-click diverse grouping
   with manual override and renames.
 
@@ -88,6 +90,32 @@ Intent rules that must survive refactors:
    addresses live only in the Convex `instructors` table (this repo is
    public, so member emails are never committed).
 
+## Withdrawal (退出報名)
+
+A student who has registered can leave the quarter: 退出本季課程 in 我的資料
+(students) or 標記退出 on a 本季度 row (instructors, on-behalf). Withdrawal
+is **soft state** — `withdrawnAt` set on the row (plus an optional
+`withdrawnReason`) — never deletion, so the quarter's attendance history
+survives and sign-in keeps working. The write also clears `groupName` and
+sweeps the student out of the current quarter's session 主領/觀察 arrays;
+attendance rows and `missed` are untouched.
+
+Withdrawn rows are invisible to every current-quarter surface (本季度,
+出勤, 看板, 分組, 聯絡表, 我的組, schedule self-service) and to
+`requireCurrentStudent` (a withdrawn student gets the 請先註冊本季課程
+path). The Master view keeps them with a 已退出 badge, and the 已退出 roster
+view lists them (filterable by quarter) with 復原 to undo.
+
+**Re-registration is reactivation.** Both registration paths
+(`auth.verifyRegistrationCode` and `students.registerStudent`) detect a
+withdrawn same-quarter duplicate and patch it active (refreshing the
+registration fields, sending the welcome email, replacing the photo if one
+was uploaded) instead of dead-ending on "duplicate" or inserting a second
+row; they return status `"reactivated"`, rendered as the normal success
+panel. Returning for a NEW quarter is still a new row, unchanged.
+`students:deleteStudentByEmail` remains the CLI purge path for a genuine
+record-deletion request — it is not the withdrawal path.
+
 Enforcement lives in `convex/students.ts` (`requireInstructor`,
 `requireCurrentStudent`) — the UI hiding tabs is convenience, the server
 is the gate.
@@ -97,7 +125,8 @@ is the gate.
 Convex requires ASCII field names, so documents use English keys
 (`name`, `fellowship`, `email`, `baptismTime`, `quarter`, `groupName`,
 `gender`, `leadingExperience`, `present`, `missed`,
-`photoStorageId`); the UI shows the original Chinese labels.
+`photoStorageId`, `withdrawnAt`, `withdrawnReason`); the UI shows the
+original Chinese labels.
 
 Leading/observing assignments live only in the `sessions` table
 (`leaderIds`/`observerIds`); the per-student views derive them at

@@ -118,7 +118,7 @@ export default function Form({
     try {
       if (adminMode) {
         const photoStorageId = photo ? await uploadPhoto(photo) : undefined;
-        await registerStudent({
+        const res = await registerStudent({
           name,
           gender,
           fellowship,
@@ -129,7 +129,9 @@ export default function Form({
           photoStorageId,
           email,
         });
-        setResult("created");
+        // reactivated (退出報名 re-registration) renders the same 謝謝
+        // panel as created; duplicate shows the 已註冊 copy.
+        setResult(res.status === "duplicate" ? "duplicate" : "created");
         return;
       }
       const photoStorageId = photo ? await uploadPhoto(photo) : undefined;

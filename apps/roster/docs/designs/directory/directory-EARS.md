@@ -12,6 +12,8 @@
       provide a quarter filter across the full archive.
 - [x] **DIR-SCOPE-004**: The system shall enforce the season restriction in
       the `directory` query, not only in the component.
+- [x] **DIR-SCOPE-005**: The system shall exclude withdrawn students from
+      the directory for both roles.
 
 ## Projection
 
