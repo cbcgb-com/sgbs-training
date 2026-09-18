@@ -1,0 +1,59 @@
+apps/roster/src/Roster.tsx
+  s_ccfb6c3386007e::t_6273889164bfed 681-685
+  s_ccfb6c3386007e::t_9bc460fabb6d1d 123,133-135,151,159-160,256-257,281,637
+  s_ccfb6c3386007e::t_fb3b5da78aa951 132,158
+  s_ccfb6c3386007e::t_4bba98579647f2 723-725
+  s_ccfb6c3386007e::t_f43e95600d1a61 70
+  s_ccfb6c3386007e::t_38af8f6196fe84 2,6-10
+  s_ccfb6c3386007e::t_3081cd50ea09f8 11
+  s_ccfb6c3386007e::t_80cd7ece333371 71
+  s_ccfb6c3386007e::t_2384311ae4807f 124
+  s_ccfb6c3386007e::t_7d3460ec02497c 136
+  s_ccfb6c3386007e::t_19b2dfadce6942 149-150
+  s_ccfb6c3386007e::t_3fe0d082f7d0d3 152-157
+  s_ccfb6c3386007e::t_ecd603efe5e540 161-163,253-255
+  s_ccfb6c3386007e::t_3c11307f52eed0 258-260,278-280
+  s_ccfb6c3386007e::t_9968218c784514 282-284
+  s_ccfb6c3386007e::t_838866d2ad8e1a 686-688
+  s_ccfb6c3386007e::t_d6dc1e31906acb 726-727
+apps/roster/src/MyProfile.tsx
+  s_ccfb6c3386007e::t_7eb6112ac3b010 479-555
+  s_ccfb6c3386007e::t_c3375760b8fe79 233-243
+  s_ccfb6c3386007e::t_dfd28ea12382a9 12-13
+  s_ccfb6c3386007e::t_160b78ec15a102 27,35-40
+  s_ccfb6c3386007e::t_86628e79cd4666 66-116,244,568
+  s_ccfb6c3386007e::t_fec861829ce548 41
+  s_ccfb6c3386007e::t_3be064e5e37d57 117-118
+  s_ccfb6c3386007e::t_9b6904dcfa1bd3 245-247
+  s_ccfb6c3386007e::t_418127040b5482 556-558,565-567
+apps/roster/README.md
+  s_ccfb6c3386007e::t_cef54e6c246d3f 54-56
+  s_ccfb6c3386007e::t_01be6b4a70a494 93-117
+  s_cab114eb3b6f1d::t_2e1c8048bb83a3 118,128-129
+apps/roster/docs/high-level-design.md
+  s_ccfb6c3386007e::t_924d38913eea4a 145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c97b06a1d2db130cb18472f22a2868fe22bf511e",
+  "prompts": {},
+  "sessions": {
+    "s_cab114eb3b6f1d": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f4f579af1ffei95seevLZPI19M",
+        "model": "unknown"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    },
+    "s_ccfb6c3386007e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f4f3503f1ffeMqRdKEK2pb0bCw",
+        "model": "unknown"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
