@@ -1,0 +1,1686 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+
+details * {
+    font-size: large;
+}
+
+/* Smooth transitions for collapsible details blocks */
+details {
+    transition: all 0.3s ease-in-out;
+}
+
+details[open] {
+    transition: all 0.3s ease-in-out;
+}
+
+details summary {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+}
+
+details summary:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: -2px -4px;
+}
+
+details summary::-webkit-details-marker {
+    transition: transform 0.2s ease-in-out;
+}
+
+details[open] summary::-webkit-details-marker {
+    transform: rotate(90deg);
+}
+
+/* Smooth content reveal animation */
+details {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Use a more reliable approach with max-height */
+details > *:not(summary) {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+details[open] > *:not(summary) {
+    max-height: 1000px; /* Large enough to accommodate content */
+    opacity: 1;
+}
+
+:root {
+  --md-text-font-size: 1rem;
+}
+
+body {
+  font-size: 20px;  /* one-notch bump: 18 → 19 → 20, traditional-Chinese comfort size */
+  line-height: 1.75;
+}
+
+.md-typeset {
+  font-size: 1em;  /* Adjust to match the new base size */
+}
+
+/* Adjust other elements as needed */
+.md-typeset h1 {
+  font-size: 2em;
+}
+
+.md-typeset h2 {
+  font-size: 1.6em;
+}
+
+/* Increase navigation font size */
+.md-nav {
+  font-size: 17px;  /* Adjust this value as needed */
+}
+
+.md-nav__item {
+  padding: 3px 0;  /* Add some vertical spacing between nav items */
+}
+
+/* Increase font size for top-level nav items */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-size: 18px;  /* Slightly larger than sub-items */
+  font-weight: bold;
+}
+
+/* Adjust the site title size */
+.md-header__title {
+  font-size: 21px;  /* Increase the site title size */
+}
+
+/* ... continue for other heading levels if needed ... */
+
+/* ... continue for other heading levels if needed ... */
+
+/*
+ * Expandable card – site-wide pattern for "tap to reveal" content.
+ * Uses button + JS (not <details>) so open/close can animate smoothly.
+ */
+.expandable-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.expandable-card {
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    border-radius: 10px;
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.expandable-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    min-height: 3.5rem;
+    text-align: left;
+    color: inherit;
+    background: none;
+    border: none;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.expandable-card__header:hover,
+.expandable-card__header:focus-visible {
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
+}
+
+.expandable-card__header,
+.expandable-card__header *,
+.expandable-card__header:hover,
+.expandable-card__header:hover *,
+.expandable-card__header:focus,
+.expandable-card__header:focus * {
+    text-decoration: none !important;
+}
+
+/* Number badge – "1", "2", … so each block is clearly one discussion question */
+.expandable-card__num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+/* "查看經文" + chevron – the obvious tap target */
+.expandable-card__action {
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: 0.85em;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.expandable-card__action::after {
+    content: " ▼";
+    font-size: 0.75em;
+    opacity: 0.8;
+}
+
+.expandable-card.is-open .expandable-card__action::after {
+    content: " ▲";
+}
+
+/* Question text takes remaining space */
+.expandable-card__title {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Revealed content – smooth open/close (JS toggles .is-open) */
+.expandable-card__body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 1.25rem 0;
+    padding-left: calc(1.25rem + 1.75rem + 0.75rem);
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.expandable-card.is-open .expandable-card__body {
+    max-height: 900px;
+    opacity: 1;
+    padding: 1rem 1.25rem 1.25rem;
+    padding-left: calc(1.25rem + 1.75rem + 0.75rem);
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.expandable-card__body strong {
+    display: block;
+    margin: 0.5rem 0 0.15rem 0;
+    font-size: 0.95em;
+    color: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.7));
+}
+
+.expandable-card__body strong:first-child {
+    margin-top: 0;
+}
+
+.expandable-card__body p {
+    margin: 0 0 0.6rem 0;
+    line-height: 1.6;
+}
+
+.expandable-card__body p:last-child {
+    margin-bottom: 0;
+}
+
+.expandable-card__body ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.5rem;
+}
+
+.expandable-card__body li {
+    margin-bottom: 0.35rem;
+    line-height: 1.5;
+}
+
+.expandable-card__body li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .expandable-cards {
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+    }
+
+    .expandable-card__header {
+        padding: 0.9rem 1rem;
+        min-height: 3.25rem;
+    }
+
+    .expandable-card.is-open .expandable-card__body {
+        padding: 0.9rem 1rem 1rem;
+        padding-left: calc(1rem + 1.75rem + 0.5rem);
+    }
+
+    .expandable-card__action {
+        font-size: 0.8em;
+    }
+}
+
+/*
+ * Classroom content modules (quiz / panels / deck / timeline) —
+ * dressed in the scripture-page world (paper, ink, vermilion, gold):
+ * warm ruled sheets with a vermilion seal strip, serif numerals, and
+ * ink-active controls. Tokens follow --sgbs-* so dark mode inherits.
+ */
+.content-quiz,
+.content-panels,
+.content-deck,
+.content-timeline {
+    --cm-paper: var(--sgbs-paper, var(--md-default-bg-color, #faf6ec));
+    --cm-paper-deep: var(--sgbs-paper-deep, rgba(38, 33, 22, 0.05));
+    --cm-ink: var(--sgbs-ink, var(--md-default-fg-color, #262116));
+    --cm-ink-soft: var(--sgbs-ink-soft, rgba(38, 33, 22, 0.68));
+    --cm-vermilion: var(--sgbs-vermilion, #b3402a);
+    --cm-vermilion-rgb: var(--sgbs-vermilion-rgb, 179, 64, 42);
+    --cm-gold: var(--sgbs-gold, #c9a84c);
+    --cm-rule: var(--sgbs-rule, rgba(38, 33, 22, 0.14));
+    --cm-serif: var(--font-serif);
+    --cm-correct: #2e7d32;
+    --cm-correct-bg: rgba(46, 125, 50, 0.1);
+    --cm-incorrect: #c0392b;
+    --cm-incorrect-bg: rgba(192, 57, 43, 0.09);
+    color: var(--cm-ink);
+}
+
+.dark .content-quiz,
+.dark .content-panels,
+.dark .content-deck,
+.dark .content-timeline {
+    --cm-correct: #58a86b;
+    --cm-correct-bg: rgba(88, 168, 107, 0.16);
+    --cm-incorrect: #e06d5c;
+    --cm-incorrect-bg: rgba(224, 109, 92, 0.14);
+}
+
+/* Shared sheet: warm paper, ruled border, vermilion seal strip, soft
+ * offset shadow (the roster shell's depth language, quieter). */
+.content-quiz,
+.content-panels,
+.content-deck {
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    box-shadow:
+        0 1px 2px rgba(38, 33, 22, 0.06),
+        0 20px 44px -28px rgba(38, 33, 22, 0.28);
+}
+
+/* One authored moment: a revealed stage settles in with a soft ink-in
+ * rise — exponential ease-out from a slightly-lowered, translucent card. */
+@keyframes cm-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+        filter: blur(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.content-quiz__item:not([hidden]),
+.content-panels__panel:not([hidden]),
+.content-deck__card:not([hidden]) {
+    animation: cm-reveal 0.28s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-quiz__item:not([hidden]),
+    .content-panels__panel:not([hidden]),
+    .content-deck__card:not([hidden]) {
+        animation: none;
+    }
+}
+
+/* ---- quiz (Socratic MCQs with soft reflection) ---- */
+
+.content-quiz {
+    --content-quiz-correct: var(--cm-correct);
+    --content-quiz-correct-bg: var(--cm-correct-bg);
+    --content-quiz-incorrect: var(--cm-incorrect);
+    --content-quiz-incorrect-bg: var(--cm-incorrect-bg);
+}
+
+.content-quiz__intro {
+    margin: 0 0 1.25rem 0;
+    line-height: 1.65;
+    color: var(--cm-ink-soft);
+}
+
+.content-quiz__item {
+    padding: 0.25rem 0 0.5rem;
+}
+
+.content-quiz__item[hidden] {
+    display: none !important;
+}
+
+/* Serif vermilion question numeral — the sheet's verse number. */
+.content-quiz__num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: 0.1rem;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--cm-vermilion-rgb), 0.4);
+    background: rgba(var(--cm-vermilion-rgb), 0.07);
+    color: var(--cm-vermilion);
+    font-family: var(--cm-serif);
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+.content-quiz__prompt {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin: 0 0 0.9rem 0;
+    font-family: var(--cm-serif);
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.content-quiz__choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0 0 0.75rem 0;
+}
+
+.content-quiz__choice {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    text-align: left;
+    font: inherit;
+    line-height: 1.5;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-quiz__choice:hover:not(:disabled),
+.content-quiz__choice:focus-visible {
+    border-color: rgba(var(--cm-vermilion-rgb), 0.55);
+    background: var(--cm-paper-deep);
+}
+
+.content-quiz__choice:focus-visible {
+    outline: 2px solid var(--cm-vermilion);
+    outline-offset: 2px;
+}
+
+.content-quiz__choice.is-selected {
+    border-color: var(--cm-ink);
+    background: var(--cm-paper-deep);
+}
+
+.content-quiz__choice:disabled {
+    cursor: default;
+}
+
+.content-quiz__choice.is-correct {
+    border-color: var(--cm-correct);
+    background: var(--cm-correct-bg);
+}
+
+.content-quiz__choice.is-incorrect {
+    border-color: var(--cm-incorrect);
+    background: var(--cm-incorrect-bg);
+}
+
+.content-quiz__choice-label {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.05rem;
+    border-radius: 50%;
+    border: 1px solid var(--cm-rule);
+    font-family: var(--cm-serif);
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.content-quiz__choice.is-selected .content-quiz__choice-label {
+    background: var(--cm-ink);
+    border-color: var(--cm-ink);
+    color: var(--cm-paper);
+}
+
+.content-quiz__choice.is-correct .content-quiz__choice-label {
+    background: var(--cm-correct);
+    border-color: var(--cm-correct);
+    color: #fff;
+}
+
+.content-quiz__choice.is-incorrect .content-quiz__choice-label {
+    background: var(--cm-incorrect);
+    border-color: var(--cm-incorrect);
+    color: #fff;
+}
+
+.content-quiz__choice-text {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Reflections: the margin-note surface — deep paper, no strip. */
+.content-quiz__reflection {
+    margin: 0.35rem 0 0;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    background: var(--cm-paper-deep);
+    line-height: 1.6;
+}
+
+.content-quiz__reflection[hidden] {
+    display: none !important;
+}
+
+.content-quiz__reflection strong {
+    display: block;
+    margin: 0 0 0.35rem 0;
+    font-family: var(--cm-serif);
+    font-size: 0.9em;
+    letter-spacing: 0.08em;
+    color: var(--cm-vermilion);
+}
+
+.content-quiz__reflection p {
+    margin: 0;
+}
+
+/* Nav: ruled ledger buttons — serif, tracked, ink hover. */
+.content-quiz__nav,
+.content-deck__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cm-rule);
+}
+
+.content-quiz__nav-btn,
+.content-deck__nav-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    font-family: var(--cm-serif);
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--cm-ink);
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    transition: border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-quiz__nav-btn:hover:not(:disabled),
+.content-quiz__nav-btn:focus-visible:not(:disabled),
+.content-deck__nav-btn:hover:not(:disabled),
+.content-deck__nav-btn:focus-visible:not(:disabled) {
+    border-color: var(--cm-vermilion);
+    color: var(--cm-vermilion);
+}
+
+.content-quiz__nav-btn:focus-visible,
+.content-deck__nav-btn:focus-visible {
+    outline: 2px solid var(--cm-vermilion);
+    outline-offset: 2px;
+}
+
+.content-quiz__nav-btn:disabled,
+.content-deck__nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.content-quiz__nav-status,
+.content-deck__nav-status {
+    flex: 1;
+    text-align: center;
+    font-family: var(--cm-serif);
+    font-size: 0.95em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--cm-ink-soft);
+}
+
+/* ---- segmented panels (chips / tabs + one reveal stage) ---- */
+
+.content-panels__intro,
+.content-deck__intro {
+    margin: 0 0 0.9rem 0;
+    line-height: 1.65;
+    color: var(--cm-ink-soft);
+}
+
+.content-panels__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.content-panels__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.9rem;
+    font: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--cm-ink);
+    cursor: pointer;
+    border-radius: 999px;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-panels__tab:hover,
+.content-panels__tab:focus-visible {
+    border-color: rgba(var(--cm-vermilion-rgb), 0.55);
+    background: var(--cm-paper-deep);
+}
+
+.content-panels__tab:focus-visible {
+    outline: 2px solid var(--cm-vermilion);
+    outline-offset: 2px;
+}
+
+/* Active chip: ink seal with paper text; vermilion on hover. */
+.content-panels__tab.is-active {
+    border-color: var(--cm-ink);
+    background: var(--cm-ink);
+    color: var(--cm-paper);
+    box-shadow: 0 1px 2px rgba(38, 33, 22, 0.12);
+}
+
+.content-panels__tab.is-active:hover {
+    border-color: var(--cm-vermilion);
+    background: var(--cm-vermilion);
+    color: #fff;
+}
+
+.content-panels__tab-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    font-family: var(--cm-serif);
+    font-size: 0.8em;
+    font-weight: 700;
+    background: rgba(var(--cm-vermilion-rgb), 0.1);
+    color: var(--cm-vermilion);
+}
+
+.content-panels__tab.is-active .content-panels__tab-num {
+    background: rgba(250, 246, 236, 0.2);
+    color: inherit;
+}
+
+.content-panels__panel {
+    padding: 0.15rem 0.15rem 0;
+    line-height: 1.65;
+}
+
+.content-panels__panel[hidden] {
+    display: none !important;
+}
+
+.content-panels__panel > :first-child {
+    margin-top: 0;
+}
+
+.content-panels__panel > :last-child {
+    margin-bottom: 0;
+}
+
+.content-panels__panel h4,
+.content-deck__card h4 {
+    margin: 0 0 0.55rem 0;
+    font-family: var(--cm-serif);
+    font-size: 1.08em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.content-panels__panel ul {
+    margin: 0.4rem 0 0.6rem 1.2rem;
+}
+
+.content-panels__panel li {
+    margin: 0.25rem 0;
+}
+
+/* Examples: the margin-note surface (shared with quiz reflections). */
+.content-panels__example,
+.content-deck__example {
+    margin: 0.85rem 0 0;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    background: var(--cm-paper-deep);
+    line-height: 1.6;
+}
+
+.content-panels__example strong,
+.content-deck__example strong {
+    display: block;
+    margin: 0 0 0.3rem 0;
+    font-family: var(--cm-serif);
+    font-size: 0.9em;
+    letter-spacing: 0.08em;
+    color: var(--cm-vermilion);
+}
+
+/* strong nested inside an example paragraph is inline emphasis
+   (e.g. the added prompt phrase in a 改寫前／改寫後 pair),
+   not the block-level example header */
+.content-panels__example p strong,
+.content-deck__example p strong {
+    display: inline;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+}
+
+.content-panels__example p,
+.content-deck__example p {
+    margin: 0;
+}
+
+/* ---- paginated decks (flip-through cards) ---- */
+
+.content-deck__index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0 0 1rem 0;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid var(--cm-rule);
+}
+
+.content-deck__index-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.7rem;
+    font: inherit;
+    font-size: 0.88em;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--cm-ink);
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease, box-shadow 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.content-deck__index-item:hover,
+.content-deck__index-item:focus-visible {
+    border-color: rgba(var(--cm-vermilion-rgb), 0.55);
+    background: var(--cm-paper-deep);
+}
+
+.content-deck__index-item:focus-visible {
+    outline: 2px solid var(--cm-vermilion);
+    outline-offset: 2px;
+}
+
+.content-deck__index-item.is-active {
+    border-color: var(--cm-ink);
+    background: var(--cm-ink);
+    color: var(--cm-paper);
+    box-shadow: 0 1px 2px rgba(38, 33, 22, 0.12);
+}
+
+.content-deck__index-item.is-active:hover {
+    border-color: var(--cm-vermilion);
+    background: var(--cm-vermilion);
+    color: #fff;
+}
+
+.content-deck__index-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.15rem;
+    border-radius: 999px;
+    font-family: var(--cm-serif);
+    font-size: 0.78em;
+    font-weight: 700;
+    background: rgba(var(--cm-vermilion-rgb), 0.1);
+    color: var(--cm-vermilion);
+}
+
+.content-deck__index-item.is-active .content-deck__index-num {
+    background: rgba(250, 246, 236, 0.2);
+    color: inherit;
+}
+
+.content-deck__index-label {
+    text-align: left;
+}
+
+.content-deck__card {
+    padding: 0.15rem 0.15rem 0.25rem;
+    line-height: 1.65;
+}
+
+.content-deck__card[hidden] {
+    display: none !important;
+}
+
+.content-deck__card > :first-child {
+    margin-top: 0;
+}
+
+.content-deck__card > :last-child {
+    margin-bottom: 0;
+}
+
+/* ---- vertical activity timeline (dots + connecting line) ---- */
+
+.content-timeline {
+    margin: 1.5rem 0 2rem;
+}
+
+.content-timeline__item {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0 1.15rem;
+    align-items: stretch;
+}
+
+.content-timeline__track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+    padding-top: 0.35rem;
+}
+
+.content-timeline__dot {
+    flex-shrink: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--cm-vermilion);
+    box-shadow: 0 0 0 3px var(--cm-paper),
+        0 0 0 4px rgba(var(--cm-vermilion-rgb), 0.35);
+}
+
+.content-timeline__item--tip .content-timeline__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--cm-gold);
+    box-shadow: 0 0 0 3px var(--cm-paper),
+        0 0 0 4px rgba(201, 168, 76, 0.4);
+}
+
+.content-timeline__line {
+    flex: 1;
+    width: 2px;
+    min-height: 1.25rem;
+    margin: 0.35rem 0 0;
+    background: var(--cm-rule);
+    border-radius: 1px;
+}
+
+.content-timeline__card {
+    margin-bottom: 1.15rem;
+    padding: 1rem 1.25rem 1.1rem;
+    border-radius: 10px;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    box-shadow: 0 1px 2px rgba(38, 33, 22, 0.05);
+}
+
+.content-timeline__item:last-child .content-timeline__card {
+    margin-bottom: 0;
+}
+
+.content-timeline__item--tip .content-timeline__card {
+    background: var(--cm-paper-deep);
+    border-style: dashed;
+}
+
+.content-timeline__meta {
+    margin: 0 0 0.35rem 0;
+}
+
+/* Duration chip: gold-tinted seal with ink text. */
+.content-timeline__duration {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    font-family: var(--cm-serif);
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    border: 1px solid rgba(201, 168, 76, 0.55);
+    background: rgba(201, 168, 76, 0.14);
+    color: var(--cm-ink);
+}
+
+.content-timeline__title {
+    margin: 0 0 0.55rem 0;
+    font-family: var(--cm-serif);
+    font-size: 1.08em;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.content-timeline__card > :last-child {
+    margin-bottom: 0;
+}
+
+.content-timeline__card p {
+    margin: 0;
+    line-height: 1.65;
+}
+
+.content-timeline__card ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+}
+
+.content-timeline__card li {
+    margin-bottom: 0.35rem;
+}
+
+.content-timeline__card li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .content-quiz,
+    .content-panels,
+    .content-deck {
+        padding: 1rem 1rem 1.25rem;
+    }
+
+    .content-quiz__choice {
+        padding: 0.7rem 0.75rem;
+    }
+
+    .content-panels__tab {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .content-timeline__item {
+        gap: 0 0.85rem;
+    }
+
+    .content-timeline__card {
+        padding: 0.9rem 1rem;
+    }
+}
+
+/*
+ * Homework section – card-style blocks for visual flow.
+ */
+.homework-section {
+    margin: 1.5rem 0;
+}
+
+.homework-section__intro {
+    margin: 0 0 1.25rem 0;
+    font-size: 1.05em;
+}
+
+.homework-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.homework-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.08));
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.homework-item__num {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.homework-item__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.homework-item__content p {
+    margin: 0 0 0.5rem 0;
+    line-height: 1.6;
+}
+
+.homework-item__content p:last-child {
+    margin-bottom: 0;
+}
+
+.homework-item__content ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.25rem;
+}
+
+.homework-item__content li {
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+}
+
+.homework-item__content li:last-child {
+    margin-bottom: 0;
+}
+
+.homework-item__content strong {
+    color: var(--md-default-fg-color, inherit);
+}
+
+.homework-section__footer {
+    margin: 1.5rem 0 0 0;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.04));
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.homework-section__footer p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .homework-item {
+        padding: 1rem 1.25rem;
+        gap: 0.75rem;
+    }
+
+    .homework-item__num {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.95em;
+    }
+}
+
+/*
+ * Tables – card-style so they pop visually (matches homework/expandable cards).
+ * Target article.typography (mkdocs-shadcn content wrapper), fallback .md-typeset (Material).
+ */
+article.typography table,
+.md-typeset table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.2));
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    background: var(--background, #fff);
+}
+
+/* Header row: gray so it stands out from body rows */
+article.typography thead,
+article.typography thead tr,
+article.typography thead tr:nth-child(even),
+.md-typeset thead,
+.md-typeset thead tr,
+.md-typeset thead tr:nth-child(even) {
+    background: var(--muted, rgba(0, 0, 0, 0.06)) !important;
+}
+
+article.typography thead th,
+.md-typeset thead th {
+    padding: 0.85rem 1.25rem;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 2px solid var(--border, rgba(0, 0, 0, 0.15));
+}
+
+/* All body rows white – override theme’s tbody tr:nth-child(even) { background: muted } */
+article.typography tbody tr,
+article.typography tbody tr:nth-child(even),
+.md-typeset tbody tr,
+.md-typeset tbody tr:nth-child(even) {
+    background: var(--background, #fff) !important;
+    border-bottom: 1px solid var(--border, rgba(0, 0, 0, 0.08));
+}
+
+article.typography tbody tr:last-child,
+.md-typeset tbody tr:last-child {
+    border-bottom: none;
+}
+
+article.typography tbody td,
+.md-typeset tbody td {
+    padding: 0.75rem 1.25rem;
+    line-height: 1.5;
+}
+
+article.typography table tbody tr:hover,
+.md-typeset table tbody tr:hover {
+    background: var(--muted, rgba(0, 0, 0, 0.06)) !important;
+}
+
+@media (max-width: 600px) {
+    article.typography thead th,
+    article.typography tbody td,
+    .md-typeset thead th,
+    .md-typeset tbody td {
+        padding: 0.6rem 1rem;
+        font-size: 0.95em;
+    }
+}
+
+/*
+ * QR share card – a single card for handing the page to someone else.
+ * (Two QRs side by side read as "scan one of these," which made no
+ * sense on the page itself; registration now leads as a text CTA.)
+ */
+.qrcode-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+/* Single share card sits centered instead of stretching the grid. */
+.qrcode-options--single {
+    grid-template-columns: 1fr;
+    max-width: 26rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Clickable QR image: no link chrome, gentle hover/focus cue. */
+.typography a.qrcode-option__qr-link {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+}
+
+/*
+ * First-load tap hint: a cursor (mouse) or finger (touch) nudges in
+ * from the corner, taps the QR a few times, then fades for good.
+ * The icon swaps on input modality; reduced-motion users never see
+ * it, and hovering/focusing the QR dismisses it immediately.
+ */
+.tap-hint {
+    position: absolute;
+    right: 4px;
+    bottom: 2px;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    opacity: 0;
+    animation: tap-hint-move 1.9s ease-in-out 0.4s 3 both;
+}
+
+.tap-hint svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.tap-hint__cursor {
+    display: block;
+}
+
+.tap-hint__finger {
+    display: none;
+}
+
+/* Touch screens get the finger; mouse-driven pointers get the cursor. */
+@media (hover: none), (pointer: coarse) {
+    .tap-hint__cursor {
+        display: none;
+    }
+
+    .tap-hint__finger {
+        display: block;
+    }
+}
+
+.tap-hint__ripple {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    border-radius: 50%;
+    border: 2px solid var(--sgbs-vermilion);
+    opacity: 0;
+    animation: tap-hint-ripple 1.9s ease-out 0.4s 3 both;
+}
+
+@keyframes tap-hint-move {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0;
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    45% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 1;
+    }
+
+    54% {
+        transform: translate(-51px, -53px) scale(1);
+        opacity: 1;
+    }
+
+    62% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 1;
+    }
+
+    82% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-51px, -53px) scale(0.88);
+        opacity: 0;
+    }
+}
+
+@keyframes tap-hint-ripple {
+    0%,
+    48% {
+        opacity: 0;
+        transform: scale(0.35);
+    }
+
+    55% {
+        opacity: 0.9;
+        transform: scale(0.45);
+    }
+
+    80% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+/* Any attention on the QR itself dismisses the hint right away. */
+.typography a.qrcode-option__qr-link:hover .tap-hint,
+.typography a.qrcode-option__qr-link:focus-visible .tap-hint {
+    animation: none;
+    opacity: 0;
+}
+
+.typography a.qrcode-option__qr-link:hover .tap-hint__ripple,
+.typography a.qrcode-option__qr-link:focus-visible .tap-hint__ripple {
+    animation: none;
+    opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tap-hint {
+        display: none;
+    }
+}
+
+.typography a.qrcode-option__qr-link:hover img,
+.typography a.qrcode-option__qr-link:focus-visible img {
+    opacity: 0.8;
+}
+
+.qrcode-option {
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+    border-radius: 10px;
+    padding: 1.25rem;
+    background: var(--background, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.qrcode-option__title {
+    font-weight: 600;
+    font-size: 1.05em;
+    margin: 0 0 0.35rem 0;
+}
+
+.qrcode-option__hint {
+    font-size: 0.9em;
+    opacity: 0.85;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+}
+
+.qrcode-option img {
+    display: block;
+    width: 140px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.qrcode-option__link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.9em;
+}
+
+@media (max-width: 560px) {
+    .qrcode-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*
+ * Role cards – one card per role (主領 / 觀察員 / 其他組員), 職責 + 每週功課.
+ */
+.role-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.role-card {
+    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    background: var(--md-default-bg-color, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.role-card__title {
+    font-weight: 600;
+    font-size: 1.05em;
+    margin: 0 0 0.75rem 0;
+    padding: 0;
+}
+
+.role-card__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.role-card__col {
+    min-width: 0;
+}
+
+.role-card__label {
+    font-weight: 600;
+    font-size: 0.9em;
+    margin: 0 0 0.2rem 0;
+    padding: 0;
+    color: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.7));
+}
+
+.role-card__text {
+    margin: 0;
+    padding: 0;
+    font-size: 0.98em;
+    line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+    .role-cards {
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+    }
+
+    .role-card {
+        padding: 1rem 1.25rem;
+    }
+
+    .role-card__body {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+.chinese-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.12));
+    background: var(--background, #fff);
+    color: var(--foreground, #1a1a1a);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chinese-toggle-btn:hover {
+    background: var(--muted, rgba(0, 0, 0, 0.06));
+    transform: scale(1.05);
+}
+
+.chinese-toggle-btn:focus-visible {
+    outline: 2px solid var(--ring, #2563eb);
+    outline-offset: 2px;
+}
+
+.dark .chinese-toggle-btn {
+    background: var(--background, #1a1a1a);
+    color: var(--foreground, #fafafa);
+    border-color: var(--border, rgba(255, 255, 255, 0.12));
+}
+
+.dark .chinese-toggle-btn:hover {
+    background: var(--muted, rgba(255, 255, 255, 0.1));
+}
+
+@media (max-width: 600px) {
+    .chinese-toggle-btn {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+/*
+ * Scripture-page theme (matches the roster app, apps/roster/DESIGN.md):
+ * warm paper, ink text, vermilion marks, gold accents, Noto Serif TC.
+ * Remaps the shadcn/Tailwind theme variables so the whole surface —
+ * header, sidebar, cards, tables, code blocks, links — follows the
+ * roster world instead of shadcn's neutral gray.
+ */
+:root {
+  /* Palette (RGB for the alpha-carrying rgba() forms below). */
+  --sgbs-paper: #faf6ec;
+  --sgbs-paper-deep: #f0e9d8;
+  --sgbs-ink: #262116;
+  --sgbs-ink-soft: #57503f;
+  --sgbs-vermilion: #b3402a;
+  --sgbs-gold: #c9a84c;
+  --sgbs-rule: #d8d2c4;
+  --sgbs-paper-rgb: 250, 246, 236;
+  --sgbs-ink-rgb: 38, 33, 22;
+  --sgbs-vermilion-rgb: 179, 64, 42;
+
+  /* shadcn theme variables (docs/stylesheets load after base.css). */
+  --background: var(--sgbs-paper);
+  --foreground: var(--sgbs-ink);
+  --card: #fffdf6;
+  --card-foreground: var(--sgbs-ink);
+  --popover: var(--sgbs-paper);
+  --popover-foreground: var(--sgbs-ink);
+  --primary: var(--sgbs-ink);
+  --primary-foreground: var(--sgbs-paper);
+  --secondary: var(--sgbs-paper-deep);
+  --secondary-foreground: var(--sgbs-ink);
+  --muted: var(--sgbs-paper-deep);
+  --muted-foreground: var(--sgbs-ink-soft);
+  --accent: var(--sgbs-paper-deep);
+  --accent-foreground: var(--sgbs-ink);
+  --border: var(--sgbs-rule);
+  --input: var(--sgbs-rule);
+  --ring: var(--sgbs-vermilion);
+
+  /* Legacy mkdocs-material token names still referenced by some older
+     components (role-card 職責/每週功課 labels, expandable-card headings,
+     homework cards). The vars are undefined in this theme, so their
+     light-only rgba(0,0,0,…)/#fff fallbacks were being used — invisible
+     on dark paper. Alias them to the scripture palette; since .dark
+     remaps the underlying --sgbs-* and --card tokens, these follow
+     light/dark with the rest of the system. */
+  --md-default-fg-color--light: var(--sgbs-ink-soft);
+  --md-default-fg-color--lightest: rgba(var(--sgbs-ink-rgb), 0.08);
+  --md-default-bg-color: var(--card);
+
+  /* Typography: ONE font family site-wide — 思源宋體 Noto Serif TC, the
+     Song-style serif of printed Chinese Bibles, engineered for screens.
+     Both vars point at the same family on purpose; everything (body,
+     headings, components, scripture) renders in it. Noto Serif SC keeps
+     simplified text (the 简/繁 toggle sets lang=zh-CN) in the same serif
+     design instead of falling back to system sans. */
+  --font-sans: "Noto Serif TC", "Noto Serif SC", "Songti TC", "SimSun",
+    ui-serif, Georgia, serif;
+  --font-serif: "Noto Serif TC", "Noto Serif SC", "Songti TC", "SimSun",
+    ui-serif, Georgia, serif;
+}
+
+.dark {
+  /* Night reading: same warm world, deepened — not pure black. */
+  --sgbs-paper: #191510;
+  --sgbs-paper-deep: #241e16;
+  --sgbs-ink: #ece4d2;
+  --sgbs-ink-soft: #a89e88;
+  --sgbs-vermilion: #d4593f;
+  --sgbs-gold: #c9a84c;
+  --sgbs-rule: #3a3227;
+  --sgbs-paper-rgb: 25, 21, 16;
+  --sgbs-ink-rgb: 236, 228, 210;
+  --sgbs-vermilion-rgb: 212, 89, 63;
+  --card: #201a13;
+  --primary: var(--sgbs-ink);
+  --primary-foreground: #191510;
+  --ring: var(--sgbs-vermilion);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--sgbs-paper);
+  color: var(--sgbs-ink);
+}
+
+/* Typography: serif headings like the roster display face. */
+.typography h1,
+.typography h2,
+.typography h3,
+.typography h4 {
+  font-family: var(--font-serif);
+  letter-spacing: 0.05em;
+}
+
+/* Links: vermilion underlines, echoing the roster's mark color. */
+.typography a {
+  color: var(--sgbs-vermilion);
+  text-decoration-color: rgba(var(--sgbs-vermilion-rgb), 0.45);
+  text-underline-offset: 3px;
+}
+.typography a:hover {
+  color: var(--sgbs-ink);
+  text-decoration-color: var(--sgbs-ink);
+}
+
+/* CJK prose breathes: denser glyphs need a taller leading than Latin. */
+.typography p {
+  line-height: 1.75;
+}
+
+/* Generic markdown blockquotes: same deep-paper note surface as the
+   component callouts — no left-border strips, no fake italic on CJK. */
+.typography blockquote {
+  border-left: 0;
+  font-style: normal;
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
+  background: var(--sgbs-paper-deep);
+}
+
+/* Tables: ruled ledger lines on paper. */
+.typography table {
+  border-collapse: collapse;
+}
+.typography table th {
+  border-bottom: 2px solid var(--sgbs-ink);
+  color: var(--sgbs-ink);
+  font-family: var(--font-serif);
+}
+.typography table td {
+  border-bottom: 1px solid var(--sgbs-rule);
+}
+
+/* Code blocks sit on deep paper with an ink border. */
+.typography pre {
+  background: var(--sgbs-paper-deep);
+  border: 1px solid var(--sgbs-rule);
+}
+
+/* QR cards: paper-deep fill, ink border, rounded as before. */
+.qrcode-option {
+  background: var(--sgbs-paper-deep);
+  border-color: var(--sgbs-rule);
+  box-shadow: none;
+}
+
+/* Expandable / role cards follow the same surface. */
+.expandable-card,
+.role-card {
+  border-color: var(--sgbs-rule);
+  background: var(--sgbs-paper-deep);
+}
+
+/* The details/summary hover from the legacy rules reads as ink-on-paper. */
+details summary:hover {
+  background-color: rgba(var(--sgbs-ink-rgb), 0.06);
+}
+
+/*
+ * Scripture quotation component — the `/// scripture | reference` shortcode
+ * (sgbs_training/mdx_scripture.py). Renders 引文箋: each quoted passage
+ * becomes a bright paper slip on the deep-paper sheet — a printed-page
+ * fragment, not a callout: no strips, no bars; the reference sits centered
+ * like a Bible pericope heading. Styled once so every lesson renders
+ * scripture consistently.
+ */
+.typography blockquote.scripture {
+  margin: 0;
+  padding: 0.95rem 1.15rem 1.05rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow:
+    0 1px 2px rgba(38, 33, 22, 0.06),
+    0 16px 32px -24px rgba(38, 33, 22, 0.32);
+  font-style: normal;
+}
+
+.typography blockquote.scripture + blockquote.scripture {
+  margin-top: 0.8rem;
+}
+
+.typography blockquote.scripture .scripture__ref {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-serif);
+  font-size: 0.84em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--sgbs-vermilion);
+}
+
+.typography blockquote.scripture p:not(.scripture__ref) {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05em;
+  line-height: 1.9;
+}
+
+@media (max-width: 600px) {
+  .typography blockquote.scripture {
+    padding: 0.85rem 1rem 0.95rem;
+  }
+}
+
+/* Scripture slips inside discussion cards: align edge-to-edge with the
+   card (not the question gutter) and quiet the shadow — the card already
+   provides elevation. */
+.typography .expandable-card__body:has(> .scripture) {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.typography .expandable-card.is-open .expandable-card__body:has(> .scripture) {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.typography .expandable-card blockquote.scripture {
+  box-shadow:
+    0 1px 2px rgba(38, 33, 22, 0.05),
+    0 10px 22px -18px rgba(38, 33, 22, 0.25);
+}
+
+@media (max-width: 600px) {
+  .typography .expandable-card__body:has(> .scripture),
+  .typography .expandable-card.is-open .expandable-card__body:has(> .scripture) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
