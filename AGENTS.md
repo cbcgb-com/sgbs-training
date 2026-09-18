@@ -289,13 +289,21 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/convex/schema.ts` - `students` table (ASCII field names; UI
   keeps Chinese labels) + `authCodes`/`authSessions` auth tables
 - `apps/roster/convex/students.ts` - View queries (12 Airtable views) +
-  `registerStudent` (instructor-managed) + role gates
+  `registerStudent` (instructor-managed) + role gates + 退出報名 withdrawal
+  (soft state `withdrawnAt`: self-service, instructor on-behalf, undo, and
+  re-registration reactivation; see
+  `apps/roster/docs/designs/withdrawal/LLD.md`)
+- `apps/roster/src/withdrawal.ts` - Shared withdrawal UI helpers (reason
+  value, date formatting)
 - `apps/roster/src/auth/` - Sign-in sheet, code-entry step, session store
 - `apps/roster/src/Form.tsx` - Reimplementation of the Airtable registration
   form (shrS5gKu57LudKDSh)
 - `apps/roster/src/MyProfile.tsx` - Student self-service profile 我的資料
-  (view/update own record + photo)
-- `apps/roster/src/Roster.tsx` - Grid + kanban view browser
+  (view/update own record + photo, 退出本季課程 withdrawal)
+- `apps/roster/src/Roster.tsx` - Grid + kanban view browser (incl. the
+  已退出 withdrawal view and 標記退出 control)
+- `apps/roster/scripts/test-withdrawal.mjs` - End-to-end withdrawal suite
+  (runs against a dev Convex deployment)
 - `airtable_dump/` - Airtable dump/transform/seed pipeline (see
   `apps/roster/README.md` for the full re-import procedure)
 
