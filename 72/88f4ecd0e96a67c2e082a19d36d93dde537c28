@@ -1,0 +1,39 @@
+apps/roster/convex/schema.ts
+  s_ccfb6c3386007e::t_33b204460ec2e5 26-32
+apps/roster/convex/students.ts
+  s_ccfb6c3386007e::t_c86dc63b3cf3de 827-871,878-880,887-888
+  s_ccfb6c3386007e::t_775a9f53ed209d 292-294,370,376-378,407-410,417-420,565,721
+  s_ccfb6c3386007e::t_24abe5ad6c7b51 737-740,743-750,752,760,763-765
+  s_ccfb6c3386007e::t_7f636fe2e09861 179-181,193
+  s_ccfb6c3386007e::t_2b226ee2549f4c 350
+  s_ccfb6c3386007e::t_60912396caf20c 531,534-564
+  s_ccfb6c3386007e::t_cf2aed03f0d243 613,636-639
+  s_ccfb6c3386007e::t_22201849bbaed0 35-66,69-71,79-80,85-113
+  s_ccfb6c3386007e::t_9201faf824f053 720
+  s_ccfb6c3386007e::t_40621ed361d815 722-723
+  s_ccfb6c3386007e::t_3485c4edfdbe7a 872-877
+  s_ccfb6c3386007e::t_bea656c38f5e86 881-886
+  s_ccfb6c3386007e::t_d70274b7723062 889-891
+apps/roster/convex/auth.ts
+  s_ccfb6c3386007e::t_abad3c7c20a844 181-215
+  s_ccfb6c3386007e::t_b009244e490183 139
+apps/roster/scripts/test-withdrawal.mjs
+  s_ccfb6c3386007e::t_07704a191f48ab 1-204
+  s_ccfb6c3386007e::t_38eab1f6751e15 205-207
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "7288f4ecd0e96a67c2e082a19d36d93dde537c28",
+  "prompts": {},
+  "sessions": {
+    "s_ccfb6c3386007e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f4f3503f1ffeMqRdKEK2pb0bCw",
+        "model": "unknown"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
