@@ -1,10 +1,12 @@
 node_modules/
 dist/
-.env.local
-.env*.local
 .vercel
+
+# Local env files — Convex deploy keys, SMTP secrets, Vercel tokens.
+# Never commit these; the repo is public.
+.env*
+!.env.example
 
 # Local design-review artifacts
 .impeccable/
 seed/*.jsonl
-.vercel/
