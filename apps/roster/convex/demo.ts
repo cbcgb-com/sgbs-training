@@ -122,6 +122,61 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
   },
 });
 
+// Preview deployments get a fresh, isolated Convex backend per branch. This
+// internal mutation seats the preview's instructor allowlist so the reviewer
+// can sign in immediately. The list lives in the PREVIEW_INSTRUCTORS preview
+// default env var (set with `npx convex env default set --type preview`), NOT
+// in this public repo — so member emails are never committed.
+//
+// It is wired into the Convex deploy pipeline via
+//   --preview-run demo:seedPreviewInstructors
+// so every preview deploy (a new branch, or a push to an existing PR)
+// re-seats the reviewer. Safe to re-run: the upsert is idempotent.
+export const seedPreviewInstructors = internalMutation({
+  handler: async (ctx) => {
+    const raw = process.env.PREVIEW_INSTRUCTORS;
+    if (!raw) {
+      // No allowlist configured: nothing to seat. Return a visible warning
+      // rather than throwing, so a missing env var cannot break a preview
+      // deploy.
+      return { seated: 0, note: "PREVIEW_INSTRUCTORS is not set — no instructors seated" };
+    }
+    let parsed: Array<{ email?: unknown; name?: unknown }>;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      return { seated: 0, note: "PREVIEW_INSTRUCTORS is not valid JSON" };
+    }
+    if (!Array.isArray(parsed)) {
+      return { seated: 0, note: "PREVIEW_INSTRUCTORS must be a JSON array" };
+    }
+
+    let seated = 0;
+    const emails: string[] = [];
+    for (const entry of parsed) {
+      if (typeof entry?.email !== "string") continue;
+      const email = entry.email.trim().toLowerCase();
+      if (!email) continue;
+      const name = typeof entry.name === "string" ? entry.name : undefined;
+      const existing = await ctx.db
+        .query("instructors")
+        .withIndex("by_email", (q) => q.eq("email", email))
+        .unique();
+      if (existing) {
+        await ctx.db.patch(existing._id, {
+          active: true,
+          ...(name !== undefined ? { name } : {}),
+        });
+      } else {
+        await ctx.db.insert("instructors", { email, name, active: true });
+      }
+      emails.push(email);
+      seated++;
+    }
+    return { seated, emails };
+  },
+});
+
 // 15 ungrouped test registrations (2026-09-05): fake students for testing
 // the instructor grouping flow. No groupName — the divider starts from a
 // fully unassigned pool. Run via

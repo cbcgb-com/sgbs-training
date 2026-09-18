@@ -213,6 +213,16 @@ so Convex functions and the frontend always deploy together.
   deployments** (`npx convex env default --type preview`: SMTP_USER,
   SMTP_PASS, AUTH_PRIVATE_KEY) so the auth flow works — but their data
   is throwaway and registration emails from a preview really send.
+  **Previews are also seated with the reviewer**: the Vercel build runs
+  `npx convex deploy --preview-run demo:seedPreviewInstructors`, which
+  activates the instructor allowlist from the `PREVIEW_INSTRUCTORS`
+  preview default env var (a JSON array of `{email, name}`; currently
+  Eric and Christy, matching prod). Without this, a fresh preview backend
+  has an empty `instructors` table and the reviewer cannot sign in
+  (此電子郵箱尚未註冊). Set/update the list with:
+  `npx convex env default set --type preview PREVIEW_INSTRUCTORS '<json>'`.
+  `--preview-run` is ignored on production deploys, so the same flag is
+  safe in the shared command.
 
 Deploy keys live as Vercel project env vars (`CONVEX_DEPLOY_KEY`:
 Production target = prod key, Preview target = preview key). Other
