@@ -1,0 +1,20 @@
+apps/roster/docs/designs/withdrawal/withdrawal-EARS.md
+  s_ccfb6c3386007e::t_ca3d9af92cf4d7 1-85
+  s_ccfb6c3386007e::t_0af0eeed6e1bd0 86-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "51bc16b3001ca1c64a9bd9f674b483735196105d",
+  "prompts": {},
+  "sessions": {
+    "s_ccfb6c3386007e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f4f3503f1ffeMqRdKEK2pb0bCw",
+        "model": "unknown"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
