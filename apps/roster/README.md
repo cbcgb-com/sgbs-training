@@ -213,16 +213,26 @@ so Convex functions and the frontend always deploy together.
   deployments** (`npx convex env default --type preview`: SMTP_USER,
   SMTP_PASS, AUTH_PRIVATE_KEY) so the auth flow works — but their data
   is throwaway and registration emails from a preview really send.
-  **Previews are also seated with the reviewer**: the Vercel build runs
-  `npx convex deploy --preview-run demo:seedPreviewInstructors`, which
-  activates the instructor allowlist from the `PREVIEW_INSTRUCTORS`
-  preview default env var (a JSON array of `{email, name}`; currently
-  Eric and Christy, matching prod). Without this, a fresh preview backend
-  has an empty `instructors` table and the reviewer cannot sign in
-  (此電子郵箱尚未註冊). Set/update the list with:
+  **Previews are also seated for review**: the Vercel build runs
+  `npx convex deploy --preview-run demo:seedPreviewData`, which seats the
+  reviewer allowlist AND seeds a full dummy dataset, so a preview opens
+  onto a populated app rather than an empty one. The seeder reads the
+  `PREVIEW_INSTRUCTORS` preview default env var (a JSON array of
+  `{email, name}`; currently Eric and Christy, matching prod) for the
+  allowlist — real member emails stay out of this public repo. It also
+  inserts entirely synthetic students (`@demo.sgbs`): a current-quarter
+  cohort across three groups, a 15-student ungrouped pool for the
+  divider, a prior-quarter cohort for history, the full five-Sunday
+  calendar with 主領/觀察 assignments, attendance variety for 缺課, and
+  two withdrawn students so the 已退出 view and badge are visible.
+  Without this, a fresh preview backend has an empty `instructors` table
+  and the reviewer cannot sign in (此電子郵箱尚未註冊). Set/update the
+  allowlist with:
   `npx convex env default set --type preview PREVIEW_INSTRUCTORS '<json>'`.
   `--preview-run` is ignored on production deploys, so the same flag is
-  safe in the shared command.
+  safe in the shared command. Re-run either seeder by hand against a
+  specific preview backend with
+  `CONVEX_DEPLOY_KEY=<preview key> npx convex run demo:seedPreviewData`.
 
 Deploy keys live as Vercel project env vars (`CONVEX_DEPLOY_KEY`:
 Production target = prod key, Preview target = preview key). Other
