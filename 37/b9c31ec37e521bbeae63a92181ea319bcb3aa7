@@ -1,0 +1,14 @@
+apps/roster/.gitignore
+  h_923f9eef54c2c1 5-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "37b9c31ec37e521bbeae63a92181ea319bcb3aa7",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
