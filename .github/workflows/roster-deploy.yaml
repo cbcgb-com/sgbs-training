@@ -122,7 +122,9 @@ jobs:
         if: ${{ env.CONVEX_DEPLOY_KEY != '' }}
         # CONVEX_DEPLOY_KEY must be a PROD deploy key (prod|...); the
         # deployment target comes from the key itself, so no --prod flag.
-        run: npx convex@latest deploy
+        # --preview-run is ignored on a production deployment (it only runs
+        # when deploying to a preview backend).
+        run: npx convex@latest deploy --preview-run demo:seedPreviewInstructors
         working-directory: apps/roster
         env:
           CONVEX_DEPLOY_KEY: ${{ secrets.CONVEX_DEPLOY_KEY }}
