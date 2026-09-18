@@ -1,0 +1,20 @@
+.github/workflows/roster-deploy.yaml
+  h_923f9eef54c2c1 127
+apps/roster/README.md
+  h_923f9eef54c2c1 216-230,233-235
+apps/roster/convex/demo.ts
+  h_923f9eef54c2c1 2,126-191,193-240,242-280,282-311,313-322,325-345,348-381
+apps/roster/vercel.json
+  h_923f9eef54c2c1 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8d682d25bf106baac44be2e622f1a47d9e4b083b",
+  "prompts": {},
+  "humans": {
+    "h_923f9eef54c2c1": {
+      "author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
