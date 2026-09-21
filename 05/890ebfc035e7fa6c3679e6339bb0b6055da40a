@@ -1,0 +1,26 @@
+apps/roster/docs/designs/attendance/LLD.md
+  s_dc2c928c53240f::t_d385105f32fb39 24-29
+  s_dc2c928c53240f::t_5e4729cf9f39b8 1-23,30-120
+AGENTS.md
+  s_dc2c928c53240f::t_7a247327a9be08 305-307,310-311
+apps/roster/docs/high-level-design.md
+  s_dc2c928c53240f::t_fd9eb5ab304b28 35-37,147
+apps/roster/docs/designs/attendance/attendance-EARS.md
+  s_dc2c928c53240f::t_9eb14101817dbd 1-76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "05890ebfc035e7fa6c3679e6339bb0b6055da40a",
+  "prompts": {},
+  "sessions": {
+    "s_dc2c928c53240f": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0c130-336a-7080-81d2-58e2d825cecc",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
