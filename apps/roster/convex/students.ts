@@ -194,6 +194,8 @@ export const quarterAttendance = query({
         _id: s._id,
         name: s.name,
         fellowship: s.fellowship ?? "",
+        groupName: s.groupName ?? "",
+        photoStorageId: s.photoStorageId,
         missed: s.missed,
         marks: sessions.map((sess): Mark => {
           const a = attendedAt.get(`${s._id}:${sess.date}`);
@@ -274,6 +276,92 @@ export const recordAttendance = mutation({
       throw new Error("此日期不是該季的上課日期");
     }
     await upsertAttendance(ctx, studentId, quarter, date, attended);
+  },
+});
+
+// Clear one (student, date) attendance row — back to 未記錄. The third
+// state of the recording sheet: two buttons cover 出席/缺席, and tapping
+// the active one again un-records. Same gates and date validation as
+// recordAttendance; clearing an unrecorded mark is a no-op. Recomputes
+// the replicated `missed` count.
+export const clearAttendance = mutation({
+  args: {
+    studentId: v.id("students"),
+    date: v.string(),
+  },
+  handler: async (ctx, { studentId, date }) => {
+    await requireInstructor(ctx);
+    const student = await ctx.db.get(studentId);
+    if (!student) throw new Error("找不到此學員");
+    const quarter = student.quarter;
+    if (!quarter) throw new Error("學員沒有所屬季度");
+    const sessions = await ctx.db
+      .query("sessions")
+      .withIndex("by_quarter", (q) => q.eq("quarter", quarter))
+      .collect();
+    if (!sessions.some((s) => s.date === date)) {
+      throw new Error("此日期不是該季的上課日期");
+    }
+    const rows = await ctx.db
+      .query("attendance")
+      .withIndex("by_student", (q) => q.eq("studentId", studentId))
+      .collect();
+    const existing = rows.find((a) => a.date === date);
+    if (!existing) return "unchanged";
+    await ctx.db.delete(existing._id);
+    const missed = rows.filter((a) => !a.attended && a._id !== existing._id)
+      .length;
+    if (student.missed !== missed) {
+      await ctx.db.patch(studentId, { missed });
+    }
+    return "deleted";
+  },
+});
+
+// Fill 未記錄 with attended for one class date — the Sunday-after-class
+// "everyone came" bulk path. Instructors only. Only active students of
+// `quarter` (default: current) without a row for `date` are touched;
+// explicit 出席/缺席 marks are never overwritten, and withdrawn students
+// are skipped (their sheet is history). Created rows are all attended,
+// so `missed` is untouched.
+export const markAllAttended = mutation({
+  args: {
+    date: v.string(),
+    quarter: v.optional(v.string()),
+  },
+  handler: async (ctx, { date, quarter }) => {
+    await requireInstructor(ctx);
+    const q = quarter ?? CURRENT_QUARTER;
+    const sessions = await ctx.db
+      .query("sessions")
+      .withIndex("by_quarter", (x) => x.eq("quarter", q))
+      .collect();
+    if (!sessions.some((s) => s.date === date)) {
+      throw new Error("此日期不是該季的上課日期");
+    }
+    const students = (
+      await ctx.db
+        .query("students")
+        .withIndex("by_quarter", (x) => x.eq("quarter", q))
+        .collect()
+    ).filter((s) => !isWithdrawn(s));
+    const rows = await ctx.db
+      .query("attendance")
+      .withIndex("by_quarter_date", (x) => x.eq("quarter", q).eq("date", date))
+      .collect();
+    const recorded = new Set(rows.map((r) => r.studentId));
+    let created = 0;
+    for (const s of students) {
+      if (recorded.has(s._id)) continue;
+      await ctx.db.insert("attendance", {
+        studentId: s._id,
+        quarter: q,
+        date,
+        attended: true,
+      });
+      created++;
+    }
+    return { created };
   },
 });
 
