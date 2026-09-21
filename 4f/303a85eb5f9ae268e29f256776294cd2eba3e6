@@ -1,0 +1,22 @@
+apps/roster/scripts/test-attendance.mjs
+  s_dc2c928c53240f::t_1e43fb2ddabc03 1-303
+apps/roster/convex/students.ts
+  s_dc2c928c53240f::t_df959addc2c975 197-198,282-366
+  s_dc2c928c53240f::t_efd35bb47ca897 367
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "4f303a85eb5f9ae268e29f256776294cd2eba3e6",
+  "prompts": {},
+  "sessions": {
+    "s_dc2c928c53240f": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0c130-336a-7080-81d2-58e2d825cecc",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
