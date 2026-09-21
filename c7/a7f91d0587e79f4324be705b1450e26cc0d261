@@ -1,0 +1,21 @@
+apps/roster/src/App.tsx
+  s_dc2c928c53240f::t_5c31cec0b0d7ff 8,23,122,215
+apps/roster/src/Attendance.tsx
+  s_dc2c928c53240f::t_8d669e1cbb226e 1-318
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c7a7f91d0587e79f4324be705b1450e26cc0d261",
+  "prompts": {},
+  "sessions": {
+    "s_dc2c928c53240f": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0c130-336a-7080-81d2-58e2d825cecc",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
