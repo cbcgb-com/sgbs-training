@@ -302,8 +302,13 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
   (view/update own record + photo, 退出本季課程 withdrawal)
 - `apps/roster/src/Roster.tsx` - Grid + kanban view browser (incl. the
   已退出 withdrawal view and 標記退出 control)
+- `apps/roster/src/Attendance.tsx` - Instructor attendance sheet 出席
+  (per-date recording, 未記錄全部出席 bulk fill; see
+  `apps/roster/docs/designs/attendance/LLD.md`)
 - `apps/roster/scripts/test-withdrawal.mjs` - End-to-end withdrawal suite
   (runs against a dev Convex deployment)
+- `apps/roster/scripts/test-attendance.mjs` - End-to-end attendance
+  recording suite (runs against a dev Convex deployment)
 - `airtable_dump/` - Airtable dump/transform/seed pipeline (see
   `apps/roster/README.md` for the full re-import procedure)
 

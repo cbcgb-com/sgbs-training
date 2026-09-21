@@ -32,8 +32,9 @@ and instructors who manage everything.
 
 - **Spam protection** — rate limiting / CAPTCHA on the public form is
   deferred; the Airtable form had none either.
-- **Attendance editing UI** — class checkmarks are migrated data; an
-  instructor attendance editor is future work.
+- ~~**Attendance editing UI** — class checkmarks are migrated data; an
+  instructor attendance editor is future work.~~ — delivered 2026-09-20
+  as the 出席 tab (see the attendance LLD).
 - **Instructor UI for per-student group assignment** — the divider is the
   primary path; manual per-student moves are a CLI command today.
 - ~~**Production Clerk instance**~~ — replaced 2026-08-31: auth is now
@@ -143,3 +144,4 @@ portable.
 - [Directory LLD](./designs/directory/LLD.md)
 - [Roster Views LLD](./designs/roster-views/LLD.md)
 - [Withdrawal LLD](./designs/withdrawal/LLD.md)
+- [Attendance LLD](./designs/attendance/LLD.md)
