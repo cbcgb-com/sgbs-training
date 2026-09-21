@@ -5,6 +5,7 @@ import { SignInSheet } from "./auth/SignIn";
 import { sessionTokenStore } from "./auth/session";
 import { CURRENT_QUARTER } from "./constants";
 import Directory from "./Directory";
+import Attendance from "./Attendance";
 import GroupAssigner from "./GroupAssigner";
 import Form from "./Form";
 import MyGroup from "./MyGroup";
@@ -19,6 +20,7 @@ type TabKey =
   | "directory"
   | "schedule"
   | "roster"
+  | "attendance"
   | "assign";
 
 const TabContext = createContext<{ tab: TabKey; setTab: (t: TabKey) => void }>({
@@ -117,6 +119,7 @@ function MemberView() {
         { key: "register", label: "註冊" },
         { key: "assign", label: "分組" },
         { key: "roster", label: "名單" },
+        { key: "attendance", label: "出席" },
         { key: "schedule", label: "課堂安排" },
       ]
     : [
@@ -209,6 +212,7 @@ function TabShell({
             {active === "register" && <Form adminMode />}
             {active === "assign" && <GroupAssigner />}
             {active === "roster" && <Roster />}
+            {active === "attendance" && <Attendance />}
             {active === "schedule" && <ScheduleView isInstructor />}
           </>
         ) : (
