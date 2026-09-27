@@ -209,13 +209,10 @@ export default function Attendance() {
                               : undefined
                           }
                         />
-                        <span className="font-serif-tc text-[17px] font-bold text-ink">
-                          {s.name}
-                        </span>
                         <span
                           role="group"
                           aria-label={`${s.name} ${zhDay(date!)} 出席記錄`}
-                          className="ml-1 inline-flex items-center gap-1.5"
+                          className="inline-flex items-center gap-1.5"
                         >
                           <MarkButton
                             label="出席"
@@ -231,12 +228,15 @@ export default function Attendance() {
                             disabled={busy}
                             onClick={() => setMark(s, "no")}
                           />
-                          {mark === "none" && (
-                            <span className="ml-1 font-serif-tc text-xs tracking-[0.1em] text-rule">
-                              未記錄
-                            </span>
-                          )}
                         </span>
+                        <span className="font-serif-tc text-[17px] font-bold text-ink">
+                          {s.name}
+                        </span>
+                        {mark === "none" && (
+                          <span className="font-serif-tc text-xs tracking-[0.1em] text-rule">
+                            未記錄
+                          </span>
+                        )}
                       </span>
                     </td>
                     <td className="whitespace-nowrap px-3 py-2.5 text-ink">
