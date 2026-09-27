@@ -16,8 +16,49 @@ type SessionRow = {
 
 type Role = "leader" | "observer";
 
-// 課堂安排: this season's five class dates, organized by small group.
-// Each group gets its own table — weeks as rows, 主領/觀察 as columns.
+type AssignmentUpdater = (
+  session: SessionRow,
+  role: Role,
+  nextPeople: { _id: Id<"students">; name: string }[],
+) => Promise<void>;
+
+// Instructor layout for 課堂安排: by group (default) or by week. The
+// choice persists in localStorage across visits.
+type ScheduleLayout = "group" | "week";
+
+const SCHEDULE_LAYOUTS = [
+  { key: "group" as const, label: "按小組" },
+  { key: "week" as const, label: "按週次" },
+];
+
+const LAYOUT_STORAGE_KEY = "sgbs-roster-schedule-layout";
+
+function useScheduleLayout() {
+  const [layout, setLayout] = useState<ScheduleLayout>(() => {
+    try {
+      return localStorage.getItem(LAYOUT_STORAGE_KEY) === "week"
+        ? "week"
+        : "group";
+    } catch {
+      return "group";
+    }
+  });
+
+  function update(next: ScheduleLayout) {
+    setLayout(next);
+    try {
+      localStorage.setItem(LAYOUT_STORAGE_KEY, next);
+    } catch {
+      // Storage unavailable (private mode) — keep the in-memory choice.
+    }
+  }
+
+  return [layout, update] as const;
+}
+
+// 課堂安排: this season's five class dates. Instructors choose between
+// two layouts of the same session docs — 按小組 (one table per group,
+// weeks as rows) or 按週次 (one section per date, groups as rows).
 // Historical quarters live in the database but are not shown.
 export default function ScheduleView({ isInstructor }: { isInstructor: boolean }) {
   const allSessions = useQuery(api.students.schedule);
@@ -25,6 +66,7 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
     api.students.byQuarter,
     isInstructor ? {} : "skip",
   );
+  const [layout, setLayout] = useScheduleLayout();
 
   const sessions = useMemo(
     () =>
@@ -73,14 +115,50 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
           {CURRENT_QUARTER} · 共 {sessions.length} 堂
         </span>
       </div>
+      <nav
+        aria-label="課堂安排檢視"
+        className="mt-4 flex flex-wrap items-baseline gap-x-1 border-b border-rule pb-2"
+      >
+        {SCHEDULE_LAYOUTS.map((l, i) => (
+          <span key={l.key} className="inline-flex items-baseline">
+            {i > 0 && (
+              <span className="mr-1 text-rule" aria-hidden>
+                ·
+              </span>
+            )}
+            <button
+              onClick={() => setLayout(l.key)}
+              aria-pressed={layout === l.key}
+              className={
+                "font-serif-tc text-sm tracking-[0.15em] transition-colors " +
+                (layout === l.key
+                  ? "font-bold text-vermilion"
+                  : "text-ink-soft hover:text-ink")
+              }
+            >
+              {l.label}
+            </button>
+          </span>
+        ))}
+      </nav>
       <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-        按小組填寫每週的主領與觀察；日期已固定，每組輪流服事。
+        {layout === "group"
+          ? "按小組填寫每週的主領與觀察；日期已固定，每組輪流服事。"
+          : "按週次一覽全班安排；每堂一節，各組的主領與觀察並列。"}
       </p>
-      <GroupSections
-        sessions={sessions}
-        roster={roster ?? []}
-        orientationDate={orientationDate}
-      />
+      {layout === "group" ? (
+        <GroupSections
+          sessions={sessions}
+          roster={roster ?? []}
+          orientationDate={orientationDate}
+        />
+      ) : (
+        <WeekSections
+          sessions={sessions}
+          roster={roster ?? []}
+          orientationDate={orientationDate}
+        />
+      )}
     </div>
   );
 }
@@ -94,28 +172,11 @@ function GroupSections({
   roster: Doc<"students">[];
   orientationDate: string | null;
 }) {
-  const named = useMemo(() => {
-    const map = new Map<string, Doc<"students">[]>();
-    const ungrouped: Doc<"students">[] = [];
-    for (const s of roster) {
-      if (!s.groupName) {
-        ungrouped.push(s);
-        continue;
-      }
-      if (!map.has(s.groupName)) map.set(s.groupName, []);
-      map.get(s.groupName)!.push(s);
-    }
-    return {
-      named: [...map.entries()].sort((a, b) =>
-        a[0].localeCompare(b[0], "zh-Hant"),
-      ),
-      ungrouped,
-    };
-  }, [roster]);
+  const grouped = useMemo(() => splitByGroup(roster), [roster]);
 
   return (
     <div className="mt-6 space-y-10">
-      {named.named.map(([name, members]) => (
+      {grouped.named.map(([name, members]) => (
         <GroupScheduleTable
           key={name}
           groupName={name}
@@ -124,15 +185,153 @@ function GroupSections({
           orientationDate={orientationDate}
         />
       ))}
-      {named.ungrouped.length > 0 && (
+      {grouped.ungrouped.length > 0 && (
         <GroupScheduleTable
           groupName="未分組"
-          members={named.ungrouped}
+          members={grouped.ungrouped}
           sessions={sessions}
           orientationDate={orientationDate}
         />
       )}
     </div>
+  );
+}
+
+// 按週次: the same session docs pivoted — one section per class date,
+// groups as rows. Reads and writes the very same sessions as the group
+// view, so edits made here show up there immediately.
+function WeekSections({
+  sessions,
+  roster,
+  orientationDate,
+}: {
+  sessions: SessionRow[];
+  roster: Doc<"students">[];
+  orientationDate: string | null;
+}) {
+  const groups = useMemo(() => splitByGroup(roster).named, [roster]);
+
+  return (
+    <div className="mt-6 space-y-10">
+      {sessions.map((s) => (
+        <WeekTable
+          key={s._id}
+          session={s}
+          groups={groups}
+          orientationDate={orientationDate}
+        />
+      ))}
+    </div>
+  );
+}
+
+function WeekTable({
+  session,
+  groups,
+  orientationDate,
+}: {
+  session: SessionRow;
+  groups: [string, Doc<"students">[]][];
+  orientationDate: string | null;
+}) {
+  const update = useAssignmentUpdater();
+  const weekday = weekdayOf(session.date);
+
+  return (
+    <section>
+      <div className="flex items-baseline justify-between border-b-2 border-ink pb-2">
+        <h3 className="font-serif-tc text-lg font-bold tracking-[0.15em] text-ink">
+          {session.date}
+          <span className="ml-2 text-sm font-normal text-ink-soft">
+            週{weekday}
+          </span>
+        </h3>
+      </div>
+      {session.date === orientationDate ? (
+        <p className="mt-3 font-serif-tc text-sm text-ink-soft">
+          課程信息介紹 — 本週無主領觀察
+        </p>
+      ) : (
+        <div className="mt-2 overflow-x-auto overflow-y-clip">
+          <table className="w-full border-collapse text-left text-base">
+            <thead>
+              <tr className="border-b-2 border-ink">
+                <th
+                  scope="col"
+                  className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                >
+                  小組
+                </th>
+                <th
+                  scope="col"
+                  className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                >
+                  主領
+                </th>
+                <th
+                  scope="col"
+                  className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                >
+                  觀察
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {groups.map(([name, members]) => (
+                <WeekRow
+                  key={name}
+                  groupName={name}
+                  members={members}
+                  session={session}
+                  onUpdate={update}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function WeekRow({
+  groupName,
+  members,
+  session,
+  onUpdate,
+}: {
+  groupName: string;
+  members: Doc<"students">[];
+  session: SessionRow;
+  onUpdate: AssignmentUpdater;
+}) {
+  const memberIds = useMemo(() => new Set(members.map((m) => m._id)), [members]);
+
+  return (
+    <tr className="border-b border-rule transition-colors hover:bg-paper-deep/60">
+      <td className="whitespace-nowrap px-3 py-3 align-top font-serif-tc text-[15px] font-bold text-ink">
+        {groupName}
+        <span className="ml-1.5 text-xs font-normal text-ink-soft">
+          {members.length} 位
+        </span>
+      </td>
+      <AssignmentCell
+        session={session}
+        role="leader"
+        tone="ink"
+        members={members}
+        memberIds={memberIds}
+        onUpdate={(people) => onUpdate(session, "leader", people)}
+      />
+      <AssignmentCell
+        session={session}
+        role="observer"
+        tone="vermilion"
+        members={members}
+        memberIds={memberIds}
+        onUpdate={(people) => onUpdate(session, "observer", people)}
+      />
+    </tr>
   );
 }
 
@@ -147,24 +346,8 @@ function GroupScheduleTable({
   sessions: SessionRow[];
   orientationDate: string | null;
 }) {
-  const assign = useMutation(api.students.updateSessionAssignments);
+  const update = useAssignmentUpdater();
   const memberIds = useMemo(() => new Set(members.map((m) => m._id)), [members]);
-
-  async function update(
-    session: SessionRow,
-    role: Role,
-    nextPeople: { _id: Id<"students">; name: string }[],
-  ) {
-    const otherRoleIds = (
-      role === "leader" ? session.observers : session.leaders
-    ).map((p) => p._id);
-    const ids = nextPeople.map((p) => p._id);
-    await assign(
-      role === "leader"
-        ? { sessionId: session._id, leaderIds: ids, observerIds: otherRoleIds }
-        : { sessionId: session._id, leaderIds: otherRoleIds, observerIds: ids },
-    );
-  }
 
   return (
     <section>
@@ -202,10 +385,7 @@ function GroupScheduleTable({
           </thead>
           <tbody>
             {sessions.map((s) => {
-              const dateObj = new Date(s.date + "T00:00:00");
-              const weekday = [
-                "日", "一", "二", "三", "四", "五", "六",
-              ][dateObj.getDay()];
+              const weekday = weekdayOf(s.date);
               if (s.date === orientationDate) {
                 return (
                   <tr key={s._id} className="border-b border-rule">
@@ -347,6 +527,51 @@ function roleLabel(role: Role) {
   return role === "leader" ? "主領" : "觀察";
 }
 
+// ---- Shared helpers (group view + week view) ----
+
+// Both instructor layouts write through the same mutation, so an edit
+// made in one view is visible in the other without a reload.
+function useAssignmentUpdater(): AssignmentUpdater {
+  const assign = useMutation(api.students.updateSessionAssignments);
+  return async (session, role, nextPeople) => {
+    const otherRoleIds = (
+      role === "leader" ? session.observers : session.leaders
+    ).map((p) => p._id);
+    const ids = nextPeople.map((p) => p._id);
+    await assign(
+      role === "leader"
+        ? { sessionId: session._id, leaderIds: ids, observerIds: otherRoleIds }
+        : { sessionId: session._id, leaderIds: otherRoleIds, observerIds: ids },
+    );
+  };
+}
+
+// Roster split into named groups (zh-Hant sort) and 未分組 leftovers.
+function splitByGroup(roster: Doc<"students">[]) {
+  const map = new Map<string, Doc<"students">[]>();
+  const ungrouped: Doc<"students">[] = [];
+  for (const s of roster) {
+    if (!s.groupName) {
+      ungrouped.push(s);
+      continue;
+    }
+    if (!map.has(s.groupName)) map.set(s.groupName, []);
+    map.get(s.groupName)!.push(s);
+  }
+  return {
+    named: [...map.entries()].sort((a, b) =>
+      a[0].localeCompare(b[0], "zh-Hant"),
+    ),
+    ungrouped,
+  };
+}
+
+const WEEKDAY_NAMES = ["日", "一", "二", "三", "四", "五", "六"];
+
+function weekdayOf(date: string) {
+  return WEEKDAY_NAMES[new Date(date + "T00:00:00").getDay()];
+}
+
 
 function StudentSchedule({
   sessions,
@@ -435,10 +660,7 @@ function StudentSchedule({
           </thead>
           <tbody>
             {sessions.map((s) => {
-              const dateObj = new Date(s.date + "T00:00:00");
-              const weekday = [
-                "日", "一", "二", "三", "四", "五", "六",
-              ][dateObj.getDay()];
+              const weekday = weekdayOf(s.date);
               if (s.date === orientationDate) {
                 return (
                   <tr key={s._id} className="border-b border-rule">
