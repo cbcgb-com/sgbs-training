@@ -1,0 +1,21 @@
+apps/roster/src/Attendance.tsx
+  s_e730a816c232f3::t_a8b53929e16e14 215,232-239
+apps/roster/docs/designs/attendance/LLD.md
+  s_e730a816c232f3::t_c72246c468d54a 110-112
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ce8c9e2b5aa925898a4b4c34f4e797c4cc4adc27",
+  "prompts": {},
+  "sessions": {
+    "s_e730a816c232f3": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0e440-abea-72f0-9848-1cb168785677",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
