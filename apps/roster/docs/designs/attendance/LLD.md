@@ -107,9 +107,9 @@ the sheet is actually used (standing at the door, phone in hand).
   below it a per-date tally (已記錄 X/Y · 出席 A · 缺席 B) and the
   「未記錄全部出席」 bulk button, disabled when nothing is unrecorded.
 - Student table: 序號, 名字 (48px avatar + serif name, 已退出 never
-  appears) with the 出席／缺席 toggle directly beside the name — the
-  marks are the row's primary action and must stay on-screen on a phone
-  instead of sitting in a far-right column — then 團契, 小組, and the
+  appears) with the 出席／缺席 toggle between avatar and name — the
+  fixed-width avatar and toggle keep the buttons and names in aligned
+  columns and the marks on-screen on a phone — then 團契, 小組, and the
   season 缺課 count for context.
 - Legend and error banner follow the roster's conventions (aria-pressed
   toggles, `role="alert"` errors, tabular numbers).
