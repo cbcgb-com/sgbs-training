@@ -1,0 +1,19 @@
+docs/resources/recordings.md
+  s_375eeef541aa5b::t_6d4ad23beecabc 4-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5f9b62ec8249b4cd933527c51e8584b959b8258a",
+  "prompts": {},
+  "sessions": {
+    "s_375eeef541aa5b": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0e526-3d78-70b0-b88b-c86fdbe3235a",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
