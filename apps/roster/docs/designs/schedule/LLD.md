@@ -37,9 +37,21 @@ further scoped to **their own group's people** (see Student Self-Service).
 
 ## Instructor View
 
-Sections by group (current-quarter groups, 未分組 last). Each group gets a
-table — weeks as rows (date + weekday), 主領 and 觀察 columns as editable
-chips scoped to that group's members. A member can appear as 主領 in one
+Two layouts of the same current-quarter session docs, switched by a
+按小組 / 按週次 toggle in the page header (default 按小組; the choice
+persists in `localStorage`):
+
+- 按小組 — sections by group (current-quarter groups, 未分組 last).
+  Each group gets a table — weeks as rows (date + weekday), 主領 and
+  觀察 columns as editable chips scoped to that group's members.
+- 按週次 — the same docs pivoted: one section per class date (date +
+  weekday heading), groups as rows, 小組/主領/觀察 columns. The
+  orientation section renders the 課程信息介紹 note instead of a table;
+  ungrouped students have no group row and do not appear.
+
+Both layouts read and write the same `sessions` documents
+(`updateSessionAssignments`), so an edit made in one view is
+immediately visible in the other. A member can appear as 主領 in one
 week and 觀察 in another; the same week's 主領/觀察 candidates exclude
 anyone already assigned that week in either role.
 

@@ -12,6 +12,14 @@
 - [x] **SCH-ADM-003**: The instructor view shall organize the season by
       group: one table per group, weeks as rows, 主領/觀察 as columns,
       names in the cells.
+- [x] **SCH-ADM-004**: The instructor 課堂安排 page shall offer a
+      按小組 / 按週次 layout toggle, defaulting to 按小組 and remembering
+      the instructor's choice across visits.
+- [x] **SCH-ADM-005**: The system shall render a 按週次 layout — one
+      section per class date, groups as rows, 小組/主領/觀察 as columns —
+      reading and writing the same session documents as the 按小組
+      layout, so an assignment edited in one view is immediately
+      visible in the other.
 
 ## Assignment Editing
 

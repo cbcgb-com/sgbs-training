@@ -502,6 +502,17 @@ student's own name server-side (one role per week — taking one drops the
 other). Other people's chips have no controls. The point is first-day-of-
 class self-organization with zero instructor data entry, in real time.
 
+### Instructor schedule layouts
+
+課堂安排 gives instructors two views of the same session documents.
+按小組 (the default) keeps one table per group; 按週次 pivots to one
+section per class date with groups as rows, so a whole week — who
+leads, who observes, which group is off — is visible at once. A header
+toggle switches between the two (remembered in localStorage), and both
+write through the same assignment mutation, so an edit made in one
+view is instantly visible in the other. Orientation week renders a
+note, never editable cells, in either layout.
+
 ### Group Assigner (instructor surface)
 
 分組 turns the diversity algorithm into a draft the instructor owns:

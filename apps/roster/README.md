@@ -49,8 +49,9 @@ student; anything else is a guest.
 - **聯絡表 directory** — Student: current season only, no quarter filter.
   Instructor: full archive with a quarter filter.
 - **課堂安排 schedule** — Student: own group's people only, four leading
-  weeks, self-serve 我來主領/我來觀察. Instructor: every group's table
-  with full assignment editing.
+  weeks, self-serve 我來主領/我來觀察. Instructor: two layouts of the
+  same data — by group (按小組) or by week (按週次) — with full
+  assignment editing in both.
 - **名單 full roster** — Instructor only: all 12 views, plus a 已退出
   view (退出報名 soft state) filterable by quarter, and a 標記退出 control
   on the 本季度 rows for on-behalf withdrawals.
