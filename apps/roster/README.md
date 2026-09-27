@@ -51,7 +51,8 @@ student; anything else is a guest.
 - **課堂安排 schedule** — Student: own group's people only, four leading
   weeks, self-serve 我來主領/我來觀察. Instructor: two layouts of the
   same data — by group (按小組) or by week (按週次) — with full
-  assignment editing in both.
+  assignment editing in both, plus read-only 功課記錄 marks (筆記 per
+  member, 題目 per 主領/觀察) in the by-week layout.
 - **名單 full roster** — Instructor only: all 12 views, plus a 已退出
   view (退出報名 soft state) filterable by quarter, and a 標記退出 control
   on the 本季度 rows for on-behalf withdrawals.
@@ -120,6 +121,39 @@ record-deletion request — it is not the withdrawal path.
 Enforcement lives in `convex/students.ts` (`requireInstructor`,
 `requireCurrentStudent`) — the UI hiding tabs is convenience, the server
 is the gate.
+
+## Homework tracking (功課記錄)
+
+The `homework` table records **who did which homework for which week**,
+in parallel to attendance: one row per (student, session date, type),
+where type is `notes` (查經筆記 — one page per student in the weekly
+shared doc) or `questions` (查經題目 — one page per group, credited to
+that session's 主領 and 觀察). A missing row means 未記錄, never
+conflated with 未完成. Instructors read the marks in 課堂安排 按週次
+(✓ 已完成 · ✗ 未完成 · – 未記錄, plus the per-week empty state
+本週尚未記錄功課); students never see them. See
+[docs/designs/homework/LLD.md](docs/designs/homework/LLD.md).
+
+There is **no manual write UI** — the rows are written by the agent
+workflow from the weekly Google Docs (`npx convex run` is the only
+writer; the mutations are internal, so the browser cannot call them):
+
+```bash
+# name → student-id lookup for the week's doc pages
+npx convex run --prod homework:quarterRoster '{}'
+# one call per (student, type); re-running a week updates in place
+npx convex run --prod homework:recordHomework '{
+  "studentId": "…", "date": "2026-10-04",
+  "type": "notes", "done": true,
+  "sourceDocUrl": "https://docs.google.com/document/d/…"
+}'
+# spot-check
+npx convex run --prod homework:byQuarter '{}'
+```
+
+E2E walkthrough (dev deployment, seeded demo data): `node
+scripts/test-homework.mjs` — drives the same CLI entry point and
+asserts the gates, the questions-credit rule, and upsert semantics.
 
 ## Field-name note
 

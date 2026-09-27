@@ -74,6 +74,27 @@ export default defineSchema({
     .index("by_student", ["studentId"])
     .index("by_quarter_date", ["quarter", "date"]),
 
+  // 功課記錄: one row per (student, session date, homework type) —
+  // parallel to attendance. A missing row means "not recorded" (never
+  // conflated with "not done"). Two homework types: "notes" (查經筆記,
+  // one page per student in the weekly shared doc) and "questions"
+  // (查經題目, one page per group, credited to that session's 主領 and
+  // 觀察). Written by the agent workflow (see
+  // docs/designs/homework/LLD.md), not by hand — the mutation is
+  // internal, so only `npx convex run homework:recordHomework` can call
+  // it; instructors read the marks in 課堂安排 按週次.
+  homework: defineTable({
+    studentId: v.id("students"),
+    quarter: v.string(),
+    date: v.string(), // the class date this homework is for
+    type: v.union(v.literal("notes"), v.literal("questions")),
+    done: v.boolean(), // binary, like attendance.attended
+    sourceDocUrl: v.optional(v.string()), // Google Doc the record came from
+    recordedAt: v.number(), // ms, refreshed on each agent write
+  })
+    .index("by_student", ["studentId"])
+    .index("by_quarter_date", ["quarter", "date"]),
+
   // 同工 / instructors: emails allowed to see and edit everything.
   // active=false rows are kept for history but have no access.
   // The instructor rule: active instructors are never students in the

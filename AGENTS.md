@@ -305,6 +305,14 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/src/Attendance.tsx` - Instructor attendance sheet 出席
   (per-date recording, 未記錄全部出席 bulk fill; see
   `apps/roster/docs/designs/attendance/LLD.md`)
+- `apps/roster/convex/homework.ts` - 功課記錄: homework tracking
+  parallel to attendance — internal agent-written mutations
+  (`recordHomework` upsert via `npx convex run`, `clearHomework`),
+  agent roster lookup, instructor-gated marks read; read UI in the
+  課堂安排 按週次 layout (see `apps/roster/docs/designs/homework/LLD.md`)
+- `apps/roster/scripts/test-homework.mjs` - End-to-end homework suite
+  (drives the `npx convex run` agent entry point against a dev Convex
+  deployment)
 - `apps/roster/scripts/test-withdrawal.mjs` - End-to-end withdrawal suite
   (runs against a dev Convex deployment)
 - `apps/roster/scripts/test-attendance.mjs` - End-to-end attendance
