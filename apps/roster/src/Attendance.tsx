@@ -175,7 +175,7 @@ export default function Attendance() {
                 <th className="w-10 px-1 py-2.5">
                   <span className="sr-only">序號</span>
                 </th>
-                {["名字", "團契", "小組", "記錄", "季內缺課"].map((label) => (
+                {["名字", "團契", "小組", "季內缺課"].map((label) => (
                   <th
                     key={label}
                     scope="col"
@@ -202,6 +202,7 @@ export default function Attendance() {
                       <span className="flex items-center gap-2.5">
                         <Avatar
                           name={s.name}
+                          size={48}
                           url={
                             s.photoStorageId
                               ? photos?.[s.photoStorageId]
@@ -211,6 +212,31 @@ export default function Attendance() {
                         <span className="font-serif-tc text-[17px] font-bold text-ink">
                           {s.name}
                         </span>
+                        <span
+                          role="group"
+                          aria-label={`${s.name} ${zhDay(date!)} 出席記錄`}
+                          className="ml-1 inline-flex items-center gap-1.5"
+                        >
+                          <MarkButton
+                            label="出席"
+                            active={mark === "yes"}
+                            tone="yes"
+                            disabled={busy}
+                            onClick={() => setMark(s, "yes")}
+                          />
+                          <MarkButton
+                            label="缺席"
+                            active={mark === "no"}
+                            tone="no"
+                            disabled={busy}
+                            onClick={() => setMark(s, "no")}
+                          />
+                          {mark === "none" && (
+                            <span className="ml-1 font-serif-tc text-xs tracking-[0.1em] text-rule">
+                              未記錄
+                            </span>
+                          )}
+                        </span>
                       </span>
                     </td>
                     <td className="whitespace-nowrap px-3 py-2.5 text-ink">
@@ -218,33 +244,6 @@ export default function Attendance() {
                     </td>
                     <td className="whitespace-nowrap px-3 py-2.5 text-ink">
                       {s.groupName || "—"}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2.5">
-                      <span
-                        role="group"
-                        aria-label={`${s.name} ${zhDay(date!)} 出席記錄`}
-                        className="inline-flex items-center gap-1.5"
-                      >
-                        <MarkButton
-                          label="出席"
-                          active={mark === "yes"}
-                          tone="yes"
-                          disabled={busy}
-                          onClick={() => setMark(s, "yes")}
-                        />
-                        <MarkButton
-                          label="缺席"
-                          active={mark === "no"}
-                          tone="no"
-                          disabled={busy}
-                          onClick={() => setMark(s, "no")}
-                        />
-                        {mark === "none" && (
-                          <span className="ml-1 font-serif-tc text-xs tracking-[0.1em] text-rule">
-                            未記錄
-                          </span>
-                        )}
-                      </span>
                     </td>
                     <td className="px-3 py-2.5 text-right text-ink-soft">
                       {s.missed > 0 ? s.missed : "—"}
@@ -277,7 +276,7 @@ function MarkButton({
   onClick: () => void;
 }) {
   const base =
-    "border px-3 py-1 font-serif-tc text-sm font-bold tracking-[0.15em] transition-colors disabled:opacity-50";
+    "border px-3 py-1.5 font-serif-tc text-sm font-bold tracking-[0.15em] transition-colors disabled:opacity-50";
   const look = active
     ? tone === "yes"
       ? "border-ink bg-ink text-paper"
