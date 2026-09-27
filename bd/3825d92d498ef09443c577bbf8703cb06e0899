@@ -1,0 +1,47 @@
+apps/roster/docs/designs/homework/homework-EARS.md
+  s_54b466589c76e9::t_39c1452f54e420 1-75
+apps/roster/convex/schema.ts
+  s_54b466589c76e9::t_6945a7d4a440d2 77-97
+apps/roster/scripts/test-homework.mjs
+  s_54b466589c76e9::t_4ec56ed2c8a69f 1-88,91-106,123-272
+  s_54b466589c76e9::t_7c3d8c0d3a8c50 89-90
+  s_54b466589c76e9::t_fb2ed9b6e71ce3 107-122
+apps/roster/README.md
+  s_54b466589c76e9::t_3d026e50383304 54-55,125-156
+  s_54b466589c76e9::t_d9f1082f3bedbf 157
+apps/roster/docs/high-level-design.md
+  s_54b466589c76e9::t_8b9057c686f264 148
+AGENTS.md
+  s_54b466589c76e9::t_15e7cc0c4357e3 308-315
+apps/roster/src/ScheduleView.tsx
+  s_54b466589c76e9::t_caac9e6cbee076 513,521-524,561-566,604-624
+  s_54b466589c76e9::t_b1334d33d1bc0d 69-72,75-85,94-97,178,221-223,228,233,239-244,251
+  s_54b466589c76e9::t_95089f19520804 347,353,366-378,385,394
+  s_54b466589c76e9::t_6132c0351319d6 262,267,287-322,330,337
+  s_54b466589c76e9::t_24925b72da7022 625-626
+apps/roster/convex/homework.ts
+  s_54b466589c76e9::t_426a5f3726ec96 1,3-81,83-176
+  s_54b466589c76e9::t_53b65134e25ea3 2,82
+apps/roster/docs/designs/homework/LLD.md
+  s_54b466589c76e9::t_61a132ca346d35 1-154
+apps/roster/convex/students.ts
+  s_54b466589c76e9::t_51496f0d38af92 26-28
+apps/roster/convex/_generated/api.d.ts
+  s_54b466589c76e9::t_e7f5b92a6e5e52 14,29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "bd3825d92d498ef09443c577bbf8703cb06e0899",
+  "prompts": {},
+  "sessions": {
+    "s_54b466589c76e9": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0e33a-18ae-7267-ae3b-f3182ac081bd",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
