@@ -106,8 +106,11 @@ the sheet is actually used (standing at the door, phone in hand).
 - Date chip row across the top (9月20日（日）…), selected chip highlighted;
   below it a per-date tally (已記錄 X/Y · 出席 A · 缺席 B) and the
   「未記錄全部出席」 bulk button, disabled when nothing is unrecorded.
-- Student table: 序號, 名字 (avatar + serif name, 已退出 never appears),
-  團契, 小組, the 出席／缺席 toggle, and the season 缺課 count for context.
+- Student table: 序號, 名字 (48px avatar + serif name, 已退出 never
+  appears) with the 出席／缺席 toggle directly beside the name — the
+  marks are the row's primary action and must stay on-screen on a phone
+  instead of sitting in a far-right column — then 團契, 小組, and the
+  season 缺課 count for context.
 - Legend and error banner follow the roster's conventions (aria-pressed
   toggles, `role="alert"` errors, tabular numbers).
 
