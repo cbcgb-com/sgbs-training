@@ -1,0 +1,19 @@
+apps/roster/src/ScheduleView.tsx
+  s_e8dec7af5e27a2::t_76049d9c292ef2 19-61,69,118-143,145-147,149-161,175,179,188,191,200-337,349,388,530-574,663
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "2f5af1cdc64b099ac61e174a082456d623acbb39",
+  "prompts": {},
+  "sessions": {
+    "s_e8dec7af5e27a2": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0e2fd-d7e7-74d4-ab77-9065b6e0284d",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
