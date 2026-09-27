@@ -1,0 +1,25 @@
+apps/roster/README.md
+  s_e8dec7af5e27a2::t_1230a925754edb 52-54
+apps/roster/docs/designs/schedule/LLD.md
+  s_e8dec7af5e27a2::t_84b2016d85b204 40-54
+apps/roster/docs/designs/schedule/instructor-assignments-EARS.md
+  s_e8dec7af5e27a2::t_7587cd15100065 15-22
+apps/roster/DESIGN.md
+  s_e8dec7af5e27a2::t_eddc592910cef5 505-515
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9dcba6d4dea7061cd44959d42d7677691cbcc821",
+  "prompts": {},
+  "sessions": {
+    "s_e8dec7af5e27a2": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0e2fd-d7e7-74d4-ab77-9065b6e0284d",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
