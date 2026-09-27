@@ -66,7 +66,22 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
     api.students.byQuarter,
     isInstructor ? {} : "skip",
   );
+  // 功課記錄 (筆記/題目) — read-only marks written by the agent workflow
+  // from the weekly Google Docs. Instructor-only like the roster read:
+  // students never see peers' completion (their schedule renders below).
+  const homework = useQuery(api.homework.byQuarter, isInstructor ? {} : "skip");
   const [layout, setLayout] = useScheduleLayout();
+
+  // 功課記錄 lookup: date → (`${studentId}:${type}` → done). Absence of
+  // a key is the third state — 未記錄, never conflated with 未完成.
+  const hwByDate = useMemo(() => {
+    const byDate = new Map<string, Map<string, boolean>>();
+    for (const r of homework ?? []) {
+      if (!byDate.has(r.date)) byDate.set(r.date, new Map());
+      byDate.get(r.date)!.set(`${r.studentId}:${r.type}`, r.done);
+    }
+    return byDate;
+  }, [homework]);
 
   const sessions = useMemo(
     () =>
@@ -76,7 +91,10 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
     [allSessions],
   );
 
-  if (allSessions === undefined || (isInstructor && roster === undefined)) {
+  if (
+    allSessions === undefined ||
+    (isInstructor && (roster === undefined || homework === undefined))
+  ) {
     return (
       <p className="py-12 text-center font-serif-tc text-base tracking-[0.3em] text-ink-soft">
         載入中……
@@ -157,6 +175,7 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
           sessions={sessions}
           roster={roster ?? []}
           orientationDate={orientationDate}
+          hw={hwByDate}
         />
       )}
     </div>
@@ -199,26 +218,37 @@ function GroupSections({
 
 // 按週次: the same session docs pivoted — one section per class date,
 // groups as rows. Reads and writes the very same sessions as the group
-// view, so edits made here show up there immediately.
+// view, so edits made here show up there immediately. This layout also
+// carries the 功課記錄 marks: 筆記 on every member's name in the 組員
+// column, 題目 on the week's 主領/觀察 chips (read-only, instructor-only).
 function WeekSections({
   sessions,
   roster,
   orientationDate,
+  hw,
 }: {
   sessions: SessionRow[];
   roster: Doc<"students">[];
   orientationDate: string | null;
+  hw: Map<string, Map<string, boolean>>;
 }) {
   const groups = useMemo(() => splitByGroup(roster).named, [roster]);
 
   return (
     <div className="mt-6 space-y-10">
+      <p className="text-sm leading-relaxed text-ink-soft">
+        功課記錄唯讀，由每週 Google Docs 整理後寫入：筆記記在組員名下，題目記在該週主領與觀察名下。{" "}
+        <span role="img" aria-label="已完成" className="font-bold text-ink">✓</span> 已完成 ·{" "}
+        <span role="img" aria-label="未完成" className="font-bold text-vermilion">✗</span> 未完成 ·{" "}
+        <span role="img" aria-label="未記錄" className="text-rule">–</span> 未記錄
+      </p>
       {sessions.map((s) => (
         <WeekTable
           key={s._id}
           session={s}
           groups={groups}
           orientationDate={orientationDate}
+          hw={hw.get(s.date) ?? new Map()}
         />
       ))}
     </div>
@@ -229,10 +259,12 @@ function WeekTable({
   session,
   groups,
   orientationDate,
+  hw,
 }: {
   session: SessionRow;
   groups: [string, Doc<"students">[]][];
   orientationDate: string | null;
+  hw: Map<string, boolean>;
 }) {
   const update = useAssignmentUpdater();
   const weekday = weekdayOf(session.date);
@@ -252,30 +284,42 @@ function WeekTable({
           課程信息介紹 — 本週無主領觀察
         </p>
       ) : (
-        <div className="mt-2 overflow-x-auto overflow-y-clip">
-          <table className="w-full border-collapse text-left text-base">
-            <thead>
-              <tr className="border-b-2 border-ink">
-                <th
-                  scope="col"
-                  className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
-                >
-                  小組
-                </th>
-                <th
-                  scope="col"
-                  className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
-                >
-                  主領
-                </th>
-                <th
-                  scope="col"
-                  className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
-                >
-                  觀察
-                </th>
-              </tr>
-            </thead>
+        <>
+          {hw.size === 0 && (
+            <p className="mt-3 font-serif-tc text-sm text-ink-soft">
+              本週尚未記錄功課
+            </p>
+          )}
+          <div className="mt-2 overflow-x-auto overflow-y-clip">
+            <table className="w-full border-collapse text-left text-base">
+              <thead>
+                <tr className="border-b-2 border-ink">
+                  <th
+                    scope="col"
+                    className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                  >
+                    小組
+                  </th>
+                  <th
+                    scope="col"
+                    className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                  >
+                    組員（筆記）
+                  </th>
+                  <th
+                    scope="col"
+                    className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                  >
+                    主領（題目）
+                  </th>
+                  <th
+                    scope="col"
+                    className="th-double px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+                  >
+                    觀察（題目）
+                  </th>
+                </tr>
+              </thead>
             <tbody>
               {groups.map(([name, members]) => (
                 <WeekRow
@@ -283,12 +327,14 @@ function WeekTable({
                   groupName={name}
                   members={members}
                   session={session}
+                  hw={hw}
                   onUpdate={update}
                 />
               ))}
             </tbody>
           </table>
         </div>
+        </>
       )}
     </section>
   );
@@ -298,11 +344,13 @@ function WeekRow({
   groupName,
   members,
   session,
+  hw,
   onUpdate,
 }: {
   groupName: string;
   members: Doc<"students">[];
   session: SessionRow;
+  hw: Map<string, boolean>;
   onUpdate: AssignmentUpdater;
 }) {
   const memberIds = useMemo(() => new Set(members.map((m) => m._id)), [members]);
@@ -315,12 +363,26 @@ function WeekRow({
           {members.length} 位
         </span>
       </td>
+      <td className="px-3 py-3 align-top">
+        <div className="flex flex-wrap items-center gap-1.5">
+          {members.map((m) => (
+            <span
+              key={m._id}
+              className="inline-flex items-center gap-1 border border-rule px-2 py-1 text-sm text-ink"
+            >
+              <span className="font-serif-tc font-bold">{m.name}</span>
+              <HwMark done={hw.get(`${m._id}:notes`)} label={`${m.name} 筆記`} />
+            </span>
+          ))}
+        </div>
+      </td>
       <AssignmentCell
         session={session}
         role="leader"
         tone="ink"
         members={members}
         memberIds={memberIds}
+        hw={hw}
         onUpdate={(people) => onUpdate(session, "leader", people)}
       />
       <AssignmentCell
@@ -329,6 +391,7 @@ function WeekRow({
         tone="vermilion"
         members={members}
         memberIds={memberIds}
+        hw={hw}
         onUpdate={(people) => onUpdate(session, "observer", people)}
       />
     </tr>
@@ -447,6 +510,7 @@ function AssignmentCell({
   tone,
   members,
   memberIds,
+  hw,
   onUpdate,
 }: {
   session: SessionRow;
@@ -454,6 +518,10 @@ function AssignmentCell({
   tone: "ink" | "vermilion";
   members: Doc<"students">[];
   memberIds: Set<Id<"students">>;
+  // 功課記錄 for this week (questions type). Present only in the by-week
+  // layout — the marks ride along on the assignment chips; the by-group
+  // layout omits it and stays mark-free.
+  hw?: Map<string, boolean>;
   onUpdate: (people: { _id: Id<"students">; name: string }[]) => void;
 }) {
   const [error, setError] = useState<string | null>(null);
@@ -490,6 +558,12 @@ function AssignmentCell({
             }
           >
             <span className="font-serif-tc font-bold">{p.name}</span>
+            {hw && (
+              <HwMark
+                done={hw.get(`${p._id}:questions`)}
+                label={`${p.name} ${roleLabel(role)}題目`}
+              />
+            )}
             <button
               onClick={() =>
                 change(people.filter((x) => x._id !== p._id))
@@ -525,6 +599,29 @@ function AssignmentCell({
 
 function roleLabel(role: Role) {
   return role === "leader" ? "主領" : "觀察";
+}
+
+// 功課記錄 mark: three states, glyph AND color (never color alone).
+// ✓ 已完成 (ink), ✗ 未完成 (vermilion), – 未記錄 (quiet gray) — an
+// unrecorded mark must never read as "student slacked", only as "agent
+// hasn't run yet".
+function HwMark({ done, label }: { done: boolean | undefined; label: string }) {
+  const state =
+    done === undefined
+      ? { glyph: "–", cls: "text-rule", text: "未記錄" }
+      : done
+        ? { glyph: "✓", cls: "font-bold text-ink", text: "已完成" }
+        : { glyph: "✗", cls: "font-bold text-vermilion", text: "未完成" };
+  return (
+    <span
+      role="img"
+      aria-label={`${label}${state.text}`}
+      title={`${label}${state.text}`}
+      className={`text-[13px] leading-none ${state.cls}`}
+    >
+      {state.glyph}
+    </span>
+  );
 }
 
 // ---- Shared helpers (group view + week view) ----

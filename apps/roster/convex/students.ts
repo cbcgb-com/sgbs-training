@@ -23,7 +23,9 @@ async function isInstructor(ctx: Ctx, email: string) {
   return row !== null && row.active === true;
 }
 
-async function requireInstructor(ctx: Ctx) {
+// Shared with homework.ts — the same instructor gate guards its
+// instructor read (the write path there is internal, agent-only).
+export async function requireInstructor(ctx: Ctx) {
   const identity = await requireAuth(ctx);
   const email = identity.email ?? "";
   if (!(await isInstructor(ctx, email))) {

@@ -145,3 +145,4 @@ portable.
 - [Roster Views LLD](./designs/roster-views/LLD.md)
 - [Withdrawal LLD](./designs/withdrawal/LLD.md)
 - [Attendance LLD](./designs/attendance/LLD.md)
+- [Homework LLD](./designs/homework/LLD.md)
