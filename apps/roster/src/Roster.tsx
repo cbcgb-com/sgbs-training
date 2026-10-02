@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
@@ -103,7 +103,7 @@ function MasterView() {
   const students = useQuery(api.students.all);
   const photos = useQuery(api.students.photoUrls);
   return (
-    <StudentTable
+    <StudentList
       students={students}
       photos={photos}
       columns={[
@@ -126,7 +126,7 @@ function QuarterView() {
   const students = useQuery(api.students.byQuarter, {});
   const photos = useQuery(api.students.photoUrls);
   return (
-    <StudentTable
+    <StudentList
       students={students}
       photos={photos}
       renderAction={(s) =>
@@ -259,17 +259,11 @@ function WithdrawnView() {
   const [busyId, setBusyId] = useState<Id<"students"> | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  if (!rows) return <Loading />;
-
-  const quarters = [...new Set(rows.map((r) => r.quarter))]
+  const quarters = [...new Set(rows?.map((r) => r.quarter) ?? [])]
     .filter(Boolean)
     .sort((a, b) => b.localeCompare(a));
-  const filtered =
-    quarter === "all" ? rows : rows.filter((r) => r.quarter === quarter);
-  const sorted = [...filtered].sort(
-    (a, b) =>
-      b.withdrawnAt - a.withdrawnAt ||
-      a.name.localeCompare(b.name, "zh-Hant"),
+  const filtered = rows?.filter(
+    (r) => quarter === "all" || r.quarter === quarter,
   );
 
   async function restore(id: Id<"students">) {
@@ -286,10 +280,7 @@ function WithdrawnView() {
 
   return (
     <div>
-      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3">
-        <span className="font-serif-tc text-sm text-ink-soft">
-          共 {sorted.length} 位已退出
-        </span>
+      <div className="flex flex-wrap items-baseline justify-end gap-3 border-b border-rule pb-3">
         <label className="flex items-center gap-2 text-sm text-ink-soft">
           季度
           <select
@@ -316,96 +307,36 @@ function WithdrawnView() {
         </p>
       )}
 
-      {sorted.length === 0 ? (
-        <p className="py-14 text-center font-serif-tc text-base tracking-[0.25em] text-ink-soft">
-          此檢視暫無記錄
-        </p>
-      ) : (
-        <div className="mt-2 overflow-x-auto overflow-y-clip">
-          <table className="w-full border-collapse text-left text-base tabular-nums">
-            <thead>
-              <tr className="border-b-2 border-ink">
-                <th className="th-double w-10 px-1 py-2.5">
-                  <span className="sr-only">序號</span>
-                </th>
-                {[
-                  "名字",
-                  "團契",
-                  "小組",
-                  "季度",
-                  "郵箱",
-                  "退出日期",
-                  "退出原因",
-                  "",
-                ].map((label, i) => (
-                  <th
-                    key={label || `col-${i}`}
-                    scope="col"
-                    className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
-                  >
-                    {label}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sorted.map((s, i) => (
-                <tr
-                  key={s._id}
-                  className="border-b border-rule transition-colors hover:bg-paper-deep/60"
-                >
-                  <td className="px-1 py-2.5 text-right font-serif-tc text-sm text-vermilion">
-                    {i + 1}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5">
-                    <span className="flex items-center gap-2.5">
-                      <Avatar
-                        name={s.name}
-                        url={
-                          s.photoStorageId
-                            ? photos?.[s.photoStorageId]
-                            : undefined
-                        }
-                      />
-                      <span className="font-serif-tc text-[17px] font-bold text-ink">
-                        {s.name}
-                      </span>
-                    </span>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-ink">
-                    {s.fellowship || "—"}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-ink">
-                    {s.groupName || "—"}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-right text-ink-soft">
-                    {s.quarter || "—"}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-ink">
-                    {s.email || "—"}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5 text-right text-ink-soft">
-                    {zhDate(s.withdrawnAt)}
-                  </td>
-                  <td className="px-3 py-2.5 text-ink-soft">
-                    {s.withdrawnReason || "—"}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2.5">
-                    <button
-                      type="button"
-                      onClick={() => restore(s._id)}
-                      disabled={busyId === s._id}
-                      className="font-serif-tc text-sm tracking-[0.1em] text-ink-soft underline underline-offset-4 transition-colors hover:text-ink disabled:opacity-50"
-                    >
-                      {busyId === s._id ? "處理中" : "復原"}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+      <div className="mt-4">
+        <StudentList
+          students={filtered}
+          photos={photos}
+          countLabel="位已退出"
+          sort={(a, b) =>
+            b.withdrawnAt - a.withdrawnAt ||
+            a.name.localeCompare(b.name, "zh-Hant")
+          }
+          columns={[
+            ["名字", (s) => s.name, "serif"],
+            ["團契", (s) => s.fellowship],
+            ["小組", (s) => s.groupName],
+            ["季度", (s) => s.quarter],
+            ["郵箱", (s) => s.email],
+            ["退出日期", (s) => zhDate(s.withdrawnAt)],
+            ["退出原因", (s) => s.withdrawnReason],
+          ]}
+          renderAction={(s) => (
+            <button
+              type="button"
+              onClick={() => restore(s._id)}
+              disabled={busyId === s._id}
+              className="font-serif-tc text-sm tracking-[0.1em] text-ink-soft underline underline-offset-4 transition-colors hover:text-ink disabled:opacity-50"
+            >
+              {busyId === s._id ? "處理中" : "復原"}
+            </button>
+          )}
+        />
+      </div>
     </div>
   );
 }
@@ -414,7 +345,7 @@ function ExperienceView() {
   const students = useQuery(api.students.withExperience);
   const photos = useQuery(api.students.photoUrls);
   return (
-    <StudentTable
+    <StudentList
       students={students}
       photos={photos}
       columns={[
@@ -431,7 +362,7 @@ function LeadersView() {
   const students = useQuery(api.students.leaders);
   const photos = useQuery(api.students.photoUrls);
   return (
-    <StudentTable
+    <StudentList
       students={students}
       photos={photos}
       columns={[
@@ -447,7 +378,7 @@ function ObserversView() {
   const students = useQuery(api.students.observers);
   const photos = useQuery(api.students.photoUrls);
   return (
-    <StudentTable
+    <StudentList
       students={students}
       photos={photos}
       columns={[
@@ -469,7 +400,7 @@ function MissedView() {
     .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"));
   return (
     <div>
-      <StudentTable
+      <StudentList
         students={rows}
         markColumns
         columns={[
@@ -617,34 +548,103 @@ function Kanban({
   );
 }
 
-// ---- Shared table ----
+// ---- Shared list ----
+//
+// Every roster view renders through StudentList. Cards are the default
+// (issue #161: photos were too small to see in the table), with the
+// dense table one toggle away. Card mode offers group-by 團契 / 小組 /
+// 帶領經驗, computed client-side over whatever rows the view fetched.
 
 type ColumnStyle = "serif" | "margin";
 
-function StudentTable<
-  T extends {
-    _id: Id<"students">;
-    name: string;
-    photoStorageId?: Id<"_storage">;
-    marks?: Mark[];
-    withdrawnAt?: number;
-  },
->({
+type ListStudent = {
+  _id: Id<"students">;
+  name: string;
+  photoStorageId?: Id<"_storage">;
+  fellowship?: string;
+  groupName?: string;
+  leadingExperience?: string;
+  marks?: Mark[];
+  withdrawnAt?: number;
+};
+
+const GROUP_BY = [
+  { key: "none", label: "不分組" },
+  { key: "fellowship", label: "團契" },
+  { key: "groupName", label: "小組" },
+  { key: "leadingExperience", label: "帶領經驗" },
+] as const;
+
+type GroupKey = (typeof GROUP_BY)[number]["key"];
+
+// The layout choice persists across views and visits; grouping is a
+// per-look choice and starts fresh each time a view mounts.
+const LAYOUT_STORE_KEY = "sgbs-roster:list-layout";
+
+function storedLayout(): "cards" | "table" {
+  try {
+    return localStorage.getItem(LAYOUT_STORE_KEY) === "table"
+      ? "table"
+      : "cards";
+  } catch {
+    return "cards";
+  }
+}
+
+function groupStudents<T extends ListStudent>(
+  students: T[],
+  field: Exclude<GroupKey, "none">,
+): { value: string; count: number; students: T[] }[] {
+  const groups = new Map<string, T[]>();
+  for (const s of students) {
+    const value = s[field] || "（未填）";
+    if (!groups.has(value)) groups.set(value, []);
+    groups.get(value)!.push(s);
+  }
+  return [...groups.entries()]
+    .map(([value, members]) => ({
+      value,
+      count: members.length,
+      students: members,
+    }))
+    .sort(
+      (a, b) =>
+        b.count - a.count || a.value.localeCompare(b.value, "zh-Hant"),
+    );
+}
+
+function StudentList<T extends ListStudent>({
   students,
   columns,
   markColumns,
   photos,
   renderAction,
+  sort,
+  countLabel = "條記錄",
 }: {
   students: T[] | undefined;
   columns: [string, (s: T) => string, ColumnStyle?][];
   markColumns?: boolean;
   photos?: Record<string, string | null>;
   renderAction?: (s: T) => React.ReactNode;
+  sort?: (a: T, b: T) => number;
+  countLabel?: string;
 }) {
+  const [layout, setLayout] = useState<"cards" | "table">(storedLayout);
+  const [groupBy, setGroupBy] = useState<GroupKey>("none");
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LAYOUT_STORE_KEY, layout);
+    } catch {
+      // Storage unavailable (private browsing): the choice just
+      // doesn't outlive the visit.
+    }
+  }, [layout]);
+
   if (!students) return <Loading />;
-  const sorted = [...students].sort((a, b) =>
-    a.name.localeCompare(b.name, "zh-Hant"),
+  const sorted = [...students].sort(
+    sort ?? ((a, b) => a.name.localeCompare(b.name, "zh-Hant")),
   );
   if (sorted.length === 0) {
     return (
@@ -653,8 +653,184 @@ function StudentTable<
       </p>
     );
   }
+
+  const groups =
+    layout === "cards" && groupBy !== "none"
+      ? groupStudents(sorted, groupBy)
+      : null;
+
   return (
-    <div className="overflow-x-auto overflow-y-clip">
+    <div>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+        <span
+          role="group"
+          aria-label="顯示方式"
+          className="inline-flex items-baseline"
+        >
+          {(["cards", "table"] as const).map((key, i) => (
+            <span key={key} className="inline-flex items-baseline">
+              {i > 0 && (
+                <span className="mr-1 text-rule" aria-hidden>
+                  ·
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => setLayout(key)}
+                aria-pressed={layout === key}
+                className={
+                  "font-serif-tc text-sm tracking-[0.15em] transition-colors " +
+                  (layout === key
+                    ? "font-bold text-vermilion"
+                    : "text-ink-soft hover:text-ink")
+                }
+              >
+                {key === "cards" ? "卡片" : "表格"}
+              </button>
+            </span>
+          ))}
+        </span>
+        {layout === "cards" && (
+          <label className="flex items-center gap-2 text-sm text-ink-soft">
+            分組
+            <select
+              value={groupBy}
+              onChange={(e) => setGroupBy(e.target.value as GroupKey)}
+              className="cursor-pointer border border-rule bg-paper px-2 py-1 font-serif-tc text-base text-ink focus:border-ink focus:outline-none"
+            >
+              {GROUP_BY.map((g) => (
+                <option key={g.key} value={g.key}>
+                  {g.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+
+      {groups
+        ? groups.map((g) => (
+            <section key={g.value} aria-label={g.value} className="mt-6">
+              <header className="flex items-baseline justify-between border-b-2 border-ink pb-2">
+                <h3 className="font-serif-tc text-base font-bold tracking-[0.1em] text-ink">
+                  {g.value}
+                </h3>
+                <span className="font-serif-tc text-sm text-vermilion tabular-nums">
+                  {g.count}
+                </span>
+              </header>
+              <StudentCards
+                students={g.students}
+                columns={columns}
+                markColumns={markColumns}
+                photos={photos}
+                renderAction={renderAction}
+              />
+            </section>
+          ))
+        : layout === "cards"
+          ? <StudentCards students={sorted} columns={columns} markColumns={markColumns} photos={photos} renderAction={renderAction} />
+          : <StudentTable students={sorted} columns={columns} markColumns={markColumns} photos={photos} renderAction={renderAction} />}
+
+      <p className="mt-3 text-right text-sm text-ink-soft tabular-nums">
+        共 {sorted.length} {countLabel}
+      </p>
+    </div>
+  );
+}
+
+// The card: a large photo (the point of this layout), the name beside
+// it, the view's remaining columns as label/value rows, then any
+// per-student attendance marks or action.
+function StudentCards<T extends ListStudent>({
+  students,
+  columns,
+  markColumns,
+  photos,
+  renderAction,
+}: {
+  students: T[];
+  columns: [string, (s: T) => string, ColumnStyle?][];
+  markColumns?: boolean;
+  photos?: Record<string, string | null>;
+  renderAction?: (s: T) => React.ReactNode;
+}) {
+  const nameColumn = columns.find(([, , style]) => style === "serif");
+  const fields = columns.filter((c) => c !== nameColumn);
+  return (
+    <ul className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      {students.map((s) => (
+        <li
+          key={s._id}
+          className="border border-rule bg-paper px-4 py-3.5 transition-colors hover:border-ink/30"
+        >
+          <div className="flex items-center gap-3.5">
+            <Avatar
+              name={s.name}
+              url={
+                s.photoStorageId ? photos?.[s.photoStorageId] : undefined
+              }
+              size={64}
+            />
+            <p className="min-w-0 font-serif-tc text-[19px] font-bold leading-snug text-ink">
+              {nameColumn ? nameColumn[1](s) : s.name}
+              {s.withdrawnAt !== undefined && (
+                <span className="ml-2 inline-block border border-vermilion/50 px-1.5 py-0.5 align-middle text-[13px] font-bold tracking-[0.1em] text-vermilion">
+                  已退出
+                </span>
+              )}
+            </p>
+          </div>
+          {(fields.length > 0 || markColumns) && (
+            <dl className="mt-3 space-y-1.5 border-t border-rule pt-3">
+              {fields.map(([label, get]) => (
+                <div
+                  key={label}
+                  className="flex items-baseline justify-between gap-4"
+                >
+                  <dt className="shrink-0 font-serif-tc text-[13px] tracking-[0.15em] text-ink-soft">
+                    {label}
+                  </dt>
+                  <dd className="min-w-0 text-right text-sm leading-relaxed text-ink [overflow-wrap:anywhere]">
+                    {get(s) || "—"}
+                  </dd>
+                </div>
+              ))}
+              {markColumns && (
+                <div className="flex items-center justify-between gap-4">
+                  <dt className="shrink-0 font-serif-tc text-[13px] tracking-[0.15em] text-ink-soft">
+                    課堂日期
+                  </dt>
+                  <dd>
+                    <DateMarks marks={s.marks ?? []} />
+                  </dd>
+                </div>
+              )}
+            </dl>
+          )}
+          {renderAction && <div className="mt-3">{renderAction(s)}</div>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// The dense table behind the 表格 toggle (students arrive pre-sorted).
+function StudentTable<T extends ListStudent>({
+  students,
+  columns,
+  markColumns,
+  photos,
+  renderAction,
+}: {
+  students: T[];
+  columns: [string, (s: T) => string, ColumnStyle?][];
+  markColumns?: boolean;
+  photos?: Record<string, string | null>;
+  renderAction?: (s: T) => React.ReactNode;
+}) {
+  return (
+    <div className="mt-4 overflow-x-auto overflow-y-clip">
       <table className="w-full border-collapse text-left text-base tabular-nums">
         <thead>
           <tr className="border-b-2 border-ink">
@@ -689,7 +865,7 @@ function StudentTable<
           </tr>
         </thead>
         <tbody>
-          {sorted.map((s, i) => (
+          {students.map((s, i) => (
             <tr
               key={s._id}
               className="border-b border-rule transition-colors hover:bg-paper-deep/60"
@@ -743,9 +919,6 @@ function StudentTable<
           ))}
         </tbody>
       </table>
-      <p className="mt-3 text-right text-sm text-ink-soft tabular-nums">
-        共 {sorted.length} 條記錄
-      </p>
     </div>
   );
 }
