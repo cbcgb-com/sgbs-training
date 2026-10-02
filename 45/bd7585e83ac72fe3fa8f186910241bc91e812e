@@ -1,0 +1,21 @@
+apps/roster/src/Roster.tsx
+  s_e7e05e4e32efe3::t_37359d73e369af 262,265-266,283,310-339
+  s_e7e05e4e32efe3::t_8fe53e7fc472c4 551-556,560-616,622-623,630-631,633-644,646-647,656-831,833,868
+  s_e7e05e4e32efe3::t_340a31e1ba11ab 1,106,129,348,365,381,403
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "45bd7585e83ac72fe3fa8f186910241bc91e812e",
+  "prompts": {},
+  "sessions": {
+    "s_e7e05e4e32efe3": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a0fcc8-e140-71f3-8d73-0a973b8076ff",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
