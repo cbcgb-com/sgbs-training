@@ -42,79 +42,12 @@ different experience levels.
 
 ### Content quizzes (`.content-quiz`)
 
-Shared vanilla HTML/JS pattern (`docs/javascripts/content-quiz.js`, wired in
-`mkdocs.yml`) for MCQs in class notes. One module, two modes via `data-mode`:
-
-- **Modular authoring (Lesson 2+)**: keep each quiz bank in
-  `docs/quizzes/lesson-N/<slug>.html` (standalone page: quiz markup + quiz JS/CSS).
-  In the lesson markdown, embed with a borderless iframe—no inline quiz HTML:
-
-  `<iframe class="content-quiz-frame" src="../../quizzes/lesson-2/reflect.html"
-  title="…" loading="lazy" scrolling="no"></iframe>`
-
-  Parent pages load `content-quiz-frame.js` + `content-quiz-embed.css`; the iframe
-  reports height via `postMessage` so the frame fits content with **no scrollbars**.
-  Copy an existing `docs/quizzes/lesson-2/*.html` shell when adding a new bank.
-- Markup: `.content-quiz` > `.content-quiz__item` with choices + per-choice
-  `.content-quiz__reflection` (`data-choice="0"` …)
-- Author a full question bank in the quiz HTML file; JS randomly samples
-  `data-sample-size` items (default 3), **shuffles each item's option order**
-  (and relabels A/B/C…), then presents questions one-at-a-time with
-  上一題／下一題 flip-through. Keep `data-correct` / `data-choice` on the
-  authored option indices; only presentation order is random.
-- **Course convention (2026-09)**: two question categories.
-  課前思考題 (reflect) banks hold 10 items with `data-sample-size="3"` —
-  each visit samples 3, in randomized question and option order; no correct
-  answers, no `data-pass-correct`; every option is partially-right with no
-  winner, and each reflection leaves something worth thinking about.
-  All other MCQ banks hold 10 items with `data-sample-size="10"` (all shown,
-  random order) and `data-pass-correct="4"` (quiz ends early with
-  「練習完成！」 once 4 items are answered correctly). Review distractors
-  must each expose a specific student misconception; the selected option's
-  feedback names and corrects that misconception. **Option subtlety bar**:
-  the correct answer must not be identifiable by style — keep all four
-  options similar in length and register; no strawmen or dismissive tone
-  (「跳過就好」「只是…無關」「是組員不夠認真」) — every distractor carries a
-  true-sounding core with a subtle flaw (wrong scope, right conclusion wrong
-  reason, half-true, plausible-but-arranges-the-wrong-thing); don't echo the
-  lesson's key phrase only in the correct option; don't telegraph the answer
-  in the stem. **Vary question types within
-  each bank** — never ask the same format ten times; rotate through archetypes
-  (forward scenario→answer, reverse intent-inference, best-fix/rewording,
-  odd-one-out, misfire diagnosis, prevention diagnosis, definition matching,
-  sequencing, classification, spot-the-misclassification, which-is-NOT,
-  evidence-matching). Quiz intro lines are
-  one short, warm invitation to attempt the quiz —
-  「讀完第一部分了嗎？用下面的複習題測試一下自己，看看掌握了多少。」 —
-  keeping only load-bearing functional clauses (the pass rule, or
-  「步驟一已替你準備」); no misconception previews, no mechanics, no
-  describing the feedback system.
-  Authoring guide & verification procedure:
-  `.agents/skills/sgbs-quiz-authoring/SKILL.md`.
-- Stems avoid bare「為什麼」; prefer「怎樣／哪一種／最需要小心的是」等具體框架
-- Traditional Chinese; keep tone respectful for adult learners
-- Update the lesson TOC when adding a quiz section
-
-**`data-mode="reflect"`** (課前思考題): place **immediately above** the first
-pre-reading subsection (e.g. before「分析敘述文」). No correct answer; every
-option gets a soft「值得思考」note that primes the reader for the section ahead.
-Questions should be thought-provoking, with plausible distractors and no
-obvious winner.
-
-**`data-mode="review"`** (預讀複習題): place at the **end of 第一部分**, right
-before「第二部分：課堂實作活動」. Comprehension check on section content. Each
-`.content-quiz__item` needs `data-correct="0"`-based index; wrong/right choices
-are marked, and the selected option’s reflection explains using「答對了」/
-「再看一下」. **Always four options (A–D)** per item: the three distractors
-should each name a **plausible learner misconception** (e.g. skipping to
-application, mistaking one OEIA step for another, treating background as the
-whole message), and each wrong option’s reflection should briefly **illuminate
-why that path misleads**—not just say「錯了」.
-
-Inline mini-checks (also `data-mode="review"`) may sit mid-section after a
-framework interactive; keep the bank small (`data-sample-size="2"`) and tightly
-tied to the just-taught idea. Same **four-option / misconception** rule as
-section-end review quizzes.
+Shared engine (`docs/javascripts/content-quiz.js`, wired in `mkdocs.yml`).
+Banks live in `docs/quizzes/lesson-N/<slug>.html` and embed in class notes
+with a borderless iframe. **All quiz design — the three forms, adversarial
+sub-agent review, option craft, placement, and verification — lives in**
+`.agents/skills/sgbs-quiz-authoring/SKILL.md`. Read that skill before
+authoring or editing any quiz.
 
 ### Content panels (`.content-panels`)
 

@@ -5,6 +5,7 @@
 - [學習目標](#xuexi-mubiao)
 - [課程時間安排](#kecheng-shijian-anpai)
 - [第一部分：課前預讀內容](#diyi-bufen-keqian-yudu-neirong)
+    - [課前思考題](#keqian-sikao-ti)
     - [分析論說文](#fenxi-lunshuo-wen)
     - [論說文和敘述文的差異](#lunshuo-wen-he-xushu-wen-de-chayi)
     - [歸納法四步驟在論說文的應用](#guina-fa-si-buzhou-zai-lunshuo-wen-de-yingyong)
@@ -12,6 +13,7 @@
     - [如何發現論說文中的邏輯關係](#ruhe-faxian-lunshuo-wen-zhong-de-luoji-guanxi)
     - [字詞研究的工具：聖經原文的史特朗號碼（Strong's Exhaustive Concordance）](#zici-yanjiu-de-gongju-shengjing-yuanwen-de-shitelang-haoma-strongs-exhaustive-concordance)
     - [論說文的問題設計](#lunshuo-wen-de-wenti-sheji)
+    - [預讀複習題](#yudu-fuxi-ti)
 - [第二部分：課堂實作活動](#dier-bufen-ketang-shizuo-huodong)
     - [課前功課討論](#keqian-gongke-taolun)
     - [實作活動](#shizuo-huodong)
@@ -40,6 +42,12 @@
 ## 第一部分：課前預讀內容 {#diyi-bufen-keqian-yudu-neirong}
 
 > **重要提醒**：請在上課前仔細閱讀以下內容，這將幫助你更好地參與課堂活動。課堂時間將主要用於實作練習，而非理論講解。
+
+### 課前思考題 {#keqian-sikao-ti}
+
+先用幾分鐘回答下面的問題，再繼續往下讀。沒有標準答案，誠實選一個，看看它帶你想到什麼。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/reflect.html" title="課前思考題" loading="lazy" scrolling="no"></iframe>
 
 ### 分析論說文 {#fenxi-lunshuo-wen}
 
@@ -200,6 +208,10 @@
 5. 觀察那些主題的論述篇幅很長，它們也是重點之一。
 6. 觀察有無重複字詞、相似詞、對照/對比詞？這些詞可以反映出作者所要強調的。
 
+讀完上面的步驟後，試著判斷下面的文法與邏輯情況。答對 4 題即完成。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/grammar-mini.html" title="文法與邏輯小練習" loading="lazy" scrolling="no"></iframe>
+
 #### 英文分析示例
 
 1. [《以弗所書》2:1-10](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit?usp=sharing)
@@ -214,6 +226,10 @@
 史特朗號碼用一串數字來表示一個原文單字，將各個譯本與原文逐字對應，方便不熟悉原文語言的人研究原文。對於不熟悉希臘文或希伯來文的查經者，史特朗號碼提供了一個橋樑，讓我們能夠追蹤同一個原文詞彙在不同經文中的使用，理解詞彙的原始含義和語境，並避免因翻譯差異而錯失重要的神學概念。我們可以使用[微讀聖經——原文工具](https://wd.bible/exegesis)（有手機App）來對照原文字典的字意和聖經中其他段落對這個單字的用法，確認其字意。
 
 在進行字詞研究時，我們需要遵循以下解經原則：信仰原則優先於字意本身，字意本身優先於經文本身加上上下文，經文本身加上上下文優先於本書卷，本書卷優先於其他書卷。
+
+剛讀完史特朗號碼的原則，試著判斷下面的字詞研究情況。答對 4 題即完成。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/wordstudy-mini.html" title="字詞研究小練習" loading="lazy" scrolling="no"></iframe>
 
 ### 論說文的問題設計 {#lunshuo-wen-de-wenti-sheji}
 
@@ -243,6 +259,12 @@
 「為什麼」的問題往往過於模糊，需要進一步明確。例如，如果我們問「為什麼爐子上的水壺在響？」這個問題可能有兩種完全不同的答案：一種是物理機制層面的回答（熱能產生蒸汽，蒸汽壓力推動空氣通過壺嘴，產生聲響），另一種是意圖層面的回答（我想泡茶，所以燒了水）。為了避免這種混淆，我們應該將問題細化為：「水壺響聲的物理原理是什麼？」或「我為什麼要燒水？」
 
 在提問時，我們應該多鋪墊背景、給出提示，幫助小組成員更好地理解問題的意圖。同時，我們要避開過於深奧、過於神學性、聖經學者尚無答案的問題，因為這些問題通常不適合小組討論。
+
+### 預讀複習題 {#yudu-fuxi-ti}
+
+讀完第一部分了嗎？用下面的複習題測試一下自己，看看掌握了多少。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/review.html" title="預讀複習題" loading="lazy" scrolling="no"></iframe>
 
 ## 第二部分：課堂實作活動 {#dier-bufen-ketang-shizuo-huodong}
 
