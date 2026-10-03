@@ -266,27 +266,27 @@ data-index="true">
 1. **找出主要句子**：這是一個複合句，包含一個主句和兩個從句
 2. **分解句子結構**：
 
-<div style="font-family: monospace; line-height: 1.8; margin: 20px 0;">
+<div class="grammar-outline">
 <div><strong>主句（最左邊，作者要強調的）：</strong></div>
-<div><span style="color:#1f77b4;">我們</span> <span style="background-color:#b6d7a8; padding: 2px 4px;">曉得</span>
-<span style="background-color:#ffe599; padding: 2px 4px;">萬事都互相效力</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">叫</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div><strong>從句1：</strong><span style="background-color:#ffe599; padding: 2px 4px;">愛神的人</span>
-<span style="background-color:#b6d7a8; padding: 2px 4px;">得益處</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">就是</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div><strong>從句2：</strong><span style="background-color:#ffe599; padding: 2px 4px;">按他旨意被召的人</span></div>
+<div><span class="grammar-mark grammar-mark--subject">我們</span> <span class="grammar-mark grammar-mark--verb">曉得</span>
+<span class="grammar-mark grammar-mark--object">萬事都互相效力</span></div>
+<div class="grammar-outline__step">↓</div>
+<div class="grammar-outline__step">連接詞：<span class="grammar-mark grammar-mark--connective">叫</span></div>
+<div class="grammar-outline__step">↓</div>
+<div><strong>從句1：</strong><span class="grammar-mark grammar-mark--object">愛神的人</span>
+<span class="grammar-mark grammar-mark--verb">得益處</span></div>
+<div class="grammar-outline__step">↓</div>
+<div class="grammar-outline__step">連接詞：<span class="grammar-mark grammar-mark--connective">就是</span></div>
+<div class="grammar-outline__step">↓</div>
+<div><strong>從句2：</strong><span class="grammar-mark grammar-mark--object">按他旨意被召的人</span></div>
 </div>
 
 **顏色說明：**
 
-- <span style="color:#1f77b4;">藍色</span>：主詞（主句的主語）
-- <span style="background-color:#b6d7a8; padding: 2px 4px;">綠色底色</span>：謂語/動詞（主要動作）
-- <span style="background-color:#ffe599; padding: 2px 4px;">黃色底色</span>：賓語/受詞（動作的對象或內容）
-- <span style="color:#d62728;">紅色</span>：連接詞（顯示邏輯關係）
+- <span class="grammar-mark grammar-mark--subject">藍色</span>：主詞（主句的主語）
+- <span class="grammar-mark grammar-mark--verb">綠色底色</span>：謂語/動詞（主要動作）
+- <span class="grammar-mark grammar-mark--object">黃色底色</span>：賓語/受詞（動作的對象或內容）
+- <span class="grammar-mark grammar-mark--connective">紅色</span>：連接詞（顯示邏輯關係）
 
 **邏輯關係分析：**
 
