@@ -298,8 +298,6 @@ data-index="true">
 
 > **提醒**：論說文的查經需要理性思考與細緻分析，但也要留意作者的情感色彩和寫作目的。不要只停留在邏輯推理，更要體會經文背後的屬靈動機與生命呼召！
 
-[Google doc草稿](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
-
 #### 英文分析步驟
 
 點選下面六個步驟，依序走過英文文法分析。
@@ -347,6 +345,8 @@ data-style="steps">
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-4/grammar-mini.html" title="文法與邏輯小練習" loading="lazy" scrolling="no"></iframe>
 
 #### 英文分析示例
+
+上面《羅馬書》8:28 只拆了一句。下面四份是同一套英文文法分析做成的整段大綱草稿，打開對照即可，不必另外交作業。
 
 1. [《以弗所書》2:1-10](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit?usp=sharing)
 2. [《約翰一書》4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
