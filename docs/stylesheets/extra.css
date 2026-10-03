@@ -1473,6 +1473,17 @@ article.typography table tbody tr:hover,
   --sgbs-ink-rgb: 38, 33, 22;
   --sgbs-vermilion-rgb: 179, 64, 42;
 
+  /* Grammar-role marks (subject / verb / object / connective).
+     Each chip sets its own fg+bg so inherited theme ink cannot wash
+     out the label. Light: pale green/yellow slips with dark ink.
+     Dark: saturated green/amber with light ink — still two colors. */
+  --sgbs-mark-subject: #1f6fad;
+  --sgbs-mark-connective: #c43c32;
+  --sgbs-mark-verb-bg: #b6d7a8;
+  --sgbs-mark-verb-fg: #1a2e16;
+  --sgbs-mark-object-bg: #ffe599;
+  --sgbs-mark-object-fg: #3a2e08;
+
   /* shadcn theme variables (docs/stylesheets load after base.css). */
   --background: var(--sgbs-paper);
   --foreground: var(--sgbs-ink);
@@ -1527,6 +1538,12 @@ article.typography table tbody tr:hover,
   --sgbs-paper-rgb: 25, 21, 16;
   --sgbs-ink-rgb: 236, 228, 210;
   --sgbs-vermilion-rgb: 212, 89, 63;
+  --sgbs-mark-subject: #7eb8e6;
+  --sgbs-mark-connective: #f07167;
+  --sgbs-mark-verb-bg: #1b4d32;
+  --sgbs-mark-verb-fg: #e6f8ec;
+  --sgbs-mark-object-bg: #854d0e;
+  --sgbs-mark-object-fg: #fff3c4;
   --card: #201a13;
   --primary: var(--sgbs-ink);
   --primary-foreground: #191510;
@@ -1683,4 +1700,44 @@ details summary:hover {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
+
+/*
+ * Grammar-role marks for clause diagrams (主詞 / 謂語 / 賓語 / 連接詞).
+ * Shared site-wide so any lesson can color-code a sentence without
+ * inline hex. Tokens above flip in .dark; chips always set both
+ * background and color so theme ink cannot inherit onto a pale slip.
+ */
+.grammar-outline {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  line-height: 1.8;
+  margin: 1.25rem 0;
+}
+
+.grammar-outline__step {
+  margin-left: 1.25rem;
+}
+
+.grammar-mark {
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+.grammar-mark--subject {
+  color: var(--sgbs-mark-subject);
+}
+
+.grammar-mark--connective {
+  color: var(--sgbs-mark-connective);
+}
+
+.grammar-mark--verb {
+  color: var(--sgbs-mark-verb-fg);
+  background-color: var(--sgbs-mark-verb-bg);
+}
+
+.grammar-mark--object {
+  color: var(--sgbs-mark-object-fg);
+  background-color: var(--sgbs-mark-object-bg);
 }

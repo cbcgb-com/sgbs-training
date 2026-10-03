@@ -5,6 +5,7 @@
 - [學習目標](#xuexi-mubiao)
 - [課程時間安排](#kecheng-shijian-anpai)
 - [第一部分：課前預讀內容](#diyi-bufen-keqian-yudu-neirong)
+    - [課前思考題](#keqian-sikao-ti)
     - [分析論說文](#fenxi-lunshuo-wen)
     - [論說文和敘述文的差異](#lunshuo-wen-he-xushu-wen-de-chayi)
     - [歸納法四步驟在論說文的應用](#guina-fa-si-buzhou-zai-lunshuo-wen-de-yingyong)
@@ -12,6 +13,7 @@
     - [如何發現論說文中的邏輯關係](#ruhe-faxian-lunshuo-wen-zhong-de-luoji-guanxi)
     - [字詞研究的工具：聖經原文的史特朗號碼（Strong's Exhaustive Concordance）](#zici-yanjiu-de-gongju-shengjing-yuanwen-de-shitelang-haoma-strongs-exhaustive-concordance)
     - [論說文的問題設計](#lunshuo-wen-de-wenti-sheji)
+    - [預讀複習題](#yudu-fuxi-ti)
 - [第二部分：課堂實作活動](#dier-bufen-ketang-shizuo-huodong)
     - [課前功課討論](#keqian-gongke-taolun)
     - [實作活動](#shizuo-huodong)
@@ -41,13 +43,42 @@
 
 > **重要提醒**：請在上課前仔細閱讀以下內容，這將幫助你更好地參與課堂活動。課堂時間將主要用於實作練習，而非理論講解。
 
+### 課前思考題 {#keqian-sikao-ti}
+
+先用幾分鐘回答下面的問題，再繼續往下讀。沒有標準答案，誠實選一個，看看它帶你想到什麼。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/reflect.html" title="課前思考題" loading="lazy" scrolling="no"></iframe>
+
 ### 分析論說文 {#fenxi-lunshuo-wen}
 
 聖經中的論說文：
 
-- 新約書信。例如：《羅馬書》、《腓立比書》、《雅各書》等。
-- 新約耶穌和使徒的長篇演講。如：《馬太福音》6:25-34（不要憂慮），《使徒行傳》7:2-53（司提反的申訴）
-- 舊約先知的講話。如：《撒母耳記上》12:6-17（撒母耳最後的勸勉）
+點選下面三類，看看論說文常見於哪些經卷。
+
+<div
+class="content-deck"
+id="content-deck-lesson-4-argumentation-types"
+data-label="聖經中的論說文"
+data-index="true">
+
+<p class="content-deck__intro">點選上方標籤即可跳讀各項。</p>
+
+<div class="content-deck__card" data-label="新約書信">
+<h4>新約書信</h4>
+<p>新約書信。例如：《羅馬書》、《腓立比書》、《雅各書》等。</p>
+</div>
+
+<div class="content-deck__card" data-label="長篇演講">
+<h4>新約耶穌和使徒的長篇演講</h4>
+<p>新約耶穌和使徒的長篇演講。如：《馬太福音》6:25-34（不要憂慮），《使徒行傳》7:2-53（司提反的申訴）</p>
+</div>
+
+<div class="content-deck__card" data-label="先知講話">
+<h4>舊約先知的講話</h4>
+<p>舊約先知的講話。如：《撒母耳記上》12:6-17（撒母耳最後的勸勉）</p>
+</div>
+
+</div>
 
 閱讀聖經時，留意**不同文體的混合**
 
@@ -55,13 +86,34 @@
 
 > **回顧**：在[第二課：敘述文](../lesson-2-narrative)中，我們學習了如何分析敘述文的要素和結構。現在讓我們對比論說文與敘述文的不同。
 
-**敘述文（Narrative）**的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。例如，《路加福音》7:36-50描述耶穌與一位罪人的相遇，藉由事件的發展和人物的互動，讓我們看見赦免與愛的主題。
+點選下面兩種文體，對比要素與查經重點。
 
-在歸納式查經的應用上，敘述文在觀察階段的重點在於細緻記錄故事的時間、地點、人物關係、事件發展等細節；在解釋階段，思考事件背後的文化背景、人物動機與神學意義；在歸納與應用階段，總結故事主題，並思考其對我們生命的提醒與挑戰。我們需要關注背景的帶入感、情節的細節、人物的特點與轉變，以及故事如何啟發我們的信仰生活。神也透過故事的發展和我們的**情感**來傳達祂的信息，邀請我們用心靈去經歷、感受並回應祂的真理。
+<div
+class="content-panels"
+id="content-panels-lesson-4-genre-contrast"
+data-label="論說文和敘述文的差異">
 
-**論說文（Argumentation/Epistle）**的基本要素包括論點（作者要表達的中心思想）、論據（支持論點的理由或證據）、論證（推理過程與邏輯結構）。這種文體呈現主題的方式是作者明確提出觀點，並透過層層論據與邏輯推理來說服讀者。例如，《羅馬書》8:28-39中，保羅以多重論據證明神的愛與主權，並用邏輯推理帶領讀者思考信仰的確據。
+<div class="content-panels__panel" data-label="敘述文">
+<h4>敘述文（Narrative）</h4>
+<p>敘述文（Narrative）的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。</p>
+<p>在歸納式查經的應用上，敘述文在觀察階段的重點在於細緻記錄故事的時間、地點、人物關係、事件發展等細節；在解釋階段，思考事件背後的文化背景、人物動機與神學意義；在歸納與應用階段，總結故事主題，並思考其對我們生命的提醒與挑戰。我們需要關注背景的帶入感、情節的細節、人物的特點與轉變，以及故事如何啟發我們的信仰生活。神也透過故事的發展和我們的<strong>情感</strong>來傳達祂的信息，邀請我們用心靈去經歷、感受並回應祂的真理。</p>
+<div class="content-panels__example">
+<strong>例如</strong>
+<p>《路加福音》7:36-50描述耶穌與一位罪人的相遇，藉由事件的發展和人物的互動，讓我們看見赦免與愛的主題。</p>
+</div>
+</div>
 
-在歸納式查經的應用上，論說文在觀察階段需特別注意段落結構、邏輯連詞（如「所以」、「因為」、「然而」等）、重複詞語與關鍵句子；在解釋階段，分析論點與論據之間的邏輯關係，並查考關鍵詞彙的原文含義；在歸納與應用階段，總結作者的教導與勸勉，思考其對我們信仰生活的實際意義。我們需要關注邏輯鏈條、論證方法（舉例、引用、對比、比喻、歸納、演繹推理等），以及如何從經文中歸納出核心教義與實踐原則。神透過人的**理性**來傳達祂的信息，邀請我們用心思意念去明白、思考並回應祂的真理。
+<div class="content-panels__panel" data-label="論說文">
+<h4>論說文（Argumentation/Epistle）</h4>
+<p>論說文（Argumentation/Epistle）的基本要素包括論點（作者要表達的中心思想）、論據（支持論點的理由或證據）、論證（推理過程與邏輯結構）。這種文體呈現主題的方式是作者明確提出觀點，並透過層層論據與邏輯推理來說服讀者。</p>
+<p>在歸納式查經的應用上，論說文在觀察階段需特別注意段落結構、邏輯連詞（如「所以」、「因為」、「然而」等）、重複詞語與關鍵句子；在解釋階段，分析論點與論據之間的邏輯關係，並查考關鍵詞彙的原文含義；在歸納與應用階段，總結作者的教導與勸勉，思考其對我們信仰生活的實際意義。我們需要關注邏輯鏈條、論證方法（舉例、引用、對比、比喻、歸納、演繹推理等），以及如何從經文中歸納出核心教義與實踐原則。神透過人的<strong>理性</strong>來傳達祂的信息，邀請我們用心思意念去明白、思考並回應祂的真理。</p>
+<div class="content-panels__example">
+<strong>例如</strong>
+<p>《羅馬書》8:28-39中，保羅以多重論據證明神的愛與主權，並用邏輯推理帶領讀者思考信仰的確據。</p>
+</div>
+</div>
+
+</div>
 
 > **小結**：歸納式查經強調「觀察、解釋、歸納、應用」四個步驟，無論是敘述文還是論說文，都需要根據文體特點調整觀察與分析的重點。敘述文著重於故事細節與人物塑造，論說文則強調邏輯結構與論證過程。作為查經帶領者，學會根據不同文體選擇合適的分析工具，能幫助小組成員更全面地理解經文，並將真理落實在生活中。
 
@@ -71,58 +123,77 @@
 >
 > **參考資源**：本節內容主要參考[論說文體的歸納法查經](../../tools/ibs-argumentation-notes)，該文件提供了更詳細的方法論和實作指引。
 
-#### 1. 觀察（Observation）：聖經說些什麼？
+點選一個步驟，看看論說文在這一階段的重點。
 
-**經文背景觀察**：
+<div
+class="content-panels"
+id="content-panels-lesson-4-oeia"
+data-label="歸納法四步驟在論說文的應用"
+data-style="steps">
 
-- 作者背景（家庭、信仰、成長經歷）
-- 寫作原因及目的
-- 寫作時間地點
-- 時代背景（政治、文化、社會、教會狀況）
-- 收信者身份及與作者的關係
+<div class="content-panels__panel" data-label="觀察">
+<h4>1. 觀察（Observation）：聖經說些什麼？</h4>
+<p><strong>經文背景觀察</strong>：</p>
+<ul>
+<li>作者背景（家庭、信仰、成長經歷）</li>
+<li>寫作原因及目的</li>
+<li>寫作時間地點</li>
+<li>時代背景（政治、文化、社會、教會狀況）</li>
+<li>收信者身份及與作者的關係</li>
+</ul>
+<p><strong>論說文體的小段落觀察</strong>：</p>
+<ul>
+<li><strong>重點</strong>：分析經文的論述方式，掌握重點並透過英文語法結構來分析主要的論點</li>
+<li><strong>方法</strong>：
+    <ul>
+    <li>先找出該段經文裡「每一個主要句子」的起始及結束</li>
+    <li>從每一主要句子找出句子的主幹：主詞、謂語(動詞)、賓語(受詞)，放在最左邊</li>
+    <li>觀察主要句子之間用哪一個連接詞來連接句子，以此看出作者的思路發展</li>
+    <li>觀察那些主題的論述篇幅很長，它們也是重點之一</li>
+    <li>觀察有無重複字詞、相似詞、對照/對比詞</li>
+    </ul>
+</li>
+<li><strong>工具</strong>：英文文法分析（因為中文語法較不講究文法，而英文的邏輯陳述通常非常精確和明確）</li>
+</ul>
+</div>
 
-**論說文體的小段落觀察**：
+<div class="content-panels__panel" data-label="解釋">
+<h4>2. 解釋（Explanation）：聖經內容的含義</h4>
+<p><strong>重要原則</strong>：聖經的書信是應時文件，不是神學論文，不應隨意取其片段進行深度的神學分析。</p>
+<p><strong>提問方法</strong>：</p>
+<ul>
+<li>定義性問題：某字詞的意思是什麼？</li>
+<li>關聯性問題：人、事、時之關係，經文上下文的語句關聯</li>
+<li>推理性問題：問「為什麼」？</li>
+<li>含義性問題：字面背後要表達的含意</li>
+</ul>
+<p><strong>解釋原則</strong>：</p>
+<ul>
+<li>先找出經文對當時、當地、直接受者的意義</li>
+<li>回答的內容必須有根據（上下文經文、其他經文、或註釋書為佐證），而不是憑空猜測</li>
+<li>從經文本身或上下文找答案</li>
+<li>從該卷的整體經文找答案</li>
+<li>查看註釋書，找尋資料以幫助解釋回答問題</li>
+</ul>
+</div>
 
-- **重點**：分析經文的論述方式，掌握重點並透過英文語法結構來分析主要的論點
-- **方法**：
-      - 先找出該段經文裡「每一個主要句子」的起始及結束
-      - 從每一主要句子找出句子的主幹：主詞、謂語(動詞)、賓語(受詞)，放在最左邊
-      - 觀察主要句子之間用哪一個連接詞來連接句子，以此看出作者的思路發展
-      - 觀察那些主題的論述篇幅很長，它們也是重點之一
-      - 觀察有無重複字詞、相似詞、對照/對比詞
-- **工具**：英文文法分析（因為中文語法較不講究文法，而英文的邏輯陳述通常非常精確和明確）
+<div class="content-panels__panel" data-label="歸納">
+<h4>3. 歸納（Induction）：這段經文可歸納出那些信息或信仰原則？</h4>
+<p><strong>重點</strong>：</p>
+<ul>
+<li>將所得的解釋加以系統化，成為幾個要點或原則</li>
+<li>這段經文的主要信息是什麼？</li>
+<li>根據經文的重點整理出作者所要教導的信息或原則</li>
+<li><strong>歸納的原則：合於信仰教義</strong></li>
+</ul>
+</div>
 
-#### 2. 解釋（Explanation）：聖經內容的含義
+<div class="content-panels__panel" data-label="應用">
+<h4>4. 應用（Application）：根據歸納所得信息，我如何回應？</h4>
+<p><strong>重點</strong>：從所歸納出原文的含義及教導的原則，思考這些信息或原則對現今的讀者帶來那些信仰上的更新或提醒？或如何應用在現今讀者的處境（我和神的關係、我和自己的關係、我和別人的關係：家庭、工作、學業、教會、社會、國家、世界）？</p>
+</div>
 
-**重要原則**：聖經的書信是應時文件，不是神學論文，不應隨意取其片段進行深度的神學分析。
-
-**提問方法**：
-
-- 定義性問題：某字詞的意思是什麼？
-- 關聯性問題：人、事、時之關係，經文上下文的語句關聯
-- 推理性問題：問「為什麼」？
-- 含義性問題：字面背後要表達的含意
-
-**解釋原則**：
-
-- 先找出經文對當時、當地、直接受者的意義
-- 回答的內容必須有根據（上下文經文、其他經文、或註釋書為佐證），而不是憑空猜測
-- 從經文本身或上下文找答案
-- 從該卷的整體經文找答案
-- 查看註釋書，找尋資料以幫助解釋回答問題
-
-#### 3. 歸納（Induction）：這段經文可歸納出那些信息或信仰原則？
-
-**重點**：
-
-- 將所得的解釋加以系統化，成為幾個要點或原則
-- 這段經文的主要信息是什麼？
-- 根據經文的重點整理出作者所要教導的信息或原則
-- **歸納的原則：合於信仰教義**
-
-#### 4. 應用（Application）：根據歸納所得信息，我如何回應？
-
-**重點**：從所歸納出原文的含義及教導的原則，思考這些信息或原則對現今的讀者帶來那些信仰上的更新或提醒？或如何應用在現今讀者的處境（我和神的關係、我和自己的關係、我和別人的關係：家庭、工作、學業、教會、社會、國家、世界）？
+</div>
 
 **討論問題：在論說文中，觀察、解釋、歸納的重點有哪些？你在帶領查經時，最容易忽略哪一個步驟？為什麼？**
 
@@ -138,46 +209,84 @@
 
 **討論問題：你認為在查考論說文時，如何有效發現字間、句間、段落間的邏輯關係？**
 
-- 語義分析：理解每個詞語、短語的語意，特別是轉折、因果、遞進、對比等語氣。
-- 邏輯連詞：標記如「因為」、「所以」、「然而」、「既然」、「如果...就...」、「不但...而且...」等，這些詞語常常揭示作者的推理路徑。
-- 英文文法分析工具：利用英文譯本的語法結構（如主句、從句、連接詞），幫助我們梳理出經文的邏輯大綱。
-- 圖表或大綱：將經文內容用邏輯圖、思維導圖或分層大綱的方式呈現，視覺化論證結構。
-- 小組討論：集思廣益，彼此補足盲點，發現更多潛在的邏輯關係。
-- 實際操作建議：
-      - 先用不同顏色標記連接詞和重複詞語
-      - 嘗試將經文拆解成「主題句—支持句—例證」的結構
-      - 用自己的話重述作者的推理過程，檢查是否通順合理
+點選下面幾種做法，看看可以怎樣發現邏輯關係。
+
+<div
+class="content-deck"
+id="content-deck-lesson-4-logic-methods"
+data-label="發現邏輯關係的做法"
+data-index="true">
+
+<p class="content-deck__intro">點選上方標籤即可跳讀各項。</p>
+
+<div class="content-deck__card" data-label="語義分析">
+<h4>語義分析</h4>
+<p>語義分析：理解每個詞語、短語的語意，特別是轉折、因果、遞進、對比等語氣。</p>
+</div>
+
+<div class="content-deck__card" data-label="邏輯連詞">
+<h4>邏輯連詞</h4>
+<p>邏輯連詞：標記如「因為」、「所以」、「然而」、「既然」、「如果...就...」、「不但...而且...」等，這些詞語常常揭示作者的推理路徑。</p>
+</div>
+
+<div class="content-deck__card" data-label="英文文法">
+<h4>英文文法分析工具</h4>
+<p>英文文法分析工具：利用英文譯本的語法結構（如主句、從句、連接詞），幫助我們梳理出經文的邏輯大綱。</p>
+</div>
+
+<div class="content-deck__card" data-label="圖表或大綱">
+<h4>圖表或大綱</h4>
+<p>圖表或大綱：將經文內容用邏輯圖、思維導圖或分層大綱的方式呈現，視覺化論證結構。</p>
+</div>
+
+<div class="content-deck__card" data-label="小組討論">
+<h4>小組討論</h4>
+<p>小組討論：集思廣益，彼此補足盲點，發現更多潛在的邏輯關係。</p>
+</div>
+
+<div class="content-deck__card" data-label="實際操作">
+<h4>實際操作建議</h4>
+<ul>
+<li>先用不同顏色標記連接詞和重複詞語</li>
+<li>嘗試將經文拆解成「主題句—支持句—例證」的結構</li>
+<li>用自己的話重述作者的推理過程，檢查是否通順合理</li>
+</ul>
+</div>
+
+</div>
 
 **範例說明：以《羅馬書》8:28為例**
 
-> 我們曉得萬事都互相效力，叫愛神的人得益處，就是按他旨意被召的人。
+/// scripture | 羅馬書8章28節
+我們曉得萬事都互相效力，叫愛神的人得益處，就是按他旨意被召的人。
+///
 
 **英文文法分析步驟：**
 
 1. **找出主要句子**：這是一個複合句，包含一個主句和兩個從句
 2. **分解句子結構**：
 
-<div style="font-family: monospace; line-height: 1.8; margin: 20px 0;">
+<div class="grammar-outline">
 <div><strong>主句（最左邊，作者要強調的）：</strong></div>
-<div><span style="color:#1f77b4;">我們</span> <span style="background-color:#b6d7a8; padding: 2px 4px;">曉得</span>
-<span style="background-color:#ffe599; padding: 2px 4px;">萬事都互相效力</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">叫</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div><strong>從句1：</strong><span style="background-color:#ffe599; padding: 2px 4px;">愛神的人</span>
-<span style="background-color:#b6d7a8; padding: 2px 4px;">得益處</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">就是</span></div>
-<div style="margin-left: 20px;">↓</div>
-<div><strong>從句2：</strong><span style="background-color:#ffe599; padding: 2px 4px;">按他旨意被召的人</span></div>
+<div><span class="grammar-mark grammar-mark--subject">我們</span> <span class="grammar-mark grammar-mark--verb">曉得</span>
+<span class="grammar-mark grammar-mark--object">萬事都互相效力</span></div>
+<div class="grammar-outline__step">↓</div>
+<div class="grammar-outline__step">連接詞：<span class="grammar-mark grammar-mark--connective">叫</span></div>
+<div class="grammar-outline__step">↓</div>
+<div><strong>從句1：</strong><span class="grammar-mark grammar-mark--object">愛神的人</span>
+<span class="grammar-mark grammar-mark--verb">得益處</span></div>
+<div class="grammar-outline__step">↓</div>
+<div class="grammar-outline__step">連接詞：<span class="grammar-mark grammar-mark--connective">就是</span></div>
+<div class="grammar-outline__step">↓</div>
+<div><strong>從句2：</strong><span class="grammar-mark grammar-mark--object">按他旨意被召的人</span></div>
 </div>
 
 **顏色說明：**
 
-- <span style="color:#1f77b4;">藍色</span>：主詞（主句的主語）
-- <span style="background-color:#b6d7a8; padding: 2px 4px;">綠色底色</span>：謂語/動詞（主要動作）
-- <span style="background-color:#ffe599; padding: 2px 4px;">黃色底色</span>：賓語/受詞（動作的對象或內容）
-- <span style="color:#d62728;">紅色</span>：連接詞（顯示邏輯關係）
+- <span class="grammar-mark grammar-mark--subject">藍色</span>：主詞（主句的主語）
+- <span class="grammar-mark grammar-mark--verb">綠色底色</span>：謂語/動詞（主要動作）
+- <span class="grammar-mark grammar-mark--object">黃色底色</span>：賓語/受詞（動作的對象或內容）
+- <span class="grammar-mark grammar-mark--connective">紅色</span>：連接詞（顯示邏輯關係）
 
 **邏輯關係分析：**
 
@@ -189,18 +298,55 @@
 
 > **提醒**：論說文的查經需要理性思考與細緻分析，但也要留意作者的情感色彩和寫作目的。不要只停留在邏輯推理，更要體會經文背後的屬靈動機與生命呼召！
 
-[Google doc草稿](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit)
-
 #### 英文分析步驟
 
-1. 先找出該段經文裡「每一個主要句子」的起始及結束。
-2. 從每一主要句子找出句子的主幹：主詞、謂語(動詞)、賓語(受詞)，在筆記本上重新整理並把它們放在最左邊。而所附屬的句子、字詞、片語，則放在所要形容的子句或字詞的右下側。
-3. 觀察放在最左邊的是主要句子有哪些，將它們連貫起來看，觀察句子之間的主語、謂語(時態、次序、重複)有何關聯？這樣做的原因在於，句子最左邊的部分，常常是聖經作者要強調的部分，因此值得我們注意。
-4. 觀察主要句子之間用哪一個連接詞(but, so that, in order that, for, because, and, if)來連接句子？以此看出作者的思路發展。
-5. 觀察那些主題的論述篇幅很長，它們也是重點之一。
-6. 觀察有無重複字詞、相似詞、對照/對比詞？這些詞可以反映出作者所要強調的。
+點選下面六個步驟，依序走過英文文法分析。
+
+<div
+class="content-panels"
+id="content-panels-lesson-4-grammar-steps"
+data-label="英文分析步驟"
+data-style="steps">
+
+<div class="content-panels__panel" data-label="找出主要句子">
+<h4>步驟一：找出主要句子</h4>
+<p>先找出該段經文裡「每一個主要句子」的起始及結束。</p>
+</div>
+
+<div class="content-panels__panel" data-label="找出句子主幹">
+<h4>步驟二：找出句子主幹</h4>
+<p>從每一主要句子找出句子的主幹：主詞、謂語(動詞)、賓語(受詞)，在筆記本上重新整理並把它們放在最左邊。而所附屬的句子、字詞、片語，則放在所要形容的子句或字詞的右下側。</p>
+</div>
+
+<div class="content-panels__panel" data-label="連貫最左邊">
+<h4>步驟三：連貫最左邊</h4>
+<p>觀察放在最左邊的是主要句子有哪些，將它們連貫起來看，觀察句子之間的主語、謂語(時態、次序、重複)有何關聯？這樣做的原因在於，句子最左邊的部分，常常是聖經作者要強調的部分，因此值得我們注意。</p>
+</div>
+
+<div class="content-panels__panel" data-label="觀察連接詞">
+<h4>步驟四：觀察連接詞</h4>
+<p>觀察主要句子之間用哪一個連接詞(but, so that, in order that, for, because, and, if)來連接句子？以此看出作者的思路發展。</p>
+</div>
+
+<div class="content-panels__panel" data-label="觀察篇幅">
+<h4>步驟五：觀察篇幅</h4>
+<p>觀察那些主題的論述篇幅很長，它們也是重點之一。</p>
+</div>
+
+<div class="content-panels__panel" data-label="重複與對比">
+<h4>步驟六：重複與對比</h4>
+<p>觀察有無重複字詞、相似詞、對照/對比詞？這些詞可以反映出作者所要強調的。</p>
+</div>
+
+</div>
+
+讀完上面的步驟後，試著判斷下面的文法與邏輯情況。答對 4 題即完成。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/grammar-mini.html" title="文法與邏輯小練習" loading="lazy" scrolling="no"></iframe>
 
 #### 英文分析示例
+
+上面《羅馬書》8:28 只拆了一句。下面四份是同一套英文文法分析做成的整段大綱草稿，打開對照即可，不必另外交作業。
 
 1. [《以弗所書》2:1-10](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit?usp=sharing)
 2. [《約翰一書》4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
@@ -215,34 +361,144 @@
 
 在進行字詞研究時，我們需要遵循以下解經原則：信仰原則優先於字意本身，字意本身優先於經文本身加上上下文，經文本身加上上下文優先於本書卷，本書卷優先於其他書卷。
 
+點選下面兩句。它們都還在本課裡；先注意到張力即可，不必現在裁決哪一句才對。
+
+<div
+class="content-panels"
+id="content-panels-lesson-4-priority-tension"
+data-label="兩處並未互相改寫的句子">
+
+<div class="content-panels__panel" data-label="字詞研究這一節">
+<h4>字詞研究這一節怎麼說</h4>
+<p>在進行字詞研究時，我們需要遵循以下解經原則：信仰原則優先於字意本身，字意本身優先於經文本身加上上下文，經文本身加上上下文優先於本書卷，本書卷優先於其他書卷。</p>
+</div>
+
+<div class="content-panels__panel" data-label="解釋那一節">
+<h4>解釋那一節怎麼說</h4>
+<p>從經文本身或上下文找答案</p>
+</div>
+
+</div>
+
+剛讀完史特朗號碼的原則，試著判斷下面的字詞研究情況。答對 4 題即完成。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/wordstudy-mini.html" title="字詞研究小練習" loading="lazy" scrolling="no"></iframe>
+
 ### 論說文的問題設計 {#lunshuo-wen-de-wenti-sheji}
 
 > **回顧**：在[第三課：提問技巧](../lesson-3-questioning)中，我們學習了如何設計有效的查經問題。現在讓我們看看如何將這些技巧應用到論說文中。
 
 #### 幾種不同類型的問題
 
-- **引導梳理經文，劃分層次、理解各層次之間的邏輯關係：**
-      - 2-3節中，保羅提到死在過犯罪惡中的景況有哪些？
-      - 前兩層次（1-3節，4-7節）和第8節的聯繫是什麼？
-- **思考重點字詞、理解所舉的事例：**
-      - 可以從哪些角度來理解，第1節中的「死」和「活」兩個字的含義？
-      - 第3節，保羅舉出過犯罪惡的例子之一是「隨著肉體和心中所喜好的去行」，你認為這可能包括哪些具體動作？
-- **幫助大家帶入真情實感，聯繫具體生活：**
-      - 你曾經歷過在過犯罪惡中「死」的滋味嗎？請分享你當時的感受
+點選下面三種類型，看看論說文裡可以交替安排哪些問題。
+
+<div
+class="content-deck"
+id="content-deck-lesson-4-question-types"
+data-label="幾種不同類型的問題"
+data-index="true"
+data-nav="false">
+
+<p class="content-deck__intro">點選上方標籤即可跳讀各項。</p>
+
+<div class="content-deck__card" data-label="梳理層次">
+<h4>引導梳理經文，劃分層次、理解各層次之間的邏輯關係</h4>
+<div class="content-deck__example">
+<strong>例如</strong>
+<ul>
+<li>2-3節中，保羅提到死在過犯罪惡中的景況有哪些？</li>
+<li>前兩層次（1-3節，4-7節）和第8節的聯繫是什麼？</li>
+</ul>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="字詞與事例">
+<h4>思考重點字詞、理解所舉的事例</h4>
+<div class="content-deck__example">
+<strong>例如</strong>
+<ul>
+<li>可以從哪些角度來理解，第1節中的「死」和「活」兩個字的含義？</li>
+<li>第3節，保羅舉出過犯罪惡的例子之一是「隨著肉體和心中所喜好的去行」，你認為這可能包括哪些具體動作？</li>
+</ul>
+</div>
+</div>
+
+<div class="content-deck__card" data-label="帶入生活">
+<h4>幫助大家帶入真情實感，聯繫具體生活</h4>
+<div class="content-deck__example">
+<strong>例如</strong>
+<ul>
+<li>你曾經歷過在過犯罪惡中「死」的滋味嗎？請分享你當時的感受</li>
+</ul>
+</div>
+</div>
+
+</div>
 
 交替安排這幾種問題，避免枯燥，又幫助大家進入經文。
 
 #### 準確表述你的問題
 
-在設計查經問題時，我們需要明確問題的範圍和導向。例如，當我們問「神豐富的憐憫體現在哪裡？」時，需要區分是要「根據本段經文」回答還是「根據基督教信仰」回答。如果根據本段經文，答案可能是「不願我們在罪中死，叫我們與基督一同復活」；如果根據全部信仰，答案則包括「供應我們每日物質的需要，在試煉中與我們同在，瞭解我們的情感，理解我們的軟弱，不斷給我們機會悔改」等更廣泛的內容。
+在設計查經問題時，我們需要明確問題的範圍和導向。
 
-當我們問「為什麼作者說XXX？」時，這個問題實際上包含兩個層面：一是「寫XXX在行文中的目的/作用」，二是「XXX這個結論成立的理由」。以「為什麼保羅說我們『本為可怒之子』？」為例，從行文作用的角度來看，這是為了提醒信徒記得自己得救前絕望無助的景況，從而幫助他們認識到救恩是神的恩典，進而告訴他們要回應恩典；從結論成立的理由來看，這是因為「世人都犯了罪，虧缺了神的榮耀，活在公義神的震怒之下」。
+點選下面幾種容易混淆的問法，看看怎樣把範圍說清楚。
 
-我們也需要區分問題是要「聯繫生活實例回答」還是「回憶聖經教導回答」。以「神預備叫我們行的善事有哪些？」為例，如果從聖經教導的角度回答，可能包括「踐行律法愛神愛人的精神，過聖潔的生活，傳福音」等；如果從生活實例的角度回答，則可能包括「主動去關心、鼓勵身邊有需要的同學/同事，用同理心體會別人的感受，在自己的工作上盡職盡責，在團契小組裡帶領查經」等具體行動。
+<div
+class="content-deck"
+id="content-deck-lesson-4-question-wording"
+data-label="準確表述你的問題"
+data-index="true">
 
-「為什麼」的問題往往過於模糊，需要進一步明確。例如，如果我們問「為什麼爐子上的水壺在響？」這個問題可能有兩種完全不同的答案：一種是物理機制層面的回答（熱能產生蒸汽，蒸汽壓力推動空氣通過壺嘴，產生聲響），另一種是意圖層面的回答（我想泡茶，所以燒了水）。為了避免這種混淆，我們應該將問題細化為：「水壺響聲的物理原理是什麼？」或「我為什麼要燒水？」
+<p class="content-deck__intro">可點選上方標籤跳讀，或用上一張／下一張逐張翻看。</p>
+
+<div class="content-deck__card" data-label="範圍和導向">
+<h4>根據本段經文，還是根據基督教信仰？</h4>
+<p>例如，當我們問「神豐富的憐憫體現在哪裡？」時，需要區分是要「根據本段經文」回答還是「根據基督教信仰」回答。如果根據本段經文，答案可能是「不願我們在罪中死，叫我們與基督一同復活」；如果根據全部信仰，答案則包括「供應我們每日物質的需要，在試煉中與我們同在，瞭解我們的情感，理解我們的軟弱，不斷給我們機會悔改」等更廣泛的內容。</p>
+</div>
+
+<div class="content-deck__card" data-label="兩個層面">
+<h4>「為什麼作者說XXX？」的兩個層面</h4>
+<p>當我們問「為什麼作者說XXX？」時，這個問題實際上包含兩個層面：一是「寫XXX在行文中的目的/作用」，二是「XXX這個結論成立的理由」。以「為什麼保羅說我們『本為可怒之子』？」為例，從行文作用的角度來看，這是為了提醒信徒記得自己得救前絕望無助的景況，從而幫助他們認識到救恩是神的恩典，進而告訴他們要回應恩典；從結論成立的理由來看，這是因為「世人都犯了罪，虧缺了神的榮耀，活在公義神的震怒之下」。</p>
+</div>
+
+<div class="content-deck__card" data-label="生活或教導">
+<h4>聯繫生活實例，還是回憶聖經教導？</h4>
+<p>我們也需要區分問題是要「聯繫生活實例回答」還是「回憶聖經教導回答」。以「神預備叫我們行的善事有哪些？」為例，如果從聖經教導的角度回答，可能包括「踐行律法愛神愛人的精神，過聖潔的生活，傳福音」等；如果從生活實例的角度回答，則可能包括「主動去關心、鼓勵身邊有需要的同學/同事，用同理心體會別人的感受，在自己的工作上盡職盡責，在團契小組裡帶領查經」等具體行動。</p>
+</div>
+
+<div class="content-deck__card" data-label="為什麼過於模糊">
+<h4>「為什麼」的問題往往過於模糊</h4>
+<p>「為什麼」的問題往往過於模糊，需要進一步明確。例如，如果我們問「為什麼爐子上的水壺在響？」這個問題可能有兩種完全不同的答案：一種是物理機制層面的回答（熱能產生蒸汽，蒸汽壓力推動空氣通過壺嘴，產生聲響），另一種是意圖層面的回答（我想泡茶，所以燒了水）。為了避免這種混淆，我們應該將問題細化為：「水壺響聲的物理原理是什麼？」或「我為什麼要燒水？」</p>
+</div>
+
+</div>
+
+點選下面兩句。它們都還在本課裡；先注意到張力即可，不必現在裁決哪一句才對。
+
+<div
+class="content-panels"
+id="content-panels-lesson-4-why-tension"
+data-label="兩處並未互相改寫的句子">
+
+<div class="content-panels__panel" data-label="OEIA 那節的討論題">
+<h4>OEIA 那節的討論題怎麼問</h4>
+<p>你在帶領查經時，最容易忽略哪一個步驟？為什麼？</p>
+</div>
+
+<div class="content-panels__panel" data-label="問題設計這一節">
+<h4>問題設計這一節怎麼說</h4>
+<p>「為什麼」的問題往往過於模糊，需要進一步明確。</p>
+</div>
+
+</div>
 
 在提問時，我們應該多鋪墊背景、給出提示，幫助小組成員更好地理解問題的意圖。同時，我們要避開過於深奧、過於神學性、聖經學者尚無答案的問題，因為這些問題通常不適合小組討論。
+
+### 預讀複習題 {#yudu-fuxi-ti}
+
+讀完第一部分了嗎？用下面的複習題測試一下自己，看看掌握了多少。
+
+<iframe class="content-quiz-frame" src="../../quizzes/lesson-4/review.html" title="預讀複習題" loading="lazy" scrolling="no"></iframe>
 
 ## 第二部分：課堂實作活動 {#dier-bufen-ketang-shizuo-huodong}
 
