@@ -1,0 +1,19 @@
+docs/stylesheets/extra.css
+  s_cc59b91d8a50f5::t_7de6af72401ec3 119-128,203-205,207,212
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b33e83d666441b0b12fbd3e45894dab1d02e7358",
+  "prompts": {},
+  "sessions": {
+    "s_cc59b91d8a50f5": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a10890-7b0d-7643-b216-301e2f270f16",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
