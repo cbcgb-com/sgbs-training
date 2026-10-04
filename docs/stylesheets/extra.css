@@ -116,6 +116,16 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     overflow: hidden;
     -webkit-tap-highlight-color: transparent;
+    /* Open/close animates the body's grid row (0fr -> 1fr) instead of
+       max-height: fr values are interpolable and the open row sizes to
+       the content, so long bodies are never clipped by a height cap. */
+    display: grid;
+    grid-template-rows: auto 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+}
+
+.expandable-card.is-open {
+    grid-template-rows: auto 1fr;
 }
 
 .expandable-card__header {
@@ -190,22 +200,22 @@ body {
     min-width: 0;
 }
 
-/* Revealed content – smooth open/close (JS toggles .is-open) */
+/* Revealed content – smooth open/close (JS toggles .is-open).
+   The card's grid row collapses this item; min-height: 0 + overflow
+   hidden let it shrink to 0 when closed and grow to content when open. */
 .expandable-card__body {
-    max-height: 0;
+    min-height: 0;
     overflow: hidden;
     opacity: 0;
     padding: 0 1.25rem 0;
     padding-left: calc(1.25rem + 1.75rem + 0.75rem);
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+    transition: opacity 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .expandable-card.is-open .expandable-card__body {
-    max-height: 900px;
     opacity: 1;
     padding: 1rem 1.25rem 1.25rem;
     padding-left: calc(1.25rem + 1.75rem + 0.75rem);
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .expandable-card__body strong {
