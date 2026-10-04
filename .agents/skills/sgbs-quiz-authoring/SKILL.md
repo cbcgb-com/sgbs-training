@@ -217,8 +217,9 @@ same underlying question — replace one.
 - Traditional Chinese; respectful tone for adult learners.
 - Stems avoid bare「為什麼」; use「怎樣／哪一種／最需要小心的是」.
 - Quiz intro lines in the lesson markdown are ONE short, warm
-  invitation (e.g. 「讀完第一部分了嗎？用下面的複習題測試一下自己，
-  看看掌握了多少。」). Keep only load-bearing functional clauses
+  invitation (e.g. 「讀完第一部分了嗎？請用下面的複習題檢視自己，
+  看看掌握了多少。」). Frame the study as 查經預備， not school-lesson
+  prep (備課 is banned). Keep only load-bearing functional clauses
   (the pass rule, or「步驟一已替你準備」). Never describe
   randomization, never preview misconceptions, never explain the
   feedback system.

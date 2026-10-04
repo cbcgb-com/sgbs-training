@@ -45,15 +45,13 @@
 
 ### 課前思考題 {#keqian-sikao-ti}
 
-先用幾分鐘回答下面的問題，再繼續往下讀。沒有標準答案，誠實選一個，看看它帶你想到什麼。
+往下讀之前，先用幾分鐘回答下面的問題。這些問題沒有標準答案，請憑你目前帶領查經的習慣作答；帶著自己的答案往下讀，看看本課印證了什麼、又挑戰了什麼。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-4/reflect.html" title="課前思考題" loading="lazy" scrolling="no"></iframe>
 
 ### 分析論說文 {#fenxi-lunshuo-wen}
 
-聖經中的論說文：
-
-點選下面三類，看看論說文常見於哪些經卷。
+聖經中的論說文主要有下面三類。點選各類標籤，看看它們分別常見於哪些經卷。
 
 <div
 class="content-deck"
@@ -65,28 +63,28 @@ data-index="true">
 
 <div class="content-deck__card" data-label="新約書信">
 <h4>新約書信</h4>
-<p>新約書信。例如：《羅馬書》、《腓立比書》、《雅各書》等。</p>
+<p>例如：《羅馬書》、《腓立比書》、《雅各書》等。</p>
 </div>
 
 <div class="content-deck__card" data-label="長篇演講">
 <h4>新約耶穌和使徒的長篇演講</h4>
-<p>新約耶穌和使徒的長篇演講。如：《馬太福音》6:25-34（不要憂慮），《使徒行傳》7:2-53（司提反的申訴）</p>
+<p>如：《馬太福音》6:25-34（不要憂慮）、《使徒行傳》7:2-53（司提反的申訴）。</p>
 </div>
 
 <div class="content-deck__card" data-label="先知講話">
 <h4>舊約先知的講話</h4>
-<p>舊約先知的講話。如：《撒母耳記上》12:6-17（撒母耳最後的勸勉）</p>
+<p>如：《撒母耳記上》12:6-17（撒母耳最後的勸勉）。</p>
 </div>
 
 </div>
 
-閱讀聖經時，留意**不同文體的混合**
+閱讀聖經時，要留意**不同文體的混合**——同一卷書裡可能敘事與講論並存。
 
 ### 論說文和敘述文的差異 {#lunshuo-wen-he-xushu-wen-de-chayi}
 
 > **回顧**：在[第二課：敘述文](../lesson-2-narrative)中，我們學習了如何分析敘述文的要素和結構。現在讓我們對比論說文與敘述文的不同。
 
-點選下面兩種文體，對比要素與查經重點。
+點選下面兩種文體，比較它們的基本要素與查經重點有什麼不同。
 
 <div
 class="content-panels"
@@ -95,7 +93,7 @@ data-label="論說文和敘述文的差異">
 
 <div class="content-panels__panel" data-label="敘述文">
 <h4>敘述文（Narrative）</h4>
-<p>敘述文（Narrative）的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。</p>
+<p>敘述文的基本要素包括背景（時間、地點）、人物、情節（起因、經過、結果）。這種文體呈現主題的方式是透過故事情節與背景的鋪陳，展現人物的行動、對話與成長，進而引導讀者體會主題。</p>
 <p>在歸納式查經的應用上，敘述文在觀察階段的重點在於細緻記錄故事的時間、地點、人物關係、事件發展等細節；在解釋階段，思考事件背後的文化背景、人物動機與神學意義；在歸納與應用階段，總結故事主題，並思考其對我們生命的提醒與挑戰。我們需要關注背景的帶入感、情節的細節、人物的特點與轉變，以及故事如何啟發我們的信仰生活。神也透過故事的發展和我們的<strong>情感</strong>來傳達祂的信息，邀請我們用心靈去經歷、感受並回應祂的真理。</p>
 <div class="content-panels__example">
 <strong>例如</strong>
@@ -105,7 +103,7 @@ data-label="論說文和敘述文的差異">
 
 <div class="content-panels__panel" data-label="論說文">
 <h4>論說文（Argumentation/Epistle）</h4>
-<p>論說文（Argumentation/Epistle）的基本要素包括論點（作者要表達的中心思想）、論據（支持論點的理由或證據）、論證（推理過程與邏輯結構）。這種文體呈現主題的方式是作者明確提出觀點，並透過層層論據與邏輯推理來說服讀者。</p>
+<p>論說文的基本要素包括論點（作者要表達的中心思想）、論據（支持論點的理由或證據）、論證（推理過程與邏輯結構）。這種文體呈現主題的方式是作者明確提出觀點，並透過層層論據與邏輯推理來說服讀者。</p>
 <p>在歸納式查經的應用上，論說文在觀察階段需特別注意段落結構、邏輯連詞（如「所以」、「因為」、「然而」等）、重複詞語與關鍵句子；在解釋階段，分析論點與論據之間的邏輯關係，並查考關鍵詞彙的原文含義；在歸納與應用階段，總結作者的教導與勸勉，思考其對我們信仰生活的實際意義。我們需要關注邏輯鏈條、論證方法（舉例、引用、對比、比喻、歸納、演繹推理等），以及如何從經文中歸納出核心教義與實踐原則。神透過人的<strong>理性</strong>來傳達祂的信息，邀請我們用心思意念去明白、思考並回應祂的真理。</p>
 <div class="content-panels__example">
 <strong>例如</strong>
@@ -123,7 +121,7 @@ data-label="論說文和敘述文的差異">
 >
 > **參考資源**：本節內容主要參考[論說文體的歸納法查經](../../tools/ibs-argumentation-notes)，該文件提供了更詳細的方法論和實作指引。
 
-點選一個步驟，看看論說文在這一階段的重點。
+歸納法四步驟在論說文中各有不同的重點。請依序點選下列四個步驟。
 
 <div
 class="content-panels"
@@ -209,7 +207,7 @@ data-style="steps">
 
 **討論問題：你認為在查考論說文時，如何有效發現字間、句間、段落間的邏輯關係？**
 
-點選下面幾種做法，看看可以怎樣發現邏輯關係。
+點選下面幾種做法，看看它們各自怎樣幫助我們發現邏輯關係。
 
 <div
 class="content-deck"
@@ -221,27 +219,27 @@ data-index="true">
 
 <div class="content-deck__card" data-label="語義分析">
 <h4>語義分析</h4>
-<p>語義分析：理解每個詞語、短語的語意，特別是轉折、因果、遞進、對比等語氣。</p>
+<p>理解每個詞語、短語的語意，特別留意轉折、因果、遞進、對比等語氣。</p>
 </div>
 
 <div class="content-deck__card" data-label="邏輯連詞">
 <h4>邏輯連詞</h4>
-<p>邏輯連詞：標記如「因為」、「所以」、「然而」、「既然」、「如果...就...」、「不但...而且...」等，這些詞語常常揭示作者的推理路徑。</p>
+<p>標記「因為」、「所以」、「然而」、「既然」、「如果...就...」、「不但...而且...」等連接詞，它們常常揭示作者的推理路徑。</p>
 </div>
 
 <div class="content-deck__card" data-label="英文文法">
 <h4>英文文法分析工具</h4>
-<p>英文文法分析工具：利用英文譯本的語法結構（如主句、從句、連接詞），幫助我們梳理出經文的邏輯大綱。</p>
+<p>利用英文譯本的語法結構（如主句、從句、連接詞），幫助我們梳理出經文的邏輯大綱。</p>
 </div>
 
 <div class="content-deck__card" data-label="圖表或大綱">
 <h4>圖表或大綱</h4>
-<p>圖表或大綱：將經文內容用邏輯圖、思維導圖或分層大綱的方式呈現，視覺化論證結構。</p>
+<p>將經文內容用邏輯圖、思維導圖或分層大綱的方式呈現，使論證結構一目了然。</p>
 </div>
 
 <div class="content-deck__card" data-label="小組討論">
 <h4>小組討論</h4>
-<p>小組討論：集思廣益，彼此補足盲點，發現更多潛在的邏輯關係。</p>
+<p>集思廣益，彼此補足盲點，發現更多潛在的邏輯關係。</p>
 </div>
 
 <div class="content-deck__card" data-label="實際操作">
@@ -300,7 +298,7 @@ data-index="true">
 
 #### 英文分析步驟
 
-點選下面六個步驟，依序走過英文文法分析。
+英文文法分析共有六個步驟，請依序點選，逐步走過。
 
 <div
 class="content-panels"
@@ -340,13 +338,13 @@ data-style="steps">
 
 </div>
 
-讀完上面的步驟後，試著判斷下面的文法與邏輯情況。答對 4 題即完成。
+讀完上面的六個步驟後，請用下面的小練習檢核自己，答對四題即算完成。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-4/grammar-mini.html" title="文法與邏輯小練習" loading="lazy" scrolling="no"></iframe>
 
 #### 英文分析示例
 
-上面《羅馬書》8:28 只拆了一句。下面四份是同一套英文文法分析做成的整段大綱草稿，打開對照即可，不必另外交作業。
+上一節的《羅馬書》8:28 範例只分析了一節經文；下面四份文件示範同一套方法如何應用在整段經文，可開啟對照，仿照其步驟練習。
 
 1. [《以弗所書》2:1-10](https://docs.google.com/document/d/1XImBnY-vAXNhShzHvTgs_YFuw8ulqlpDIpJuiic1RKA/edit?usp=sharing)
 2. [《約翰一書》4:7-21](https://drive.google.com/file/d/1oHF-XBb--yXt8lMG9gPQRIQTg4xocu2g/view?usp=sharing)
@@ -361,26 +359,26 @@ data-style="steps">
 
 在進行字詞研究時，我們需要遵循以下解經原則：信仰原則優先於字意本身，字意本身優先於經文本身加上上下文，經文本身加上上下文優先於本書卷，本書卷優先於其他書卷。
 
-點選下面兩句。它們都還在本課裡；先注意到張力即可，不必現在裁決哪一句才對。
+讀到這裡，你可能已經留意到：本課前後的兩種說法，乍看之下並不一致。點選下面兩處對照，先不必急著判斷哪一句才對，我們會在課堂上一起討論。
 
 <div
 class="content-panels"
 id="content-panels-lesson-4-priority-tension"
-data-label="兩處並未互相改寫的句子">
+data-label="字詞研究與解釋的兩種說法">
 
-<div class="content-panels__panel" data-label="字詞研究這一節">
-<h4>字詞研究這一節怎麼說</h4>
+<div class="content-panels__panel" data-label="字詞研究一節">
+<h4>「字詞研究」一節的說法</h4>
 <p>在進行字詞研究時，我們需要遵循以下解經原則：信仰原則優先於字意本身，字意本身優先於經文本身加上上下文，經文本身加上上下文優先於本書卷，本書卷優先於其他書卷。</p>
 </div>
 
-<div class="content-panels__panel" data-label="解釋那一節">
-<h4>解釋那一節怎麼說</h4>
+<div class="content-panels__panel" data-label="解釋一節">
+<h4>「解釋」一節的說法</h4>
 <p>從經文本身或上下文找答案</p>
 </div>
 
 </div>
 
-剛讀完史特朗號碼的原則，試著判斷下面的字詞研究情況。答對 4 題即完成。
+讀完上面的解經原則後，請用下面的小練習檢核自己，答對四題即算完成。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-4/wordstudy-mini.html" title="字詞研究小練習" loading="lazy" scrolling="no"></iframe>
 
@@ -390,7 +388,7 @@ data-label="兩處並未互相改寫的句子">
 
 #### 幾種不同類型的問題
 
-點選下面三種類型，看看論說文裡可以交替安排哪些問題。
+點選下面三種類型，看看每一類的例子。
 
 <div
 class="content-deck"
@@ -441,7 +439,7 @@ data-nav="false">
 
 在設計查經問題時，我們需要明確問題的範圍和導向。
 
-點選下面幾種容易混淆的問法，看看怎樣把範圍說清楚。
+點選下面幾種容易混淆的問法，看看怎樣把問題的範圍說清楚。
 
 <div
 class="content-deck"
@@ -473,20 +471,20 @@ data-index="true">
 
 </div>
 
-點選下面兩句。它們都還在本課裡；先注意到張力即可，不必現在裁決哪一句才對。
+前面歸納法四步驟的討論問題以「為什麼」收尾，這一節卻提醒「為什麼」的問題往往過於模糊。點選下面兩處對照，先不必急著判斷，我們會在課堂上一起討論。
 
 <div
 class="content-panels"
 id="content-panels-lesson-4-why-tension"
-data-label="兩處並未互相改寫的句子">
+data-label="「為什麼」的兩種說法">
 
-<div class="content-panels__panel" data-label="OEIA 那節的討論題">
-<h4>OEIA 那節的討論題怎麼問</h4>
+<div class="content-panels__panel" data-label="歸納法四步驟一節">
+<h4>「歸納法四步驟」一節的討論問題</h4>
 <p>你在帶領查經時，最容易忽略哪一個步驟？為什麼？</p>
 </div>
 
-<div class="content-panels__panel" data-label="問題設計這一節">
-<h4>問題設計這一節怎麼說</h4>
+<div class="content-panels__panel" data-label="問題設計一節">
+<h4>「問題設計」一節的提醒</h4>
 <p>「為什麼」的問題往往過於模糊，需要進一步明確。</p>
 </div>
 
@@ -496,7 +494,7 @@ data-label="兩處並未互相改寫的句子">
 
 ### 預讀複習題 {#yudu-fuxi-ti}
 
-讀完第一部分了嗎？用下面的複習題測試一下自己，看看掌握了多少。
+讀完第一部分了嗎？請用下面的複習題檢視自己，看看掌握了多少。
 
 <iframe class="content-quiz-frame" src="../../quizzes/lesson-4/review.html" title="預讀複習題" loading="lazy" scrolling="no"></iframe>
 
