@@ -5,6 +5,7 @@
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
     |:----------:|:--------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------:|
     | 2026-09-27 |       [敘述文](../../class-notes/lesson-2-narrative)       | [link](https://www.dropbox.com/scl/fi/9j4bog826jpwdehj7xfmt/20260927-lesson-2.mp3?rlkey=i9ar6uf3gir8gq6r109w4cpd7&dl=0) |
+    | 2026-10-04 |     [提問題的技術](../../class-notes/lesson-3-questioning)     | [link](https://www.dropbox.com/scl/fi/bxvzqk0et32dxap5e2ap7/20261004-lesson-3.mp3?rlkey=ehsbe6lunlcvl3nx5leszcitw&dl=0) |
 
 === "2026春季"
     |    日期    |                            課堂                            |                                                             錄音鏈接                                                             |
