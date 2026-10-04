@@ -303,8 +303,8 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/src/Roster.tsx` - Grid + kanban view browser (incl. the
   已退出 withdrawal view and 標記退出 control)
 - `apps/roster/src/Attendance.tsx` - Instructor attendance sheet 出席
-  (per-date recording, 未記錄全部出席 bulk fill; see
-  `apps/roster/docs/designs/attendance/LLD.md`)
+  (per-date recording, default grouped by 小組, 未記錄全部出席 bulk fill;
+  see `apps/roster/docs/designs/attendance/LLD.md`)
 - `apps/roster/convex/homework.ts` - 功課記錄: homework tracking
   parallel to attendance — internal agent-written mutations
   (`recordHomework` upsert via `npx convex run`, `clearHomework`),

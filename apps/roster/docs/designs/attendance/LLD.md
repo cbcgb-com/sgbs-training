@@ -106,6 +106,12 @@ the sheet is actually used (standing at the door, phone in hand).
 - Date chip row across the top (9月20日（日）…), selected chip highlighted;
   below it a per-date tally (已記錄 X/Y · 出席 A · 缺席 B) and the
   「未記錄全部出席」 bulk button, disabled when nothing is unrecorded.
+- Layout toggle 按小組 / 按名單, matching 課堂安排. **按小組 is the
+  default** (and the stored choice when none has been saved). Groups
+  come from each student's `groupName` — never a hardcoded list —
+  sorted zh-Hant; students with no group sit last under 未分組. Each
+  group is its own section (header + the same table) so the instructor
+  can see who in that group is present.
 - Student table: 序號, 名字 (48px avatar + serif name, 已退出 never
   appears) with the 出席／缺席 toggle between avatar and name — the
   fixed-width avatar and toggle keep the buttons and names in aligned
@@ -119,5 +125,7 @@ the sheet is actually used (standing at the door, phone in hand).
 - `convex/students.ts` — `quarterAttendance`, `recordAttendance`,
   `upsertAttendance`, `clearAttendance`, `markAllAttended`
 - `src/Attendance.tsx` — the sheet
+- `src/attendanceGroups.ts` — default 按小組 split (roster `groupName` values)
 - `src/App.tsx` — instructor tab wiring
 - `scripts/test-attendance.mjs` — end-to-end walkthrough against dev
+- `scripts/test-attendance-groups.mjs` — grouping helper unit checks

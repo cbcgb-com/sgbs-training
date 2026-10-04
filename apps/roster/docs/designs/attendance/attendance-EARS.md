@@ -67,6 +67,10 @@
 - [ ] **ATT-UI-005**: The system shall surface per-date tallies (已記錄
       X/Y · 出席 A · 缺席 B), the season 缺課 count per student, and an
       `role="alert"` error banner for rejected writes.
+- [ ] **ATT-UI-006**: The system shall open the attendance sheet grouped
+      by 小組 (the students' actual `groupName` values, zh-Hant sort,
+      unnamed students under 未分組), with each group visually
+      separated. 按名單 remains available as a layout toggle.
 
 ## Verification
 
