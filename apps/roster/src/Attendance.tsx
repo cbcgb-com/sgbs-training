@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import type { Id } from "../convex/_generated/dataModel";
 import { CURRENT_QUARTER } from "./constants";
+import { splitByGroup } from "./attendanceGroups";
 import Avatar from "./Avatar";
 
 type Mark = "yes" | "no" | "none";
@@ -17,23 +18,53 @@ type AttendanceRow = {
   marks: Mark[];
 };
 
-type Sheet = {
-  quarter: string;
-  dates: string[];
-  students: AttendanceRow[];
-};
+// Instructor layout for 出席: by group (default) or the flat name list.
+// The choice persists in localStorage across visits; first load is 按小組.
+type AttendanceLayout = "group" | "name";
+
+const ATTENDANCE_LAYOUTS = [
+  { key: "group" as const, label: "按小組" },
+  { key: "name" as const, label: "按名單" },
+];
+
+const LAYOUT_STORAGE_KEY = "sgbs-roster-attendance-layout";
+
+function useAttendanceLayout() {
+  const [layout, setLayout] = useState<AttendanceLayout>(() => {
+    try {
+      return localStorage.getItem(LAYOUT_STORAGE_KEY) === "name"
+        ? "name"
+        : "group";
+    } catch {
+      return "group";
+    }
+  });
+
+  function update(next: AttendanceLayout) {
+    setLayout(next);
+    try {
+      localStorage.setItem(LAYOUT_STORAGE_KEY, next);
+    } catch {
+      // Storage unavailable (private mode) — keep the in-memory choice.
+    }
+  }
+
+  return [layout, update] as const;
+}
 
 // 出席: the instructor's per-date attendance sheet. Pick a class date,
 // mark each student 出席／缺席 (tapping the active mark again un-records
 // it), or fill the whole sheet with 未記錄全部出席 — which only completes
-// the sheet and never overwrites an explicit mark. See
-// docs/designs/attendance/LLD.md.
+// the sheet and never overwrites an explicit mark. The sheet opens
+// grouped by 小組 (the roster's actual groupName values); 按名單 is one
+// toggle away. See docs/designs/attendance/LLD.md.
 export default function Attendance() {
   const data = useQuery(api.students.quarterAttendance, {});
   const photos = useQuery(api.students.photoUrls);
   const record = useMutation(api.students.recordAttendance);
   const clear = useMutation(api.students.clearAttendance);
   const bulk = useMutation(api.students.markAllAttended);
+  const [layout, setLayout] = useAttendanceLayout();
 
   const [picked, setPicked] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<Id<"students"> | "bulk" | null>(null);
@@ -62,6 +93,7 @@ export default function Attendance() {
   const students = [...data.students].sort((a, b) =>
     a.name.localeCompare(b.name, "zh-Hant"),
   );
+  const groups = splitByGroup(data.students);
   const dateIndex = data.dates.indexOf(date!);
   const marksOf = (s: AttendanceRow): Mark => s.marks[dateIndex] ?? "none";
   const yes = data.students.filter((s) => marksOf(s) === "yes").length;
@@ -109,6 +141,33 @@ export default function Attendance() {
           {CURRENT_QUARTER} · 共 {data.dates.length} 堂
         </span>
       </div>
+      <nav
+        aria-label="出席檢視"
+        className="mt-4 flex flex-wrap items-baseline gap-x-1 border-b border-rule pb-2"
+      >
+        {ATTENDANCE_LAYOUTS.map((l, i) => (
+          <span key={l.key} className="inline-flex items-baseline">
+            {i > 0 && (
+              <span className="mr-1 text-rule" aria-hidden>
+                ·
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={() => setLayout(l.key)}
+              aria-pressed={layout === l.key}
+              className={
+                "font-serif-tc text-sm tracking-[0.15em] transition-colors " +
+                (layout === l.key
+                  ? "font-bold text-vermilion"
+                  : "text-ink-soft hover:text-ink")
+              }
+            >
+              {l.label}
+            </button>
+          </span>
+        ))}
+      </nav>
       <p className="mt-3 text-sm leading-relaxed text-ink-soft">
         每堂課後點名。再點一次已標記的按鈕即取消記錄；「未記錄全部出席」只填寫尚未記錄的學員，不會更動已標記的出席或缺席。
       </p>
@@ -167,96 +226,188 @@ export default function Attendance() {
         <p className="py-14 text-center font-serif-tc text-base tracking-[0.25em] text-ink-soft">
           此檢視暫無記錄
         </p>
-      ) : (
-        <div className="mt-2 overflow-x-auto overflow-y-clip">
-          <table className="w-full border-collapse text-left text-base tabular-nums">
-            <thead>
-              <tr className="border-b-2 border-ink">
-                <th className="w-10 px-1 py-2.5">
-                  <span className="sr-only">序號</span>
-                </th>
-                {["名字", "團契", "小組", "季內缺課"].map((label) => (
-                  <th
-                    key={label}
-                    scope="col"
-                    className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
-                  >
-                    {label}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((s, i) => {
-                const mark = marksOf(s);
-                const busy = busyId === s._id;
-                return (
-                  <tr
-                    key={s._id}
-                    className="border-b border-rule transition-colors hover:bg-paper-deep/60"
-                  >
-                    <td className="px-1 py-2.5 text-right font-serif-tc text-sm text-vermilion">
-                      {i + 1}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2.5">
-                      <span className="flex items-center gap-2.5">
-                        <Avatar
-                          name={s.name}
-                          size={48}
-                          url={
-                            s.photoStorageId
-                              ? photos?.[s.photoStorageId]
-                              : undefined
-                          }
-                        />
-                        <span
-                          role="group"
-                          aria-label={`${s.name} ${zhDay(date!)} 出席記錄`}
-                          className="inline-flex items-center gap-1.5"
-                        >
-                          <MarkButton
-                            label="出席"
-                            active={mark === "yes"}
-                            tone="yes"
-                            disabled={busy}
-                            onClick={() => setMark(s, "yes")}
-                          />
-                          <MarkButton
-                            label="缺席"
-                            active={mark === "no"}
-                            tone="no"
-                            disabled={busy}
-                            onClick={() => setMark(s, "no")}
-                          />
-                        </span>
-                        <span className="font-serif-tc text-[17px] font-bold text-ink">
-                          {s.name}
-                        </span>
-                        {mark === "none" && (
-                          <span className="font-serif-tc text-xs tracking-[0.1em] text-rule">
-                            未記錄
-                          </span>
-                        )}
-                      </span>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2.5 text-ink">
-                      {s.fellowship || "—"}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2.5 text-ink">
-                      {s.groupName || "—"}
-                    </td>
-                    <td className="px-3 py-2.5 text-right text-ink-soft">
-                      {s.missed > 0 ? s.missed : "—"}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      ) : layout === "group" ? (
+        <div className="mt-6 space-y-10">
+          {groups.map((g) => (
+            <GroupSheet
+              key={g.name}
+              groupName={g.name}
+              students={g.students}
+              date={date!}
+              marksOf={marksOf}
+              photos={photos}
+              busyId={busyId}
+              onSetMark={setMark}
+            />
+          ))}
           <p className="mt-3 text-right text-sm text-ink-soft tabular-nums">
             共 {students.length} 條記錄
           </p>
         </div>
+      ) : (
+        <AttendanceTable
+          students={students}
+          date={date!}
+          marksOf={marksOf}
+          photos={photos}
+          busyId={busyId}
+          onSetMark={setMark}
+        />
+      )}
+    </div>
+  );
+}
+
+function GroupSheet({
+  groupName,
+  students,
+  date,
+  marksOf,
+  photos,
+  busyId,
+  onSetMark,
+}: {
+  groupName: string;
+  students: AttendanceRow[];
+  date: string;
+  marksOf: (s: AttendanceRow) => Mark;
+  photos: Record<string, string | null> | null | undefined;
+  busyId: Id<"students"> | "bulk" | null;
+  onSetMark: (s: AttendanceRow, target: "yes" | "no") => void;
+}) {
+  const yes = students.filter((s) => marksOf(s) === "yes").length;
+  const no = students.filter((s) => marksOf(s) === "no").length;
+  const unrecorded = students.length - yes - no;
+  return (
+    <section aria-label={groupName}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b-2 border-ink pb-2">
+        <h3 className="font-serif-tc text-lg font-bold tracking-[0.15em] text-ink">
+          {groupName}
+        </h3>
+        <span className="font-serif-tc text-sm text-ink-soft tabular-nums">
+          {students.length} 位 · 出席 {yes} · 缺席 {no} · 未記錄 {unrecorded}
+        </span>
+      </div>
+      <AttendanceTable
+        students={students}
+        date={date}
+        marksOf={marksOf}
+        photos={photos}
+        busyId={busyId}
+        onSetMark={onSetMark}
+        showFooter={false}
+      />
+    </section>
+  );
+}
+
+function AttendanceTable({
+  students,
+  date,
+  marksOf,
+  photos,
+  busyId,
+  onSetMark,
+  showFooter = true,
+}: {
+  students: AttendanceRow[];
+  date: string;
+  marksOf: (s: AttendanceRow) => Mark;
+  photos: Record<string, string | null> | null | undefined;
+  busyId: Id<"students"> | "bulk" | null;
+  onSetMark: (s: AttendanceRow, target: "yes" | "no") => void;
+  showFooter?: boolean;
+}) {
+  return (
+    <div className="mt-2 overflow-x-auto overflow-y-clip">
+      <table className="w-full border-collapse text-left text-base tabular-nums">
+        <thead>
+          <tr className="border-b-2 border-ink">
+            <th className="w-10 px-1 py-2.5">
+              <span className="sr-only">序號</span>
+            </th>
+            {["名字", "團契", "小組", "季內缺課"].map((label) => (
+              <th
+                key={label}
+                scope="col"
+                className="th-double whitespace-nowrap px-3 py-2.5 text-[13px] font-bold tracking-[0.2em] text-ink-soft"
+              >
+                {label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((s, i) => {
+            const mark = marksOf(s);
+            const busy = busyId === s._id;
+            return (
+              <tr
+                key={s._id}
+                className="border-b border-rule transition-colors hover:bg-paper-deep/60"
+              >
+                <td className="px-1 py-2.5 text-right font-serif-tc text-sm text-vermilion">
+                  {i + 1}
+                </td>
+                <td className="whitespace-nowrap px-3 py-2.5">
+                  <span className="flex items-center gap-2.5">
+                    <Avatar
+                      name={s.name}
+                      size={48}
+                      url={
+                        s.photoStorageId
+                          ? photos?.[s.photoStorageId]
+                          : undefined
+                      }
+                    />
+                    <span
+                      role="group"
+                      aria-label={`${s.name} ${zhDay(date)} 出席記錄`}
+                      className="inline-flex items-center gap-1.5"
+                    >
+                      <MarkButton
+                        label="出席"
+                        active={mark === "yes"}
+                        tone="yes"
+                        disabled={busy}
+                        onClick={() => onSetMark(s, "yes")}
+                      />
+                      <MarkButton
+                        label="缺席"
+                        active={mark === "no"}
+                        tone="no"
+                        disabled={busy}
+                        onClick={() => onSetMark(s, "no")}
+                      />
+                    </span>
+                    <span className="font-serif-tc text-[17px] font-bold text-ink">
+                      {s.name}
+                    </span>
+                    {mark === "none" && (
+                      <span className="font-serif-tc text-xs tracking-[0.1em] text-rule">
+                        未記錄
+                      </span>
+                    )}
+                  </span>
+                </td>
+                <td className="whitespace-nowrap px-3 py-2.5 text-ink">
+                  {s.fellowship || "—"}
+                </td>
+                <td className="whitespace-nowrap px-3 py-2.5 text-ink">
+                  {s.groupName || "—"}
+                </td>
+                <td className="px-3 py-2.5 text-right text-ink-soft">
+                  {s.missed > 0 ? s.missed : "—"}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      {showFooter && (
+        <p className="mt-3 text-right text-sm text-ink-soft tabular-nums">
+          共 {students.length} 條記錄
+        </p>
       )}
     </div>
   );
