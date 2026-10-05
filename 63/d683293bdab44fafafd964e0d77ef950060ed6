@@ -1,0 +1,26 @@
+docs/quizzes/lesson-4/review.html
+  s_b257697bf72606::t_964bbebc22282f 88,149,157
+docs/class-notes/lesson-4-argumentation.md
+  s_b257697bf72606::t_5f98dce4738762 48,145,194,200,384,386-389,467,583
+  s_b257697bf72606::t_964bbebc22282f 171,183,192,313,318,328,352,395,411,420-421,438,493-494,504,515,540,603-606,610,636
+  s_b257697bf72606::t_34c77333936286 380,407,434
+  s_b257697bf72606::t_6c0598940cc5cc 353-379,381-383,385,390-394,396-406,408-410,412-419,422-433,435-437,439-445
+docs/quizzes/lesson-4/wordstudy-mini.html
+  s_b257697bf72606::t_964bbebc22282f 62,92,185,308
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "63d683293bdab44fafafd964e0d77ef950060ed6",
+  "prompts": {},
+  "sessions": {
+    "s_b257697bf72606": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a10856-2594-76f7-ab0c-3b7022afdf23",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
