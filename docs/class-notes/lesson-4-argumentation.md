@@ -148,42 +148,63 @@
       - 嘗試將經文拆解成「主題句—支持句—例證」的結構
       - 用自己的話重述作者的推理過程，檢查是否通順合理
 
-**範例說明：以《羅馬書》8:28為例**
+/// scripture | 羅馬書8章28節（NIV）
+And we know that in all things God works for the good of those who love him, who have been called according to his purpose.
+///
 
-> 我們曉得萬事都互相效力，叫愛神的人得益處，就是按他旨意被召的人。
+/// scripture | 羅馬書8章28節（和合本）
+我們曉得萬事都互相效力，叫愛神的人得益處，就是按他旨意被召的人。
+///
 
 **英文文法分析步驟：**
 
-1. **找出主要句子**：這是一個複合句，包含一個主句和兩個從句
-2. **分解句子結構**：
+1. **找出主要句子**：以NIV為例，主句是 We know；它帶出一個 that 引導的內容從句，從句裡又掛著兩個 who 引導的修飾從句
+2. **分解句子結構**：每層先列NIV經文，下面對照和合本
 
-<div style="font-family: monospace; line-height: 1.8; margin: 20px 0;">
+<div style="font-family: monospace; line-height: 1.9; margin: 20px 0;">
 <div><strong>主句（最左邊，作者要強調的）：</strong></div>
-<div><span style="color:#1f77b4;">我們</span> <span style="background-color:#b6d7a8; padding: 2px 4px;">曉得</span>
-<span style="background-color:#ffe599; padding: 2px 4px;">萬事都互相效力</span></div>
+<div><span style="color:#1f77b4;">We</span> <span style="background-color:#b6d7a8; padding: 2px 4px; color:#222222;">know</span></div>
+<div style="color:#666666;">我們 曉得</div>
 <div style="margin-left: 20px;">↓</div>
-<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">叫</span></div>
+<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">that</span> <span style="color:#666666;">（和合本在這裡沒有連接詞，直接接著說「萬事…」）</span></div>
 <div style="margin-left: 20px;">↓</div>
-<div><strong>從句1：</strong><span style="background-color:#ffe599; padding: 2px 4px;">愛神的人</span>
-<span style="background-color:#b6d7a8; padding: 2px 4px;">得益處</span></div>
+<div><strong>從句1（ 曉得的內容）：</strong></div>
+<div><span style="background-color:#ffe599; padding: 2px 4px; color:#222222;">in all things</span> <span style="color:#1f77b4;">God</span> <span style="background-color:#b6d7a8; padding: 2px 4px; color:#222222;">works</span> <span style="background-color:#ffe599; padding: 2px 4px; color:#222222;">for the good</span></div>
+<div style="color:#666666;">萬事都互相效力（NIV 的主詞是 God；和合本的主詞是「萬事」）</div>
 <div style="margin-left: 20px;">↓</div>
-<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">就是</span></div>
+<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">who</span> <span style="color:#666666;">（掛在 those 後面；和合本把修飾語「愛神的」放在名詞前面）</span></div>
 <div style="margin-left: 20px;">↓</div>
-<div><strong>從句2：</strong><span style="background-color:#ffe599; padding: 2px 4px;">按他旨意被召的人</span></div>
+<div><strong>從句2（什麼樣的人？）：</strong></div>
+<div>of those <span style="color:#d62728;">who</span> <span style="background-color:#b6d7a8; padding: 2px 4px; color:#222222;">love</span> <span style="background-color:#ffe599; padding: 2px 4px; color:#222222;">him</span></div>
+<div style="color:#666666;">愛神的人</div>
+<div style="margin-left: 20px;">↓</div>
+<div style="margin-left: 20px;">連接詞：<span style="color:#d62728;">who</span> <span style="color:#666666;">（和合本用「就是」）</span></div>
+<div style="margin-left: 20px;">↓</div>
+<div><strong>從句3（怎樣被召？）：</strong></div>
+<div><span style="color:#d62728;">who</span> <span style="background-color:#b6d7a8; padding: 2px 4px; color:#222222;">have been called</span> according to <span style="background-color:#ffe599; padding: 2px 4px; color:#222222;">his purpose</span></div>
+<div style="color:#666666;">按他旨意被召的人</div>
 </div>
+
+**英文結構看得見的三個地方：**
+
+- 英文句子必須有主詞。NIV 寫明 God——在萬事中工作的是神自己；和合本以「萬事」為主詞，神的行動要讀完整句才看得出來。
+- 英文從句必須有連接詞。that 和兩個 who 把三層結構標得清清楚楚；和合本的「叫」「就是」要靠讀者自行判斷。
+- 修飾從句掛在哪裡，英文一目了然。兩個 who 從句都跟在 those 後面，一眼看出是形容同一群人；中文的修飾語堆在名詞前面，要靠「……的人」自行拆解。
 
 **顏色說明：**
 
-- <span style="color:#1f77b4;">藍色</span>：主詞（主句的主語）
-- <span style="background-color:#b6d7a8; padding: 2px 4px;">綠色底色</span>：謂語/動詞（主要動作）
-- <span style="background-color:#ffe599; padding: 2px 4px;">黃色底色</span>：賓語/受詞（動作的對象或內容）
-- <span style="color:#d62728;">紅色</span>：連接詞（顯示邏輯關係）
+- <span style="color:#1f77b4;">藍色</span>：主詞（動作的發動者）
+- <span style="background-color:#b6d7a8; padding: 2px 4px; color:#222222;">綠色底色</span>：謂語/動詞（主要動作）
+- <span style="background-color:#ffe599; padding: 2px 4px; color:#222222;">黃色底色</span>：賓語/受詞（動作的對象或內容）
+- <span style="color:#d62728;">紅色</span>：連接詞（顯示邏輯關係；who 兼作從句的主詞）
+- <span style="color:#666666;">灰色文字</span>：和合本對照（英文必須寫出、中文卻省略的成分，在對照行特別註明）
 
 **邏輯關係分析：**
 
-- 主句提出核心論點：「我們曉得萬事都互相效力」
-- 從句1說明目的：「叫愛神的人得益處」
-- 從句2進一步限定範圍：「就是按他旨意被召的人」
+- 主句提出核心確據：We know——作者的論證從「我們確知」出發
+- 內容從句（that…）說明所確知的事：神在萬事中工作，使愛祂的人得益處
+- 修飾從句（who love him）界定受益的對象：愛神的人
+- 修飾從句（who have been called…）進一步限定範圍：是按祂旨意被召的人
 
 **用自己的話重述推理過程：** 保羅強調，所有的事情（無論好壞）都在神的主權下運作，最終目的是讓那些愛神、並且蒙神呼召的人得著益處。這裡的「益處」不是指世俗的好處，而是與神的旨意相符的祝福。保羅的推理是：因為神掌管一切，所以信徒可以確信，無論遭遇什麼，最終都會成為屬靈的益處。
 
