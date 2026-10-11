@@ -1,0 +1,39 @@
+apps/roster/vite.config.ts
+  s_49aad91fea5d44::t_adf596320fc15c 1,5-55,57
+apps/roster/src/Attendance.tsx
+  s_49aad91fea5d44::t_8429ecc16127a6 8-12,358-372,393-398
+apps/roster/src/ScheduleView.tsx
+  s_49aad91fea5d44::t_49cb49f038e1ff 7-10,376,378-382,541-546,574,576-583
+apps/roster/src/Roster.tsx
+  s_49aad91fea5d44::t_a35ea21da7e3d2 7-10,574-577,776-792,794,908-925,927-929
+  s_49aad91fea5d44::t_76db4bc5d78a1e 6
+apps/roster/docs/designs/roster-views/roster-views-EARS.md
+  s_49aad91fea5d44::t_0ed6a68965316e 35-43
+apps/roster/docs/designs/roster-views/LLD.md
+  s_49aad91fea5d44::t_86fddc3b266df0 44-57
+apps/roster/convex/demo.ts
+  s_49aad91fea5d44::t_d172d7594280f2 51
+  s_49aad91fea5d44::t_32b364b84e47bb 15-18,56-67
+apps/roster/convex/students.ts
+  s_49aad91fea5d44::t_d6dd6d5cf90301 115-117
+apps/roster/src/strikeout.ts
+  s_49aad91fea5d44::t_f4079c5d444f31 1-32
+apps/roster/src/GroupAssigner.tsx
+  s_49aad91fea5d44::t_0ef9ece79aa35d 8-12,274-292,294
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2738033f3122ddbe0814395d0f3553cd88c86460",
+  "prompts": {},
+  "sessions": {
+    "s_49aad91fea5d44": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c44-3305-767f-800c-2d8878464721",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
