@@ -1,0 +1,31 @@
+docs/exercises/lesson-4/galatians-5-13-26.md
+  s_b840d3d8eb1e4e::t_b9a6c46dd7f2cf 1-78
+docs/exercises/lesson-4/romans-8-28-39.md
+  s_b840d3d8eb1e4e::t_b9a6c46dd7f2cf 1-68
+mkdocs.yml
+  s_b840d3d8eb1e4e::t_33bd8684f82d8a 16-19
+docs/exercises/lesson-4/philippians-2-1-11.md
+  s_b840d3d8eb1e4e::t_b9a6c46dd7f2cf 1-63
+docs/stylesheets/extra.css
+  s_b840d3d8eb1e4e::t_619897cc1ff186 1697-1735
+docs/class-notes/lesson-4-argumentation.md
+  s_b840d3d8eb1e4e::t_1aad52bf9f0587 284-289
+docs/exercises/lesson-4/1corinthians-13-1-13.md
+  s_b840d3d8eb1e4e::t_b9a6c46dd7f2cf 1-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cb3aa10d703e6da6851c28dd7d8c20c4bfd9493a",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
