@@ -1,0 +1,19 @@
+docs/class-notes/lesson-4-argumentation.md
+  s_b840d3d8eb1e4e::t_31568cc0676b67 151-153,155-157,161-162,164,166-167,169,171-173,175,177-185,188-193,196-200,204-207
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9ec128bceee9ddfa9c60f9456717ea53bdf73829",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
