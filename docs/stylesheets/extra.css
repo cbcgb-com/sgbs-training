@@ -1694,3 +1694,42 @@ details summary:hover {
     padding-right: 1rem;
   }
 }
+
+/* 練習經文對照頁（NIV + 希臘原文史特朗號碼）— linked from the
+   lesson 4 實作活動 table. Each verse: NIV line on top, Greek
+   interlinear beneath, Strong's number under each Greek word. */
+.strongs-verse {
+  margin: 0 0 1.15rem;
+}
+
+.strongs-niv {
+  margin: 0;
+}
+
+.strongs-vnum {
+  color: var(--sgbs-vermilion);
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-right: 0.4rem;
+  vertical-align: 0.2em;
+}
+
+.strongs-greek {
+  margin: 0.15rem 0 0;
+  line-height: 2;
+  color: var(--sgbs-ink);
+}
+
+.strongs-word {
+  display: inline-block;
+  text-align: center;
+  margin: 0 0.22rem 0.1rem;
+  vertical-align: top;
+}
+
+.strongs-num {
+  display: block;
+  font-family: ui-monospace, monospace;
+  font-size: 0.62rem;
+  color: var(--sgbs-ink-soft);
+}
