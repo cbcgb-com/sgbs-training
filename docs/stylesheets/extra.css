@@ -1733,3 +1733,16 @@ details summary:hover {
   font-size: 0.62rem;
   color: var(--sgbs-ink-soft);
 }
+
+/* 對照組 hover/click 亮起（strongs-hover.js）：英文詞與對應希臘詞同色。 */
+.strongs-en {
+  border-radius: 3px;
+  padding: 0 1px;
+  cursor: default;
+}
+
+.strongs-verse .strongs-hl {
+  background: rgba(var(--sgbs-vermilion-rgb), 0.16);
+  box-shadow: 0 0 0 2px rgba(var(--sgbs-vermilion-rgb), 0.16);
+  border-radius: 3px;
+}
