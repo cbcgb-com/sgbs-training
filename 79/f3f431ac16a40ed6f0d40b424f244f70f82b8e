@@ -1,0 +1,36 @@
+docs/exercises/lesson-4/romans-8-28-39.md
+  s_b840d3d8eb1e4e::t_6a646c70897fb8 3,6-7,11-12,16-17,21-22,26-27,31-32,36-37,41-42,46-47,51-52,56-57,61-62,65-70
+scripts/strongs/audit_alignment.py
+  s_b840d3d8eb1e4e::t_57943ed0d30e47 74-86
+  s_b840d3d8eb1e4e::t_45225bec97ac35 1-73,87-126
+scripts/strongs/align_fine.py
+  s_b840d3d8eb1e4e::t_37e6cb221203dc 9
+  s_b840d3d8eb1e4e::t_80f7b4f9ddd75e 1-8,10-52,54-66
+  s_b840d3d8eb1e4e::t_bb5799201b82f6 53
+scripts/strongs/generate_strongs_pages.py
+  s_b840d3d8eb1e4e::t_c003c9a1fa5e8a 1-95,97-206,208-215
+  s_b840d3d8eb1e4e::t_492d5097a118d1 96,207
+docs/exercises/lesson-4/1corinthians-13-1-13.md
+  s_b840d3d8eb1e4e::t_6a646c70897fb8 3,6-7,11-12,16-17,21-22,26-27,31-32,36-37,41-42,46-47,51-52,56-57,61-62,66-67,70-75
+docs/exercises/lesson-4/galatians-5-13-26.md
+  s_b840d3d8eb1e4e::t_6a646c70897fb8 3,6-7,11-12,16-17,21-22,26-27,31-32,36-37,46-47,51-52,56-57,61-62,66-67,71-72,76-80
+  s_b840d3d8eb1e4e::t_f679adbf5caf4d 75
+docs/exercises/lesson-4/philippians-2-1-11.md
+  s_b840d3d8eb1e4e::t_5fc36758e8c7e6 3,6-7,11-12,16-17,21-22,31-32,36-37,41-42,46-47,51-52,56-57,60-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "79f3f431ac16a40ed6f0d40b424f244f70f82b8e",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
