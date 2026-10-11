@@ -41,6 +41,20 @@ surface. See [Withdrawal LLD](../withdrawal/LLD.md).
 - 共 N 條記錄 footnote
 - zh-Hant name sort order
 
+## Strikeout treatment (缺課 ≥ 2)
+
+A student with 本季缺課 ≥ 2 (the replicated `missed` field) reads as
+**no longer attending, but was part of the group**: the name and
+portrait render faded (`opacity-40`) with a dotted line through the
+name, plus a hover hint (「N 本季已缺課 X 堂」). They stay listed
+everywhere — the treatment is presentation only (`src/strikeout.ts`),
+never a filter. Applied on all four instructor surfaces: 分組 member
+rows, 名單 card + table layouts (all sub-views whose rows carry
+`missed`), 出席 rows (the 出席／缺席 buttons stay fully usable), and
+課堂安排 member + 主領／觀察 chips in both layouts. Views whose query
+projects rows manually (主領日期, 觀察日期, 已退出) include `missed` in
+the projection so the treatment reads identically there.
+
 ## Note on Fidelity
 
 Airtable's API does not expose view configurations (filters, sorts,

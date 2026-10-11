@@ -5,6 +5,11 @@ import type { Doc } from "../convex/_generated/dataModel";
 import Avatar from "./Avatar";
 import { computeDiverseGroups, groupDiversitySummary } from "./groups";
 import { CURRENT_QUARTER } from "./constants";
+import {
+  struckNameClass,
+  struckPortraitClass,
+  struckTitle,
+} from "./strikeout";
 
 type Student = Doc<"students">;
 
@@ -266,17 +271,27 @@ export default function GroupAssigner() {
                       key={m._id}
                       className="flex items-center justify-between gap-2 bg-paper-deep/60 px-2.5 py-1.5"
                     >
-                      <span className="flex min-w-0 items-center gap-2">
-                        <Avatar
-                          name={m.name}
-                          url={
-                            m.photoStorageId
-                              ? photos?.[m.photoStorageId]
-                              : undefined
+                      <span
+                        className="flex min-w-0 items-center gap-2"
+                        title={struckTitle(m.name, m.missed)}
+                      >
+                        <span className={struckPortraitClass(m.missed)}>
+                          <Avatar
+                            name={m.name}
+                            url={
+                              m.photoStorageId
+                                ? photos?.[m.photoStorageId]
+                                : undefined
+                            }
+                            size={30}
+                          />
+                        </span>
+                        <span
+                          className={
+                            "min-w-0 truncate font-serif-tc text-[15px] font-bold text-ink " +
+                            struckNameClass(m.missed)
                           }
-                          size={30}
-                        />
-                        <span className="min-w-0 truncate font-serif-tc text-[15px] font-bold text-ink">
+                        >
                           {m.name}
                         </span>
                       </span>

@@ -4,6 +4,10 @@ import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
 import { CURRENT_QUARTER } from "./constants";
 import { useTab } from "./App";
+import {
+  struckNameClass,
+  struckTitle,
+} from "./strikeout";
 
 type SessionRow = {
   _id: Id<"sessions">;
@@ -369,8 +373,13 @@ function WeekRow({
             <span
               key={m._id}
               className="inline-flex items-center gap-1 border border-rule px-2 py-1 text-sm text-ink"
+              title={struckTitle(m.name, m.missed)}
             >
-              <span className="font-serif-tc font-bold">{m.name}</span>
+              <span
+                className={"font-serif-tc font-bold " + struckNameClass(m.missed)}
+              >
+                {m.name}
+              </span>
               <HwMark done={hw.get(`${m._id}:notes`)} label={`${m.name} 筆記`} />
             </span>
           ))}
@@ -529,6 +538,12 @@ function AssignmentCell({
   const people = (role === "leader" ? session.leaders : session.observers).filter(
     (p) => memberIds.has(p._id),
   );
+  // Session people carry only id+name; the roster docs passed as members
+  // have the replicated `missed` count that drives the strikeout look.
+  const missedOf = useMemo(
+    () => new Map(members.map((m) => [m._id, m.missed])),
+    [members],
+  );
   const assignedAll = new Set([...session.leaders, ...session.observers].map((p) => p._id));
   const candidates = members.filter((m) => !assignedAll.has(m._id));
 
@@ -556,8 +571,16 @@ function AssignmentCell({
                 ? "border-vermilion/40 text-vermilion"
                 : "border-rule text-ink")
             }
+            title={struckTitle(p.name, missedOf.get(p._id))}
           >
-            <span className="font-serif-tc font-bold">{p.name}</span>
+            <span
+              className={
+                "font-serif-tc font-bold " +
+                struckNameClass(missedOf.get(p._id))
+              }
+            >
+              {p.name}
+            </span>
             {hw && (
               <HwMark
                 done={hw.get(`${p._id}:questions`)}

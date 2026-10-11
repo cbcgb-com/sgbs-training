@@ -4,6 +4,11 @@ import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
 import Avatar from "./Avatar";
 import {
+  struckNameClass,
+  struckPortraitClass,
+  struckTitle,
+} from "./strikeout";
+import {
   CURRENT_QUARTER,
   WITHDRAWAL_REASON_OTHER,
   WITHDRAWAL_REASONS,
@@ -566,6 +571,10 @@ type ListStudent = {
   leadingExperience?: string;
   marks?: Mark[];
   withdrawnAt?: number;
+  // Replicated absent count — drives the missed-≥2 strikeout treatment.
+  // Projections that predate the treatment (主領/觀察日期, 已退出) now
+  // carry it too, so the treatment reads the same on every 名單 view.
+  missed?: number;
 };
 
 const GROUP_BY = [
@@ -764,15 +773,25 @@ function StudentCards<T extends ListStudent>({
           key={s._id}
           className="border border-rule bg-paper px-4 py-3.5 transition-colors hover:border-ink/30"
         >
-          <div className="flex items-center gap-3.5">
-            <Avatar
-              name={s.name}
-              url={
-                s.photoStorageId ? photos?.[s.photoStorageId] : undefined
+          <div
+            className="flex items-center gap-3.5"
+            title={struckTitle(s.name, s.missed)}
+          >
+            <span className={struckPortraitClass(s.missed)}>
+              <Avatar
+                name={s.name}
+                url={
+                  s.photoStorageId ? photos?.[s.photoStorageId] : undefined
+                }
+                size={64}
+              />
+            </span>
+            <p
+              className={
+                "min-w-0 font-serif-tc text-[19px] font-bold leading-snug text-ink " +
+                struckNameClass(s.missed)
               }
-              size={64}
-            />
-            <p className="min-w-0 font-serif-tc text-[19px] font-bold leading-snug text-ink">
+            >
               {nameColumn ? nameColumn[1](s) : s.name}
               {s.withdrawnAt !== undefined && (
                 <span className="ml-2 inline-block border border-vermilion/50 px-1.5 py-0.5 align-middle text-[13px] font-bold tracking-[0.1em] text-vermilion">
@@ -886,16 +905,28 @@ function StudentTable<T extends ListStudent>({
                   }
                 >
                   {style === "serif" ? (
-                    <span className="flex items-center gap-2.5">
-                      <Avatar
-                        name={s.name}
-                        url={
-                          s.photoStorageId
-                            ? photos?.[s.photoStorageId]
-                            : undefined
+                    <span
+                      className="flex items-center gap-2.5"
+                      title={struckTitle(s.name, s.missed)}
+                    >
+                      <span className={struckPortraitClass(s.missed)}>
+                        <Avatar
+                          name={s.name}
+                          url={
+                            s.photoStorageId
+                              ? photos?.[s.photoStorageId]
+                              : undefined
+                          }
+                        />
+                      </span>
+                      <span
+                        className={
+                          "font-serif-tc text-[17px] font-bold " +
+                          struckNameClass(s.missed)
                         }
-                      />
-                      <span className="font-serif-tc text-[17px] font-bold">{get(s)}</span>
+                      >
+                        {get(s)}
+                      </span>
                       {s.withdrawnAt !== undefined && (
                         <span className="shrink-0 border border-vermilion/50 px-1.5 py-0.5 text-[13px] font-bold tracking-[0.1em] text-vermilion">
                           已退出

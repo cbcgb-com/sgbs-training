@@ -12,6 +12,10 @@ import {
 // schedule on the DEV deployment only. Run via
 //   npx convex run demo:seedPreviewDemo
 // Safe to re-run: students are matched by email, sessions by date.
+// Re-running also REFRESHES the demo cohort to its spec — the seeded
+// attendance pattern (and the `missed` count it produces) and the group
+// seats — so demo state survives session-list changes and earlier
+// grouping experiments on the dev deployment.
 
 const FAKE_STUDENTS = [
   { name: "陳大文", email: "demo1@demo.sgbs", fellowship: "樂河團契", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，多於5次", groupName: "STAR", attended: 5 },
@@ -44,14 +48,25 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         .query("students")
         .withIndex("by_email", (q) => q.eq("email", s.email))
         .collect();
+      const attended = s.attended;
       const alreadyThisQuarter = existing.find(
         (e) => e.quarter === CURRENT_QUARTER,
       );
       if (alreadyThisQuarter) {
-        idByEmail.set(s.email, alreadyThisQuarter._id);
+        // Refresh to spec: rewrite the seeded attendance pattern
+        // (upsertAttendance keeps `missed` in sync) and re-seat the
+        // group, so earlier manual attendance/grouping edits on dev
+        // don't leave the demo cohort drifted from its spec.
+        const id = alreadyThisQuarter._id;
+        for (const [i, date] of CURRENT_QUARTER_SESSION_DATES.entries()) {
+          await upsertAttendance(ctx, id, CURRENT_QUARTER, date, i < attended);
+        }
+        if (alreadyThisQuarter.groupName !== s.groupName) {
+          await ctx.db.patch(id, { groupName: s.groupName });
+        }
+        idByEmail.set(s.email, id);
         continue;
       }
-      const attended = s.attended;
       const id = await ctx.db.insert("students", {
         name: s.name,
         email: s.email,

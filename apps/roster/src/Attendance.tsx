@@ -5,6 +5,11 @@ import type { Id } from "../convex/_generated/dataModel";
 import { CURRENT_QUARTER } from "./constants";
 import { splitByGroup } from "./attendanceGroups";
 import Avatar from "./Avatar";
+import {
+  struckNameClass,
+  struckPortraitClass,
+  struckTitle,
+} from "./strikeout";
 
 type Mark = "yes" | "no" | "none";
 
@@ -350,16 +355,21 @@ function AttendanceTable({
                   {i + 1}
                 </td>
                 <td className="whitespace-nowrap px-3 py-2.5">
-                  <span className="flex items-center gap-2.5">
-                    <Avatar
-                      name={s.name}
-                      size={48}
-                      url={
-                        s.photoStorageId
-                          ? photos?.[s.photoStorageId]
-                          : undefined
-                      }
-                    />
+                  <span
+                    className="flex items-center gap-2.5"
+                    title={struckTitle(s.name, s.missed)}
+                  >
+                    <span className={struckPortraitClass(s.missed)}>
+                      <Avatar
+                        name={s.name}
+                        size={48}
+                        url={
+                          s.photoStorageId
+                            ? photos?.[s.photoStorageId]
+                            : undefined
+                        }
+                      />
+                    </span>
                     <span
                       role="group"
                       aria-label={`${s.name} ${zhDay(date)} 出席記錄`}
@@ -380,7 +390,12 @@ function AttendanceTable({
                         onClick={() => onSetMark(s, "no")}
                       />
                     </span>
-                    <span className="font-serif-tc text-[17px] font-bold text-ink">
+                    <span
+                      className={
+                        "font-serif-tc text-[17px] font-bold text-ink " +
+                        struckNameClass(s.missed)
+                      }
+                    >
                       {s.name}
                     </span>
                     {mark === "none" && (

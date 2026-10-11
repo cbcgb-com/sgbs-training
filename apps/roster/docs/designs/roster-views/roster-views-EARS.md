@@ -32,6 +32,15 @@
 - [x] **ROSTER-GRID-010**: The Master view shall keep withdrawn students
       with a 已退出 badge so history survives.
 
+## Strikeout treatment
+
+- [x] **ROSTER-STRK-001**: The system shall render students with 本季缺課
+      ≥ 2 (replicated `missed` ≥ 2) faded with a dotted strikeout on
+      分組, 名單, 出席, and 課堂安排, without excluding them from any
+      list or disabling any control.
+- [x] **ROSTER-STRK-002**: The strikeout threshold shall be 2 absences;
+      students with fewer absences render normally.
+
 ## Kanban Views
 
 - [x] **ROSTER-KAN-001**: The system shall provide kanban boards grouping

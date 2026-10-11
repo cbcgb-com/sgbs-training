@@ -112,6 +112,9 @@ export const withdrawn = query({
         withdrawnAt: s.withdrawnAt!,
         withdrawnReason: s.withdrawnReason ?? "",
         photoStorageId: s.photoStorageId,
+        // Drives the missed-≥2 strikeout in the roster views: a withdrawn
+        // student is exactly "no longer attending, was part of a group".
+        missed: s.missed,
       }));
   },
 });
