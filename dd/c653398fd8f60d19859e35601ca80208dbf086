@@ -1,0 +1,21 @@
+docs/javascripts/strongs-hover.js
+  s_b840d3d8eb1e4e::t_209ce8e025f9de 1-3,8,40,45-52,176,178-185,190-197
+docs/stylesheets/extra.css
+  s_b840d3d8eb1e4e::t_6964c84d8c34a4 1823-1865
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ddc653398fd8f60d19859e35601ca80208dbf086",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
