@@ -1,0 +1,25 @@
+.agents/skills/sgbs-strongs-interlinear/scripts/audit_alignment.py
+  s_b840d3d8eb1e4e::t_8ce6b413450b22 1-126
+.agents/skills/sgbs-strongs-interlinear/SKILL.md
+  s_b840d3d8eb1e4e::t_8ce6b413450b22 3,11,18,22,26,36,38
+.agents/skills/sgbs-strongs-interlinear/scripts/generate_strongs_pages.py
+  s_b840d3d8eb1e4e::t_4088b19e6abf44 28-36
+.agents/skills/sgbs-strongs-interlinear/references/verification-gold-standard.md
+  s_b840d3d8eb1e4e::t_8ce6b413450b22 101,105-106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0318039ad793ade26e56ccf854f9c5dd3decdb82",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
