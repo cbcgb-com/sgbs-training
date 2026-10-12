@@ -1,0 +1,21 @@
+.agents/skills/sgbs-strongs-interlinear/scripts/align_fine.py
+  s_b840d3d8eb1e4e::t_6864a4b1c681a6 53
+docs/exercises/lesson-4/galatians-5-13-26.md
+  s_b840d3d8eb1e4e::t_2996c4e274a899 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4ef30098ae20a9bbfb0f5a73e1438e1e0bf850b1",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
