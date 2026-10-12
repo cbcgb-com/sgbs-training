@@ -4,6 +4,16 @@
   var lexiconPromise = null;
   var panel = null;
 
+  function lexiconUrl() {
+    // Resolve relative to THIS script's location so it works at any page depth
+    // (directory-URL pages make page-relative fetches one level too deep).
+    var script = document.querySelector('script[src*="strongs-hover.js"]');
+    if (script && script.src) {
+      return new URL("strongs-lexicon.json", new URL(".", script.src)).href;
+    }
+    return "../strongs-lexicon.json";
+  }
+
   function setHighlight(g, on) {
     document
       .querySelectorAll('.strongs-verse [data-g="' + g + '"]')
@@ -35,7 +45,7 @@
   function loadLexicon() {
     if (lexicon) return Promise.resolve(lexicon);
     if (!lexiconPromise) {
-      lexiconPromise = fetch("strongs-lexicon.json")
+      lexiconPromise = fetch(lexiconUrl())
         .then(function (r) {
           return r.json();
         })
