@@ -35,6 +35,8 @@ def repo_root() -> Path:
 
 SITE = repo_root() / "docs" / "exercises" / "lesson-4"
 NIV_CACHE = Path("/tmp/strongs-niv")
+STRONGS_DICT = Path("/tmp/strongs-greek-dictionary.js")
+STRONGS_DICT_URL = "https://raw.githubusercontent.com/openscriptures/strongs/master/greek/strongs-greek-dictionary.js"
 
 NIV_BOOKS = {
     "Romans": "Romans.json",
@@ -92,10 +94,12 @@ PASSAGES = [
 
 INTRO = (
     "每節經文：上排是 NIV 英文，下排是希臘原文；每個原文詞下方的數字，"
-    "就是它的史特朗號碼。把滑鼠移到任何一個字上（英文或希臘文），"
-    "它和對應的字會同時亮起。若一個字單獨亮起，表示它在另一邊沒有直接對應的字"
-    "（譯文補充的字，或原文裏未譯出的虛詞）。做詞彙研究時，用史特朗號碼到"
-    "[微讀聖經——原文工具](https://wd.bible/exegesis)查考原文字典和相關經文。"
+    "就是它的史特朗號碼（G＝希臘文，H＝希伯來文）。把滑鼠移到任何一個字上，"
+    "它和對應的字會同時亮起；**點擊**任何一個字，右側會顯示該詞的字典釋義——"
+    "多個譯法並列，哪一個最貼合這節經文，判斷留給你。若一個字單獨亮起，"
+    "表示它在另一邊沒有直接對應的字（譯文補充的字，或原文裏未譯出的虛詞）。"
+    "做詞彙研究時，也可到[微讀聖經——原文工具](https://wd.bible/exegesis)"
+    "查考原文字典和相關經文。"
 )
 
 
@@ -107,7 +111,8 @@ def sources_block(passage: dict) -> str:
         "All rights reserved.（全站引用未超過 500 節，並隨文附本聲明。）\n"
         "- 希臘原文：Tischendorf 第八版（Novum Testamentum Graece, 1869–72，公版），"
         "經 [bolls.life](https://bolls.life) API 提供。\n"
-        "- 史特朗號碼：出自《史特朗經文彙編》（Strong's Exhaustive Concordance，公版）。\n"
+        "- 史特朗號碼：出自《史特朗經文彙編》（Strong's Exhaustive Concordance，公版）；"
+        "字典釋義採 [Open Scriptures](https://github.com/openscriptures/strongs) 數位版（CC-BY-SA）。\n"
         f"- 對照查驗：[BibleHub 逐字對照]({passage['biblehub']})・"
         "[STEP Bible](https://www.stepbible.org)・"
         "[微讀聖經原文工具](https://wd.bible/exegesis)。本頁的英希對照組為人工整理，"
@@ -179,7 +184,7 @@ def render_verse(vnum, align_list, en_words, greek_words):
     gk_spans = []
     for i, (word, num) in enumerate(greek_words):
         gid = group_of_gk[i]
-        inner = esc(word) + (f'<span class="strongs-num">{esc(num)}</span>' if num else "")
+        inner = esc(word) + (f'<span class="strongs-num">G{esc(num)}</span>' if num else "")
         gk_spans.append(f'<span class="strongs-word" data-g="{gid}">{inner}</span>')
 
     return (
@@ -190,7 +195,35 @@ def render_verse(vnum, align_list, en_words, greek_words):
     )
 
 
+def load_strongs_dictionary() -> dict:
+    """Fetch (and cache) the OpenScriptures Strong's Greek dictionary (JSON-in-JS)."""
+    if not STRONGS_DICT.exists():
+        STRONGS_DICT.write_bytes(fetch(STRONGS_DICT_URL))
+    raw = STRONGS_DICT.read_text(encoding="utf-8")
+    obj, _ = json.JSONDecoder().raw_decode(raw[raw.find("{"):])
+    return obj
+
+
+def build_lexicon(used_numbers: set) -> dict:
+    dictionary = load_strongs_dictionary()
+    missing = sorted(n for n in used_numbers if f"G{n}" not in dictionary)
+    if missing:
+        raise SystemExit(f"Strong's dictionary missing entries for: {missing}")
+    lexicon = {}
+    for n in sorted(used_numbers, key=int):
+        e = dictionary[f"G{n}"]
+        lexicon[f"G{n}"] = {
+            "lemma": e.get("lemma", ""),
+            "translit": e.get("translit", ""),
+            "kjv_def": e.get("kjv_def", ""),
+            "strongs_def": e.get("strongs_def", "").strip(),
+            "derivation": e.get("derivation", "").strip(),
+        }
+    return lexicon
+
+
 def main():
+    all_used_numbers = set()
     SITE.mkdir(parents=True, exist_ok=True)
     for p in PASSAGES:
         niv_data = json.loads(niv_path(p["niv_book"]).read_text())
@@ -216,7 +249,17 @@ def main():
 
         (SITE / p["file"]).write_text("\n".join(parts), encoding="utf-8")
         n_groups = sum(len(align[v]) for v in want)
+        for v in want:
+            for (_, num) in greek_verses[v]:
+                if num:
+                    all_used_numbers.add(num)
         print(f"OK {p['file']}: {len(want)} verses, {n_groups} fine-grained groups")
+
+    lexicon = build_lexicon(all_used_numbers)
+    (SITE / "strongs-lexicon.json").write_text(
+        json.dumps(lexicon, ensure_ascii=False, indent=1), encoding="utf-8"
+    )
+    print(f"OK strongs-lexicon.json: {len(lexicon)} entries")
 
 
 if __name__ == "__main__":

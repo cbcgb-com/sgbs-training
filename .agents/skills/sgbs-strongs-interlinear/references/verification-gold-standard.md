@@ -95,6 +95,7 @@ The shipped review cleared 228/228 flags into categories 1–3.
 | BibleHub interlinear | https://biblehub.com/interlinear/{book}/{ch}-{v}.htm | manual spot-check of any word | third line is *glosses*, not NIV — never compare it word-for-word with NIV |
 | STEP Bible | https://www.stepbible.org | edition comparison (incl. Tischendorf) | NIV84 tagging exists there for online use only |
 | 微讀聖經 | https://wd.bible/exegesis | original-language dictionaries by Strong's number | what the course itself teaches students to use |
+| OpenScriptures Strong's | https://github.com/openscriptures/strongs | public-domain digital Strong's dictionary (lemma, translit, kjv_def, strongs_def, derivation) | feeds `strongs-lexicon.json`; digital edition is CC-BY-SA — cite on page |
 
 ## Adding a new passage (end-to-end)
 

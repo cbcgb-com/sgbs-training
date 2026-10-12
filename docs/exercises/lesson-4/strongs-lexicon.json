@@ -1,0 +1,1927 @@
+{
+ "G18": {
+  "lemma": "ἀγαθός",
+  "translit": "agathós",
+  "kjv_def": "benefit, good(-s, things), well",
+  "strongs_def": "\"good\" (in any sense, often as noun)",
+  "derivation": "a primary word;"
+ },
+ "G19": {
+  "lemma": "ἀγαθωσύνη",
+  "translit": "agathōsýnē",
+  "kjv_def": "goodness",
+  "strongs_def": "goodness, i.e. virtue or beneficence",
+  "derivation": "from G18 (ἀγαθός);"
+ },
+ "G25": {
+  "lemma": "ἀγαπάω",
+  "translit": "agapáō",
+  "kjv_def": "(be-)love(-ed)",
+  "strongs_def": "to love (in a social or moral sense)",
+  "derivation": "perhaps from (much) (or compare G5689);"
+ },
+ "G26": {
+  "lemma": "ἀγάπη",
+  "translit": "agápē",
+  "kjv_def": "(feast of) charity(-ably), dear, love",
+  "strongs_def": "love, i.e. affection or benevolence; specially (plural) a love-feast",
+  "derivation": "from G25 (ἀγαπάω);"
+ },
+ "G32": {
+  "lemma": "ἄγγελος",
+  "translit": "ángelos",
+  "kjv_def": "angel, messenger",
+  "strongs_def": "compare G34 (ἀγέλη)) (to bring tidings); a messenger; especially an \"angel\"; by implication, a pastor",
+  "derivation": "from (probably derived from G71 (ἄγω);"
+ },
+ "G71": {
+  "lemma": "ἄγω",
+  "translit": "ágō",
+  "kjv_def": "be, bring (forth), carry, (let) go, keep, lead away, be open",
+  "strongs_def": "properly, to lead; by implication, to bring, drive, (reflexively) go, (specially) pass (time), or (figuratively) induce",
+  "derivation": "a primary verb;"
+ },
+ "G80": {
+  "lemma": "ἀδελφός",
+  "translit": "adelphós",
+  "kjv_def": "brother",
+  "strongs_def": "a brother (literally or figuratively) near or remote (much like G1 (Α))",
+  "derivation": "from G1 (Α) (as a connective particle) and (the womb);"
+ },
+ "G93": {
+  "lemma": "ἀδικία",
+  "translit": "adikía",
+  "kjv_def": "iniquity, unjust, unrighteousness, wrong",
+  "strongs_def": "(legal) injustice (properly, the quality, by implication, the act); morally, wrongfulness (of character, life or act)",
+  "derivation": "from G94 (ἄδικος);"
+ },
+ "G135": {
+  "lemma": "αἴνιγμα",
+  "translit": "aínigma",
+  "kjv_def": "X darkly",
+  "strongs_def": "an obscure saying (\"enigma\"), i.e. (abstractly) obscureness",
+  "derivation": "from a derivative of G136 (αἶνος) (in its primary sense);"
+ },
+ "G139": {
+  "lemma": "αἵρεσις",
+  "translit": "haíresis",
+  "kjv_def": "heresy (which is the Greek word itself), sect",
+  "strongs_def": "properly, a choice, i.e. (specially) a party or (abstractly) disunion",
+  "derivation": "from G138 (αἱρέομαι);"
+ },
+ "G167": {
+  "lemma": "ἀκαθαρσία",
+  "translit": "akatharsía",
+  "kjv_def": "uncleanness",
+  "strongs_def": "impurity (the quality), physically or morally",
+  "derivation": "from G169 (ἀκάθαρτος);"
+ },
+ "G214": {
+  "lemma": "ἀλαλάζω",
+  "translit": "alalázō",
+  "kjv_def": "tinkle, wail",
+  "strongs_def": "to vociferate, i.e. (by implication) to wail; figuratively, to clang",
+  "derivation": "from ( a shout, \"halloo\");"
+ },
+ "G225": {
+  "lemma": "ἀλήθεια",
+  "translit": "alḗtheia",
+  "kjv_def": "true, X truly, truth, verity",
+  "strongs_def": "truth",
+  "derivation": "from G227 (ἀληθής);"
+ },
+ "G235": {
+  "lemma": "ἀλλά",
+  "translit": "allá",
+  "kjv_def": "and, but (even), howbeit, indeed, nay, nevertheless, no, notwithstanding, save, therefore, yea, yet",
+  "strongs_def": "properly, other things, i.e. (adverbially) contrariwise (in many relations)",
+  "derivation": "neuter plural of G243 (ἄλλος);"
+ },
+ "G240": {
+  "lemma": "ἀλλήλων",
+  "translit": "allḗlōn",
+  "kjv_def": "each other, mutual, one another, (the other), (them-, your-)selves, (selves) together (sometimes with G3326 (μετά) or G4314 (πρός))",
+  "strongs_def": "one another",
+  "derivation": "Genitive plural from G243 (ἄλλος) reduplicated;"
+ },
+ "G355": {
+  "lemma": "ἀναλίσκω",
+  "translit": "analískō",
+  "kjv_def": "consume",
+  "strongs_def": "properly, to use up, i.e. destroy",
+  "derivation": "from G303 (ἀνά) and a form of the alternate of G138 (αἱρέομαι);"
+ },
+ "G435": {
+  "lemma": "ἀνήρ",
+  "translit": "anḗr",
+  "kjv_def": "fellow, husband, man, sir",
+  "strongs_def": "a man (properly as an individual male)",
+  "derivation": "a primary word (compare G444 (ἄνθρωπος));"
+ },
+ "G444": {
+  "lemma": "ἄνθρωπος",
+  "translit": "ánthrōpos",
+  "kjv_def": "certain, man",
+  "strongs_def": "from G3700 (ὀπτάνομαι)); man-faced, i.e. a human being",
+  "derivation": "from G435 (ἀνήρ) and (the countenance;"
+ },
+ "G480": {
+  "lemma": "ἀντίκειμαι",
+  "translit": "antíkeimai",
+  "kjv_def": "adversary, be contrary, oppose",
+  "strongs_def": "to lie opposite, i.e. be adverse (figuratively, repugnant) to",
+  "derivation": "from G473 (ἀντί) and G2749 (κεῖμαι);"
+ },
+ "G575": {
+  "lemma": "ἀπό",
+  "translit": "apó",
+  "kjv_def": "(X here-)after, ago, at, because of, before, by (the space of), for(-th), from, in, (out) of, off, (up-)on(-ce), since, with",
+  "strongs_def": "\"off,\" i.e. away (from something near), in various senses (of place, time, or relation; literal or figurative)",
+  "derivation": "a primary particle;"
+ },
+ "G599": {
+  "lemma": "ἀποθνήσκω",
+  "translit": "apothnḗskō",
+  "kjv_def": "be dead, death, die, lie a-dying, be slain (X with)",
+  "strongs_def": "to die off (literally or figuratively)",
+  "derivation": "from G575 (ἀπό) and G2348 (θνήσκω);"
+ },
+ "G725": {
+  "lemma": "ἁρπαγμός",
+  "translit": "harpagmós",
+  "kjv_def": "robbery",
+  "strongs_def": "plunder (properly concrete)",
+  "derivation": "from G726 (ἁρπάζω);"
+ },
+ "G737": {
+  "lemma": "ἄρτι",
+  "translit": "árti",
+  "kjv_def": "this day (hour), hence(-forth), here(-after), hither(-to), (even) now, (this) present",
+  "strongs_def": "just now",
+  "derivation": "adverb from a derivative of G142 (αἴρω) (compare G740 (ἄρτος)) through the idea of suspension;"
+ },
+ "G746": {
+  "lemma": "ἀρχή",
+  "translit": "archḗ",
+  "kjv_def": "beginning, corner, (at the, the) first (estate), magistrate, power, principality, principle, rule",
+  "strongs_def": "(properly abstract) a commencement, or (concretely) chief (in various applications of order, time, place, or rank)",
+  "derivation": "from G756 (ἄρχομαι);"
+ },
+ "G766": {
+  "lemma": "ἀσέλγεια",
+  "translit": "asélgeia",
+  "kjv_def": "filthy, lasciviousness, wantonness",
+  "strongs_def": "licentiousness (sometimes including other vices)",
+  "derivation": "from a compound of G1 (Α) (as a negative particle) and a presumed (of uncertain derivation, but apparently meaning continent);"
+ },
+ "G807": {
+  "lemma": "ἀσχημονέω",
+  "translit": "aschēmonéō",
+  "kjv_def": "behave self uncomely (unseemly)",
+  "strongs_def": "to be (i.e. act) unbecoming",
+  "derivation": "from G809 (ἀσχήμων);"
+ },
+ "G846": {
+  "lemma": "αὐτός",
+  "translit": "autós",
+  "kjv_def": "her, it(-self), one, the other, (mine) own, said, (self-), the) same, ((him-, my-, thy- )self, (your-)selves, she, that, their(-s), them(-selves), there(-at, - by, -in, -into, -of, -on, -with), they, (these) things, this (man), those, together, very, which",
+  "strongs_def": "the reflexive pronoun self, used (alone or in the comparative G1438 (ἑαυτοῦ)) of the third person , and (with the proper personal pronoun) of the other persons",
+  "derivation": "from the particle (perhaps akin to the base of G109 (ἀήρ) through the idea of a baffling wind) (backward);"
+ },
+ "G874": {
+  "lemma": "ἀφορμή",
+  "translit": "aphormḗ",
+  "kjv_def": "occasion",
+  "strongs_def": "a starting-point, i.e. (figuratively) an opportunity",
+  "derivation": "from a compound of G575 (ἀπό) and G3729 (ὁρμάω);"
+ },
+ "G899": {
+  "lemma": "βάθος",
+  "translit": "báthos",
+  "kjv_def": "deep(-ness, things), depth",
+  "strongs_def": "profundity, i.e. (by implication) extent; (figuratively) mystery",
+  "derivation": "from the same as G901 (βαθύς);"
+ },
+ "G932": {
+  "lemma": "βασιλεία",
+  "translit": "basileía",
+  "kjv_def": "kingdom, + reign",
+  "strongs_def": "properly, royalty, i.e. (abstractly) rule, or (concretely) a realm (literally or figuratively)",
+  "derivation": "from G935 (βασιλεύς);"
+ },
+ "G991": {
+  "lemma": "βλέπω",
+  "translit": "blépō",
+  "kjv_def": "behold, beware, lie, look (on, to), perceive, regard, see, sight, take heed",
+  "strongs_def": "to look at (literally or figuratively)",
+  "derivation": "a primary verb;"
+ },
+ "G1063": {
+  "lemma": "γάρ",
+  "translit": "gár",
+  "kjv_def": "and, as, because (that), but, even, for, indeed, no doubt, seeing, then, therefore, verily, what, why, yet",
+  "strongs_def": "properly, assigning a reason (used in argument, explanation or intensification; often with other particles)",
+  "derivation": "a primary particle;"
+ },
+ "G1065": {
+  "lemma": "γέ",
+  "translit": "gé",
+  "kjv_def": "and besides, doubtless, at least, yet",
+  "strongs_def": "",
+  "derivation": "a primary particle of emphasis or qualification (often used with other particles prefixed)"
+ },
+ "G1096": {
+  "lemma": "γίνομαι",
+  "translit": "gínomai",
+  "kjv_def": "arise, be assembled, be(-come, -fall, -have self), be brought (to pass), (be) come (to pass), continue, be divided, draw, be ended, fall, be finished, follow, be found, be fulfilled, + God forbid, grow, happen, have, be kept, be made, be married, be ordained to be, partake, pass, be performed, be published, require, seem, be showed, X soon as it was, sound, be taken, be turned, use, wax, will, would, be wrought",
+  "strongs_def": "to cause to be (\"gen\"-erate), i.e. (reflexively) to become (come into being), used with great latitude (literal, figurative, intensive, etc.)",
+  "derivation": "a prolongation and middle voice form of a primary verb;"
+ },
+ "G1097": {
+  "lemma": "γινώσκω",
+  "translit": "ginṓskō",
+  "kjv_def": "allow, be aware (of), feel, (have) know(-ledge), perceived, be resolved, can speak, be sure, understand",
+  "strongs_def": "to \"know\" (absolutely) in a great variety of applications and with many implications (as follow, with others not thus clearly expressed)",
+  "derivation": "a prolonged form of a primary verb;"
+ },
+ "G1100": {
+  "lemma": "γλῶσσα",
+  "translit": "glōssa",
+  "kjv_def": "tongue",
+  "strongs_def": "the tongue; by implication, a language (specially, one naturally unacquired)",
+  "derivation": "of uncertain affinity;"
+ },
+ "G1108": {
+  "lemma": "γνῶσις",
+  "translit": "gnōsis",
+  "kjv_def": "knowledge, science",
+  "strongs_def": "knowing (the act), i.e. (by implication) knowledge",
+  "derivation": "from G1097 (γινώσκω);"
+ },
+ "G1119": {
+  "lemma": "γόνυ",
+  "translit": "góny",
+  "kjv_def": "knee(X -l)",
+  "strongs_def": "the \"knee\"",
+  "derivation": "of uncertain affinity;"
+ },
+ "G1125": {
+  "lemma": "γράφω",
+  "translit": "gráphō",
+  "kjv_def": "describe, write(-ing, -ten)",
+  "strongs_def": "to \"grave\", especially to write; figuratively, to describe",
+  "derivation": "a primary verb;"
+ },
+ "G1132": {
+  "lemma": "γυμνότης",
+  "translit": "gymnótēs",
+  "kjv_def": "nakedness",
+  "strongs_def": "nudity (absolute or comparative)",
+  "derivation": "from G1131 (γυμνός);"
+ },
+ "G1143": {
+  "lemma": "δάκνω",
+  "translit": "dáknō",
+  "kjv_def": "bite",
+  "strongs_def": "to bite, i.e. (figuratively) thwart",
+  "derivation": "a prolonged form of a primary root;"
+ },
+ "G1161": {
+  "lemma": "δέ",
+  "translit": "dé",
+  "kjv_def": "also, and, but, moreover, now (often unexpressed in English)",
+  "strongs_def": "but, and, etc.",
+  "derivation": "a primary particle (adversative or continuative);"
+ },
+ "G1188": {
+  "lemma": "δεξιός",
+  "translit": "dexiós",
+  "kjv_def": "right (hand, side)",
+  "strongs_def": "the right side or (feminine) hand (as that which usually takes)",
+  "derivation": "from G1209 (δέχομαι);"
+ },
+ "G1223": {
+  "lemma": "διά",
+  "translit": "diá",
+  "kjv_def": "after, always, among, at, to avoid, because of (that), briefly, by, for (cause) … fore, from, in, by occasion of, of, by reason of, for sake, that, thereby, therefore, X though, through(-out), to, wherefore, with (-in)",
+  "strongs_def": "through (in very wide applications, local, causal, or occasional)",
+  "derivation": "a primary preposition denoting the channel of an act;"
+ },
+ "G1344": {
+  "lemma": "δικαιόω",
+  "translit": "dikaióō",
+  "kjv_def": "free, justify(-ier), be righteous",
+  "strongs_def": "to render (i.e. show or regard as) just or innocent",
+  "derivation": "from G1342 (δίκαιος);"
+ },
+ "G1352": {
+  "lemma": "διό",
+  "translit": "dió",
+  "kjv_def": "for which cause, therefore, wherefore",
+  "strongs_def": "through which thing, i.e. consequently",
+  "derivation": "from G1223 (διά) and G3739 (ὅς);"
+ },
+ "G1370": {
+  "lemma": "διχοστασία",
+  "translit": "dichostasía",
+  "kjv_def": "division, sedition",
+  "strongs_def": "disunion, i.e. (figuratively) dissension",
+  "derivation": "from a derivative of G1364 (δίς) and G4714 (στάσις);"
+ },
+ "G1375": {
+  "lemma": "διωγμός",
+  "translit": "diōgmós",
+  "kjv_def": "persecution",
+  "strongs_def": "persecution",
+  "derivation": "from G1377 (διώκω);"
+ },
+ "G1391": {
+  "lemma": "δόξα",
+  "translit": "dóxa",
+  "kjv_def": "dignity, glory(-ious), honour, praise, worship",
+  "strongs_def": "glory (as very apparent), in a wide application (literal or figurative, objective or subjective)",
+  "derivation": "from the base of G1380 (δοκέω);"
+ },
+ "G1392": {
+  "lemma": "δοξάζω",
+  "translit": "doxázō",
+  "kjv_def": "(make) glorify(-ious), full of (have) glory, honour, magnify",
+  "strongs_def": "to render (or esteem) glorious (in a wide application)",
+  "derivation": "from G1391 (δόξα);"
+ },
+ "G1398": {
+  "lemma": "δουλεύω",
+  "translit": "douleúō",
+  "kjv_def": "be in bondage, (do) serve(-ice)",
+  "strongs_def": "to be a slave to (literal or figurative, involuntary or voluntary)",
+  "derivation": "from G1401 (δοῦλος);"
+ },
+ "G1401": {
+  "lemma": "δοῦλος",
+  "translit": "doûlos",
+  "kjv_def": "bond(-man), servant",
+  "strongs_def": "a slave (literal or figurative, involuntary or voluntary; frequently, therefore in a qualified sense of subjection or subserviency)",
+  "derivation": "from G1210 (δέω);"
+ },
+ "G1410": {
+  "lemma": "δύναμαι",
+  "translit": "dýnamai",
+  "kjv_def": "be able, can (do, + -not), could, may, might, be possible, be of power",
+  "strongs_def": "to be able or possible",
+  "derivation": "of uncertain affinity;"
+ },
+ "G1411": {
+  "lemma": "δύναμις",
+  "translit": "dýnamis",
+  "kjv_def": "ability, abundance, meaning, might(-ily, -y, -y deed), (worker of) miracle(-s), power, strength, violence, mighty (wonderful) work",
+  "strongs_def": "force (literally or figuratively); specially, miraculous power (usually by implication, a miracle itself)",
+  "derivation": "from G1410 (δύναμαι);"
+ },
+ "G1437": {
+  "lemma": "ἐάν",
+  "translit": "eán",
+  "kjv_def": "before, but, except, (and) if, (if) so, (what-, whither-)soever, though, when (-soever), whether (or), to whom, (who-)so(-ever)",
+  "strongs_def": "a conditional particle; in case that, provided, etc.; often used in connection with other particles to denote indefiniteness or uncertainty",
+  "derivation": "from G1487 (εἰ) and G302 (ἄν);"
+ },
+ "G1438": {
+  "lemma": "ἑαυτοῦ",
+  "translit": "heautoû",
+  "kjv_def": "alone, her (own, -self), (he) himself, his (own), itself, one (to) another, our (thine) own(-selves), + that she had, their (own, own selves), (of) them(-selves), they, thyself, you, your (own, own conceits, own selves, -selves)",
+  "strongs_def": "him- (her-, it-, them-, also (in conjunction with the personal pronoun of the other persons) my-, thy-, our-, your-) self (selves), etc.",
+  "derivation": "from a reflexive pronoun otherwise obsolete and the genitive case (dative case or accusative case) of G846 (αὐτός);"
+ },
+ "G1453": {
+  "lemma": "ἐγείρω",
+  "translit": "egeírō",
+  "kjv_def": "awake, lift (up), raise (again, up), rear up, (a-)rise (again, up), stand, take up",
+  "strongs_def": "to waken (transitively or intransitively), i.e. rouse (literally, from sleep, from sitting or lying, from disease, from death; or figuratively, from obscurity, inactivity, ruins, nonexistence)",
+  "derivation": "probably akin to the base of G58 (ἀγορά) (through the idea of collecting one's faculties);"
+ },
+ "G1458": {
+  "lemma": "ἐγκαλέω",
+  "translit": "enkaléō",
+  "kjv_def": "accuse, call in question, implead, lay to the charge",
+  "strongs_def": "to call in (as a debt or demand), i.e. bring to account (charge, criminate, etc.)",
+  "derivation": "from G1722 (ἐν) and G2564 (καλέω);"
+ },
+ "G1466": {
+  "lemma": "ἐγκράτεια",
+  "translit": "enkráteia",
+  "kjv_def": "temperance",
+  "strongs_def": "self-control (especially continence)",
+  "derivation": "from G1468 (ἐγκρατής);"
+ },
+ "G1473": {
+  "lemma": "ἐγώ",
+  "translit": "egṓ",
+  "kjv_def": "I, me",
+  "strongs_def": "",
+  "derivation": "a primary pronoun of the first person I (only expressed when emphatic)"
+ },
+ "G1487": {
+  "lemma": "εἰ",
+  "translit": "ei",
+  "kjv_def": "forasmuch as, if, that, (al-)though, whether",
+  "strongs_def": "if, whether, that, etc.",
+  "derivation": "a primary particle of conditionality;"
+ },
+ "G1492": {
+  "lemma": "εἴδω",
+  "translit": "eídō",
+  "kjv_def": "be aware, behold, X can (+ not tell), consider, (have) know(-ledge), look (on), perceive, see, be sure, tell, understand, wish, wot",
+  "strongs_def": "used only in certain past tenses, the others being borrowed from the equivalent G3700 (ὀπτάνομαι) and G3708 (ὁράω); properly, to see (literally or figuratively); by implication, (in the perfect tense only) to know",
+  "derivation": "a primary verb;"
+ },
+ "G1495": {
+  "lemma": "εἰδωλολατρεία",
+  "translit": "eidōlolatreía",
+  "kjv_def": "idolatry",
+  "strongs_def": "image-worship (literally or figuratively)",
+  "derivation": "from G1497 (εἴδωλον) and G2999 (λατρεία);"
+ },
+ "G1504": {
+  "lemma": "εἰκών",
+  "translit": "eikṓn",
+  "kjv_def": "image",
+  "strongs_def": "a likeness, i.e. (literally) statue, profile, or (figuratively) representation, resemblance",
+  "derivation": "from G1503 (εἴκω);"
+ },
+ "G1510": {
+  "lemma": "εἰμί",
+  "translit": "eimí",
+  "kjv_def": "am, have been, X it is I, was",
+  "strongs_def": "I exist (used only when emphatic)",
+  "derivation": "the first person singular present indicative; a prolonged form of a primary and defective verb;"
+ },
+ "G1515": {
+  "lemma": "εἰρήνη",
+  "translit": "eirḗnē",
+  "kjv_def": "one, peace, quietness, rest, + set at one again",
+  "strongs_def": "peace (literally or figuratively); by implication, prosperity",
+  "derivation": "probably from a primary verb (to join);"
+ },
+ "G1519": {
+  "lemma": "εἰς",
+  "translit": "eis",
+  "kjv_def": "(abundant-)ly, against, among, as, at, (back-)ward, before, by, concerning, + continual, + far more exceeding, for (intent, purpose), fore, + forth, in (among, at, unto, -so much that, -to), to the intent that, + of one mind, + never, of, (up-)on, + perish, + set at one again, (so) that, therefore(-unto), throughout, til, to (be, the end, -ward), (here-)until(-to), …ward, (where-)fore, with",
+  "strongs_def": "to or into (indicating the point reached or entered), of place, time, or (figuratively) purpose (result, etc.); also in adverbial phrases",
+  "derivation": "a primary preposition;"
+ },
+ "G1520": {
+  "lemma": "εἷς",
+  "translit": "heîs",
+  "kjv_def": "a(-n, -ny, certain), + abundantly, man, one (another), only, other, some",
+  "strongs_def": "one",
+  "derivation": "a primary numeral;"
+ },
+ "G1535": {
+  "lemma": "εἴτε",
+  "translit": "eíte",
+  "kjv_def": "if, or, whether",
+  "strongs_def": "if too",
+  "derivation": "from G1487 (εἰ) and G5037 (τέ);"
+ },
+ "G1537": {
+  "lemma": "ἐκ",
+  "translit": "ek",
+  "kjv_def": "after, among, X are, at, betwixt(-yond), by (the means of), exceedingly, (+ abundantly above), for(- th), from (among, forth, up), + grudgingly, + heartily, X heavenly, X hereby, + very highly, in, …ly, (because, by reason) of, off (from), on, out among (from, of), over, since, X thenceforth, through, X unto, X vehemently, with(-out)",
+  "strongs_def": "literal or figurative; direct or remote)",
+  "derivation": "a primary preposition denoting origin (the point whence action or motion proceeds), from, out (of place, time, or cause;"
+ },
+ "G1538": {
+  "lemma": "ἕκαστος",
+  "translit": "hékastos",
+  "kjv_def": "any, both, each (one), every (man, one, woman), particularly",
+  "strongs_def": "each or every",
+  "derivation": "as if a superlative of (afar);"
+ },
+ "G1588": {
+  "lemma": "ἐκλεκτός",
+  "translit": "eklektós",
+  "kjv_def": "chosen, elect",
+  "strongs_def": "select; by implication, favorite",
+  "derivation": "from G1586 (ἐκλέγομαι);"
+ },
+ "G1657": {
+  "lemma": "ἐλευθερία",
+  "translit": "eleuthería",
+  "kjv_def": "liberty",
+  "strongs_def": "freedom (legitimate or licentious, chiefly moral or ceremonial)",
+  "derivation": "from G1658 (ἐλεύθερος);"
+ },
+ "G1679": {
+  "lemma": "ἐλπίζω",
+  "translit": "elpízō",
+  "kjv_def": "(have, thing) hope(-d) (for), trust",
+  "strongs_def": "to expect or confide",
+  "derivation": "from G1680 (ἐλπίς);"
+ },
+ "G1680": {
+  "lemma": "ἐλπίς",
+  "translit": "elpís",
+  "kjv_def": "faith, hope",
+  "strongs_def": "expectation (abstractly or concretely) or confidence",
+  "derivation": "from a primary (to anticipate, usually with pleasure);"
+ },
+ "G1722": {
+  "lemma": "ἐν",
+  "translit": "en",
+  "kjv_def": "about, after, against, + almost, X altogether, among, X as, at, before, between, (here-)by (+ all means), for (… sake of), + give self wholly to, (here-)in(-to, -wardly), X mightily, (because) of, (up-)on, (open-)ly, X outwardly, one, X quickly, X shortly, (speedi-)ly, X that, X there(-in, -on), through(-out), (un-)to(-ward), under, when, where(-with), while, with(-in)",
+  "strongs_def": "\"in,\" at, (up-)on, by, etc.",
+  "derivation": "a primary preposition denoting (fixed) position (in place, time or state), and (by implication) instrumentality (medially or constructively), i.e. a relation of rest (intermediate between G1519 (εἰς) and G1537 (ἐκ));"
+ },
+ "G1752": {
+  "lemma": "ἕνεκα",
+  "translit": "héneka",
+  "kjv_def": "because, for (cause, sake), (where-)fore, by reason of, that",
+  "strongs_def": "on account of",
+  "derivation": "of uncertain affinity;"
+ },
+ "G1764": {
+  "lemma": "ἐνίστημι",
+  "translit": "enístēmi",
+  "kjv_def": "come, be at hand, present",
+  "strongs_def": "to place on hand, i.e. (reflexively) impend, (participle) be instant",
+  "derivation": "from G1722 (ἐν) and G2476 (ἵστημι);"
+ },
+ "G1793": {
+  "lemma": "ἐντυγχάνω",
+  "translit": "entynchánō",
+  "kjv_def": "deal with, make intercession",
+  "strongs_def": "to chance upon, i.e. (by implication) confer with; by extension to entreat (in favor or against)",
+  "derivation": "from G1722 (ἐν) and G5177 (τυγχάνω);"
+ },
+ "G1843": {
+  "lemma": "ἐξομολογέω",
+  "translit": "exomologéō",
+  "kjv_def": "confess, profess, promise",
+  "strongs_def": "to acknowledge or (by implication, of assent) agree fully",
+  "derivation": "from G1537 (ἐκ) and G3670 (ὁμολογέω);"
+ },
+ "G1909": {
+  "lemma": "ἐπί",
+  "translit": "epí",
+  "kjv_def": "about (the times), above, after, against, among, as long as (touching), at, beside, X have charge of, (be-, (where-))fore, in (a place, as much as, the time of, -to), (because) of, (up-)on (behalf of), over, (by, for) the space of, through(-out), (un-)to(-ward), with",
+  "strongs_def": "properly, meaning superimposition (of time, place, order, etc.), as a relation of distribution (with the genitive case), i.e. over, upon, etc.; of rest (with the dative case) at, on, etc.; of direction (with the accusative case) towards, upon, etc.",
+  "derivation": "a primary preposition;"
+ },
+ "G1919": {
+  "lemma": "ἐπίγειος",
+  "translit": "epígeios",
+  "kjv_def": "earthly, in earth, terrestrial",
+  "strongs_def": "worldly (physically or morally)",
+  "derivation": "from G1909 (ἐπί) and G1093 (γῆ);"
+ },
+ "G1921": {
+  "lemma": "ἐπιγινώσκω",
+  "translit": "epiginṓskō",
+  "kjv_def": "(ac-, have, take)know(-ledge, well), perceive",
+  "strongs_def": "to know upon some mark, i.e. recognize; by implication, to become fully acquainted with, to acknowledge",
+  "derivation": "from G1909 (ἐπί) and G1097 (γινώσκω);"
+ },
+ "G1937": {
+  "lemma": "ἐπιθυμέω",
+  "translit": "epithyméō",
+  "kjv_def": "covet, desire, would fain, lust (after)",
+  "strongs_def": "to set the heart upon, i.e. long for (rightfully or otherwise)",
+  "derivation": "from G1909 (ἐπί) and G2372 (θυμός);"
+ },
+ "G1939": {
+  "lemma": "ἐπιθυμία",
+  "translit": "epithymía",
+  "kjv_def": "concupiscence, desire, lust (after)",
+  "strongs_def": "a longing (especially for what is forbidden)",
+  "derivation": "from G1937 (ἐπιθυμέω);"
+ },
+ "G2032": {
+  "lemma": "ἐπουράνιος",
+  "translit": "epouránios",
+  "kjv_def": "celestial, (in) heaven(-ly), high",
+  "strongs_def": "above the sky",
+  "derivation": "from G1909 (ἐπί) and G3772 (οὐρανός);"
+ },
+ "G2041": {
+  "lemma": "ἔργον",
+  "translit": "érgon",
+  "kjv_def": "deed, doing, labour, work",
+  "strongs_def": "toil (as an effort or occupation); by implication, an act",
+  "derivation": "from a primary (but obsolete) (to work);"
+ },
+ "G2046": {
+  "lemma": "ἐρέω",
+  "translit": "eréō",
+  "kjv_def": "call, say, speak (of), tell",
+  "strongs_def": "an alternate for G2036 (ἔπω) in certain tenses; to utter, i.e. speak or say",
+  "derivation": "probably a fuller form of G4483 (ῥέω);"
+ },
+ "G2052": {
+  "lemma": "ἐριθεία",
+  "translit": "eritheía",
+  "kjv_def": "contention(-ious), strife",
+  "strongs_def": "properly, intrigue, i.e. (by implication) faction",
+  "derivation": "perhaps as the same as G2042 (ἐρεθίζω);"
+ },
+ "G2054": {
+  "lemma": "ἔρις",
+  "translit": "éris",
+  "kjv_def": "contention, debate, strife, variance",
+  "strongs_def": "a quarrel, i.e. (by implication) wrangling",
+  "derivation": "of uncertain affinity;"
+ },
+ "G2064": {
+  "lemma": "ἔρχομαι",
+  "translit": "érchomai",
+  "kjv_def": "accompany, appear, bring, come, enter, fall out, go, grow, X light, X next, pass, resort, be set",
+  "strongs_def": "to come or go (in a great variety of applications, literally and figuratively)",
+  "derivation": "middle voice of a primary verb (used only in the present and imperfect tenses, the others being supplied by a kindred (middle voice) , or (active) , which do not otherwise occur);"
+ },
+ "G2072": {
+  "lemma": "ἔσοπτρον",
+  "translit": "ésoptron",
+  "kjv_def": "glass",
+  "strongs_def": "a mirror (for looking into)",
+  "derivation": "from G1519 (εἰς) and a presumed derivative of G3700 (ὀπτάνομαι);"
+ },
+ "G2087": {
+  "lemma": "ἕτερος",
+  "translit": "héteros",
+  "kjv_def": "altered, else, next (day), one, (an-)other, some, strange",
+  "strongs_def": "(an-, the) other or different",
+  "derivation": "of uncertain affinity;"
+ },
+ "G2147": {
+  "lemma": "εὑρίσκω",
+  "translit": "heurískō",
+  "kjv_def": "find, get, obtain, perceive, see",
+  "strongs_def": "to find (literally or figuratively)",
+  "derivation": "a prolonged form of a primary , which (together with another cognate form) is used for it in all the tenses except the present and imperfect;"
+ },
+ "G2189": {
+  "lemma": "ἔχθρα",
+  "translit": "échthra",
+  "kjv_def": "enmity, hatred",
+  "strongs_def": "hostility; by implication, a reason for opposition",
+  "derivation": "feminine of G2190 (ἐχθρός);"
+ },
+ "G2192": {
+  "lemma": "ἔχω",
+  "translit": "échō",
+  "kjv_def": "be (able, X hold, possessed with), accompany, + begin to amend, can(+ -not), X conceive, count, diseased, do + eat, + enjoy, + fear, following, have, hold, keep, + lack, + go to law, lie, + must needs, + of necessity, + need, next, + recover, + reign, + rest, + return, X sick, take for, + tremble, + uncircumcised, use",
+  "strongs_def": "to hold (used in very various applications, literally or figuratively, direct or remote; such as possession; ability, contiuity, relation, or condition)",
+  "derivation": "a primary verb;"
+ },
+ "G2198": {
+  "lemma": "ζάω",
+  "translit": "záō",
+  "kjv_def": "life(-time), (a-)live(-ly), quick",
+  "strongs_def": "to live (literally or figuratively)",
+  "derivation": "a primary verb;"
+ },
+ "G2205": {
+  "lemma": "ζῆλος",
+  "translit": "zēlos",
+  "kjv_def": "emulation, envy(-ing), fervent mind, indignation, jealousy, zeal",
+  "strongs_def": "properly, heat, i.e. (figuratively) \"zeal\" (in a favorable sense, ardor; in an unfavorable one, jealousy, as of a husband (figuratively, of God), or an enemy, malice)",
+  "derivation": "from G2204 (ζέω);"
+ },
+ "G2206": {
+  "lemma": "ζηλόω",
+  "translit": "zēlóō",
+  "kjv_def": "affect, covet (earnestly), (have) desire, (move with) envy, be jealous over, (be) zealous(-ly affect)",
+  "strongs_def": "to have warmth of feeling for or against",
+  "derivation": "from G2205 (ζῆλος);"
+ },
+ "G2212": {
+  "lemma": "ζητέω",
+  "translit": "zētéō",
+  "kjv_def": "be (go) about, desire, endeavour, enquire (for), require, (X will) seek (after, for, means)",
+  "strongs_def": "to seek (literally or figuratively); specially, (by Hebraism) to worship (God), or (in a bad sense) to plot (against life)",
+  "derivation": "of uncertain affinity;"
+ },
+ "G2222": {
+  "lemma": "ζωή",
+  "translit": "zōḗ",
+  "kjv_def": "life(-time)",
+  "strongs_def": "life (literally or figuratively)",
+  "derivation": "from G2198 (ζάω);"
+ },
+ "G2228": {
+  "lemma": "ἤ",
+  "translit": "ḗ",
+  "kjv_def": "and, but (either), (n-)either, except it be, (n-)or (else), rather, save, than, that, what, yea",
+  "strongs_def": "disjunctive, or; comparative, than",
+  "derivation": "a primary particle of distinction between two connected terms;"
+ },
+ "G2233": {
+  "lemma": "ἡγέομαι",
+  "translit": "hēgéomai",
+  "kjv_def": "account, (be) chief, count, esteem, governor, judge, have the rule over, suppose, think",
+  "strongs_def": "to lead, i.e. command (with official authority); figuratively, to deem, i.e. consider",
+  "derivation": "middle voice of a (presumed) strengthened form of G71 (ἄγω);"
+ },
+ "G2249": {
+  "lemma": "ἡμεῖς",
+  "translit": "hēmeîs",
+  "kjv_def": "us, we (ourselves)",
+  "strongs_def": "we (only used when emphatic)",
+  "derivation": "nominative plural of G1473 (ἐγώ);"
+ },
+ "G2250": {
+  "lemma": "ἡμέρα",
+  "translit": "hēméra",
+  "kjv_def": "age, + alway, (mid-)day (by day, (-ly)), + for ever, judgment, (day) time, while, years",
+  "strongs_def": "day, i.e. (literally) the time space between dawn and dark, or the whole 24 hours (but several days were usually reckoned by the Jews as inclusive of the parts of both extremes); figuratively, a period (always defined more or less clearly by the context)",
+  "derivation": "feminine (with G5610 (ὥρα) implied) of a derivative of (to sit; akin to the base of G1476 (ἑδραῖος)) meaning tame, i.e. gentle;"
+ },
+ "G2278": {
+  "lemma": "ἠχέω",
+  "translit": "ēchéō",
+  "kjv_def": "roar, sound",
+  "strongs_def": "to make a loud noise, i.e. reverberate",
+  "derivation": "from G2279 (ἦχος);"
+ },
+ "G2288": {
+  "lemma": "θάνατος",
+  "translit": "thánatos",
+  "kjv_def": "X deadly, (be…) death",
+  "strongs_def": "(properly, an adjective used as a noun) death (literally or figuratively)",
+  "derivation": "from G2348 (θνήσκω);"
+ },
+ "G2289": {
+  "lemma": "θανατόω",
+  "translit": "thanatóō",
+  "kjv_def": "become dead, (cause to be) put to death, kill, mortify",
+  "strongs_def": "",
+  "derivation": "from G2288 (θάνατος) to kill (literally or figuratively)"
+ },
+ "G2309": {
+  "lemma": "θέλω",
+  "translit": "thélō",
+  "kjv_def": "desire, be disposed (forward), intend, list, love, mean, please, have rather, (be) will (have, -ling, - ling(-ly))",
+  "strongs_def": "to determine (as an active option from subjective impulse; whereas G1014 (βούλομαι) properly denotes rather a passive acquiescence in objective considerations), i.e. choose or prefer (literally or figuratively); by implication, to wish, i.e. be inclined to (sometimes adverbially, gladly); impersonally for the future tense, to be about to; by Hebraism, to delight in",
+  "derivation": "apparently strengthened from the alternate form of G138 (αἱρέομαι);"
+ },
+ "G2316": {
+  "lemma": "θεός",
+  "translit": "theós",
+  "kjv_def": "X exceeding, God, god(-ly, -ward)",
+  "strongs_def": "figuratively, a magistrate; by Hebraism, very",
+  "derivation": "of uncertain affinity; a deity, especially (with G3588 (ὁ)) the supreme Divinity;"
+ },
+ "G2347": {
+  "lemma": "θλῖψις",
+  "translit": "thlîpsis",
+  "kjv_def": "afflicted(-tion), anguish, burdened, persecution, tribulation, trouble",
+  "strongs_def": "pressure (literally or figuratively)",
+  "derivation": "from G2346 (θλίβω);"
+ },
+ "G2372": {
+  "lemma": "θυμός",
+  "translit": "thymós",
+  "kjv_def": "fierceness, indignation, wrath",
+  "strongs_def": "passion (as if breathing hard)",
+  "derivation": "from G2380 (θύω);"
+ },
+ "G2398": {
+  "lemma": "ἴδιος",
+  "translit": "ídios",
+  "kjv_def": "X his acquaintance, when they were alone, apart, aside, due, his (own, proper, several), home, (her, our, thine, your) own (business), private(-ly), proper, severally, their (own)",
+  "strongs_def": "pertaining to self, i.e. one's own; by implication, private or separate",
+  "derivation": "of uncertain affinity;"
+ },
+ "G2424": {
+  "lemma": "Ἰησοῦς",
+  "translit": "Iēsoûs",
+  "kjv_def": "Jesus",
+  "strongs_def": "Jesus (i.e. Jehoshua), the name of our Lord and two (three) other Israelites",
+  "derivation": "of Hebrew origin (H03091);"
+ },
+ "G2443": {
+  "lemma": "ἵνα",
+  "translit": "hína",
+  "kjv_def": "albeit, because, to the intent (that), lest, so as, (so) that, (for) to",
+  "strongs_def": "compare G3588 (ὁ)); in order that (denoting the purpose or the result)",
+  "derivation": "probably from the same as the former part of G1438 (ἑαυτοῦ) (through the demonstrative idea;"
+ },
+ "G2470": {
+  "lemma": "ἴσος",
+  "translit": "ísos",
+  "kjv_def": "+ agree, as much, equal, like",
+  "strongs_def": "similar (in amount and kind)",
+  "derivation": "probably from G1492 (εἴδω) (through the idea of seeming);"
+ },
+ "G2531": {
+  "lemma": "καθώς",
+  "translit": "kathṓs",
+  "kjv_def": "according to, (according, even) as, how, when",
+  "strongs_def": "just (or inasmuch) as, that",
+  "derivation": "from G2596 (κατά) and G5613 (ὡς);"
+ },
+ "G2532": {
+  "lemma": "καί",
+  "translit": "kaí",
+  "kjv_def": "and, also, both, but, even, for, if, or, so, that, then, therefore, when, yet",
+  "strongs_def": "and, also, even, so then, too, etc.; often used in connection (or composition) with other particles or small words",
+  "derivation": "apparently, a primary particle, having a copulative and sometimes also a cumulative force;"
+ },
+ "G2545": {
+  "lemma": "καίω",
+  "translit": "kaíō",
+  "kjv_def": "burn, light",
+  "strongs_def": "to set on fire, i.e. kindle or (by implication) consume",
+  "derivation": "apparently a primary verb;"
+ },
+ "G2556": {
+  "lemma": "κακός",
+  "translit": "kakós",
+  "kjv_def": "bad, evil, harm, ill, noisome, wicked",
+  "strongs_def": "worthless (intrinsically, such; whereas G4190 (πονηρός) properly refers to effects), i.e. (subjectively) depraved, or (objectively) injurious",
+  "derivation": "apparently a primary word;"
+ },
+ "G2564": {
+  "lemma": "καλέω",
+  "translit": "kaléō",
+  "kjv_def": "bid, call (forth), (whose, whose sur-)name (was (called))",
+  "strongs_def": "to \"call\" (properly, aloud, but used in a variety of applications, directly or otherwise)",
+  "derivation": "akin to the base of G2753 (κελεύω);"
+ },
+ "G2578": {
+  "lemma": "κάμπτω",
+  "translit": "kámptō",
+  "kjv_def": "bow",
+  "strongs_def": "to bend",
+  "derivation": "apparently a primary verb;"
+ },
+ "G2590": {
+  "lemma": "καρπός",
+  "translit": "karpós",
+  "kjv_def": "fruit",
+  "strongs_def": "fruit (as plucked), literally or figuratively",
+  "derivation": "probably from the base of G726 (ἁρπάζω);"
+ },
+ "G2596": {
+  "lemma": "κατά",
+  "translit": "katá",
+  "kjv_def": "about, according as (to), after, against, (when they were) X alone, among, and, X apart, (even, like) as (concerning, pertaining to touching), X aside, at, before, beyond, by, to the charge of, (charita-)bly, concerning, + covered, (dai-)ly, down, every, (+ far more) exceeding, X more excellent, for, from … to, godly, in(-asmuch, divers, every, -to, respect of), … by, after the manner of, + by any means, beyond (out of) measure, X mightily, more, X natural, of (up-)on (X part), out (of every), over against, (+ your) X own, + particularly, so, through(-oughout, -oughout every), thus, (un-)to(-gether, -ward), X uttermost, where(-by), with",
+  "strongs_def": "(prepositionally) down (in place or time), in varied relations (according to the case (genitive, dative or accusative) with which it is joined)",
+  "derivation": "a primary particle;"
+ },
+ "G2632": {
+  "lemma": "κατακρίνω",
+  "translit": "katakrínō",
+  "kjv_def": "condemn, damn",
+  "strongs_def": "to judge against, i.e. sentence",
+  "derivation": "from G2596 (κατά) and G2919 (κρίνω);"
+ },
+ "G2673": {
+  "lemma": "καταργέω",
+  "translit": "katargéō",
+  "kjv_def": "abolish, cease, cumber, deliver, destroy, do away, become (make) of no (none, without) effect, fail, loose, bring (come) to nought, put away (down), vanish away, make void",
+  "strongs_def": "to be (render) entirely idle (useless), literally or figuratively",
+  "derivation": "from G2596 (κατά) and G691 (ἀργέω);"
+ },
+ "G2709": {
+  "lemma": "καταχθόνιος",
+  "translit": "katachthónios",
+  "kjv_def": "under the earth",
+  "strongs_def": "subterranean, i.e. infernal (belonging to the world of departed spirits)",
+  "derivation": "from G2596 (κατά) and (the ground);"
+ },
+ "G2719": {
+  "lemma": "κατεσθίω",
+  "translit": "katesthíō",
+  "kjv_def": "devour",
+  "strongs_def": "to eat down, i.e. devour (literally or figuratively)",
+  "derivation": "from G2596 (κατά) and G2068 (ἐσθίω) (including its alternate);"
+ },
+ "G2754": {
+  "lemma": "κενοδοξία",
+  "translit": "kenodoxía",
+  "kjv_def": "vain-glory",
+  "strongs_def": "empty glorying, i.e. self-conceit",
+  "derivation": "from G2755 (κενόδοξος);"
+ },
+ "G2755": {
+  "lemma": "κενόδοξος",
+  "translit": "kenódoxos",
+  "kjv_def": "desirous of vain-glory",
+  "strongs_def": "vainly glorifying, i.e. self-conceited",
+  "derivation": "from G2756 (κενός) and G1391 (δόξα);"
+ },
+ "G2758": {
+  "lemma": "κενόω",
+  "translit": "kenóō",
+  "kjv_def": "make (of none effect, of no reputation, void), be in vain",
+  "strongs_def": "to make empty, i.e. (figuratively) to abase, neutralize, falsify",
+  "derivation": "from G2756 (κενός);"
+ },
+ "G2794": {
+  "lemma": "κίνδυνος",
+  "translit": "kíndynos",
+  "kjv_def": "peril",
+  "strongs_def": "danger",
+  "derivation": "of uncertain derivation;"
+ },
+ "G2816": {
+  "lemma": "κληρονομέω",
+  "translit": "klēronoméō",
+  "kjv_def": "be heir, (obtain by) inherit(-ance)",
+  "strongs_def": "to be an heir to (literally or figuratively)",
+  "derivation": "from G2818 (κληρονόμος);"
+ },
+ "G2822": {
+  "lemma": "κλητός",
+  "translit": "klētós",
+  "kjv_def": "called",
+  "strongs_def": "invited, i.e. appointed, or (specially), a saint",
+  "derivation": "from the same as G2821 (κλῆσις);"
+ },
+ "G2842": {
+  "lemma": "κοινωνία",
+  "translit": "koinōnía",
+  "kjv_def": "(to) communicate(-ation), communion, (contri-)distribution, fellowship",
+  "strongs_def": "partnership, i.e. (literally) participation, or (social) intercourse, or (pecuniary) benefaction",
+  "derivation": "from G2844 (κοινωνός);"
+ },
+ "G2937": {
+  "lemma": "κτίσις",
+  "translit": "ktísis",
+  "kjv_def": "building, creation, creature, ordinance",
+  "strongs_def": "original formation (properly, the act; by implication, the thing, literally or figuratively)",
+  "derivation": "from G2936 (κτίζω);"
+ },
+ "G2950": {
+  "lemma": "κύμβαλον",
+  "translit": "kýmbalon",
+  "kjv_def": "cymbal",
+  "strongs_def": "a \"cymbal\" (as hollow)",
+  "derivation": "from a derivative of the base of G2949 (κῦμα);"
+ },
+ "G2962": {
+  "lemma": "κύριος",
+  "translit": "kýrios",
+  "kjv_def": " God, Lord, master, Sir",
+  "strongs_def": "supreme in authority, i.e. (as noun) controller; by implication, Master (as a respectful title)",
+  "derivation": "from (supremacy);"
+ },
+ "G2970": {
+  "lemma": "κῶμος",
+  "translit": "kōmos",
+  "kjv_def": "revelling, rioting",
+  "strongs_def": "a carousal (as if letting loose)",
+  "derivation": "from G2749 (κεῖμαι);"
+ },
+ "G2980": {
+  "lemma": "λαλέω",
+  "translit": "laléō",
+  "kjv_def": "preach, say, speak (after), talk, tell, utter",
+  "strongs_def": "to talk, i.e. utter words",
+  "derivation": "a prolonged form of an otherwise obsolete verb;"
+ },
+ "G2983": {
+  "lemma": "λαμβάνω",
+  "translit": "lambánō",
+  "kjv_def": "accept, + be amazed, assay, attain, bring, X when I call, catch, come on (X unto), + forget, have, hold, obtain, receive (X after), take (away, up)",
+  "strongs_def": "while G138 (αἱρέομαι) is more violent, to seize or remove))",
+  "derivation": "a prolonged form of a primary verb, which is use only as an alternate in certain tenses; to take (in very many applications, literally and figuratively (properly objective or active, to get hold of; whereas G1209 (δέχομαι) is rather subjective or passive, to have offered to one;"
+ },
+ "G3004": {
+  "lemma": "λέγω",
+  "translit": "légō",
+  "kjv_def": "ask, bid, boast, call, describe, give out, name, put forth, say(-ing, on), shew, speak, tell, utter",
+  "strongs_def": "properly, to \"lay\" forth, i.e. (figuratively) relate (in words (usually of systematic or set discourse; whereas G2036 (ἔπω) and G5346 (φημί) generally refer to an individual expression or speech respectively; while G4483 (ῥέω) is properly to break silence merely, and G2980 (λαλέω) means an extended or random harangue)); by implication, to mean",
+  "derivation": "a primary verb;"
+ },
+ "G3042": {
+  "lemma": "λιμός",
+  "translit": "limós",
+  "kjv_def": "dearth, famine, hunger",
+  "strongs_def": "a scarcity of food",
+  "derivation": "probably from G3007 (λείπω) (through the idea of destitution);"
+ },
+ "G3049": {
+  "lemma": "λογίζομαι",
+  "translit": "logízomai",
+  "kjv_def": "conclude, (ac-)count (of), + despise, esteem, impute, lay, number, reason, reckon, suppose, think (on)",
+  "strongs_def": "to take an inventory, i.e. estimate (literally or figuratively)",
+  "derivation": "middle voice from G3056 (λόγος);"
+ },
+ "G3056": {
+  "lemma": "λόγος",
+  "translit": "lógos",
+  "kjv_def": "account, cause, communication, X concerning, doctrine, fame, X have to do, intent, matter, mouth, preaching, question, reason, + reckon, remove, say(-ing), shew, X speaker, speech, talk, thing, + none of these things move me, tidings, treatise, utterance, word, work",
+  "strongs_def": "something said (including the thought); by implication, a topic (subject of discourse), also reasoning (the mental faculty) or motive; by extension, a computation; specially, (with the article in John) the Divine Expression (i.e. Christ)",
+  "derivation": "from G3004 (λέγω);"
+ },
+ "G3114": {
+  "lemma": "μακροθυμέω",
+  "translit": "makrothyméō",
+  "kjv_def": "bear (suffer) long, be longsuffering, have (long) patience, be patient, patiently endure",
+  "strongs_def": "to be long-spirited, i.e. (objectively) forbearing or (subjectively) patient",
+  "derivation": "from the same as G3116 (μακροθυμώς);"
+ },
+ "G3115": {
+  "lemma": "μακροθυμία",
+  "translit": "makrothymía",
+  "kjv_def": "longsuffering, patience",
+  "strongs_def": "longanimity, i.e. (objectively) forbearance or (subjectively) fortitude",
+  "derivation": "from the same as G3116 (μακροθυμώς);"
+ },
+ "G3123": {
+  "lemma": "μᾶλλον",
+  "translit": "mâllon",
+  "kjv_def": "+ better, X far, (the) more (and more), (so) much (the more), rather",
+  "strongs_def": "(adverbially) more (in a greater degree)) or rather",
+  "derivation": "neuter of the comparative of the same as G3122 (μάλιστα);"
+ },
+ "G3162": {
+  "lemma": "μάχαιρα",
+  "translit": "máchaira",
+  "kjv_def": "sword",
+  "strongs_def": "a knife, i.e. dirk; figuratively, war, judicial punishment",
+  "derivation": "probably feminine of a presumed derivative of G3163 (μάχη);"
+ },
+ "G3173": {
+  "lemma": "μέγας",
+  "translit": "mégas",
+  "kjv_def": "(+ fear) exceedingly, great(-est), high, large, loud, mighty, + (be) sore (afraid), strong, X to years",
+  "strongs_def": "big (literally or figuratively, in a very wide application)",
+  "derivation": "(including the prolonged forms, feminine , plural , etc.; compare also G3176 (μέγιστος), G3187 (μείζων));"
+ },
+ "G3178": {
+  "lemma": "μέθη",
+  "translit": "méthē",
+  "kjv_def": "drunkenness",
+  "strongs_def": "an intoxicant, i.e. (by implication) intoxication",
+  "derivation": "apparently a primary word;"
+ },
+ "G3179": {
+  "lemma": "μεθίστημι",
+  "translit": "methístēmi",
+  "kjv_def": "put out, remove, translate, turn away",
+  "strongs_def": "to transfer, i.e. carry away, depose or (figuratively) exchange, seduce",
+  "derivation": "from G3326 (μετά) and G2476 (ἵστημι);"
+ },
+ "G3195": {
+  "lemma": "μέλλω",
+  "translit": "méllō",
+  "kjv_def": "about, after that, be (almost), (that which is, things, + which was for) to come, intend, was to (be), mean, mind, be at the point, (be) ready, + return, shall (begin), (which, that) should (after, afterwards, hereafter) tarry, which was for, will, would, be yet",
+  "strongs_def": "to intend, i.e. be about to be, do, or suffer something (of persons or things, especially events; in the sense of purpose, duty, necessity, probability, possibility, or hesitation)",
+  "derivation": "a strengthened form of G3199 (μέλω) (through the idea of expectation);"
+ },
+ "G3306": {
+  "lemma": "μένω",
+  "translit": "ménō",
+  "kjv_def": "abide, continue, dwell, endure, be present, remain, stand, tarry (for), X thine own",
+  "strongs_def": "to stay (in a given place, state, relation or expectancy)",
+  "derivation": "a primary verb;"
+ },
+ "G3313": {
+  "lemma": "μέρος",
+  "translit": "méros",
+  "kjv_def": "behalf, course, coast, craft, particular (+ -ly), part (+ -ly), piece, portion, respect, side, some sort(-what)",
+  "strongs_def": "a division or share (literally or figuratively, in a wide application)",
+  "derivation": "from an obsolete but more primary form of (to get as a section or allotment);"
+ },
+ "G3360": {
+  "lemma": "μέχρι",
+  "translit": "méchri",
+  "kjv_def": "till, (un-)to, until",
+  "strongs_def": "as far as, i.e. up to a certain point (as a preposition, of extent (denoting the terminus, whereas G891 (ἄχρι) refers especially to the space of time or place intervening) or conjunction)",
+  "derivation": "from G3372 (μῆκος);"
+ },
+ "G3361": {
+  "lemma": "μή",
+  "translit": "mḗ",
+  "kjv_def": "any but (that), X forbear, + God forbid, + lack, lest, neither, never, no (X wise in), none, nor, (can-)not, nothing, that not, un(-taken), without",
+  "strongs_def": "(adverb) not, (conjunction) lest; also (as an interrogative implying a negative answer (whereas G3756 (οὐ) expects an affirmative one)) whether",
+  "derivation": "a primary particle of qualified negation (whereas G3756 (οὐ) expresses an absolute denial);"
+ },
+ "G3366": {
+  "lemma": "μηδέ",
+  "translit": "mēdé",
+  "kjv_def": "neither, nor (yet), (no) not (once, so much as)",
+  "strongs_def": "but not, not even; in a continued negation, nor",
+  "derivation": "from G3361 (μή) and G1161 (δέ);"
+ },
+ "G3367": {
+  "lemma": "μηδείς",
+  "translit": "mēdeís",
+  "kjv_def": "any (man, thing), no (man), none, not (at all, any man, a whit), nothing, + without delay",
+  "strongs_def": "not even one (man, woman, thing)",
+  "derivation": "from G3361 (μή) and G1520 (εἷς);"
+ },
+ "G3440": {
+  "lemma": "μόνον",
+  "translit": "mónon",
+  "kjv_def": "alone, but, only",
+  "strongs_def": "merely",
+  "derivation": "neuter of G3441 (μόνος) as adverb;"
+ },
+ "G3444": {
+  "lemma": "μορφή",
+  "translit": "morphḗ",
+  "kjv_def": "form",
+  "strongs_def": "shape; figuratively, nature",
+  "derivation": "perhaps from the base of G3313 (μέρος) (through the idea of adjustment of parts);"
+ },
+ "G3466": {
+  "lemma": "μυστήριον",
+  "translit": "mystḗrion",
+  "kjv_def": "mystery",
+  "strongs_def": "a secret or \"mystery\" (through the idea of silence imposed by initiation into religious rites)",
+  "derivation": "from a derivative of (to shut the mouth);"
+ },
+ "G3516": {
+  "lemma": "νήπιος",
+  "translit": "nḗpios",
+  "kjv_def": "babe, child (+ -ish)",
+  "strongs_def": "not speaking, i.e. an infant (minor); figuratively, a simple-minded person, an immature Christian",
+  "derivation": "from an obsolete particle (implying negation) and G2031 (ἔπος);"
+ },
+ "G3551": {
+  "lemma": "νόμος",
+  "translit": "nómos",
+  "kjv_def": "law",
+  "strongs_def": "law (through the idea of prescriptive usage), genitive case (regulation), specially, (of Moses (including the volume); also of the Gospel), or figuratively (a principle)",
+  "derivation": "from a primary (to parcel out, especially food or grazing to animals);"
+ },
+ "G3570": {
+  "lemma": "νυνί",
+  "translit": "nyní",
+  "kjv_def": "now",
+  "strongs_def": "just now",
+  "derivation": "a prolonged form of G3568 (νῦν) for emphasis;"
+ },
+ "G3588": {
+  "lemma": "ὁ",
+  "translit": "ho",
+  "kjv_def": "the, this, that, one, he, she, it, etc",
+  "strongs_def": "the (sometimes to be supplied, at others omitted, in English idiom)",
+  "derivation": "the definite article;"
+ },
+ "G3628": {
+  "lemma": "οἰκτιρμός",
+  "translit": "oiktirmós",
+  "kjv_def": "mercy",
+  "strongs_def": "pity",
+  "derivation": "from G3627 (οἰκτείρω);"
+ },
+ "G3650": {
+  "lemma": "ὅλος",
+  "translit": "hólos",
+  "kjv_def": "all, altogether, every whit, + throughout, whole",
+  "strongs_def": "\"whole\" or \"all\", i.e. complete (in extent, amount, time or degree), especially (neuter) as noun or adverb",
+  "derivation": "a primary word;"
+ },
+ "G3664": {
+  "lemma": "ὅμοιος",
+  "translit": "hómoios",
+  "kjv_def": "like, + manner",
+  "strongs_def": "similar (in appearance or character)",
+  "derivation": "from the base of G3674 (ὁμοῦ);"
+ },
+ "G3667": {
+  "lemma": "ὁμοίωμα",
+  "translit": "homoíōma",
+  "kjv_def": "made like to, likeness, shape, similitude",
+  "strongs_def": "a form; abstractly, resemblance",
+  "derivation": "from G3666 (ὁμοιόω);"
+ },
+ "G3686": {
+  "lemma": "ὄνομα",
+  "translit": "ónoma",
+  "kjv_def": "called, (+ sur-)name(-d)",
+  "strongs_def": "a \"name\" (literally or figuratively) (authority, character)",
+  "derivation": "from a presumed derivative of the base of G1097 (γινώσκω) (compare G3685 (ὀνίνημι));"
+ },
+ "G3735": {
+  "lemma": "ὄρος",
+  "translit": "óros",
+  "kjv_def": "hill, mount(-ain)",
+  "strongs_def": "perhaps akin to G142 (αἴρω); compare G3733 (ὄρνις)); a mountain (as lifting itself above the plain)",
+  "derivation": "probably from an obsolete (to rise or \"rear\";"
+ },
+ "G3739": {
+  "lemma": "ὅς",
+  "translit": "hós",
+  "kjv_def": "one, (an-, the) other, some, that, what, which, who(-m, -se), etc",
+  "strongs_def": "the relatively (sometimes demonstrative) pronoun, who, which, what, that",
+  "derivation": "probably a primary word (or perhaps a form of the article G3588 (ὁ));"
+ },
+ "G3748": {
+  "lemma": "ὅστις",
+  "translit": "hóstis",
+  "kjv_def": "X and (they), (such) as, (they) that, in that they, what(-soever), whereas ye, (they) which, who(-soever)",
+  "strongs_def": "which some, i.e. any that; also (definite) which same",
+  "derivation": "from G3739 (ὅς) and G5100 (τὶς);"
+ },
+ "G3752": {
+  "lemma": "ὅταν",
+  "translit": "hótan",
+  "kjv_def": "as long (soon) as, that, + till, when(-soever), while",
+  "strongs_def": "whenever (implying hypothesis or more or less uncertainty); also causatively (conjunctionally) inasmuch as",
+  "derivation": "from G3753 (ὅτε) and G302 (ἄν);"
+ },
+ "G3753": {
+  "lemma": "ὅτε",
+  "translit": "hóte",
+  "kjv_def": "after (that), as soon as, that, when, while",
+  "strongs_def": "at which (thing) too, i.e. when",
+  "derivation": "from G3739 (ὅς) and G5037 (τέ);"
+ },
+ "G3754": {
+  "lemma": "ὅτι",
+  "translit": "hóti",
+  "kjv_def": "as concerning that, as though, because (that), for (that), how (that), (in) that, though, why",
+  "strongs_def": "demonstrative, that (sometimes redundant); causative, because",
+  "derivation": "neuter of G3748 (ὅστις) as conjunction;"
+ },
+ "G3756": {
+  "lemma": "οὐ",
+  "translit": "ou",
+  "kjv_def": "+ long, nay, neither, never, no (X man), none, (can-)not, + nothing, + special, un(-worthy), when, + without, + yet but",
+  "strongs_def": "the absolute negative (compare G3361 (μή)) adverb; no or not",
+  "derivation": "a primary word;"
+ },
+ "G3762": {
+  "lemma": "οὐδείς",
+  "translit": "oudeís",
+  "kjv_def": "any (man), aught, man, neither any (thing), never (man), no (man), none (+ of these things), not (any, at all, -thing), nought",
+  "strongs_def": "not even one (man, woman or thing), i.e. none, nobody, nothing",
+  "derivation": "from G3761 (οὐδέ) and G1520 (εἷς);"
+ },
+ "G3763": {
+  "lemma": "οὐδέποτε",
+  "translit": "oudépote",
+  "kjv_def": "neither at any time, never, nothing at any time",
+  "strongs_def": "not even at any time, i.e. never at all",
+  "derivation": "from G3761 (οὐδέ) and G4218 (ποτέ);"
+ },
+ "G3767": {
+  "lemma": "οὖν",
+  "translit": "oûn",
+  "kjv_def": "and (so, truly), but, now (then), so (likewise then), then, therefore, verily, wherefore",
+  "strongs_def": "(adverbially) certainly, or (conjunctionally) accordingly",
+  "derivation": "apparently a primary word;"
+ },
+ "G3777": {
+  "lemma": "οὔτε",
+  "translit": "oúte",
+  "kjv_def": "neither, none, nor (yet), (no, yet) not, nothing",
+  "strongs_def": "not too, i.e. neither or nor; by analogy, not even",
+  "derivation": "from G3756 (οὐ) and G5037 (τέ);"
+ },
+ "G3778": {
+  "lemma": "οὗτος",
+  "translit": "hoûtos",
+  "kjv_def": "he (it was that), hereof, it, she, such as, the same, these, they, this (man, same, woman), which, who",
+  "strongs_def": "the he (she or it), i.e. this or that (often with article repeated)",
+  "derivation": "from the article G3588 (ὁ) and G846 (αὐτός);"
+ },
+ "G3780": {
+  "lemma": "οὐχί",
+  "translit": "ouchí",
+  "kjv_def": "nay, not",
+  "strongs_def": "not indeed",
+  "derivation": "intensive of G3756 (οὐ);"
+ },
+ "G3804": {
+  "lemma": "πάθημα",
+  "translit": "páthēma",
+  "kjv_def": " affection, affliction, motion, suffering",
+  "strongs_def": "something undergone, i.e. hardship or pain; subjectively, an emotion or influence",
+  "derivation": "from a presumed derivative of G3806 (πάθος);"
+ },
+ "G3860": {
+  "lemma": "παραδίδωμι",
+  "translit": "paradídōmi",
+  "kjv_def": "betray, bring forth, cast, commit, deliver (up), give (over, up), hazard, put in prison, recommend",
+  "strongs_def": "to surrender, i.e yield up, intrust, transmit",
+  "derivation": "from G3844 (παρά) and G1325 (δίδωμι);"
+ },
+ "G3874": {
+  "lemma": "παράκλησις",
+  "translit": "paráklēsis",
+  "kjv_def": "comfort, consolation, exhortation, intreaty",
+  "strongs_def": "imploration, hortation, solace",
+  "derivation": "from G3870 (παρακαλέω);"
+ },
+ "G3890": {
+  "lemma": "παραμύθιον",
+  "translit": "paramýthion",
+  "kjv_def": "comfort",
+  "strongs_def": "consolation (properly, concretely)",
+  "derivation": "neuter of G3889 (παραμυθία);"
+ },
+ "G3947": {
+  "lemma": "παροξύνω",
+  "translit": "paroxýnō",
+  "kjv_def": "easily provoke, stir",
+  "strongs_def": "to sharpen alongside, i.e. (figuratively) to exasperate",
+  "derivation": "from G3844 (παρά) and a derivative of G3691 (ὀξύς);"
+ },
+ "G3956": {
+  "lemma": "πᾶς",
+  "translit": "pâs",
+  "kjv_def": "all (manner of, means), alway(-s), any (one), X daily, + ever, every (one, way), as many as, + no(-thing), X thoroughly, whatsoever, whole, whosoever",
+  "strongs_def": "all, any, every, the whole",
+  "derivation": "including all the forms of declension; apparently a primary word;"
+ },
+ "G3962": {
+  "lemma": "πατήρ",
+  "translit": "patḗr",
+  "kjv_def": "father, parent",
+  "strongs_def": "a \"father\" (literally or figuratively, near or more remote)",
+  "derivation": "apparently a primary word;"
+ },
+ "G3973": {
+  "lemma": "παύω",
+  "translit": "paúō",
+  "kjv_def": "cease, leave, refrain",
+  "strongs_def": "to stop (transitively or intransitively), i.e. restrain, quit, desist, come to an end",
+  "derivation": "a primary verb (\"pause\");"
+ },
+ "G3982": {
+  "lemma": "πείθω",
+  "translit": "peíthō",
+  "kjv_def": "agree, assure, believe, have confidence, be (wax) conflent, make friend, obey, persuade, trust, yield",
+  "strongs_def": "to convince (by argument, true or false); by analogy, to pacify or conciliate (by other fair means); reflexively or passively, to assent (to evidence or authority), to rely (by inward certainty)",
+  "derivation": "a primary verb;"
+ },
+ "G4043": {
+  "lemma": "περιπατέω",
+  "translit": "peripatéō",
+  "kjv_def": "go, be occupied with, walk (about)",
+  "strongs_def": "to tread all around, i.e. walk at large (especially as proof of ability); figuratively, to live, deport oneself, follow (as a companion or votary)",
+  "derivation": "from G4012 (περί) and G3961 (πατέω);"
+ },
+ "G4068": {
+  "lemma": "περπερεύομαι",
+  "translit": "perpereúomai",
+  "kjv_def": "vaunt itself",
+  "strongs_def": "perhaps by reduplication of the base of G4008 (πέραν)); to boast",
+  "derivation": "middle voice from (braggart;"
+ },
+ "G4098": {
+  "lemma": "πίπτω",
+  "translit": "píptō",
+  "kjv_def": "fail, fall (down), light on",
+  "strongs_def": "to fall (literally or figuratively)",
+  "derivation": "probably akin to G4072 (πέτομαι) through the idea of alighting;"
+ },
+ "G4100": {
+  "lemma": "πιστεύω",
+  "translit": "pisteúō",
+  "kjv_def": "believe(-r), commit (to trust), put in trust with",
+  "strongs_def": "to have faith (in, upon, or with respect to, a person or thing), i.e. credit; by implication, to entrust (especially one's spiritual well-being to Christ)",
+  "derivation": "from G4102 (πίστις);"
+ },
+ "G4102": {
+  "lemma": "πίστις",
+  "translit": "pístis",
+  "kjv_def": "assurance, belief, believe, faith, fidelity",
+  "strongs_def": "persuasion, i.e. credence; moral conviction (of religious truth, or the truthfulness of God or a religious teacher), especially reliance upon Christ for salvation; abstractly, constancy in such profession; by extension, the system of religious (Gospel) truth itself",
+  "derivation": "from G3982 (πείθω);"
+ },
+ "G4137": {
+  "lemma": "πληρόω",
+  "translit": "plēróō",
+  "kjv_def": "accomplish, X after, (be) complete, end, expire, fill (up), fulfil, (be, make) full (come), fully preach, perfect, supply",
+  "strongs_def": "to make replete, i.e. (literally) to cram (a net), level up (a hollow), or (figuratively) to furnish (or imbue, diffuse, influence), satisfy, execute (an office), finish (a period or task), verify (or coincide with a prediction), etc.",
+  "derivation": "from G4134 (πλήρης);"
+ },
+ "G4139": {
+  "lemma": "πλησίον",
+  "translit": "plēsíon",
+  "kjv_def": "near, neighbour",
+  "strongs_def": "(adverbially) close by; as noun, a neighbor, i.e. fellow (as man, countryman, Christian or friend)",
+  "derivation": "neuter of a derivative of (near);"
+ },
+ "G4151": {
+  "lemma": "πνεῦμα",
+  "translit": "pneûma",
+  "kjv_def": "ghost, life, spirit(-ual, -ually), mind",
+  "strongs_def": "a current of air, i.e. breath (blast) or a breeze; by analogy or figuratively, a spirit, i.e. (human) the rational soul, (by implication) vital principle, mental disposition, etc., or (superhuman) an angel, demon, or (divine) God, Christ's spirit, the Holy Spirit",
+  "derivation": "from G4154 (πνέω);"
+ },
+ "G4160": {
+  "lemma": "ποιέω",
+  "translit": "poiéō",
+  "kjv_def": "abide, + agree, appoint, X avenge, + band together, be, bear, + bewray, bring (forth), cast out, cause, commit, + content, continue, deal, + without any delay, (would) do(-ing), execute, exercise, fulfil, gain, give, have, hold, X journeying, keep, + lay wait, + lighten the ship, make, X mean, + none of these things move me, observe, ordain, perform, provide, + have purged, purpose, put, + raising up, X secure, shew, X shoot out, spend, take, tarry, + transgress the law, work, yield",
+  "strongs_def": "to make or do (in a very wide application, more or less direct)",
+  "derivation": "apparently a prolonged form of an obsolete primary;"
+ },
+ "G4183": {
+  "lemma": "πολύς",
+  "translit": "polýs",
+  "kjv_def": "abundant, + altogether, common, + far (passed, spent), (+ be of a) great (age, deal, -ly, while), long, many, much, oft(-en (-times)), plenteous, sore, straitly",
+  "strongs_def": "(singular) much (in any respect) or (plural) many; neuter (singular) as adverbial, largely; neuter (plural) as adverb or noun often, mostly, largely",
+  "derivation": "including the forms from the alternate ;"
+ },
+ "G4202": {
+  "lemma": "πορνεία",
+  "translit": "porneía",
+  "kjv_def": "fornication",
+  "strongs_def": "harlotry (including adultery and incest); figuratively, idolatry",
+  "derivation": "from G4203 (πορνεύω);"
+ },
+ "G4238": {
+  "lemma": "πράσσω",
+  "translit": "prássō",
+  "kjv_def": "commit, deeds, do, exact, keep, require, use arts",
+  "strongs_def": "to \"practise\", i.e. perform repeatedly or habitually (thus differing from G4160 (ποιέω), which properly refers to a single act); by implication, to execute, accomplish, etc.; specially, to collect (dues), fare (personally)",
+  "derivation": "a primary verb;"
+ },
+ "G4240": {
+  "lemma": "πραΰτης",
+  "translit": "praÿtēs",
+  "kjv_def": "meekness",
+  "strongs_def": "mildness, i.e. (by implication) humility",
+  "derivation": "from G4239 (πραΰς);"
+ },
+ "G4263": {
+  "lemma": "πρόβατον",
+  "translit": "próbaton",
+  "kjv_def": "sheep(-fold)",
+  "strongs_def": "something that walks forward (a quadruped), i.e. (specially), a sheep (literally or figuratively)",
+  "derivation": "probably neuter of a presumed derivative of G4260 (προβαίνω);"
+ },
+ "G4267": {
+  "lemma": "προγινώσκω",
+  "translit": "proginṓskō",
+  "kjv_def": "foreknow (ordain), know (before)",
+  "strongs_def": "to know beforehand, i.e. foresee",
+  "derivation": "from G4253 (πρό) and G1097 (γινώσκω);"
+ },
+ "G4286": {
+  "lemma": "πρόθεσις",
+  "translit": "próthesis",
+  "kjv_def": "purpose, shew(-bread)",
+  "strongs_def": "a setting forth, i.e. (figuratively) proposal (intention); specially, the show-bread (in the Temple) as exposed before God",
+  "derivation": "from G4388 (προτίθεμαι);"
+ },
+ "G4292": {
+  "lemma": "προκαλέομαι",
+  "translit": "prokaléomai",
+  "kjv_def": "provoke",
+  "strongs_def": "to call forth to oneself (challenge), i.e. (by implication) to irritate",
+  "derivation": "middle voice from G4253 (πρό) and G2564 (καλέω);"
+ },
+ "G4302": {
+  "lemma": "προλέγω",
+  "translit": "prolégō",
+  "kjv_def": "foretell, tell before",
+  "strongs_def": "to say beforehand, i.e. predict, forewarn",
+  "derivation": "from G4253 (πρό) and G3004 (λέγω);"
+ },
+ "G4309": {
+  "lemma": "προορίζω",
+  "translit": "proorízō",
+  "kjv_def": "determine before, ordain, predestinate",
+  "strongs_def": "to limit in advance, i.e. (figuratively) predetermine",
+  "derivation": "from G4253 (πρό) and G3724 (ὁρίζω);"
+ },
+ "G4314": {
+  "lemma": "πρός",
+  "translit": "prós",
+  "kjv_def": "about, according to , against, among, at, because of, before, between, (where-)by, for, X at thy house, in, for intent, nigh unto, of, which pertain to, that, to (the end that), X together, to (you) -ward, unto, with(-in)",
+  "strongs_def": "a preposition of direction; forward to, i.e. toward (with the genitive case, the side of, i.e. pertaining to; with the dative case, by the side of, i.e. near to; usually with the accusative case, the place, time, occasion, or respect, which is the destination of the relation, i.e. whither or for which it is predicated)",
+  "derivation": "a strengthened form of G4253 (πρό);"
+ },
+ "G4383": {
+  "lemma": "πρόσωπον",
+  "translit": "prósōpon",
+  "kjv_def": "(outward) appearance, X before, countenance, face, fashion, (men's) person, presence",
+  "strongs_def": "the front (as being towards view), i.e. the countenance, aspect, appearance, surface; by implication, presence, person",
+  "derivation": "from G4314 (πρός) and (the visage, from G3700 (ὀπτάνομαι));"
+ },
+ "G4394": {
+  "lemma": "προφητεία",
+  "translit": "prophēteía",
+  "kjv_def": "prophecy, prophesying",
+  "strongs_def": "prediction (scriptural or other)",
+  "derivation": "from G4396 (προφήτης) (\"prophecy\");"
+ },
+ "G4395": {
+  "lemma": "προφητεύω",
+  "translit": "prophēteúō",
+  "kjv_def": "prophesy",
+  "strongs_def": "to foretell events, divine, speak under inspiration, exercise the prophetic office",
+  "derivation": "from G4396 (προφήτης);"
+ },
+ "G4416": {
+  "lemma": "πρωτότοκος",
+  "translit": "prōtótokos",
+  "kjv_def": "firstbegotten(-born)",
+  "strongs_def": "first-born (usually as noun, literally or figuratively)",
+  "derivation": "from G4413 (πρῶτος) and the alternate of G5088 (τίκτω);"
+ },
+ "G4459": {
+  "lemma": "πῶς",
+  "translit": "pōs",
+  "kjv_def": "how, after (by) what manner (means), that",
+  "strongs_def": "an interrogative particle of manner; in what way? (sometimes the question is indirect, how?); also as exclamation, how much!",
+  "derivation": "adverb from the base of G4226 (ποῦ);"
+ },
+ "G4561": {
+  "lemma": "σάρξ",
+  "translit": "sárx",
+  "kjv_def": "carnal(-ly, + -ly minded), flesh(-ly)",
+  "strongs_def": "flesh (as stripped of the skin), i.e. (strictly) the meat of an animal (as food), or (by extension) the body (as opposed to the soul (or spirit), or as the symbol of what is external, or as the means of kindred), or (by implication) human nature (with its frailties (physically or morally) and passions), or (specially), a human being (as such)",
+  "derivation": "probably from the base of G4563 (σαρόω);"
+ },
+ "G4572": {
+  "lemma": "σεαυτοῦ",
+  "translit": "seautoû",
+  "kjv_def": "thee, thine own self, (thou) thy(-self)",
+  "strongs_def": "of (with, to) thyself",
+  "derivation": "genitive case from G4571 (σέ) and G846 (αὐτός), also dative case of the same, , and accusative case , likewise contracted , , and , respectively;"
+ },
+ "G4648": {
+  "lemma": "σκοπέω",
+  "translit": "skopéō",
+  "kjv_def": "consider, take heed, look at (on), mark",
+  "strongs_def": "to take aim at (spy), i.e. (figuratively) regard",
+  "derivation": "from G4649 (σκοπός);"
+ },
+ "G4698": {
+  "lemma": "σπλάγχνον",
+  "translit": "splánchnon",
+  "kjv_def": "bowels, inward affection, + tender mercy",
+  "strongs_def": "an intestine (plural); figuratively, pity or sympathy",
+  "derivation": "probably strengthened from (the \"spleen\");"
+ },
+ "G4716": {
+  "lemma": "σταυρός",
+  "translit": "staurós",
+  "kjv_def": "cross",
+  "strongs_def": "a stake or post (as set upright), i.e. (specially), a pole or cross (as an instrument of capital punishment); figuratively, exposure to death, i.e. self-denial; by implication, the atonement of Christ",
+  "derivation": "from the base of G2476 (ἵστημι);"
+ },
+ "G4717": {
+  "lemma": "σταυρόω",
+  "translit": "stauróō",
+  "kjv_def": "crucify",
+  "strongs_def": "to impale on the cross; figuratively, to extinguish (subdue) passion or selfishness",
+  "derivation": "from G4716 (σταυρός);"
+ },
+ "G4722": {
+  "lemma": "στέγω",
+  "translit": "stégō",
+  "kjv_def": "(for-)bear, suffer",
+  "strongs_def": "to roof over, i.e. (figuratively) to cover with silence (endure patiently)",
+  "derivation": "from G4721 (στέγη);"
+ },
+ "G4730": {
+  "lemma": "στενοχωρία",
+  "translit": "stenochōría",
+  "kjv_def": "anguish, distress",
+  "strongs_def": "narrowness of room, i.e. (figuratively) calamity",
+  "derivation": "from a compound of G4728 (στενός) and G5561 (χώρα);"
+ },
+ "G4748": {
+  "lemma": "στοιχέω",
+  "translit": "stoichéō",
+  "kjv_def": "walk (orderly)",
+  "strongs_def": "to march in (military) rank (keep step), i.e. (figuratively) to conform to virtue and piety",
+  "derivation": "from a derivative of (to range in regular line);"
+ },
+ "G4771": {
+  "lemma": "σύ",
+  "translit": "sý",
+  "kjv_def": " thou",
+  "strongs_def": "thou",
+  "derivation": "the personal pronoun of the second person singular;"
+ },
+ "G4796": {
+  "lemma": "συγχαίρω",
+  "translit": "synchaírō",
+  "kjv_def": "rejoice in (with)",
+  "strongs_def": "to sympathize in gladness, congratulate",
+  "derivation": "from G4862 (σύν) and G5463 (χαίρω);"
+ },
+ "G4832": {
+  "lemma": "σύμμορφος",
+  "translit": "sýmmorphos",
+  "kjv_def": "conformed to, fashioned like unto",
+  "strongs_def": "jointly formed, i.e. (figuratively) similar",
+  "derivation": "from G4862 (σύν) and G3444 (μορφή);"
+ },
+ "G4861": {
+  "lemma": "σύμψυχος",
+  "translit": "sýmpsychos",
+  "kjv_def": "like-minded",
+  "strongs_def": "co-spirited, i.e. similar in sentiment",
+  "derivation": "from G4862 (σύν) and G5590 (ψυχή);"
+ },
+ "G4862": {
+  "lemma": "σύν",
+  "translit": "sýn",
+  "kjv_def": "beside, with",
+  "strongs_def": "with or together (but much closer than G3326 (μετά) or G3844 (παρά)), i.e. by association, companionship, process, resemblance, possession, instrumentality, addition, etc.",
+  "derivation": "a primary preposition denoting union;"
+ },
+ "G4903": {
+  "lemma": "συνεργέω",
+  "translit": "synergéō",
+  "kjv_def": "help (work) with, work(-er) together",
+  "strongs_def": "to be a fellow-worker, i.e. co-operate",
+  "derivation": "from G4904 (συνεργός);"
+ },
+ "G4967": {
+  "lemma": "σφαγή",
+  "translit": "sphagḗ",
+  "kjv_def": "slaughter",
+  "strongs_def": "butchery (of animals for food or sacrifice, or (figuratively) of men (destruction))",
+  "derivation": "from G4969 (σφάζω);"
+ },
+ "G4976": {
+  "lemma": "σχῆμα",
+  "translit": "schēma",
+  "kjv_def": "fashion",
+  "strongs_def": "a figure (as a mode or circumstance), i.e. (by implication) external condition",
+  "derivation": "from the alternate of G2192 (ἔχω);"
+ },
+ "G4983": {
+  "lemma": "σῶμα",
+  "translit": "sōma",
+  "kjv_def": "bodily, body, slave",
+  "strongs_def": "the body (as a sound whole), used in a very wide application, literally or figuratively",
+  "derivation": "from G4982 (σώζω);"
+ },
+ "G5012": {
+  "lemma": "ταπεινοφροσύνη",
+  "translit": "tapeinophrosýnē",
+  "kjv_def": "humbleness of mind, humility (of mind, loneliness (of mind)",
+  "strongs_def": "humiliation of mind, i.e. modesty",
+  "derivation": "from a compound of G5011 (ταπεινός) and the base of G5424 (φρήν);"
+ },
+ "G5013": {
+  "lemma": "ταπεινόω",
+  "translit": "tapeinóō",
+  "kjv_def": "abase, bring low, humble (self)",
+  "strongs_def": "to depress; figuratively, to humiliate (in condition or heart)",
+  "derivation": "from G5011 (ταπεινός);"
+ },
+ "G5046": {
+  "lemma": "τέλειος",
+  "translit": "téleios",
+  "kjv_def": "of full age, man, perfect",
+  "strongs_def": "complete (in various applications of labor, growth, mental and moral character, etc.); neuter (as noun, with G3588 (ὁ)) completeness",
+  "derivation": "from G5056 (τέλος);"
+ },
+ "G5055": {
+  "lemma": "τελέω",
+  "translit": "teléō",
+  "kjv_def": "accomplish, make an end, expire, fill up, finish, go over, pay, perform",
+  "strongs_def": "to end, i.e. complete, execute, conclude, discharge (a debt)",
+  "derivation": "from G5056 (τέλος);"
+ },
+ "G5100": {
+  "lemma": "τὶς",
+  "translit": "tìs",
+  "kjv_def": "a (kind of), any (man, thing, thing at all), certain (thing), divers, he (every) man, one (X thing), ought, + partly, some (man, -body, - thing, -what), (+ that no-)thing, what(-soever), X wherewith, whom(-soever), whose(-soever)",
+  "strongs_def": "some or any person or object",
+  "derivation": "an enclitic indefinite pronoun;"
+ },
+ "G5101": {
+  "lemma": "τίς",
+  "translit": "tís",
+  "kjv_def": "every man, how (much), + no(-ne, thing), what (manner, thing), where (-by, -fore, -of, -unto, - with, -withal), whether, which, who(-m, -se), why",
+  "strongs_def": "an interrogative pronoun, who, which or what (in direct or indirect questions)",
+  "derivation": "probably emphatic of G5100 (τὶς);"
+ },
+ "G5108": {
+  "lemma": "τοιοῦτος",
+  "translit": "toioûtos",
+  "kjv_def": "like, such (an one)",
+  "strongs_def": "truly this, i.e. of this sort (to denote character or individuality)",
+  "derivation": "(including the other inflections); from G5104 (τοί) and G3778 (οὗτος);"
+ },
+ "G5119": {
+  "lemma": "τότε",
+  "translit": "tóte",
+  "kjv_def": "that time, then",
+  "strongs_def": "the when, i.e. at the time that (of the past or future, also in consecution)",
+  "derivation": "from (the neuter of) G3588 (ὁ) and G3753 (ὅτε);"
+ },
+ "G5140": {
+  "lemma": "τρεῖς",
+  "translit": "treîs",
+  "kjv_def": "three",
+  "strongs_def": "\"three\"",
+  "derivation": "a primary (plural) number;"
+ },
+ "G5207": {
+  "lemma": "υἱός",
+  "translit": "huiós",
+  "kjv_def": "child, foal, son",
+  "strongs_def": "a \"son\" (sometimes of animals), used very widely of immediate, remote or figuratively, kinship",
+  "derivation": "apparently a primary word;"
+ },
+ "G5210": {
+  "lemma": "ὑμεῖς",
+  "translit": "hymeîs",
+  "kjv_def": "ye (yourselves), you",
+  "strongs_def": "you (as subjective of verb)",
+  "derivation": "irregular plural of G4771 (σύ);"
+ },
+ "G5225": {
+  "lemma": "ὑπάρχω",
+  "translit": "hypárchō",
+  "kjv_def": "after, behave, live",
+  "strongs_def": "to begin under (quietly), i.e. come into existence (be present or at hand); expletively, to exist (as copula or subordinate to an adjective, participle, adverb or preposition, or as an auxiliary to a principal (verb)",
+  "derivation": "from G5259 (ὑπό) and G756 (ἄρχομαι);"
+ },
+ "G5228": {
+  "lemma": "ὑπέρ",
+  "translit": "hypér",
+  "kjv_def": "(+ exceeding, abundantly) above, in (on) behalf of, beyond, by, + very chiefest, concerning, exceeding (above, -ly), for, + very highly, more (than), of, over, on the part of, for sake of, in stead, than, to(-ward), very",
+  "strongs_def": "\"over\", i.e. (with the genitive case) of place, above, beyond, across, or causal, for the sake of, instead, regarding; with the accusative case superior to, more than",
+  "derivation": "a primary preposition;"
+ },
+ "G5242": {
+  "lemma": "ὑπερέχω",
+  "translit": "hyperéchō",
+  "kjv_def": "better, excellency, higher, pass, supreme",
+  "strongs_def": "to hold oneself above, i.e. (figuratively) to excel; participle (as adjective, or neuter as noun) superior, superiority",
+  "derivation": "from G5228 (ὑπέρ) and G2192 (ἔχω);"
+ },
+ "G5245": {
+  "lemma": "ὑπερνικάω",
+  "translit": "hypernikáō",
+  "kjv_def": "more than conquer",
+  "strongs_def": "to vanquish beyond, i.e. gain a decisive victory",
+  "derivation": "from G5228 (ὑπέρ) and G3528 (νικάω);"
+ },
+ "G5251": {
+  "lemma": "ὑπερυψόω",
+  "translit": "hyperypsóō",
+  "kjv_def": "highly exalt",
+  "strongs_def": "to elevate above others, i.e. raise to the highest position",
+  "derivation": "from G5228 (ὑπέρ) and G5312 (ὑψόω);"
+ },
+ "G5255": {
+  "lemma": "ὑπήκοος",
+  "translit": "hypḗkoos",
+  "kjv_def": "obedient",
+  "strongs_def": "attentively listening, i.e. (by implication) submissive",
+  "derivation": "from G5219 (ὑπακούω);"
+ },
+ "G5259": {
+  "lemma": "ὑπό",
+  "translit": "hypó",
+  "kjv_def": "among, by, from, in, of, under, with",
+  "strongs_def": "under, i.e. (with the genitive case) of place (beneath), or with verbs (the agency or means, through); (with the accusative case) of place (whither (underneath) or where (below) or time (when (at))",
+  "derivation": "a primary preposition;"
+ },
+ "G5278": {
+  "lemma": "ὑπομένω",
+  "translit": "hypoménō",
+  "kjv_def": "abide, endure, (take) patient(-ly), suffer, tarry behind",
+  "strongs_def": "to stay under (behind), i.e. remain; figuratively, to undergo, i.e. bear (trials), have fortitude, persevere",
+  "derivation": "from G5259 (ὑπό) and G3306 (μένω);"
+ },
+ "G5313": {
+  "lemma": "ὕψωμα",
+  "translit": "hýpsōma",
+  "kjv_def": " height, high thing",
+  "strongs_def": "an elevated place or thing, i.e. (abstractly) altitude, or (by implication) a barrier (figuratively)",
+  "derivation": "from G5312 (ὑψόω);"
+ },
+ "G5318": {
+  "lemma": "φανερός",
+  "translit": "phanerós",
+  "kjv_def": "abroad, + appear, known, manifest, open (+ -ly), outward (+ -ly)",
+  "strongs_def": "shining, i.e. apparent (literally or figuratively); neuter (as adverb) publicly, externally",
+  "derivation": "from G5316 (φαίνω);"
+ },
+ "G5331": {
+  "lemma": "φαρμακεία",
+  "translit": "pharmakeía",
+  "kjv_def": "sorcery, witchcraft",
+  "strongs_def": "medication (\"pharmacy\"), i.e. (by extension) magic (literally or figuratively)",
+  "derivation": "from G5332 (φαρμακεύς);"
+ },
+ "G5339": {
+  "lemma": "φείδομαι",
+  "translit": "pheídomai",
+  "kjv_def": "forbear, spare",
+  "strongs_def": "to be chary of, i.e. (subjectively) to abstain or (objectively) to treat leniently",
+  "derivation": "of uncertain affinity;"
+ },
+ "G5354": {
+  "lemma": "φθονέω",
+  "translit": "phthonéō",
+  "kjv_def": "envy",
+  "strongs_def": "to be jealous of",
+  "derivation": "from G5355 (φθόνος);"
+ },
+ "G5355": {
+  "lemma": "φθόνος",
+  "translit": "phthónos",
+  "kjv_def": "envy",
+  "strongs_def": "ill-will (as detraction), i.e. jealousy (spite)",
+  "derivation": "probably akin to the base of G5351 (φθείρω);"
+ },
+ "G5426": {
+  "lemma": "φρονέω",
+  "translit": "phronéō",
+  "kjv_def": "set the affection on, (be) care(-ful), (be like-, + be of one, + be of the same, + let this) mind(-ed), regard, savour, think",
+  "strongs_def": "to exercise the mind, i.e. entertain or have a sentiment or opinion; by implication, to be (mentally) disposed (more or less earnestly in a certain direction); intensively, to interest oneself in (with concern or obedience)",
+  "derivation": "from G5424 (φρήν);"
+ },
+ "G5448": {
+  "lemma": "φυσιόω",
+  "translit": "physióō",
+  "kjv_def": "puff up",
+  "strongs_def": "to inflate, i.e. (figuratively) make proud (haughty)",
+  "derivation": "from G5449 (φύσις) in the primary sense of blowing;"
+ },
+ "G5463": {
+  "lemma": "χαίρω",
+  "translit": "chaírō",
+  "kjv_def": "farewell, be glad, God speed, greeting, hall, joy(- fully), rejoice",
+  "strongs_def": "to be \"cheer\"ful, i.e. calmly happy or well-off; impersonally, especially as salutation (on meeting or parting), be well",
+  "derivation": "a primary verb;"
+ },
+ "G5475": {
+  "lemma": "χαλκός",
+  "translit": "chalkós",
+  "kjv_def": "brass, money",
+  "strongs_def": "copper (the substance, or some implement or coin made of it)",
+  "derivation": "perhaps from G5465 (χαλάω) through the idea of hollowing out as a vessel (this metal being chiefly used for that purpose);"
+ },
+ "G5479": {
+  "lemma": "χαρά",
+  "translit": "chará",
+  "kjv_def": "gladness, X greatly, (X be exceeding) joy(-ful, -fully, -fulness, -ous)",
+  "strongs_def": "cheerfulness, i.e. calm delight",
+  "derivation": "from G5463 (χαίρω);"
+ },
+ "G5483": {
+  "lemma": "χαρίζομαι",
+  "translit": "charízomai",
+  "kjv_def": "deliver, (frankly) forgive, (freely) give, grant",
+  "strongs_def": "to grant as a favor, i.e. gratuitously, in kindness, pardon or rescue",
+  "derivation": "middle voice from G5485 (χάρις);"
+ },
+ "G5541": {
+  "lemma": "χρηστεύομαι",
+  "translit": "chrēsteúomai",
+  "kjv_def": "be kind",
+  "strongs_def": "to show oneself useful, i.e. act benevolently",
+  "derivation": "middle voice from G5543 (χρηστός);"
+ },
+ "G5544": {
+  "lemma": "χρηστότης",
+  "translit": "chrēstótēs",
+  "kjv_def": "gentleness, good(-ness), kindness",
+  "strongs_def": "usefulness, i.e. morally, excellence (in character or demeanor)",
+  "derivation": "from G5543 (χρηστός);"
+ },
+ "G5547": {
+  "lemma": "Χριστός",
+  "translit": "Christós",
+  "kjv_def": "Christ",
+  "strongs_def": "anointed, i.e. the Messiah, an epithet of Jesus",
+  "derivation": "from G5548 (χρίω);"
+ },
+ "G5563": {
+  "lemma": "χωρίζω",
+  "translit": "chōrízō",
+  "kjv_def": "depart, put asunder, separate",
+  "strongs_def": "to place room between, i.e. part; reflexively, to go away",
+  "derivation": "from G5561 (χώρα);"
+ },
+ "G5595": {
+  "lemma": "ψωμίζω",
+  "translit": "psōmízō",
+  "kjv_def": "(bestow to) feed",
+  "strongs_def": "to supply with bits, i.e. (generally) to nourish",
+  "derivation": "from the base of G5596 (ψωμίον);"
+ },
+ "G5613": {
+  "lemma": "ὡς",
+  "translit": "hōs",
+  "kjv_def": "about, after (that), (according) as (it had been, it were), as soon (as), even as (like), for, how (greatly), like (as, unto), since, so (that), that, to wit, unto, when(-soever), while, X with all speed",
+  "strongs_def": "which how, i.e. in that manner (very variously used, as follows)",
+  "derivation": "probably adverb of comparative from G3739 (ὅς);"
+ },
+ "G5620": {
+  "lemma": "ὥστε",
+  "translit": "hṓste",
+  "kjv_def": "(insomuch) as, so that (then), (insomuch) that, therefore, to, wherefore",
+  "strongs_def": "so too, i.e. thus therefore (in various relations of consecution, as follow)",
+  "derivation": "from G5613 (ὡς) and G5037 (τέ);"
+ },
+ "G5623": {
+  "lemma": "ὠφελέω",
+  "translit": "ōpheléō",
+  "kjv_def": "advantage, better, prevail, profit",
+  "strongs_def": "to be useful, i.e. to benefit",
+  "derivation": "from the same as G5622 (ὠφέλεια);"
+ }
+}
