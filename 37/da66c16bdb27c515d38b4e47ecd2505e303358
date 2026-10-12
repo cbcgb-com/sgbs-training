@@ -1,0 +1,36 @@
+docs/exercises/lesson-4/galatians-5-13-26.md
+  s_b840d3d8eb1e4e::t_eedb0ec20e4e2b 3,7,12,17,22,27,32,37,42,47,52,57,62,67,72,79
+docs/exercises/lesson-4/romans-8-28-39.md
+  s_b840d3d8eb1e4e::t_eedb0ec20e4e2b 3,7,12,17,22,27,32,37,42,47,52,57,62,69
+.agents/skills/sgbs-strongs-interlinear/scripts/generate_strongs_pages.py
+  s_b840d3d8eb1e4e::t_fa26c31e6c73ad 38-39,97-102,114-115,187,198-224,226,252-255,258-262
+  s_b840d3d8eb1e4e::t_21e93e09fecc9e 263
+docs/exercises/lesson-4/1corinthians-13-1-13.md
+  s_b840d3d8eb1e4e::t_eedb0ec20e4e2b 3,7,12,17,22,27,32,37,42,47,52,57,62,67,74
+docs/exercises/lesson-4/strongs-lexicon.json
+  s_b840d3d8eb1e4e::t_eedb0ec20e4e2b 1-1927
+docs/javascripts/strongs-hover.js
+  s_b840d3d8eb1e4e::t_3aa5ccfe7cff02 1,3-6,15-141,153-154
+docs/exercises/lesson-4/philippians-2-1-11.md
+  s_b840d3d8eb1e4e::t_eedb0ec20e4e2b 3,7,12,17,22,27,32,37,42,47,52,57,64
+docs/stylesheets/extra.css
+  s_b840d3d8eb1e4e::t_72f304fabb64af 1749-1822
+.agents/skills/sgbs-strongs-interlinear/references/verification-gold-standard.md
+  s_b840d3d8eb1e4e::t_3b7b7e8954e60f 98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "37da66c16bdb27c515d38b4e47ecd2505e303358",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
