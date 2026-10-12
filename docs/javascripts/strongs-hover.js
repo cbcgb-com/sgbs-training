@@ -1,8 +1,11 @@
-// 練習經文對照頁（lesson 4）：hover 亮起對照組；點擊開啟右側史特朗字典面板。
+// 練習經文對照頁（lesson 4）：hover/點擊亮起對照組；點擊開啟史特朗字典面板
+// （桌面：右側面板；行動裝置：底部面板）。
+// 互動模型：點同一個字＝收合；點另一個字＝移動釘選；點外面或 Escape＝關閉。
 (function () {
   var lexicon = null;
   var lexiconPromise = null;
   var panel = null;
+  var pinned = null;
 
   function lexiconUrl() {
     // Resolve relative to THIS script's location so it works at any page depth
@@ -34,12 +37,17 @@
     panel
       .querySelector(".strongs-panel-close")
       .addEventListener("click", function () {
-        panel.classList.remove("open");
+        closePanel();
       });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") panel.classList.remove("open");
-    });
     return panel;
+  }
+
+  function closePanel() {
+    if (pinned) {
+      setHighlight(pinned, false);
+      pinned = null;
+    }
+    if (panel) panel.classList.remove("open");
   }
 
   function loadLexicon() {
@@ -165,12 +173,27 @@
         setHighlight(g, true);
       });
       el.addEventListener("mouseleave", function () {
-        setHighlight(g, false);
+        if (g !== pinned) setHighlight(g, false);
       });
-      el.addEventListener("click", function () {
+      el.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (pinned === g) {
+          closePanel();
+          return;
+        }
+        if (pinned) setHighlight(pinned, false);
+        pinned = g;
         setHighlight(g, true);
         openPanelFor(g);
       });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closePanel();
+    });
+    document.addEventListener("click", function (e) {
+      if (!panel || !panel.classList.contains("open")) return;
+      if (e.target.closest(".strongs-panel") || e.target.closest("[data-g]")) return;
+      closePanel();
     });
   }
 
