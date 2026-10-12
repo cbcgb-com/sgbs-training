@@ -50,7 +50,7 @@ ALIGN_PHIL = {
 
 ALIGN_GAL = {
     13: [["You,", [0, 1]], ["my", []], ["brothers and sisters,", [5]], ["were called", [4]], ["to be free.", [2, 3]], ["But do not", [6, 7]], ["use", []], ["your freedom", [8, 9]], ["to indulge", [10, 11]], ["the flesh;", [12, 13]], ["rather,", [14]], ["serve", [18]], ["one another", [19]], ["humbly", []], ["in love.", [15, 16, 17]]],
-    14: [["For", [1]], ["the", [0]], ["entire", [2]], ["law", [3]], ["is fulfilled", [7]], ["in keeping", [4, 8, 9]], ["this one command:", [5, 6]], ["“Love", [10]], ["your", [13]], ["neighbor", [11, 12]], ["as yourself.”", [14, 15]]],
+    14: [["For", [1]], ["the", [0]], ["entire", [2]], ["law", [3]], ["is fulfilled", [7]], ["in keeping", [8, 9]], ["this one command:", [4, 5, 6]], ["“Love", [10]], ["your", [13]], ["neighbor", [11, 12]], ["as yourself.”", [14, 15]]],
     15: [["If", [0, 1]], ["you bite", [3]], ["and", [4]], ["devour", [5]], ["each other,", [2]], ["watch out", [6]], ["or you will be destroyed", [7, 10]], ["by each other.", [8, 9]]],
     16: [["So I say,", [0, 1]], ["walk", [3]], ["by the Spirit,", [2]], ["and", [4]], ["you will not", [7, 8]], ["gratify", [9]], ["the desires of the flesh.", [5, 6]]],
     17: [["For", [1]], ["the flesh", [0, 2]], ["desires", [3]], ["what is contrary", [4]], ["to the Spirit,", [5, 6]], ["and", [8]], ["the Spirit", [7, 9]], ["what is contrary to", [10]], ["the flesh.", [11, 12]], ["They", [13, 14]], ["are in conflict", [16]], ["with each other,", [15]], ["so that", [17]], ["you are not to do", [18, 23]], ["whatever", [19]], ["you want.", [20, 21, 22]]],
