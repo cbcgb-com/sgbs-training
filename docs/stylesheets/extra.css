@@ -1746,3 +1746,77 @@ details summary:hover {
   box-shadow: 0 0 0 2px rgba(var(--sgbs-vermilion-rgb), 0.16);
   border-radius: 3px;
 }
+
+/* 點擊詞彙 → 右側史特朗字典面板（strongs-hover.js） */
+.strongs-panel {
+  position: fixed;
+  top: 4.6rem;
+  right: 1rem;
+  width: min(21rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 6.5rem);
+  overflow-y: auto;
+  background: var(--sgbs-paper);
+  border: 1px solid var(--sgbs-rule);
+  border-radius: 10px;
+  padding: 0.9rem 1rem 1rem;
+  z-index: 60;
+  display: none;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  box-shadow: 0 10px 30px rgba(var(--sgbs-ink-rgb), 0.18);
+}
+
+.strongs-panel.open { display: block; }
+
+.strongs-panel-close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.5rem;
+  border: none;
+  background: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--sgbs-ink-soft);
+  cursor: pointer;
+}
+
+.strongs-panel-en { margin: 0 0 0.5rem; color: var(--sgbs-ink-soft); }
+
+.strongs-token { margin: 0 0 0.35rem; font-size: 1rem; }
+
+.strongs-badge {
+  display: inline-block;
+  background: rgba(var(--sgbs-vermilion-rgb), 0.12);
+  color: var(--sgbs-vermilion);
+  border-radius: 4px;
+  padding: 0 0.3rem;
+  font-family: ui-monospace, monospace;
+  font-size: 0.72rem;
+}
+
+.strongs-lemma { margin: 0.4rem 0 0.15rem; }
+
+.strongs-translit { color: var(--sgbs-ink-soft); font-style: italic; }
+
+.strongs-core-def { margin: 0.15rem 0; }
+
+.strongs-senses-label { margin: 0.4rem 0 0.15rem; color: var(--sgbs-ink-soft); }
+
+.strongs-senses { margin: 0 0 0.3rem; padding-left: 1.1rem; }
+
+.strongs-sense::marker { color: var(--sgbs-vermilion); }
+
+.strongs-deriv { margin: 0.15rem 0 0; color: var(--sgbs-ink-soft); }
+
+.strongs-article-note { color: var(--sgbs-ink-soft); }
+
+.strongs-exercise {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--sgbs-rule);
+  font-weight: 600;
+}
+
+.strongs-link { margin: 0.3rem 0 0; }
+
+.strongs-link a { color: var(--sgbs-vermilion); }
