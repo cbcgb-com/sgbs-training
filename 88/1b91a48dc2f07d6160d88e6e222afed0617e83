@@ -1,0 +1,21 @@
+.agents/skills/sgbs-strongs-interlinear/scripts/generate_strongs_pages.py
+  s_b840d3d8eb1e4e::t_2fc2832d6aee57 259,262
+docs/javascripts/strongs-hover.js
+  s_b840d3d8eb1e4e::t_334c6f163f9b94 50,56-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "881b91a48dc2f07d6160d88e6e222afed0617e83",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
