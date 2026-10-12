@@ -98,12 +98,12 @@ The shipped review cleared 228/228 flags into categories 1–3.
 
 ## Adding a new passage (end-to-end)
 
-1. Add the verse's groups to `scripts/strongs/align_fine.py` (copy the pattern;
+1. Add the verse's groups to `.agents/skills/sgbs-strongs-interlinear/scripts/align_fine.py` (copy the pattern;
    dump tokens first — see generator for the bolls/TISCH fetch).
 2. Register the passage in `PASSAGES` in `generate_strongs_pages.py` (bolls
    book number, chapter, verse range, NIV book key, BibleHub interlinear URL).
-3. `python3 scripts/strongs/generate_strongs_pages.py` — Layer 1 must pass.
-4. `python3 scripts/strongs/audit_alignment.py` — triage **every** flag into a
+3. `python3 .agents/skills/sgbs-strongs-interlinear/scripts/generate_strongs_pages.py` — Layer 1 must pass.
+4. `python3 .agents/skills/sgbs-strongs-interlinear/scripts/audit_alignment.py` — triage **every** flag into a
    written verdict (Layer 2 + 3).
 5. `markdownlint` the new page (MD033 exempt; MD013 on unbreakable lines is
    house baseline).

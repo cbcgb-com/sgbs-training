@@ -1,6 +1,6 @@
 ---
 name: sgbs-strongs-interlinear
-description: Author, regenerate, and cross-check the Greek interlinear exercise pages (docs/exercises/lesson-4/*.md) where NIV verses pair with Tischendorf Greek + Strong's numbers and hover-highlighting maps English↔Greek word groups. Use when adding or editing passages in scripts/strongs/align_fine.py, running generate_strongs_pages.py or audit_alignment.py, adding a new exercise passage, or answering "how do we know the highlighting/alignment is right?" — any verification of the EN↔GR pairing against independent sources (MACULA glosses, BibleHub, STEP Bible).
+description: Author, regenerate, and cross-check the Greek interlinear exercise pages (docs/exercises/lesson-4/*.md) where NIV verses pair with Tischendorf Greek + Strong's numbers and hover-highlighting maps English↔Greek word groups. Use when adding or editing passages in .agents/skills/sgbs-strongs-interlinear/scripts/align_fine.py, running generate_strongs_pages.py or audit_alignment.py, adding a new exercise passage, or answering "how do we know the highlighting/alignment is right?" — any verification of the EN↔GR pairing against independent sources (MACULA glosses, BibleHub, STEP Bible).
 license: MIT
 ---
 
@@ -8,22 +8,22 @@ license: MIT
 
 The interlinear exercise pages pair NIV English with Tischendorf Greek and
 Strong's numbers, joined by a **hand-authored** word-level alignment
-(`scripts/strongs/align_fine.py`). No independent dataset pairs NIV words with
+(`.agents/skills/sgbs-strongs-interlinear/scripts/align_fine.py`). No independent dataset pairs NIV words with
 Strong's numbers — that pairing is licensed commercially — so correctness is
 established by a three-layer cross-check. Follow all three layers whenever the
 alignment changes; skipping a layer ships unverified data to students.
 
 ## Toolchain (repo paths — do not duplicate elsewhere)
 
-- `scripts/strongs/align_fine.py` — the alignment data. Each verse is a list of
+- `.agents/skills/sgbs-strongs-interlinear/scripts/align_fine.py` — the alignment data. Each verse is a list of
   `[english_chunk, [greek_0_based_indices]]`. Empty chunk = Greek-only group
   (untranslated particle); empty index list = English-only group (NIV-supplied
   word). Edit here first; everything else derives from it.
-- `scripts/strongs/generate_strongs_pages.py` — builds
+- `.agents/skills/sgbs-strongs-interlinear/scripts/generate_strongs_pages.py` — builds
   `docs/exercises/lesson-4/*.md` and **refuses** to emit a page unless English
   chunks reconstruct each verse verbatim and Greek indices fully partition each
   verse (Layer 1).
-- `scripts/strongs/audit_alignment.py` — cross-checks every group against
+- `.agents/skills/sgbs-strongs-interlinear/scripts/audit_alignment.py` — cross-checks every group against
   MACULA (Nestle1904) per-token glosses and flags zero-overlap groups
   (Layer 2).
 
@@ -33,9 +33,9 @@ alignment changes; skipping a layer ships unverified data to students.
    with its own token; articles attach to their head noun; auxiliaries attach
    to their verb; genuinely untranslatable tokens get solo groups. Chunks must
    reproduce NIV text exactly.
-2. **Generate**: `python3 scripts/strongs/generate_strongs_pages.py` — Layer 1
+2. **Generate**: `python3 .agents/skills/sgbs-strongs-interlinear/scripts/generate_strongs_pages.py` — Layer 1
    must pass before anything else.
-3. **Audit**: `python3 scripts/strongs/audit_alignment.py` — triage **every**
+3. **Audit**: `python3 .agents/skills/sgbs-strongs-interlinear/scripts/audit_alignment.py` — triage **every**
    flag to a written verdict (stopword group / documented synonym / NIV-supplied
    word / real mispairing). Fix real mispairings, re-run 2–3. The audit is
    triage, not proof — see
