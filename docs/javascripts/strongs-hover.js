@@ -47,11 +47,20 @@
     if (!lexiconPromise) {
       lexiconPromise = fetch(lexiconUrl())
         .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
           return r.json();
         })
         .then(function (j) {
           lexicon = j;
           return j;
+        })
+        .catch(function (err) {
+          lexiconPromise = null;
+          var p = ensurePanel().querySelector(".strongs-panel-loading");
+          if (p) {
+            p.textContent = "字典載入失敗，請稍後重新整理再試。";
+          }
+          throw err;
         });
     }
     return lexiconPromise;
