@@ -256,10 +256,10 @@ def main():
         print(f"OK {p['file']}: {len(want)} verses, {n_groups} fine-grained groups")
 
     lexicon = build_lexicon(all_used_numbers)
-    (SITE / "strongs-lexicon.json").write_text(
+    (repo_root() / "docs" / "javascripts" / "strongs-lexicon.json").write_text(
         json.dumps(lexicon, ensure_ascii=False, indent=1), encoding="utf-8"
     )
-    print(f"OK strongs-lexicon.json: {len(lexicon)} entries")
+    print(f"OK docs/javascripts/strongs-lexicon.json: {len(lexicon)} entries")
 
 
 if __name__ == "__main__":
