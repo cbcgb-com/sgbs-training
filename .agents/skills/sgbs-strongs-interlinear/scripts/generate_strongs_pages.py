@@ -25,7 +25,15 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from align_fine import ALIGN_1COR, ALIGN_GAL, ALIGN_PHIL, ALIGN_ROMANS  # noqa: E402
 
-SITE = Path(__file__).resolve().parents[2] / "docs" / "exercises" / "lesson-4"
+def repo_root() -> Path:
+    """Walk up to the directory containing mkdocs.yml (works from any depth)."""
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "mkdocs.yml").exists():
+            return parent
+    raise SystemExit("repo root (mkdocs.yml) not found above " + str(Path(__file__).resolve()))
+
+
+SITE = repo_root() / "docs" / "exercises" / "lesson-4"
 NIV_CACHE = Path("/tmp/strongs-niv")
 
 NIV_BOOKS = {

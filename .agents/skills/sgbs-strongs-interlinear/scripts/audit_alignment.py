@@ -4,7 +4,7 @@ For every alignment group, compares the group's English chunk with the MACULA
 (CLEAR Bible, Nestle1904) English *gloss* of each paired Greek token. Flags
 groups with zero word overlap for manual review. This is triage, not proof:
 glosses differ from translations by design, so every flag must be reviewed by
-a person (see scripts/strongs/README notes in the commit history).
+a person (see the git history of this file in the commit history).
 
 MACULA source: github.com/clear-bible/macula-greek (Nestle1904/nodes/*.xml).
 Token refs are 1-based (!1 = first word); alignment indices are 0-based.
