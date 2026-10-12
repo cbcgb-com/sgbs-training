@@ -1820,3 +1820,46 @@ details summary:hover {
 .strongs-link { margin: 0.3rem 0 0; }
 
 .strongs-link a { color: var(--sgbs-vermilion); }
+
+/* 詞彙點擊提示（桌面 cursor；行動裝置拿掉系統 tap 高亮） */
+.strongs-en,
+.strongs-word {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.strongs-en,
+.strongs-word {
+  cursor: pointer;
+}
+
+/* 行動裝置：面板改為底部面板（bottom sheet） */
+@media (max-width: 600px) {
+  .strongs-panel {
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 62vh;
+    border-radius: 14px 14px 0 0;
+    border-bottom: none;
+    box-shadow: 0 -8px 30px rgba(var(--sgbs-ink-rgb), 0.25);
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .strongs-panel::before {
+    content: "";
+    display: block;
+    width: 2.2rem;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--sgbs-rule);
+    margin: 0 auto 0.6rem;
+  }
+
+  .strongs-panel-close {
+    top: 0.45rem;
+    right: 0.7rem;
+    font-size: 1.3rem;
+  }
+}
