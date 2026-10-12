@@ -1,0 +1,22 @@
+.agents/skills/sgbs-strongs-interlinear/SKILL.md
+  s_b840d3d8eb1e4e::t_63bf7b1466756a 3-4,7-65
+  s_b840d3d8eb1e4e::t_3fe50d15b8d3ce 1-2,5-6
+.agents/skills/sgbs-strongs-interlinear/references/verification-gold-standard.md
+  s_b840d3d8eb1e4e::t_f5a134f1177840 1-111
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "10bb9eec3b38a27f0bb3f1789219c8976d0b9aea",
+  "prompts": {},
+  "sessions": {
+    "s_b840d3d8eb1e4e": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a12c59-5bca-72a7-a6b2-34d33f5f69ce",
+        "model": "glm-5.3-flash"
+      },
+      "human_author": "Eric Ma <ericmajinglong@gmail.com>"
+    }
+  }
+}
