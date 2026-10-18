@@ -5,11 +5,8 @@ import type { Id } from "../convex/_generated/dataModel";
 import { CURRENT_QUARTER } from "./constants";
 import { splitByGroup } from "./attendanceGroups";
 import Avatar from "./Avatar";
-import {
-  struckNameClass,
-  struckPortraitClass,
-  struckTitle,
-} from "./strikeout";
+import { isLockedSittingInDate, nyDateFromMs } from "./attendanceStatus";
+import type { WithdrawalCause } from "./attendanceStatus";
 
 type Mark = "yes" | "no" | "none";
 
@@ -21,6 +18,8 @@ type AttendanceRow = {
   photoStorageId?: Id<"_storage">;
   missed: number;
   marks: Mark[];
+  withdrawalCause: WithdrawalCause | null;
+  triggerDate: string | null;
 };
 
 // Instructor layout for 出席: by group (default) or the flat name list.
@@ -81,9 +80,9 @@ export default function Attendance() {
   // date, else the last date of the season (all past).
   const defaultDate = useMemo(() => {
     if (dates.length === 0) return null;
-    const today = localToday();
+    const today = data?.todayNy ?? nyDateFromMs(Date.now());
     return dates.find((d) => d >= today) ?? dates[dates.length - 1];
-  }, [dates]);
+  }, [dates, data?.todayNy]);
   const date = picked ?? defaultDate;
 
   if (data === undefined || photos === undefined) return <Loading />;
@@ -95,8 +94,12 @@ export default function Attendance() {
     );
   }
 
+  const todayNy = data.todayNy ?? nyDateFromMs(Date.now());
   const students = [...data.students].sort((a, b) =>
     a.name.localeCompare(b.name, "zh-Hant"),
+  );
+  const withdrawnByAbsence = [...(data.withdrawnByAbsence ?? [])].sort(
+    (a, b) => a.name.localeCompare(b.name, "zh-Hant"),
   );
   const groups = splitByGroup(data.students);
   const dateIndex = data.dates.indexOf(date!);
@@ -104,6 +107,7 @@ export default function Attendance() {
   const yes = data.students.filter((s) => marksOf(s) === "yes").length;
   const no = data.students.filter((s) => marksOf(s) === "no").length;
   const unrecorded = data.students.length - yes - no;
+  const futureDate = Boolean(date && date > todayNy);
 
   async function setMark(s: AttendanceRow, target: "yes" | "no") {
     if (!date) return;
@@ -174,7 +178,7 @@ export default function Attendance() {
         ))}
       </nav>
       <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-        每堂課後點名。再點一次已標記的按鈕即取消記錄；「未記錄全部出席」只填寫尚未記錄的學員，不會更動已標記的出席或缺席。
+        每堂課後點名。先標記缺席，再按「未記錄全部出席」——該按鈕只填寫尚未記錄的學員，會把已過課堂的空白（視為缺席）改成出席。再點一次已標記的按鈕即取消記錄。
       </p>
 
       <div
@@ -220,7 +224,7 @@ export default function Attendance() {
         <button
           type="button"
           onClick={fillAll}
-          disabled={unrecorded === 0 || busyId !== null}
+          disabled={unrecorded === 0 || busyId !== null || futureDate}
           className="border border-vermilion bg-ink px-3 py-1.5 font-serif-tc text-xs font-bold tracking-[0.15em] text-paper transition-colors hover:bg-vermilion disabled:cursor-not-allowed disabled:opacity-40"
         >
           {busyId === "bulk" ? "處理中" : "未記錄全部出席"}
@@ -243,6 +247,7 @@ export default function Attendance() {
               photos={photos}
               busyId={busyId}
               onSetMark={setMark}
+              todayNy={todayNy}
             />
           ))}
           <p className="mt-3 text-right text-sm text-ink-soft tabular-nums">
@@ -257,7 +262,28 @@ export default function Attendance() {
           photos={photos}
           busyId={busyId}
           onSetMark={setMark}
+          todayNy={todayNy}
         />
+      )}
+
+      {withdrawnByAbsence.length > 0 && (
+        <details className="mt-10 border-t-2 border-ink pt-4">
+          <summary className="cursor-pointer font-serif-tc text-lg font-bold tracking-[0.15em] text-ink">
+            已退出（缺課）· {withdrawnByAbsence.length} 位
+          </summary>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            缺席任兩堂（含已過課堂未點名）即視為退出。第二堂缺課當日及更早的紀錄仍可更正；之後的日期是旁聽，不記錄出席。
+          </p>
+          <AttendanceTable
+            students={withdrawnByAbsence}
+            date={date!}
+            marksOf={marksOf}
+            photos={photos}
+            busyId={busyId}
+            onSetMark={setMark}
+            todayNy={todayNy}
+          />
+        </details>
       )}
     </div>
   );
@@ -271,6 +297,7 @@ function GroupSheet({
   photos,
   busyId,
   onSetMark,
+  todayNy,
 }: {
   groupName: string;
   students: AttendanceRow[];
@@ -279,6 +306,7 @@ function GroupSheet({
   photos: Record<string, string | null> | null | undefined;
   busyId: Id<"students"> | "bulk" | null;
   onSetMark: (s: AttendanceRow, target: "yes" | "no") => void;
+  todayNy: string;
 }) {
   const yes = students.filter((s) => marksOf(s) === "yes").length;
   const no = students.filter((s) => marksOf(s) === "no").length;
@@ -300,6 +328,7 @@ function GroupSheet({
         photos={photos}
         busyId={busyId}
         onSetMark={onSetMark}
+        todayNy={todayNy}
         showFooter={false}
       />
     </section>
@@ -313,6 +342,7 @@ function AttendanceTable({
   photos,
   busyId,
   onSetMark,
+  todayNy,
   showFooter = true,
 }: {
   students: AttendanceRow[];
@@ -321,6 +351,7 @@ function AttendanceTable({
   photos: Record<string, string | null> | null | undefined;
   busyId: Id<"students"> | "bulk" | null;
   onSetMark: (s: AttendanceRow, target: "yes" | "no") => void;
+  todayNy: string;
   showFooter?: boolean;
 }) {
   return (
@@ -346,6 +377,17 @@ function AttendanceTable({
           {students.map((s, i) => {
             const mark = marksOf(s);
             const busy = busyId === s._id;
+            const sittingIn = isLockedSittingInDate(
+              {
+                withdrawn: s.withdrawalCause !== null,
+                cause: s.withdrawalCause,
+                triggerDate: s.triggerDate,
+                missedDates: [],
+                missedCount: s.missed,
+              },
+              date,
+            );
+            const pastBlank = mark === "none" && date < todayNy;
             return (
               <tr
                 key={s._id}
@@ -355,21 +397,16 @@ function AttendanceTable({
                   {i + 1}
                 </td>
                 <td className="whitespace-nowrap px-3 py-2.5">
-                  <span
-                    className="flex items-center gap-2.5"
-                    title={struckTitle(s.name, s.missed)}
-                  >
-                    <span className={struckPortraitClass(s.missed)}>
-                      <Avatar
-                        name={s.name}
-                        size={48}
-                        url={
-                          s.photoStorageId
-                            ? photos?.[s.photoStorageId]
-                            : undefined
-                        }
-                      />
-                    </span>
+                  <span className="flex items-center gap-2.5">
+                    <Avatar
+                      name={s.name}
+                      size={48}
+                      url={
+                        s.photoStorageId
+                          ? photos?.[s.photoStorageId]
+                          : undefined
+                      }
+                    />
                     <span
                       role="group"
                       aria-label={`${s.name} ${zhDay(date)} 出席記錄`}
@@ -379,28 +416,28 @@ function AttendanceTable({
                         label="出席"
                         active={mark === "yes"}
                         tone="yes"
-                        disabled={busy}
+                        disabled={busy || sittingIn}
                         onClick={() => onSetMark(s, "yes")}
                       />
                       <MarkButton
                         label="缺席"
                         active={mark === "no"}
                         tone="no"
-                        disabled={busy}
+                        disabled={busy || sittingIn}
                         onClick={() => onSetMark(s, "no")}
                       />
                     </span>
-                    <span
-                      className={
-                        "font-serif-tc text-[17px] font-bold text-ink " +
-                        struckNameClass(s.missed)
-                      }
-                    >
+                    <span className="font-serif-tc text-[17px] font-bold text-ink">
                       {s.name}
                     </span>
-                    {mark === "none" && (
+                    {sittingIn && (
+                      <span className="font-serif-tc text-xs tracking-[0.1em] text-vermilion">
+                        旁聽不記錄
+                      </span>
+                    )}
+                    {!sittingIn && mark === "none" && (
                       <span className="font-serif-tc text-xs tracking-[0.1em] text-rule">
-                        未記錄
+                        {pastBlank ? "未記錄（視為缺席）" : "未記錄"}
                       </span>
                     )}
                   </span>
@@ -466,12 +503,6 @@ function zhDay(iso: string): string {
   const d = new Date(`${iso}T00:00:00`);
   const weekdays = ["日", "一", "二", "三", "四", "五", "六"];
   return `${d.getMonth() + 1}月${d.getDate()}日（${weekdays[d.getDay()]}）`;
-}
-
-function localToday(): string {
-  const d = new Date();
-  const p = (n: number) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 }
 
 function Loading() {

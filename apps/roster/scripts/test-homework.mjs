@@ -77,7 +77,7 @@ if (schedule.length === 0) {
   throw new Error("seed demo data first: npx convex run demo:seedPreviewDemo");
 }
 
-// A leading week (not orientation) that has both a 主領 and an 觀察, so
+// A leading week (not lesson 1) that has both a 主領 and an 觀察, so
 // the questions-credit rule can be exercised both ways.
 const week = schedule.slice(1).find((s) => s.leaders.length > 0 && s.observers.length > 0);
 if (!week) {
@@ -108,7 +108,7 @@ const leader = week.leaders[0];
 const observer = week.observers[0];
 const leaderId = idOf(leader.name);
 const studentEmails = (await instructor.query(api.students.all, {}))
-  .filter((s) => s.quarter === QUARTER && s.withdrawnAt === undefined);
+  .filter((s) => s.quarter === QUARTER && !s.withdrawn);
 const assigned = new Set([...week.leaders, ...week.observers].map((p) => p._id));
 const bystander = studentEmails.find((s) => !assigned.has(s._id));
 const subject = studentEmails.find((s) => s.email === STUDENT) ?? studentEmails[0];

@@ -51,12 +51,12 @@ const allBefore = await instructor.query(api.students.all, {});
 const current = (email) =>
   allBefore.find((s) => s.email === email && s.quarter === "2026秋季");
 const row = current(STUDENT);
-const second = current("demo4@demo.sgbs");
+const second = current("demo5@demo.sgbs");
 if (!row || !second) {
   throw new Error("seed demo data first: npx convex run demo:seedPreviewDemo");
 }
 for (const s of [row, second]) {
-  if (s.withdrawnAt !== undefined) {
+  if (s.withdrawnAt) {
     await instructor.mutation(api.students.reactivateStudent, {
       studentId: s._id,
     });
@@ -123,7 +123,7 @@ check("本季度 excludes the withdrawn row", !quarterRows.some((s) => s.email =
 
 const allRows = await instructor.query(api.students.all, {});
 const masterRow = allRows.find((s) => s.email === STUDENT);
-check("Master keeps the withdrawn row (badge data)", masterRow?.withdrawnAt !== undefined);
+check("Master keeps the withdrawn row (badge data)", masterRow?.withdrawn === true);
 
 const attendance = await instructor.query(api.students.quarterAttendance, {});
 check("出勤 excludes the withdrawn row", !attendance.students.some((s) => s.name === row.name));
@@ -156,14 +156,14 @@ check("current-quarter sessions were swept", !stillAssigned);
 
 // ---- 4. Instructor on-behalf withdrawal + undo ----------------------
 // Withdraw a second demo student as an instructor, then reactivate.
-const target = quarterRows.find((s) => s.email === "demo4@demo.sgbs");
+const target = quarterRows.find((s) => s.email === "demo5@demo.sgbs");
 const adm = await instructor.mutation(api.students.withdrawStudent, {
   studentId: target._id,
   reason: "個人因素",
 });
 check("instructor withdrawal succeeds", adm.status === "withdrawn", JSON.stringify(adm));
 const afterAdm = await instructor.query(api.students.withdrawn, {});
-check("instructor withdrawal appears in 已退出", afterAdm.some((w) => w.email === "demo4@demo.sgbs"));
+check("instructor withdrawal appears in 已退出", afterAdm.some((w) => w.email === "demo5@demo.sgbs"));
 
 const undo = await instructor.mutation(api.students.reactivateStudent, {
   studentId: target._id,

@@ -97,11 +97,11 @@ schedule, group. Instructors see the full archive.
 **Rationale**: Students have no use for 2015 data, and the current season
 is what they act on. Instructors retain history for continuity.
 
-### Decision 4: Fixed dates, four leading weeks
+### Decision 4: Fixed dates, 主領/觀察 from lesson 2
 
-**Choice**: Each season has five fixed class dates; the first is
-orientation (課程信息介紹) and never carries assignments. The schedule is
-exactly four leading weeks. No add/delete date UI.
+**Choice**: Each season has five fixed class dates. All five count for
+attendance (no orientation exception). 主領/觀察 assignments start at
+lesson 2, so the schedule has four leading weeks. No add/delete date UI.
 **Rationale**: The dates are set once per season; inventing and deleting
 dates from the UI invites drift.
 

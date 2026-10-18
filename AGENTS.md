@@ -299,9 +299,11 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
   keeps Chinese labels) + `authCodes`/`authSessions` auth tables
 - `apps/roster/convex/students.ts` - View queries (12 Airtable views) +
   `registerStudent` (instructor-managed) + role gates + 退出報名 withdrawal
-  (soft state `withdrawnAt`: self-service, instructor on-behalf, undo, and
-  re-registration reactivation; see
-  `apps/roster/docs/designs/withdrawal/LLD.md`)
+  (manual `withdrawnAt` plus, from 2026秋季, derived two-miss status;
+  self-service, instructor on-behalf, undo, and re-registration
+  reactivation of *manual* withdrawal only; see
+  `apps/roster/docs/designs/withdrawal/LLD.md` and
+  `apps/roster/src/attendanceStatus.ts`)
 - `apps/roster/src/withdrawal.ts` - Shared withdrawal UI helpers (reason
   value, date formatting)
 - `apps/roster/src/auth/` - Sign-in sheet, code-entry step, session store

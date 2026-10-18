@@ -32,14 +32,15 @@
 - [x] **ROSTER-GRID-010**: The Master view shall keep withdrawn students
       with a 已退出 badge so history survives.
 
-## Strikeout treatment
+## Strikeout treatment (retired)
 
-- [x] **ROSTER-STRK-001**: The system shall render students with 本季缺課
-      ≥ 2 (replicated `missed` ≥ 2) faded with a dotted strikeout on
-      分組, 名單, 出席, and 課堂安排, without excluding them from any
-      list or disabling any control.
-- [x] **ROSTER-STRK-002**: The strikeout threshold shall be 2 absences;
-      students with fewer absences render normally.
+- [x] **ROSTER-STRK-001**: From 2026秋季, two misses withdraw the student
+      (derived status). They leave active lists (本季度, 分組, 課堂安排)
+      and appear on 已退出 / 已退出（缺課） instead of a strikeout on an
+      active row. `src/strikeout.ts` is retired.
+- [x] **ROSTER-STRK-002**: The miss threshold remains 2. Pre-2026秋季
+      quarters are unchanged (flag-only withdrawal; no derived two-miss
+      rule).
 
 ## Kanban Views
 

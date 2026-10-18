@@ -77,41 +77,58 @@ export default function MyProfile() {
           </div>
         </div>
         <p className="mt-6 text-sm leading-relaxed text-ink-soft">
-          您已退出 {profile.student?.quarter || CURRENT_QUARTER} 的課程。您的名字已從本季名單、聯絡表、小組與課堂安排中移除；出席紀錄會保留。
+          {profile.withdrawalCause === "absences"
+            ? `您因缺課兩堂，依出席政策視為退出 ${profile.student?.quarter || CURRENT_QUARTER}。您的名字已從本季名單、聯絡表、小組與課堂安排中移除；出席紀錄會保留。歡迎旁聽，但不記錄出席。`
+            : `您已退出 ${profile.student?.quarter || CURRENT_QUARTER} 的課程。您的名字已從本季名單、聯絡表、小組與課堂安排中移除；出席紀錄會保留。`}
         </p>
-        {(profile.withdrawnAt || profile.withdrawnReason) && (
+        {(profile.withdrawnAt ||
+          profile.withdrawnReason ||
+          profile.triggerDate) && (
           <dl className="mt-6 space-y-3 border-l border-gold/70 pl-4 text-sm">
-            {profile.withdrawnAt && (
+            {(profile.withdrawnAt || profile.triggerDate) && (
               <div>
                 <dt className="font-serif-tc font-bold tracking-[0.1em] text-ink">
                   退出日期
                 </dt>
                 <dd className="mt-0.5 text-ink-soft">
-                  {zhDate(profile.withdrawnAt)}
+                  {profile.withdrawnAt
+                    ? zhDate(profile.withdrawnAt)
+                    : profile.triggerDate}
                 </dd>
               </div>
             )}
-            {profile.withdrawnReason && (
+            {(profile.withdrawnReason ||
+              profile.withdrawalCause === "absences") && (
               <div>
                 <dt className="font-serif-tc font-bold tracking-[0.1em] text-ink">
                   退出原因
                 </dt>
                 <dd className="mt-0.5 text-ink-soft">
-                  {profile.withdrawnReason}
+                  {profile.withdrawalCause === "absences"
+                    ? "缺課兩堂"
+                    : profile.withdrawnReason}
                 </dd>
               </div>
             )}
           </dl>
         )}
-        <p className="mt-8 text-sm leading-relaxed text-ink-soft">
-          如想重新加入，可重新提交註冊；您的出席紀錄與資料會保留。
-        </p>
-        <button
-          onClick={() => setTab("register")}
-          className="mt-6 w-full bg-ink py-3.5 font-serif-tc pl-[0.4em] text-base font-bold tracking-[0.4em] text-paper transition-colors hover:bg-vermilion sm:w-auto sm:px-16"
-        >
-          重新報名
-        </button>
+        {profile.withdrawalCause === "absences" ? (
+          <p className="mt-8 text-sm leading-relaxed text-ink-soft">
+            重新報名無法恢復。若出席紀錄有誤，請請同工把該堂缺席更正為出席。
+          </p>
+        ) : (
+          <>
+            <p className="mt-8 text-sm leading-relaxed text-ink-soft">
+              如想重新加入，可重新提交註冊；您的出席紀錄與資料會保留。
+            </p>
+            <button
+              onClick={() => setTab("register")}
+              className="mt-6 w-full bg-ink py-3.5 font-serif-tc pl-[0.4em] text-base font-bold tracking-[0.4em] text-paper transition-colors hover:bg-vermilion sm:w-auto sm:px-16"
+            >
+              重新報名
+            </button>
+          </>
+        )}
       </div>
     );
   }

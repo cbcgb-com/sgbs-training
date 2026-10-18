@@ -4,6 +4,7 @@ import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 import { CURRENT_QUARTER } from "../src/constants";
 import { requireInstructor } from "./students";
+import { filterActiveStudents } from "./attendanceStatus";
 
 // 功課記錄: homework tracking parallel to attendance. One row per
 // (student, session date, homework type):
@@ -36,8 +37,8 @@ export const quarterRoster = internalQuery({
       .query("students")
       .withIndex("by_quarter", (x) => x.eq("quarter", q))
       .collect();
-    return students
-      .filter((s) => s.withdrawnAt === undefined)
+    const active = await filterActiveStudents(ctx, students);
+    return active
       .map((s) => ({
         _id: s._id,
         name: s.name,
@@ -60,8 +61,8 @@ export const classEmailList = internalQuery({
       .query("students")
       .withIndex("by_quarter", (x) => x.eq("quarter", q))
       .collect();
-    return students
-      .filter((s) => s.withdrawnAt === undefined)
+    const active = await filterActiveStudents(ctx, students);
+    return active
       .map((s) => ({
         name: s.name,
         email: (s.email ?? "").trim(),

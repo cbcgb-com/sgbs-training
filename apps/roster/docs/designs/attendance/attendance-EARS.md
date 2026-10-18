@@ -36,8 +36,10 @@
 - [ ] **ATT-BULK-002**: The system shall never overwrite an existing
       attendance row when running the bulk fill — explicit 出席/缺席
       marks survive it.
-- [ ] **ATT-BULK-003**: The system shall skip withdrawn students in the
-      bulk fill and leave their attendance history untouched.
+- [ ] **ATT-BULK-003**: The system shall skip withdrawn students (manual
+      or derived) in the bulk fill and leave their attendance history
+      untouched. It shall reject a bulk fill for a date after today in
+      America/New_York.
 - [ ] **ATT-BULK-004**: The system shall default the bulk fill's quarter
       to the current quarter and validate the date against that quarter's
       sessions before inserting anything.
@@ -48,8 +50,14 @@
       session dates and, per active student, aligned marks
       (`"yes" | "no" | "none"`) plus identity fields (name, fellowship,
       group, photo, season `missed`).
-- [ ] **ATT-READ-002**: The system shall exclude withdrawn students from
-      the attendance sheet while keeping their rows in the database.
+- [ ] **ATT-READ-002**: The system shall exclude *manually* withdrawn
+      students from the attendance sheet while keeping their rows in the
+      database. Absence-withdrawn students appear in `withdrawnByAbsence`.
+- [ ] **ATT-MISS-001**: From 2026秋季, a past session date with no row
+      shall count as a miss; today and future blanks shall not.
+- [ ] **ATT-SIT-001**: The system shall reject `attended: true` on a date
+      after the student's 2nd miss (旁聽不記錄), while still allowing
+      corrections on or before that date.
 
 ## UI
 
