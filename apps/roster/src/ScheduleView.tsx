@@ -4,6 +4,7 @@ import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
 import { CURRENT_QUARTER } from "./constants";
 import { useTab } from "./App";
+import GroupCoverageBanner from "./GroupCoverageBanner";
 
 type SessionRow = {
   _id: Id<"sessions">;
@@ -70,6 +71,10 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
   // from the weekly Google Docs. Instructor-only like the roster read:
   // students never see peers' completion (their schedule renders below).
   const homework = useQuery(api.homework.byQuarter, isInstructor ? {} : "skip");
+  const lateJoiners = useQuery(
+    api.groupCoverage.lateJoiners,
+    isInstructor ? {} : "skip",
+  );
   const [layout, setLayout] = useScheduleLayout();
 
   // 功課記錄 lookup: date → (`${studentId}:${type}` → done). Absence of
@@ -93,7 +98,8 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
 
   if (
     allSessions === undefined ||
-    (isInstructor && (roster === undefined || homework === undefined))
+    (isInstructor &&
+      (roster === undefined || homework === undefined || lateJoiners === undefined))
   ) {
     return (
       <p className="py-12 text-center font-serif-tc text-base tracking-[0.3em] text-ink-soft">
@@ -164,11 +170,15 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
           ? "按小組填寫每週的主領與觀察；日期已固定，每組輪流服事。"
           : "按週次一覽全班安排；每堂一節，各組的主領與觀察並列。"}
       </p>
+      <div className="mt-4">
+        <GroupCoverageBanner />
+      </div>
       {layout === "group" ? (
         <GroupSections
           sessions={sessions}
           roster={roster ?? []}
           orientationDate={orientationDate}
+          lateJoinerIds={new Set((lateJoiners ?? []).map((j) => j.studentId))}
         />
       ) : (
         <WeekSections
@@ -176,6 +186,7 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
           roster={roster ?? []}
           orientationDate={orientationDate}
           hw={hwByDate}
+          lateJoinerIds={new Set((lateJoiners ?? []).map((j) => j.studentId))}
         />
       )}
     </div>
@@ -186,10 +197,12 @@ function GroupSections({
   sessions,
   roster,
   orientationDate,
+  lateJoinerIds,
 }: {
   sessions: SessionRow[];
   roster: Doc<"students">[];
   orientationDate: string | null;
+  lateJoinerIds: Set<Id<"students">>;
 }) {
   const grouped = useMemo(() => splitByGroup(roster), [roster]);
 
@@ -202,6 +215,7 @@ function GroupSections({
           members={members}
           sessions={sessions}
           orientationDate={orientationDate}
+          lateJoinerIds={lateJoinerIds}
         />
       ))}
       {grouped.ungrouped.length > 0 && (
@@ -210,6 +224,7 @@ function GroupSections({
           members={grouped.ungrouped}
           sessions={sessions}
           orientationDate={orientationDate}
+          lateJoinerIds={lateJoinerIds}
         />
       )}
     </div>
@@ -226,11 +241,13 @@ function WeekSections({
   roster,
   orientationDate,
   hw,
+  lateJoinerIds,
 }: {
   sessions: SessionRow[];
   roster: Doc<"students">[];
   orientationDate: string | null;
   hw: Map<string, Map<string, boolean>>;
+  lateJoinerIds: Set<Id<"students">>;
 }) {
   const groups = useMemo(() => splitByGroup(roster).named, [roster]);
 
@@ -242,6 +259,11 @@ function WeekSections({
         <span role="img" aria-label="未完成" className="font-bold text-vermilion">✗</span> 未完成 ·{" "}
         <span role="img" aria-label="未記錄" className="text-rule">–</span> 未記錄
       </p>
+      {lateJoinerIds.size > 0 && (
+        <p className="text-sm leading-relaxed text-ink-soft">
+          晚加入的組員（含合併進來的）通常觀察兩次，代替主領。這是提醒，不是限制。
+        </p>
+      )}
       {sessions.map((s) => (
         <WeekTable
           key={s._id}
@@ -249,6 +271,7 @@ function WeekSections({
           groups={groups}
           orientationDate={orientationDate}
           hw={hw.get(s.date) ?? new Map()}
+          lateJoinerIds={lateJoinerIds}
         />
       ))}
     </div>
@@ -260,11 +283,13 @@ function WeekTable({
   groups,
   orientationDate,
   hw,
+  lateJoinerIds,
 }: {
   session: SessionRow;
   groups: [string, Doc<"students">[]][];
   orientationDate: string | null;
   hw: Map<string, boolean>;
+  lateJoinerIds: Set<Id<"students">>;
 }) {
   const update = useAssignmentUpdater();
   const weekday = weekdayOf(session.date);
@@ -329,6 +354,7 @@ function WeekTable({
                   session={session}
                   hw={hw}
                   onUpdate={update}
+                  lateJoinerIds={lateJoinerIds}
                 />
               ))}
             </tbody>
@@ -346,12 +372,14 @@ function WeekRow({
   session,
   hw,
   onUpdate,
+  lateJoinerIds,
 }: {
   groupName: string;
   members: Doc<"students">[];
   session: SessionRow;
   hw: Map<string, boolean>;
   onUpdate: AssignmentUpdater;
+  lateJoinerIds: Set<Id<"students">>;
 }) {
   const memberIds = useMemo(() => new Set(members.map((m) => m._id)), [members]);
 
@@ -373,6 +401,7 @@ function WeekRow({
               <span className="font-serif-tc font-bold">
                 {m.name}
               </span>
+              {lateJoinerIds.has(m._id) && <LateJoinMark name={m.name} />}
               <HwMark done={hw.get(`${m._id}:notes`)} label={`${m.name} 筆記`} />
             </span>
           ))}
@@ -405,14 +434,17 @@ function GroupScheduleTable({
   members,
   sessions,
   orientationDate,
+  lateJoinerIds,
 }: {
   groupName: string;
   members: Doc<"students">[];
   sessions: SessionRow[];
   orientationDate: string | null;
+  lateJoinerIds: Set<Id<"students">>;
 }) {
   const update = useAssignmentUpdater();
   const memberIds = useMemo(() => new Set(members.map((m) => m._id)), [members]);
+  const hasLateJoiner = members.some((m) => lateJoinerIds.has(m._id));
 
   return (
     <section>
@@ -424,6 +456,11 @@ function GroupScheduleTable({
           {members.length} 位
         </span>
       </div>
+      {hasLateJoiner && (
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+          晚加入的組員（含合併進來的）通常觀察兩次，代替主領。這是提醒，不是限制。
+        </p>
+      )}
       <div className="mt-2 overflow-x-auto overflow-y-clip">
         <table className="w-full border-collapse text-left text-base">
           <thead>
@@ -596,8 +633,24 @@ function AssignmentCell({
           ))}
         </select>
       </div>
+      {role === "leader" && people.length > 1 && (
+        <p role="status" className="mt-1 text-xs text-vermilion">
+          主領衝突：本組本堂有 {people.length} 位主領，請改為一位
+        </p>
+      )}
       {error && <p className="mt-1 text-xs text-vermilion">{error}</p>}
     </td>
+  );
+}
+
+function LateJoinMark({ name }: { name: string }) {
+  return (
+    <span
+      title={`${name} 晚加入本組，通常觀察兩次（提醒，不是限制）`}
+      className="text-[11px] tracking-[0.1em] text-ink-soft"
+    >
+      晚加入
+    </span>
   );
 }
 

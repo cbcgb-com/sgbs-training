@@ -41,6 +41,15 @@
 - [x] **SCH-DER-002**: The 觀察日期 view shall show each student with the
       dates on which they observe, derived from the sessions table.
 
+## Coverage
+
+- [x] **SCH-ADM-020**: Where a group has more than one 主領 on a session,
+      課堂安排 shall flag a 主領衝突 for the instructor to resolve.
+- [x] **SCH-ADM-021**: The system shall allow one or more 觀察 on a
+      session.
+- [x] **SCH-ADM-022**: Late joiners (including through a merge) shall
+      show an observe-twice hint that does not block 主領 assignment.
+
 ## Related Documents
 
 - [Schedule LLD](./LLD.md)

@@ -139,4 +139,29 @@ export default defineSchema({
     value: v.string(),
     updatedAt: v.number(),
   }).index("by_key", ["key"]),
+
+  // One open row per (quarter, groupName) while that group is under 3
+  // active members after a withdrawal. Dedupes instructor email. Banner
+  // is derived from live counts, not this table. See
+  // docs/designs/group-coverage/LLD.md.
+  groupCoverageNotices: defineTable({
+    quarter: v.string(),
+    groupName: v.string(),
+    memberCount: v.number(),
+    createdAt: v.number(),
+    emailedAt: v.optional(v.number()),
+    resolvedAt: v.optional(v.number()),
+  }).index("by_quarter_group", ["quarter", "groupName"]),
+
+  // Members who arrived in a group via an instructor-confirmed merge.
+  // 課堂安排 shows an observe-twice hint (not a hard block).
+  groupLateJoiners: defineTable({
+    studentId: v.id("students"),
+    quarter: v.string(),
+    groupName: v.string(),
+    joinedAt: v.number(),
+    sourceGroup: v.optional(v.string()),
+  })
+    .index("by_quarter_student", ["quarter", "studentId"])
+    .index("by_quarter_group", ["quarter", "groupName"]),
 });

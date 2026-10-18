@@ -16,11 +16,14 @@
 
 import { v } from "convex/values";
 import { internalAction } from "./_generated/server";
+import { internal } from "./_generated/api";
 import nodemailer from "nodemailer";
 import {
   CURRENT_QUARTER,
   CURRENT_QUARTER_SESSION_DATES,
+  ROSTER_APP_URL,
 } from "../src/constants";
+import { coverageBannerText } from "../src/groupCoverage";
 
 // Welcome-email class facts derive from the shared constants so a new
 // quarter cannot silently send stale dates. The clock time is not part
@@ -181,5 +184,79 @@ export const sendWelcomeEmail = internalAction({
     }
     const detail = lastErr instanceof Error ? lastErr.message : String(lastErr);
     throw new Error(`發送歡迎郵件失敗（不影響報名）：${detail.slice(0, 140)}`);
+  },
+});
+
+// Instructor coverage notice: a current-quarter group dropped below 3
+// active members after a withdrawal. Same SMTP path as welcome / code
+// mail. Scheduled from attendanceStatus.maybeNotifyUnderstaffedGroup;
+// marks the notice emailed only after a successful send so a blip can
+// retry on the next sweep.
+export const sendCoverageEmail = internalAction({
+  args: {
+    quarter: v.string(),
+    groupName: v.string(),
+    memberCount: v.number(),
+    memberNames: v.array(v.string()),
+  },
+  handler: async (ctx, { quarter, groupName, memberCount, memberNames }) => {
+    const instructors = await ctx.runQuery(internal.instructors.activeEmails, {});
+    const recipients = instructors
+      .map((i) => i.email)
+      .filter((email) => !email.endsWith("@example.com"));
+    if (recipients.length === 0) {
+      await ctx.runMutation(internal.groupCoverage.markNoticeEmailed, {
+        quarter,
+        groupName,
+      });
+      return;
+    }
+
+    const headline = coverageBannerText(groupName, memberCount);
+    const names = memberNames.join("、") || "（無）";
+    const greeting = "同工，平安！";
+    const subject = `小組查經訓練：${headline}`;
+    const text = [
+      greeting,
+      "",
+      headline + "。",
+      `目前組員：${names}`,
+      "",
+      "合併必須由同工確認，合併後有效至本季結束。請登入名單或課堂安排頁選擇目標小組。",
+      ROSTER_APP_URL,
+      "",
+      "小組查經訓練主日學 · CBCGB",
+    ].join("\n");
+    const html = [
+      `<p style="font-size:15px">${greeting}</p>`,
+      `<p style="font-size:15px"><b>${headline}</b></p>`,
+      `<p style="font-size:15px">目前組員：${names}</p>`,
+      `<p style="font-size:13px;color:#555">合併必須由同工確認，合併後有效至本季結束。請登入<a href="${ROSTER_APP_URL}">名單或課堂安排</a>頁選擇目標小組。</p>`,
+      `<p style="font-size:13px;color:#555">小組查經訓練主日學 · CBCGB</p>`,
+    ].join("");
+
+    const transport = makeTransport();
+    let lastErr: unknown;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        await transport.sendMail({
+          from: senderAddress(),
+          to: recipients,
+          subject,
+          text,
+          html,
+        });
+        await ctx.runMutation(internal.groupCoverage.markNoticeEmailed, {
+          quarter,
+          groupName,
+        });
+        return;
+      } catch (err) {
+        lastErr = err;
+        if (attempt < 3) await new Promise((r) => setTimeout(r, 2000));
+      }
+    }
+    const detail = lastErr instanceof Error ? lastErr.message : String(lastErr);
+    throw new Error(`發送小組合併通知失敗：${detail.slice(0, 140)}`);
   },
 });

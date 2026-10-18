@@ -9,6 +9,7 @@ import {
   WITHDRAWAL_REASONS,
 } from "./constants";
 import { withdrawReasonValue, zhDate } from "./withdrawal";
+import GroupCoverageBanner from "./GroupCoverageBanner";
 
 type Student = Doc<"students">;
 type LeaderRow = Student & { dates: string[] };
@@ -60,6 +61,10 @@ export default function Roster() {
           </span>
         ))}
       </nav>
+      <div className="mt-4">
+        <GroupCoverageBanner scheduleLink />
+      </div>
+
       <p className="mt-3 text-sm text-ink-soft">
         {view === "quarter" && `參與 ${CURRENT_QUARTER} 的學員`}
         {view === "master" && "全體學員，按姓名筆畫排序"}

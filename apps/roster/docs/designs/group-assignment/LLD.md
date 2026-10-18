@@ -68,3 +68,4 @@ student with no group sees 尚未分配 with a pointer to the instructor.
 - [High-Level Design](../../high-level-design.md)
 - [Divider EARS](./divider-EARS.md)
 - [Group Rename EARS](./group-rename-EARS.md)
+- [Group Coverage LLD](../group-coverage/LLD.md)

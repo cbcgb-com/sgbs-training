@@ -51,3 +51,8 @@ export const WITHDRAWAL_REASONS = [
 
 // The sentinel that reveals the free-text reason box.
 export const WITHDRAWAL_REASON_OTHER = "其他";
+
+// Live roster origin — coverage emails point instructors here (the merge
+// UI is the 名單 / 課堂安排 tabs after sign-in). Preview deploys keep
+// this canonical URL; throwaway preview data is not a public address.
+export const ROSTER_APP_URL = "https://sgbs-training.citylight.life";

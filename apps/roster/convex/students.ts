@@ -796,6 +796,7 @@ export const renameGroup = mutation({
     for (const m of members) {
       await ctx.db.patch(m._id, { groupName: name });
     }
+    await retargetCoverageRows(ctx, from, name);
     return members.length;
   },
 });
@@ -881,9 +882,35 @@ export const renameMyGroup = mutation({
     for (const m of members) {
       await ctx.db.patch(m._id, { groupName: name });
     }
+    await retargetCoverageRows(ctx, me.groupName, name);
     return members.length;
   },
 });
+
+async function retargetCoverageRows(
+  ctx: MutationCtx,
+  from: string,
+  to: string,
+): Promise<void> {
+  const notices = await ctx.db
+    .query("groupCoverageNotices")
+    .withIndex("by_quarter_group", (q) =>
+      q.eq("quarter", CURRENT_QUARTER).eq("groupName", from),
+    )
+    .collect();
+  for (const n of notices) {
+    await ctx.db.patch(n._id, { groupName: to });
+  }
+  const joiners = await ctx.db
+    .query("groupLateJoiners")
+    .withIndex("by_quarter_group", (q) =>
+      q.eq("quarter", CURRENT_QUARTER).eq("groupName", from),
+    )
+    .collect();
+  for (const j of joiners) {
+    await ctx.db.patch(j._id, { groupName: to });
+  }
+}
 
 // ---- 我的資料: student self-service profile (own row only) ----
 
