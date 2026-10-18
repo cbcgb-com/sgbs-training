@@ -835,7 +835,7 @@ body {
     margin-bottom: 0;
 }
 
-/* ---- flip-card carousel (horizontal row + 3D flip) ---- */
+/* ---- cover-flow flip carousel (one main card + peeks) ---- */
 
 .content-flip__card {
     margin: 0 0 0.85rem;
@@ -860,7 +860,7 @@ body {
 
 .content-flip__body {
     margin: 0;
-    line-height: 1.65;
+    line-height: 1.75;
 }
 
 .content-flip.is-enhanced {
@@ -874,29 +874,81 @@ body {
         0 0 0 2px var(--cm-vermilion);
 }
 
+.content-flip__probe {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    visibility: hidden;
+    box-sizing: border-box;
+    padding: 1.25rem 1.5rem;
+    line-height: 1.75;
+    font-size: 1em;
+}
+
+.content-flip.is-enhanced .content-flip__stage {
+    position: relative;
+    overflow: hidden;
+    min-height: 12rem;
+    touch-action: pan-y;
+    perspective: 1400px;
+}
+
 .content-flip.is-enhanced .content-flip__card {
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: var(--flip-card-w, 66%);
+    height: 100%;
     margin: 0;
     padding: 0;
     border: none;
     background: transparent;
     cursor: pointer;
-    perspective: 1400px;
+    transform-origin: center center;
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.45s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
-.content-flip__viewport {
-    min-width: 0;
-    overflow: hidden;
-    touch-action: pan-y;
+.content-flip.is-enhanced .content-flip__card.is-jumping {
+    transition: none;
 }
 
-.content-flip__track {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+.content-flip.is-enhanced .content-flip__card.is-active {
+    z-index: 4;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.content-flip.is-enhanced .content-flip__card.is-prev {
+    z-index: 2;
+    opacity: 0.42;
+    transform: translate(-118%, -50%) scale(0.84);
+    pointer-events: auto;
+}
+
+.content-flip.is-enhanced .content-flip__card.is-next {
+    z-index: 2;
+    opacity: 0.42;
+    transform: translate(18%, -50%) scale(0.84);
+    pointer-events: auto;
+}
+
+.content-flip.is-enhanced .content-flip__card.is-far-prev {
+    z-index: 1;
+    opacity: 0;
+    transform: translate(-175%, -50%) scale(0.72);
+    pointer-events: none;
+}
+
+.content-flip.is-enhanced .content-flip__card.is-far-next {
+    z-index: 1;
+    opacity: 0;
+    transform: translate(75%, -50%) scale(0.72);
+    pointer-events: none;
 }
 
 .content-flip__arrow {
@@ -914,12 +966,12 @@ body {
     border-radius: 6px;
     border: 1px solid var(--cm-rule);
     background: var(--cm-paper);
-    transition: border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+    transition: border-color 0.15s ease, color 0.15s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
-.content-flip__arrow:hover:not(:disabled),
-.content-flip__arrow:focus-visible:not(:disabled) {
+.content-flip__arrow:hover,
+.content-flip__arrow:focus-visible {
     border-color: var(--cm-vermilion);
     color: var(--cm-vermilion);
 }
@@ -929,22 +981,16 @@ body {
     outline-offset: 2px;
 }
 
-.content-flip__arrow:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-}
-
 .content-flip.is-enhanced .content-flip__inner {
     position: relative;
-    display: grid;
-    grid-template: auto / 1fr;
-    flex: 1 1 auto;
     width: 100%;
-    min-height: 7.5rem;
-    border-radius: 10px;
+    height: 100%;
+    border-radius: 12px;
     border: 1px solid var(--cm-rule);
     background: var(--cm-paper);
-    box-shadow: 0 1px 2px rgba(38, 33, 22, 0.06);
+    box-shadow:
+        0 1px 2px rgba(38, 33, 22, 0.06),
+        0 16px 32px -24px rgba(38, 33, 22, 0.35);
     transform-style: preserve-3d;
     transition:
         transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
@@ -956,7 +1002,8 @@ body {
     border-color: var(--cm-vermilion);
     box-shadow:
         0 1px 2px rgba(38, 33, 22, 0.06),
-        0 0 0 1px rgba(var(--cm-vermilion-rgb), 0.35);
+        0 0 0 1px rgba(var(--cm-vermilion-rgb), 0.35),
+        0 18px 36px -22px rgba(38, 33, 22, 0.4);
 }
 
 .content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__inner {
@@ -964,78 +1011,95 @@ body {
 }
 
 .content-flip.is-enhanced .content-flip__face {
+    position: absolute;
+    inset: 0;
     display: flex;
-    min-width: 0;
-    min-height: 0;
-    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 12px;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
 .content-flip.is-enhanced .content-flip__face--front {
-    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
-    padding: 1.1rem 0.7rem;
+    gap: 0.7rem;
+    padding: 1.25rem 1.5rem;
     text-align: center;
     transform: rotateY(0deg) translateZ(1px);
 }
 
 .content-flip.is-enhanced .content-flip__face--back {
-    position: absolute;
-    inset: 0;
     align-items: flex-start;
-    padding: 0.85rem 0.8rem;
-    overflow-x: hidden;
-    overflow-y: auto;
+    padding: 1.25rem 1.5rem;
     transform: rotateY(180deg) translateZ(1px);
-}
-
-.content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__face--front {
-    position: absolute;
-    inset: 0;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__face--back {
-    position: relative;
-    inset: auto;
 }
 
 .content-flip.is-enhanced .content-flip__num {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.45rem;
-    height: 1.45rem;
+    width: 1.7rem;
+    height: 1.7rem;
     border-radius: 50%;
     font-family: var(--cm-serif);
-    font-size: 0.78em;
+    font-size: 0.85em;
     font-weight: 700;
-    background: rgba(var(--cm-vermilion-rgb), 0.1);
+    background: rgba(var(--cm-vermilion-rgb), 0.12);
     color: var(--cm-vermilion);
 }
 
 .content-flip.is-enhanced .content-flip__title {
     margin: 0;
-    font-size: 1.02em;
+    font-size: 1.7em;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
 }
 
 .content-flip.is-enhanced .content-flip__body {
-    font-size: 0.82em;
-    line-height: 1.6;
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.75;
 }
 
-.content-flip.is-enhanced .content-flip__card:focus-visible .content-flip__inner {
+.content-flip.is-enhanced .content-flip__card.is-active:focus-visible .content-flip__inner {
     outline: 2px solid var(--cm-vermilion);
     outline-offset: 2px;
 }
 
 .content-flip__nav {
     border-top: none;
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
     padding-top: 0.15rem;
+}
+
+.content-flip__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 0.55rem;
+}
+
+.content-flip__dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid var(--cm-rule);
+    background: var(--cm-paper);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.content-flip__dot.is-active {
+    border-color: var(--cm-vermilion);
+    background: var(--cm-vermilion);
+}
+
+.content-flip__dot:focus-visible {
+    outline: 2px solid var(--cm-vermilion);
+    outline-offset: 2px;
 }
 
 @media (max-width: 600px) {
@@ -1045,21 +1109,29 @@ body {
         font-size: 1.45em;
     }
 
-    .content-flip.is-enhanced .content-flip__inner {
-        min-height: 8.5rem;
+    .content-flip.is-enhanced .content-flip__card.is-prev {
+        transform: translate(-112%, -50%) scale(0.88);
+        opacity: 0.35;
     }
 
-    .content-flip.is-enhanced .content-flip__face--back {
-        padding: 0.9rem 0.95rem;
+    .content-flip.is-enhanced .content-flip__card.is-next {
+        transform: translate(12%, -50%) scale(0.88);
+        opacity: 0.35;
     }
 
-    .content-flip.is-enhanced .content-flip__body {
-        font-size: 0.88em;
+    .content-flip.is-enhanced .content-flip__face--front,
+    .content-flip.is-enhanced .content-flip__face--back,
+    .content-flip__probe {
+        padding: 1.1rem 1.15rem;
+    }
+
+    .content-flip.is-enhanced .content-flip__title {
+        font-size: 1.45em;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .content-flip__track,
+    .content-flip.is-enhanced .content-flip__card,
     .content-flip.is-enhanced .content-flip__inner {
         transition: none;
     }
