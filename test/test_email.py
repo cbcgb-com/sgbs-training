@@ -130,11 +130,10 @@ def _canonical_completion_body(shoutout: str | None = None) -> str:
         [
             (
                 "願你們將這段時間所學帶回各自的小組和團契，"
-                "與弟兄姊妹一同在神的話語中扎根成長。"
+                "與弟兄姊妹一同在神的話語中紮根成長。"
             ),
             "如果有任何問題，請隨時跟我們聯繫！",
-            "主內，",
-            "林意 和 Eric",
+            "主內，\n林意 和 Eric",
         ]
     )
     return "\n\n".join(parts)
@@ -356,9 +355,12 @@ def test_completion_email_body_without_shoutout():
     assert body.index(mission) < body.index(feedback)
     assert (
         "願你們將這段時間所學帶回各自的小組和團契，"
-        "與弟兄姊妹一同在神的話語中扎根成長。"
+        "與弟兄姊妹一同在神的話語中紮根成長。"
     ) in body
+    assert "扎根" not in body
     assert "帶著弟兄姊妹一起好好讀神的話" not in body
+    assert body.endswith("主內，\n林意 和 Eric")
+    assert "主內，\n\n林意 和 Eric" not in body
 
 
 def test_completion_email_omits_shoutout_for_empty_names():

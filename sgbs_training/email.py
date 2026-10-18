@@ -295,11 +295,10 @@ _COMPLETION_FULL_ATTENDANCE = (
 )
 _COMPLETION_BLESSING = (
     "願你們將這段時間所學帶回各自的小組和團契，"
-    "與弟兄姊妹一同在神的話語中扎根成長。"
+    "與弟兄姊妹一同在神的話語中紮根成長。"
 )
 _COMPLETION_CONTACT = "如果有任何問題，請隨時跟我們聯繫！"
-_COMPLETION_SIGNOFF_CLOSE = "主內，"
-_COMPLETION_SIGNOFF_NAMES = "林意 和 Eric"
+_COMPLETION_SIGNOFF = "主內，\n林意 和 Eric"
 
 
 def completion_email_subject() -> str:
@@ -345,8 +344,7 @@ def compose_completion_email(
         [
             _COMPLETION_BLESSING,
             _COMPLETION_CONTACT,
-            _COMPLETION_SIGNOFF_CLOSE,
-            _COMPLETION_SIGNOFF_NAMES,
+            _COMPLETION_SIGNOFF,
         ]
     )
     return "\n\n".join(parts)
