@@ -328,6 +328,13 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
   (runs against a dev Convex deployment)
 - `apps/roster/scripts/test-attendance.mjs` - End-to-end attendance
   recording suite (runs against a dev Convex deployment)
+- `apps/roster/src/groupCoverage.ts` - Small-group coverage helpers
+  (under-3 flag, proposed merge target, remaining-week strip, 主領
+  collision). Instructor banner + confirmed merge in
+  `convex/groupCoverage.ts`; SMTP notice in `authEmail.ts`. See
+  `apps/roster/docs/designs/group-coverage/LLD.md`.
+- `apps/roster/scripts/test-group-coverage.mjs` - Unit tests for the
+  coverage helpers (no Convex)
 - `airtable_dump/` - Airtable dump/transform/seed pipeline (see
   `apps/roster/README.md` for the full re-import procedure)
 

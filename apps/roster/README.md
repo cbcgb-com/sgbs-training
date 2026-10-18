@@ -22,7 +22,7 @@ role-gated views.
   with per-feature LLDs + EARS specs under
   [docs/designs/](docs/designs/) — the design-driven-development record of
   the role model, registration modes, grouping algorithm, schedule
-  self-service, and directory scoping
+  self-service, directory scoping, withdrawal, and small-group coverage
 
 ## Roles and views (the core intent)
 

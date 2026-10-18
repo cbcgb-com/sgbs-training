@@ -208,6 +208,15 @@ dashboard and the member can simply be emailed manually. (The note was
 also sent manually to pre-launch registrants on 2026-09-06 — one
 address at go-live — from the same mailbox, same copy.)
 
+### Coverage email
+
+A third action in the same file (`authEmail.sendCoverageEmail`) notifies
+instructors when a current-quarter group drops below 3 active members
+after a withdrawal. Same SMTP transport, same mailbox. Scheduled from
+`attendanceStatus.maybeNotifyUnderstaffedGroup`; the notice is marked
+emailed only after a successful send. See
+[Group Coverage LLD](../group-coverage/LLD.md).
+
 ### Deliverability (verified 2026-09-04 via DNS + Resend API)
 
 - cbcgb.org DNS is hosted at easyDNS (`dns1.easydns.com` etc.) —

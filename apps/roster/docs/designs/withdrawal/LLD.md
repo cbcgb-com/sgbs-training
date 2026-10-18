@@ -159,9 +159,11 @@ Sitting in after the 2nd miss is allowed in the room but never recorded:
 (旁聽不記錄出席). Corrections on or before the 2nd miss date stay
 allowed.
 
-TODO(groups-under-3): after an absence-withdrawal removes someone from a
-group, check whether that group now has fewer than 3 active members and
-trigger the follow-up flow. Designed separately; do not implement here.
+If the former group then has fewer than 3 active members, coverage
+follow-up starts (instructor banner + SMTP email + confirmed merge).
+See [Group Coverage LLD](../group-coverage/LLD.md). Restoring a group
+after a correction that makes the student active again is still out of
+scope.
 
 ## View sweep — withdrawn rows are invisible to current-quarter surfaces
 

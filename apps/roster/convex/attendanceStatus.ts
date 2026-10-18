@@ -12,10 +12,12 @@ import {
   internalQuery,
   query,
 } from "./_generated/server";
+import { internal } from "./_generated/api";
 import { v } from "convex/values";
 import type { Doc, Id } from "./_generated/dataModel";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { CURRENT_QUARTER } from "../src/constants";
+import { MIN_ACTIVE_MEMBERS } from "../src/groupCoverage";
 import {
   canRecordPresent,
   nyDateFromMs,
@@ -207,11 +209,84 @@ export function displayMissed(
 // Shared with applyWithdrawal: drop 小組 and current-quarter 主領/觀察
 // so 課堂安排 cannot show a ghost after they leave. Becoming active
 // again does NOT restore the group — the instructor re-seats them.
+async function openCoverageNotice(
+  ctx: MutationCtx,
+  groupName: string,
+) {
+  const rows = await ctx.db
+    .query("groupCoverageNotices")
+    .withIndex("by_quarter_group", (q) =>
+      q.eq("quarter", CURRENT_QUARTER).eq("groupName", groupName),
+    )
+    .collect();
+  return rows.find((r) => r.resolvedAt === undefined) ?? null;
+}
+
+// After a withdrawal removes someone from `groupName`, email instructors
+// once while that group stays under 3. Recovering to 3+ (or emptying)
+// resolves the notice so a later drop can notify again. Banner itself
+// is derived from live counts in groupCoverage.alerts.
+export async function maybeNotifyUnderstaffedGroup(
+  ctx: MutationCtx,
+  groupName: string | undefined,
+): Promise<{ notified: boolean; memberCount: number }> {
+  if (!groupName) return { notified: false, memberCount: 0 };
+  const active = (
+    await filterActiveStudents(ctx, await ctx.db.query("students").collect())
+  ).filter((s) => s.quarter === CURRENT_QUARTER && s.groupName === groupName);
+  const memberCount = active.length;
+  const open = await openCoverageNotice(ctx, groupName);
+
+  if (memberCount === 0 || memberCount >= MIN_ACTIVE_MEMBERS) {
+    if (open) await ctx.db.patch(open._id, { resolvedAt: Date.now() });
+    return { notified: false, memberCount };
+  }
+
+  if (open?.emailedAt !== undefined) {
+    return { notified: false, memberCount };
+  }
+  if (!open) {
+    await ctx.db.insert("groupCoverageNotices", {
+      quarter: CURRENT_QUARTER,
+      groupName,
+      memberCount,
+      createdAt: Date.now(),
+    });
+  } else if (open.memberCount !== memberCount) {
+    await ctx.db.patch(open._id, { memberCount });
+  }
+
+  await ctx.scheduler.runAfter(0, internal.authEmail.sendCoverageEmail, {
+    quarter: CURRENT_QUARTER,
+    groupName,
+    memberCount,
+    memberNames: active.map((s) => s.name),
+  });
+  return { notified: true, memberCount };
+}
+
+export async function retryPendingCoverageNotices(
+  ctx: MutationCtx,
+): Promise<number> {
+  const rows = await ctx.db.query("groupCoverageNotices").collect();
+  const pending = rows.filter(
+    (r) =>
+      r.quarter === CURRENT_QUARTER &&
+      r.resolvedAt === undefined &&
+      r.emailedAt === undefined,
+  );
+  for (const row of pending) {
+    await maybeNotifyUnderstaffedGroup(ctx, row.groupName);
+  }
+  return pending.length;
+}
+
 export async function clearGroupAndAssignments(
   ctx: MutationCtx,
   studentId: Id<"students">,
 ): Promise<{ clearedGroup: boolean; swept: number }> {
   const student = await ctx.db.get(studentId);
+  const formerGroup = student?.groupName;
   let clearedGroup = false;
   if (student?.groupName) {
     await ctx.db.patch(studentId, { groupName: undefined });
@@ -233,10 +308,9 @@ export async function clearGroupAndAssignments(
       swept++;
     }
   }
-  // TODO(groups-under-3): after an absence-withdrawal removes someone
-  // from a group, check whether that group now has fewer than 3 active
-  // members and trigger the follow-up flow. Designed separately; do not
-  // implement here.
+  if (clearedGroup) {
+    await maybeNotifyUnderstaffedGroup(ctx, formerGroup);
+  }
   return { clearedGroup, swept };
 }
 
@@ -322,7 +396,8 @@ async function runDailySweep(ctx: MutationCtx) {
     if (result.clearedGroup || result.swept) swept++;
     if (result.clearedGroup) clearedGroup++;
   }
-  return { todayNy: todayNyDate, swept, clearedGroup };
+  const pendingCoverage = await retryPendingCoverageNotices(ctx);
+  return { todayNy: todayNyDate, swept, clearedGroup, pendingCoverage };
 }
 
 export const dailySweep = internalMutation({

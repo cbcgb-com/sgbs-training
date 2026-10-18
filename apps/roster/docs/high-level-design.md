@@ -146,3 +146,4 @@ portable.
 - [Withdrawal LLD](./designs/withdrawal/LLD.md)
 - [Attendance LLD](./designs/attendance/LLD.md)
 - [Homework LLD](./designs/homework/LLD.md)
+- [Group Coverage LLD](./designs/group-coverage/LLD.md)

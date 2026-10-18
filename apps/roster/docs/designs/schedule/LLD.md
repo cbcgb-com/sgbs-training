@@ -66,6 +66,16 @@ A withdrawn student (退出報名) is not a member: their self-service
 mutations are rejected by `requireCurrentStudent`, and their group view
 reports 尚未登記, so the schedule shows the 前往註冊 path instead.
 
+## Coverage after a merge
+
+When instructors merge an understaffed group into another, remaining
+weeks' 主領/觀察 for the combined group are cleared. 課堂安排 then
+flags 主領衝突 if a session still has two leaders from the same group
+(the instructor removes one). One or more 觀察 is allowed. Members who
+arrived through the merge show an observe-twice hint that does not block
+assigning them as 主領. See
+[Group Coverage LLD](../group-coverage/LLD.md).
+
 ## Withdrawal sweep
 
 Withdrawal removes the student from every current-quarter session's

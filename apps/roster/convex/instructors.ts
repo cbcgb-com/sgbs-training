@@ -9,8 +9,17 @@
 // Deactivated rows (active=false) are kept for history but have no access.
 
 import { v } from "convex/values";
-import { internalMutation } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 import { CURRENT_QUARTER } from "../src/constants";
+
+export const activeEmails = internalQuery({
+  handler: async (ctx) => {
+    const rows = await ctx.db.query("instructors").collect();
+    return rows
+      .filter((r) => r.active === true && r.email.trim() !== "")
+      .map((r) => ({ email: r.email.trim().toLowerCase(), name: r.name }));
+  },
+});
 
 export const upsert = internalMutation({
   args: {
