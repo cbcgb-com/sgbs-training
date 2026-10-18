@@ -114,8 +114,7 @@ def _canonical_completion_body(shoutout: str | None = None) -> str:
             "在課堂上彼此學習、互相鼓勵。謝謝你們！"
         ),
         (
-            "還記得第一堂課我們一起看的「大使命」嗎？"
-            "這個訓練正是大使命的一部分。"
+            "這個訓練是我們在第一堂課一起學習的「大使命」的一部分。"
             "盼望大家以後帶查經的時候，也常常把這個使命放在心上。"
         ),
         (
@@ -342,8 +341,7 @@ def test_completion_email_body_without_shoutout():
     assert email_mod.FEEDBACK_FORM_URL in body
     assert CANONICAL_COMPLETION_SHOUTOUT.split("：")[0] not in body
     mission = (
-        "還記得第一堂課我們一起看的「大使命」嗎？"
-        "這個訓練正是大使命的一部分。"
+        "這個訓練是我們在第一堂課一起學習的「大使命」的一部分。"
         "盼望大家以後帶查經的時候，也常常把這個使命放在心上。"
     )
     feedback = (
@@ -353,6 +351,7 @@ def test_completion_email_body_without_shoutout():
     )
     assert mission in body
     assert body.index(mission) < body.index(feedback)
+    assert "還記得第一堂課我們一起看的「大使命」嗎？" not in body
     assert (
         "願你們將這段時間所學帶回各自的小組和團契，"
         "與弟兄姊妹一同在神的話語中紮根成長。"
