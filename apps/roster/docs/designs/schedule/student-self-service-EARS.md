@@ -36,6 +36,10 @@
 - [x] **SCH-SELF-023**: When a student withdraws (退出報名), the system
       shall remove them from every current-quarter session's 主領/觀察
       arrays, and shall not list them in the student schedule.
+- [x] **SCH-SELF-024**: If a 我來主領 write would leave the student's
+      group with two 主領, the system shall reject it. Lesson-2+ weeks
+      that break at most one 主領 / at least one 觀察 shall show
+      需要調整; missing 觀察 does not block 我來觀察.
 
 ## Related Documents
 

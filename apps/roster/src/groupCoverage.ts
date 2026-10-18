@@ -78,17 +78,3 @@ export function stripMemberAssignments<T extends string>(
   }
   return { leaderIds, observerIds };
 }
-
-export function leaderCollisionsForGroup<T extends string>(
-  sessions: { date: string; leaderIds: T[] }[],
-  memberIds: Set<T>,
-): { date: string; leaderIds: T[] }[] {
-  const out: { date: string; leaderIds: T[] }[] = [];
-  for (const session of sessions) {
-    const leaders = session.leaderIds.filter((id) => memberIds.has(id));
-    if (leaders.length > 1) {
-      out.push({ date: session.date, leaderIds: leaders });
-    }
-  }
-  return out;
-}

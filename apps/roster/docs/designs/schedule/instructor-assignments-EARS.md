@@ -43,12 +43,17 @@
 
 ## Coverage
 
-- [x] **SCH-ADM-020**: Where a group has more than one 主領 on a session,
-      課堂安排 shall flag a 主領衝突 for the instructor to resolve.
-- [x] **SCH-ADM-021**: The system shall allow one or more 觀察 on a
-      session.
+- [x] **SCH-ADM-020**: Where a named group has more than one 主領 on a
+      lesson-2+ week, 課堂安排 shall flag 需要調整 with that reason, and
+      a write that would leave two 主領 shall be rejected.
+- [x] **SCH-ADM-021**: Where a named group has no 觀察 on a lesson-2+
+      week, 課堂安排 shall flag 需要調整; missing 觀察 does not block
+      the save. One or more 觀察 is allowed.
 - [x] **SCH-ADM-022**: Late joiners (including through a merge) shall
       show an observe-twice hint that does not block 主領 assignment.
+- [x] **SCH-ADM-023**: Where a named group has no 主領 on a lesson-2+
+      week, 課堂安排 shall flag 需要調整; missing 主領 does not block
+      the save.
 
 ## Related Documents
 

@@ -61,15 +61,34 @@ No new email provider.
 The instructor confirms in the banner (proposed target pre-selected; they
 may pick a different named group). There is no auto-merge.
 
-## Leader / observer rules after a merge
+## Leader / observer rules (every group, every assigned week)
 
-- Exactly one 主領 per group per session. If two leaders from the
-  combined group land on the same date, 課堂安排 flags 主領衝突. The
-  write is not blocked — the instructor removes one.
-- One or more 觀察 per session is allowed.
-- Late joiners (including through a merge) show an observe-twice hint
-  in 課堂安排. It is a hint, not a hard block: they can still be assigned
-  主領.
+The rule is **not merge-only**. It applies to first-time 課堂安排
+writes and to leftover collisions after a merge.
+
+`sessions.leaderIds` / `observerIds` are flat arrays for the whole class
+that week. A group is the subset of those ids whose students share a
+`groupName`. 未分組 is not a group. Lesson 1 has no assignments.
+
+For every named group on every lesson-2+ week:
+
+- At most one 主領. A write that would leave a named group with two
+  主領 is **rejected** (`每組每堂只能有一位主領`). Existing two-leader
+  rows (seed data, a past week after a merge) still display; the
+  instructor removes one. Missing 主領 or 觀察 never block a save.
+- At least one 觀察. Missing 觀察 is a warning, not a save block —
+  the instructor or group may still be filling the week.
+- Missing 主領 is also flagged. Empty lesson-2+ weeks (no chips yet)
+  show both missing-主領 and missing-觀察, so a cleared post-merge
+  week asks to be re-picked.
+
+The shared helper is `src/assignmentRules.ts`
+(`groupWeekAssignmentIssues` + `groupsExceedingLeaderCap`). 課堂安排
+renders 「需要調整：…」 with the specific reason. The same helper
+backs `updateSessionAssignments` and `addMeToSession`.
+
+Late joiners (including through a merge) still show an observe-twice
+hint that does not block assigning them as 主領.
 
 ## Data Model
 
