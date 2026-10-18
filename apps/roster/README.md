@@ -58,6 +58,10 @@ student; anything else is a guest.
   on the 本季度 rows for on-behalf withdrawals.
 - **分組 group divider** — Instructor only: one-click diverse grouping
   with manual override and renames.
+- **回饋 feedback** — Student: `/feedback` (小組查經帶領訓練反思),
+  one submission per quarter, editable while the quarter is current;
+  a small slip on 我的資料 during/after the last lesson. Instructor:
+  the 回饋 tab lists responses for a quarter.
 
 Intent rules that must survive refactors:
 
@@ -168,13 +172,28 @@ E2E walkthrough (dev deployment, seeded demo data): `node
 scripts/test-homework.mjs` — drives the same CLI entry point and
 asserts the gates, the questions-credit rule, and upsert semantics.
 
+## End-of-term feedback (小組查經帶領訓練反思)
+
+The original Google Form of that title now lives in the roster at
+`/feedback`. Four required free-text questions (no ratings); one row
+per student per quarter in the `feedback` table; the signed-in
+student identity is the respondent (no typed email, no email-a-copy).
+Students edit their own row while `CURRENT_QUARTER` is still their
+season. Instructors read the list on the 回饋 tab. See
+[docs/designs/feedback/LLD.md](docs/designs/feedback/LLD.md).
+
+E2E walkthrough (dev deployment, seeded demo data): `node
+scripts/test-feedback.mjs`. Field helpers (no Convex): `node
+--experimental-strip-types scripts/test-feedback-fields.mjs`.
+
 ## Field-name note
 
 Convex requires ASCII field names, so documents use English keys
 (`name`, `fellowship`, `email`, `baptismTime`, `quarter`, `groupName`,
 `gender`, `leadingExperience`, `present`, `missed`,
 `photoStorageId`, `withdrawnAt`, `withdrawnReason`); the UI shows the
-original Chinese labels.
+original Chinese labels. Feedback rows use `newPractice`,
+`leadingFocus`, `courseImprovements`, `encouragement`.
 
 Leading/observing assignments live only in the `sessions` table
 (`leaderIds`/`observerIds`); the per-student views derive them at

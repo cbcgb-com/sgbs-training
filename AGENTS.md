@@ -296,7 +296,8 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/scripts/make-auth-keys.py` - Generates the ES256 keypair
   (private key → Convex env var; public JWKS → auth.config.ts)
 - `apps/roster/convex/schema.ts` - `students` table (ASCII field names; UI
-  keeps Chinese labels) + `authCodes`/`authSessions` auth tables
+  keeps Chinese labels) + `authCodes`/`authSessions` auth tables +
+  `feedback` (one reflection per student per quarter)
 - `apps/roster/convex/students.ts` - View queries (12 Airtable views) +
   `registerStudent` (instructor-managed) + role gates + 退出報名 withdrawal
   (manual `withdrawnAt` plus, from 2026秋季, derived two-miss status;
@@ -321,9 +322,20 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
   (`recordHomework` upsert via `npx convex run`, `clearHomework`),
   agent roster lookup, instructor-gated marks read; read UI in the
   課堂安排 按週次 layout (see `apps/roster/docs/designs/homework/LLD.md`)
+- `apps/roster/convex/feedback.ts` - 小組查經帶領訓練反思: one row per
+  student per quarter (the original Google Form's four free-text
+  questions); student upsert + instructor list (see
+  `apps/roster/docs/designs/feedback/LLD.md`)
+- `apps/roster/src/Feedback.tsx` - Student form at `/feedback` (謝謝
+  resting state, 修改回覆) plus the 我的資料 prompt slip
+- `apps/roster/src/FeedbackList.tsx` - Instructor 回饋 tab
 - `apps/roster/scripts/test-homework.mjs` - End-to-end homework suite
   (drives the `npx convex run` agent entry point against a dev Convex
   deployment)
+- `apps/roster/scripts/test-feedback.mjs` - End-to-end feedback suite
+  against a dev Convex deployment
+- `apps/roster/scripts/test-feedback-fields.mjs` - Unit tests for the
+  shared Google Form question helpers (no Convex)
 - `apps/roster/scripts/test-withdrawal.mjs` - End-to-end withdrawal suite
   (runs against a dev Convex deployment)
 - `apps/roster/scripts/test-attendance.mjs` - End-to-end attendance

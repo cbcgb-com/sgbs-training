@@ -164,4 +164,21 @@ export default defineSchema({
   })
     .index("by_quarter_student", ["quarter", "studentId"])
     .index("by_quarter_group", ["quarter", "groupName"]),
+
+  // 小組查經帶領訓練反思: one row per (student, quarter). The four
+  // free-text fields are the original Google Form questions (no
+  // ratings). See docs/designs/feedback/LLD.md.
+  feedback: defineTable({
+    studentId: v.id("students"),
+    quarter: v.string(),
+    newPractice: v.string(),
+    leadingFocus: v.string(),
+    courseImprovements: v.string(),
+    encouragement: v.string(),
+    submittedAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_quarter", ["quarter"])
+    .index("by_student", ["studentId"])
+    .index("by_student_quarter", ["studentId", "quarter"]),
 });

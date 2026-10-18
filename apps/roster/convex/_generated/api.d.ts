@@ -12,6 +12,7 @@ import type * as attendanceStatus from "../attendanceStatus.js";
 import type * as auth from "../auth.js";
 import type * as authEmail from "../authEmail.js";
 import type * as demo from "../demo.js";
+import type * as feedback from "../feedback.js";
 import type * as groupCoverage from "../groupCoverage.js";
 import type * as homework from "../homework.js";
 import type * as instructors from "../instructors.js";
@@ -29,6 +30,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   authEmail: typeof authEmail;
   demo: typeof demo;
+  feedback: typeof feedback;
   groupCoverage: typeof groupCoverage;
   homework: typeof homework;
   instructors: typeof instructors;
