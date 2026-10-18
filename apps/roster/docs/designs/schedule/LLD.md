@@ -27,7 +27,9 @@ per-student 主領日期/觀察日期 views are derived by inversion.
 There is deliberately **no add/delete date UI** — dates are fixed when the
 season is set up (CLI helper `demo:deleteSessionByDate` exists for
 corrections). One role per student per week is enforced by the self-
-service flow; instructors may assign freely.
+service flow. Per named group per lesson-2+ week the rule is at most
+one 主領 and at least one 觀察 (`src/assignmentRules.ts`). Two 主領 is
+a save error; missing 主領 or 觀察 is a 需要調整 warning.
 
 ## Scoping
 
@@ -69,12 +71,13 @@ reports 尚未登記, so the schedule shows the 前往註冊 path instead.
 ## Coverage after a merge
 
 When instructors merge an understaffed group into another, remaining
-weeks' 主領/觀察 for the combined group are cleared. 課堂安排 then
-flags 主領衝突 if a session still has two leaders from the same group
-(the instructor removes one). One or more 觀察 is allowed. Members who
-arrived through the merge show an observe-twice hint that does not block
-assigning them as 主領. See
-[Group Coverage LLD](../group-coverage/LLD.md).
+weeks' 主領/觀察 for the combined group are cleared. The same per-group
+per-week 主領/觀察 rule then applies to the new group as to every other
+group: empty remaining weeks show 需要調整 until they are re-picked;
+a leftover two-主領 row on a past week is flagged and cannot be saved
+again until one leader is removed. Members who arrived through the
+merge show an observe-twice hint that does not block assigning them as
+主領. See [Group Coverage LLD](../group-coverage/LLD.md).
 
 ## Withdrawal sweep
 

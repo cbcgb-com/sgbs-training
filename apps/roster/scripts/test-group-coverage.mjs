@@ -5,7 +5,6 @@ import {
   MIN_ACTIVE_MEMBERS,
   countNamedGroups,
   coverageBannerText,
-  leaderCollisionsForGroup,
   proposeMergeTarget,
   remainingSessionDates,
   stripMemberAssignments,
@@ -125,23 +124,6 @@ check("no target when no other group", proposeMergeTarget("獨行", onlyOne) ===
       stripped.observerIds.join(",") === "s_outsider2",
   );
 
-  const collisions = leaderCollisionsForGroup(sessions, new Set([alice, bob]));
-  check(
-    "two 主領 from the same group on one date is a collision",
-    collisions.length === 1 && collisions[0].date === "2026-10-04",
-    JSON.stringify(collisions),
-  );
-  check(
-    "one 主領 is not a collision",
-    leaderCollisionsForGroup(sessions, new Set([alice, cara])).length === 0,
-  );
-  check(
-    "two 觀察 on the same date is allowed (not a 主領 collision)",
-    leaderCollisionsForGroup(
-      [{ date: "2026-10-11", leaderIds: [alice] }],
-      new Set([alice, bob, cara]),
-    ).length === 0,
-  );
 }
 
 if (failures) {

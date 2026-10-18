@@ -5,6 +5,11 @@ import type { Doc, Id } from "../convex/_generated/dataModel";
 import { CURRENT_QUARTER } from "./constants";
 import { useTab } from "./App";
 import GroupCoverageBanner from "./GroupCoverageBanner";
+import {
+  assignmentAdjustmentText,
+  groupWeekAssignmentIssues,
+  spliceGroupAssignments,
+} from "./assignmentRules";
 
 type SessionRow = {
   _id: Id<"sessions">;
@@ -21,6 +26,7 @@ type AssignmentUpdater = (
   session: SessionRow,
   role: Role,
   nextPeople: { _id: Id<"students">; name: string }[],
+  memberIds: Set<Id<"students">>,
 ) => Promise<void>;
 
 // Instructor layout for 課堂安排: by group (default) or by week. The
@@ -167,8 +173,8 @@ export default function ScheduleView({ isInstructor }: { isInstructor: boolean }
       </nav>
       <p className="mt-3 text-sm leading-relaxed text-ink-soft">
         {layout === "group"
-          ? "按小組填寫每週的主領與觀察；日期已固定，每組輪流服事。"
-          : "按週次一覽全班安排；每堂一節，各組的主領與觀察並列。"}
+          ? "按小組填寫每週的主領與觀察；日期已固定，每組輪流服事。每組每堂一位主領、至少一位觀察。"
+          : "按週次一覽全班安排；每堂一節，各組的主領與觀察並列。每組每堂一位主領、至少一位觀察。"}
       </p>
       <div className="mt-4">
         <GroupCoverageBanner />
@@ -390,6 +396,7 @@ function WeekRow({
         <span className="ml-1.5 text-xs font-normal text-ink-soft">
           {members.length} 位
         </span>
+        <AssignmentNote session={session} memberIds={memberIds} />
       </td>
       <td className="px-3 py-3 align-top">
         <div className="flex flex-wrap items-center gap-1.5">
@@ -414,7 +421,7 @@ function WeekRow({
         members={members}
         memberIds={memberIds}
         hw={hw}
-        onUpdate={(people) => onUpdate(session, "leader", people)}
+        onUpdate={(people) => onUpdate(session, "leader", people, memberIds)}
       />
       <AssignmentCell
         session={session}
@@ -423,7 +430,7 @@ function WeekRow({
         members={members}
         memberIds={memberIds}
         hw={hw}
-        onUpdate={(people) => onUpdate(session, "observer", people)}
+        onUpdate={(people) => onUpdate(session, "observer", people, memberIds)}
       />
     </tr>
   );
@@ -516,6 +523,9 @@ function GroupScheduleTable({
                     <span className="ml-1.5 text-xs font-normal text-ink-soft">
                       週{weekday}
                     </span>
+                    {groupName !== "未分組" && (
+                      <AssignmentNote session={s} memberIds={memberIds} />
+                    )}
                   </td>
                   <AssignmentCell
                     session={s}
@@ -523,7 +533,9 @@ function GroupScheduleTable({
                     tone="ink"
                     members={members}
                     memberIds={memberIds}
-                    onUpdate={(people) => update(s, "leader", people)}
+                    onUpdate={(people) =>
+                      update(s, "leader", people, memberIds)
+                    }
                   />
                   <AssignmentCell
                     session={s}
@@ -531,7 +543,9 @@ function GroupScheduleTable({
                     tone="vermilion"
                     members={members}
                     memberIds={memberIds}
-                    onUpdate={(people) => update(s, "observer", people)}
+                    onUpdate={(people) =>
+                      update(s, "observer", people, memberIds)
+                    }
                   />
                 </tr>
               );
@@ -616,30 +630,49 @@ function AssignmentCell({
             </button>
           </span>
         ))}
-        <select
-          value=""
-          onChange={(e) => {
-            const target = members.find((m) => m._id === e.target.value);
-            if (target) change([...people, { _id: target._id, name: target.name }]);
-          }}
-          aria-label={`${session.date} ${roleLabel(role)}`}
-          className="cursor-pointer border border-dashed border-rule bg-transparent px-1.5 py-1 text-xs text-ink-soft focus:border-ink focus:outline-none"
-        >
-          <option value="">+ 添加</option>
-          {candidates.map((s) => (
-            <option key={s._id} value={s._id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
+        {(role !== "leader" || people.length === 0) && (
+          <select
+            value=""
+            onChange={(e) => {
+              const target = members.find((m) => m._id === e.target.value);
+              if (target) change([...people, { _id: target._id, name: target.name }]);
+            }}
+            aria-label={`${session.date} ${roleLabel(role)}`}
+            className="cursor-pointer border border-dashed border-rule bg-transparent px-1.5 py-1 text-xs text-ink-soft focus:border-ink focus:outline-none"
+          >
+            <option value="">+ 添加</option>
+            {candidates.map((s) => (
+              <option key={s._id} value={s._id}>
+                {s.name}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
-      {role === "leader" && people.length > 1 && (
-        <p role="status" className="mt-1 text-xs text-vermilion">
-          主領衝突：本組本堂有 {people.length} 位主領，請改為一位
-        </p>
-      )}
       {error && <p className="mt-1 text-xs text-vermilion">{error}</p>}
     </td>
+  );
+}
+
+function AssignmentNote({
+  session,
+  memberIds,
+}: {
+  session: SessionRow;
+  memberIds: Set<Id<"students">>;
+}) {
+  const text = assignmentAdjustmentText(
+    groupWeekAssignmentIssues({
+      leaderIds: session.leaders.map((p) => p._id),
+      observerIds: session.observers.map((p) => p._id),
+      memberIds,
+    }),
+  );
+  if (!text) return null;
+  return (
+    <p role="status" className="mt-1 font-serif-tc text-xs font-normal text-vermilion">
+      {text}
+    </p>
   );
 }
 
@@ -687,16 +720,15 @@ function HwMark({ done, label }: { done: boolean | undefined; label: string }) {
 // made in one view is visible in the other without a reload.
 function useAssignmentUpdater(): AssignmentUpdater {
   const assign = useMutation(api.students.updateSessionAssignments);
-  return async (session, role, nextPeople) => {
-    const otherRoleIds = (
-      role === "leader" ? session.observers : session.leaders
-    ).map((p) => p._id);
-    const ids = nextPeople.map((p) => p._id);
-    await assign(
-      role === "leader"
-        ? { sessionId: session._id, leaderIds: ids, observerIds: otherRoleIds }
-        : { sessionId: session._id, leaderIds: otherRoleIds, observerIds: ids },
-    );
+  return async (session, role, nextPeople, memberIds) => {
+    const next = spliceGroupAssignments({
+      leaderIds: session.leaders.map((p) => p._id),
+      observerIds: session.observers.map((p) => p._id),
+      memberIds,
+      role,
+      nextIds: nextPeople.map((p) => p._id),
+    });
+    await assign({ sessionId: session._id, ...next });
   };
 }
 
@@ -781,7 +813,7 @@ function StudentSchedule({
     <div>
       <p className="mt-3 text-sm leading-relaxed text-ink-soft">
         點擊「我來主領」或「我來觀察」填入自己的名字；此表只顯示您小組的成員，
-        全班即時同步。同一週請擇一角色。
+        全班即時同步。同一週請擇一角色。每組每堂一位主領、至少一位觀察。
       </p>
       {error && (
         <p role="alert" className="mt-3 border-t border-vermilion pt-3 font-serif-tc text-sm text-vermilion">
@@ -848,6 +880,7 @@ function StudentSchedule({
                     <span className="ml-2 text-sm font-normal text-ink-soft">
                       週{weekday}
                     </span>
+                    <AssignmentNote session={s} memberIds={mateIds} />
                   </td>
                   <td className="px-3 py-3 align-top">
                     <div className="flex flex-wrap items-center gap-1.5">
@@ -872,7 +905,7 @@ function StudentSchedule({
                           )}
                         </span>
                       ))}
-                      {!iLead && myId !== null && (
+                      {!iLead && myId !== null && groupLeaders.length === 0 && (
                         <button
                           onClick={() =>
                             act(() => addMe({ sessionId: s._id, role: "leader" }))

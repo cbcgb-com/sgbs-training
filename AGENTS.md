@@ -329,12 +329,17 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
 - `apps/roster/scripts/test-attendance.mjs` - End-to-end attendance
   recording suite (runs against a dev Convex deployment)
 - `apps/roster/src/groupCoverage.ts` - Small-group coverage helpers
-  (under-3 flag, proposed merge target, remaining-week strip, 主領
-  collision). Instructor banner + confirmed merge in
-  `convex/groupCoverage.ts`; SMTP notice in `authEmail.ts`. See
-  `apps/roster/docs/designs/group-coverage/LLD.md`.
+  (under-3 flag, proposed merge target, remaining-week strip). Instructor
+  banner + confirmed merge in `convex/groupCoverage.ts`; SMTP notice in
+  `authEmail.ts`. See `apps/roster/docs/designs/group-coverage/LLD.md`.
+- `apps/roster/src/assignmentRules.ts` - Per-group per-week 主領/觀察
+  check (at most one 主領, at least one 觀察). Shared by 課堂安排 UI and
+  the assignment mutations. Two 主領 is a save error; missing 主領 or
+  觀察 is a 需要調整 warning.
 - `apps/roster/scripts/test-group-coverage.mjs` - Unit tests for the
   coverage helpers (no Convex)
+- `apps/roster/scripts/test-assignment-rules.mjs` - Unit tests for the
+  主領/觀察 check (no Convex)
 - `airtable_dump/` - Airtable dump/transform/seed pipeline (see
   `apps/roster/README.md` for the full re-import procedure)
 

@@ -39,13 +39,18 @@
 
 ## Assignments
 
+The 主領/觀察 rule is general (every named group, every lesson-2+
+week), not merge-only. See also schedule EARS SCH-ADM-020–023.
+
 - [x] **COV-ASN-001**: Where a group has more than one 主領 on a
-      session, 課堂安排 shall flag a 主領衝突.
-- [x] **COV-ASN-002**: The system shall allow one or more 觀察 on a
-      session.
+      session, 課堂安排 shall flag 需要調整 with the two-leader reason.
+- [x] **COV-ASN-002**: Where a group has no 觀察 on a lesson-2+ week,
+      課堂安排 shall flag 需要調整; the write is not blocked.
 - [x] **COV-ASN-003**: Students who joined a group through a merge shall
       see an observe-twice hint in 課堂安排 that does not block assigning
       them as 主領.
+- [x] **COV-ASN-004**: A write that would leave a named group with two
+      主領 shall be rejected.
 
 ## Related Documents
 

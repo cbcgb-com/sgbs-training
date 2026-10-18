@@ -5,6 +5,10 @@ import type { Doc, Id } from "./_generated/dataModel";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { CURRENT_QUARTER } from "../src/constants";
 import {
+  groupsExceedingLeaderCap,
+  twoLeadersError,
+} from "../src/assignmentRules";
+import {
   FUTURE_BULK_ERROR,
   MANUAL_WITHDRAWN_ATTENDANCE_ERROR,
   SITTING_IN_ERROR,
@@ -838,6 +842,7 @@ export const addMeToSession = mutation({
     const observerIds = session.observerIds.filter((id) => id !== me._id);
     if (role === "leader") leaderIds.push(me._id);
     else observerIds.push(me._id);
+    await rejectIfTwoLeaders(ctx, leaderIds);
     await ctx.db.patch(sessionId, { leaderIds, observerIds });
   },
 });
@@ -1153,9 +1158,23 @@ export const updateSessionAssignments = mutation({
         throw new Error(`${s.name} 已退出本季課程，無法安排主領或觀察`);
       }
     }
+    await rejectIfTwoLeaders(ctx, leaderIds);
     await ctx.db.patch(sessionId, { leaderIds, observerIds });
   },
 });
+
+async function rejectIfTwoLeaders(
+  ctx: MutationCtx,
+  leaderIds: Id<"students">[],
+): Promise<void> {
+  const groupOf = new Map<Id<"students">, string | undefined>();
+  for (const id of leaderIds) {
+    const student = await ctx.db.get(id);
+    groupOf.set(id, student?.groupName);
+  }
+  const colliding = groupsExceedingLeaderCap(leaderIds, groupOf);
+  if (colliding.length > 0) throw new Error(twoLeadersError(colliding));
+}
 
 // ---- Production cleanup (CLI-only, run with npx convex run --prod) ----
 
