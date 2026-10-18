@@ -4,11 +4,6 @@ import { api } from "../convex/_generated/api";
 import type { Doc, Id } from "../convex/_generated/dataModel";
 import Avatar from "./Avatar";
 import {
-  struckNameClass,
-  struckPortraitClass,
-  struckTitle,
-} from "./strikeout";
-import {
   CURRENT_QUARTER,
   WITHDRAWAL_REASON_OTHER,
   WITHDRAWAL_REASONS,
@@ -135,9 +130,7 @@ function QuarterView() {
       students={students}
       photos={photos}
       renderAction={(s) =>
-        s.withdrawnAt === undefined ? (
-          <WithdrawalAction studentId={s._id} name={s.name} />
-        ) : null
+        <WithdrawalAction studentId={s._id} name={s.name} />
       }
       columns={[
         ["名字", (s) => s.name, "serif"],
@@ -317,29 +310,49 @@ function WithdrawnView() {
           students={filtered}
           photos={photos}
           countLabel="位已退出"
-          sort={(a, b) =>
-            b.withdrawnAt - a.withdrawnAt ||
-            a.name.localeCompare(b.name, "zh-Hant")
-          }
+          sort={(a, b) => {
+            const ak = a.withdrawnAt ?? a.triggerDate ?? "";
+            const bk = b.withdrawnAt ?? b.triggerDate ?? "";
+            if (ak === bk) return a.name.localeCompare(b.name, "zh-Hant");
+            return String(bk).localeCompare(String(ak));
+          }}
           columns={[
             ["名字", (s) => s.name, "serif"],
             ["團契", (s) => s.fellowship],
             ["小組", (s) => s.groupName],
             ["季度", (s) => s.quarter],
             ["郵箱", (s) => s.email],
-            ["退出日期", (s) => zhDate(s.withdrawnAt)],
-            ["退出原因", (s) => s.withdrawnReason],
+            [
+              "退出日期",
+              (s) =>
+                s.withdrawnAt
+                  ? zhDate(s.withdrawnAt)
+                  : (s.triggerDate ?? "—"),
+            ],
+            [
+              "退出原因",
+              (s) =>
+                s.withdrawalCause === "absences"
+                  ? "缺課兩堂"
+                  : (s.withdrawnReason ?? ""),
+            ],
           ]}
-          renderAction={(s) => (
-            <button
-              type="button"
-              onClick={() => restore(s._id)}
-              disabled={busyId === s._id}
-              className="font-serif-tc text-sm tracking-[0.1em] text-ink-soft underline underline-offset-4 transition-colors hover:text-ink disabled:opacity-50"
-            >
-              {busyId === s._id ? "處理中" : "復原"}
-            </button>
-          )}
+          renderAction={(s) =>
+            s.withdrawalCause === "manual" ? (
+              <button
+                type="button"
+                onClick={() => restore(s._id)}
+                disabled={busyId === s._id}
+                className="font-serif-tc text-sm tracking-[0.1em] text-ink-soft underline underline-offset-4 transition-colors hover:text-ink disabled:opacity-50"
+              >
+                {busyId === s._id ? "處理中" : "復原"}
+              </button>
+            ) : (
+              <span className="font-serif-tc text-xs tracking-[0.1em] text-ink-soft">
+                更正出席後恢復
+              </span>
+            )
+          }
         />
       </div>
     </div>
@@ -570,10 +583,12 @@ type ListStudent = {
   groupName?: string;
   leadingExperience?: string;
   marks?: Mark[];
-  withdrawnAt?: number;
-  // Replicated absent count — drives the missed-≥2 strikeout treatment.
-  // Projections that predate the treatment (主領/觀察日期, 已退出) now
-  // carry it too, so the treatment reads the same on every 名單 view.
+  withdrawnAt?: number | null;
+  withdrawn?: boolean;
+  withdrawalCause?: "manual" | "absences" | null;
+  triggerDate?: string | null;
+  withdrawnReason?: string;
+  // Derived (2026秋季+) or replicated (older quarters) absent count.
   missed?: number;
 };
 
@@ -773,29 +788,19 @@ function StudentCards<T extends ListStudent>({
           key={s._id}
           className="border border-rule bg-paper px-4 py-3.5 transition-colors hover:border-ink/30"
         >
-          <div
-            className="flex items-center gap-3.5"
-            title={struckTitle(s.name, s.missed)}
-          >
-            <span className={struckPortraitClass(s.missed)}>
-              <Avatar
-                name={s.name}
-                url={
-                  s.photoStorageId ? photos?.[s.photoStorageId] : undefined
-                }
-                size={64}
-              />
-            </span>
-            <p
-              className={
-                "min-w-0 font-serif-tc text-[19px] font-bold leading-snug text-ink " +
-                struckNameClass(s.missed)
+          <div className="flex items-center gap-3.5">
+            <Avatar
+              name={s.name}
+              url={
+                s.photoStorageId ? photos?.[s.photoStorageId] : undefined
               }
-            >
+              size={64}
+            />
+            <p className="min-w-0 font-serif-tc text-[19px] font-bold leading-snug text-ink">
               {nameColumn ? nameColumn[1](s) : s.name}
-              {s.withdrawnAt !== undefined && (
+              {s.withdrawn && (
                 <span className="ml-2 inline-block border border-vermilion/50 px-1.5 py-0.5 align-middle text-[13px] font-bold tracking-[0.1em] text-vermilion">
-                  已退出
+                  {s.withdrawalCause === "absences" ? "已退出（缺課）" : "已退出"}
                 </span>
               )}
             </p>
@@ -905,31 +910,23 @@ function StudentTable<T extends ListStudent>({
                   }
                 >
                   {style === "serif" ? (
-                    <span
-                      className="flex items-center gap-2.5"
-                      title={struckTitle(s.name, s.missed)}
-                    >
-                      <span className={struckPortraitClass(s.missed)}>
-                        <Avatar
-                          name={s.name}
-                          url={
-                            s.photoStorageId
-                              ? photos?.[s.photoStorageId]
-                              : undefined
-                          }
-                        />
-                      </span>
-                      <span
-                        className={
-                          "font-serif-tc text-[17px] font-bold " +
-                          struckNameClass(s.missed)
+                    <span className="flex items-center gap-2.5">
+                      <Avatar
+                        name={s.name}
+                        url={
+                          s.photoStorageId
+                            ? photos?.[s.photoStorageId]
+                            : undefined
                         }
-                      >
+                      />
+                      <span className="font-serif-tc text-[17px] font-bold">
                         {get(s)}
                       </span>
-                      {s.withdrawnAt !== undefined && (
+                      {s.withdrawn && (
                         <span className="shrink-0 border border-vermilion/50 px-1.5 py-0.5 text-[13px] font-bold tracking-[0.1em] text-vermilion">
-                          已退出
+                          {s.withdrawalCause === "absences"
+                            ? "已退出（缺課）"
+                            : "已退出"}
                         </span>
                       )}
                     </span>

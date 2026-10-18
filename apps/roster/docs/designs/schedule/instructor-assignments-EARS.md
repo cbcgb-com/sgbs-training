@@ -7,8 +7,8 @@
 - [x] **SCH-ADM-001**: The system shall render only the current season's
       sessions in 課堂安排, for instructors and students alike.
 - [x] **SCH-ADM-002**: The system shall provide no UI to add or delete
-      class dates — dates are fixed at five per season and the first
-      (orientation) never carries assignments.
+      class dates — dates are fixed at five per season and lesson 1
+      never carries assignments (主領/觀察 start at lesson 2).
 - [x] **SCH-ADM-003**: The instructor view shall organize the season by
       group: one table per group, weeks as rows, 主領/觀察 as columns,
       names in the cells.

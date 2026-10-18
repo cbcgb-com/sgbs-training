@@ -6,9 +6,9 @@
 ## Overview
 
 課堂安排 covers the season's class dates and their 主領/觀察 assignments.
-The season has five fixed class dates; the first (orientation,
-課程信息介紹) never carries assignments, so the schedule holds exactly
-**four leading weeks**. Assignments live on the session row; the
+The season has five fixed class dates; all five count for attendance.
+主領/觀察 start at lesson 2, so the schedule holds exactly **four
+leading weeks**. Assignments live on the session row; the
 per-student 主領日期/觀察日期 views are derived by inversion.
 
 ## Data Model
@@ -46,7 +46,7 @@ persists in `localStorage`):
   觀察 columns as editable chips scoped to that group's members.
 - 按週次 — the same docs pivoted: one section per class date (date +
   weekday heading), groups as rows, 小組/主領/觀察 columns. The
-  orientation section renders the 課程信息介紹 note instead of a table;
+  first-lesson section renders the 第一堂不安排主領／觀察 note instead of a table;
   ungrouped students have no group row and do not appear.
 
 Both layouts read and write the same `sessions` documents

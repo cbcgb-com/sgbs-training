@@ -46,9 +46,12 @@ name is missing from last week's thread, leave that person off and
 tell Eric.
 
 Active students of the current term (`CURRENT_QUARTER` in
-`apps/roster/src/constants.ts`, now `2026秋季`), not withdrawn
-(`withdrawnAt` unset), with a non-empty email. Table `students`, index
-`by_quarter`. Prod Convex: `abundant-dodo-507`.
+`apps/roster/src/constants.ts`, now `2026秋季`), not withdrawn — use
+the shared helper (`withdrawalStatus` /
+`filterActiveStudents` in `apps/roster/convex/attendanceStatus.ts`),
+not `withdrawnAt` alone. From 2026秋季 a student with two misses is
+withdrawn even if `withdrawnAt` is unset. With a non-empty email.
+Table `students`, index `by_quarter`. Prod Convex: `abundant-dodo-507`.
 
 Read-only agent query (internal; CLI, no browser session):
 

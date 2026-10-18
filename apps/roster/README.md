@@ -48,8 +48,8 @@ student; anything else is a guest.
   their surface).
 - **聯絡表 directory** — Student: current season only, no quarter filter.
   Instructor: full archive with a quarter filter.
-- **課堂安排 schedule** — Student: own group's people only, four leading
-  weeks, self-serve 我來主領/我來觀察. Instructor: two layouts of the
+- **課堂安排 schedule** — Student: own group's people only, 主領/觀察
+  from lesson 2, self-serve 我來主領/我來觀察. Instructor: two layouts of the
   same data — by group (按小組) or by week (按週次) — with full
   assignment editing in both, plus read-only 功課記錄 marks (筆記 per
   member, 題目 per 主領/觀察) in the by-week layout.
@@ -66,7 +66,7 @@ Intent rules that must survive refactors:
    server-side, not just hidden in the UI), never sees past seasons in the
    directory, and never sees the full roster.
 2. **Students edit only themselves.** In 課堂安排 a student can add or
-   remove their own name as 主領/觀察 for any of the four leading weeks —
+   remove their own name as 主領/觀察 from lesson 2 onward —
    never anyone else's. Adding one role for a week removes them from the
    other role that week. In 我的資料 a student edits their own
    particulars and photo only — never the email (identity) or 小組/季度
@@ -79,8 +79,8 @@ Intent rules that must survive refactors:
    課堂安排 shows every group's table with full assignment editing, and
    分組 runs the one-click diversity divider (fellowship, gender, baptism
    era, leading experience) with manual override and renames. Dates are
-   fixed at five classes; the first class is orientation and never carries
-   assignments, so each season has exactly **four leading weeks**.
+   fixed at five classes; all five count for attendance. 主領/觀察 start
+   at lesson 2, so each season has exactly **four leading weeks**.
 5. **Registration has two modes.** Students register themselves: the
    form collects the email and a 6-digit code sent to it proves ownership
    (sign-in is then that email, codeless). Instructors register other
@@ -102,19 +102,32 @@ survives and sign-in keeps working. The write also clears `groupName` and
 sweeps the student out of the current quarter's session 主領/觀察 arrays;
 attendance rows and `missed` are untouched.
 
+From **2026秋季** on, withdrawal is also **derived from attendance**: any
+two misses (explicit 缺席, or a past session date with no row) withdraw
+the student immediately. Status is computed, not stored. Correcting a
+miss to 出席 makes them active again (group is not auto-restored). Manual
+`withdrawnAt` still counts. Earlier quarters keep today's behaviour
+(withdrawn only via `withdrawnAt`). Sitting in after an absence-withdrawal
+is allowed but never recorded. Helper: `src/attendanceStatus.ts`, loaded
+from Convex via `convex/attendanceStatus.ts` (also the filter
+`homework:classEmailList` should use). See
+[docs/designs/withdrawal/LLD.md](docs/designs/withdrawal/LLD.md).
+
 Withdrawn rows are invisible to every current-quarter surface (本季度,
 出勤, 看板, 分組, 聯絡表, 我的組, schedule self-service) and to
 `requireCurrentStudent` (a withdrawn student gets the 請先註冊本季課程
-path). The Master view keeps them with a 已退出 badge, and the 已退出 roster
-view lists them (filterable by quarter) with 復原 to undo.
+path). Absence-withdrawn students still appear on the attendance sheet
+in a collapsed 已退出（缺課） section so marks on or before the 2nd miss
+can be corrected. The Master view keeps them with a 已退出 badge, and the
+已退出 roster view lists them (filterable by quarter) with 復原 for
+manual withdrawals only.
 
-**Re-registration is reactivation.** Both registration paths
-(`auth.verifyRegistrationCode` and `students.registerStudent`) detect a
-withdrawn same-quarter duplicate and patch it active (refreshing the
-registration fields, sending the welcome email, replacing the photo if one
-was uploaded) instead of dead-ending on "duplicate" or inserting a second
-row; they return status `"reactivated"`, rendered as the normal success
-panel. Returning for a NEW quarter is still a new row, unchanged.
+**Re-registration is reactivation** for *manual* withdrawal. Both
+registration paths (`auth.verifyRegistrationCode` and
+`students.registerStudent`) detect a withdrawn same-quarter duplicate
+with `withdrawnAt` and patch it active — unless two misses would keep
+them withdrawn; re-register cannot undo absence withdrawal. Returning
+for a NEW quarter is still a new row, unchanged.
 `students:deleteStudentByEmail` remains the CLI purge path for a genuine
 record-deletion request — it is not the withdrawal path.
 
@@ -174,8 +187,11 @@ Attendance (出勤) lives in the `attendance` table: one row per
 (student, class date), written through `students:recordAttendance`,
 which validates that the date is an active session date of the
 student's quarter — attendance can never point at a non-class day. A
-quarter's active dates are its rows in the `sessions` table (4-6
-variable weeks, gaps allowed). Quarters whose dates Airtable never
+quarter's active dates are its rows in the `sessions` table. From
+2026秋季 the season is five lessons (two misses = withdrawn); older
+quarters are historical and may have 4–6 dates. Gaps are allowed. If a
+future quarter has more than five dates, the threshold stays two
+misses. Quarters whose dates Airtable never
 recorded were reconstructed: 2022秋季-2026春季 are aligned to the
 course website's 錄影 page (authoritative dates, via
 `migrations:alignCalendarsToRecordings`), and the four older seasons

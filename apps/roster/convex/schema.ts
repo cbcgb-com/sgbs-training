@@ -38,7 +38,9 @@ export default defineSchema({
   // 课程日期 (tblQgLBaK0KENUuwT): one class session with its leading and
   // observing assignments. The session row is the source of truth; the
   // per-student views derive from these arrays. A quarter is "active"
-  // on exactly the dates listed here — 4-6 variable weeks, gaps allowed.
+  // on exactly the dates listed here. From 2026秋季 the season is five
+  // lessons (two misses = withdrawn); older quarters are historical and
+  // may have 4–6 dates. Gaps are allowed.
   // Quarters whose dates Airtable never recorded were synthesized by
   // migrations:backfillAttendance and carry estimated: true (first five
   // Sundays of April/October). Correct any wrong date in place; the
@@ -127,4 +129,14 @@ export default defineSchema({
   })
     .index("by_jti", ["jti"])
     .index("by_email", ["email"]),
+
+  // Single-row-per-key app calendar. Queries read `todayNy` instead of
+  // Date.now() so a midnight America/New_York rollover re-runs derived
+  // withdrawal. The hourly cron writes it; tests may set `todayNyOverride`.
+  // See convex/attendanceStatus.ts and docs/designs/withdrawal/LLD.md.
+  appMeta: defineTable({
+    key: v.string(),
+    value: v.string(),
+    updatedAt: v.number(),
+  }).index("by_key", ["key"]),
 });

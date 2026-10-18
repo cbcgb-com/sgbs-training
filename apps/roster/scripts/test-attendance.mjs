@@ -20,9 +20,8 @@ const STUDENT = "demo3@demo.sgbs";
 const WITHDRAW_SUBJECT = "demo7@demo.sgbs";
 const INSTRUCTOR = "wit-test-instructor@example.com";
 const QUARTER = "2026秋季";
-const MARK_DATE = "2026-10-04"; // single-mark round trip
-const BULK_DATE = "2026-10-11"; // bulk fill
 const NOT_A_DATE = "2026-12-25"; // not a session date
+const BLANK_SUBJECT = "demo1@demo.sgbs"; // fully-present seeded student
 
 let failures = 0;
 function check(label, ok, detail = "") {
@@ -57,6 +56,15 @@ const instructor = await as(INSTRUCTOR);
 async function sheet() {
   return instructor.query(api.students.quarterAttendance, {});
 }
+
+const opening = await sheet();
+const TODAY = opening.todayNy;
+const MARK_DATE = opening.dates.includes(TODAY)
+  ? TODAY
+  : (opening.dates.filter((d) => d <= TODAY).pop() ?? opening.dates[opening.dates.length - 1]);
+const BULK_DATE = MARK_DATE;
+const PAST_DATE = opening.dates.find((d) => d < TODAY) ?? null;
+console.log(`todayNy=${TODAY} MARK/BULK=${MARK_DATE} PAST=${PAST_DATE}`);
 function markOf(data, studentId, date) {
   const i = data.dates.indexOf(date);
   const s = data.students.find((x) => x._id === studentId);
@@ -69,17 +77,20 @@ const current = (email) =>
   all.find((s) => s.email === email && s.quarter === QUARTER);
 const subject = current(STUDENT);
 const withdrawer = current(WITHDRAW_SUBJECT);
+const blankSubject = current(BLANK_SUBJECT);
 if (!subject || !withdrawer) {
   throw new Error("seed demo data first: npx convex run demo:seedPreviewDemo");
 }
 for (const s of [subject, withdrawer]) {
-  if (s.withdrawnAt !== undefined) {
+  if (s.withdrawnAt) {
     await instructor.mutation(api.students.reactivateStudent, {
       studentId: s._id,
     });
   }
 }
-const missed0 = subject.missed;
+const missed0 =
+  (await sheet()).students.find((s) => s._id === subject._id)?.missed ??
+  subject.missed;
 check("baseline: demo3 on the sheet", markOf(await sheet(), subject._id, MARK_DATE) !== "absent-from-sheet");
 
 // ---- 1. Gates ---------------------------------------------------------
@@ -288,7 +299,137 @@ await expectReject(
   }
 }
 
-// ---- 5. Final invariant: the subject is back to baseline --------------
+// ---- 5. Derived two-miss rule (blank past, today, correction, sitting-in)
+{
+  if (!blankSubject || !PAST_DATE) {
+    check("blank-miss fixture present", false, "need demo10 and a past session date");
+  } else {
+    const pastDates = opening.dates.filter((d) => d < TODAY);
+    // Start from a clean present sheet on every past date so this student
+    // is active, then punch two past blanks.
+    for (const d of opening.dates) {
+      if (d < TODAY) {
+        await instructor.mutation(api.students.recordAttendance, {
+          studentId: blankSubject._id,
+          date: d,
+          attended: true,
+        });
+      }
+    }
+    await instructor.mutation(api.students.saveGroups, {
+      assignments: [{ studentId: blankSubject._id, groupName: "測試組" }],
+    });
+    const week = (await instructor.query(api.students.schedule, {})).find(
+      (s) => s.quarter === QUARTER && s.date !== opening.dates[0],
+    );
+    if (week) {
+      await instructor.mutation(api.students.updateSessionAssignments, {
+        sessionId: week._id,
+        leaderIds: [
+          ...new Set([...week.leaders.map((p) => p._id), blankSubject._id]),
+        ],
+        observerIds: week.observers.map((p) => p._id),
+      });
+    }
+
+    const d1 = pastDates[0];
+    const d2 = pastDates[1] ?? pastDates[0];
+    await instructor.mutation(api.students.clearAttendance, {
+      studentId: blankSubject._id,
+      date: d1,
+    });
+    await instructor.mutation(api.students.clearAttendance, {
+      studentId: blankSubject._id,
+      date: d2,
+    });
+
+    const afterBlanks = await sheet();
+    const gone = !afterBlanks.students.some((s) => s._id === blankSubject._id);
+    const listed = afterBlanks.withdrawnByAbsence?.some(
+      (s) => s._id === blankSubject._id,
+    );
+    check("blank past date = miss → withdrawn by absences", gone && listed);
+
+    const allNow = await instructor.query(api.students.all, {});
+    const row = allNow.find((s) => s._id === blankSubject._id);
+    check("absence withdrawal cleared the group", row?.groupName === undefined, String(row?.groupName));
+    const schedule = await instructor.query(api.students.schedule, {});
+    const stillAssigned = schedule.some((s) =>
+      [...s.leaders, ...s.observers].some((p) => p._id === blankSubject._id),
+    );
+    check("absence withdrawal swept 主領/觀察", !stillAssigned);
+
+    const later = opening.dates.find((d) => d > d2) ?? TODAY;
+    if (opening.dates.includes(later) && later > d2) {
+      await expectReject(
+        "sitting-in 出席 after 2nd miss rejected",
+        instructor.mutation(api.students.recordAttendance, {
+          studentId: blankSubject._id,
+          date: later,
+          attended: true,
+        }),
+        "旁聽不記錄",
+      );
+    }
+
+    await instructor.mutation(api.students.recordAttendance, {
+      studentId: blankSubject._id,
+      date: d2,
+      attended: true,
+    });
+    const restored = await sheet();
+    check(
+      "correcting 2nd miss to 出席 restores active",
+      restored.students.some((s) => s._id === blankSubject._id),
+    );
+    const restoredRow = restored.students.find((s) => s._id === blankSubject._id);
+    check(
+      "becoming active does not restore the group",
+      !restoredRow?.groupName,
+      String(restoredRow?.groupName),
+    );
+
+    if (MARK_DATE === TODAY) {
+      const beforeToday = restored.students.find((s) => s._id === blankSubject._id);
+      check(
+        "today blank is not a miss (still active with one past miss)",
+        beforeToday && beforeToday.missed === 1,
+        `missed=${beforeToday?.missed}`,
+      );
+    }
+
+    // Restore demo1: present on every seeded date, back in STAR.
+    for (const d of opening.dates) {
+      await instructor.mutation(api.students.recordAttendance, {
+        studentId: blankSubject._id,
+        date: d,
+        attended: true,
+      });
+    }
+    await instructor.mutation(api.students.saveGroups, {
+      assignments: [{ studentId: blankSubject._id, groupName: "STAR" }],
+    });
+  }
+}
+
+{
+  // Pre-2026秋季: hist6 (seedPreviewData) has two explicit 缺席 and no
+  // withdrawnAt. seedPreviewDemo does not insert history rows.
+  const hist = (await instructor.query(api.students.all, {})).find(
+    (s) => s.email === "hist6@demo.sgbs" && s.quarter === "2026春季",
+  );
+  if (!hist) {
+    console.log("NOTE  hist6 not seeded; skipping pre-2026春季 check");
+  } else {
+    check(
+      "pre-2026秋季 two 缺席 do not withdraw",
+      hist.withdrawn !== true && !hist.withdrawnAt,
+      `withdrawn=${hist.withdrawn}`,
+    );
+  }
+}
+
+// ---- 6. Final invariant: the subject is back to baseline --------------
 {
   const data = await sheet();
   const row = data.students.find((s) => s._id === subject._id);

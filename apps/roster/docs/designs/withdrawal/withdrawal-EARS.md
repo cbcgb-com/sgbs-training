@@ -4,8 +4,11 @@
 
 ## Soft State
 
-- [x] **WDR-STATE-001**: The system shall represent withdrawal as the
-      presence of `withdrawnAt` on the student row, never as deletion.
+- [x] **WDR-STATE-001**: The system shall represent *manual* withdrawal as
+      the presence of `withdrawnAt` on the student row, never as deletion.
+      From 2026秋季 on, membership is also derived: any two misses
+      (explicit 缺席 or a past blank) withdraw the student without storing
+      a stale flag. Earlier quarters keep the flag-only rule.
 - [x] **WDR-STATE-002**: The system shall keep attendance rows and the
       `missed` count untouched when a student withdraws.
 - [x] **WDR-STATE-003**: The system shall record an optional
@@ -37,8 +40,10 @@
       system shall apply the same soft-state write and current-quarter
       session sweep as self-service withdrawal.
 - [x] **WDR-ADM-003**: Where the actor is an active instructor, the system
-      shall allow reactivating a withdrawn student, clearing
-      `withdrawnAt` and `withdrawnReason`.
+      shall allow reactivating a *manually* withdrawn student, clearing
+      `withdrawnAt` and `withdrawnReason`. Absence withdrawal is undone
+      only by correcting attendance to 出席, never by 復原 or
+      re-registration.
 - [x] **WDR-ADM-004**: If a non-instructor calls an instructor withdrawal
       function, then the system shall reject it with 僅限同工存取.
 
@@ -62,9 +67,11 @@
 
 ## View Sweep
 
-- [x] **WDR-VIEW-001**: The system shall exclude withdrawn students from
-      `byQuarter`, `quarterAttendance`, `grouped`, `saveGroups`,
-      `renameGroup`, `renameMyGroup`, `directory`, and `myGroup`.
+- [x] **WDR-VIEW-001**: The system shall exclude derived-withdrawn
+      students from `byQuarter`, `grouped`, `saveGroups`, `renameGroup`,
+      `renameMyGroup`, `directory`, `myGroup`, and
+      `homework:classEmailList` / `quarterRoster`. `quarterAttendance`
+      excludes manual withdrawals and lists absence-withdrawn separately.
 - [x] **WDR-VIEW-006**: The system shall reject an instructor assignment
       that includes a withdrawn student (主領/觀察) with a named error, so
       the sweep cannot be undone by the assignment writer.

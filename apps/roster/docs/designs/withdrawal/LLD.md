@@ -10,12 +10,34 @@ row kept them in every roster view, the directory (聯絡表), their group
 (我的組), and the schedule — forever. Withdrawal (退出報名) adds an exit
 door without destroying the quarter's record.
 
-Withdrawal is a **soft state** on the student row, mirroring the
-`instructors` precedent (`active: false` rows are kept for history but have
-no access). Presence of `withdrawnAt` = withdrawn. This preserves the
-quarter's attendance history, keeps sign-in coherent (the email still
-resolves to a row), and makes returning students a reactivation rather than
-a second ambiguous row.
+Withdrawal is a **derived membership status**, plus an optional manual
+soft flag. Manual `withdrawnAt` (the original 退出報名 write) still
+means withdrawn. From **2026秋季** on, any two misses of that quarter's
+session dates also withdraw the student, immediately, without writing
+`withdrawnAt`. Earlier quarters keep the flag-only behaviour.
+
+A miss is an explicit 缺席 (`attended: false`) **or** a session date
+strictly before today in America/New_York with no attendance row. A
+blank on a past date is a miss. Today (and future dates) with no row
+is not a miss. There are no excused absences, makeups, book-reflection
+makeups, or orientation exceptions — all five lessons count. Late
+registrants' earlier blank lessons count as misses. If a future quarter
+lists more than five dates, the threshold stays two misses.
+
+Status is always computed (`src/attendanceStatus.ts`) from
+`withdrawnAt` + the quarter's session dates + attendance rows + today's
+NY date. Queries must not call `Date.now()` for that date: an hourly
+cron writes `appMeta.todayNy`, and mutations refresh it, so Convex
+queries re-run when the calendar day rolls. Tests may set
+`todayNyOverride`.
+
+Correcting a miss to 出席 drops the miss count; below two, the student
+is active again. Re-registration cannot undo an absence withdrawal.
+Instructor 復原 only clears `withdrawnAt`.
+
+This preserves the quarter's attendance history, keeps sign-in coherent
+(the email still resolves to a row), and makes returning *manually*
+withdrawn students a reactivation rather than a second ambiguous row.
 
 ## Why not hard delete
 
@@ -32,8 +54,7 @@ Two optional columns on `students`:
 
 | Field | Type | Notes |
 | ----- | ---- | ----- |
-| `withdrawnAt` | optional number | epoch ms; presence = withdrawn; |
-|                |                 | cleared on reactivation |
+| `withdrawnAt` | optional number | epoch ms; presence = withdrawn |
 | `withdrawnReason` | optional string | optional reason captured at withdrawal |
 
 No new index: existing queries narrow by `by_quarter` (or collect), and the
@@ -123,14 +144,35 @@ Repeated withdrawal is a no-op that never overwrites the recorded reason or
 date; it still re-runs the sweep, so a malformed client that re-added the
 student to a session cannot leave a ghost assignment.
 
+## Absence-withdrawal side effects
+
+When a write (explicit 缺席, or clearing a past 出席 so the date becomes
+a blank miss) takes the derived count to two, `maybeApplyAbsenceWithdrawal`
+clears `groupName` and sweeps current-quarter 主領/觀察 — the same
+cleanup as manual withdrawal. Blanks that become misses at midnight NY
+are picked up by the hourly `attendanceStatus:dailySweep` (writes
+`todayNy`, then sweeps). Becoming active again does **not** restore the
+group or assignments; the instructor re-seats them.
+
+Sitting in after the 2nd miss is allowed in the room but never recorded:
+`recordAttendance` rejects `attended: true` on a date after the 2nd miss
+(旁聽不記錄出席). Corrections on or before the 2nd miss date stay
+allowed.
+
+TODO(groups-under-3): after an absence-withdrawal removes someone from a
+group, check whether that group now has fewer than 3 active members and
+trigger the follow-up flow. Designed separately; do not implement here.
+
 ## View sweep — withdrawn rows are invisible to current-quarter surfaces
 
-Every current-quarter surface filters `withdrawnAt === undefined`:
+Every current-quarter surface filters derived `withdrawn` (manual flag
+**or** two misses from 2026秋季 on), not `withdrawnAt === undefined`
+alone:
 
 | Surface | Function | Treatment |
 | ------- | -------- | --------- |
 | 本季度 | `byQuarter` | exclude withdrawn |
-| 出勤 | `quarterAttendance` | exclude withdrawn |
+| 出勤 | `quarterAttendance` | manual excluded; absences in `withdrawnByAbsence` |
 | 看板 | `grouped` | exclude withdrawn |
 | 分組儲存 | `saveGroups` | skip withdrawn rows |
 | 分組改名 | `renameGroup` | exclude withdrawn |

@@ -28,8 +28,8 @@ type, anyone-with-link write access):
 
 Because each page belongs to a known person/group, the agent can read
 the doc text and decide per person whether the page has real content.
-That is the entire tracking mechanism. Weeks without docs (the
-no-homework lesson, 課程信息介紹) simply have no rows.
+That is the entire tracking mechanism. Weeks without docs (lesson 1
+has no homework) simply have no rows.
 
 ## Data Model
 
@@ -92,7 +92,9 @@ has `students:byQuarter` for this data.
 
 ### Read: `homework:classEmailList` (internal query)
 
-Same active-student filter as `quarterRoster`, plus drop blank emails.
+Same active-student filter as `quarterRoster` (derived withdrawal via
+`filterActiveStudents` / `attendanceStatus.ts`, not `withdrawnAt`
+alone), plus drop blank emails.
 Returns `{ name, email, groupName }` (zh-Hant sorted) — the To: list
 for the weekly homework email. Agent CLI:
 `npx convex run --prod homework:classEmailList '{}'`. See

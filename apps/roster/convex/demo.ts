@@ -3,6 +3,7 @@ import type { MutationCtx } from "./_generated/server";
 import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 import { upsertAttendance, applyWithdrawal } from "./students";
+import { writeTodayNy } from "./attendanceStatus";
 import {
   CURRENT_QUARTER,
   CURRENT_QUARTER_SESSION_DATES,
@@ -21,25 +22,25 @@ const FAKE_STUDENTS = [
   { name: "陳大文", email: "demo1@demo.sgbs", fellowship: "樂河團契", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，多於5次", groupName: "STAR", attended: 5 },
   { name: "黃美玲", email: "demo2@demo.sgbs", fellowship: "樂河團契", gender: "女", baptismTime: "1到5年", leadingExperience: "帶過，1到5次", groupName: "STAR", attended: 4 },
   { name: "張偉明", email: "demo3@demo.sgbs", fellowship: "MIT團契（學生組）", gender: "男", baptismTime: "少於1年", leadingExperience: "沒帶過", groupName: "STAR", attended: 5 },
-  { name: "劉思婷", email: "demo4@demo.sgbs", fellowship: "學生團契（研究生）", gender: "女", baptismTime: "1到5年", leadingExperience: "帶過，1到5次", groupName: "約書亞", attended: 3 },
+  { name: "劉思婷", email: "demo4@demo.sgbs", fellowship: "學生團契（研究生）", gender: "女", baptismTime: "1到5年", leadingExperience: "帶過，1到5次", groupName: "約書亞", attended: 3 }, // 2 explicit 缺席 → absence-withdrawn
   { name: "何俊傑", email: "demo5@demo.sgbs", fellowship: "Malden 團契", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，多於5次", groupName: "約書亞", attended: 5 },
   { name: "吳雅文", email: "demo6@demo.sgbs", fellowship: "Longwood 團契", gender: "女", baptismTime: "少於1年", leadingExperience: "沒帶過", groupName: "約書亞", attended: 4 },
   { name: "鄭曉彤", email: "demo7@demo.sgbs", fellowship: "學生團契（本科生）", gender: "女", baptismTime: "1到5年", leadingExperience: "沒帶過", groupName: "恩典", attended: 5 },
-  { name: "楊日朗", email: "demo8@demo.sgbs", fellowship: "MIT團契（工作組之一）", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，1到5次", groupName: "恩典", attended: 2 },
+  { name: "楊日朗", email: "demo8@demo.sgbs", fellowship: "MIT團契（工作組之一）", gender: "男", baptismTime: "超過5年", leadingExperience: "帶過，1到5次", groupName: "恩典", attended: 4 },
 ];
 
 // 2026秋季 Sunday schedule. Dates that already exist are patched with the
-// extra assignments rather than duplicated. The first class of the season
-// (2026-09-20, 課程信息介紹) is deliberately absent — orientation never
-// carries 主領/觀察; only the four leading weeks appear here.
+// extra assignments rather than duplicated. 主領/觀察 start at lesson 2
+// (2026-09-27); the first class date is not in this assignment plan.
 const FAKE_SESSIONS = [
   { date: "2026-09-27", leaderEmails: ["demo5@demo.sgbs", "demo2@demo.sgbs"], observerEmails: ["demo8@demo.sgbs"] },
   { date: "2026-10-04", leaderEmails: ["demo6@demo.sgbs"], observerEmails: ["demo3@demo.sgbs", "demo5@demo.sgbs"] },
-  { date: "2026-10-11", leaderEmails: ["demo4@demo.sgbs", "demo7@demo.sgbs"], observerEmails: ["demo1@demo.sgbs"] },
+  { date: "2026-10-11", leaderEmails: ["demo5@demo.sgbs", "demo1@demo.sgbs"], observerEmails: ["demo8@demo.sgbs"] },
   { date: "2026-10-18", leaderEmails: ["demo2@demo.sgbs"], observerEmails: ["demo6@demo.sgbs"] },
 ];
 
 export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
+    await writeTodayNy(ctx);
     let studentsAdded = 0;
     const idByEmail = new Map<string, Id<"students">>();
 
@@ -53,21 +54,20 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         (e) => e.quarter === CURRENT_QUARTER,
       );
       if (alreadyThisQuarter) {
-        // Refresh to spec: rewrite the seeded attendance pattern
-        // (upsertAttendance keeps `missed` in sync) and re-seat the
-        // group, so earlier manual attendance/grouping edits on dev
-        // don't leave the demo cohort drifted from its spec.
+        // Seat the group first, then rewrite attendance. Two misses
+        // clear the group (derived withdrawal); seating after attendance
+        // would put an absence-withdrawn student back into a group.
         const id = alreadyThisQuarter._id;
-        for (const [i, date] of CURRENT_QUARTER_SESSION_DATES.entries()) {
-          await upsertAttendance(ctx, id, CURRENT_QUARTER, date, i < attended);
-        }
         if (alreadyThisQuarter.groupName !== s.groupName) {
           await ctx.db.patch(id, { groupName: s.groupName });
+        }
+        for (const [i, date] of CURRENT_QUARTER_SESSION_DATES.entries()) {
+          await upsertAttendance(ctx, id, CURRENT_QUARTER, date, i < attended);
         }
         idByEmail.set(s.email, id);
         continue;
       }
-      const id = await ctx.db.insert("students", {
+      const id =       await ctx.db.insert("students", {
         name: s.name,
         email: s.email,
         fellowship: s.fellowship,
@@ -79,8 +79,7 @@ export const seedPreviewDemo = internalMutation({  handler: async (ctx) => {
         present: true,
         missed: 0,
       });
-      // Attendance: attended the first `attended` sessions, absent for
-      // the rest (upsertAttendance keeps `missed` in sync).
+      // Attendance last: two misses clear the group (劉思婷).
       for (const [i, date] of CURRENT_QUARTER_SESSION_DATES.entries()) {
         await upsertAttendance(ctx, id, CURRENT_QUARTER, date, i < attended);
       }
@@ -254,7 +253,28 @@ const HISTORY_SESSIONS = [
 
 export const seedPreviewData = internalMutation({
   handler: async (ctx) => {
+    const todayNy = await writeTodayNy(ctx);
     const seats = await seatInstructors(ctx);
+
+    // Synthetic instructor for E2E scripts and preview walkthroughs
+    // (email lookup, non-routable). Real reviewer emails stay in
+    // PREVIEW_INSTRUCTORS, not this repo.
+    {
+      const email = "wit-test-instructor@example.com";
+      const existing = await ctx.db
+        .query("instructors")
+        .withIndex("by_email", (q) => q.eq("email", email))
+        .unique();
+      if (existing) {
+        await ctx.db.patch(existing._id, { active: true, name: "測試同工" });
+      } else {
+        await ctx.db.insert("instructors", {
+          email,
+          name: "測試同工",
+          active: true,
+        });
+      }
+    }
 
     const idByEmail = new Map<string, Id<"students">>();
     let studentsAdded = 0;
@@ -337,10 +357,17 @@ export const seedPreviewData = internalMutation({
       }
     }
 
-    // 2. Current quarter: the ungrouped pool for the divider.
+    // 2. Current quarter: the ungrouped pool for the divider. Past
+    //    blanks would withdraw them (late-registrant rule), so mark
+    //    every past session present and leave today unrecorded.
     for (const s of UNGROUPED_STUDENTS) {
       const id = await ensureStudent(CURRENT_QUARTER, s);
       idByEmail.set(s.email, id);
+      for (const date of CURRENT_QUARTER_SESSION_DATES) {
+        if (date < todayNy) {
+          await upsertAttendance(ctx, id, CURRENT_QUARTER, date, true);
+        }
+      }
     }
 
     // 3. Prior quarter: students, calendar, assignments, attendance.
@@ -356,13 +383,15 @@ export const seedPreviewData = internalMutation({
     for (const s of HISTORY_STUDENTS) {
       const id = idByEmail.get(s.email);
       if (!id) continue;
+      // hist6 has two explicit 缺席 and no withdrawnAt: 2026春季 is
+      // before the derived-withdrawal rule, so they stay on the roster.
+      const attended = s.email === "hist6@demo.sgbs" ? 3 : 4;
       for (const [i, date] of HISTORY_SESSION_DATES.entries()) {
-        await upsertAttendance(ctx, id, HISTORY_QUARTER, date, i < 4);
+        await upsertAttendance(ctx, id, HISTORY_QUARTER, date, i < attended);
       }
     }
 
-    // 4. Current-quarter calendar: the full five Sundays (orientation
-    //    included) with 主領/觀察 on the four leading weeks.
+    // 4. Current-quarter calendar: five Sundays, 主領/觀察 from lesson 2.
     const sessionsAdded = await ensureSessions(
       CURRENT_QUARTER,
       CURRENT_QUARTER_SESSION_DATES,
@@ -478,7 +507,7 @@ export const resetQuarterData = internalMutation({
 });
 
 // Wipe all 主領/觀察 assignments from the current quarter's sessions so
-// the schedule starts blank (orientation week stays an empty row). Run
+// the schedule starts blank (lesson 1 stays an empty row). Run
 // via `npx convex run demo:clearSessionAssignments '{}'`.
 export const clearSessionAssignments = internalMutation({
   handler: async (ctx) => {
@@ -497,9 +526,9 @@ export const clearSessionAssignments = internalMutation({
   },
 });
 
-// The first class of a season is orientation (課程信息介紹) — it never has
-// 主領/觀察. Ensure its session row exists (empty assignments) so the
-// schedule shows the full five-Sunday calendar. Run via
+// 主領/觀察 start at lesson 2. Ensure the first session row exists
+// (empty assignments) so the schedule shows the full five-Sunday
+// calendar. Run via
 //   npx convex run demo:ensureOrientationSession
 export const ensureOrientationSession = internalMutation({
   handler: async (ctx) => {
@@ -519,7 +548,7 @@ export const ensureOrientationSession = internalMutation({
 });
 
 // One-off cleanup: delete a session row by date (e.g. a mis-seeded
-// orientation assignment). Run via
+// lesson-1 assignment). Run via
 // `npx convex run demo:deleteSessionByDate '{"date":"2026-09-13"}'`.
 export const deleteSessionByDate = internalMutation({
   args: { date: v.string() },

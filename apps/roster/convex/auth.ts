@@ -15,6 +15,7 @@ import {
 import { internal } from "./_generated/api";
 import type { Doc } from "./_generated/dataModel";
 import { CURRENT_QUARTER } from "../src/constants";
+import { studentWithdrawalStatus } from "./attendanceStatus";
 import { SignJWT, importPKCS8 } from "jose";
 
 const ISSUER = "https://sgbs-training.citylight.life/";
@@ -178,12 +179,20 @@ export const verifyRegistrationCode = mutation({
       .withIndex("by_email", (q) => q.eq("email", addr))
       .collect();
     const duplicate = existing.find((s) => s.quarter === quarter);
-    if (duplicate && duplicate.withdrawnAt !== undefined) {
-      // 退出報名 reactivation: a withdrawn student returning for the SAME
-      // quarter patches their row active instead of dead-ending on
-      // duplicate or inserting a second row (see
-      // docs/designs/withdrawal/LLD.md). Registration fields refresh from
-      // this submission; a newly uploaded photo replaces the stored one.
+    const duplicateStatus = duplicate
+      ? await studentWithdrawalStatus(ctx, duplicate)
+      : null;
+    const canReactivate =
+      duplicate !== undefined &&
+      duplicate.withdrawnAt !== undefined &&
+      duplicateStatus !== null &&
+      duplicateStatus.cause === "manual" &&
+      duplicateStatus.missedCount < 2;
+    if (duplicate && canReactivate) {
+      // 退出報名 reactivation: a *manually* withdrawn student returning
+      // for the SAME quarter patches their row active. Absence withdrawal
+      // cannot be undone by re-registering — correcting 缺席 to 出席 is
+      // the path back (see docs/designs/withdrawal/LLD.md).
       if (
         registration.photoStorageId &&
         duplicate.photoStorageId &&

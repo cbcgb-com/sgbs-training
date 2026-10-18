@@ -93,8 +93,15 @@ the sheet is actually used (standing at the door, phone in hand).
 - **Default date = today when it is a class day, else the next upcoming
   date, else the last date of the season.** The sheet opens on the class
   that just happened (or is about to).
-- **Withdrawn students never appear** on the sheet; their attendance rows
-  persist untouched, exactly as with the withdrawal feature.
+- **Manually withdrawn students never appear** on the sheet; their
+  attendance rows persist untouched. Absence-withdrawn students (two
+  misses from 2026秋季 on) stay in a collapsed 已退出（缺課） section:
+  dates on or before the 2nd miss stay editable (a correction to 出席
+  restores them); later dates lock as 旁聽不記錄. Past blanks render as
+  未記錄（視為缺席）.
+- **Bulk fill is current-or-past only** and skips withdrawn students of
+  either cause. The UI warns to mark 缺席 first, because filling a past
+  blank turns a miss into 出席.
 - **No audit columns.** The table has no actor/timestamp fields, matching
   the roster-wide precedent (the withdrawal LLD declined them too). Who
   marked what is implicit — instructors share the allowlist.
