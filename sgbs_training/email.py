@@ -294,8 +294,8 @@ _COMPLETION_FULL_ATTENDANCE = (
     "{names}，謝謝你們忠心的擺上！"
 )
 _COMPLETION_BLESSING = (
-    "願你們把這段時間學到的帶回自己的小組和團契，"
-    "帶著弟兄姊妹一起好好讀神的話。"
+    "願你們將這段時間所學帶回各自的小組和團契，"
+    "與弟兄姊妹一同在神的話語中扎根成長。"
 )
 _COMPLETION_CONTACT = "如果有任何問題，請隨時跟我們聯繫！"
 _COMPLETION_SIGNOFF_CLOSE = "主內，"

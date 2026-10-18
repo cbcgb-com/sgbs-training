@@ -129,8 +129,8 @@ def _canonical_completion_body(shoutout: str | None = None) -> str:
     parts.extend(
         [
             (
-                "願你們把這段時間學到的帶回自己的小組和團契，"
-                "帶著弟兄姊妹一起好好讀神的話。"
+                "願你們將這段時間所學帶回各自的小組和團契，"
+                "與弟兄姊妹一同在神的話語中扎根成長。"
             ),
             "如果有任何問題，請隨時跟我們聯繫！",
             "主內，",
@@ -342,6 +342,23 @@ def test_completion_email_body_without_shoutout():
     assert body == _canonical_completion_body()
     assert email_mod.FEEDBACK_FORM_URL in body
     assert CANONICAL_COMPLETION_SHOUTOUT.split("：")[0] not in body
+    mission = (
+        "還記得第一堂課我們一起看的「大使命」嗎？"
+        "這個訓練正是大使命的一部分。"
+        "盼望大家以後帶查經的時候，也常常把這個使命放在心上。"
+    )
+    feedback = (
+        "也想邀請大家花幾分鐘填寫這份心得回饋表，"
+        "分享一下這一季參與的感想（用報名時的郵箱登入即可填寫）："
+        f"{email_mod.FEEDBACK_FORM_URL}"
+    )
+    assert mission in body
+    assert body.index(mission) < body.index(feedback)
+    assert (
+        "願你們將這段時間所學帶回各自的小組和團契，"
+        "與弟兄姊妹一同在神的話語中扎根成長。"
+    ) in body
+    assert "帶著弟兄姊妹一起好好讀神的話" not in body
 
 
 def test_completion_email_omits_shoutout_for_empty_names():
