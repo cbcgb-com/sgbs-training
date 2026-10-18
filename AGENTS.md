@@ -261,14 +261,15 @@ Google Drive API
 **Flow**: User selects scripture → Form submission → Google Docs creation → Email
 composition → HTMX preview update
 
-**Class emails** (weekly homework, Saturday reminder, reinvitation):
-compose from `sgbs_training/email.py`. Homework Google Docs
-(查經題目 / 查經筆記) come from `create_exercises()` in
-`sgbs_training/docs.py`. Recipients: `homework:classEmailList` (current
-term, not withdrawn, has email). Agents save drafts from Eric's HEY
-account and never send. Ops map:
-`.agents/skills/sgbs-email/SKILL.md`; procedures in
-`.agents/skills/sgbs-email/references/`.
+**Class emails** (weekly homework, Saturday reminder, attendance /
+reinvitation notice, completion, registration received): compose from
+`sgbs_training/email.py`. Homework Google Docs (查經題目 / 查經筆記)
+come from `create_exercises()` in `sgbs_training/docs.py`. Weekly
+homework To: `homework:classEmailList` (current term, not withdrawn,
+has email). Agents save drafts from Eric's HEY account and never send.
+Ops map: `.agents/skills/sgbs-email/SKILL.md`; procedures in
+`.agents/skills/sgbs-email/references/`. Roster auth / login-code
+emails sent by the app are out of scope for this skill.
 
 ## Roster App
 

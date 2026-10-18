@@ -198,22 +198,44 @@ def compose_homework_email_legacy(
     )
 
 
-def compose_reinvitation_email():
-    text = """
-感謝你參加小組查經帶領訓練主日學。如你所知，我們有較嚴格的出席政策
-（[出席政策](https://cbcgb-com.github.io/sgbs-training/completion-policy/)）
-來確認是否完成訓練。
-我們的基本要求是5次課中至少要出席四次。
+def compose_reinvitation_email(
+    name: str, missed_dates: str, remaining_dates: str
+) -> str:
+    """Compose an individual attendance / reinvitation notice.
 
-根據我們的記錄，你們應該是已經缺席了兩次，依出席政策視為退出本季課程。
-因此，我們無法認定你完成了本次課程。（如果有誤，請務必跟我們說！）
+    Args:
+        name: The student's name (use a placeholder such as ``{name}``
+            in tests and committed examples).
+        missed_dates: Pre-formatted missed class dates, as they should
+            appear after 「你缺席了」.
+        remaining_dates: Pre-formatted remaining class dates, as they
+            should appear inside the parentheses after 「剩下的課堂」.
 
-這完全沒問題，我們能理解生活中會有各種事情發生。
-
-如果你想參加下一季的主日學課程，我們非常歡迎你回來。
-（每季的出席次數會重置，所以下一季仍需滿足出席標準才算完成。）
-"""
-    return text
+    Returns:
+        str: The canonical email body.
+    """
+    return (
+        f"{name}，你好！\n"
+        "\n"
+        "感謝你參加小組查經帶領訓練主日學。如你所知，我們有較嚴格的出席政策"
+        "（[出席政策](https://cbcgb-com.github.io/sgbs-training/completion-policy/)）："
+        "五堂課中需要出席至少四次，才算完成本季課程。\n"
+        "\n"
+        f"根據我們的出席記錄，你缺席了{missed_dates}這兩堂課"
+        "（如果有誤，請務必告訴我！）。這樣的話，即使剩下的課堂"
+        f"（{remaining_dates}）都出席，也達不到完成課程所需的出席次數了。\n"
+        "\n"
+        "這完全沒問題，我們能理解生活中會有各種事情發生。"
+        "誠摯邀請你下一季再來一起學習——每季的出席次數會重新計算。"
+        "當然，這一季剩下的課堂，你也隨時歡迎照常來旁聽、一起查經，"
+        "我們都很樂意見到你。\n"
+        "\n"
+        "謝謝你的擺上！如果有任何問題，請隨時跟我聯繫。\n"
+        "\n"
+        "主內，\n"
+        "\n"
+        "Eric"
+    )
 
 
 def homework_reminder_subject(upcoming_class_number: int) -> str:
@@ -243,4 +265,120 @@ def compose_homework_reminder_email() -> str:
         "溫馨提醒！請大家把功課做好喔！鏈接在之前的郵件裡。\n"
         "\n"
         "也請大家準時。3點開始！"
+    )
+
+
+# Completion-email copy: keep these literals together so wording
+# revisions only touch this block.
+FEEDBACK_FORM_URL = "https://sgbs-training.citylight.life/feedback"
+
+_COMPLETION_SUBJECT = "恭喜完成小組查經帶領訓練！"
+_COMPLETION_GREETING = "各位主內同工們好！"
+_COMPLETION_CONGRATS = (
+    "恭喜大家完成了這一季五堂的小組查經帶領訓練！"
+    "很感恩這段時間大家的擺上：每週準時來上課、認真完成功課，"
+    "在課堂上彼此學習、互相鼓勵。謝謝你們！"
+)
+_COMPLETION_MISSION = (
+    "還記得第一堂課我們一起看的「大使命」嗎？"
+    "這個訓練正是大使命的一部分。"
+    "盼望大家以後帶查經的時候，也常常把這個使命放在心上。"
+)
+_COMPLETION_FEEDBACK = (
+    "也想邀請大家花幾分鐘填寫這份心得回饋表，"
+    "分享一下這一季參與的感想（用報名時的郵箱登入即可填寫）："
+    "{url}"
+)
+_COMPLETION_FULL_ATTENDANCE = (
+    "也要特別謝謝這一季全程參與、一堂課都沒缺席的同工們："
+    "{names}，謝謝你們忠心的擺上！"
+)
+_COMPLETION_BLESSING = (
+    "願你們把這段時間學到的帶回自己的小組和團契，"
+    "帶著弟兄姊妹一起好好讀神的話。"
+)
+_COMPLETION_CONTACT = "如果有任何問題，請隨時跟我們聯繫！"
+_COMPLETION_SIGNOFF_CLOSE = "主內，"
+_COMPLETION_SIGNOFF_NAMES = "林意 和 Eric"
+
+
+def completion_email_subject() -> str:
+    """Return the end-of-term completion-email subject.
+
+    Returns:
+        str: 恭喜完成小組查經帶領訓練！
+    """
+    return _COMPLETION_SUBJECT
+
+
+def compose_completion_email(
+    full_attendance_names: list[str] | None = None,
+) -> str:
+    """Compose the end-of-term completion email.
+
+    The feedback-form paragraph is always included and points at
+    :data:`FEEDBACK_FORM_URL` (the in-app page, never a Google Form).
+    The perfect-attendance shout-out is included only when names are
+    given.
+
+    Args:
+        full_attendance_names: Names of students who attended every
+            class. Joined with ``、``. Omit or pass an empty list to
+            leave the shout-out out. Use placeholders in tests.
+
+    Returns:
+        str: The canonical email body.
+    """
+    parts = [
+        _COMPLETION_GREETING,
+        _COMPLETION_CONGRATS,
+        _COMPLETION_MISSION,
+        _COMPLETION_FEEDBACK.format(url=FEEDBACK_FORM_URL),
+    ]
+    if full_attendance_names:
+        parts.append(
+            _COMPLETION_FULL_ATTENDANCE.format(
+                names="、".join(full_attendance_names)
+            )
+        )
+    parts.extend(
+        [
+            _COMPLETION_BLESSING,
+            _COMPLETION_CONTACT,
+            _COMPLETION_SIGNOFF_CLOSE,
+            _COMPLETION_SIGNOFF_NAMES,
+        ]
+    )
+    return "\n\n".join(parts)
+
+
+def compose_registration_received_email(name: str, login_email: str) -> str:
+    """Compose an individual registration-received reply.
+
+    Args:
+        name: The student's name (use a placeholder such as ``{name}``
+            in tests and committed examples).
+        login_email: The address they registered with (use a
+            placeholder such as ``{login_email}`` in tests).
+
+    Returns:
+        str: The canonical email body.
+    """
+    return (
+        f"{name} 你好！\n"
+        "\n"
+        "謝謝你報名這一季的小組查經帶領訓練！"
+        "你的資料我們都收到了，也已經登記在系統裡，所以不需要重新報名。\n"
+        "\n"
+        "請用報名時使用的電郵（"
+        f"{login_email}"
+        "）登入 https://sgbs-training.citylight.life/ 。"
+        "系統不需要密碼；登入後就可以看到小組、課堂安排和聯絡表，"
+        "也可以更新「我的資料」並加上照片。\n"
+        "\n"
+        "如果有任何問題，請隨時跟我聯繫！\n"
+        "\n"
+        "主內，\n"
+        "\n"
+        "Eric"
     )

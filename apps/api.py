@@ -82,8 +82,12 @@ def validate_num_groups(num_groups: Annotated[int, Form()]):
 
 
 @app.get("/reinvitation-email", response_class=HTMLResponse)
-def get_reinvitation_email():
-    email_text = compose_reinvitation_email()
+def get_reinvitation_email(
+    name: str = "{name}",
+    missed_dates: str = "{missed_dates}",
+    remaining_dates: str = "{remaining_dates}",
+):
+    email_text = compose_reinvitation_email(name, missed_dates, remaining_dates)
     email_html = markdown(email_text)
     return email_html
 
