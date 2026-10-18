@@ -1,5 +1,5 @@
 /**
- * Flip-card carousel for class notes.
+ * Cover-flow flip carousel for class notes.
  *
  * Markup:
  *   <div class="content-flip" data-label="可選名稱">
@@ -10,12 +10,10 @@
  *   </div>
  *
  * Without JS: title and body stay visible in reading order.
- * With JS: cards sit in a horizontal row; ←/→ buttons and keys move
- * between them; click / Enter / Space 3D-flips a card; swipe on touch.
+ * With JS: one large centered card with prev/next peeks; ←/→ wrap
+ * infinitely; click the main card to 3D-flip; click a peek to center it.
  */
 (function () {
-    var MOBILE_MQ = "(max-width: 600px)";
-
     function cardChildren(root) {
         var cards = [];
         for (var i = 0; i < root.children.length; i++) {
@@ -25,6 +23,13 @@
             }
         }
         return cards;
+    }
+
+    function wrappedOffset(index, active, n) {
+        var d = (index - active) % n;
+        if (d < 0) d += n;
+        if (d > n / 2) d -= n;
+        return d;
     }
 
     function enhanceCard(card, index) {
@@ -62,12 +67,10 @@
         card.appendChild(inner);
 
         card.setAttribute("role", "button");
-        card.setAttribute("tabindex", "0");
+        card.setAttribute("tabindex", "-1");
         card.setAttribute("aria-pressed", "false");
-        card.setAttribute(
-            "aria-label",
-            label + "，點選翻面。左右方向鍵可切換卡片。"
-        );
+        card.setAttribute("aria-label", label);
+        card.setAttribute("data-flip-index", String(index));
     }
 
     function initFlip(root) {
@@ -84,6 +87,15 @@
             root.setAttribute("aria-label", groupLabel);
         }
 
+        var stage = document.createElement("div");
+        stage.className = "content-flip__stage";
+
+        cards.forEach(function (card, index) {
+            enhanceCard(card, index);
+            stage.appendChild(card);
+        });
+        root.appendChild(stage);
+
         var prev = document.createElement("button");
         prev.type = "button";
         prev.className = "content-flip__arrow content-flip__arrow--prev";
@@ -96,88 +108,162 @@
         next.setAttribute("aria-label", "下一張");
         next.textContent = "›";
 
-        var viewport = document.createElement("div");
-        viewport.className = "content-flip__viewport";
-
-        var track = document.createElement("div");
-        track.className = "content-flip__track";
-
-        cards.forEach(function (card, index) {
-            enhanceCard(card, index);
-            track.appendChild(card);
-        });
-
-        viewport.appendChild(track);
-        root.appendChild(viewport);
-
         var nav = document.createElement("div");
         nav.className = "content-flip__nav";
+
         var status = document.createElement("span");
         status.className = "content-flip__nav-status";
         status.setAttribute("aria-live", "polite");
+
+        var dots = document.createElement("div");
+        dots.className = "content-flip__dots";
+        dots.setAttribute("role", "tablist");
+        if (groupLabel) {
+            dots.setAttribute("aria-label", groupLabel + " 一覽");
+        }
+
+        var dotButtons = cards.map(function (card, index) {
+            var dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "content-flip__dot";
+            dot.setAttribute("role", "tab");
+            var label =
+                card.getAttribute("data-label") || "第 " + (index + 1) + " 張";
+            dot.setAttribute("aria-label", label);
+            dot.addEventListener("click", function () {
+                goTo(index);
+            });
+            dots.appendChild(dot);
+            return dot;
+        });
+
         nav.appendChild(prev);
         nav.appendChild(status);
         nav.appendChild(next);
         root.appendChild(nav);
+        root.appendChild(dots);
 
         var active = 0;
-        var start = 0;
-        var visible = 1;
-        var cardWidth = 0;
+        var lastOffset = cards.map(function () {
+            return 0;
+        });
         var ignoreClick = false;
         var pointerId = null;
         var startX = 0;
         var startY = 0;
         var swiping = false;
 
-        function gapPx() {
-            var style = window.getComputedStyle(track);
-            var gap = parseFloat(style.columnGap || style.gap);
-            return isNaN(gap) ? 12 : gap;
+        function isMobile() {
+            return root.clientWidth < 520;
         }
 
-        function layout() {
-            var width = viewport.clientWidth;
-            var gap = gapPx();
-            visible = window.matchMedia(MOBILE_MQ).matches
-                ? 1
-                : cards.length;
-            cardWidth = (width - gap * (visible - 1)) / visible;
+        function mainWidth() {
+            var stageW = stage.clientWidth;
+            var ratio = isMobile() ? 0.85 : 0.66;
+            var width = Math.round(stageW * ratio);
+            if (!isMobile()) {
+                width = Math.max(320, width);
+            }
+            return Math.min(width, Math.max(0, stageW - 8));
+        }
+
+        function unflipAll() {
             cards.forEach(function (card) {
-                card.style.flex = "0 0 " + cardWidth + "px";
-                card.style.width = cardWidth + "px";
-                card.style.maxWidth = cardWidth + "px";
+                card.classList.remove("is-flipped");
+                card.setAttribute("aria-pressed", "false");
             });
-            sync();
         }
 
-        function sync() {
-            var maxStart = Math.max(0, cards.length - visible);
-            if (active < start) start = active;
-            if (active >= start + visible) start = active - visible + 1;
-            start = Math.max(0, Math.min(start, maxStart));
-
-            track.style.transform =
-                "translateX(" + -(start * (cardWidth + gapPx())) + "px)";
-
-            cards.forEach(function (card, i) {
-                card.classList.toggle("is-active", i === active);
+        function measureHeight() {
+            var width = mainWidth();
+            if (width < 80) return;
+            var probe = document.createElement("div");
+            probe.className = "content-flip__probe";
+            probe.style.width = width + "px";
+            root.appendChild(probe);
+            var maxH = 0;
+            cards.forEach(function (card) {
+                var body = card.querySelector(".content-flip__body");
+                probe.textContent = body ? body.textContent : "";
+                maxH = Math.max(maxH, probe.offsetHeight);
             });
+            probe.remove();
+            stage.style.height = Math.max(maxH, 220) + "px";
+            stage.style.setProperty("--flip-card-w", width + "px");
+        }
 
+        function slotClass(offset) {
+            if (offset === 0) return "is-active";
+            if (offset === -1) return "is-prev";
+            if (offset === 1) return "is-next";
+            if (offset < 0) return "is-far-prev";
+            return "is-far-next";
+        }
+
+        function sync(fromIndex) {
+            var n = cards.length;
+            cards.forEach(function (card, i) {
+                var offset = wrappedOffset(i, active, n);
+                var jumped =
+                    fromIndex != null &&
+                    Math.abs(offset - lastOffset[i]) > 1;
+                var keepFlip =
+                    offset === 0 && card.classList.contains("is-flipped");
+                card.classList.remove(
+                    "is-active",
+                    "is-prev",
+                    "is-next",
+                    "is-far-prev",
+                    "is-far-next",
+                    "is-jumping"
+                );
+                card.classList.add(slotClass(offset));
+                if (offset !== 0) {
+                    card.classList.remove("is-flipped");
+                    card.setAttribute("aria-pressed", "false");
+                } else if (keepFlip) {
+                    card.classList.add("is-flipped");
+                }
+                card.setAttribute(
+                    "aria-hidden",
+                    offset === 0 ? "false" : "true"
+                );
+                card.tabIndex = offset === 0 ? 0 : -1;
+                lastOffset[i] = offset;
+                if (jumped) {
+                    card.classList.add("is-jumping");
+                    window.requestAnimationFrame(function () {
+                        window.requestAnimationFrame(function () {
+                            card.classList.remove("is-jumping");
+                        });
+                    });
+                }
+            });
             status.textContent =
-                "第 " + (active + 1) + " / " + cards.length + " 張";
-            prev.disabled = active === 0;
-            next.disabled = active === cards.length - 1;
+                "第 " + (active + 1) + " / " + n + " 張";
+            dotButtons.forEach(function (dot, i) {
+                var on = i === active;
+                dot.classList.toggle("is-active", on);
+                dot.setAttribute("aria-selected", on ? "true" : "false");
+            });
+        }
+
+        function goTo(index) {
+            var n = cards.length;
+            var nextIndex = ((index % n) + n) % n;
+            if (nextIndex === active) return;
+            unflipAll();
+            var from = active;
+            active = nextIndex;
+            sync(from);
         }
 
         function go(delta) {
-            var nextIndex = active + delta;
-            if (nextIndex < 0 || nextIndex >= cards.length) return;
-            active = nextIndex;
-            sync();
+            goTo(active + delta);
         }
 
-        function toggleFlip(card) {
+        function toggleActiveFlip() {
+            var card = cards[active];
             var flipped = card.classList.toggle("is-flipped");
             card.setAttribute("aria-pressed", flipped ? "true" : "false");
         }
@@ -188,17 +274,11 @@
                     ignoreClick = false;
                     return;
                 }
-                active = index;
-                sync();
-                toggleFlip(card);
-            });
-            card.addEventListener("keydown", function (event) {
-                if (event.key !== "Enter" && event.key !== " ") return;
-                event.preventDefault();
-                event.stopPropagation();
-                active = index;
-                sync();
-                toggleFlip(card);
+                if (index === active) {
+                    toggleActiveFlip();
+                    return;
+                }
+                goTo(index);
             });
         });
 
@@ -216,10 +296,19 @@
             } else if (event.key === "ArrowRight") {
                 event.preventDefault();
                 go(1);
+            } else if (event.key === "Enter" || event.key === " ") {
+                if (
+                    event.target === root ||
+                    (event.target.classList &&
+                        event.target.classList.contains("content-flip__card"))
+                ) {
+                    event.preventDefault();
+                    toggleActiveFlip();
+                }
             }
         });
 
-        viewport.addEventListener("pointerdown", function (event) {
+        stage.addEventListener("pointerdown", function (event) {
             if (event.button != null && event.button !== 0) return;
             pointerId = event.pointerId;
             startX = event.clientX;
@@ -228,7 +317,7 @@
             ignoreClick = false;
         });
 
-        viewport.addEventListener("pointermove", function (event) {
+        stage.addEventListener("pointermove", function (event) {
             if (pointerId === null || event.pointerId !== pointerId) return;
             var dx = event.clientX - startX;
             var dy = event.clientY - startY;
@@ -249,23 +338,19 @@
             swiping = false;
         }
 
-        viewport.addEventListener("pointerup", endPointer);
-        viewport.addEventListener("pointercancel", endPointer);
+        stage.addEventListener("pointerup", endPointer);
+        stage.addEventListener("pointercancel", endPointer);
+
+        function layout() {
+            measureHeight();
+            sync();
+        }
 
         if (typeof ResizeObserver === "function") {
             var ro = new ResizeObserver(layout);
-            ro.observe(viewport);
+            ro.observe(stage);
         } else {
             window.addEventListener("resize", layout);
-        }
-
-        if (typeof window.matchMedia === "function") {
-            var mq = window.matchMedia(MOBILE_MQ);
-            if (mq.addEventListener) {
-                mq.addEventListener("change", layout);
-            } else if (mq.addListener) {
-                mq.addListener(layout);
-            }
         }
 
         layout();
