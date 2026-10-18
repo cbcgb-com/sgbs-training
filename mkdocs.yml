@@ -42,6 +42,7 @@ extra_javascript:
   - javascripts/content-quiz-frame.js
   - javascripts/content-panels.js
   - javascripts/content-deck.js
+  - javascripts/content-flip.js
   - javascripts/strongs-hover.js
   - javascripts/chinese-toggle.js
 
