@@ -347,35 +347,3 @@ def compose_completion_email(
         ]
     )
     return "\n\n".join(parts)
-
-
-def compose_registration_received_email(name: str, login_email: str) -> str:
-    """Compose an individual registration-received reply.
-
-    Args:
-        name: The student's name (use a placeholder such as ``{name}``
-            in tests and committed examples).
-        login_email: The address they registered with (use a
-            placeholder such as ``{login_email}`` in tests).
-
-    Returns:
-        str: The canonical email body.
-    """
-    return (
-        f"{name} 你好！\n"
-        "\n"
-        "謝謝你報名這一季的小組查經帶領訓練！"
-        "你的資料我們都收到了，也已經登記在系統裡，所以不需要重新報名。\n"
-        "\n"
-        "請用報名時使用的電郵（"
-        f"{login_email}"
-        "）登入 https://sgbs-training.citylight.life/ 。"
-        "系統不需要密碼；登入後就可以看到小組、課堂安排和聯絡表，"
-        "也可以更新「我的資料」並加上照片。\n"
-        "\n"
-        "如果有任何問題，請隨時跟我聯繫！\n"
-        "\n"
-        "主內，\n"
-        "\n"
-        "Eric"
-    )

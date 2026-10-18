@@ -37,4 +37,4 @@ itself.
 - Invent a harsher attendance tone than the composer.
 - Switch a group email to an individual greeting, or the reverse.
 - Put student names or personal addresses into this repo. Use
-  `{name}`, `{dates}`, `{login_email}` in committed examples.
+  `{name}`, `{dates}` in committed examples.
