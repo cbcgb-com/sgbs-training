@@ -12,7 +12,6 @@ SATURDAY_REMINDER_REF = EMAIL_SKILL_DIR / "references" / "saturday-reminder.md"
 WEEKLY_HOMEWORK_REF = EMAIL_SKILL_DIR / "references" / "weekly-homework.md"
 REINVITATION_REF = EMAIL_SKILL_DIR / "references" / "reinvitation.md"
 COMPLETION_REF = EMAIL_SKILL_DIR / "references" / "completion.md"
-REGISTRATION_REF = EMAIL_SKILL_DIR / "references" / "registration-received.md"
 TONE_REF = EMAIL_SKILL_DIR / "references" / "tone.md"
 COMMON_MISTAKES_REF = EMAIL_SKILL_DIR / "references" / "common-mistakes.md"
 OLD_REMINDER_SKILL = (
@@ -41,16 +40,17 @@ SKILL_MAP_MUST_MENTION = (
     "homework_email_subject",
     "compose_completion_email()",
     "completion_email_subject",
-    "compose_registration_received_email()",
     "Eric's HEY account",
     "Never send",
     "out of scope",
+    "報名驗證碼",
+    "歡迎報名",
+    "小組人數不足通知",
     "references/weekly-homework.md",
     "references/saturday-reminder.md",
     "references/reinvitation.md",
     "references/tone.md",
     "references/completion.md",
-    "references/registration-received.md",
 )
 
 RETIRED_REINVITATION_PHRASES = (
@@ -75,24 +75,6 @@ CANONICAL_REINVITATION_BODY = (
     "我們都很樂意見到你。\n"
     "\n"
     "謝謝你的擺上！如果有任何問題，請隨時跟我聯繫。\n"
-    "\n"
-    "主內，\n"
-    "\n"
-    "Eric"
-)
-
-CANONICAL_REGISTRATION_BODY = (
-    "{name} 你好！\n"
-    "\n"
-    "謝謝你報名這一季的小組查經帶領訓練！"
-    "你的資料我們都收到了，也已經登記在系統裡，所以不需要重新報名。\n"
-    "\n"
-    "請用報名時使用的電郵（{login_email}）登入 "
-    "https://sgbs-training.citylight.life/ 。"
-    "系統不需要密碼；登入後就可以看到小組、課堂安排和聯絡表，"
-    "也可以更新「我的資料」並加上照片。\n"
-    "\n"
-    "如果有任何問題，請隨時跟我聯繫！\n"
     "\n"
     "主內，\n"
     "\n"
@@ -257,7 +239,9 @@ def test_email_skill_map_points_at_references_and_code():
             assert line not in skill
     assert not OLD_REMINDER_SKILL.exists()
     assert not (EMAIL_SKILL_DIR / "references" / "book-reflection.md").exists()
+    assert not (EMAIL_SKILL_DIR / "references" / "registration-received.md").exists()
     assert not hasattr(email_mod, "compose_book_reflection_email")
+    assert not hasattr(email_mod, "compose_registration_received_email")
 
 
 def test_weekly_homework_reference_covers_docs_and_subject():
@@ -406,38 +390,6 @@ def test_completion_reference_quotes_template_and_policy():
     assert "Convex" in ref
     assert "Confirm" in ref or "confirm" in ref
     assert "full_attendance_names" in ref
-
-
-def test_registration_received_email_matches_canonical_text():
-    body = email_mod.compose_registration_received_email(
-        name="{name}", login_email="{login_email}"
-    )
-    assert body == CANONICAL_REGISTRATION_BODY
-
-
-def test_registration_received_email_substitutes_parameters():
-    body = email_mod.compose_registration_received_email(
-        name="{name}", login_email="{login_email}"
-    )
-    assert body.startswith("{name} 你好！")
-    assert "（{login_email}）登入 https://sgbs-training.citylight.life/" in body
-    assert "不需要密碼" in body
-    assert "小組、課堂安排和聯絡表" in body
-    assert "我的資料" in body
-    assert body.endswith("主內，\n\nEric")
-
-
-def test_registration_received_reference_quotes_the_code_template():
-    ref = REGISTRATION_REF.read_text(encoding="utf-8")
-    body = email_mod.compose_registration_received_email(
-        name="{name}", login_email="{login_email}"
-    )
-    for line in body.splitlines():
-        if line:
-            assert line in ref
-    assert "小組查經訓練：報名已收到" in ref
-    assert "compose_registration_received_email(name, login_email)" in ref
-    assert "out of scope" in ref
 
 
 def test_tone_reference_covers_greeting_and_signoff():

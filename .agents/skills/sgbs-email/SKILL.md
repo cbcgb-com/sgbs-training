@@ -2,13 +2,13 @@
 name: sgbs-email
 description: >
   Use when preparing, drafting, or reviewing any SGBS class email
-  (weekly homework 功課, Saturday 功課提醒, attendance/reinvitation
-  notice, completion, or registration received); when using the email
+  that a human must compose (weekly homework 功課, Saturday 功課提醒,
+  attendance/reinvitation notice, or completion); when using the email
   generator app or its buttons; or when changing compose_homework_email(),
   get_lesson_info(), compose_homework_email_legacy(),
   compose_homework_reminder_email(), homework_reminder_subject(),
-  compose_reinvitation_email(), compose_completion_email(),
-  completion_email_subject(), or compose_registration_received_email().
+  compose_reinvitation_email(), compose_completion_email(), or
+  completion_email_subject().
 ---
 
 # SGBS Email Ops
@@ -20,9 +20,10 @@ recipients.
 
 Code is the source of truth: if a reference and `email.py` disagree,
 the code wins — then update the reference. **Never send.** Save a
-draft from Eric's HEY account. Roster auth / login-code emails sent by
-the app (`apps/roster/convex/authEmail.ts`, `no-reply-com@cbcgb.org`)
-remain out of scope.
+draft from Eric's HEY account.
+
+The roster app already sends 報名驗證碼, 歡迎報名, and 小組人數不足通知 —
+those are out of scope.
 
 ## Map
 
@@ -51,9 +52,5 @@ remain out of scope.
   Procedure: [references/completion.md](references/completion.md).
   Source of truth: `completion_email_subject()`,
   `compose_completion_email()`.
-- **Registration received** — individual reply when someone registers.
-  Voice: [references/tone.md](references/tone.md). Procedure:
-  [references/registration-received.md](references/registration-received.md).
-  Source of truth: `compose_registration_received_email()`.
 - **Common mistakes** — before sending the draft to Eric.
   Read [references/common-mistakes.md](references/common-mistakes.md).

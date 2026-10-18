@@ -13,13 +13,13 @@ not send from another account. Leave signatures off.
 - Sending because Eric is busy — draft only.
 - Starting a new thread for the reminder, or using Gmail `reply`
   (that sends).
-- Drafting roster auth / login-code mail from this skill — wrong
-  system.
+- Drafting app-sent mail (報名驗證碼, 歡迎報名, 小組人數不足通知)
+  from this skill — wrong system.
 - Inventing a Cc address for Duane Chang, Juan Chen, or Christy Lin —
   copy it from last week's homework thread in HEY, or omit and tell
   Eric. Never take personal addresses from this repo.
 - Committing student names or personal email addresses to this
-  (public) repo — use `{name}`, `{dates}`, `{login_email}`. The Cc
+  (public) repo — use `{name}`, `{dates}`. The Cc
   regulars may be named, never their addresses.
 - Treating `homework:classEmailList` as the completion To list —
   completion recipients are policy completers (at least 4 of 5, not
