@@ -1,11 +1,13 @@
 import { useConvexAuth, useMutation, useQuery } from "convex/react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../convex/_generated/api";
 import { SignInSheet } from "./auth/SignIn";
 import { sessionTokenStore } from "./auth/session";
 import { CURRENT_QUARTER } from "./constants";
 import Directory from "./Directory";
 import Attendance from "./Attendance";
+import Feedback from "./Feedback";
+import FeedbackList from "./FeedbackList";
 import GroupAssigner from "./GroupAssigner";
 import Form from "./Form";
 import MyGroup from "./MyGroup";
@@ -21,7 +23,19 @@ type TabKey =
   | "schedule"
   | "roster"
   | "attendance"
-  | "assign";
+  | "assign"
+  | "feedback";
+
+function pathTab(): TabKey | null {
+  return window.location.pathname === "/feedback" ? "feedback" : null;
+}
+
+function writePath(tab: TabKey) {
+  const next = tab === "feedback" ? "/feedback" : "/";
+  if (window.location.pathname !== next) {
+    window.history.replaceState(null, "", next);
+  }
+}
 
 const TabContext = createContext<{ tab: TabKey; setTab: (t: TabKey) => void }>({
   tab: "register",
@@ -112,7 +126,16 @@ function GuestView() {
 
 function MemberView() {
   const me = useQuery(api.students.me);
+  const feedback = useQuery(
+    api.feedback.mine,
+    me === undefined || me === null || me.isInstructor ? "skip" : {},
+  );
   if (me === undefined || me === null) return <LoadingSheet />;
+
+  const showStudentFeedback =
+    pathTab() === "feedback" ||
+    !!feedback?.showPrompt ||
+    !!feedback?.response;
 
   const tabs: { key: TabKey; label: string }[] = me.isInstructor
     ? [
@@ -121,6 +144,7 @@ function MemberView() {
         { key: "roster", label: "名單" },
         { key: "attendance", label: "出席" },
         { key: "schedule", label: "課堂安排" },
+        { key: "feedback", label: "回饋" },
       ]
     : [
         { key: "register", label: "註冊" },
@@ -128,6 +152,9 @@ function MemberView() {
         { key: "group", label: "我的組" },
         { key: "directory", label: "聯絡表" },
         { key: "schedule", label: "課堂安排" },
+        ...(showStudentFeedback
+          ? [{ key: "feedback" as const, label: "回饋" }]
+          : []),
       ];
 
   return (
@@ -171,8 +198,12 @@ function TabShell({
   isInstructor: boolean;
   registered: boolean;
 }) {
-  const [tab, setTab] = useState<TabKey>(tabs[0].key);
+  const [tab, setTab] = useState<TabKey>(() => pathTab() ?? tabs[0].key);
   const active = tabs.some((t) => t.key === tab) ? tab : tabs[0].key;
+
+  useEffect(() => {
+    writePath(active);
+  }, [active]);
 
   return (
     <TabContext.Provider value={{ tab: active, setTab }}>
@@ -214,6 +245,7 @@ function TabShell({
             {active === "roster" && <Roster />}
             {active === "attendance" && <Attendance />}
             {active === "schedule" && <ScheduleView isInstructor />}
+            {active === "feedback" && <FeedbackList />}
           </>
         ) : (
           <>
@@ -222,6 +254,7 @@ function TabShell({
             {active === "group" && <MyGroup />}
             {active === "directory" && <Directory isInstructor={isInstructor} />}
             {active === "schedule" && <ScheduleView isInstructor={false} />}
+            {active === "feedback" && <Feedback />}
           </>
         )}
       </main>

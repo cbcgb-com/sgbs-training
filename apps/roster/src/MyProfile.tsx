@@ -12,6 +12,7 @@ import {
   WITHDRAWAL_REASON_OTHER,
   WITHDRAWAL_REASONS,
 } from "./constants";
+import { FeedbackPrompt } from "./Feedback";
 import { withdrawReasonValue, zhDate } from "./withdrawal";
 
 // 我的資料: the signed-in student's own record, rendered as the same
@@ -279,6 +280,8 @@ export default function MyProfile() {
             : "這是您報名時登記的資料。如需更改，請點選下方「更新資料」。"}
         </p>
       </div>
+
+      {!editing && <FeedbackPrompt />}
 
       {missing.length > 0 && !editing && (
         <div className="ink-in mt-6 border border-gold/60 bg-paper-deep/60 px-4 py-3">

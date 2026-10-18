@@ -810,7 +810,9 @@ export const renameGroup = mutation({
 // The signed-in user's current-quarter student record. A withdrawn student
 // is not a member of the class: they get the 請先註冊本季課程 path again,
 // not student features (re-registration reactivates the same row).
-async function requireCurrentStudent(ctx: QueryCtx | MutationCtx) {
+// Shared with feedback.ts — the same current-quarter member gate guards
+// the student's own reflection write.
+export async function requireCurrentStudent(ctx: QueryCtx | MutationCtx) {
   const identity = await requireAuth(ctx);
   const email = identity.email ?? "";
   const me = (

@@ -147,3 +147,4 @@ portable.
 - [Attendance LLD](./designs/attendance/LLD.md)
 - [Homework LLD](./designs/homework/LLD.md)
 - [Group Coverage LLD](./designs/group-coverage/LLD.md)
+- [Feedback LLD](./designs/feedback/LLD.md)
