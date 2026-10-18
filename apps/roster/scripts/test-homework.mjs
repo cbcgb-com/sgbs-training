@@ -91,6 +91,17 @@ const DATE = week.date;
 const rosterRun = convexRun("quarterRoster", {});
 check("quarterRoster (agent name→id lookup) runs via CLI", rosterRun.ok);
 const rosterJson = JSON.parse(rosterRun.out.slice(rosterRun.out.indexOf("[")));
+const emailListRun = convexRun("classEmailList", {});
+check("classEmailList (homework To: list) runs via CLI", emailListRun.ok);
+const emailListJson = JSON.parse(
+  emailListRun.out.slice(emailListRun.out.indexOf("[")),
+);
+check(
+  "classEmailList rows have name+email and no blank addresses",
+  Array.isArray(emailListJson) &&
+    emailListJson.length > 0 &&
+    emailListJson.every((s) => s.name && s.email),
+);
 const idOf = (name) => rosterJson.find((s) => s.name === name)?._id;
 
 const leader = week.leaders[0];

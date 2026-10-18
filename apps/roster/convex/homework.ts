@@ -48,6 +48,30 @@ export const quarterRoster = internalQuery({
   },
 });
 
+// Active students of a quarter who have an email — the class To: list
+// for the weekly homework email. Same filters as quarterRoster, plus
+// drop blank addresses (cannot receive mail). Internal so the email
+// agent can call it via `npx convex run` without a browser session.
+export const classEmailList = internalQuery({
+  args: { quarter: v.optional(v.string()) },
+  handler: async (ctx, { quarter }) => {
+    const q = quarter ?? CURRENT_QUARTER;
+    const students = await ctx.db
+      .query("students")
+      .withIndex("by_quarter", (x) => x.eq("quarter", q))
+      .collect();
+    return students
+      .filter((s) => s.withdrawnAt === undefined)
+      .map((s) => ({
+        name: s.name,
+        email: (s.email ?? "").trim(),
+        groupName: s.groupName ?? "",
+      }))
+      .filter((s) => s.email.length > 0)
+      .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"));
+  },
+});
+
 // ---- Instructor read: the week-view marks -----------------------------
 
 // All homework rows of a quarter (default: current). The UI builds a

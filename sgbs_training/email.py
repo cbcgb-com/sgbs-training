@@ -80,6 +80,18 @@ def get_lesson_info(scripture_name: str):
     )
 
 
+def homework_email_subject(lesson_number: int) -> str:
+    """Return the weekly homework-email subject.
+
+    Args:
+        lesson_number: The class number whose homework this email assigns.
+
+    Returns:
+        str: Subject in the form 小組查經帶領訓練課堂「N」功課.
+    """
+    return f"小組查經帶領訓練課堂「{lesson_number}」功課"
+
+
 def compose_homework_email(
     lesson_number: int,
     scripture: str,
@@ -126,30 +138,37 @@ def compose_homework_email(
     homework_items.append(f"    1. {leader_observer_text}")
     homework_items.append(f"    2. {others_text}")
 
-    # Add additional exercises
+    # Additional exercises are authored as one title line plus indented
+    # continuation lines. Only unindented lines get a new top-level number.
     if additional_exercises:
-        for i, exercise in enumerate(additional_exercises, bible_study_num + 1):
-            homework_items.append(f"{i}. {exercise}")
+        item_number = bible_study_num + 1
+        for exercise in additional_exercises:
+            if exercise[:1] in {" ", "\t"}:
+                homework_items.append(exercise)
+            else:
+                homework_items.append(f"{item_number}. {exercise}")
+                item_number += 1
 
-    # Join homework items
     homework_content = "\n".join(homework_items)
+    extra = scripture.extra_content().strip()
+    extra_block = f"\n{extra}\n" if extra else ""
 
-    text = f"""## 小組查經帶領訓練課堂「{lesson_number}」功課
-
-各位主內同工們好！
-
-{greeting}以下是第{lesson_number}堂課的功課：
-
-{homework_content}
-
-{scripture.extra_content()}
-
-如果有任何問題，請隨時跟我聯繫！
-
-主內，<br>
-林意 和 Eric
-    """
-    return text
+    return (
+        f"## {homework_email_subject(lesson_number)}\n"
+        "\n"
+        "各位主內同工們好！\n"
+        "\n"
+        f"{greeting}以下是第{lesson_number}堂課的功課：\n"
+        "\n"
+        f"{homework_content}\n"
+        f"{extra_block}"
+        "\n"
+        "如果有任何問題，請隨時跟我聯繫！\n"
+        "\n"
+        "主內，\n"
+        "\n"
+        "林意 和 Eric"
+    )
 
 
 def compose_homework_email_legacy(
@@ -179,32 +198,6 @@ def compose_homework_email_legacy(
     )
 
 
-def compose_book_reflection_email():
-    text = """
-感謝你們參加小組查經帶領訓練主日學。如你們所知，我們有一項嚴格的出席政策，以此來認定訓練是否完成。
-通常情況下，需要參加5次會議中的4次。據我的記錄，諸位只出席3次。
-本季我和林意正在試驗一個備選方案：如果出席三次的話，就請對以下兩本書中的任一本進行書籍反思：
-
-- 《你們給他們吃吧！》
-    - [Apple Books](https://books.apple.com/us/book/%E4%BD%A0%E5%80%91%E7%B5%A6%E4%BB%96%E5%80%91%E5%90%83%E5%90%A7/id772422884)
-    - [AFC書店](https://afcresources.org/contents/en-us/p3719_Feed_Them.html)
-- Laurie Polich，《Help! I'm a Small-Group Leader!: 50 Ways to Lead Teenagers into Animated and Purposeful Discussions》，Zondervan，1998
-    - [亞馬遜](https://www.amazon.com/Help-Small-Group-Leader-Laurie-Polich/dp/0310224632/)
-    - [Apple Books](https://books.apple.com/cl/book/help-im-a-small-group-leader/id398995929)
-
-為了減輕購買書籍的財務負擔，如果你們需要的話，請將你的收據發給我，我很樂意負責coordinate報銷書籍費用。
-
-鑑於這是一次實驗，並且認識到我們各自的生活都挺忙的，我們原本考慮的deadline是2023年11月5日，
-但我認為更合適的deadline應該是課後一個月，即2023年12月3日。期待這樣會給你們更多時間去思考書裡的內容。
-
-如果你們覺得完成這項任務過於繁重，或者如果你們錯過了截止日期，歡迎你們春季學期再次加入我們。
-（你們的出席次數將在新的一季重置。）我也會向大家發送一個日曆邀請，並附上適時的提醒。
-
-如果有任何問題，請隨時發給我！
-"""
-    return text
-
-
 def compose_reinvitation_email():
     text = """
 感謝你參加小組查經帶領訓練主日學。如你所知，我們有較嚴格的出席政策
@@ -223,10 +216,31 @@ def compose_reinvitation_email():
     return text
 
 
-def compose_homework_reminder_email():
-    text = """
-溫馨提醒！請大家把功課做好喔！鏈接在下面。
+def homework_reminder_subject(upcoming_class_number: int) -> str:
+    """Return the Saturday homework-reminder subject.
 
-也請大家準時。3點開始，晚開始就晚結束！
+    Args:
+        upcoming_class_number: The class number being reminded for
+            (e.g. 5 for the class after lesson 4's homework email).
+
+    Returns:
+        str: Subject in the form 小組查經帶領訓練課堂「N」功課提醒.
     """
-    return text
+    return f"小組查經帶領訓練課堂「{upcoming_class_number}」功課提醒"
+
+
+def compose_homework_reminder_email() -> str:
+    """Compose the Saturday homework-reminder email body.
+
+    The body is exactly two lines with one blank line between them.
+    Homework lists, links, and a sign-off are omitted on purpose: this
+    reminder is a reply on the previous week's homework thread.
+
+    Returns:
+        str: The canonical reminder text.
+    """
+    return (
+        "溫馨提醒！請大家把功課做好喔！鏈接在之前的郵件裡。\n"
+        "\n"
+        "也請大家準時。3點開始！"
+    )
