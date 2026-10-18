@@ -90,6 +90,14 @@ Google Doc page headings into student ids. Internal because the CLI
 caller bypasses the browser auth gates by design; the browser already
 has `students:byQuarter` for this data.
 
+### Read: `homework:classEmailList` (internal query)
+
+Same active-student filter as `quarterRoster`, plus drop blank emails.
+Returns `{ name, email, groupName }` (zh-Hant sorted) — the To: list
+for the weekly homework email. Agent CLI:
+`npx convex run --prod homework:classEmailList '{}'`. See
+`.agents/skills/sgbs-email/references/weekly-homework.md`.
+
 ### Read: `homework:byQuarter` (public query, instructor-gated)
 
 All homework rows of a quarter (default: current) as minimal marks
