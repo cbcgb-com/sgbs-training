@@ -176,6 +176,23 @@ Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in
 - Shows the full set in authored order (no random sampling)
 - Traditional Chinese; keep each card scannable on its own
 
+### Flip-card carousel (`.content-flip`)
+
+Shared vanilla HTML/JS pattern (`docs/javascripts/content-flip.js`, wired in
+`mkdocs.yml`) for a horizontal row of 3D-flip cards. Use when a short list of
+named principles should be browsed and turned over rather than read as a wall
+of bold-lead paragraphs (e.g. 營造小組氛圍的核心原則).
+
+- Markup: `.content-flip` > two or more `.content-flip__card` with
+  `data-label="…"`, each containing `.content-flip__title` +
+  `.content-flip__body`
+- Optional `data-label` on the root names the region for accessibility
+- Front shows the title; click / Enter / Space flips the card (3D rotateY).
+  Left/right arrow buttons and keyboard arrows move between cards; swipe
+  works on touch. Without JS, title and body stay visible in reading order.
+- Shows the full set in authored order (no sampling/shuffle)
+- Traditional Chinese; keep body text verbatim from the source paragraph
+
 ### Activity timeline (`.content-timeline`)
 
 CSS-only vertical timeline for in-class workshop flows (dots + connecting
