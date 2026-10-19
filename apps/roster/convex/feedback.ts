@@ -6,7 +6,7 @@ import {
   parseFeedbackAnswers,
   shouldShowFeedbackPrompt,
   type FeedbackAnswers,
-} from "../src/feedback";
+} from "../src/feedbackFields";
 import { readTodayNy, studentWithdrawalStatus } from "./attendanceStatus";
 import { requireCurrentStudent, requireInstructor } from "./students";
 
