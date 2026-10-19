@@ -274,7 +274,7 @@ body {
 }
 
 /*
- * Classroom content modules (quiz / panels / deck / flip / timeline) —
+ * Classroom content modules (quiz / panels / deck / check / timeline) —
  * dressed in the scripture-page world (paper, ink, vermilion, gold):
  * warm ruled sheets with a vermilion seal strip, serif numerals, and
  * ink-active controls. Tokens follow --sgbs-* so dark mode inherits.
@@ -282,7 +282,7 @@ body {
 .content-quiz,
 .content-panels,
 .content-deck,
-.content-flip,
+.content-check,
 .content-timeline {
     --cm-paper: var(--sgbs-paper, var(--md-default-bg-color, #faf6ec));
     --cm-paper-deep: var(--sgbs-paper-deep, rgba(38, 33, 22, 0.05));
@@ -303,7 +303,7 @@ body {
 .dark .content-quiz,
 .dark .content-panels,
 .dark .content-deck,
-.dark .content-flip,
+.dark .content-check,
 .dark .content-timeline {
     --cm-correct: #58a86b;
     --cm-correct-bg: rgba(88, 168, 107, 0.16);
@@ -315,8 +315,7 @@ body {
  * offset shadow (the roster shell's depth language, quieter). */
 .content-quiz,
 .content-panels,
-.content-deck,
-.content-flip {
+.content-deck {
     margin: 1.5rem 0 2rem;
     padding: 1.25rem 1.5rem 1.5rem;
     border-radius: 12px;
@@ -529,8 +528,7 @@ body {
 
 /* Nav: ruled ledger buttons — serif, tracked, ink hover. */
 .content-quiz__nav,
-.content-deck__nav,
-.content-flip__nav {
+.content-deck__nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -578,8 +576,7 @@ body {
 }
 
 .content-quiz__nav-status,
-.content-deck__nav-status,
-.content-flip__nav-status {
+.content-deck__nav-status {
     flex: 1;
     text-align: center;
     font-family: var(--cm-serif);
@@ -835,325 +832,143 @@ body {
     margin-bottom: 0;
 }
 
-/* ---- cover-flow flip carousel (one main card + peeks) ---- */
+/* ---- principle checklist (stacked details / summary) ---- */
 
-.content-flip__card {
-    margin: 0 0 0.85rem;
-    padding: 1rem 1.15rem;
-    border-radius: 10px;
+.content-check {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.content-check__item,
+.content-check__item * {
+    font-size: inherit;
+}
+
+.content-check__item {
+    margin: 0;
+    border-radius: 12px;
     border: 1px solid var(--cm-rule);
     background: var(--cm-paper-deep);
-}
-
-.content-flip__card:last-child {
-    margin-bottom: 0;
-}
-
-.content-flip__title {
-    margin: 0 0 0.45rem;
-    font-family: var(--cm-serif);
-    font-size: 1.08em;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    line-height: 1.35;
-}
-
-.content-flip__body {
-    margin: 0;
-    line-height: 1.75;
-}
-
-.content-flip.is-enhanced {
-    outline: none;
-}
-
-.content-flip.is-enhanced:focus-visible {
-    box-shadow:
-        0 1px 2px rgba(38, 33, 22, 0.06),
-        0 20px 44px -28px rgba(38, 33, 22, 0.28),
-        0 0 0 2px var(--cm-vermilion);
-}
-
-.content-flip__probe {
-    position: absolute;
-    left: -9999px;
-    top: 0;
-    visibility: hidden;
-    box-sizing: border-box;
-    padding: 1.25rem 1.5rem;
-    line-height: 1.75;
-    font-size: 1em;
-}
-
-.content-flip.is-enhanced .content-flip__stage {
-    position: relative;
     overflow: hidden;
-    min-height: 12rem;
-    touch-action: pan-y;
-    perspective: 1400px;
+    transition: border-color 0.15s ease;
 }
 
-.content-flip.is-enhanced .content-flip__card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    width: var(--flip-card-w, 66%);
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    transform-origin: center center;
-    transition:
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.45s ease;
-    -webkit-tap-highlight-color: transparent;
+.content-check__item[open] {
+    border-color: var(--cm-vermilion);
+    background: var(--cm-paper);
 }
 
-.content-flip.is-enhanced .content-flip__card.is-jumping {
-    transition: none;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-active {
-    z-index: 4;
+/* Global details CSS caps open bodies at 1000px. Uncap the paragraph. */
+.content-check__item[open] > *:not(summary) {
+    max-height: none;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    pointer-events: auto;
+    overflow: visible;
 }
 
-.content-flip.is-enhanced .content-flip__card.is-prev {
-    z-index: 2;
-    opacity: 0.42;
-    transform: translate(-118%, -50%) scale(0.84);
-    pointer-events: auto;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-next {
-    z-index: 2;
-    opacity: 0.42;
-    transform: translate(18%, -50%) scale(0.84);
-    pointer-events: auto;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-far-prev {
-    z-index: 1;
-    opacity: 0;
-    transform: translate(-175%, -50%) scale(0.72);
-    pointer-events: none;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-far-next {
-    z-index: 1;
-    opacity: 0;
-    transform: translate(75%, -50%) scale(0.72);
-    pointer-events: none;
-}
-
-.content-flip__arrow {
-    flex-shrink: 0;
-    align-self: center;
-    width: 2.4rem;
-    height: 2.4rem;
-    padding: 0;
-    font-family: var(--cm-serif);
-    font-size: 1.7em;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--cm-ink);
+.content-check__summary {
+    display: grid;
+    grid-template-columns: 1.6rem minmax(0, auto) minmax(0, 1fr) 1.25rem;
+    grid-template-areas: "num title lede chev";
+    align-items: center;
+    column-gap: 0.75rem;
+    row-gap: 0.15rem;
+    padding: 0.9rem 1.1rem;
     cursor: pointer;
-    border-radius: 6px;
-    border: 1px solid var(--cm-rule);
-    background: var(--cm-paper);
-    transition: border-color 0.15s ease, color 0.15s ease;
+    list-style: none;
+    user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
-.content-flip__arrow:hover,
-.content-flip__arrow:focus-visible {
-    border-color: var(--cm-vermilion);
-    color: var(--cm-vermilion);
+.content-check__summary::-webkit-details-marker,
+.content-check__summary::marker {
+    display: none;
+    content: none;
 }
 
-.content-flip__arrow:focus-visible {
+.content-check__summary:hover,
+.content-check__summary:focus-visible {
+    background: transparent;
+    padding: 0.9rem 1.1rem;
+    margin: 0;
+    border-radius: 0;
+}
+
+.content-check__summary:focus-visible {
     outline: 2px solid var(--cm-vermilion);
-    outline-offset: 2px;
+    outline-offset: -2px;
 }
 
-.content-flip.is-enhanced .content-flip__inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    border: 1px solid var(--cm-rule);
-    background: var(--cm-paper);
-    box-shadow:
-        0 1px 2px rgba(38, 33, 22, 0.06),
-        0 16px 32px -24px rgba(38, 33, 22, 0.35);
-    transform-style: preserve-3d;
-    transition:
-        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-active .content-flip__inner {
-    border-color: var(--cm-vermilion);
-    box-shadow:
-        0 1px 2px rgba(38, 33, 22, 0.06),
-        0 0 0 1px rgba(var(--cm-vermilion-rgb), 0.35),
-        0 18px 36px -22px rgba(38, 33, 22, 0.4);
-}
-
-.content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__inner {
-    transform: rotateY(180deg);
-}
-
-.content-flip.is-enhanced .content-flip__face {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    overflow: hidden;
-    border-radius: 12px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.content-flip.is-enhanced .content-flip__face--front {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.7rem;
-    padding: 1.25rem 1.5rem;
-    text-align: center;
-    transform: rotateY(0deg) translateZ(1px);
-}
-
-.content-flip.is-enhanced .content-flip__face--back {
-    align-items: flex-start;
-    padding: 1.25rem 1.5rem;
-    transform: rotateY(180deg) translateZ(1px);
-}
-
-.content-flip.is-enhanced .content-flip__num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.7rem;
-    height: 1.7rem;
-    border-radius: 50%;
+.content-check__num {
+    grid-area: num;
     font-family: var(--cm-serif);
-    font-size: 0.85em;
     font-weight: 700;
-    background: rgba(var(--cm-vermilion-rgb), 0.12);
+    color: var(--cm-vermilion);
+    line-height: 1.2;
+}
+
+.content-check__title {
+    grid-area: title;
+    margin: 0;
+    font-family: var(--cm-serif);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    white-space: nowrap;
+}
+
+.content-check__lede {
+    grid-area: lede;
+    color: var(--cm-ink-soft);
+    line-height: 1.5;
+    min-width: 0;
+}
+
+.content-check__summary::after {
+    grid-area: chev;
+    content: "▼";
+    font-size: 0.7em;
+    line-height: 1;
+    color: var(--cm-ink-soft);
+    justify-self: end;
+}
+
+.content-check__item[open] > .content-check__summary::after {
+    content: "▲";
     color: var(--cm-vermilion);
 }
 
-.content-flip.is-enhanced .content-flip__title {
+.content-check__body {
     margin: 0;
-    font-size: 1.7em;
-    letter-spacing: 0.12em;
-    line-height: 1.3;
-}
-
-.content-flip.is-enhanced .content-flip__body {
-    margin: 0;
-    font-size: 1em;
+    padding: 0.95rem 1.1rem 1.1rem;
+    padding-left: calc(1.1rem + 1.6rem + 0.75rem);
+    border-top: 1px dashed var(--cm-rule);
     line-height: 1.75;
-}
-
-.content-flip.is-enhanced .content-flip__card.is-active:focus-visible .content-flip__inner {
-    outline: 2px solid var(--cm-vermilion);
-    outline-offset: 2px;
-}
-
-.content-flip__nav {
-    border-top: none;
-    margin-top: 0.85rem;
-    padding-top: 0.15rem;
-}
-
-.content-flip__dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.45rem;
-    margin-top: 0.55rem;
-}
-
-.content-flip__dot {
-    width: 0.55rem;
-    height: 0.55rem;
-    padding: 0;
-    cursor: pointer;
-    border-radius: 50%;
-    border: 1px solid var(--cm-rule);
-    background: var(--cm-paper);
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.content-flip__dot.is-active {
-    border-color: var(--cm-vermilion);
-    background: var(--cm-vermilion);
-}
-
-.content-flip__dot:focus-visible {
-    outline: 2px solid var(--cm-vermilion);
-    outline-offset: 2px;
 }
 
 @media (max-width: 600px) {
-    .content-flip__arrow {
-        width: 2.15rem;
-        height: 2.15rem;
-        font-size: 1.45em;
+    .content-check__summary {
+        grid-template-columns: 1.5rem minmax(0, 1fr) 1.25rem;
+        grid-template-areas:
+            "num title chev"
+            "num lede chev";
+        align-items: start;
+        padding: 0.85rem 1rem;
     }
 
-    .content-flip.is-enhanced .content-flip__card.is-prev {
-        transform: translate(-112%, -50%) scale(0.88);
-        opacity: 0.35;
+    .content-check__summary:hover,
+    .content-check__summary:focus-visible {
+        padding: 0.85rem 1rem;
     }
 
-    .content-flip.is-enhanced .content-flip__card.is-next {
-        transform: translate(12%, -50%) scale(0.88);
-        opacity: 0.35;
+    .content-check__title {
+        white-space: normal;
     }
 
-    .content-flip.is-enhanced .content-flip__face--front,
-    .content-flip.is-enhanced .content-flip__face--back,
-    .content-flip__probe {
-        padding: 1.1rem 1.15rem;
-    }
-
-    .content-flip.is-enhanced .content-flip__title {
-        font-size: 1.45em;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .content-flip.is-enhanced .content-flip__card,
-    .content-flip.is-enhanced .content-flip__inner {
-        transition: none;
-    }
-
-    .content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__inner {
-        transform: none;
-    }
-
-    .content-flip.is-enhanced .content-flip__face--back {
-        opacity: 0;
-        transform: none;
-        pointer-events: none;
-    }
-
-    .content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__face--front {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .content-flip.is-enhanced .content-flip__card.is-flipped .content-flip__face--back {
-        opacity: 1;
-        pointer-events: auto;
+    .content-check__body {
+        padding: 0.85rem 1rem 1rem;
+        padding-left: calc(1rem + 1.5rem + 0.75rem);
     }
 }
 
@@ -1275,8 +1090,7 @@ body {
 @media (max-width: 600px) {
     .content-quiz,
     .content-panels,
-    .content-deck,
-    .content-flip {
+    .content-deck {
         padding: 1rem 1rem 1.25rem;
     }
 

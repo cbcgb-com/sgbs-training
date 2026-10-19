@@ -176,24 +176,23 @@ Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in
 - Shows the full set in authored order (no random sampling)
 - Traditional Chinese; keep each card scannable on its own
 
-### Flip-card carousel (`.content-flip`)
+### Principle checklist (`.content-check`)
 
-Shared vanilla HTML/JS pattern (`docs/javascripts/content-flip.js`, wired in
-`mkdocs.yml`) for a cover-flow carousel of 3D-flip cards. Use when a short
-list of named principles should be browsed and turned over rather than read
-as a wall of bold-lead paragraphs (e.g. 營造小組氛圍的核心原則).
+CSS-only stacked accordion (`<details>` / `<summary>`, styles in
+`docs/stylesheets/extra.css`; no extra JS). Use when a short list of named
+principles should be scanned as a checklist and opened for the full
+paragraph (e.g. 營造小組氛圍的核心原則).
 
-- Markup: `.content-flip` > two or more `.content-flip__card` with
-  `data-label="…"`, each containing `.content-flip__title` +
-  `.content-flip__body`
-- Optional `data-label` on the root names the region for accessibility
-- One large centered card (title on the front); prev/next peek at the sides.
-  Click / Enter / Space 3D-flips the main card. Click a peek to bring it
-  center. Left/right arrow buttons, keyboard arrows, and swipe cycle and
-  wrap. Navigating resets the flip. Without JS, title and body stay visible
-  in reading order.
-- Shows the full set in authored order (no sampling/shuffle)
-- Traditional Chinese; keep body text verbatim from the source paragraph
+- Markup: `.content-check` > one `.content-check__item` (`<details>`) per
+  row, each with `.content-check__summary` (`.content-check__num` +
+  `.content-check__title` + `.content-check__lede`) and
+  `.content-check__body`
+- Collapsed row: number, title, one verbatim key line, chevron. Open row:
+  dashed divider then the full original paragraph. Several rows may be
+  open at once; none start open. Native details/summary handles click,
+  Enter/Space, and no-JS.
+- Traditional Chinese; keep body text and the key line verbatim from the
+  source paragraph (do not paraphrase the lede)
 
 ### Activity timeline (`.content-timeline`)
 
