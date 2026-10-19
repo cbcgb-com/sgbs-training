@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { CURRENT_QUARTER, QUARTERS } from "./constants";
-import { FEEDBACK_QUESTIONS, FEEDBACK_TITLE } from "./feedback";
+import { FEEDBACK_QUESTIONS, FEEDBACK_TITLE } from "./feedbackFields";
 import { zhDate } from "./withdrawal";
 
 // Instructor list of 小組查經帶領訓練反思. Quarter filter; each slip is

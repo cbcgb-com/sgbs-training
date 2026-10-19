@@ -9,7 +9,7 @@ import {
   FEEDBACK_TEXT_MAX,
   FEEDBACK_TITLE,
   type FeedbackAnswers,
-} from "./feedback";
+} from "./feedbackFields";
 
 // 小組查經帶領訓練反思: the signed-in student's end-of-term reflection.
 // Four required free-text questions from the original Google Form.

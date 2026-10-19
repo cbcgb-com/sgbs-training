@@ -1,6 +1,6 @@
 // Unit walkthrough of 小組查經帶領訓練反思 field helpers.
 // No Convex — the Google Form questions and validators live in
-// src/feedback.ts so the mutation and the UI cannot drift.
+// src/feedbackFields.ts so the mutation and the UI cannot drift.
 // Run: node --experimental-strip-types scripts/test-feedback-fields.mjs
 
 import {
@@ -9,7 +9,7 @@ import {
   FEEDBACK_TITLE,
   parseFeedbackAnswers,
   shouldShowFeedbackPrompt,
-} from "../src/feedback.ts";
+} from "../src/feedbackFields.ts";
 
 let failures = 0;
 function check(label, ok, detail = "") {

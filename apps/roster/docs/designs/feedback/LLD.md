@@ -47,7 +47,7 @@ Indexes: `by_quarter` (`quarter`), `by_student` (`studentId`),
 constraint; one-row-per-(student, quarter) is enforced in the upsert.
 
 The four answer keys are ASCII (Convex constraint). Labels live in
-`src/feedback.ts` — the same strings as the Google Form, Traditional
+`src/feedbackFields.ts` — the same strings as the Google Form, Traditional
 Chinese, required free text. No rating scales, no extra questions.
 
 ## Questions (verbatim from the Google Form)
@@ -59,7 +59,7 @@ Title: **小組查經帶領訓練反思**
 3. 回顧過去的課堂內容，你認為我們有哪些可以改進的地方？
 4. 請寫下你想對其他新手查經帶領者說的一句鼓勵的話。
 
-Shared validators in `src/feedback.ts` (`parseFeedbackAnswers`) trim
+Shared validators in `src/feedbackFields.ts` (`parseFeedbackAnswers`) trim
 each answer, reject blanks (`請填寫：…`), and cap length at 2000
 characters (`回覆請控制在二千字以內`). The Convex mutation and the
 unit script both call that helper.
