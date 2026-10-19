@@ -1,6 +1,7 @@
 """Tests for homework email templates and the email ops skill."""
 
 import inspect
+import re
 from pathlib import Path
 
 from sgbs_training import email as email_mod
@@ -40,7 +41,9 @@ SKILL_MAP_MUST_MENTION = (
     "homework_email_subject",
     "compose_completion_email()",
     "completion_email_subject",
-    "Eric's HEY account",
+    "Eric's Gmail identity in HEY",
+    "HEY's default sender",
+    "@hey.com",
     "Never send",
     "out of scope",
     "報名驗證碼",
@@ -82,9 +85,10 @@ CANONICAL_REINVITATION_BODY = (
 )
 
 CANONICAL_COMPLETION_SHOUTOUT = (
-    "也要特別謝謝這一季全程參與、一堂課都沒缺席的同工們："
+    "特別謝謝這一季全程參與、一堂課都沒缺席的同工們："
     "{name_a}、{name_b}，謝謝你們忠心的擺上！"
 )
+RETIRED_COMPLETION_SHOUTOUT_PREFIX = "也要特別謝謝"
 
 
 def _canonical_completion_body(shoutout: str | None = None) -> str:
@@ -345,6 +349,7 @@ def test_completion_email_body_without_shoutout():
     assert "帶著弟兄姊妹一起好好讀神的話" not in body
     assert body.endswith("主內，\n林意 和 Eric")
     assert "主內，\n\n林意 和 Eric" not in body
+    assert RETIRED_COMPLETION_SHOUTOUT_PREFIX not in body
 
 
 def test_completion_email_omits_shoutout_for_empty_names():
@@ -359,6 +364,7 @@ def test_completion_email_optional_full_attendance_shoutout():
     )
     assert body == _canonical_completion_body(CANONICAL_COMPLETION_SHOUTOUT)
     assert CANONICAL_COMPLETION_SHOUTOUT in body
+    assert RETIRED_COMPLETION_SHOUTOUT_PREFIX not in body
     assert email_mod.FEEDBACK_FORM_URL in body
 
 
@@ -390,6 +396,8 @@ def test_completion_reference_quotes_template_and_policy():
     assert "Convex" in ref
     assert "Confirm" in ref or "confirm" in ref
     assert "full_attendance_names" in ref
+    assert RETIRED_COMPLETION_SHOUTOUT_PREFIX not in ref
+    assert "特別謝謝這一季全程參與、一堂課都沒缺席的同工們：" in ref
 
 
 def test_tone_reference_covers_greeting_and_signoff():
@@ -402,6 +410,35 @@ def test_tone_reference_covers_greeting_and_signoff():
     assert "如果有任何問題，請隨時跟我聯繫！" in tone
 
 
+def test_skill_names_gmail_identity_in_hey_not_hey_dot_com():
+    tree = _skill_tree_text()
+    assert "Eric's Gmail identity in HEY" in tree
+    assert "HEY's default sender" in tree
+    assert "the @hey.com address" in tree
+    assert "Eric's HEY account" not in tree
+    assert "Eric's HEY mailbox" not in tree
+    assert RETIRED_COMPLETION_SHOUTOUT_PREFIX not in tree
+    assert not re.search(r"\b[\w.+-]+@[\w.-]+\.\w+\b", tree)
+    agents = (REPO_ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    assert "Eric's Gmail identity in HEY" in agents
+    assert "Eric's HEY account" not in agents
+    assert RETIRED_COMPLETION_SHOUTOUT_PREFIX not in (
+        REPO_ROOT / "sgbs_training" / "email.py"
+    ).read_text(encoding="utf-8")
+    for path in (
+        EMAIL_SKILL,
+        WEEKLY_HOMEWORK_REF,
+        SATURDAY_REMINDER_REF,
+        REINVITATION_REF,
+        COMPLETION_REF,
+        COMMON_MISTAKES_REF,
+    ):
+        text = path.read_text(encoding="utf-8")
+        assert "Eric's Gmail identity in HEY" in text
+        assert "HEY's default sender" in text
+        assert "@hey.com" in text
+
+
 def test_common_mistakes_cover_privacy_and_completion_list():
     mistakes = COMMON_MISTAKES_REF.read_text(encoding="utf-8")
     assert "student names" in mistakes
@@ -412,3 +449,6 @@ def test_common_mistakes_cover_privacy_and_completion_list():
     assert "Google Form" in mistakes
     assert "3-of-5" in mistakes
     assert "Convex mutations" in mistakes
+    assert "Eric's Gmail identity in HEY" in mistakes
+    assert "HEY's default sender" in mistakes
+    assert "@hey.com" in mistakes

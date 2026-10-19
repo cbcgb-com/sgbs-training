@@ -284,7 +284,8 @@ reinvitation notice, completion): compose from
 `sgbs_training/email.py`. Homework Google Docs (查經題目 / 查經筆記)
 come from `create_exercises()` in `sgbs_training/docs.py`. Weekly
 homework To: `homework:classEmailList` (current term, not withdrawn,
-has email). Agents save drafts from Eric's HEY account and never send.
+has email). Agents save drafts in HEY, FROM Eric's Gmail identity in HEY
+(HEY's default sender), not the @hey.com address, and never send.
 Ops map: `.agents/skills/sgbs-email/SKILL.md`; procedures in
 `.agents/skills/sgbs-email/references/`. App-sent mail (報名驗證碼,
 歡迎報名, 小組人數不足通知) is out of scope for this skill.

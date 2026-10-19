@@ -5,7 +5,8 @@ from `compose_homework_reminder_email()` and
 `homework_reminder_subject(upcoming_class_number)`. Do not paraphrase
 or extend them.
 
-Draft only, from Eric's HEY account. See
+Draft only, in HEY, FROM Eric's Gmail identity in HEY
+(HEY's default sender), not the @hey.com address. See
 [../SKILL.md](../SKILL.md) and
 [common-mistakes.md](common-mistakes.md).
 
@@ -30,8 +31,9 @@ class (tomorrow). Example: `小組查經帶領訓練課堂「5」功課提醒` f
 
 1. Find last week's homework email (subject
    `小組查經帶領訓練課堂「N-1」功課`) and reply on **that** thread.
-2. From Eric's HEY account. Keep that thread's To/Cc. Do not add or drop
-   anyone.
+2. In HEY, FROM Eric's Gmail identity in HEY (HEY's default sender),
+   not the @hey.com address. Keep that thread's To/Cc. Do not add or
+   drop anyone.
 3. Draft only, then tell Eric it is ready.
 4. Do not append extra text.
 
