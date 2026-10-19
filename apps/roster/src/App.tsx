@@ -1,5 +1,5 @@
 import { useConvexAuth, useMutation, useQuery } from "convex/react";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../convex/_generated/api";
 import { SignInSheet } from "./auth/SignIn";
 import { sessionTokenStore } from "./auth/session";
@@ -14,17 +14,7 @@ import MyGroup from "./MyGroup";
 import MyProfile from "./MyProfile";
 import Roster from "./Roster";
 import ScheduleView from "./ScheduleView";
-
-type TabKey =
-  | "register"
-  | "profile"
-  | "group"
-  | "directory"
-  | "schedule"
-  | "roster"
-  | "attendance"
-  | "assign"
-  | "feedback";
+import { TabContext, type TabKey } from "./tab";
 
 function pathTab(): TabKey | null {
   return window.location.pathname === "/feedback" ? "feedback" : null;
@@ -36,11 +26,6 @@ function writePath(tab: TabKey) {
     window.history.replaceState(null, "", next);
   }
 }
-
-const TabContext = createContext<{ tab: TabKey; setTab: (t: TabKey) => void }>({
-  tab: "register",
-  setTab: () => {},
-});
 
 export default function App() {
   const { isLoading, isAuthenticated } = useConvexAuth();
@@ -308,6 +293,4 @@ function Footer() {
   );
 }
 
-export function useTab() {
-  return useContext(TabContext);
-}
+export { useTab, type TabKey } from "./tab";

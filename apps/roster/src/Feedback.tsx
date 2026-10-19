@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
-import { useTab } from "./App";
+import { useTab } from "./tab";
 import { CURRENT_QUARTER } from "./constants";
 import {
   EMPTY_FEEDBACK_ANSWERS,
