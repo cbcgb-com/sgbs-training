@@ -6,7 +6,8 @@ no homework. New thread. Body is Markdown (the generator runs
 `markdown()` in `apps/api.py`); the sign-off is two paragraphs, no
 HTML `<br>`.
 
-Draft only, from Eric's HEY account. See
+Draft only, in HEY, FROM Eric's Gmail identity in HEY
+(HEY's default sender), not the @hey.com address. See
 [../SKILL.md](../SKILL.md) and
 [common-mistakes.md](common-mistakes.md).
 

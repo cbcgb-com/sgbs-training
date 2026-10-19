@@ -2,15 +2,19 @@
 
 Gmail `reply` and `send_message` send immediately — do not use them. A
 draft tool (`create_draft` with `replyToMessageId` when threading) is
-allowed only if it lands in Eric's HEY mailbox. If you cannot draft
-from that account, stop and give Eric the exact subject + body; do
-not send from another account. Leave signatures off.
+allowed only if it lands in HEY. Compose in HEY, sending FROM Eric's
+Gmail identity in HEY (HEY's default sender), not the @hey.com
+address. If you cannot draft there, stop and give Eric the exact
+subject + body; do not send from another account. Leave signatures
+off.
 
 - Rewriting the homework list or adding extra links — use the
   generated body.
 - Adding homework lists or a sign-off to the Saturday reminder — the
   first line already points at the previous email.
 - Sending because Eric is busy — draft only.
+- Sending from the @hey.com address — use Eric's Gmail identity in HEY
+  (HEY's default sender).
 - Starting a new thread for the reminder, or using Gmail `reply`
   (that sends).
 - Drafting app-sent mail (報名驗證碼, 歡迎報名, 小組人數不足通知)

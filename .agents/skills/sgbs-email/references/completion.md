@@ -4,7 +4,8 @@ Send after class 5 (end of term). New thread. Subject and body come
 from `completion_email_subject()` and `compose_completion_email()`.
 Do not paraphrase.
 
-Draft only, from Eric's HEY account. See
+Draft only, in HEY, FROM Eric's Gmail identity in HEY
+(HEY's default sender), not the @hey.com address. See
 [../SKILL.md](../SKILL.md), [tone.md](tone.md), and
 [common-mistakes.md](common-mistakes.md).
 
@@ -52,7 +53,7 @@ is no shout-out.
 
 也想邀請大家花幾分鐘填寫這份心得回饋表，分享一下這一季參與的感想（用報名時的郵箱登入即可填寫）：https://sgbs-training.citylight.life/feedback
 
-也要特別謝謝這一季全程參與、一堂課都沒缺席的同工們：{names}，謝謝你們忠心的擺上！
+特別謝謝這一季全程參與、一堂課都沒缺席的同工們：{names}，謝謝你們忠心的擺上！
 
 願你們將這段時間所學帶回各自的小組和團契，與弟兄姊妹一同在神的話語中紮根成長。
 
@@ -70,4 +71,6 @@ is no shout-out.
    Leave `full_attendance_names` off when there is no shout-out.
 3. Subject from `completion_email_subject()`.
 4. **Cc** Duane Chang, Juan Chen, and Christy Lin as above.
-5. Draft only, from Eric's HEY account, then tell Eric it is ready.
+5. Draft only, in HEY, FROM Eric's Gmail identity in HEY
+   (HEY's default sender), not the @hey.com address, then tell
+   Eric it is ready.

@@ -289,7 +289,7 @@ _COMPLETION_FEEDBACK = (
     "{url}"
 )
 _COMPLETION_FULL_ATTENDANCE = (
-    "也要特別謝謝這一季全程參與、一堂課都沒缺席的同工們："
+    "特別謝謝這一季全程參與、一堂課都沒缺席的同工們："
     "{names}，謝謝你們忠心的擺上！"
 )
 _COMPLETION_BLESSING = (

@@ -13,7 +13,8 @@ Do not invent attendance counts or dates. Fill `{name}`,
 confirms. Usually one recipient. Do not write student names or
 addresses into this repo.
 
-Draft only, from Eric's HEY account. See
+Draft only, in HEY, FROM Eric's Gmail identity in HEY
+(HEY's default sender), not the @hey.com address. See
 [../SKILL.md](../SKILL.md), [tone.md](tone.md), and
 [common-mistakes.md](common-mistakes.md).
 

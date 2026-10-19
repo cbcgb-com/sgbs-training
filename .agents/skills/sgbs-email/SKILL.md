@@ -20,7 +20,8 @@ recipients.
 
 Code is the source of truth: if a reference and `email.py` disagree,
 the code wins — then update the reference. **Never send.** Save a
-draft from Eric's HEY account.
+draft in HEY, sending FROM Eric's Gmail identity in HEY
+(HEY's default sender), not the @hey.com address.
 
 The roster app already sends 報名驗證碼, 歡迎報名, and 小組人數不足通知 —
 those are out of scope.
