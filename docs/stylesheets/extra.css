@@ -832,41 +832,64 @@ body {
     margin-bottom: 0;
 }
 
-/* ---- principle checklist (stacked details / summary) ---- */
+/* ---- principle checklist (stacked details / summary) ----
+ *
+ * mkdocs-shadcn styles `.typography details` like a small admonition
+ * (--text-sm, padding-block, SVG ::after chevron, hover underline) and
+ * `.typography p:not(:first-child)` adds a 1.5rem top margin. Prefix
+ * with `.typography` / `.md-typeset` so we beat those rules. Body copy
+ * on this site is `body { font-size: 20px }`; match that, not --text-sm.
+ */
 
+.typography .content-check,
+.md-typeset .content-check,
 .content-check {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
     margin: 1.5rem 0 2rem;
+    font-size: 1em;
 }
 
-.content-check__item,
+.typography .content-check__item,
+.md-typeset .content-check__item,
+.content-check__item {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--cm-rule);
+    border-radius: 12px;
+    background: var(--cm-paper-deep);
+    overflow: hidden;
+    font-size: 1em;
+    line-height: inherit;
+    transition: border-color 0.15s ease;
+}
+
+.typography .content-check__item *,
+.md-typeset .content-check__item *,
 .content-check__item * {
     font-size: inherit;
 }
 
-.content-check__item {
-    margin: 0;
-    border-radius: 12px;
-    border: 1px solid var(--cm-rule);
-    background: var(--cm-paper-deep);
-    overflow: hidden;
-    transition: border-color 0.15s ease;
-}
-
+.typography .content-check__item[open],
+.md-typeset .content-check__item[open],
 .content-check__item[open] {
     border-color: var(--cm-vermilion);
     background: var(--cm-paper);
 }
 
 /* Global details CSS caps open bodies at 1000px. Uncap the paragraph. */
+.typography .content-check__item[open] > *:not(summary),
+.md-typeset .content-check__item[open] > *:not(summary),
 .content-check__item[open] > *:not(summary) {
     max-height: none;
     opacity: 1;
     overflow: visible;
 }
 
+.typography .content-check__summary,
+.md-typeset .content-check__summary,
 .content-check__summary {
     display: grid;
     grid-template-columns: 1.6rem minmax(0, auto) minmax(0, 1fr) 1.25rem;
@@ -874,30 +897,69 @@ body {
     align-items: center;
     column-gap: 0.75rem;
     row-gap: 0.15rem;
-    padding: 0.9rem 1.1rem;
+    position: relative;
+    padding: 0.85rem 1.1rem;
+    margin: 0;
     cursor: pointer;
     list-style: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-}
-
-.content-check__summary::-webkit-details-marker,
-.content-check__summary::marker {
-    display: none;
-    content: none;
-}
-
-.content-check__summary:hover,
-.content-check__summary:focus-visible {
     background: transparent;
-    padding: 0.9rem 1.1rem;
+    font-weight: inherit;
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
+.typography .content-check__summary:hover,
+.typography .content-check__summary:focus,
+.typography .content-check__summary:focus-visible,
+.typography .content-check__summary:active,
+.typography .content-check__item[open] > .content-check__summary,
+.typography .content-check__item[open] > .content-check__summary:hover,
+.typography .content-check__item[open] > .content-check__summary:focus,
+.md-typeset .content-check__summary:hover,
+.md-typeset .content-check__summary:focus,
+.md-typeset .content-check__summary:focus-visible,
+.md-typeset .content-check__summary:active,
+.md-typeset .content-check__item[open] > .content-check__summary,
+.content-check__summary:hover,
+.content-check__summary:focus,
+.content-check__summary:focus-visible,
+.content-check__summary:active,
+.content-check__item[open] > .content-check__summary {
+    background: transparent;
+    padding: 0.85rem 1.1rem;
     margin: 0;
     border-radius: 0;
+    text-decoration: none;
+    text-decoration-line: none;
 }
 
+.typography .content-check__summary:focus-visible,
+.md-typeset .content-check__summary:focus-visible,
 .content-check__summary:focus-visible {
     outline: 2px solid var(--cm-vermilion);
     outline-offset: -2px;
+}
+
+.typography .content-check__summary *,
+.md-typeset .content-check__summary *,
+.content-check__summary * {
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
+.typography .content-check__summary::-webkit-details-marker,
+.typography .content-check__summary::marker,
+.typography .content-check__summary::before,
+.md-typeset .content-check__summary::-webkit-details-marker,
+.md-typeset .content-check__summary::marker,
+.md-typeset .content-check__summary::before,
+.content-check__summary::-webkit-details-marker,
+.content-check__summary::marker,
+.content-check__summary::before {
+    display: none;
+    content: none;
 }
 
 .content-check__num {
@@ -908,67 +970,130 @@ body {
     line-height: 1.2;
 }
 
+.typography .content-check__title,
+.md-typeset .content-check__title,
 .content-check__title {
     grid-area: title;
     margin: 0;
     font-family: var(--cm-serif);
+    font-size: 1.05em;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1.35;
     white-space: nowrap;
+    text-decoration: none;
 }
 
+.typography .content-check__lede,
+.md-typeset .content-check__lede,
 .content-check__lede {
     grid-area: lede;
     color: var(--cm-ink-soft);
+    font-size: 0.95em;
     line-height: 1.5;
     min-width: 0;
+    text-decoration: none;
+    text-decoration-line: none;
 }
 
+/*
+ * Theme `.typography details summary::after` is an absolutely positioned
+ * SVG chevron with rotate:180deg when open — that beats a low-specificity
+ * ▼/▲ and flips ▲ back to ▼. Kill it, then draw one in-flow triangle.
+ */
+.typography .content-check__summary::after,
+.md-typeset .content-check__summary::after,
 .content-check__summary::after {
     grid-area: chev;
-    content: "▼";
-    font-size: 0.7em;
-    line-height: 1;
-    color: var(--cm-ink-soft);
+    content: "";
+    display: block;
+    position: static;
+    right: auto;
+    top: auto;
+    width: 0.5em;
+    height: 0.5em;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: var(--cm-ink-soft);
+    clip-path: polygon(50% 80%, 0 20%, 100% 20%);
+    aspect-ratio: auto;
+    rotate: none;
+    transform: none;
     justify-self: end;
+    align-self: center;
 }
 
+.typography .content-check__item[open] > .content-check__summary::after,
+.md-typeset .content-check__item[open] > .content-check__summary::after,
 .content-check__item[open] > .content-check__summary::after {
-    content: "▲";
-    color: var(--cm-vermilion);
+    content: "";
+    background-color: var(--cm-vermilion);
+    clip-path: polygon(50% 20%, 100% 80%, 0 80%);
+    rotate: none;
+    transform: none;
 }
 
+.typography .content-check__body,
+.md-typeset .content-check__body,
+.typography .content-check__item[open] > .content-check__body,
+.md-typeset .content-check__item[open] > .content-check__body,
 .content-check__body {
     margin: 0;
-    padding: 0.95rem 1.1rem 1.1rem;
+    padding: 0.7rem 1.1rem 0.9rem;
     padding-left: calc(1.1rem + 1.6rem + 0.75rem);
     border-top: 1px dashed var(--cm-rule);
+    font-size: 1em;
+    font-weight: inherit;
     line-height: 1.75;
+    text-decoration: none;
 }
 
 @media (max-width: 600px) {
+    .typography .content-check__summary,
+    .md-typeset .content-check__summary,
     .content-check__summary {
         grid-template-columns: 1.5rem minmax(0, 1fr) 1.25rem;
         grid-template-areas:
             "num title chev"
             "num lede chev";
         align-items: start;
-        padding: 0.85rem 1rem;
+        padding: 0.75rem 0.95rem;
+        row-gap: 0.2rem;
     }
 
+    .typography .content-check__summary:hover,
+    .typography .content-check__summary:focus,
+    .typography .content-check__summary:focus-visible,
+    .typography .content-check__item[open] > .content-check__summary,
+    .md-typeset .content-check__summary:hover,
+    .md-typeset .content-check__summary:focus-visible,
     .content-check__summary:hover,
-    .content-check__summary:focus-visible {
-        padding: 0.85rem 1rem;
+    .content-check__summary:focus,
+    .content-check__summary:focus-visible,
+    .content-check__item[open] > .content-check__summary {
+        padding: 0.75rem 0.95rem;
     }
 
+    .typography .content-check__title,
+    .md-typeset .content-check__title,
     .content-check__title {
         white-space: normal;
     }
 
+    .typography .content-check__summary::after,
+    .md-typeset .content-check__summary::after,
+    .content-check__summary::after {
+        align-self: start;
+        margin-top: 0.35em;
+    }
+
+    .typography .content-check__body,
+    .md-typeset .content-check__body,
+    .typography .content-check__item[open] > .content-check__body,
     .content-check__body {
-        padding: 0.85rem 1rem 1rem;
-        padding-left: calc(1rem + 1.5rem + 0.75rem);
+        padding: 0.6rem 0.95rem 0.8rem;
+        padding-left: calc(0.95rem + 1.5rem + 0.75rem);
     }
 }
 
