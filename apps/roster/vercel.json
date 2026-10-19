@@ -1,4 +1,5 @@
 {
   "buildCommand": "npx convex deploy --preview-run demo:seedPreviewData --cmd 'npm run build' --cmd-url-env-var-name VITE_CONVEX_URL",
-  "rewrites": [{ "source": "/feedback", "destination": "/index.html" }]
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

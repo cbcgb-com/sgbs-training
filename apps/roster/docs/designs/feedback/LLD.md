@@ -113,7 +113,8 @@ never silently dropped.
 The app is a tabbed SPA, not a path router. `/feedback` is the
 canonical URL: on load, that pathname opens the 回饋 tab; choosing
 the tab writes `/feedback` with `replaceState`; other tabs write `/`.
-Vercel rewrites `/feedback` to `index.html`. Signed-out visitors see
+Vercel rewrites every path (including `/feedback`) to `index.html`
+so the tabbed SPA can deep-link. Signed-out visitors see
 the existing guest sheet (報名／登入); after sign-in they stay on
 `/feedback`.
 

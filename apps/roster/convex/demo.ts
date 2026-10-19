@@ -214,7 +214,8 @@ export const seedPreviewInstructors = internalMutation({
 // them something to look at: a current-quarter cohort across several
 // groups, an ungrouped pool for the divider, a prior-quarter cohort for
 // history, the full five-Sunday calendar with 主領/觀察 assignments,
-// attendance variety for the 缺課 view, and two withdrawn students so the
+// attendance variety for the 缺課 view, two current-quarter reflections
+// so the 回饋 tab is populated, and two withdrawn students so the
 // 已退出 view and badge are visible.
 //
 // Safe to re-run: students are matched by (email, quarter), sessions by
@@ -398,7 +399,51 @@ export const seedPreviewData = internalMutation({
       FAKE_SESSIONS,
     );
 
-    // 5. Two withdrawn students, so the 已退出 view + badge are visible.
+    // 5. A couple of current-quarter reflections so the instructor 回饋
+    //    tab is not an empty state on a fresh preview. Demo copy only;
+    //    skipped when the (student, quarter) row already exists.
+    const FEEDBACK_DEMO = [
+      {
+        email: "demo1@demo.sgbs",
+        newPractice: "週間先用觀察題，不急着給答案。",
+        leadingFocus: "多留白，讓組員把經文讀完。",
+        courseImprovements: "功課說明再具體一些。",
+        encouragement: "你已經在讀了，組員會跟着你。",
+      },
+      {
+        email: "demo2@demo.sgbs",
+        newPractice: "先把作者和讀者的處境講清楚，再問應用。",
+        leadingFocus: "少打斷，讓安靜的組員也有機會開口。",
+        courseImprovements: "課堂節奏可以再留一點討論時間。",
+        encouragement: "帶領不是表演，陪大家一起讀就很好。",
+      },
+    ] as const;
+    let feedbackAdded = 0;
+    const now = Date.now();
+    for (const row of FEEDBACK_DEMO) {
+      const studentId = idByEmail.get(row.email);
+      if (!studentId) continue;
+      const existing = await ctx.db
+        .query("feedback")
+        .withIndex("by_student_quarter", (q) =>
+          q.eq("studentId", studentId).eq("quarter", CURRENT_QUARTER),
+        )
+        .unique();
+      if (existing) continue;
+      await ctx.db.insert("feedback", {
+        studentId,
+        quarter: CURRENT_QUARTER,
+        newPractice: row.newPractice,
+        leadingFocus: row.leadingFocus,
+        courseImprovements: row.courseImprovements,
+        encouragement: row.encouragement,
+        submittedAt: now,
+        updatedAt: now,
+      });
+      feedbackAdded++;
+    }
+
+    // 6. Two withdrawn students, so the 已退出 view + badge are visible.
     //    Uses the real applyWithdrawal (idempotent on re-run), which also
     //    sweeps them out of the current-quarter sessions.
     const withdrawnSummary: string[] = [];
@@ -421,6 +466,7 @@ export const seedPreviewData = internalMutation({
       studentsAdded,
       sessionsAdded,
       historySessionsAdded,
+      feedbackAdded,
       withdrawn: withdrawnSummary,
     };
   },
