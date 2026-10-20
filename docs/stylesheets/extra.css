@@ -622,8 +622,10 @@ body {
  * mkdocs-shadcn styles `.typography details` like a small admonition
  * (--text-sm, padding-block, SVG ::after chevron, hover underline) and
  * `.typography p:not(:first-child)` adds a 1.5rem top margin. Prefix
- * with `.typography` / `.md-typeset` so we beat those rules. Body copy
- * on this site is `body { font-size: 20px }`; match that, not --text-sm.
+ * with `.typography` / `.md-typeset` so we beat those rules (`article`
+ * itself is `.typography` — never `article .typography` as a descendant).
+ * Body copy on this site is `body { font-size: 20px }`; match that, not
+ * --text-sm.
  * Non-collapsible `!!!` admonitions are <div class="admonition"> — leave
  * them alone.
  */
@@ -1176,43 +1178,69 @@ article details.sgbs-acc-js:not(.is-open) > summary::after {
 article details[open] > p,
 article details[open] > *:not(summary) {
     padding-block: 0;
-    font-size: 1em;
+    font-size: 20px;
     line-height: 1.75;
     font-weight: inherit;
     text-decoration: none;
 }
 
 /*
- * Theme `article details` / `article details[open]>p` set
- * font-size: var(--text-sm) (.875rem = 14px). `1em` on those same
- * selectors still computes to 14px if the details box itself lost
- * the size fight. Pin body copy to the page size (body { 20px })
- * with `.typography` so every ??? / ???+ paragraph, list, and
- * quote matches the other accordions. Scripture refs stay 0.84em.
+ * Theme ships `.typography details[open] > p { font-size: var(--text-sm) }`
+ * (.875rem = 14px). On mkdocs-shadcn, `article` itself is `.typography`
+ * (`<article class="typography">`) — `article .typography details` is a
+ * descendant combinator and never matches. Pin the same selectors the
+ * theme uses (and `article.typography` / `article details`) so every
+ * ??? / ???+ paragraph, list, and quote is the page size. Scripture
+ * refs stay 0.84em.
  */
-article .typography details,
-article .typography details:not(:first-child),
-article .typography details:not(:first-of-type),
+.typography details,
+.typography details:not(:first-child),
+.typography details:not(:first-of-type),
+article.typography details,
 article details.info {
     font-size: 20px;
 }
 
-article .typography details p:not(.scripture__ref),
-article .typography details li,
-article .typography details dt,
-article .typography details dd,
-article .typography details blockquote,
-article .typography details[open] > p,
-article .typography details[open] p:not(.scripture__ref),
-article .typography details[open] li,
-article .typography details[open] blockquote {
+.typography details p:not(.scripture__ref),
+.typography details li,
+.typography details dt,
+.typography details dd,
+.typography details blockquote,
+.typography details[open] > p,
+.typography details[open] p:not(.scripture__ref),
+.typography details[open] li,
+.typography details[open] blockquote,
+article.typography details p:not(.scripture__ref),
+article.typography details li,
+article.typography details dt,
+article.typography details dd,
+article.typography details blockquote,
+article.typography details[open] > p,
+article.typography details[open] p:not(.scripture__ref),
+article.typography details[open] li,
+article.typography details[open] blockquote,
+article details p:not(.scripture__ref),
+article details li,
+article details dt,
+article details dd,
+article details blockquote,
+article details[open] > p,
+article details[open] p:not(.scripture__ref),
+article details[open] li,
+article details[open] blockquote {
     font-size: 20px;
     line-height: 1.75;
 }
 
-article .typography details pre,
-article .typography details pre code,
-article .typography details code {
+.typography details pre,
+.typography details pre code,
+.typography details code,
+article.typography details pre,
+article.typography details pre code,
+article.typography details code,
+article details pre,
+article details pre code,
+article details code {
     font-size: 0.9em;
 }
 
