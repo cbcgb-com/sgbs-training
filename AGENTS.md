@@ -190,7 +190,9 @@ title, small triangle chevron on the right that rotates and turns
 vermilion when open, vermilion border when open, dashed divider, body
 text at the page size (~20px, including every `p` / `li` /
 `blockquote` inside `???` / `???+` admonitions — the theme's
-`--text-sm` 14px must not win), no hover underline. Several rows may
+`.typography details[open] > p { --text-sm }` 14px must not win;
+`article` itself is `.typography`, so do not write `article .typography`
+as a descendant combinator), no hover underline. Several rows may
 stay open at once. Code/pre may stay monospace but not tiny.
 
 Animation: ~280ms ease height + fade. Browsers that support
