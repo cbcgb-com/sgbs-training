@@ -422,12 +422,11 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 
 <div class="expandable-cards">
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">1</span>
 <span class="expandable-card__title">GenAI問答：TongBot談苦難</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <p><strong>我：</strong>如何看待良善的上帝允許世上存在的苦難？</p>
 <p><strong>Tongbot：</strong>面對世界的苦難和上帝的良善，劉彤牧師在他的講道中提到，這些苦難實際上是人的罪帶來的結果，不僅污染了大地，也讓人類活在罪惡的選擇中，因而受苦。然而，即便在苦難中，上帝仍然賜下恩典和憐憫。有時，上帝會派遣天使保護我們，有時則透過弟兄姊妹的安慰與代禱來支持我們。劉彤牧師強調，許多時候我們能夠經歷並克服苦難，是因為周圍有充滿愛心的弟兄姊妹的支持。上帝有時甚至透過禱告來醫治我們，在苦難中顯明祂的憐憫。他提醒我們，上帝是充滿憐憫的，甚至整個宇宙和大地都明白上帝的憐憫，因此大地也在盼望等候上帝的工作。劉彤牧師鼓勵我們，即使在充滿黑暗和罪惡的世界中，我們仍然要感謝上帝，因為祂仍然在掌權，在苦難中向我們施恩。</p>
@@ -436,7 +435,7 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 <p>雖然這並不直接回答為什麼無辜的人會遭受苦難，如自然災害，但它提醒我們，世界上的罪惡和苦難是人類遠離神、不尋求神的結果之一。在面對苦難時，劉彤牧師的信息鼓勵我們轉向神，尋求祂的面，並在祂的光中行走，而不是留在黑暗中。</p>
 <p>如果您有更多關於劉彤牧師對於苦難、信仰或其他相關主題的問題，請隨時提問。我們在這裡，願意幫助您尋找答案和安慰。</p>
 </div>
-</div>
+</details>
 
 </div>
 
@@ -604,12 +603,11 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 
 <div class="expandable-cards">
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">1</span>
 <span class="expandable-card__title">問題集1</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <p><strong>破冰題目：</strong> 你有因为身边的人做了某件特别的事情而印象很深刻，特别佩服TA的经历吗？对你有什么影响？</p>
 <p><strong>討論題目</strong></p>
@@ -635,14 +633,13 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 <li>第二點: 不应该要求主立刻应允我们的祈求，因为祂有自己最美善的时间表。</li>
 </ul>
 </div>
-</div>
+</details>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">2</span>
 <span class="expandable-card__title">問題集2</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <p><strong>破冰題目：</strong>在你生活中，有沒有經歷過某件普通的事情卻帶來意想不到的驚喜？那次經歷對你有怎樣的影響？</p>
 <p><strong>討論題目：</strong></p>
@@ -666,7 +663,7 @@ GenAI是人類製造的一個高級工具。要想在信仰生活中恰當地使
 <p><strong>總結點</strong></p>
 <p>這個故事講述了轉變和耶穌所提供的豐盛恩典。將水變為酒的第一個神蹟象徵著耶穌如何帶來新生命、喜樂以及在平凡時刻中的意外祝福。儘管他的"時刻尚未到"，這個小而個人的行動預示著他通過死而復活所成就的更大工作，不僅僅是將水變為酒，而是將我們從破碎轉變為完全。</p>
 </div>
-</div>
+</details>
 
 </div>
 

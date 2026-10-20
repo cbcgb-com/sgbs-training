@@ -1,56 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
-details * {
-    font-size: large;
-}
-
-/* Smooth transitions for collapsible details blocks */
-details {
-    transition: all 0.3s ease-in-out;
-}
-
-details[open] {
-    transition: all 0.3s ease-in-out;
-}
-
-details summary {
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    user-select: none;
-}
-
-details summary:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-    padding: 2px 4px;
-    margin: -2px -4px;
-}
-
-details summary::-webkit-details-marker {
-    transition: transform 0.2s ease-in-out;
-}
-
-details[open] summary::-webkit-details-marker {
-    transform: rotate(90deg);
-}
-
-/* Smooth content reveal animation */
-details {
-    transition: all 0.3s ease-in-out;
-}
-
-/* Use a more reliable approach with max-height */
-details > *:not(summary) {
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-}
-
-details[open] > *:not(summary) {
-    max-height: 1000px; /* Large enough to accommodate content */
-    opacity: 1;
-}
+/* Content-area <details> accordions (content-check, expandable-card,
+ * pymdownx `???` admonitions) share one card + animation in the
+ * "shared accordion" block below. Do not restyle site-chrome details
+ * from here, and do not cap open bodies with max-height. */
 
 :root {
   --md-text-font-size: 1rem;
@@ -99,181 +52,6 @@ body {
 /* ... continue for other heading levels if needed ... */
 
 /*
- * Expandable card – site-wide pattern for "tap to reveal" content.
- * Uses button + JS (not <details>) so open/close can animate smoothly.
- */
-.expandable-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-
-.expandable-card {
-    border: 1px solid var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.1));
-    border-radius: 10px;
-    background: var(--md-default-bg-color, #fff);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-    /* Open/close animates the body's grid row (0fr -> 1fr) instead of
-       max-height: fr values are interpolable and the open row sizes to
-       the content, so long bodies are never clipped by a height cap. */
-    display: grid;
-    grid-template-rows: auto 0fr;
-    transition: grid-template-rows 0.3s ease-out;
-}
-
-.expandable-card.is-open {
-    grid-template-rows: auto 1fr;
-}
-
-.expandable-card__header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 1rem 1.25rem;
-    cursor: pointer;
-    font: inherit;
-    font-weight: 600;
-    min-height: 3.5rem;
-    text-align: left;
-    color: inherit;
-    background: none;
-    border: none;
-    transition: background-color 0.2s ease;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.expandable-card__header:hover,
-.expandable-card__header:focus-visible {
-    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.05));
-}
-
-.expandable-card__header,
-.expandable-card__header *,
-.expandable-card__header:hover,
-.expandable-card__header:hover *,
-.expandable-card__header:focus,
-.expandable-card__header:focus * {
-    text-decoration: none !important;
-}
-
-/* Number badge – "1", "2", … so each block is clearly one discussion question */
-.expandable-card__num {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 50%;
-    background: var(--md-default-fg-color--lightest, rgba(0, 0, 0, 0.12));
-    font-size: 0.9em;
-    font-weight: 700;
-}
-
-/* "查看經文" + chevron – the obvious tap target */
-.expandable-card__action {
-    flex-shrink: 0;
-    margin-left: auto;
-    font-size: 0.85em;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-.expandable-card__action::after {
-    content: " ▼";
-    font-size: 0.75em;
-    opacity: 0.8;
-}
-
-.expandable-card.is-open .expandable-card__action::after {
-    content: " ▲";
-}
-
-/* Question text takes remaining space */
-.expandable-card__title {
-    flex: 1;
-    min-width: 0;
-}
-
-/* Revealed content – smooth open/close (JS toggles .is-open).
-   The card's grid row collapses this item; min-height: 0 + overflow
-   hidden let it shrink to 0 when closed and grow to content when open. */
-.expandable-card__body {
-    min-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0 1.25rem 0;
-    padding-left: calc(1.25rem + 1.75rem + 0.75rem);
-    transition: opacity 0.3s ease-out, padding 0.3s ease-out;
-}
-
-.expandable-card.is-open .expandable-card__body {
-    opacity: 1;
-    padding: 1rem 1.25rem 1.25rem;
-    padding-left: calc(1.25rem + 1.75rem + 0.75rem);
-}
-
-.expandable-card__body strong {
-    display: block;
-    margin: 0.5rem 0 0.15rem 0;
-    font-size: 0.95em;
-    color: var(--md-default-fg-color--light, rgba(0, 0, 0, 0.7));
-}
-
-.expandable-card__body strong:first-child {
-    margin-top: 0;
-}
-
-.expandable-card__body p {
-    margin: 0 0 0.6rem 0;
-    line-height: 1.6;
-}
-
-.expandable-card__body p:last-child {
-    margin-bottom: 0;
-}
-
-.expandable-card__body ul {
-    margin: 0.5rem 0 0 0;
-    padding-left: 1.5rem;
-}
-
-.expandable-card__body li {
-    margin-bottom: 0.35rem;
-    line-height: 1.5;
-}
-
-.expandable-card__body li:last-child {
-    margin-bottom: 0;
-}
-
-@media (max-width: 600px) {
-    .expandable-cards {
-        gap: 0.75rem;
-        margin: 1.25rem 0;
-    }
-
-    .expandable-card__header {
-        padding: 0.9rem 1rem;
-        min-height: 3.25rem;
-    }
-
-    .expandable-card.is-open .expandable-card__body {
-        padding: 0.9rem 1rem 1rem;
-        padding-left: calc(1rem + 1.75rem + 0.5rem);
-    }
-
-    .expandable-card__action {
-        font-size: 0.8em;
-    }
-}
-
-/*
  * Classroom content modules (quiz / panels / deck / check / timeline) —
  * dressed in the scripture-page world (paper, ink, vermilion, gold):
  * warm ruled sheets with a vermilion seal strip, serif numerals, and
@@ -283,6 +61,7 @@ body {
 .content-panels,
 .content-deck,
 .content-check,
+.expandable-cards,
 .content-timeline {
     --cm-paper: var(--sgbs-paper, var(--md-default-bg-color, #faf6ec));
     --cm-paper-deep: var(--sgbs-paper-deep, rgba(38, 33, 22, 0.05));
@@ -304,6 +83,7 @@ body {
 .dark .content-panels,
 .dark .content-deck,
 .dark .content-check,
+.dark .expandable-cards,
 .dark .content-timeline {
     --cm-correct: #58a86b;
     --cm-correct-bg: rgba(88, 168, 107, 0.16);
@@ -832,18 +612,28 @@ body {
     margin-bottom: 0;
 }
 
-/* ---- principle checklist (stacked details / summary) ----
+/* ---- shared accordion (all content-area <details>) ----
+ *
+ * One card + one chevron + one animation for:
+ *   .content-check        number + title + lede (lesson 5 principles)
+ *   .expandable-card      number + title (lessons 1 / 3)
+ *   pymdownx `???`        title only (resources/genai.md)
  *
  * mkdocs-shadcn styles `.typography details` like a small admonition
  * (--text-sm, padding-block, SVG ::after chevron, hover underline) and
  * `.typography p:not(:first-child)` adds a 1.5rem top margin. Prefix
  * with `.typography` / `.md-typeset` so we beat those rules. Body copy
  * on this site is `body { font-size: 20px }`; match that, not --text-sm.
+ * Non-collapsible `!!!` admonitions are <div class="admonition"> — leave
+ * them alone.
  */
 
 .typography .content-check,
 .md-typeset .content-check,
-.content-check {
+.content-check,
+.typography .expandable-cards,
+.md-typeset .expandable-cards,
+.expandable-cards {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
@@ -851,41 +641,77 @@ body {
     font-size: 1em;
 }
 
-.typography .content-check__item,
-.md-typeset .content-check__item,
-.content-check__item {
+.typography details,
+.md-typeset details,
+.content-check__item,
+.expandable-card {
     display: block;
-    margin: 0;
+    margin: 1.25rem 0;
     padding: 0;
-    border: 1px solid var(--cm-rule);
+    border: 1px solid var(--sgbs-rule, var(--cm-rule));
     border-radius: 12px;
-    background: var(--cm-paper-deep);
+    background: var(--sgbs-paper-deep, var(--cm-paper-deep));
     overflow: hidden;
     font-size: 1em;
     line-height: inherit;
-    transition: border-color 0.15s ease;
+    color: var(--sgbs-ink, var(--cm-ink));
+    transition: border-color 0.28s ease, background-color 0.28s ease;
 }
 
-.typography .content-check__item *,
-.md-typeset .content-check__item *,
-.content-check__item * {
-    font-size: inherit;
+.typography .content-check details,
+.md-typeset .content-check details,
+.content-check details,
+.typography .expandable-cards details,
+.md-typeset .expandable-cards details,
+.expandable-cards details,
+.content-check__item,
+.expandable-card {
+    margin: 0;
 }
 
-.typography .content-check__item[open],
-.md-typeset .content-check__item[open],
-.content-check__item[open] {
-    border-color: var(--cm-vermilion);
-    background: var(--cm-paper);
+.typography details[open],
+.md-typeset details[open],
+.content-check__item[open],
+.expandable-card[open],
+.typography details.is-open,
+.md-typeset details.is-open,
+.expandable-card.is-open,
+.content-check__item.is-open {
+    border-color: var(--sgbs-vermilion, var(--cm-vermilion));
+    background: var(--sgbs-paper, var(--cm-paper));
 }
 
-/* Global details CSS caps open bodies at 1000px. Uncap the paragraph. */
-.typography .content-check__item[open] > *:not(summary),
-.md-typeset .content-check__item[open] > *:not(summary),
-.content-check__item[open] > *:not(summary) {
-    max-height: none;
-    opacity: 1;
-    overflow: visible;
+.typography details.sgbs-acc-js:not(.is-open),
+.md-typeset details.sgbs-acc-js:not(.is-open),
+.content-check__item.sgbs-acc-js:not(.is-open),
+.expandable-card.sgbs-acc-js:not(.is-open) {
+    border-color: var(--sgbs-rule, var(--cm-rule));
+    background: var(--sgbs-paper-deep, var(--cm-paper-deep));
+}
+
+.typography details > summary,
+.md-typeset details > summary,
+.content-check__summary,
+.expandable-card__summary {
+    display: flex;
+    align-items: center;
+    column-gap: 0.75rem;
+    position: relative;
+    padding: 0.85rem 1.1rem;
+    margin: 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    background: transparent;
+    font-family: var(--font-serif, var(--cm-serif));
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    color: var(--sgbs-ink, var(--cm-ink));
+    text-decoration: none;
+    text-decoration-line: none;
 }
 
 .typography .content-check__summary,
@@ -895,38 +721,45 @@ body {
     grid-template-columns: 1.6rem minmax(0, auto) minmax(0, 1fr) 1.25rem;
     grid-template-areas: "num title lede chev";
     align-items: center;
-    column-gap: 0.75rem;
     row-gap: 0.15rem;
-    position: relative;
-    padding: 0.85rem 1.1rem;
-    margin: 0;
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    background: transparent;
     font-weight: inherit;
-    text-decoration: none;
-    text-decoration-line: none;
+    letter-spacing: 0;
 }
 
-.typography .content-check__summary:hover,
-.typography .content-check__summary:focus,
-.typography .content-check__summary:focus-visible,
-.typography .content-check__summary:active,
-.typography .content-check__item[open] > .content-check__summary,
-.typography .content-check__item[open] > .content-check__summary:hover,
-.typography .content-check__item[open] > .content-check__summary:focus,
-.md-typeset .content-check__summary:hover,
-.md-typeset .content-check__summary:focus,
-.md-typeset .content-check__summary:focus-visible,
-.md-typeset .content-check__summary:active,
-.md-typeset .content-check__item[open] > .content-check__summary,
+.typography .expandable-card__summary,
+.md-typeset .expandable-card__summary,
+.expandable-card__summary {
+    display: grid;
+    grid-template-columns: 1.6rem minmax(0, 1fr) 1.25rem;
+    grid-template-areas: "num title chev";
+    align-items: center;
+    font-weight: inherit;
+    letter-spacing: 0;
+}
+
+.typography details > summary:hover,
+.typography details > summary:focus,
+.typography details > summary:focus-visible,
+.typography details > summary:active,
+.typography details[open] > summary,
+.typography details[open] > summary:hover,
+.typography details[open] > summary:focus,
+.typography details.is-open > summary,
+.md-typeset details > summary:hover,
+.md-typeset details > summary:focus,
+.md-typeset details > summary:focus-visible,
+.md-typeset details > summary:active,
+.md-typeset details[open] > summary,
 .content-check__summary:hover,
 .content-check__summary:focus,
 .content-check__summary:focus-visible,
 .content-check__summary:active,
-.content-check__item[open] > .content-check__summary {
+.content-check__item[open] > .content-check__summary,
+.expandable-card__summary:hover,
+.expandable-card__summary:focus,
+.expandable-card__summary:focus-visible,
+.expandable-card__summary:active,
+.expandable-card[open] > .expandable-card__summary {
     background: transparent;
     padding: 0.85rem 1.1rem;
     margin: 0;
@@ -935,61 +768,78 @@ body {
     text-decoration-line: none;
 }
 
-.typography .content-check__summary:focus-visible,
-.md-typeset .content-check__summary:focus-visible,
-.content-check__summary:focus-visible {
-    outline: 2px solid var(--cm-vermilion);
+.typography details > summary:focus-visible,
+.md-typeset details > summary:focus-visible,
+.content-check__summary:focus-visible,
+.expandable-card__summary:focus-visible {
+    outline: 2px solid var(--sgbs-vermilion, var(--cm-vermilion));
     outline-offset: -2px;
 }
 
-.typography .content-check__summary *,
-.md-typeset .content-check__summary *,
-.content-check__summary * {
+.typography details > summary *,
+.md-typeset details > summary *,
+.content-check__summary *,
+.expandable-card__summary * {
     text-decoration: none;
     text-decoration-line: none;
 }
 
-.typography .content-check__summary::-webkit-details-marker,
-.typography .content-check__summary::marker,
-.typography .content-check__summary::before,
-.md-typeset .content-check__summary::-webkit-details-marker,
-.md-typeset .content-check__summary::marker,
-.md-typeset .content-check__summary::before,
+.typography details > summary::-webkit-details-marker,
+.typography details > summary::marker,
+.typography details > summary::before,
+.md-typeset details > summary::-webkit-details-marker,
+.md-typeset details > summary::marker,
+.md-typeset details > summary::before,
 .content-check__summary::-webkit-details-marker,
 .content-check__summary::marker,
-.content-check__summary::before {
+.content-check__summary::before,
+.expandable-card__summary::-webkit-details-marker,
+.expandable-card__summary::marker,
+.expandable-card__summary::before {
     display: none;
     content: none;
 }
 
-.content-check__num {
+.content-check__num,
+.expandable-card__num {
     grid-area: num;
-    font-family: var(--cm-serif);
+    font-family: var(--font-serif, var(--cm-serif));
     font-weight: 700;
-    color: var(--cm-vermilion);
+    color: var(--sgbs-vermilion, var(--cm-vermilion));
     line-height: 1.2;
 }
 
 .typography .content-check__title,
 .md-typeset .content-check__title,
-.content-check__title {
+.content-check__title,
+.typography .expandable-card__title,
+.md-typeset .expandable-card__title,
+.expandable-card__title {
     grid-area: title;
     margin: 0;
-    font-family: var(--cm-serif);
+    font-family: var(--font-serif, var(--cm-serif));
     font-size: 1.05em;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1.35;
-    white-space: nowrap;
+    min-width: 0;
     text-decoration: none;
+}
+
+.typography .content-check__title,
+.md-typeset .content-check__title,
+.content-check__title {
+    white-space: nowrap;
 }
 
 .typography .content-check__lede,
 .md-typeset .content-check__lede,
 .content-check__lede {
     grid-area: lede;
-    color: var(--cm-ink-soft);
+    color: var(--sgbs-ink-soft, var(--cm-ink-soft));
     font-size: 0.95em;
+    font-weight: 400;
+    letter-spacing: 0;
     line-height: 1.5;
     min-width: 0;
     text-decoration: none;
@@ -999,57 +849,185 @@ body {
 /*
  * Theme `.typography details summary::after` is an absolutely positioned
  * SVG chevron with rotate:180deg when open — that beats a low-specificity
- * ▼/▲ and flips ▲ back to ▼. Kill it, then draw one in-flow triangle.
+ * triangle and flips it back. Kill it, then draw one in-flow triangle
+ * that rotates 180deg (and turns vermilion) when open.
  */
-.typography .content-check__summary::after,
-.md-typeset .content-check__summary::after,
-.content-check__summary::after {
-    grid-area: chev;
+.typography details > summary::after,
+.md-typeset details > summary::after,
+.content-check__summary::after,
+.expandable-card__summary::after {
     content: "";
     display: block;
+    flex-shrink: 0;
+    grid-area: chev;
     position: static;
     right: auto;
     top: auto;
     width: 0.5em;
     height: 0.5em;
-    margin: 0;
+    margin-left: auto;
     padding: 0;
     border: none;
-    background-color: var(--cm-ink-soft);
+    background-color: var(--sgbs-ink-soft, var(--cm-ink-soft));
     clip-path: polygon(50% 80%, 0 20%, 100% 20%);
     aspect-ratio: auto;
     rotate: none;
-    transform: none;
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+    transition: transform 0.28s ease, background-color 0.28s ease;
     justify-self: end;
     align-self: center;
 }
 
-.typography .content-check__item[open] > .content-check__summary::after,
-.md-typeset .content-check__item[open] > .content-check__summary::after,
-.content-check__item[open] > .content-check__summary::after {
+.typography details[open] > summary::after,
+.md-typeset details[open] > summary::after,
+.content-check__item[open] > .content-check__summary::after,
+.expandable-card[open] > .expandable-card__summary::after,
+.typography details.is-open > summary::after,
+.md-typeset details.is-open > summary::after,
+.content-check__item.is-open > .content-check__summary::after,
+.expandable-card.is-open > .expandable-card__summary::after {
     content: "";
-    background-color: var(--cm-vermilion);
-    clip-path: polygon(50% 20%, 100% 80%, 0 80%);
+    background-color: var(--sgbs-vermilion, var(--cm-vermilion));
     rotate: none;
-    transform: none;
+    transform: rotate(180deg);
+}
+
+.typography details.sgbs-acc-js:not(.is-open) > summary::after,
+.md-typeset details.sgbs-acc-js:not(.is-open) > summary::after,
+.content-check__item.sgbs-acc-js:not(.is-open) > .content-check__summary::after,
+.expandable-card.sgbs-acc-js:not(.is-open) > .expandable-card__summary::after {
+    background-color: var(--sgbs-ink-soft, var(--cm-ink-soft));
+    transform: rotate(0deg);
+}
+
+.typography details > :not(summary),
+.md-typeset details > :not(summary) {
+    margin-top: 0;
+    line-height: 1.75;
 }
 
 .typography .content-check__body,
 .md-typeset .content-check__body,
-.typography .content-check__item[open] > .content-check__body,
-.md-typeset .content-check__item[open] > .content-check__body,
-.content-check__body {
+.content-check__body,
+.typography .expandable-card__body,
+.md-typeset .expandable-card__body,
+.expandable-card__body {
     margin: 0;
-    padding: 0.7rem 1.1rem 0.9rem;
-    padding-left: calc(1.1rem + 1.6rem + 0.75rem);
-    border-top: 1px dashed var(--cm-rule);
     font-size: 1em;
     font-weight: inherit;
     line-height: 1.75;
     text-decoration: none;
 }
 
+.typography details > summary + *,
+.md-typeset details > summary + *,
+.content-check__body,
+.expandable-card__body {
+    padding: 0.7rem 1.1rem 0.9rem;
+    border-top: 1px dashed var(--sgbs-rule, var(--cm-rule));
+}
+
+.typography details > summary + * ~ *,
+.md-typeset details > summary + * ~ * {
+    padding: 0 1.1rem 0.9rem;
+    border-top: none;
+}
+
+.typography .content-check__body,
+.md-typeset .content-check__body,
+.content-check__body,
+.typography .expandable-card__body,
+.md-typeset .expandable-card__body,
+.expandable-card__body {
+    padding-left: calc(1.1rem + 1.6rem + 0.75rem);
+}
+
+.expandable-card__body p {
+    margin: 0 0 0.6rem;
+}
+
+.expandable-card__body p:last-child {
+    margin-bottom: 0;
+}
+
+.expandable-card__body ul {
+    margin: 0.35rem 0 0;
+    padding-left: 1.5rem;
+}
+
+.expandable-card__body li {
+    margin-bottom: 0.35rem;
+}
+
+.expandable-card__body li:last-child {
+    margin-bottom: 0;
+}
+
+@supports (interpolate-size: allow-keywords) {
+    .typography details,
+    .md-typeset details,
+    .content-check__item,
+    .expandable-card {
+        interpolate-size: allow-keywords;
+    }
+
+    .typography details::details-content,
+    .md-typeset details::details-content,
+    .content-check__item::details-content,
+    .expandable-card::details-content {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+            height 0.28s ease,
+            opacity 0.28s ease,
+            content-visibility 0.28s allow-discrete;
+    }
+
+    .typography details[open]::details-content,
+    .md-typeset details[open]::details-content,
+    .content-check__item[open]::details-content,
+    .expandable-card[open]::details-content {
+        height: auto;
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .typography details,
+    .md-typeset details,
+    .content-check__item,
+    .expandable-card,
+    .typography details > summary::after,
+    .md-typeset details > summary::after,
+    .content-check__summary::after,
+    .expandable-card__summary::after,
+    .typography details::details-content,
+    .md-typeset details::details-content {
+        transition: none;
+    }
+}
+
 @media (max-width: 600px) {
+    .typography details > summary,
+    .md-typeset details > summary,
+    .content-check__summary,
+    .expandable-card__summary,
+    .typography details > summary:hover,
+    .typography details > summary:focus,
+    .typography details > summary:focus-visible,
+    .typography details[open] > summary,
+    .md-typeset details > summary:hover,
+    .content-check__summary:hover,
+    .content-check__summary:focus-visible,
+    .content-check__item[open] > .content-check__summary,
+    .expandable-card__summary:hover,
+    .expandable-card__summary:focus-visible,
+    .expandable-card[open] > .expandable-card__summary {
+        padding: 0.75rem 0.95rem;
+    }
+
     .typography .content-check__summary,
     .md-typeset .content-check__summary,
     .content-check__summary {
@@ -1058,21 +1036,14 @@ body {
             "num title chev"
             "num lede chev";
         align-items: start;
-        padding: 0.75rem 0.95rem;
         row-gap: 0.2rem;
     }
 
-    .typography .content-check__summary:hover,
-    .typography .content-check__summary:focus,
-    .typography .content-check__summary:focus-visible,
-    .typography .content-check__item[open] > .content-check__summary,
-    .md-typeset .content-check__summary:hover,
-    .md-typeset .content-check__summary:focus-visible,
-    .content-check__summary:hover,
-    .content-check__summary:focus,
-    .content-check__summary:focus-visible,
-    .content-check__item[open] > .content-check__summary {
-        padding: 0.75rem 0.95rem;
+    .typography .expandable-card__summary,
+    .md-typeset .expandable-card__summary,
+    .expandable-card__summary {
+        grid-template-columns: 1.5rem minmax(0, 1fr) 1.25rem;
+        align-items: start;
     }
 
     .typography .content-check__title,
@@ -1081,20 +1052,145 @@ body {
         white-space: normal;
     }
 
-    .typography .content-check__summary::after,
-    .md-typeset .content-check__summary::after,
-    .content-check__summary::after {
+    .typography details > summary::after,
+    .md-typeset details > summary::after,
+    .content-check__summary::after,
+    .expandable-card__summary::after {
         align-self: start;
         margin-top: 0.35em;
     }
 
+    .typography details > summary + *,
+    .md-typeset details > summary + *,
+    .content-check__body,
+    .expandable-card__body {
+        padding: 0.6rem 0.95rem 0.8rem;
+    }
+
+    .typography details > summary + * ~ *,
+    .md-typeset details > summary + * ~ * {
+        padding: 0 0.95rem 0.8rem;
+    }
+
     .typography .content-check__body,
     .md-typeset .content-check__body,
-    .typography .content-check__item[open] > .content-check__body,
-    .content-check__body {
-        padding: 0.6rem 0.95rem 0.8rem;
+    .content-check__body,
+    .typography .expandable-card__body,
+    .md-typeset .expandable-card__body,
+    .expandable-card__body {
         padding-left: calc(0.95rem + 1.5rem + 0.75rem);
     }
+}
+
+/*
+ * Beat mkdocs-shadcn `article details` (padding-block, --text-sm,
+ * border-bottom, SVG ::after, hover underline). Those rules are
+ * equally or more specific than `.typography details`.
+ */
+article details,
+article details:not(:first-child),
+article details:not(:first-of-type) {
+    margin: 1.25rem 0;
+    padding: 0;
+    border: 1px solid var(--sgbs-rule, var(--cm-rule));
+    border-radius: 12px;
+    border-bottom-style: solid;
+    background: var(--sgbs-paper-deep, var(--cm-paper-deep));
+    overflow: hidden;
+    font-size: 1em;
+    line-height: inherit;
+}
+
+article .content-check details,
+article .expandable-cards details {
+    margin: 0;
+}
+
+article details[open],
+article details.is-open {
+    border-color: var(--sgbs-vermilion, var(--cm-vermilion));
+    background: var(--sgbs-paper, var(--cm-paper));
+}
+
+article details.sgbs-acc-js:not(.is-open) {
+    border-color: var(--sgbs-rule, var(--cm-rule));
+    background: var(--sgbs-paper-deep, var(--cm-paper-deep));
+}
+
+article details summary,
+article details > summary {
+    padding: 0.85rem 1.1rem;
+    font-family: var(--font-serif, var(--cm-serif));
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
+article details summary:hover,
+article details summary:focus,
+article details[open] summary,
+article details[open] summary:hover {
+    text-decoration: none;
+    text-decoration-line: none;
+    background: transparent;
+}
+
+article details summary:after,
+article details > summary::after {
+    content: "";
+    display: block;
+    position: static;
+    right: auto;
+    width: 0.5em;
+    height: 0.5em;
+    margin-left: auto;
+    padding: 0;
+    border: none;
+    background-color: var(--sgbs-ink-soft, var(--cm-ink-soft));
+    clip-path: polygon(50% 80%, 0 20%, 100% 20%);
+    filter: none;
+    rotate: none;
+    transform: rotate(0deg);
+    transition: transform 0.28s ease, background-color 0.28s ease;
+}
+
+article details[open] summary:after,
+article details[open] > summary::after,
+article details.is-open > summary::after {
+    content: "";
+    background-color: var(--sgbs-vermilion, var(--cm-vermilion));
+    rotate: none;
+    transform: rotate(180deg);
+    filter: none;
+}
+
+article details.sgbs-acc-js:not(.is-open) summary:after,
+article details.sgbs-acc-js:not(.is-open) > summary::after {
+    background-color: var(--sgbs-ink-soft, var(--cm-ink-soft));
+    transform: rotate(0deg);
+}
+
+article details[open] > p,
+article details[open] > *:not(summary) {
+    padding-block: 0;
+    font-size: 1em;
+    line-height: 1.75;
+    font-weight: inherit;
+    text-decoration: none;
+}
+
+article details[open] > .content-check__body,
+article details[open] > .expandable-card__body,
+article details[open] > summary + * {
+    padding: 0.7rem 1.1rem 0.9rem;
+}
+
+article details[open] > .content-check__body,
+article details[open] > .expandable-card__body {
+    padding-left: calc(1.1rem + 1.6rem + 0.75rem);
 }
 
 /* ---- vertical activity timeline (dots + connecting line) ---- */
@@ -1770,7 +1866,7 @@ article.typography table tbody tr:hover,
   --ring: var(--sgbs-vermilion);
 
   /* Legacy mkdocs-material token names still referenced by some older
-     components (role-card 職責/每週功課 labels, expandable-card headings,
+     components (role-card 職責/每週功課 labels, accordion headings,
      homework cards). The vars are undefined in this theme, so their
      light-only rgba(0,0,0,…)/#fff fallbacks were being used — invisible
      on dark paper. Alias them to the scripture palette; since .dark
@@ -1877,16 +1973,11 @@ body {
   box-shadow: none;
 }
 
-/* Expandable / role cards follow the same surface. */
-.expandable-card,
+/* Role cards follow the same surface. Accordions share the card
+ * look in the shared-accordion block above. */
 .role-card {
   border-color: var(--sgbs-rule);
   background: var(--sgbs-paper-deep);
-}
-
-/* The details/summary hover from the legacy rules reads as ink-on-paper. */
-details summary:hover {
-  background-color: rgba(var(--sgbs-ink-rgb), 0.06);
 }
 
 /*
@@ -1939,13 +2030,10 @@ details summary:hover {
 /* Scripture slips inside discussion cards: align edge-to-edge with the
    card (not the question gutter) and quiet the shadow — the card already
    provides elevation. */
-.typography .expandable-card__body:has(> .scripture) {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-.typography .expandable-card.is-open .expandable-card__body:has(> .scripture) {
-  padding: 1rem 1.25rem 1.25rem;
+.typography .expandable-card__body:has(> .scripture),
+.typography .expandable-card[open] > .expandable-card__body:has(> .scripture),
+.typography .expandable-card.is-open > .expandable-card__body:has(> .scripture) {
+  padding: 0.7rem 1.1rem 0.9rem;
 }
 
 .typography .expandable-card blockquote.scripture {
@@ -1956,9 +2044,9 @@ details summary:hover {
 
 @media (max-width: 600px) {
   .typography .expandable-card__body:has(> .scripture),
-  .typography .expandable-card.is-open .expandable-card__body:has(> .scripture) {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .typography .expandable-card[open] > .expandable-card__body:has(> .scripture),
+  .typography .expandable-card.is-open > .expandable-card__body:has(> .scripture) {
+    padding: 0.6rem 0.95rem 0.8rem;
   }
 }
 

@@ -153,10 +153,11 @@ renders consistently everywhere:
   paper slip in `docs/stylesheets/extra.css` (light/dark via the
   `--sgbs-*` tokens).
 - Inside raw-HTML containers (e.g. `expandable-card__body`), add
-  `markdown="1"` to the wrapping div **and to every raw-HTML ancestor up
-  to the top of the HTML block** (`expandable-card`, `expandable-cards`) —
-  md_in_html never processes a marked element buried inside unmarked raw
-  HTML — and keep a blank line between the div edge and each block.
+  `markdown="1"` to the wrapping element **and to every raw-HTML ancestor
+  up to the top of the HTML block** (`expandable-card` `<details>`,
+  `expandable-cards`) — md_in_html never processes a marked element
+  buried inside unmarked raw HTML — and keep a blank line between the
+  element edge and each block.
 
 ### Content decks (`.content-deck`)
 
@@ -176,23 +177,48 @@ Shared vanilla HTML/JS pattern (`docs/javascripts/content-deck.js`, wired in
 - Shows the full set in authored order (no random sampling)
 - Traditional Chinese; keep each card scannable on its own
 
-### Principle checklist (`.content-check`)
+### Shared accordion (`<details>`)
 
-CSS-only stacked accordion (`<details>` / `<summary>`, styles in
-`docs/stylesheets/extra.css`; no extra JS). Use when a short list of named
-principles should be scanned as a checklist and opened for the full
-paragraph (e.g. 營造小組氛圍的核心原則).
+One card look and one open/close animation for every collapsible
+`<details>` on the docs site. Styles live in `docs/stylesheets/extra.css`
+(the shared accordion block). Progressive-enhancement JS lives in
+`docs/javascripts/content-accordion.js` (wired in `mkdocs.yml`); it
+re-inits on MkDocs instant navigation via `document$` when present.
 
-- Markup: `.content-check` > one `.content-check__item` (`<details>`) per
-  row, each with `.content-check__summary` (`.content-check__num` +
-  `.content-check__title` + `.content-check__lede`) and
-  `.content-check__body`
-- Collapsed row: number, title, one verbatim key line, chevron. Open row:
-  dashed divider then the full original paragraph. Several rows may be
-  open at once; none start open. Native details/summary handles click,
-  Enter/Space, and no-JS.
-- Traditional Chinese; keep body text and the key line verbatim from the
-  source paragraph (do not paraphrase the lede)
+Look (all variants): rounded card, dark/paper-deep fill, bold serif
+title, small triangle chevron on the right that rotates and turns
+vermilion when open, vermilion border when open, dashed divider, body
+text at the page size (~20px), no hover underline. Several rows may
+stay open at once.
+
+Animation: ~280ms ease height + fade. Browsers that support
+`::details-content` + `interpolate-size` animate in CSS. Everyone else
+(including Firefox / Zen) gets a Web Animations API height fallback that
+keeps the `open` attribute until the close animation finishes. No-JS
+keeps native `<details>` with no animation. `prefers-reduced-motion`
+turns the animation off.
+
+Variants — same base, extra slots only when needed:
+
+- **Principle checklist (`.content-check`)**: stacked list of
+  `.content-check__item` (`<details>`). Summary is number + title +
+  lede. Use when a short list of named principles should be scanned
+  and opened for the full paragraph (e.g. 營造小組氛圍的核心原則).
+  None start open. Keep body text and the lede verbatim from the
+  source paragraph.
+- **Expandable card (`.expandable-cards` / `.expandable-card`)**: same
+  stacked list, but the summary is number + title only (no lede, no
+  「展開」 label). Converted to `<details>` so it shares the script.
+  Keep `markdown="1"` on the list, the item, and the body when the
+  body contains scripture shortcodes.
+- **Collapsible admonitions (`???` / `???+`)**: title only. Preserve
+  open-by-default (`???+`). Do not restyle non-collapsible `!!!`
+  admonitions — those are `<div class="admonition">`, not accordions.
+
+Not accordions (leave them): `.content-panels` (tabs), `.content-deck`
+(paginated cards), `.content-quiz` (question flip-through),
+`.strongs-hover` (lexicon panel), `.chinese-toggle` (language),
+`.role-card` and `.content-timeline` (static).
 
 ### Activity timeline (`.content-timeline`)
 

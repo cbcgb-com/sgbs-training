@@ -38,32 +38,29 @@
 
 <div class="expandable-cards" markdown="1">
 
-<div class="expandable-card" markdown="1">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card" markdown="1">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">1</span>
 <span class="expandable-card__title">我們的使命是什麼？</span>
-<span class="expandable-card__action">查看經文</span>
-</button>
+</summary>
 <div class="expandable-card__body" markdown="1">
 
 /// scripture | 馬太福音28章16-20節
 十一個門徒往加利利去，到了耶穌約定的山上。他們見了耶穌就拜他，然而還有人疑惑。耶穌進前來，對他們說：『天上地下所有的權柄都賜給我了。所以，你們要去，使萬民作我的門徒，奉父、子、聖靈的名給他們施洗或譯：給他們施洗，歸於父、子、聖靈的名。凡我所吩咐你們的，都教訓他們遵守，我就常與你們同在，直到世界的末了。』
 ///
 
-
 /// scripture | 創世記12章1-3節
 耶和華對亞伯蘭說：『你要離開本地、本族、父家，往我所要指示你的地去。我必叫你成為大國。我必賜福給你，叫你的名為大；你也要叫別人得福。為你祝福的，我必賜福與他；那咒詛你的，我必咒詛他。地上的萬族都要因你得福。』
 ///
 
 </div>
-</div>
+</details>
 
-<div class="expandable-card" markdown="1">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card" markdown="1">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">2</span>
 <span class="expandable-card__title">對於查經，我們可以學習的模範是什麼？</span>
-<span class="expandable-card__action">查看經文</span>
-</button>
+</summary>
 <div class="expandable-card__body" markdown="1">
 
 /// scripture | 使徒行傳17章11節
@@ -71,47 +68,43 @@
 ///
 
 </div>
-</div>
+</details>
 
-<div class="expandable-card" markdown="1">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card" markdown="1">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">3</span>
 <span class="expandable-card__title">查經的用處在哪裡？</span>
-<span class="expandable-card__action">查看經文</span>
-</button>
+</summary>
 <div class="expandable-card__body" markdown="1">
 
 /// scripture | 提摩太后書3章16節
 聖經都是上帝所默示的，凡上帝所默示的聖經，於教訓、督責、使人歸正、教導人學義都是有益的...
 ///
 
-
 /// scripture | 腓立比書2章14-16節
 ...凡所行的，都不要發怨言，起爭論，使你們無可指摘，誠實無偽，在這彎曲悖謬的世代作上帝無瑕疵的兒女。你們顯在這世代中，好像明光照耀，將生命的道表明出來...
 ///
 
 </div>
-</div>
+</details>
 
-<div class="expandable-card" markdown="1">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card" markdown="1">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">4</span>
 <span class="expandable-card__title">作為同工，我們對自己可以持有什麼樣的標準？</span>
-<span class="expandable-card__action">查看經文</span>
-</button>
+</summary>
 <div class="expandable-card__body" markdown="1">
 
 /// scripture | 腓立比書2章14-16節
 ...凡所行的，都不要發怨言，起爭論，使你們無可指摘，誠實無偽，在這彎曲悖謬的世代作上帝無瑕疵的兒女。你們顯在這世代中，好像明光照耀，將生命的道表明出來...
 ///
 
-
 /// scripture | 歌羅西書3章16節
 當用各樣的智慧，把基督的道理豐豐富富地存在心裡，用詩章、頌詞、靈歌，彼此教導，互相勸戒，心被恩感，歌頌上帝。
 ///
 
 </div>
-</div>
+</details>
 
 </div>
 
@@ -133,12 +126,11 @@
 
 <div class="expandable-cards">
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">1</span>
 <span class="expandable-card__title">什麼樣的小組查經是『好』的？特質有哪些？</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <p>歷屆從帶領同工們的答覆中得到的答案基本上包括：</p>
 <ul>
@@ -147,7 +139,7 @@
 <li>帶領者與同工們會一同關注氣氛，盡量營造既輕鬆又認真的查經氣氛。</li>
 </ul>
 </div>
-</div>
+</details>
 
 </div>
 
@@ -167,40 +159,37 @@
 
 <div class="expandable-cards">
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">1</span>
 <span class="expandable-card__title">心理預備</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <ul>
 <li>我願意裝備他人，將從上帝的話語中所學到的與其他門徒一同分享，讓他們也受益。</li>
 <li>我願意跟從使命，與其他門徒一同走天路，為耶穌留下的使命一同勞碌。</li>
 </ul>
 </div>
-</div>
+</details>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">2</span>
 <span class="expandable-card__title">知識預備</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <ul>
 <li>我需要理解聖經概論，有夠廣的背景知識，認識書卷之間的關係以及聖經的主要脈絡。</li>
 <li>我也需要認識耶穌，祂來世上的生、死、復活之目的，以及祂所教導的一切。</li>
 </ul>
 </div>
-</div>
+</details>
 
-<div class="expandable-card">
-<button type="button" class="expandable-card__header" aria-expanded="false">
+<details class="expandable-card">
+<summary class="expandable-card__summary">
 <span class="expandable-card__num">3</span>
 <span class="expandable-card__title">技術預備</span>
-<span class="expandable-card__action">展開</span>
-</button>
+</summary>
 <div class="expandable-card__body">
 <ul>
 <li>我需要給大家什麼樣的背景知識來理解今天經文的內容？</li>
@@ -211,7 +200,7 @@
 <li>最後，我在禱告上的裝備要如何做得更造就人？</li>
 </ul>
 </div>
-</div>
+</details>
 
 </div>
 
