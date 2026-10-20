@@ -344,8 +344,10 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
   課堂安排 按週次 layout (see `apps/roster/docs/designs/homework/LLD.md`)
 - `apps/roster/convex/feedback.ts` - 小組查經帶領訓練反思: one row per
   student per quarter (the original Google Form's four free-text
-  questions); student upsert + instructor list (see
-  `apps/roster/docs/designs/feedback/LLD.md`)
+  questions); student upsert + instructor list + internal
+  `importFromGoogleForm` batch (historical sheet rows; `npx convex
+  run`, never the browser). See
+  `apps/roster/docs/designs/feedback/LLD.md`
 - `apps/roster/src/Feedback.tsx` - Student form at `/feedback` (謝謝
   resting state, 修改回覆) plus the 我的資料 prompt slip
 - `apps/roster/src/FeedbackList.tsx` - Instructor 回饋 tab
@@ -356,6 +358,9 @@ See `apps/roster/docs/designs/authentication/LLD.md`.
   against a dev Convex deployment
 - `apps/roster/scripts/test-feedback-fields.mjs` - Unit tests for the
   shared Google Form question helpers (no Convex)
+- `apps/roster/scripts/test-feedback-import.mjs` - Unit tests for the
+  Google Form import planner (inserted / skip / conflict / dryRun;
+  no Convex)
 - `apps/roster/scripts/test-withdrawal.mjs` - End-to-end withdrawal suite
   (runs against a dev Convex deployment)
 - `apps/roster/scripts/test-attendance.mjs` - End-to-end attendance

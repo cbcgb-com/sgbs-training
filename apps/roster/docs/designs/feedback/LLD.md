@@ -1,6 +1,7 @@
 # End-of-term Feedback (小組查經帶領訓練反思) — Low-Level Design
 
 **Created**: 2026-10-18
+**Updated**: 2026-10-20
 **HLD Link**: ../../high-level-design.md
 
 ## Overview
@@ -41,10 +42,15 @@ New table `feedback` in `convex/schema.ts`:
 | `encouragement` | string | Q4 a word for other new leaders |
 | `submittedAt` | number | epoch ms; set on first insert |
 | `updatedAt` | number | epoch ms; refreshed on every write |
+| `source` | optional `"googleForm"` | set on imported rows; absent = in-app |
+| `sourceResponseKey` | optional string | stable key per Google sheet row |
 
 Indexes: `by_quarter` (`quarter`), `by_student` (`studentId`),
-`by_student_quarter` (`studentId`, `quarter`). Convex has no unique
-constraint; one-row-per-(student, quarter) is enforced in the upsert.
+`by_student_quarter` (`studentId`, `quarter`),
+`by_sourceResponseKey` (`sourceResponseKey`). Convex has no unique
+constraint; one-row-per-(student, quarter) is enforced in the upsert
+and in the import. Identity stays on `studentId` — the table does not
+store name or email.
 
 The four answer keys are ASCII (Convex constraint). Labels live in
 `src/feedbackFields.ts` — the same strings as the Google Form, Traditional
@@ -61,8 +67,11 @@ Title: **小組查經帶領訓練反思**
 
 Shared validators in `src/feedbackFields.ts` (`parseFeedbackAnswers`) trim
 each answer, reject blanks (`請填寫：…`), and cap length at 2000
-characters (`回覆請控制在二千字以內`). The Convex mutation and the
-unit script both call that helper.
+characters (`回覆請控制在二千字以內`). The student submit mutation and
+the unit script both call that helper. The CLI import uses
+`parseImportedFeedbackAnswers`, which keeps the same trim / cap / required
+rules except that `courseImprovements` may be empty when
+`quarter === "2025春季"` (that question was not on the form then).
 
 ## Backend surface (`convex/feedback.ts`)
 
@@ -108,6 +117,57 @@ have the roster). Sorted by `submittedAt` descending. Missing student
 rows (deleted) still appear with empty name fields so a reflection is
 never silently dropped.
 
+### `feedback:importFromGoogleForm` (internal mutation)
+
+One-time, idempotent import of historical Google Form responses
+(quarters `2025春季`, `2025秋季`, `2026春季`) into the same `feedback`
+table the `/feedback` page already reads. Internal — the browser
+cannot call it. The maintainer runs a batch after Eric approves:
+
+```bash
+npx convex run --prod feedback:importFromGoogleForm '{
+  "dryRun": true,
+  "rows": [{
+    "sourceResponseKey": "…",
+    "studentId": "j57…",
+    "quarter": "2025秋季",
+    "submittedAt": 1734300000000,
+    "newPractice": "…",
+    "leadingFocus": "…",
+    "courseImprovements": "…",
+    "encouragement": "…"
+  }]
+}'
+```
+
+Args: `{ rows: Array<{ sourceResponseKey, studentId, quarter,
+submittedAt, newPractice, leadingFocus, courseImprovements,
+encouragement }>, dryRun?: boolean }`. Email is used only offline to
+match a sheet row to a `studentId` and is never stored.
+
+Per row, in order:
+
+1. Same `sourceResponseKey` already in the table →
+   `skipped_existing` (re-run is a no-op).
+2. Student missing, or `student.quarter !== quarter` →
+   `error_student_quarter`.
+3. That student already has a `feedback` row for the quarter
+   (in-app or an earlier import with a different key) → `conflict`.
+   The existing row is never overwritten.
+4. Answers fail `parseImportedFeedbackAnswers` → `error_validation`.
+5. Otherwise insert with `source: "googleForm"`,
+   `submittedAt = updatedAt =` the sheet timestamp (so the list does
+   not show 「改於 …」), and return `inserted`.
+
+`dryRun: true` reports the same per-row outcomes (including in-batch
+skip / conflict) and writes nothing. The summary is
+`{ inserted, skipped_existing, conflict, errors, results }`.
+
+This path supersedes the earlier "out of scope: production seeding /
+past quarters" note. Student submit is unchanged: it still requires
+all four answers and still writes only the caller's current-quarter
+row.
+
 ## URL and UI
 
 The app is a tabbed SPA, not a path router. `/feedback` is the
@@ -124,8 +184,10 @@ the existing guest sheet (報名／登入); after sign-in they stay on
   returns to the prefilled form. Resting state on a later visit is
   also 謝謝 if a row exists.
 - **Instructor** (`FeedbackList.tsx`): 回饋 tab, quarter filter,
-  one slip per response with the four answers. Empty state
-  本季尚未收到反思.
+  one slip per response with the four answers. Empty
+  `courseImprovements` shows 「（當期表單無此題）」 in muted text
+  (the 2025春季 form had no Q3). Empty state 本季尚未收到反思.
+  Imported rows carry no extra visible label.
 - **Prompt**: a small slip on 我的資料 during/after the last lesson
   (`showPrompt` or an existing response). The 回饋 tab itself appears
   for students only then (or when they already answered, or when they
@@ -137,8 +199,21 @@ the existing guest sheet (報名／登入); after sign-in they stay on
 - Rating scales, NPS, homework-load, or any question not on the
   original Google Form
 - Export / CSV (instructors read in-app; a dump can be a later CLI)
-- Writing feedback for another person, or for a past quarter
-- Production seeding of real student responses
+- Student or instructor UI that writes feedback for another person
+  (the CLI import is the only path that names a `studentId`)
+- A second import after the historical 30 rows are in (re-running
+  the same keys stays a no-op)
+
+## Testing
+
+`scripts/test-feedback-fields.mjs` covers the shared question helpers
+and the import-only empty-`courseImprovements` rule (2025春季 vs later
+quarters; student submit still requires all four).
+`scripts/test-feedback-import.mjs` covers the batch planner:
+inserted, idempotent re-run, conflict, student/quarter mismatch, the
+2025春季 blank-Q3 exception, and dryRun writing nothing.
+`scripts/test-feedback.mjs` is the existing student-submit E2E against
+the dev deployment.
 
 ## Related Documents
 

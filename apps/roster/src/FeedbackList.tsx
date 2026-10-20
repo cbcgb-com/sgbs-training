@@ -2,7 +2,12 @@ import { useMemo, useState } from "react";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { CURRENT_QUARTER, QUARTERS } from "./constants";
-import { FEEDBACK_QUESTIONS, FEEDBACK_TITLE } from "./feedbackFields";
+import {
+  FEEDBACK_QUESTIONS,
+  FEEDBACK_TITLE,
+  displayFeedbackAnswer,
+  isAbsentFormQuestion,
+} from "./feedbackFields";
 import { zhDate } from "./withdrawal";
 
 // Instructor list of 小組查經帶領訓練反思. Quarter filter; each slip is
@@ -76,8 +81,14 @@ export default function FeedbackList() {
                     <dt className="font-serif-tc font-bold tracking-[0.1em] text-ink">
                       {q.label}
                     </dt>
-                    <dd className="mt-0.5 whitespace-pre-wrap text-[15px] leading-relaxed text-ink-soft">
-                      {row[q.key]}
+                    <dd
+                      className={
+                        isAbsentFormQuestion(q.key, row[q.key])
+                          ? "mt-0.5 text-[15px] leading-relaxed text-ink-soft italic"
+                          : "mt-0.5 whitespace-pre-wrap text-[15px] leading-relaxed text-ink-soft"
+                      }
+                    >
+                      {displayFeedbackAnswer(q.key, row[q.key])}
                     </dd>
                   </div>
                 ))}

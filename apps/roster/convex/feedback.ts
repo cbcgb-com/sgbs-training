@@ -1,11 +1,14 @@
-import { mutation, query } from "./_generated/server";
-import type { QueryCtx } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
+import type { MutationCtx, QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
+import type { Id } from "./_generated/dataModel";
 import { CURRENT_QUARTER } from "../src/constants";
 import {
+  importFeedbackFromGoogleForm,
   parseFeedbackAnswers,
   shouldShowFeedbackPrompt,
   type FeedbackAnswers,
+  type ImportFeedbackWrite,
 } from "../src/feedbackFields";
 import { readTodayNy, studentWithdrawalStatus } from "./attendanceStatus";
 import { requireCurrentStudent, requireInstructor } from "./students";
@@ -154,4 +157,86 @@ export const byQuarter = query({
     );
     return enriched.sort((a, b) => b.submittedAt - a.submittedAt);
   },
+});
+
+const importRowValidator = v.object({
+  sourceResponseKey: v.string(),
+  studentId: v.id("students"),
+  quarter: v.string(),
+  submittedAt: v.number(),
+  newPractice: v.string(),
+  leadingFocus: v.string(),
+  courseImprovements: v.string(),
+  encouragement: v.string(),
+});
+
+function googleFormStore(ctx: MutationCtx) {
+  return {
+    async findBySourceResponseKey(key: string) {
+      const existing = await ctx.db
+        .query("feedback")
+        .withIndex("by_sourceResponseKey", (q) =>
+          q.eq("sourceResponseKey", key),
+        )
+        .first();
+      return existing !== null;
+    },
+    async getStudentQuarter(studentId: string) {
+      const student = await ctx.db.get(studentId as Id<"students">);
+      if (!student) return null;
+      return student.quarter ?? null;
+    },
+    async findByStudentQuarter(studentId: string, quarter: string) {
+      const existing = await ctx.db
+        .query("feedback")
+        .withIndex("by_student_quarter", (q) =>
+          q.eq("studentId", studentId as Id<"students">).eq("quarter", quarter),
+        )
+        .unique();
+      return existing !== null;
+    },
+    async insert(row: ImportFeedbackWrite) {
+      await ctx.db.insert("feedback", {
+        studentId: row.studentId as Id<"students">,
+        quarter: row.quarter,
+        newPractice: row.newPractice,
+        leadingFocus: row.leadingFocus,
+        courseImprovements: row.courseImprovements,
+        encouragement: row.encouragement,
+        submittedAt: row.submittedAt,
+        updatedAt: row.updatedAt,
+        source: row.source,
+        sourceResponseKey: row.sourceResponseKey,
+      });
+    },
+  };
+}
+
+// One-time historical Google Form import. Internal — the browser
+// cannot call it. The maintainer runs a batch after matching sheet
+// rows to studentIds offline (email is the match key and is never
+// stored). Re-running the same sourceResponseKey is a no-op.
+//
+//   npx convex run --prod feedback:importFromGoogleForm '{
+//     "dryRun": true,
+//     "rows": [{
+//       "sourceResponseKey": "…",
+//       "studentId": "j57…",
+//       "quarter": "2025秋季",
+//       "submittedAt": 1734300000000,
+//       "newPractice": "…",
+//       "leadingFocus": "…",
+//       "courseImprovements": "…",
+//       "encouragement": "…"
+//     }]
+//   }'
+export const importFromGoogleForm = internalMutation({
+  args: {
+    rows: v.array(importRowValidator),
+    dryRun: v.optional(v.boolean()),
+  },
+  handler: async (ctx, { rows, dryRun }) =>
+    importFeedbackFromGoogleForm(googleFormStore(ctx), rows, {
+      dryRun: dryRun === true,
+    }),
 });
