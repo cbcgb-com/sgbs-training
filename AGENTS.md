@@ -188,8 +188,10 @@ re-inits on MkDocs instant navigation via `document$` when present.
 Look (all variants): rounded card, dark/paper-deep fill, bold serif
 title, small triangle chevron on the right that rotates and turns
 vermilion when open, vermilion border when open, dashed divider, body
-text at the page size (~20px), no hover underline. Several rows may
-stay open at once.
+text at the page size (~20px, including every `p` / `li` /
+`blockquote` inside `???` / `???+` admonitions — the theme's
+`--text-sm` 14px must not win), no hover underline. Several rows may
+stay open at once. Code/pre may stay monospace but not tiny.
 
 Animation: ~280ms ease height + fade. Browsers that support
 `::details-content` + `interpolate-size` animate in CSS. Everyone else

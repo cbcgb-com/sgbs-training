@@ -1182,6 +1182,40 @@ article details[open] > *:not(summary) {
     text-decoration: none;
 }
 
+/*
+ * Theme `article details` / `article details[open]>p` set
+ * font-size: var(--text-sm) (.875rem = 14px). `1em` on those same
+ * selectors still computes to 14px if the details box itself lost
+ * the size fight. Pin body copy to the page size (body { 20px })
+ * with `.typography` so every ??? / ???+ paragraph, list, and
+ * quote matches the other accordions. Scripture refs stay 0.84em.
+ */
+article .typography details,
+article .typography details:not(:first-child),
+article .typography details:not(:first-of-type),
+article details.info {
+    font-size: 20px;
+}
+
+article .typography details p:not(.scripture__ref),
+article .typography details li,
+article .typography details dt,
+article .typography details dd,
+article .typography details blockquote,
+article .typography details[open] > p,
+article .typography details[open] p:not(.scripture__ref),
+article .typography details[open] li,
+article .typography details[open] blockquote {
+    font-size: 20px;
+    line-height: 1.75;
+}
+
+article .typography details pre,
+article .typography details pre code,
+article .typography details code {
+    font-size: 0.9em;
+}
+
 article details[open] > .content-check__body,
 article details[open] > .expandable-card__body,
 article details[open] > summary + * {
