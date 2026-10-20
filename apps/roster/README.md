@@ -179,12 +179,19 @@ The original Google Form of that title now lives in the roster at
 per student per quarter in the `feedback` table; the signed-in
 student identity is the respondent (no typed email, no email-a-copy).
 Students edit their own row while `CURRENT_QUARTER` is still their
-season. Instructors read the list on the 回饋 tab. See
+season. Instructors read the list on the 回饋 tab. A one-time CLI
+import (`feedback:importFromGoogleForm`, internal) loads historical
+sheet responses (2025春季 / 2025秋季 / 2026春季) into the same table
+after a dry run; email is used only offline to match a `studentId`
+and is never stored. Empty `courseImprovements` on a 2025春季 row
+(that form had no Q3) renders as 「（當期表單無此題）」. See
 [docs/designs/feedback/LLD.md](docs/designs/feedback/LLD.md).
 
 E2E walkthrough (dev deployment, seeded demo data): `node
 scripts/test-feedback.mjs`. Field helpers (no Convex): `node
 --experimental-strip-types scripts/test-feedback-fields.mjs`.
+Import planner (no Convex): `node --experimental-strip-types
+scripts/test-feedback-import.mjs`.
 
 ## Field-name note
 

@@ -7,7 +7,10 @@ import {
   FEEDBACK_QUESTIONS,
   FEEDBACK_TEXT_MAX,
   FEEDBACK_TITLE,
+  FORM_ABSENT_QUESTION,
+  displayFeedbackAnswer,
   parseFeedbackAnswers,
+  parseImportedFeedbackAnswers,
   shouldShowFeedbackPrompt,
 } from "../src/feedbackFields.ts";
 
@@ -90,6 +93,75 @@ check(
 check(
   "prompt hidden when the quarter has no dates",
   shouldShowFeedbackPrompt("2026-10-18", null) === false,
+);
+
+// ---- Import validation (historical Google Form) ----------------------
+const imported = parseImportedFeedbackAnswers(
+  { ...ok, newPractice: "  先試觀察題  " },
+  "2025秋季",
+);
+check("import trims answers", imported.newPractice === "先試觀察題");
+
+{
+  const spring = parseImportedFeedbackAnswers(
+    { ...ok, courseImprovements: "   " },
+    "2025春季",
+  );
+  check(
+    "2025春季 may omit courseImprovements",
+    spring.courseImprovements === "",
+  );
+}
+
+try {
+  parseImportedFeedbackAnswers({ ...ok, courseImprovements: "   " }, "2025秋季");
+  check("later quarter blank courseImprovements is rejected", false);
+} catch (err) {
+  const msg = err instanceof Error ? err.message : String(err);
+  check(
+    "later quarter blank courseImprovements names Q3",
+    msg.startsWith("請填寫：") && msg.includes("可以改進的地方"),
+    msg.slice(0, 80),
+  );
+}
+
+try {
+  parseImportedFeedbackAnswers({ ...ok, encouragement: "   " }, "2025春季");
+  check("2025春季 still requires encouragement", false);
+} catch (err) {
+  const msg = err instanceof Error ? err.message : String(err);
+  check(
+    "2025春季 blank encouragement is rejected",
+    msg.startsWith("請填寫：") && msg.includes("一句鼓勵的話"),
+    msg.slice(0, 80),
+  );
+}
+
+try {
+  parseFeedbackAnswers({ ...ok, courseImprovements: "" });
+  check("student submit still requires all four", false);
+} catch (err) {
+  const msg = err instanceof Error ? err.message : String(err);
+  check(
+    "student submit still requires courseImprovements",
+    msg.startsWith("請填寫：") && msg.includes("可以改進的地方"),
+    msg.slice(0, 80),
+  );
+}
+
+check(
+  "empty courseImprovements displays the absent-question note",
+  displayFeedbackAnswer("courseImprovements", "") === FORM_ABSENT_QUESTION &&
+    FORM_ABSENT_QUESTION === "（當期表單無此題）",
+);
+check(
+  "non-empty courseImprovements displays as written",
+  displayFeedbackAnswer("courseImprovements", "功課說明再清楚一些") ===
+    "功課說明再清楚一些",
+);
+check(
+  "other empty answers do not get the absent-question note",
+  displayFeedbackAnswer("encouragement", "") === "",
 );
 
 if (failures > 0) {

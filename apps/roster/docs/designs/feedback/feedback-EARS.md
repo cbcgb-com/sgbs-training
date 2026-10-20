@@ -10,8 +10,10 @@
 - [x] **FB-Q-002**: The student page title shall be
       小組查經帶領訓練反思.
 - [x] **FB-Q-003**: The system shall identify the respondent from the
-      signed-in student row. It shall not collect a typed email or
-      email a copy of the answers.
+      student row (`studentId`). It shall not store a typed email or
+      email a copy of the answers. Offline matching of a Google Form
+      response to a student (by email) is allowed for the one-time
+      import; the email is never written to `feedback`.
 
 ## Soft State
 
@@ -64,6 +66,34 @@
 - [x] **FB-UI-004**: The student 回饋 tab shall appear during/after
       the last lesson, when a response already exists, or when the
       visitor landed on `/feedback`. Instructors always see the tab.
+
+## Historical import
+
+- [x] **FB-IMP-001**: The system shall accept a batch import of
+      historical Google Form responses through the internal mutation
+      `feedback:importFromGoogleForm` (`rows` plus optional `dryRun`).
+      The browser shall not be able to call it.
+- [x] **FB-IMP-002**: If a row with the same `sourceResponseKey`
+      already exists, then the system shall return `skipped_existing`
+      and write nothing for that row.
+- [x] **FB-IMP-003**: If the named student is missing or
+      `student.quarter` does not equal the row's `quarter`, then the
+      system shall return `error_student_quarter` and write nothing
+      for that row.
+- [x] **FB-IMP-004**: If that student already has a `feedback` row
+      for the quarter, then the system shall return `conflict` and
+      shall not overwrite the existing row.
+- [x] **FB-IMP-005**: If `courseImprovements` is blank after trimming
+      and `quarter` is `2025春季`, then the system shall accept the
+      row. For every other quarter, and on the student submit path,
+      a blank `courseImprovements` shall still be rejected.
+- [x] **FB-IMP-006**: When `dryRun` is true, the system shall report
+      the same per-row outcomes and shall write nothing.
+- [x] **FB-IMP-007**: An imported row shall set `source` to
+      `googleForm` and `submittedAt = updatedAt` to the sheet
+      timestamp. The instructor list shall show
+      「（當期表單無此題）」 in muted text when
+      `courseImprovements` is empty, and no other import label.
 
 ## Related Documents
 

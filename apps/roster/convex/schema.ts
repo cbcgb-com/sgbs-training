@@ -167,7 +167,9 @@ export default defineSchema({
 
   // 小組查經帶領訓練反思: one row per (student, quarter). The four
   // free-text fields are the original Google Form questions (no
-  // ratings). See docs/designs/feedback/LLD.md.
+  // ratings). Optional source / sourceResponseKey mark rows imported
+  // from the historical Google Form (absent = written in-app). See
+  // docs/designs/feedback/LLD.md.
   feedback: defineTable({
     studentId: v.id("students"),
     quarter: v.string(),
@@ -177,8 +179,11 @@ export default defineSchema({
     encouragement: v.string(),
     submittedAt: v.number(),
     updatedAt: v.number(),
+    source: v.optional(v.literal("googleForm")),
+    sourceResponseKey: v.optional(v.string()),
   })
     .index("by_quarter", ["quarter"])
     .index("by_student", ["studentId"])
-    .index("by_student_quarter", ["studentId", "quarter"]),
+    .index("by_student_quarter", ["studentId", "quarter"])
+    .index("by_sourceResponseKey", ["sourceResponseKey"]),
 });
