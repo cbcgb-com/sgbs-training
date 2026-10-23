@@ -1,0 +1,28 @@
+/* Parent page: seamless quiz iframes */
+.content-quiz-frame {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background: transparent;
+    min-height: 10rem;
+    /* height set by content-quiz-frame.js */
+}
+
+/* Standalone quiz document loaded inside iframe */
+html.content-quiz-embed-root,
+html.content-quiz-embed-root body.content-quiz-embed {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    min-height: 0;
+    background: transparent;
+    font-size: 18px;
+}
+
+html.content-quiz-embed-root body.content-quiz-embed .content-quiz {
+    margin: 0;
+}

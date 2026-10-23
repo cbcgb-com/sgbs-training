@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        // for search plugin notably
+        const base_url = "https://cbcgb-com.github.io/sgbs-training/";
+    </script>
+    <script>
+        const darkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        darkTheme.onchange = (e) => {
+            if (e.matches) {
+                document.documentElement.classList.add("dark")
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove("dark")
+                localStorage.removeItem("theme")
+            }
+        };
+
+        // On page load. Priotiry to lcaolStorage
+        if (localStorage.theme === "dark") {
+            document.documentElement.classList.add("dark")
+        } else if (localStorage.theme === "light") {
+            document.documentElement.classList.remove("dark")
+        } else if (darkTheme.matches) {
+            document.documentElement.classList.add("dark")
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>《腓立比書》2:1-11（NIV＋原文史特朗號碼） - 小組查經帶領訓練</title>
+    
+
+
+<title>《腓立比書》2:1-11（NIV＋原文史特朗號碼）</title>
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://cbcgb-com.github.io/sgbs-training/exercises/lesson-4/philippians-2-1-11/">
+
+
+<!-- Open Graph (Facebook, LinkedIn) -->
+
+<meta property="og:title" content="《腓立比書》2:1-11（NIV＋原文史特朗號碼）">
+
+
+
+
+
+<meta property="og:url" content="https://cbcgb-com.github.io/sgbs-training/exercises/lesson-4/philippians-2-1-11/">
+
+
+
+
+
+
+<!-- Twitter Card -->
+
+<meta name="twitter:title" content="《腓立比書》2:1-11（NIV＋原文史特朗號碼）">
+
+
+
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link href="../../../css/geist.css" rel="stylesheet">
+    
+    <link href="../../../css/pygments/dracula.css" rel="stylesheet">
+    
+    <link href="../../../stylesheets/extra.css" rel="stylesheet">
+    <link href="../../../stylesheets/transition.css" rel="stylesheet">
+    <link href="../../../stylesheets/content-quiz-embed.css" rel="stylesheet">
+
+    <script src="../../../js/callbacks.js"></script>
+
+    
+
+    
+
+    
+
+</head>
+
+<body class="w-screen overflow-x-hidden bg-foreground md:bg-background text-foreground scroll-smooth m-0 p-0">
+    <div id="inner-body"
+        class="min-h-screen bg-background origin-[top_center_0px] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <header
+    class="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="w-full mx-auto 3xl:max-w-8xl">
+        <div
+            class="xl:px-6 h-14 w-full max-w-8xl mx-auto px-4 border-x border-grid flex flex-row justify-between items-center">
+            <div class="mr-4 hidden md:flex">
+                <a href="/" class="mr-4 flex items-center gap-2 lg:mr-6">
+                    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+    class="h-6 w-6">
+    <rect width="256" height="256" fill="none"></rect>
+    <line x1="208" y1="128" x2="128" y2="208" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+    <line x1="192" y1="40" x2="40" y2="192" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="32"></line>
+</svg>
+
+                    <h1 class="hidden lg:inline-block font-bold text-md">
+                        
+                        小組查經帶領訓練
+                        
+                    </h1>
+                </a>
+            </div>
+            <button
+                class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground py-2 -ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:R15u6ja:"
+                data-state="closed" onclick="onMobileMenuButtonClick(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="!size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+                </svg>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+            <div class="flex flex-1 items-center justify-between gap-2 md:justify-end">
+                <button onclick="onSearchBarClick(event)"
+    class="cursor-pointer inline-flex items-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64">
+    <span class="hidden lg:inline-flex">Search documentation...</span>
+    <span class="inline-flex lg:hidden">Search...</span>
+    <kbd
+        class="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <span class="text-xs">⌘</span>K
+    </kbd>
+</button>
+<dialog id="search-dialog" onclick="onSearchDialogClick(event)"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background rounded-lg shadow-lg border overflow-hidden p-0">
+    <div class="w-lg gap-4">
+        <div class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground">
+            <div class="w-full flex items-center border-b px-3" cmdk-input-wrapper="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="mr-2 h-4 w-4 shrink-0 opacity-50">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <!-- <script>
+                    let debounceTimer;
+                    const onInputHandler = function (event) {
+                        const query = event.target.value;
+                        clearTimeout(debounceTimer);
+                        debounceTimer = setTimeout(() => {
+                            if (searchWorker && (query.length > 2)) {
+                                console.log(`Posting message { "query": "${query}" }`)
+                                // https://lunrjs.com/guides/searching.html
+                                // we should append a wilcard and also a boost on exact term
+                                const lunrQuery = `${query}^10 ${query}* ${query}~1`;
+                                searchWorker.postMessage({ "query": lunrQuery });
+                            } else if (query.length > 2) {
+                                console.warn("searchWorker is not defined")
+                            } else {
+                                const results = document.getElementById("mkdocs-search-results");
+                                if (results) {
+                                    while (results.firstChild) {
+                                        results.removeChild(results.firstChild);
+                                    }
+                                }
+                            }
+                        }, 300);
+                    };
+                </script> -->
+                <input
+                    class="flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                    placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false"
+                    aria-autocomplete="list" role="combobox" aria-expanded="true" type="text" value=""
+                    oninput="onInputHandler(event)">
+            </div>
+        </div>
+        <div id="mkdocs-search-results" class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+            <!-- search results go there -->
+        </div>
+    </div>
+</dialog>
+<script>
+    document.removeEventListener("keydown", searchShortcutHandler);
+    document.addEventListener("keydown", searchShortcutHandler);
+</script>
+                <div class="flex items-center gap-0.5">
+                    
+                    <button
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 w-8 px-0"><a
+                            target="_blank" rel="noreferrer" href="https://github.com/cbcgb-com/sgbs-training">
+                            
+                            <svg viewBox="0 0 438.549 438.549" class="h-4 w-4">
+    <path fill="currentColor"
+        d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z">
+    </path>
+</svg>
+                            <span class="sr-only">GitHub</span>
+                            
+                        </a>
+                    </button>
+                    
+                    <button
+                        class="cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground py-2 group/toggle h-8 w-8 px-0"
+                        onclick="onThemeSwitch(event)">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 dark:hidden not-dark:block">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+</svg>
+                        
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round"
+    class="h-4 w-4 not-dark:hidden dark:block">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+                        
+                        <span class="sr-only">Toggle theme</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="border-grid flex flex-1 flex-col">
+            <div class="w-full mx-auto 3xl:max-w-8xl">
+                <div
+                    class="px-4 w-full max-w-8xl mx-auto xl:px-6 flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+                    <aside
+                        class="border-grid fixed top-14 z-30 hidden h-[calc(100vh-3.55rem)] w-full shrink-0 border-r md:sticky md:block">
+                        <div
+    class="no-scrollbar [&::-webkit-scrollbar]:hidden h-full overflow-auto py-6 pr-4 lg:py-8 flex flex-col gap-[.125rem]">
+    
+    
+    
+
+    
+    
+    <a href="../../.." 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    主頁
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+    
+    <a href="../../../privacy/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    隱私權政策
+    
+
+    
+
+    
+
+    
+</a>
+    
+    
+
+
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">課堂講義</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../../class-notes/lesson-1-foundations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（一）查經的意義和裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../class-notes/lesson-2-narrative/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（二）分析敘述文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../class-notes/lesson-3-questioning/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（三）提問題的技術
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../class-notes/lesson-4-argumentation/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（四）分析論說文
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../class-notes/lesson-5-situations/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂（五）應對臨場狀況
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">工具</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../../tools/ibs-argumentation-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    論說⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../tools/ibs-narrative-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    敘述⽂體的歸納法查經
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">範例</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../../examples/luke-literary-devices/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音中的文學手法
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../examples/luke-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    路加福音筆記
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../examples/romans-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    羅馬書查經筆記範例
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="flex flex-col gap-1 mt-5 first:mt-0">
+        <h4 class="rounded-md px-2 py-1 text-sm font-semibold">資源</h4>
+        <div class="grid grid-flow-row auto-rows-max gap-[.125rem]">
+            
+            <a href="../../../resources/bible-study-notes/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    查經筆記指南
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/books/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    聖經參考書
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/genai/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    對於生成式AI的反思
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/questions/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    提問題的模板
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/recordings/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    課堂錄音
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/theme/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    設計查經主題
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/theology-equipments/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    更多神學裝備
+    
+
+    
+
+    
+
+    
+</a>
+            
+            <a href="../../../resources/virtual-study/" 
+    class="text-sm flex shrink-0 h-8 w-full items-center rounded-lg px-2 text-foreground underline-offset-2 font-normal hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:font-medium data-active:text-accent-foreground">
+    
+    線上查經注意事項
+    
+
+    
+
+    
+
+    
+</a>
+            
+        </div>
+    </div>
+    
+    
+    
+</div>
+                    </aside>
+                    <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+                        <div class="mx-auto w-full min-w-0 xl:max-w-2xl">
+                            <article class="typography w-full">
+    
+    
+    
+    <h1 id="21-11niv">《腓立比書》2:1-11（NIV＋原文史特朗號碼）</h1>
+<p>每節經文：上排是 NIV 英文，下排是希臘原文；每個原文詞下方的數字，就是它的史特朗號碼（G＝希臘文，H＝希伯來文）。把滑鼠移到任何一個字上，它和對應的字會同時亮起；<strong>點擊</strong>任何一個字，右側會顯示該詞的字典釋義——多個譯法並列，哪一個最貼合這節經文，判斷留給你。若一個字單獨亮起，表示它在另一邊沒有直接對應的字（譯文補充的字，或原文裏未譯出的虛詞）。做詞彙研究時，也可到<a href="https://wd.bible/exegesis">微讀聖經——原文工具</a>查考原文字典和相關經文。</p>
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">1</span><span class="strongs-en" data-g="1-0">Therefore</span> <span class="strongs-en" data-g="1-1">if</span> <span class="strongs-en" data-g="1-2">you</span> <span class="strongs-en" data-g="1-2">have</span> <span class="strongs-en" data-g="1-2">any</span> <span class="strongs-en" data-g="1-3">encouragement</span> <span class="strongs-en" data-g="1-4">from</span> <span class="strongs-en" data-g="1-4">being</span> <span class="strongs-en" data-g="1-4">united</span> <span class="strongs-en" data-g="1-4">with</span> <span class="strongs-en" data-g="1-5">Christ,</span> <span class="strongs-en" data-g="1-6">if</span> <span class="strongs-en" data-g="1-7">any</span> <span class="strongs-en" data-g="1-8">comfort</span> <span class="strongs-en" data-g="1-9">from</span> <span class="strongs-en" data-g="1-9">his</span> <span class="strongs-en" data-g="1-9">love,</span> <span class="strongs-en" data-g="1-10">if</span> <span class="strongs-en" data-g="1-11">any</span> <span class="strongs-en" data-g="1-12">common</span> <span class="strongs-en" data-g="1-12">sharing</span> <span class="strongs-en" data-g="1-13">in</span> <span class="strongs-en" data-g="1-13">the</span> <span class="strongs-en" data-g="1-13">Spirit,</span> <span class="strongs-en" data-g="1-14">if</span> <span class="strongs-en" data-g="1-15">any</span> <span class="strongs-en" data-g="1-16">tenderness</span> <span class="strongs-en" data-g="1-17">and</span> <span class="strongs-en" data-g="1-17">compassion,</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="1-1">Εἴ<span class="strongs-num">G1487</span></span><span class="strongs-word" data-g="1-2">τις<span class="strongs-num">G5100</span></span><span class="strongs-word" data-g="1-0">οὖν<span class="strongs-num">G3767</span></span><span class="strongs-word" data-g="1-3">παράκλησις<span class="strongs-num">G3874</span></span><span class="strongs-word" data-g="1-4">ἐν<span class="strongs-num">G1722</span></span><span class="strongs-word" data-g="1-5">Χριστῷ,<span class="strongs-num">G5547</span></span><span class="strongs-word" data-g="1-6">εἴ<span class="strongs-num">G1487</span></span><span class="strongs-word" data-g="1-7">τι<span class="strongs-num">G5100</span></span><span class="strongs-word" data-g="1-8">παραμύθιον<span class="strongs-num">G3890</span></span><span class="strongs-word" data-g="1-9">ἀγάπης,<span class="strongs-num">G26</span></span><span class="strongs-word" data-g="1-10">εἴ<span class="strongs-num">G1487</span></span><span class="strongs-word" data-g="1-11">τις<span class="strongs-num">G5100</span></span><span class="strongs-word" data-g="1-12">κοινωνία<span class="strongs-num">G2842</span></span><span class="strongs-word" data-g="1-13">πνεύματος,<span class="strongs-num">G4151</span></span><span class="strongs-word" data-g="1-14">εἴ<span class="strongs-num">G1487</span></span><span class="strongs-word" data-g="1-15">τις<span class="strongs-num">G5100</span></span><span class="strongs-word" data-g="1-16">σπλάγχνα<span class="strongs-num">G4698</span></span><span class="strongs-word" data-g="1-17">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="1-17">οἰκτιρμοί,<span class="strongs-num">G3628</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">2</span><span class="strongs-en" data-g="2-0">then</span> <span class="strongs-en" data-g="2-0">make</span> <span class="strongs-en" data-g="2-1">my</span> <span class="strongs-en" data-g="2-2">joy</span> <span class="strongs-en" data-g="2-3">complete</span> <span class="strongs-en" data-g="2-4">by</span> <span class="strongs-en" data-g="2-4">being</span> <span class="strongs-en" data-g="2-4">like-minded,</span> <span class="strongs-en" data-g="2-5">having</span> <span class="strongs-en" data-g="2-6">the</span> <span class="strongs-en" data-g="2-6">same</span> <span class="strongs-en" data-g="2-7">love,</span> <span class="strongs-en" data-g="2-8">being</span> <span class="strongs-en" data-g="2-8">one</span> <span class="strongs-en" data-g="2-8">in</span> <span class="strongs-en" data-g="2-8">spirit</span> <span class="strongs-en" data-g="2-9">and</span> <span class="strongs-en" data-g="2-9">of</span> <span class="strongs-en" data-g="2-9">one</span> <span class="strongs-en" data-g="2-9">mind.</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="2-0">πληρώσατέ<span class="strongs-num">G4137</span></span><span class="strongs-word" data-g="2-1">μου<span class="strongs-num">G1473</span></span><span class="strongs-word" data-g="2-2">τὴν<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="2-2">χαρὰν<span class="strongs-num">G5479</span></span><span class="strongs-word" data-g="2-4">ἵνα<span class="strongs-num">G2443</span></span><span class="strongs-word" data-g="2-4">τὸ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="2-4">αὐτὸ<span class="strongs-num">G846</span></span><span class="strongs-word" data-g="2-4">φρονῆτε,<span class="strongs-num">G5426</span></span><span class="strongs-word" data-g="2-6">τὴν<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="2-6">αὐτὴν<span class="strongs-num">G846</span></span><span class="strongs-word" data-g="2-7">ἀγάπην<span class="strongs-num">G26</span></span><span class="strongs-word" data-g="2-5">ἔχοντες,<span class="strongs-num">G2192</span></span><span class="strongs-word" data-g="2-8">σύνψυχοι,<span class="strongs-num">G4861</span></span><span class="strongs-word" data-g="2-9">τὸ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="2-9">ἓν<span class="strongs-num">G1520</span></span><span class="strongs-word" data-g="2-9">φρονοῦντες,<span class="strongs-num">G5426</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">3</span><span class="strongs-en" data-g="3-0">Do</span> <span class="strongs-en" data-g="3-0">nothing</span> <span class="strongs-en" data-g="3-1">out</span> <span class="strongs-en" data-g="3-1">of</span> <span class="strongs-en" data-g="3-2">selfish</span> <span class="strongs-en" data-g="3-2">ambition</span> <span class="strongs-en" data-g="3-3">or</span> <span class="strongs-en" data-g="3-4">vain</span> <span class="strongs-en" data-g="3-4">conceit.</span> <span class="strongs-en" data-g="3-5">Rather,</span> <span class="strongs-en" data-g="3-6">in</span> <span class="strongs-en" data-g="3-6">humility</span> <span class="strongs-en" data-g="3-7">value</span> <span class="strongs-en" data-g="3-8">others</span> <span class="strongs-en" data-g="3-9">above</span> <span class="strongs-en" data-g="3-9">yourselves,</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="3-0">μηδὲν<span class="strongs-num">G3367</span></span><span class="strongs-word" data-g="3-1">κατ’<span class="strongs-num">G2596</span></span><span class="strongs-word" data-g="3-2">ἐριθείαν<span class="strongs-num">G2052</span></span><span class="strongs-word" data-g="3-3">μηδὲ<span class="strongs-num">G3366</span></span><span class="strongs-word" data-g="3-4">κατὰ<span class="strongs-num">G2596</span></span><span class="strongs-word" data-g="3-4">κενοδοξίαν,<span class="strongs-num">G2754</span></span><span class="strongs-word" data-g="3-5">ἀλλὰ<span class="strongs-num">G235</span></span><span class="strongs-word" data-g="3-6">τῇ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="3-6">ταπεινοφροσύνῃ<span class="strongs-num">G5012</span></span><span class="strongs-word" data-g="3-8">ἀλλήλους<span class="strongs-num">G240</span></span><span class="strongs-word" data-g="3-7">ἡγούμενοι<span class="strongs-num">G2233</span></span><span class="strongs-word" data-g="3-9">ὑπερέχοντας<span class="strongs-num">G5242</span></span><span class="strongs-word" data-g="3-9">ἑαυτῶν,<span class="strongs-num">G1438</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">4</span><span class="strongs-en" data-g="4-0">not</span> <span class="strongs-en" data-g="4-1">looking</span> <span class="strongs-en" data-g="4-2">to</span> <span class="strongs-en" data-g="4-2">your</span> <span class="strongs-en" data-g="4-2">own</span> <span class="strongs-en" data-g="4-2">interests</span> <span class="strongs-en" data-g="4-3">but</span> <span class="strongs-en" data-g="4-4">each</span> <span class="strongs-en" data-g="4-4">of</span> <span class="strongs-en" data-g="4-4">you</span> <span class="strongs-en" data-g="4-5">to</span> <span class="strongs-en" data-g="4-5">the</span> <span class="strongs-en" data-g="4-5">interests</span> <span class="strongs-en" data-g="4-6">of</span> <span class="strongs-en" data-g="4-6">the</span> <span class="strongs-en" data-g="4-6">others.</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="4-0">μὴ<span class="strongs-num">G3361</span></span><span class="strongs-word" data-g="4-2">τὰ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="4-2">ἑαυτῶν<span class="strongs-num">G1438</span></span><span class="strongs-word" data-g="4-4">ἕκαστοι<span class="strongs-num">G1538</span></span><span class="strongs-word" data-g="4-1">σκοποῦντες,<span class="strongs-num">G4648</span></span><span class="strongs-word" data-g="4-3">ἀλλὰ<span class="strongs-num">G235</span></span><span class="strongs-word" data-g="4-4">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="4-5">τὰ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="4-6">ἑτέρων<span class="strongs-num">G2087</span></span><span class="strongs-word" data-g="4-6">ἕκαστοι.<span class="strongs-num">G1538</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">5</span><span class="strongs-en" data-g="5-0">In</span> <span class="strongs-en" data-g="5-0">your</span> <span class="strongs-en" data-g="5-0">relationships</span> <span class="strongs-en" data-g="5-0">with</span> <span class="strongs-en" data-g="5-0">one</span> <span class="strongs-en" data-g="5-0">another,</span> <span class="strongs-en" data-g="5-1">have</span> <span class="strongs-en" data-g="5-1">the</span> <span class="strongs-en" data-g="5-1">same</span> <span class="strongs-en" data-g="5-1">mindset</span> <span class="strongs-en" data-g="5-2">as</span> <span class="strongs-en" data-g="5-2">Christ</span> <span class="strongs-en" data-g="5-2">Jesus:</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="5-1">τοῦτο<span class="strongs-num">G3778</span></span><span class="strongs-word" data-g="5-1">φρονεῖτε<span class="strongs-num">G5426</span></span><span class="strongs-word" data-g="5-0">ἐν<span class="strongs-num">G1722</span></span><span class="strongs-word" data-g="5-0">ὑμῖν<span class="strongs-num">G5210</span></span><span class="strongs-word" data-g="5-2">ὃ<span class="strongs-num">G3739</span></span><span class="strongs-word" data-g="5-2">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="5-2">ἐν<span class="strongs-num">G1722</span></span><span class="strongs-word" data-g="5-2">Χριστῷ<span class="strongs-num">G5547</span></span><span class="strongs-word" data-g="5-2">Ἰησοῦ,<span class="strongs-num">G2424</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">6</span><span class="strongs-en" data-g="6-0">Who,</span> <span class="strongs-en" data-g="6-0">being</span> <span class="strongs-en" data-g="6-1">in</span> <span class="strongs-en" data-g="6-1">very</span> <span class="strongs-en" data-g="6-1">nature</span> <span class="strongs-en" data-g="6-2">God,</span> <span class="strongs-en" data-g="6-3">did</span> <span class="strongs-en" data-g="6-3">not</span> <span class="strongs-en" data-g="6-4">consider</span> <span class="strongs-en" data-g="6-5">equality</span> <span class="strongs-en" data-g="6-6">with</span> <span class="strongs-en" data-g="6-6">God</span> <span class="strongs-en" data-g="6-7">something</span> <span class="strongs-en" data-g="6-7">to</span> <span class="strongs-en" data-g="6-7">be</span> <span class="strongs-en" data-g="6-7">used</span> <span class="strongs-en" data-g="6-7">to</span> <span class="strongs-en" data-g="6-7">his</span> <span class="strongs-en" data-g="6-7">own</span> <span class="strongs-en" data-g="6-7">advantage;</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="6-0">ὃς<span class="strongs-num">G3739</span></span><span class="strongs-word" data-g="6-1">ἐν<span class="strongs-num">G1722</span></span><span class="strongs-word" data-g="6-1">μορφῇ<span class="strongs-num">G3444</span></span><span class="strongs-word" data-g="6-2">θεοῦ<span class="strongs-num">G2316</span></span><span class="strongs-word" data-g="6-0">ὑπάρχων<span class="strongs-num">G5225</span></span><span class="strongs-word" data-g="6-3">οὐχ<span class="strongs-num">G3756</span></span><span class="strongs-word" data-g="6-7">ἁρπαγμὸν<span class="strongs-num">G725</span></span><span class="strongs-word" data-g="6-4">ἡγήσατο<span class="strongs-num">G2233</span></span><span class="strongs-word" data-g="6-6">τὸ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="6-6">εἶναι<span class="strongs-num">G1510</span></span><span class="strongs-word" data-g="6-5">ἴσα<span class="strongs-num">G2470</span></span><span class="strongs-word" data-g="6-6">θεῷ,<span class="strongs-num">G2316</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">7</span><span class="strongs-en" data-g="7-0">rather,</span> <span class="strongs-en" data-g="7-1">he</span> <span class="strongs-en" data-g="7-1">made</span> <span class="strongs-en" data-g="7-2">himself</span> <span class="strongs-en" data-g="7-3">nothing</span> <span class="strongs-en" data-g="7-4">by</span> <span class="strongs-en" data-g="7-4">taking</span> <span class="strongs-en" data-g="7-5">the</span> <span class="strongs-en" data-g="7-5">very</span> <span class="strongs-en" data-g="7-5">nature</span> <span class="strongs-en" data-g="7-5">of</span> <span class="strongs-en" data-g="7-5">a</span> <span class="strongs-en" data-g="7-5">servant,</span> <span class="strongs-en" data-g="7-6">being</span> <span class="strongs-en" data-g="7-6">made</span> <span class="strongs-en" data-g="7-6">in</span> <span class="strongs-en" data-g="7-6">human</span> <span class="strongs-en" data-g="7-6">likeness.</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="7-0">ἀλλὰ<span class="strongs-num">G235</span></span><span class="strongs-word" data-g="7-2">ἑαυτὸν<span class="strongs-num">G1438</span></span><span class="strongs-word" data-g="7-1">ἐκένωσεν<span class="strongs-num">G2758</span></span><span class="strongs-word" data-g="7-5">μορφὴν<span class="strongs-num">G3444</span></span><span class="strongs-word" data-g="7-5">δούλου<span class="strongs-num">G1401</span></span><span class="strongs-word" data-g="7-4">λαβών,<span class="strongs-num">G2983</span></span><span class="strongs-word" data-g="7-6">ἐν<span class="strongs-num">G1722</span></span><span class="strongs-word" data-g="7-6">ὁμοιώματι<span class="strongs-num">G3667</span></span><span class="strongs-word" data-g="7-6">ἀνθρώπων<span class="strongs-num">G444</span></span><span class="strongs-word" data-g="7-6">γενόμενος·<span class="strongs-num">G1096</span></span><span class="strongs-word" data-g="7-7">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="7-7">σχήματι<span class="strongs-num">G4976</span></span><span class="strongs-word" data-g="7-7">εὑρεθεὶς<span class="strongs-num">G2147</span></span><span class="strongs-word" data-g="7-7">ὡς<span class="strongs-num">G5613</span></span><span class="strongs-word" data-g="7-7">ἄνθρωπος<span class="strongs-num">G444</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">8</span><span class="strongs-en" data-g="8-0">And</span> <span class="strongs-en" data-g="8-0">being</span> <span class="strongs-en" data-g="8-0">found</span> <span class="strongs-en" data-g="8-0">in</span> <span class="strongs-en" data-g="8-0">appearance</span> <span class="strongs-en" data-g="8-0">as</span> <span class="strongs-en" data-g="8-0">a</span> <span class="strongs-en" data-g="8-0">man,</span> <span class="strongs-en" data-g="8-1">he</span> <span class="strongs-en" data-g="8-1">humbled</span> <span class="strongs-en" data-g="8-1">himself</span> <span class="strongs-en" data-g="8-2">by</span> <span class="strongs-en" data-g="8-2">becoming</span> <span class="strongs-en" data-g="8-3">obedient</span> <span class="strongs-en" data-g="8-4">to</span> <span class="strongs-en" data-g="8-4">death—</span> <span class="strongs-en" data-g="8-5">even</span> <span class="strongs-en" data-g="8-6">death</span> <span class="strongs-en" data-g="8-7">on</span> <span class="strongs-en" data-g="8-7">a</span> <span class="strongs-en" data-g="8-7">cross!</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="8-1">ἐταπείνωσεν<span class="strongs-num">G5013</span></span><span class="strongs-word" data-g="8-1">ἑαυτὸν<span class="strongs-num">G1438</span></span><span class="strongs-word" data-g="8-2">γενόμενος<span class="strongs-num">G1096</span></span><span class="strongs-word" data-g="8-3">ὑπήκοος<span class="strongs-num">G5255</span></span><span class="strongs-word" data-g="8-4">μέχρι<span class="strongs-num">G3360</span></span><span class="strongs-word" data-g="8-4">θανάτου,<span class="strongs-num">G2288</span></span><span class="strongs-word" data-g="8-6">θανάτου<span class="strongs-num">G2288</span></span><span class="strongs-word" data-g="8-5">δὲ<span class="strongs-num">G1161</span></span><span class="strongs-word" data-g="8-7">σταυροῦ.<span class="strongs-num">G4716</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">9</span><span class="strongs-en" data-g="9-0">Therefore</span> <span class="strongs-en" data-g="9-1">God</span> <span class="strongs-en" data-g="9-2">exalted</span> <span class="strongs-en" data-g="9-3">him</span> <span class="strongs-en" data-g="9-4">to</span> <span class="strongs-en" data-g="9-4">the</span> <span class="strongs-en" data-g="9-4">highest</span> <span class="strongs-en" data-g="9-4">place</span> <span class="strongs-en" data-g="9-5">and</span> <span class="strongs-en" data-g="9-6">gave</span> <span class="strongs-en" data-g="9-7">him</span> <span class="strongs-en" data-g="9-8">the</span> <span class="strongs-en" data-g="9-8">name</span> <span class="strongs-en" data-g="9-9">that</span> <span class="strongs-en" data-g="9-9">is</span> <span class="strongs-en" data-g="9-9">above</span> <span class="strongs-en" data-g="9-10">every</span> <span class="strongs-en" data-g="9-11">name,</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="9-0">διὸ<span class="strongs-num">G1352</span></span><span class="strongs-word" data-g="9-0">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="9-1">ὁ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="9-1">θεὸς<span class="strongs-num">G2316</span></span><span class="strongs-word" data-g="9-3">αὐτὸν<span class="strongs-num">G846</span></span><span class="strongs-word" data-g="9-2">ὑπερύψωσεν<span class="strongs-num">G5251</span></span><span class="strongs-word" data-g="9-5">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="9-6">ἐχαρίσατο<span class="strongs-num">G5483</span></span><span class="strongs-word" data-g="9-7">αὐτῷ<span class="strongs-num">G846</span></span><span class="strongs-word" data-g="9-8">τὸ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="9-8">ὄνομα<span class="strongs-num">G3686</span></span><span class="strongs-word" data-g="9-9">τὸ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="9-9">ὑπὲρ<span class="strongs-num">G5228</span></span><span class="strongs-word" data-g="9-10">πᾶν<span class="strongs-num">G3956</span></span><span class="strongs-word" data-g="9-11">ὄνομα,<span class="strongs-num">G3686</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">10</span><span class="strongs-en" data-g="10-0">that</span> <span class="strongs-en" data-g="10-1">at</span> <span class="strongs-en" data-g="10-1">the</span> <span class="strongs-en" data-g="10-1">name</span> <span class="strongs-en" data-g="10-2">of</span> <span class="strongs-en" data-g="10-2">Jesus</span> <span class="strongs-en" data-g="10-3">every</span> <span class="strongs-en" data-g="10-3">knee</span> <span class="strongs-en" data-g="10-4">should</span> <span class="strongs-en" data-g="10-4">bow,</span> <span class="strongs-en" data-g="10-5">in</span> <span class="strongs-en" data-g="10-5">heaven</span> <span class="strongs-en" data-g="10-6">and</span> <span class="strongs-en" data-g="10-6">on</span> <span class="strongs-en" data-g="10-6">earth</span> <span class="strongs-en" data-g="10-7">and</span> <span class="strongs-en" data-g="10-7">under</span> <span class="strongs-en" data-g="10-7">the</span> <span class="strongs-en" data-g="10-7">earth,</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="10-0">ἵνα<span class="strongs-num">G2443</span></span><span class="strongs-word" data-g="10-1">ἐν<span class="strongs-num">G1722</span></span><span class="strongs-word" data-g="10-1">τῷ<span class="strongs-num">G3588</span></span><span class="strongs-word" data-g="10-1">ὀνόματι<span class="strongs-num">G3686</span></span><span class="strongs-word" data-g="10-2">Ἰησοῦ<span class="strongs-num">G2424</span></span><span class="strongs-word" data-g="10-3">πᾶν<span class="strongs-num">G3956</span></span><span class="strongs-word" data-g="10-3">γόνυ<span class="strongs-num">G1119</span></span><span class="strongs-word" data-g="10-4">κάμψῃ<span class="strongs-num">G2578</span></span><span class="strongs-word" data-g="10-5">ἐπουρανίων<span class="strongs-num">G2032</span></span><span class="strongs-word" data-g="10-6">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="10-6">ἐπιγείων<span class="strongs-num">G1919</span></span><span class="strongs-word" data-g="10-7">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="10-7">καταχθονίων,<span class="strongs-num">G2709</span></span></p>
+</div>
+
+<div class="strongs-verse">
+<p class="strongs-niv"><span class="strongs-vnum">11</span><span class="strongs-en" data-g="11-0">and</span> <span class="strongs-en" data-g="11-1">every</span> <span class="strongs-en" data-g="11-1">tongue</span> <span class="strongs-en" data-g="11-2">acknowledge</span> <span class="strongs-en" data-g="11-3">that</span> <span class="strongs-en" data-g="11-4">Jesus</span> <span class="strongs-en" data-g="11-4">Christ</span> <span class="strongs-en" data-g="11-5">is</span> <span class="strongs-en" data-g="11-5">Lord,</span> <span class="strongs-en" data-g="11-6">to</span> <span class="strongs-en" data-g="11-7">the</span> <span class="strongs-en" data-g="11-7">glory</span> <span class="strongs-en" data-g="11-8">of</span> <span class="strongs-en" data-g="11-8">God</span> <span class="strongs-en" data-g="11-9">the</span> <span class="strongs-en" data-g="11-9">Father.</span></p>
+<p class="strongs-greek"><span class="strongs-word" data-g="11-0">καὶ<span class="strongs-num">G2532</span></span><span class="strongs-word" data-g="11-1">πᾶσα<span class="strongs-num">G3956</span></span><span class="strongs-word" data-g="11-1">γλῶσσα<span class="strongs-num">G1100</span></span><span class="strongs-word" data-g="11-2">ἐξομολογήσηται<span class="strongs-num">G1843</span></span><span class="strongs-word" data-g="11-3">ὅτι<span class="strongs-num">G3754</span></span><span class="strongs-word" data-g="11-5">κύριος<span class="strongs-num">G2962</span></span><span class="strongs-word" data-g="11-4">Ἰησοῦς<span class="strongs-num">G2424</span></span><span class="strongs-word" data-g="11-4">Χριστὸς<span class="strongs-num">G5547</span></span><span class="strongs-word" data-g="11-6">εἰς<span class="strongs-num">G1519</span></span><span class="strongs-word" data-g="11-7">δόξαν<span class="strongs-num">G1391</span></span><span class="strongs-word" data-g="11-8">θεοῦ<span class="strongs-num">G2316</span></span><span class="strongs-word" data-g="11-9">πατρός.<span class="strongs-num">G3962</span></span></p>
+</div>
+
+<h2 id="_1">資料來源</h2>
+<ul>
+<li>英文經文：《新國際版》（New International Version®, NIV®）。Copyright © 1973, 1978, 1984, 2011 by Biblica, Inc.™ Used by permission. All rights reserved.（全站引用未超過 500 節，並隨文附本聲明。）</li>
+<li>希臘原文：Tischendorf 第八版（Novum Testamentum Graece, 1869–72，公版），經 <a href="https://bolls.life">bolls.life</a> API 提供。</li>
+<li>史特朗號碼：出自《史特朗經文彙編》（Strong's Exhaustive Concordance，公版）；字典釋義採 <a href="https://github.com/openscriptures/strongs">Open Scriptures</a> 數位版（CC-BY-SA）。</li>
+<li>對照查驗：<a href="https://biblehub.com/interlinear/philippians/2-1.htm">BibleHub 逐字對照</a>・<a href="https://www.stepbible.org">STEP Bible</a>・<a href="https://wd.bible/exegesis">微讀聖經原文工具</a>。本頁的英希對照組為人工整理，產生時已以程式逐字驗證完整對應；如有疑問，請以上列查驗工具為準。</li>
+</ul>
+</article>
+                        </div>
+                        <div class="hidden text-sm xl:block">
+                            <div class="sticky top-20 -mt-6 pt-4">
+    <div class="no-scrollbar h-full overflow-auto pb-10">
+        <div class="space-y-2">
+            <p class="font-medium">On This Page</p>
+            <ul class="m-0 list-none">
+                
+                
+                
+                
+                <li class="mt-0 pt-2">
+                    <a class="inline-block no-underline transition-colors hover:text-foreground text-muted-foreground"
+                        href="#_1">資料來源</a>
+                    
+                </li>
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+            <dialog id="bottom-sidebar" data-closing="0"
+    class="backdrop:bg-black backdrop:opacity-80 backdrop:transition-all backdrop:duration-500 text-foreground"
+    onclick="onBottomSidebarDialogClick(event)">
+    <div
+        class="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background max-h-[60svh] p-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"></div>
+        <div class="overflow-auto p-6 space-y-3">
+            
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../../.." class="text-base shrink-0">
+    主頁
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                
+                <a href="../../../privacy/" class="text-base shrink-0">
+    隱私權政策
+</a>
+                
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">課堂講義 </h4>
+                    
+                    <a href="../../../class-notes/lesson-1-foundations/" class="text-base shrink-0">
+    課堂（一）查經的意義和裝備
+</a>
+                    
+                    <a href="../../../class-notes/lesson-2-narrative/" class="text-base shrink-0">
+    課堂（二）分析敘述文
+</a>
+                    
+                    <a href="../../../class-notes/lesson-3-questioning/" class="text-base shrink-0">
+    課堂（三）提問題的技術
+</a>
+                    
+                    <a href="../../../class-notes/lesson-4-argumentation/" class="text-base shrink-0">
+    課堂（四）分析論說文
+</a>
+                    
+                    <a href="../../../class-notes/lesson-5-situations/" class="text-base shrink-0">
+    課堂（五）應對臨場狀況
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">工具 </h4>
+                    
+                    <a href="../../../tools/ibs-argumentation-notes/" class="text-base shrink-0">
+    論說⽂體的歸納法查經
+</a>
+                    
+                    <a href="../../../tools/ibs-narrative-notes/" class="text-base shrink-0">
+    敘述⽂體的歸納法查經
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">範例 </h4>
+                    
+                    <a href="../../../examples/luke-study-notes/" class="text-base shrink-0">
+    路加福音筆記
+</a>
+                    
+                    <a href="../../../examples/luke-literary-devices/" class="text-base shrink-0">
+    路加福音中的文學手法
+</a>
+                    
+                    <a href="../../../examples/romans-study-notes/" class="text-base shrink-0">
+    羅馬書查經筆記範例
+</a>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div class="flex flex-col">
+                
+                <div class="flex flex-col space-y-3 pt-4">
+                    <h4 class="font-medium">資源 </h4>
+                    
+                    <a href="../../../resources/bible-study-notes/" class="text-base shrink-0">
+    查經筆記指南
+</a>
+                    
+                    <a href="../../../resources/virtual-study/" class="text-base shrink-0">
+    線上查經注意事項
+</a>
+                    
+                    <a href="../../../resources/questions/" class="text-base shrink-0">
+    提問題的模板
+</a>
+                    
+                    <a href="../../../resources/theme/" class="text-base shrink-0">
+    設計查經主題
+</a>
+                    
+                    <a href="../../../resources/books/" class="text-base shrink-0">
+    聖經參考書
+</a>
+                    
+                    <a href="../../../resources/recordings/" class="text-base shrink-0">
+    課堂錄音
+</a>
+                    
+                    <a href="../../../resources/theology-equipments/" class="text-base shrink-0">
+    更多神學裝備
+</a>
+                    
+                    <a href="../../../resources/genai/" class="text-base shrink-0">
+    對於生成式AI的反思
+</a>
+                    
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</dialog>
+        </div>
+    </div> 
+    
+    <script src="../../../javascripts/content-accordion.js"></script>
+     
+    
+    <script src="../../../javascripts/content-toc.js"></script>
+     
+    
+    <script src="../../../javascripts/content-quiz.js"></script>
+     
+    
+    <script src="../../../javascripts/content-quiz-frame.js"></script>
+     
+    
+    <script src="../../../javascripts/content-panels.js"></script>
+     
+    
+    <script src="../../../javascripts/content-deck.js"></script>
+     
+    
+    <script src="../../../javascripts/strongs-hover.js"></script>
+     
+    
+    <script src="../../../javascripts/chinese-toggle.js"></script>
+     
+    
+    <script src="../../../search/main.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.3.0/dist/iconify-icon.min.js"></script>
+    <script src="../../../js/copy-button.js"></script>
+</body>
+
+</html>
