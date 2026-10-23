@@ -221,8 +221,42 @@ Variants — same base, extra slots only when needed:
 
 Not accordions (leave them): `.content-panels` (tabs), `.content-deck`
 (paginated cards), `.content-quiz` (question flip-through),
-`.strongs-hover` (lexicon panel), `.chinese-toggle` (language),
-`.role-card` and `.content-timeline` (static).
+`.content-toc` (peek + fade 目錄), `.strongs-hover` (lexicon panel),
+`.chinese-toggle` (language), `.role-card` and `.content-timeline`
+(static).
+
+### In-page 目錄 (`.content-toc`)
+
+Peek + fade collapse for the lesson table of contents (option C).
+Styles live in `docs/stylesheets/extra.css`. Progressive-enhancement JS
+lives in `docs/javascripts/content-toc.js` (wired in `mkdocs.yml`); it
+re-inits on MkDocs instant navigation via `document$` when present.
+
+The enhancer keys on a heading whose visible text is `目錄` plus the
+immediately following `ul`/`ol`. Do not hand-edit lesson wording or wrap
+the list in Markdown — the script adds the wrapper, clip, and toggle.
+
+Collapsed by default (JS only): clip the list to the first ~4 rows
+(about 178px of list, ~290px for the whole 目錄 block on a 390px
+phone) with a gradient fade into `--sgbs-paper` over the last visible
+item, then a full-width button 「顯示全部目錄（共 N 項）」 where N is
+the number of `a[href]` links in that list. Expanded: fade off, button
+becomes 「收起目錄」. If the list already fits in the peek height, leave
+it open and show no button.
+
+Animation: 280ms ease height (Web Animations API, same duration/easing
+as the shared accordion). `prefers-reduced-motion` jumps with no
+animation. After collapse, `scrollIntoView({ block: "nearest" })` keeps
+the 目錄 heading on screen. No-JS: the full nested list stays visible.
+Anchor links in the TOC keep their `href`s. The toggle is a real
+`<button>` with `aria-expanded` and `aria-controls`.
+
+Look: not a card around the heading — the list stays a normal page
+list. The button matches the accordion family (rounded 12px, paper-deep
+fill, rule border, serif label, triangle chevron that turns vermilion
+and rotates when open). Fade must use `rgba(var(--sgbs-paper-rgb), 0)`
+→ `var(--sgbs-paper)` so it matches the page background in both themes
+(do not fade to `transparent`, which interpolates as black).
 
 ### Activity timeline (`.content-timeline`)
 

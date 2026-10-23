@@ -62,7 +62,8 @@ body {
 .content-deck,
 .content-check,
 .expandable-cards,
-.content-timeline {
+.content-timeline,
+.content-toc {
     --cm-paper: var(--sgbs-paper, var(--md-default-bg-color, #faf6ec));
     --cm-paper-deep: var(--sgbs-paper-deep, rgba(38, 33, 22, 0.05));
     --cm-ink: var(--sgbs-ink, var(--md-default-fg-color, #262116));
@@ -84,7 +85,8 @@ body {
 .dark .content-deck,
 .dark .content-check,
 .dark .expandable-cards,
-.dark .content-timeline {
+.dark .content-timeline,
+.dark .content-toc {
     --cm-correct: #58a86b;
     --cm-correct-bg: rgba(88, 168, 107, 0.16);
     --cm-incorrect: #e06d5c;
@@ -1391,6 +1393,141 @@ article details[open] > .expandable-card__body {
 
     .content-timeline__card {
         padding: 0.9rem 1rem;
+    }
+}
+
+/*
+ * In-page 目錄 peek + fade (option C). Wrapper/clip/button are injected
+ * by content-toc.js; without JS the heading + list stay a normal page
+ * list. Fade into --sgbs-paper (the body background) in both themes —
+ * interpolate from paper-rgb @ 0, not `transparent` (that goes via black).
+ */
+.content-toc {
+    --content-toc-peek: 11.125rem;
+    --content-toc-fade: 5.625rem;
+    --content-toc-ease: 0.28s ease;
+    margin: 0 0 0.25rem;
+}
+
+.content-toc__clip {
+    position: relative;
+    display: flow-root;
+    overflow: hidden;
+}
+
+.content-toc__clip::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--content-toc-fade);
+    background: linear-gradient(
+        to bottom,
+        rgba(var(--sgbs-paper-rgb), 0),
+        var(--sgbs-paper) 85%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--content-toc-ease);
+}
+
+.content-toc.is-collapsed .content-toc__clip::after {
+    opacity: 1;
+}
+
+.content-toc.is-expanded .content-toc__clip::after {
+    opacity: 0;
+}
+
+.typography button.content-toc__toggle::before,
+.typography button.content-toc__toggle::after,
+.md-typeset button.content-toc__toggle::before,
+.md-typeset button.content-toc__toggle::after,
+button.content-toc__toggle::before,
+button.content-toc__toggle::after {
+    content: none;
+    display: none;
+}
+
+.typography .content-toc__toggle,
+.md-typeset .content-toc__toggle,
+button.content-toc__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    width: 100%;
+    min-height: 3rem;
+    margin: 0.4rem 0 0;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--sgbs-rule, var(--cm-rule));
+    border-radius: 12px;
+    background: var(--sgbs-paper-deep, var(--cm-paper-deep));
+    color: var(--sgbs-ink, var(--cm-ink));
+    font-family: var(--font-serif, var(--cm-serif));
+    font-size: 0.95em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    cursor: pointer;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        border-color var(--content-toc-ease),
+        color var(--content-toc-ease),
+        background-color var(--content-toc-ease);
+}
+
+.typography .content-toc__toggle:hover,
+.typography .content-toc__toggle:focus-visible,
+.md-typeset .content-toc__toggle:hover,
+.md-typeset .content-toc__toggle:focus-visible,
+button.content-toc__toggle:hover,
+button.content-toc__toggle:focus-visible {
+    border-color: var(--sgbs-vermilion, var(--cm-vermilion));
+    color: var(--sgbs-vermilion, var(--cm-vermilion));
+    background: var(--sgbs-paper-deep, var(--cm-paper-deep));
+}
+
+.typography .content-toc__toggle:focus-visible,
+.md-typeset .content-toc__toggle:focus-visible,
+button.content-toc__toggle:focus-visible {
+    outline: 2px solid var(--sgbs-vermilion, var(--cm-vermilion));
+    outline-offset: 2px;
+}
+
+.content-toc__toggle-label {
+    font: inherit;
+}
+
+.content-toc__chev {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: var(--sgbs-vermilion, var(--cm-vermilion));
+    clip-path: polygon(50% 80%, 0 20%, 100% 20%);
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+    transition:
+        transform var(--content-toc-ease),
+        background-color var(--content-toc-ease);
+}
+
+.content-toc.is-expanded .content-toc__chev {
+    transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-toc__clip::after,
+    .typography .content-toc__toggle,
+    .md-typeset .content-toc__toggle,
+    button.content-toc__toggle,
+    .content-toc__chev {
+        transition: none;
     }
 }
 

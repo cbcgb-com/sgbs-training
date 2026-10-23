@@ -38,6 +38,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/content-accordion.js
+  - javascripts/content-toc.js
   - javascripts/content-quiz.js
   - javascripts/content-quiz-frame.js
   - javascripts/content-panels.js
